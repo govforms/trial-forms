@@ -1,0 +1,306 @@
+{
+  "_id": "vat126-ND",
+  "formName": "Claim for refund of VAT by certain bodies 2",
+  "description": "",
+  "formCategory": "hmrcClaimForm",
+  "emailTemplateId": "eeitt_confirmation_submission",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${auth.payenino}",
+    "dmsFormId": "VAT126"
+  },
+  "sections": [
+    {
+      "title": "Before you start",
+      "fields": [
+        {
+          "id": "CT603Info",
+          "type": "info",
+          "label": "",
+          "infoText": "## You can use this form to claim back VAT on supplied goods and services. ##\n\nYour claim must be submitted within 3 years of the date of purchase.\n\nYou need to make sure you have everything you need ready to make this claim.\n\nFor each invoice you want to claim for, you’ll need to provide:\n* the date of the invoice\n* the supplier's VAT Registration Number\n* a brief description of the goods or service supplied\n* who the invoice was addressed to\n* the amount of VAT paid\n\nYour claim must be for a period of at least one calendar month and must end on the last day of a calendar month.\n\nIf you want to make a claim for less than £100, it must cover a period of at least 12 months.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What type of organisation are you claiming for?",
+      "shortName": "Organisation details",
+      "fields": [
+        {
+          "id": "organisationType",
+          "type": "choice",
+          "label": "",
+          "shortName": "Organisation type",
+          "errorMessage": "Select organisation type",
+          "choices": [
+            "Local authority or similar body",
+            "Academy school of multi-academy trust",
+            "New choice",
+            "Charity",
+            "Non-departmental body or similar bodies"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "New section",
+      "fields": []
+    },
+    {
+      "title": "Enter the name of your organisation",
+      "fields": [
+        {
+          "id": "orgName",
+          "type": "text",
+          "label": "",
+          "shortName": "Organisation name",
+          "format": "text",
+          "errorMessage": "Enter organisation name"
+        }
+      ]
+    },
+    {
+      "title": "Contact details",
+      "description": "Enter details of someone who we can contact if we need to discuss your claim.",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Full name",
+          "errorMessage": "Enter full name"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "no",
+          "errorMessage": "Enter email address"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber",
+          "mandatory": "no",
+          "errorMessage": "Enter telephone number"
+        },
+        {
+          "id": "contactBy",
+          "type": "choice",
+          "label": "How do you want to be contacted?",
+          "shortName": "Preferred contact method",
+          "choices": [
+            "Email",
+            "Telephone"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your organisation's address changed since the last claim?",
+      "shortName": "Address",
+      "fields": [
+        {
+          "id": "address",
+          "type": "choice",
+          "label": "",
+          "shortName": "Change of address",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for change of address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the new address",
+      "shortName": "New address",
+      "includeIf": "${address=0}",
+      "fields": [
+        {
+          "id": "newAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "addInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "You must include a bank statement to verify your details.\n\n We accept formats like PDF and JPEG (2MB maximum)."
+        },
+        {
+          "id": "uploadAdd",
+          "type": "file",
+          "label": "Upload a file"
+        }
+      ]
+    },
+    {
+      "title": "Have you changed your organisation's bank details since your last claim?",
+      "shortName": "Bank",
+      "fields": [
+        {
+          "id": "bankChange",
+          "type": "choice",
+          "label": "",
+          "shortName": "Change of bank details",
+          "format": "yesno",
+          "errorMessage": "Select either yes or no for a change in bank details"
+        }
+      ]
+    },
+    {
+      "title": "Enter the new bank details",
+      "shortName": "New bank details",
+      "includeIf": "${bankChange=0}",
+      "fields": [
+        {
+          "id": "bankName",
+          "type": "text",
+          "label": "Bank or building society name",
+          "format": "text",
+          "errorMessage": "Enter bank or building society name"
+        },
+        {
+          "id": "accNo",
+          "type": "text",
+          "label": "Account number",
+          "format": "ukBankAccountNumber",
+          "errorMessage": "Enter account number",
+          "validatorName": "bankAccountModulusCheck"
+        },
+        {
+          "id": "sortCode",
+          "type": "text",
+          "label": "Sort code",
+          "format": "ukSortCode",
+          "errorMessage": "Enter sort code",
+          "validatorName": "bankAccountModulusCheck"
+        },
+        {
+          "id": "infoBank",
+          "type": "info",
+          "label": "",
+          "infoText": "You must upload a bank statement to verify your details.\n\n We accept formats like PDF and JPEG (2MB maximum)."
+        },
+        {
+          "id": "uploadBank",
+          "type": "file",
+          "label": "Upload a file"
+        }
+      ]
+    },
+    {
+      "title": "Enter start and end dates for this claim",
+      "shortName": "Claim dates",
+      "description": "Your claim must be for a period of at least one calendar month",
+      "fields": [
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example 01 04 2018",
+          "errorMessage": "Enter the claim period start date using the correct format"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "helpText": "For example 30 04 2018",
+          "format": "after ${startDate}",
+          "errorMessage": "The claim period end date must be a valid date after the start date"
+        }
+      ]
+    },
+    {
+      "title": "Your invoice details",
+      "shortName": "Invoice details",
+      "fields": [
+        {
+          "id": "invoiceInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "Upload a single document, which must include:\n* date of invoice\n* supplier's VAT Registration Number\n* brief description of the goods or service supplied\n* the amount of VAT paid\n\nWe accept spreadsheets and other formats like PDF and JPEG (15MB maximum)",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadInvoice",
+          "type": "file",
+          "label": "Upload a file"
+        }
+      ]
+    },
+    {
+      "title": "Reclaim VAT",
+      "fields": [
+        {
+          "id": "claimTotal",
+          "type": "text",
+          "label": "Enter total amount",
+          "shortName": "Claim amount",
+          "format": "sterling",
+          "errorMessage": "Enter total amount"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "description": "By entering your details below you confirm on behalf of your organisation that:",
+    "fields": [
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "\n* any claim for VAT refund on goods and services are for non-business activities\n* your organisation doesn’t make goods and doesn’t provide services that are subject to VAT\n* your organisation isn’t registered for VAT, and if requested, you will produce tax invoices to prove this",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "You must enter the name of someone who is authorised to sign this declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name",
+            "errorMessage": "Enter full name"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email",
+            "errorMessage": "Enter email address"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your form has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your claim",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "What happens next\n\nWe will pay any VAT refund due to the bank account you provided in your claim.\n\n[Contact the VAT Helpline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/vat-enquiries) if you need to make changes to your claim or speak to someone about your claim.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
