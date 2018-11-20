@@ -1,0 +1,664 @@
+{
+  "_id": "register-for-aggregates-levy",
+  "formName": "hmrcReturnForm",
+  "description": "",
+  "formCategory": "hmrcClaimForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "al100_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${utrRepComp}",
+    "dmsFormId": "ALREG"
+  },
+  "sections": [
+    {
+      "title": "Is your business registered for VAT?",
+      "fields": [
+        {
+          "id": "choiceVat",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "VAT registration number",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "VAT registration number",
+          "format": "text(0, 9)"
+        }
+      ]
+    },
+    {
+      "title": "Business status",
+      "description": "If your business is a partnership, you must complete and send form AL2 as well as this form.",
+      "fields": [
+        {
+          "id": "legalInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "If your business is a trust, you must complete and send form AL6 as well as this form. Form AL1 should be completed by a trustee if the business is run by the trustees. If the business is run by the beneficiaries all beneficiaries should complete form AL1.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "legalStatus",
+          "type": "choice",
+          "label": "What is the legal status of the business?",
+          "choices": [
+            "Sole proprietor",
+            "Partnership",
+            "Local Authority",
+            "Non-profit making body or unincorporated body",
+            "Public corporation",
+            "Trust",
+            "Corporate body (for example, limited company"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter incorporation details",
+      "includeIf": "${legalStatus=6}",
+      "fields": [
+        {
+          "id": "certNo",
+          "type": "text",
+          "label": "Certification number",
+          "format": "text"
+        },
+        {
+          "id": "incorpDate",
+          "type": "date",
+          "label": "Date of incorporation"
+        }
+      ]
+    },
+    {
+      "title": "Type of registration",
+      "fields": [
+        {
+          "id": "groupReg",
+          "type": "choice",
+          "label": "Are you applying for group registration as the representative member of an aggregates levy group?",
+          "format": "yesno"
+        },
+        {
+          "id": "groupRegInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "If yes, you must provide the additional information set out on forms AL50 and AL51",
+          "infoType": "noformat"
+        },
+        {
+          "id": "divReg",
+          "type": "choice",
+          "label": "Are you applying to be registered in divisions?",
+          "format": "yesno"
+        },
+        {
+          "id": "divRegInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "If yes, you must provide the additional information set out in Excise Notice AGL1: Aggregates Levy",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Provide your business details",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Full name of business",
+          "format": "text"
+        },
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "Trading name if different from business name (optional)",
+          "format": "text",
+          "mandatory": "false"
+        },
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Business address"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "faxNumber",
+          "type": "text",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "mobileNumber",
+          "type": "text",
+          "label": "Mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "website",
+          "type": "text",
+          "label": "Website",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Do you have an alternate address to communicate with?",
+      "description": "Correspondence is normally sent to the principal place of business, entered on the previous page. Exceptionally you may ask for correspondence to be sent to a different address.",
+      "fields": [
+        {
+          "id": "altAdd",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Alternative communication details",
+      "includeIf": "${altAdd=0}",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Full name",
+          "format": "text"
+        },
+        {
+          "id": "address",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "altPhoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "altFaxNumber",
+          "type": "text",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "altEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents",
+      "description": "If you’re applying as the representative member of an aggregates levy group, indicate the business activities of all group members.",
+      "fields": [
+        {
+          "id": "aggregatesGroup",
+          "type": "group",
+          "label": "Quarry extraction",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "quarryPercentage",
+              "type": "text",
+              "label": "Percentage of quarry extraction",
+              "format": "number(9, 2, '%')",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "aggregatesGroup2",
+          "type": "group",
+          "label": "Sand/gravel extraction",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "sandPercentage",
+              "type": "text",
+              "label": "Percentage of sand/gravel extraction",
+              "format": "number(9, 2, '%')",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "aggregatesGroup3",
+          "type": "group",
+          "label": "The importation of aggregate from outside the UK",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "importPercentage",
+              "type": "text",
+              "label": "Percentage of imported aggregate",
+              "format": "number(9, 2, '%')",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "aggregatesGroup4",
+          "type": "group",
+          "label": "Use of a mobile crusher to commercially extract aggregates",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cursherPercentage",
+              "type": "text",
+              "label": "Percentage of mobile crusher to commercially extract",
+              "format": "number(9, 2, '%')",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "aggregatesGroup5",
+          "type": "group",
+          "label": "Other",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "otherInfo",
+              "type": "text",
+              "label": "Explain",
+              "mandatory": "false"
+            },
+            {
+              "id": "otherPercentage",
+              "type": "text",
+              "label": "Percentage of other used",
+              "format": "number(9, 2, '%')",
+              "mandatory": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the date of your first commercial exploitation of aggregate",
+      "fields": [
+        {
+          "id": "aggregatesDate",
+          "type": "date",
+          "label": "",
+          "helpText": "If you’re applying as the representative member of an aggregates levy group, please show the date or anticipated date of the first occasion aggregate will be subjected to commercial exploitation by any group member including the representative member"
+        }
+      ]
+    },
+    {
+      "title": "Estimate how much aggregates levy you’ll pay in the next 12 months (multiply estimated tonnage by the rate of aggregates levy)",
+      "fields": [
+        {
+          "id": "aggregatesLevy",
+          "type": "text",
+          "label": "",
+          "helpText": "If you’re applying as the representative member of an aggregates levy group, please give the estimated aggregates levy for all group members.",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Do you expect any of your commercial activity to be exempt from the levy or subject to relief?",
+      "fields": [
+        {
+          "id": "exemptChoice",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Estimate the tonnage of exempt, relieved or exported supplies you expect to make in the next 12 months",
+      "includeIf": "${exemptChoice=0}",
+      "description": "If you’re applying as the representative member of an aggregates levy group, give the estimated tonnage for all group members",
+      "fields": [
+        {
+          "id": "exemptLevy",
+          "type": "text",
+          "label": "Exempt in tonnes",
+          "format": "number"
+        },
+        {
+          "id": "relievedLevy",
+          "type": "text",
+          "label": "Relieved in tonnes",
+          "format": "number"
+        },
+        {
+          "id": "exportLevy",
+          "type": "text",
+          "label": "Export in tonnes",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "title": "Indicate the preferred stagger for your returns by putting an ‘X’ in the appropriate box",
+      "fields": [
+        {
+          "id": "nonTaxPeriod",
+          "type": "choice",
+          "label": "Do you wish to apply for non-standard tax periods?",
+          "format": "yesno"
+        },
+        {
+          "id": "taxPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to apply for non-standard tax periods, tick the box for the stagger period most closely matching your non-standard periods.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "taxPeriod",
+          "type": "choice",
+          "label": "Indicate the preferred stagger for your returns",
+          "multivalue": "yes",
+          "choices": [
+            "Stagger 0 - monthly returns",
+            "Stagger 1 - quarters ending Mar/Jun/Sept/Dec",
+            "Stagger 2 - quarters ending Jan/Apr/Jul/Oct",
+            "Stagger 3 - quarters ending Feb/May/Aug/Nov"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter details of the bank or building society account that you use for the aggregates levy business.",
+      "shortName": "Bank details",
+      "fields": [
+        {
+          "id": "bankName",
+          "type": "text",
+          "label": "Bank or building society name",
+          "format": "text"
+        },
+        {
+          "id": "accountNumber",
+          "type": "text",
+          "label": "Account number",
+          "format": "ukBankAccountNumber"
+        },
+        {
+          "id": "sortCode",
+          "type": "text",
+          "label": "Sort code",
+          "format": "ukSortCode"
+        },
+        {
+          "id": "rollNumber",
+          "type": "text",
+          "label": "Building society roll number (if you have one)",
+          "shortName": "Roll number",
+          "helpText": "Enter the roll number as shown on your card or on statements from your building society",
+          "format": "text",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Will you account for aggregates levy using a computerised system?",
+      "fields": [
+        {
+          "id": "compSysChoice",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Computerised system details",
+      "includeIf": "${compSysChoice=0}",
+      "fields": [
+        {
+          "id": "softwareName",
+          "type": "text",
+          "label": "Accounting Software",
+          "format": "text"
+        },
+        {
+          "id": "softwareVersion",
+          "type": "text",
+          "label": "Accounting Software Version",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Have you taken over a business registrable for aggregates levy as a going concern, or changed the legal entity that owns the business (for example, from a sole proprietor to a limited company)?",
+      "fields": [
+        {
+          "id": "businessTakeOver",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Transfer details",
+      "includeIf": "${businessTakeOver=0}",
+      "fields": [
+        {
+          "id": "transferDate",
+          "type": "date",
+          "label": "what date did the transfer take place?",
+          "helpText": "For example, 01 08 2018"
+        },
+        {
+          "id": "prevBusinessName",
+          "type": "text",
+          "label": "Business name of previous owner",
+          "format": "text"
+        },
+        {
+          "id": "prevRegNo",
+          "type": "text",
+          "label": "Aggregates registration number of previous owner",
+          "format": "text"
+        },
+        {
+          "id": "keepPrevNumber",
+          "type": "choice",
+          "label": "Do you want to keep this number?",
+          "helpText": "If you do keep the registration number, you’ll become liable for the previous owner’s aggregates levy debts and you and the previous owner must also complete and send form AL68",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Is your business involved in any other activities registered approved or authorised by HM Revenue and Customs?",
+      "description": "Tick the boxes as appropriate and give the registration number",
+      "fields": [
+        {
+          "id": "landFillReg",
+          "type": "group",
+          "label": "Landfill Tax",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "landfillRegNo",
+              "type": "text",
+              "label": "Registration number",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "exciseDuties",
+          "type": "group",
+          "label": "Excise Duties",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "exciseDutiesRegNo",
+              "type": "text",
+              "label": "Registration number",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "importExport",
+          "type": "group",
+          "label": "Import or exports",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "impExpDetails",
+              "type": "text",
+              "label": "Give details",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "otherInfo",
+          "type": "group",
+          "label": "Other",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "otherDetails",
+              "type": "text",
+              "label": "Give details",
+              "mandatory": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are there any other aggregates business(es) you are or have been, involved in during the last 24 months?",
+      "description": "If you're a partnership or a limited company this means any businesses in which partners or directors have been involved",
+      "fields": [
+        {
+          "id": "otherBusiness",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Aggregates Levy registration numbers of other businesses",
+      "includeIf": "${otherBusiness=0}",
+      "description": "Enter the Aggregates Levy registration numbers of any businesses you are or have been involved in. If you’re a partnership or a limited company this means any business n which partners or directors have been involved.",
+      "fields": [
+        {
+          "id": "otherRegNo",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Registration number $n",
+          "repeatAddAnotherText": "Add details for a different final product",
+          "fields": [
+            {
+              "id": "regNo1",
+              "type": "text",
+              "label": "Registration number",
+              "format": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your claim",
+    "fields": [
+      {
+        "id": "declarationFullName",
+        "type": "text",
+        "label": "Full name",
+        "errorMessage": "Enter full name"
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we have received your claim.",
+        "format": "email",
+        "errorMessage": "Enter email address"
+      },
+      {
+        "id": "legalStatusDec",
+        "type": "choice",
+        "label": "Choose the appropriate box",
+        "helpText": "For corporate bodies, a director or company secretary must sign the form.",
+        "choices": [
+          "Sole proprietor",
+          "Partnership",
+          "Local Authority",
+          "Non-profit making body or unincorporated body",
+          "Public corporation",
+          "Trust",
+          "Corporate body (for example, limited company"
+        ]
+      },
+      {
+        "id": "decInfoCheckTitle",
+        "type": "info",
+        "label": "",
+        "infoText": "## Declaration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By entering your full name above you confirm that the information you have provided is true and complete.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your form has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "Remember that you must: \n* tell us if any of the information given in this application changes \n* fill in and send form(s) ‘AL1A, Aggregates Levy: notify site details’ with this form – we need both forms to register you",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
