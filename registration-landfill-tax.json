@@ -14,391 +14,49 @@
   },
   "sections": [
     {
-      "title": "Before you start",
+      "title": "Business details",
       "fields": [
         {
-          "id": "beforeYouStartInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "## This is a sample GOV form ## \n\nThis form introduces the key components and features.  \n\nUse the Editor view to understand how it has been built and feel free to make changes and base your own forms on this one.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Information fields",
-      "fields": [
-        {
-          "id": "noFormatTextTitle",
-          "type": "group",
-          "label": "Basic information field",
-          "fields": [
-            {
-              "id": "noFormatInfoBox",
-              "type": "info",
-              "label": "",
-              "infoText": "This can be used for general page content.",
-              "infoType": "noformat"
-            }
-          ]
-        },
-        {
-          "id": "insetTextTitle",
-          "type": "group",
-          "label": "Inset text",
-          "fields": [
-            {
-              "id": "insetInfoBox",
-              "type": "info",
-              "label": "",
-              "infoText": "This can be used to draw attention to important information on the page"
-            }
-          ]
-        },
-        {
-          "id": "hiddenTextTitle",
-          "type": "group",
-          "label": "Hidden Text",
-          "fields": [
-            {
-              "id": "hiddenTextInformation",
-              "type": "info",
-              "label": "",
-              "infoText": "This can be used to make the page easier to scan by only showing contextual information when required. Click on the 'Help with nationality' to see how this works. ",
-              "infoType": "noformat"
-            },
-            {
-              "id": "longInfoBox",
-              "type": "info",
-              "label": "Help with nationality.",
-              "infoText": "If you're not sure about your nationality, try to find out from an official document like a passport or national ID card. We need to know your nationality so we can work out which elections you're entitled to vote in. If you can't provide your nationality, you'll have to send copies of identity documents through the post.",
-              "infoType": "long"
-            }
-          ]
-        },
-        {
-          "id": "warningTextTitle",
-          "type": "group",
-          "label": "Warning text",
-          "fields": [
-            {
-              "id": "importantInfoBox",
-              "type": "info",
-              "label": "",
-              "infoText": "The exclamation icon can be used with bold text to warn people about something important, for example if there are legal consequences like a fine.",
-              "infoType": "important"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Form fields",
-      "fields": [
-        {
-          "id": "textBoxShort",
+          "id": "businessName",
           "type": "text",
-          "label": "Text box",
-          "helpText": "This is the default text field. It is set to mandatory and will only accept 0-9, Aa-Zz and '-.",
-          "errorMessage": "Enter a word"
+          "label": "Business name"
         },
         {
-          "id": "textBoxFormat",
+          "id": "tradingName",
           "type": "text",
-          "label": "Text box including special characters",
-          "helpText": "This text field is set to mandatory and allows special characters to be entered without restriction",
-          "format": "text",
-          "errorMessage": "Insert special characters"
+          "label": "Trading name (if you have one)",
+          "mandatory": "false"
         },
         {
-          "id": "textBoxLimited",
-          "type": "text",
-          "label": "Limited character text box",
-          "helpText": "This text field is set to mandatory and limits input to a maximum of 10 characters including spaces. The user cannot continue if they enter more than 10 characters",
-          "format": "text(0,10)",
-          "errorMessage": "Enter a maximum of 10 characters"
-        },
-        {
-          "id": "mandOpt",
-          "type": "text",
-          "label": "Optional text box",
-          "helpText": "This text field can be left blank and does not require any input to enable the user to continue.",
-          "mandatory": "no"
-        },
-        {
-          "id": "yesNoD5",
-          "type": "group",
-          "label": "Hint text",
-          "fields": [
-            {
-              "id": "hintTextInfoBox",
-              "type": "info",
-              "label": "",
-              "infoText": "Hint text sits above a form field and provides supporting contextual help.",
-              "infoType": "noformat"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Contact details",
-      "fields": [
-        {
-          "id": "textFieldInfoFormat",
-          "type": "info",
-          "label": "",
-          "infoText": "The type of text field used to provide contact details can be set to meet the needs of the form owner. For example whether a field is optional or mandatory.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "usersFirstName",
-          "type": "text",
-          "label": "First name"
-        },
-        {
-          "id": "usersLastName",
-          "type": "text",
-          "label": "Last name"
-        },
-        {
-          "id": "userAddress",
+          "id": "businessAddress",
           "type": "address",
-          "label": "Address",
+          "label": "Give the address of your principal place of business",
           "postcodeLookup": "no"
         },
         {
-          "id": "usersEmail",
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "mobilePhone",
+          "type": "text",
+          "label": "Mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "faxNumber",
+          "type": "text",
+          "label": "Fax number (if you have one)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "id": "emailAddress",
           "type": "text",
           "label": "Email address",
-          "helpText": "Enter a valid email address with no spaces. e.g name@example.com",
-          "format": "email",
-          "errorMessage": "Enter a valid email address with no spaces. e.g name@example.com"
-        },
-        {
-          "id": "userPhone",
-          "type": "text",
-          "label": "Phone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Numbers and currency",
-      "fields": [
-        {
-          "id": "positiveNumberTextBox",
-          "type": "text",
-          "label": "Positive whole number text box",
-          "helpText": "This field only accepts positive whole numbers and is limited to 11 digits. If a user enters a negative value or a decimal place, they will receive an error message.",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "id": "sterlingTextBox",
-          "type": "text",
-          "label": "Sterling box",
-          "helpText": "This is formatted to receive values in Sterling, including pounds and pence and is also limited to 11 digits. Negative values can be entered by using a minus(-) symbol. Commas can be used to display larger numbers.",
-          "format": "sterling"
-        }
-      ]
-    },
-    {
-      "title": "Calculations",
-      "fields": [
-        {
-          "id": "calcInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "gForms are able to perform calculations using values entered on the same or previous pages. The following examples demonstrate the addition and multiplication expressions."
-        },
-        {
-          "id": "valOne",
-          "type": "text",
-          "label": "Enter any number",
-          "helpText": "Addition will be demonstrated in the following field through an automated calculation.",
-          "format": "number"
-        },
-        {
-          "id": "valTwo",
-          "type": "text",
-          "label": "Automated field showing the number entered + 2",
-          "helpText": "Multiple fields can be added together",
-          "format": "number",
-          "value": "${valOne + 2}",
-          "submitMode": "readonly"
-        },
-        {
-          "id": "valThree",
-          "type": "text",
-          "label": "Multiplication is also possible, this field shows the number entered * 2",
-          "helpText": "This box is read only, users are unable to edit this field and it is automated",
-          "format": "number",
-          "value": "${valOne * 2}",
-          "submitMode": "readonly"
-        }
-      ]
-    },
-    {
-      "title": "Dates",
-      "fields": [
-        {
-          "id": "dateInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "This is a standard date component frequently used to declare the start and end dates of a return period."
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start/end date",
-          "helpText": "",
-          "mandatory": "true",
-          "errorMessage": "Enter the return period start date using the correct format"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "There is some validation on this field, which prevents users submitting an end date prior to the start date",
-          "format": "after ${startDate}",
-          "mandatory": "true",
-          "errorMessage": "Enter the end date as a period later than the start date"
-        },
-        {
-          "id": "dateInformationBox",
-          "type": "info",
-          "label": "",
-          "infoText": "Date entries can be customised based on requirements, such as limiting them by number of days, months and years."
-        }
-      ]
-    },
-    {
-      "title": "File upload",
-      "fields": [
-        {
-          "id": "spreadsheet",
-          "type": "file",
-          "label": "",
-          "mandatory": "false",
-          "errorMessage": "Upload the required return document"
-        },
-        {
-          "id": "uploadInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "This is the file upload feature. Accepted file types include: documents, spreadsheets, PowerPoint presentations, images, and PDFs."
-        }
-      ]
-    },
-    {
-      "title": "Grouping components",
-      "fields": [
-        {
-          "id": "group1",
-          "type": "group",
-          "label": "This is a 'group' - which allows the grouping of multiple components.",
-          "format": "horizontal",
-          "fields": [
-            {
-              "id": "field1",
-              "type": "text",
-              "label": "An example of grouping fields together"
-            },
-            {
-              "id": "horizontal",
-              "type": "text",
-              "label": "This field is grouped to the above title and accepts monetary values",
-              "format": "number (20, 5)"
-            }
-          ]
-        },
-        {
-          "id": "group2",
-          "type": "group",
-          "label": "This is a 'group' - which allows the grouping of multiple components.",
-          "format": "horizontal",
-          "fields": [
-            {
-              "id": "field2",
-              "type": "text",
-              "label": "This is a second group"
-            },
-            {
-              "id": "horizontal1",
-              "type": "text",
-              "label": "This is a second group showing numbers",
-              "format": "number (20, 5)"
-            },
-            {
-              "id": "field3",
-              "type": "text",
-              "label": "This relates to the second group"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Choice and journey routing",
-      "fields": [
-        {
-          "id": "multipleChoiceQuestion",
-          "type": "choice",
-          "label": "Multiple choice options are available. They can be static or branch off into separate journeys depending on the user input.",
-          "helpText": "This is a static example and will not affect the journey",
-          "choices": [
-            "This",
-            "Will",
-            "Not",
-            "Affect",
-            "The",
-            "Journey"
-          ]
-        },
-        {
-          "id": "yesNoQuestion",
-          "type": "choice",
-          "label": "This is an example of a Yes/No choice. In this case, when the 'Yes' radio button is selected additional pages will be generated.",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Include if pages",
-      "includeIf": "${yesNoQuestion=0}",
-      "fields": [
-        {
-          "id": "includeIfStatement",
-          "type": "info",
-          "label": "",
-          "infoText": "Pages can be generated in direct response to previous user input. For example, this page is displayed if 'Yes' was selected on the previous page. If 'No' was selected the journey would continue without this page."
-        }
-      ]
-    },
-    {
-      "title": "Checkboxes",
-      "fields": [
-        {
-          "id": "checkBoxExample",
-          "type": "group",
-          "label": "This is an example of a checkbox that can expand into more components if selected.",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "textBoxCheckExample",
-              "type": "text",
-              "label": "You can then have multiple components within the checkbox",
-              "format": "text",
-              "mandatory": "false"
-            },
-            {
-              "id": "secondCheckBoxExample",
-              "type": "text",
-              "label": "You can also have multiple checkboxes",
-              "format": "sterling",
-              "mandatory": "false"
-            }
-          ]
+          "format": "email"
         }
       ]
     }
