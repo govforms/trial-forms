@@ -595,8 +595,8 @@
       "title": "Site details",
       "fields": [
         {
-          "type": "choice",
           "id": "existingSiteChoice",
+          "type": "choice",
           "label": "Are you amending the site details to an existing Aggregates Levy registration?",
           "choices": [
             "Yes",
@@ -604,8 +604,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "typeOfSite",
+          "type": "choice",
           "label": "What change to the site are you telling us about?",
           "choices": [
             "New site",
@@ -614,9 +614,21 @@
           ]
         },
         {
-          "type": "date",
           "id": "siteDate",
+          "type": "date",
           "label": "Date of change to site"
+        }
+      ]
+    },
+    {
+      "title": "Site closure",
+      "includeIf": "${typeOfSite=2}",
+      "fields": [
+        {
+          "id": "reasonClosure",
+          "type": "text",
+          "label": "Give reason for closure",
+          "multiline": "true"
         }
       ]
     },
@@ -624,21 +636,59 @@
       "title": "Site details",
       "fields": [
         {
-          "type": "text",
           "id": "siteName",
+          "type": "text",
           "label": "Trading name of site"
         },
         {
-          "type": "address",
           "id": "siteAdd",
+          "type": "address",
           "label": "Site address"
         },
         {
-          "type": "text",
           "id": "ordananceSurvey",
+          "type": "text",
           "label": "Ordnance Survey grid reference",
           "helpText": "Enter the grid reference of the entrance to the site",
           "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Site details",
+      "fields": [
+        {
+          "id": "weighbridgeChoice",
+          "type": "choice",
+          "label": "Is a weighbridge used to establish the weight of aggregate at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "existingSite",
+          "type": "choice",
+          "label": "Have you taken over this site from another operator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Existing site details",
+      "fields": [
+        {
+          "id": "existingBusinessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "alRegNoExist",
+          "type": "text",
+          "label": "Their Aggregates Levy registration number"
         }
       ]
     }
