@@ -1,6 +1,6 @@
 {
   "_id": "research-development-sandbox",
-  "formName": "New form",
+  "formName": "Send details to support a Research and Development tax relief claim for an SME",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -17,23 +17,23 @@
       "title": "About the tax adviser",
       "fields": [
         {
-          "type": "text",
           "id": "TaxAdvisersCompanyName",
+          "type": "text",
           "label": "Tax adviser's company name"
         },
         {
-          "type": "text",
           "id": "FirstName",
+          "type": "text",
           "label": "First name"
         },
         {
-          "type": "text",
           "id": "LastName",
+          "type": "text",
           "label": "Last name"
         },
         {
-          "type": "text",
           "id": "JobTitle",
+          "type": "text",
           "label": "Job title"
         }
       ]
@@ -63,14 +63,102 @@
           "format": "telephoneNumber"
         },
         {
-          "type": "choice",
           "id": "PreferredContact",
+          "type": "choice",
           "label": "Select your preferred contact method.",
           "multivalue": "true",
+          "errorMessage": "Select if you would like to be contacted by email or phone",
           "choices": [
             "Email",
             "Phone"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Your client's company details",
+      "fields": [
+        {
+          "id": "RegisteredCompanyName",
+          "type": "text",
+          "label": "Registered company name"
+        },
+        {
+          "id": "TaxOfficeReferenceNumber",
+          "type": "text",
+          "label": "Tax office reference number",
+          "helpText": "Enter the first 3 digits of the tax reference number before the space, for example, 478 4267329427",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "UniqueTaxpayerReference",
+          "type": "text",
+          "label": "Unique Taxpayer Reference"
+        }
+      ]
+    },
+    {
+      "title": "What is the start and end date for this claim?",
+      "fields": [
+        {
+          "id": "textFieldInfoFormat2",
+          "type": "info",
+          "label": "",
+          "infoText": "Your claim date should match the accounting period of your current Corporation Tax return.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example, 01 01 2017",
+          "mandatory": "true",
+          "errorMessage": "Enter the return period start date using the correct format"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "helpText": "For example, 31 01 2017",
+          "format": "after ${startDate}",
+          "mandatory": "true",
+          "errorMessage": "Enter the end date as a period later than the start date"
+        }
+      ]
+    },
+    {
+      "title": "Calculations",
+      "fields": [
+        {
+          "id": "calcInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "gForms are able to perform calculations using values entered on the same or previous pages. The following examples demonstrate the addition and multiplication expressions."
+        },
+        {
+          "id": "valOne",
+          "type": "text",
+          "label": "Enter any number",
+          "helpText": "Addition will be demonstrated in the following field through an automated calculation.",
+          "format": "number"
+        },
+        {
+          "id": "valTwo",
+          "type": "text",
+          "label": "Automated field showing the number entered + 2",
+          "helpText": "Multiple fields can be added together",
+          "format": "number",
+          "value": "${valOne + 2}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "valThree",
+          "type": "text",
+          "label": "Multiplication is also possible, this field shows the number entered * 2",
+          "helpText": "This box is read only, users are unable to edit this field and it is automated",
+          "format": "number",
+          "value": "${valOne * 2}",
+          "submitMode": "readonly"
         }
       ]
     },
@@ -206,76 +294,6 @@
           "label": "Sterling box",
           "helpText": "This is formatted to receive values in Sterling, including pounds and pence and is also limited to 11 digits. Negative values can be entered by using a minus(-) symbol. Commas can be used to display larger numbers.",
           "format": "sterling"
-        }
-      ]
-    },
-    {
-      "title": "Calculations",
-      "fields": [
-        {
-          "id": "calcInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "gForms are able to perform calculations using values entered on the same or previous pages. The following examples demonstrate the addition and multiplication expressions."
-        },
-        {
-          "id": "valOne",
-          "type": "text",
-          "label": "Enter any number",
-          "helpText": "Addition will be demonstrated in the following field through an automated calculation.",
-          "format": "number"
-        },
-        {
-          "id": "valTwo",
-          "type": "text",
-          "label": "Automated field showing the number entered + 2",
-          "helpText": "Multiple fields can be added together",
-          "format": "number",
-          "value": "${valOne + 2}",
-          "submitMode": "readonly"
-        },
-        {
-          "id": "valThree",
-          "type": "text",
-          "label": "Multiplication is also possible, this field shows the number entered * 2",
-          "helpText": "This box is read only, users are unable to edit this field and it is automated",
-          "format": "number",
-          "value": "${valOne * 2}",
-          "submitMode": "readonly"
-        }
-      ]
-    },
-    {
-      "title": "Dates",
-      "fields": [
-        {
-          "id": "dateInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "This is a standard date component frequently used to declare the start and end dates of a return period."
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start/end date",
-          "helpText": "",
-          "mandatory": "true",
-          "errorMessage": "Enter the return period start date using the correct format"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "There is some validation on this field, which prevents users submitting an end date prior to the start date",
-          "format": "after ${startDate}",
-          "mandatory": "true",
-          "errorMessage": "Enter the end date as a period later than the start date"
-        },
-        {
-          "id": "dateInformationBox",
-          "type": "info",
-          "label": "",
-          "infoText": "Date entries can be customised based on requirements, such as limiting them by number of days, months and years."
         }
       ]
     },
