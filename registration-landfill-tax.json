@@ -64,8 +64,8 @@
       "title": "Do you have an alternative communications address?",
       "fields": [
         {
-          "type": "choice",
           "id": "altAddressChoice",
+          "type": "choice",
           "label": "Do you have an alternative communications address?",
           "choices": [
             "Yes",
@@ -79,37 +79,37 @@
       "includeIf": "${altAddressChoice=0}",
       "fields": [
         {
-          "type": "text",
           "id": "nameAlt",
+          "type": "text",
           "label": "Name of contact"
         },
         {
-          "type": "address",
           "id": "altAddress",
+          "type": "address",
           "label": "Address of alternative contact"
         },
         {
-          "type": "text",
           "id": "altPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "altMobPhone",
+          "type": "text",
           "label": "Mobile number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "altFaxPhone",
+          "type": "text",
           "label": "Fax number (optional)",
           "format": "telephoneNumber",
           "mandatory": "false"
         },
         {
-          "type": "text",
           "id": "altEmail",
+          "type": "text",
           "label": "Email Address",
           "format": "email"
         }
@@ -164,8 +164,8 @@
       "title": "Payment preference",
       "fields": [
         {
-          "type": "choice",
           "id": "paymentPref",
+          "type": "choice",
           "label": "Give your preferred payment method",
           "choices": [
             "Credit transfer",
@@ -179,8 +179,8 @@
       "title": "How many landfill sites do you operate?",
       "fields": [
         {
-          "type": "text",
           "id": "landfillSiteNo",
+          "type": "text",
           "label": "How many landfill sites do you operate?"
         }
       ]
@@ -189,8 +189,8 @@
       "title": "Give the date of your first expected taxable disposal",
       "fields": [
         {
-          "type": "date",
           "id": "firstExpectedDisposal",
+          "type": "date",
           "label": "Give the date of your first expected taxable disposal"
         }
       ]
@@ -199,8 +199,8 @@
       "title": "Are you registered for VAT in the United Kingdom?",
       "fields": [
         {
-          "type": "choice",
           "id": "vatChoice",
+          "type": "choice",
           "label": "Are you registered for VAT in the United Kingdom?",
           "choices": [
             "Yes",
@@ -210,11 +210,22 @@
       ]
     },
     {
+      "title": "VAT registration number",
+      "includeIf": "${vatChoice=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "VAT registration number"
+        }
+      ]
+    },
+    {
       "title": "Are there any other landfill business(es) you are, or have been, involved in in the last 24 months?",
       "fields": [
         {
-          "type": "choice",
           "id": "otherLandfillBus",
+          "type": "choice",
           "label": "Are there any other landfill business(es) you are, or have been, involved in in the last 24 months?",
           "choices": [
             "Yes",
