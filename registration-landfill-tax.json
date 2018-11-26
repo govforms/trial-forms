@@ -61,6 +61,61 @@
       ]
     },
     {
+      "title": "Do you have an alternative communications address?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "altAddressChoice",
+          "label": "Do you have an alternative communications address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Alternative communication",
+      "includeIf": "${altAddressChoice=0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "nameAlt",
+          "label": "Name of contact"
+        },
+        {
+          "type": "address",
+          "id": "altAddress",
+          "label": "Address of alternative contact"
+        },
+        {
+          "type": "text",
+          "id": "altPhone",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "altMobPhone",
+          "label": "Mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "altFaxPhone",
+          "label": "Fax number (optional)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "type": "text",
+          "id": "altEmail",
+          "label": "Email Address",
+          "format": "email"
+        }
+      ]
+    },
+    {
       "title": "Registration details",
       "fields": [
         {
@@ -84,8 +139,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "legalStatus",
+          "type": "choice",
           "label": "What is the legal status of your business?",
           "choices": [
             "Sole Proprietor",
@@ -95,9 +150,72 @@
           ]
         },
         {
-          "type": "choice",
           "id": "transferConcern",
+          "type": "choice",
           "label": "Has your landfill activity been transferred to you as a going concern?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Payment preference",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "paymentPref",
+          "label": "Give your preferred payment method",
+          "choices": [
+            "Credit transfer",
+            "Cheque",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many landfill sites do you operate?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "landfillSiteNo",
+          "label": "How many landfill sites do you operate?"
+        }
+      ]
+    },
+    {
+      "title": "Give the date of your first expected taxable disposal",
+      "fields": [
+        {
+          "type": "date",
+          "id": "firstExpectedDisposal",
+          "label": "Give the date of your first expected taxable disposal"
+        }
+      ]
+    },
+    {
+      "title": "Are you registered for VAT in the United Kingdom?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "vatChoice",
+          "label": "Are you registered for VAT in the United Kingdom?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are there any other landfill business(es) you are, or have been, involved in in the last 24 months?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "otherLandfillBus",
+          "label": "Are there any other landfill business(es) you are, or have been, involved in in the last 24 months?",
           "choices": [
             "Yes",
             "No"
