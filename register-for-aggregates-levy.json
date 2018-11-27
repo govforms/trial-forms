@@ -614,6 +614,32 @@
       ]
     },
     {
+      "title": "Are you telling us about a site closure?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "siteCloseChoice",
+          "label": "Are you telling us about a site closure?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give reason for closure",
+      "includeIf": "${siteCloseChoice=0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "closeExplanation",
+          "label": "Give reason for closure",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
       "title": "Site details",
       "fields": [
         {
