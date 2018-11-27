@@ -1,0 +1,869 @@
+{
+  "_id": "tell-hmrc-about-your-chargeability",
+  "formName": "NRGCT1 tell HMRC about your chargeability",
+  "description": "",
+  "developmentPhase": "research",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Gaming",
+    "customerId": "${auth.payenino}",
+    "dmsFormId": "nrgct1"
+  },
+  "sections": [
+    {
+      "title": "Company details",
+      "fields": [
+        {
+          "id": "companyName01",
+          "type": "text",
+          "label": "Name of company",
+          "shortName": "Company name",
+          "helpText": "Input the name of the company here",
+          "errorMessage": "Company name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "companyIsRegisteredQuery",
+          "type": "choice",
+          "label": "Does your company have a registration number from companies house?",
+          "shortName": "Registered at companies house",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Registration number",
+      "includeIf": "${companyIsRegisteredQuery = 0}",
+      "fields": [
+        {
+          "id": "regNum01",
+          "type": "text",
+          "label": "Companies house registration number",
+          "shortName": "Registration number",
+          "helpText": "Input the registration number of the company here",
+          "errorMessage": "Registration number can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        }
+      ]
+    },
+    {
+      "title": "Company details",
+      "fields": [
+        {
+          "id": "companyAddressQuery1",
+          "type": "choice",
+          "label": "Is your company's registered address within the UK?",
+          "shortName": "Registered address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Company details",
+      "includeIf": "${companyAddressQuery1 = 0}",
+      "fields": [
+        {
+          "id": "officeAddressRefTrue1",
+          "type": "address",
+          "label": "Full registered UK address of the business",
+          "shortName": "UK business address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Company details",
+      "includeIf": "${companyAddressQuery1 = 1}",
+      "fields": [
+        {
+          "id": "officeAddressRefTrue2",
+          "type": "text",
+          "label": "Full registered address of the company",
+          "shortName": "Non-UK company address",
+          "helpText": "Input the full registered address for your company including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full registered address for your company including country"
+        }
+      ]
+    },
+    {
+      "title": "Corporation tax",
+      "fields": [
+        {
+          "id": "corporationTaxQuery1",
+          "type": "choice",
+          "label": "Is your company already filing Corporation Tax returns to HMRC?",
+          "shortName": "Already filing Corporation Tax returns",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Corporation tax",
+      "includeIf": "${corporationTaxQuery1 = 0}",
+      "fields": [
+        {
+          "id": "corporationTaxReference1",
+          "type": "text",
+          "label": "Corporation tax reference (UTR)",
+          "shortName": "UTR",
+          "helpText": "Input the UTR for your company",
+          "errorMessage": "Input the Corporation tax reference for your company"
+        }
+      ]
+    },
+    {
+      "title": "Details of property disposed of",
+      "fields": [
+        {
+          "id": "typeOfProperty1",
+          "type": "choice",
+          "label": "What type of property are you disposing of?",
+          "shortName": "Type of disposal",
+          "errorMessage": "Select the type of property disposed of",
+          "choices": [
+            "Individual property",
+            "Property rich entity"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Capital gains purposes",
+      "includeIf": "${typeOfProperty1 = 0}",
+      "fields": [
+        {
+          "id": "disposalDate1",
+          "type": "date",
+          "label": "Date of disposal of property for capital gains purposes",
+          "errorMessage": "Date of disposal can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Disposing of individual property",
+      "includeIf": "${typeOfProperty1 = 0}",
+      "fields": [
+        {
+          "id": "ukPropertyQuery1",
+          "type": "choice",
+          "label": "Is the individual property being disposed of located in the UK?",
+          "shortName": "Individual property in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Details of property disposed of",
+      "includeIf": "${typeOfProperty1 = 0 && ukPropertyQuery1 = 0}",
+      "fields": [
+        {
+          "id": "ukProperty1",
+          "type": "address",
+          "label": "Address of UK property",
+          "shortName": "UK property address",
+          "international": "no",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "landRegistryTitleNumber1",
+          "type": "text",
+          "label": "Land registry title number",
+          "shortName": "Land registry title number",
+          "helpText": "Input the land registry title number of the property",
+          "errorMessage": "Land registry title numbers are input in the format of 2 or 3 letters and then 6 or more numbers"
+        }
+      ]
+    },
+    {
+      "title": "Details of property disposed of",
+      "includeIf": "${typeOfProperty1 = 0 && ukPropertyQuery1 = 1}",
+      "fields": [
+        {
+          "id": "foreignproperty1",
+          "type": "text",
+          "label": "Address of Overseas property",
+          "shortName": "Overseas property address",
+          "helpText": "Input the full address of the overseas property including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the overseas property including country"
+        },
+        {
+          "id": "landRegistryTitleNumber1F",
+          "type": "text",
+          "label": "Land registry title number",
+          "shortName": "Land registry title number",
+          "helpText": "Input the land registry title number of the property",
+          "errorMessage": "Land registry title numbers are input in the format of 2 or 3 letters and then 6 or more numbers"
+        }
+      ]
+    },
+    {
+      "title": "Capital gains purposes",
+      "includeIf": "${typeOfProperty1 = 1}",
+      "fields": [
+        {
+          "id": "disposalDate2",
+          "type": "date",
+          "label": "Date of disposal of property for capital gains purposes",
+          "errorMessage": "Date of disposal can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Disposing of property rich entity",
+      "includeIf": "${typeOfProperty1 = 1}",
+      "fields": [
+        {
+          "id": "ukPropertyQuery1a",
+          "type": "choice",
+          "label": "Is the property rich entity being disposed of located in the UK?",
+          "shortName": "Individual property in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Details of property rich entity disposed of",
+      "includeIf": "${typeOfProperty1 = 1 && ukPropertyQuery1a = 0}",
+      "fields": [
+        {
+          "id": "nameOfEntity",
+          "type": "text",
+          "label": "Name of property rich entity",
+          "shortName": "Name of property rich entity",
+          "helpText": "Input the name of property rich entity",
+          "errorMessage": "Input the name of property rich entity"
+        },
+        {
+          "id": "ukEntity",
+          "type": "address",
+          "label": "Address of property rich entity",
+          "shortName": "Property rich entity address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Details of property rich entity disposed of",
+      "includeIf": "${typeOfProperty1 = 1 && ukPropertyQuery1a = 1}",
+      "fields": [
+        {
+          "id": "nameOfForeignEntity",
+          "type": "text",
+          "label": "Name of property rich entity",
+          "shortName": "Name of property rich entity",
+          "helpText": "Input the name of property rich entity",
+          "errorMessage": "Input the name of property rich entity"
+        },
+        {
+          "id": "foreignproperty1a",
+          "type": "text",
+          "label": "Address of Overseas property",
+          "shortName": "Property rich entity address",
+          "helpText": "Input the full address of the property rich entity including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the overseas property including country"
+        }
+      ]
+    },
+    {
+      "title": "Company accounts",
+      "fields": [
+        {
+          "id": "accountsDate",
+          "type": "date",
+          "label": "Date company prepares accounts to",
+          "errorMessage": "Date of accounts can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Company incorporation",
+      "fields": [
+        {
+          "id": "incorporatedCountry",
+          "type": "text",
+          "label": "Country of incorporation",
+          "shortName": "Incorporation country",
+          "helpText": "Input the country in which your company was incorporated",
+          "errorMessage": "Input the country in which your company was incorporated"
+        },
+        {
+          "id": "incorporationDate",
+          "type": "date",
+          "label": "Date of incorporation",
+          "errorMessage": "Date of incorporation can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Tax residence",
+      "fields": [
+        {
+          "id": "taxCountry",
+          "type": "text",
+          "label": "Country of tax residence",
+          "shortName": "Tax residence",
+          "helpText": "Input the country in which your company is resident for tax purposes",
+          "errorMessage": "Input the country in which your company is resident for tax purposes"
+        }
+      ]
+    },
+    {
+      "title": "Group membership",
+      "fields": [
+        {
+          "id": "groupMembership",
+          "type": "choice",
+          "label": "Is your company a member of a group of companies",
+          "shortName": "Individual property in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Group membership",
+      "includeIf": "${groupMembership = 0}",
+      "fields": [
+        {
+          "id": "groupQuery1",
+          "type": "choice",
+          "label": "Is the registered office address of the parent company located in the UK?",
+          "shortName": "Parent company in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Parent company",
+      "includeIf": "${groupMembership = 0 && groupQuery1 = 0}",
+      "fields": [
+        {
+          "id": "parentCompanyName",
+          "type": "text",
+          "label": "Name of parent company",
+          "shortName": "Parent company",
+          "helpText": "Input the name of the parent company",
+          "errorMessage": "Input the name of the parent company"
+        },
+        {
+          "id": "ukEntity1",
+          "type": "address",
+          "label": "Address of the parent company",
+          "shortName": "Parent company address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Parent company",
+      "includeIf": "${groupMembership = 0 && groupQuery1 = 1}",
+      "fields": [
+        {
+          "id": "parentCompanyName1",
+          "type": "text",
+          "label": "Name of parent company",
+          "shortName": "Parent company",
+          "helpText": "Input the name of the parent company",
+          "errorMessage": "Input the name of the parent company"
+        },
+        {
+          "id": "foreignproperty1c",
+          "type": "text",
+          "label": "Address of the parent company",
+          "shortName": "Parent company address",
+          "helpText": "Input the full address of the parent company including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the parent company including country"
+        }
+      ]
+    },
+    {
+      "title": "First company director details",
+      "fields": [
+        {
+          "id": "directorName1",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "First company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the first company director"
+        },
+        {
+          "id": "directorCountry1",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "First company director details",
+      "includeIf": "${directorCountry1 = 0}",
+      "fields": [
+        {
+          "id": "ukDirector1",
+          "type": "address",
+          "label": "Uk address of first director",
+          "shortName": "First director address ",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "First company director details",
+      "includeIf": "${directorCountry1 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress1",
+          "type": "text",
+          "label": "Address of the first director",
+          "shortName": "First director address",
+          "helpText": "Input the full address of the first director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the first director including country"
+        }
+      ]
+    },
+    {
+      "title": "Second company director details",
+      "fields": [
+        {
+          "id": "addAnotherDirector1",
+          "type": "choice",
+          "label": "Do you wish to add another company director?",
+          "shortName": "Add another company director",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Second company director details",
+      "includeIf": "${addAnotherDirector1 = 0}",
+      "fields": [
+        {
+          "id": "directorName2",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "Second company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the second company director"
+        },
+        {
+          "id": "directorCountry2",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Second company director details",
+      "includeIf": "${addAnotherDirector1 = 0 && directorCountry2 = 0}",
+      "fields": [
+        {
+          "id": "ukDirector2",
+          "type": "address",
+          "label": "Uk address of second director",
+          "shortName": "Second director address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Second company director details",
+      "includeIf": "${addAnotherDirector1 = 0 && directorCountry2 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress2",
+          "type": "text",
+          "label": "Address of the second director",
+          "shortName": "Second director address",
+          "helpText": "Input the full address of the second director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the second director including country"
+        }
+      ]
+    },
+    {
+      "title": "Third company director details",
+      "includeIf": "${addAnotherDirector1 = 0}",
+      "fields": [
+        {
+          "id": "addAnotherDirector2",
+          "type": "choice",
+          "label": "Do you wish to add another company director?",
+          "shortName": "Add another company director",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Third company director details 3",
+      "includeIf": "${addAnotherDirector1 = 0 && addAnotherDirector2 = 0}",
+      "fields": [
+        {
+          "id": "directorName3",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "Third company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the third company director"
+        },
+        {
+          "id": "directorCountry3",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Third company director details",
+      "includeIf": "${addAnotherDirector1 = 0 && (addAnotherDirector2 = 0 && directorCountry3 = 0)}",
+      "fields": [
+        {
+          "id": "ukDirector3",
+          "type": "address",
+          "label": "Uk address of third director",
+          "shortName": "Third director address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Third company director details",
+      "includeIf": "${addAnotherDirector2 = 0 && directorCountry3 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress3",
+          "type": "text",
+          "label": "Address of the third director",
+          "shortName": "Third director address",
+          "helpText": "Input the full address of the third director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the third director including country"
+        }
+      ]
+    },
+    {
+      "title": "Fourth company director details",
+      "includeIf": "${addAnotherDirector1 = 0 && addAnotherDirector2 = 0}",
+      "fields": [
+        {
+          "id": "addAnotherDirector3",
+          "type": "choice",
+          "label": "Do you wish to add another company director?",
+          "shortName": "Add another company director",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Fourth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && addAnotherDirector2 = 0) && addAnotherDirector3 = 0}",
+      "fields": [
+        {
+          "id": "directorName4",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "Fourth company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the fourth company director"
+        },
+        {
+          "id": "directorCountry4",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Fourth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && addAnotherDirector2 = 0) && (addAnotherDirector3 = 0 && directorCountry4 = 0)}",
+      "fields": [
+        {
+          "id": "ukDirector4",
+          "type": "address",
+          "label": "Uk address of fourth director",
+          "shortName": "Fourth director address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Fourth company director details",
+      "includeIf": "${addAnotherDirector3 = 0 && directorCountry4 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress4",
+          "type": "text",
+          "label": "Address of the fourth director",
+          "shortName": "Fourth director address",
+          "helpText": "Input the full address of the fourth director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the fourth director including country"
+        }
+      ]
+    },
+    {
+      "title": "Add a fifth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && addAnotherDirector2 = 0) && addAnotherDirector3 = 0}",
+      "fields": [
+        {
+          "id": "addAnotherDirector4",
+          "type": "choice",
+          "label": "Do you wish to add another company director?",
+          "shortName": "Add another company director",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Fifth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && addAnotherDirector2 = 0) && (addAnotherDirector3 = 0 && addAnotherDirector4 = 0)}",
+      "fields": [
+        {
+          "id": "directorName5",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "Fifth company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the fifth company director"
+        },
+        {
+          "id": "directorCountry5",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Fifth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && (addAnotherDirector2 = 0 && addAnotherDirector3 = 0)) && (addAnotherDirector4 = 0 && directorCountry5 = 0)}",
+      "fields": [
+        {
+          "id": "ukDirector5",
+          "type": "address",
+          "label": "Uk address of fifth director",
+          "shortName": "Fifth director address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Fifth company director details",
+      "includeIf": "${addAnotherDirector4 = 0 && directorCountry5 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress5",
+          "type": "text",
+          "label": "Address of the fifth director",
+          "shortName": "Fifth director address",
+          "helpText": "Input the full address of the fifth director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the fifth director including country"
+        }
+      ]
+    },
+    {
+      "title": "Add a sixth director",
+      "includeIf": "${(addAnotherDirector1 = 0 && addAnotherDirector2 = 0) && (addAnotherDirector3 = 0 &&addAnotherDirector4 = 0)}",
+      "fields": [
+        {
+          "id": "addAnotherDirector5",
+          "type": "choice",
+          "label": "Do you wish to add another company director?",
+          "shortName": "Add another company director",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Sixth company director details ",
+      "includeIf": "${(addAnotherDirector1 = 0 && (addAnotherDirector2 = 0 && addAnotherDirector3 = 0)) && (addAnotherDirector4 = 0 && addAnotherDirector5 = 0)}",
+      "fields": [
+        {
+          "id": "directorName6",
+          "type": "text",
+          "label": "Name of company director",
+          "shortName": "Sixth company director",
+          "helpText": "Input the name of a company director",
+          "errorMessage": "Input the name of the sixth company director"
+        },
+        {
+          "id": "directorCountry6",
+          "type": "choice",
+          "label": "Is the home address of this director in the UK?",
+          "shortName": "Address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Sixth company director details",
+      "includeIf": "${(addAnotherDirector1 = 0 && (addAnotherDirector2 = 0 && addAnotherDirector3 = 0)) && (addAnotherDirector4 = 0 && (addAnotherDirector5 = 0 && directorCountry6 = 0))}",
+      "fields": [
+        {
+          "id": "ukDirector6",
+          "type": "address",
+          "label": "Uk address of sixth director",
+          "shortName": "Sixth director address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Sixth company director details",
+      "includeIf": "${addAnotherDirector5 = 0 && directorCountry6 = 1}",
+      "fields": [
+        {
+          "id": "foreignDirectoraddress6",
+          "type": "text",
+          "label": "Address of the sixth director",
+          "shortName": "Sixth director address",
+          "helpText": "Input the full address of the sixth director including country",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the sixth director including country"
+        }
+      ]
+    },
+    {
+      "title": "Company point of contact details",
+      "fields": [
+        {
+          "id": "memberStatesInfo",
+          "type": "info",
+          "label": "Input details of your nominated person who HMRC can contact about the company's CT affairs",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "companySPOC1stName",
+          "type": "text",
+          "label": "First name of company contact",
+          "shortName": "Contact first name",
+          "helpText": "Input the first name of your nominated contact",
+          "errorMessage": "Input the first name of your nominated contact"
+        },
+        {
+          "id": "companySPOCMidName",
+          "type": "text",
+          "label": "Middle name of company contact",
+          "shortName": "Contact middle name",
+          "helpText": "Input the middle name of your nominated contact",
+          "errorMessage": "Input the middle name of your nominated contact"
+        },
+        {
+          "id": "companySPOCLastName",
+          "type": "text",
+          "label": "Last name of company contact",
+          "shortName": "Contact last name",
+          "helpText": "Input the last name of your nominated contact",
+          "errorMessage": "Input the last name of your nominated contact"
+        },
+        {
+          "id": "contactNumber",
+          "type": "text",
+          "label": "Business daytime or mobile phone number",
+          "helpText": "input contact telephone number here",
+          "format": "telephoneNumber",
+          "errorMessage": "Enter a valid business daytime or mobile phone number"
+        },
+        {
+          "id": "emailContact",
+          "type": "text",
+          "label": "Business email address",
+          "format": "email",
+          "errorMessage": "Enter a valid business email address with no spaces, like name@example.com"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "You can avoid financial penalties by making sure we get your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address (optional)",
+            "format": "email",
+            "mandatory": "false",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nOtherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your 15 digit registration number on any payment.\n\nSort code: 08-32-00\n\nAccount name: HMRC GACA"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
