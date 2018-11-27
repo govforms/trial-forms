@@ -605,6 +605,31 @@
           "label": "Site address"
         },
         {
+          "id": "sitePhone",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteFax",
+          "type": "text",
+          "label": "Site fax number (if you have one)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "id": "siteEmail",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
           "id": "ordananceSurvey",
           "type": "text",
           "label": "Ordnance Survey grid reference",
@@ -617,8 +642,8 @@
       "title": "Are you telling us about a site closure?",
       "fields": [
         {
-          "type": "choice",
           "id": "siteCloseChoice",
+          "type": "choice",
           "label": "Are you telling us about a site closure?",
           "choices": [
             "Yes",
@@ -632,8 +657,8 @@
       "includeIf": "${siteCloseChoice=0}",
       "fields": [
         {
-          "type": "text",
           "id": "closeExplanation",
+          "type": "text",
           "label": "Give reason for closure",
           "multiline": "true"
         }
