@@ -23,6 +23,7 @@
           "id": "legalStatus",
           "type": "choice",
           "label": "What is the legal status of the business?",
+          "helpText": "Test",
           "choices": [
             "Sole trader",
             "Partnership",
@@ -76,33 +77,26 @@
       ]
     },
     {
-      "title": "Type of registration",
+      "title": "Are you applying for group registration as the representative member of an aggregates levy group?",
       "fields": [
         {
           "id": "groupReg",
           "type": "choice",
           "label": "Are you applying for group registration as the representative member of an aggregates levy group?",
+          "helpText": "help text",
           "format": "yesno"
-        },
-        {
-          "id": "groupRegInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "If yes, you must provide the additional information set out on forms AL50 and AL51",
-          "infoType": "noformat"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Are you applying to be registered in divisions?",
+      "fields": [
         {
           "id": "divReg",
           "type": "choice",
           "label": "Are you applying to be registered in divisions?",
+          "helpText": "help text",
           "format": "yesno"
-        },
-        {
-          "id": "divRegInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "If yes, you must provide the additional information set out in Excise Notice AGL1: Aggregates Levy",
-          "infoType": "noformat"
         }
       ]
     },
@@ -122,7 +116,13 @@
           "label": "Trading name if different from business name (optional)",
           "format": "text",
           "mandatory": "false"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Contact details",
+      "description": "include why providing details",
+      "fields": [
         {
           "id": "businessAddress",
           "type": "address",
@@ -137,26 +137,22 @@
         {
           "id": "faxNumber",
           "type": "text",
-          "label": "Fax number",
-          "format": "telephoneNumber"
+          "label": "Fax number (optional)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
         },
         {
           "id": "mobileNumber",
           "type": "text",
-          "label": "Mobile number",
-          "format": "telephoneNumber"
+          "label": "Mobile number (optional)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
         },
         {
           "id": "email1",
           "type": "text",
           "label": "Email address",
           "format": "email"
-        },
-        {
-          "id": "website",
-          "type": "text",
-          "label": "Website",
-          "format": "text"
         }
       ]
     },
@@ -196,8 +192,9 @@
         {
           "id": "altFaxNumber",
           "type": "text",
-          "label": "Fax number",
-          "format": "telephoneNumber"
+          "label": "Fax number (optional)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
         },
         {
           "id": "altEmail",
@@ -212,64 +209,28 @@
       "description": "If you’re applying as the representative member of an aggregates levy group, indicate the business activities of all group members.",
       "fields": [
         {
-          "id": "aggregatesGroup",
-          "type": "group",
+          "id": "quarryPercentage",
+          "type": "text",
           "label": "Quarry extraction",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "quarryPercentage",
-              "type": "text",
-              "label": "Percentage of quarry extraction",
-              "format": "number(9, 2, '%')",
-              "mandatory": "false"
-            }
-          ]
+          "format": "number(9, 2, '%')"
         },
         {
-          "id": "aggregatesGroup2",
-          "type": "group",
+          "id": "SandgravelPercentage",
+          "type": "text",
           "label": "Sand/gravel extraction",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "sandPercentage",
-              "type": "text",
-              "label": "Percentage of sand/gravel extraction",
-              "format": "number(9, 2, '%')",
-              "mandatory": "false"
-            }
-          ]
+          "format": "number(9, 2, '%')"
         },
         {
-          "id": "aggregatesGroup3",
-          "type": "group",
+          "id": "importPercentage",
+          "type": "text",
           "label": "The importation of aggregate from outside the UK",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "importPercentage",
-              "type": "text",
-              "label": "Percentage of imported aggregate",
-              "format": "number(9, 2, '%')",
-              "mandatory": "false"
-            }
-          ]
+          "format": "number(9, 2, '%')"
         },
         {
-          "id": "aggregatesGroup4",
-          "type": "group",
+          "id": "crusherPercentage",
+          "type": "text",
           "label": "Use of a mobile crusher to commercially extract aggregates",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "cursherPercentage",
-              "type": "text",
-              "label": "Percentage of mobile crusher to commercially extract",
-              "format": "number(9, 2, '%')",
-              "mandatory": "false"
-            }
-          ]
+          "format": "number(9, 2, '%')"
         },
         {
           "id": "aggregatesGroup5",
