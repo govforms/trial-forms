@@ -16,6 +16,43 @@
   },
   "sections": [
     {
+      "title": "What is the legal status of the business?",
+      "description": "",
+      "fields": [
+        {
+          "id": "legalStatus",
+          "type": "choice",
+          "label": "What is the legal status of the business?",
+          "choices": [
+            "Sole trader",
+            "Partnership",
+            "Local Authority",
+            "Non-profit making body or unincorporated body",
+            "Public corporation",
+            "Trust",
+            "Corporate body (for example, limited company)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter incorporation details",
+      "includeIf": "${legalStatus=6}",
+      "fields": [
+        {
+          "id": "certNo",
+          "type": "text",
+          "label": "Certification number",
+          "format": "text"
+        },
+        {
+          "id": "incorpDate",
+          "type": "date",
+          "label": "Date of incorporation"
+        }
+      ]
+    },
+    {
       "title": "Is your business registered for VAT?",
       "fields": [
         {
@@ -35,50 +72,6 @@
           "type": "text",
           "label": "VAT registration number",
           "format": "text(0, 9)"
-        }
-      ]
-    },
-    {
-      "title": "Business status",
-      "description": "If your business is a partnership, you must complete and send form AL2 as well as this form.",
-      "fields": [
-        {
-          "id": "legalInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "If your business is a trust, you must complete and send form AL6 as well as this form. Form AL1 should be completed by a trustee if the business is run by the trustees. If the business is run by the beneficiaries all beneficiaries should complete form AL1.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "legalStatus",
-          "type": "choice",
-          "label": "What is the legal status of the business?",
-          "choices": [
-            "Sole proprietor",
-            "Partnership",
-            "Local Authority",
-            "Non-profit making body or unincorporated body",
-            "Public corporation",
-            "Trust",
-            "Corporate body (for example, limited company"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter incorporation details",
-      "includeIf": "${legalStatus=6}",
-      "fields": [
-        {
-          "id": "certNo",
-          "type": "text",
-          "label": "Certification number",
-          "format": "text"
-        },
-        {
-          "id": "incorpDate",
-          "type": "date",
-          "label": "Date of incorporation"
         }
       ]
     },
