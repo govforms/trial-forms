@@ -206,8 +206,15 @@
     },
     {
       "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents",
-      "description": "If you’re applying as the representative member of an aggregates levy group, indicate the business activities of all group members.",
+      "description": "enter 0 if you do not have a percentage for these",
       "fields": [
+        {
+          "id": "groupInfo",
+          "type": "info",
+          "label": "Group information",
+          "infoText": "If you’re applying as the representative member of an aggregates levy group, indicate the business activities of all group members.",
+          "infoType": "long"
+        },
         {
           "id": "quarryPercentage",
           "type": "text",
@@ -221,37 +228,52 @@
           "format": "number(9, 2, '%')"
         },
         {
-          "id": "importPercentage",
-          "type": "text",
-          "label": "The importation of aggregate from outside the UK",
-          "format": "number(9, 2, '%')"
-        },
-        {
           "id": "crusherPercentage",
           "type": "text",
           "label": "Use of a mobile crusher to commercially extract aggregates",
+          "format": "number(9, 2, '%')",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents for the importation of aggregate from outside the UK",
+      "fields": [
+        {
+          "id": "importPercentage",
+          "type": "text",
+          "label": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents for the importation of aggregate from outside the UK",
           "format": "number(9, 2, '%')"
+        }
+      ]
+    },
+    {
+      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents Do you have any other percentages to add?",
+      "fields": [
+        {
+          "id": "otherChoice",
+          "type": "choice",
+          "label": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents Do you have any other percentages to add?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Other",
+      "includeIf": "${otherChoice=0}",
+      "fields": [
+        {
+          "id": "otherName",
+          "type": "text",
+          "label": "Name of other used",
+          "helpText": "what is other"
         },
         {
-          "id": "aggregatesGroup5",
-          "type": "group",
-          "label": "Other",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "otherInfo",
-              "type": "text",
-              "label": "Explain",
-              "mandatory": "false"
-            },
-            {
-              "id": "otherPercentage",
-              "type": "text",
-              "label": "Percentage of other used",
-              "format": "number(9, 2, '%')",
-              "mandatory": "false"
-            }
-          ]
+          "id": "OtherPercentage",
+          "type": "text",
+          "label": "Percentage of other",
+          "helpText": "wh",
+          "format": "number(9, 2, '%')"
         }
       ]
     },
@@ -261,8 +283,15 @@
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "",
-          "helpText": "If you’re applying as the representative member of an aggregates levy group, please show the date or anticipated date of the first occasion aggregate will be subjected to commercial exploitation by any group member including the representative member"
+          "label": "Enter the date of your first commercial exploitation of aggregat",
+          "helpText": "here is your helptext"
+        },
+        {
+          "id": "infoDate",
+          "type": "info",
+          "label": "Date information for groups",
+          "infoText": "If you’re applying as the representative member of an aggregates levy group, please show the date or anticipated date of the first occasion aggregate will be subjected to commercial exploitation by any group member including the representative member",
+          "infoType": "long"
         }
       ]
     },
@@ -272,9 +301,16 @@
         {
           "id": "aggregatesLevy",
           "type": "text",
-          "label": "",
-          "helpText": "If you’re applying as the representative member of an aggregates levy group, please give the estimated aggregates levy for all group members.",
+          "label": "Estimate how much aggregates levy you’ll pay in the next 12 months (multiply estimated tonnage by the rate of aggregates levy)",
+          "helpText": "helptext here",
           "format": "sterling"
+        },
+        {
+          "id": "estimateGroup",
+          "type": "info",
+          "label": "money drop down info",
+          "infoText": "If you’re applying as the representative member of an aggregates levy group, please give the estimated aggregates levy for all group members.",
+          "infoType": "long"
         }
       ]
     },
