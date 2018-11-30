@@ -25,20 +25,20 @@
           "label": "What is the legal status of the business?",
           "helpText": "Test",
           "choices": [
+            "Limited company",
             "Sole trader",
             "Partnership",
             "Public corporation",
             "Local Authority",
             "Non-profit making body or unincorporated body",
-            "Trust",
-            "Limited company"
+            "Trust"
           ]
         }
       ]
     },
     {
       "title": "Enter incorporation details",
-      "includeIf": "${legalStatus=6}",
+      "includeIf": "${legalStatus=2}",
       "fields": [
         {
           "id": "certNo",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "title": "Contact details",
+      "title": "Business contact details",
       "description": "Enter the business contact details that we can use if we need to discuss this registration.",
       "fields": [
         {
@@ -170,6 +170,7 @@
     {
       "title": "Preferred contact details",
       "includeIf": "${altAdd=0}",
+      "description": "HMRC will use these details if we need to contact you to discuss your registration.",
       "fields": [
         {
           "id": "name",
