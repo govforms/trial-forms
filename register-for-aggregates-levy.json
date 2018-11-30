@@ -36,9 +36,9 @@
       ]
     },
     {
-      "title": "Enter your company details",
+      "title": "Enter your company incorporation details",
       "includeIf": "${legalStatus=0}",
-      "description": "You can find these details on the 'certificate of incorporation' you received when your company was registered with Companies House. ",
+      "description": "You can find these on the 'certificate of incorporation' you received when your company was registered with Companies House. ",
       "fields": [
         {
           "id": "certNo",
@@ -114,6 +114,7 @@
           "id": "tradingName",
           "type": "text",
           "label": "Trading name (optional)",
+          "helpText": "If different from the business name",
           "format": "text",
           "mandatory": "false"
         }
@@ -121,7 +122,6 @@
     },
     {
       "title": "Business contact details",
-      "description": "Enter the business contact details that we can use if we need to discuss this registration.",
       "fields": [
         {
           "id": "businessAddress",
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "title": "Are these your preferred contact details?",
-      "description": "[Move this question to the contact page and route to an extra step if no is selected.]",
+      "title": "Are these the contact details you want HMRC to use if we need to discuss this registration?",
+      "description": "[Move this question to the bottom of contact page.]",
       "fields": [
         {
           "id": "altAdd",
@@ -162,9 +162,9 @@
       ]
     },
     {
-      "title": "Preferred contact details",
-      "includeIf": "${altAdd=0}",
-      "description": "HMRC will use these details if we need to contact you to discuss your registration.",
+      "title": "Preferred registration contact details",
+      "includeIf": "${altAdd=1}",
+      "description": "Provide the contact details of someone who is authorised to discuss this aggregates levy registration.",
       "fields": [
         {
           "id": "name",
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents",
-      "description": "enter 0 if you do not have a percentage for these",
+      "title": "What percentage of your total sales are from aggregate extraction activities?",
+      "description": "Enter the percentage of your total sales for each activity. \n\n*Enter 0 if you do not have a percentage for these",
       "fields": [
         {
           "id": "groupInfo",
@@ -212,7 +212,7 @@
         {
           "id": "quarryPercentage",
           "type": "text",
-          "label": "Quarry extraction",
+          "label": "Quarry extraction ",
           "format": "number(9, 2, '%')"
         },
         {
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents for the importation of aggregate from outside the UK",
+      "title": "Percentage of your total sales from importing aggregate",
       "fields": [
         {
           "id": "importPercentage",
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "title": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents Do you have any other percentages to add?",
+      "title": "Percentage of your total sales from other  aggregates activities ",
       "fields": [
         {
           "id": "otherChoice",
@@ -252,19 +252,19 @@
       ]
     },
     {
-      "title": "Other",
+      "title": "Other aggregates activities your business is involved in",
       "includeIf": "${otherChoice=0}",
       "fields": [
         {
           "id": "otherName",
           "type": "text",
-          "label": "Name of other used",
+          "label": "Description of aggregates activity",
           "helpText": "what is other"
         },
         {
           "id": "OtherPercentage",
           "type": "text",
-          "label": "Percentage of other",
+          "label": "Percentage of your total sales from this activity",
           "helpText": "wh",
           "format": "number(9, 2, '%')"
         }
