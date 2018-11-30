@@ -36,7 +36,7 @@
       ]
     },
     {
-      "title": "Enter your company incorporation details",
+      "title": "Enter your incorporation details",
       "includeIf": "${legalStatus=0}",
       "description": "You can find these on the 'certificate of incorporation' you received when your company was registered with Companies House. ",
       "fields": [
@@ -54,37 +54,13 @@
       ]
     },
     {
-      "title": "Is your business registered for VAT?",
-      "fields": [
-        {
-          "id": "choiceVat",
-          "type": "choice",
-          "label": "Is your business registered for VAT?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "What is your VAT registration number?",
-      "includeIf": "${choiceVat=0}",
-      "fields": [
-        {
-          "id": "vatRegNo",
-          "type": "text",
-          "label": "What is your VAT registration number?",
-          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
-          "format": "text(0, 9)"
-        }
-      ]
-    },
-    {
       "title": "Are you registering as a group? ",
       "fields": [
         {
           "id": "groupReg",
           "type": "choice",
           "label": "Are you registering as a group? ",
-          "helpText": "You must be the representative member of the aggregates levy group to register a group. ",
+          "helpText": "You must be the representative member of an aggregates levy group to register your group. ",
           "format": "yesno"
         }
       ]
@@ -162,9 +138,9 @@
       ]
     },
     {
-      "title": "Preferred registration contact details",
+      "title": "Registration contact details",
       "includeIf": "${altAdd=1}",
-      "description": "Provide the contact details of someone who is authorised to discuss this aggregates levy registration.",
+      "description": "Provide the contact details of someone who is authorised to discuss this aggregates levy registration with HMRC.",
       "fields": [
         {
           "id": "name",
@@ -199,116 +175,146 @@
       ]
     },
     {
-      "title": "What percentage of your total sales are from aggregate extraction activities?",
-      "description": "Enter the percentage of your total sales for each activity. \n\n*Enter 0 if you do not have a percentage for these",
+      "title": "Is your business registered for VAT?",
       "fields": [
         {
-          "id": "groupInfo",
-          "type": "info",
-          "label": "Group information",
-          "infoText": "If you’re applying as the representative member of an aggregates levy group, indicate the business activities of all group members.",
-          "infoType": "long"
-        },
-        {
-          "id": "quarryPercentage",
-          "type": "text",
-          "label": "Quarry extraction ",
-          "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "SandgravelPercentage",
-          "type": "text",
-          "label": "Sand/gravel extraction",
-          "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "crusherPercentage",
-          "type": "text",
-          "label": "Use of a mobile crusher to commercially extract aggregates",
-          "format": "number(9, 2, '%')"
-        }
-      ]
-    },
-    {
-      "title": "Percentage of your total sales from importing aggregate",
-      "fields": [
-        {
-          "id": "importPercentage",
-          "type": "text",
-          "label": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents for the importation of aggregate from outside the UK",
-          "format": "number(9, 2, '%')"
-        }
-      ]
-    },
-    {
-      "title": "Percentage of your total sales from other  aggregates activities ",
-      "fields": [
-        {
-          "id": "otherChoice",
+          "id": "choiceVat",
           "type": "choice",
-          "label": "Which aggregates activities your business(es) is involved in, indicating what percentage of your total sales each activity represents Do you have any other percentages to add?",
+          "label": "Is your business registered for VAT?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Other aggregates activities your business is involved in",
+      "title": "What is your VAT registration number?",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "What is your VAT registration number?",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "text(0, 9)"
+        }
+      ]
+    },
+    {
+      "title": "Percentage of your total sales from aggregate extraction activities",
+      "description": "Enter the percentage of your business's current or estimated total sales for each activity. \n[INSET TEXT}Enter 0 for any activity your business is not involved in.",
+      "fields": [
+        {
+          "id": "quarryPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from quarry extraction ",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "SandgravelPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from sand/gravel extraction",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "crusherPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from use of a mobile crusher to extract aggregates",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupInfo",
+          "type": "info",
+          "label": "What to include if you are registering as a group",
+          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Percentage of your total sales from importing aggregate ",
+      "fields": [
+        {
+          "id": "importPercentage",
+          "type": "text",
+          "label": "Percentage of your total sales from importing aggregate from outside the UK",
+          "helpText": "Enter the percentage of your current or estimated total sales from importing aggregates from outside the UK. Enter 0 if your business is not involved in this activity.",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupInfo3",
+          "type": "info",
+          "label": "What to include if you are registering as a group",
+          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Is your business  or group involved (or planning to be involved) in any other aggregates activities? ",
+      "fields": [
+        {
+          "id": "otherChoice",
+          "type": "choice",
+          "label": "Is your business involved (or planning to be involved) in any other aggregates activities? ",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Percentage of your total sales from other aggregates activities",
       "includeIf": "${otherChoice=0}",
+      "description": "Enter details about any other aggregates activities your business or group is, or plans to be involved in.",
       "fields": [
         {
           "id": "otherName",
           "type": "text",
-          "label": "Description of aggregates activity",
-          "helpText": "what is other"
+          "label": "Description of aggregates activity"
         },
         {
           "id": "OtherPercentage",
           "type": "text",
-          "label": "Percentage of your total sales from this activity",
-          "helpText": "wh",
+          "label": "Percentage of your current or estimated total sales from this activity",
           "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupInfo4",
+          "type": "info",
+          "label": "What to include if you are registering as a group",
+          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Enter the date of your first commercial exploitation of aggregate",
+      "title": "What date did your business first commercially exploit aggregates?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "Enter the date of your first commercial exploitation of aggregat",
-          "helpText": "here is your helptext"
+          "label": "Enter the date of your business first commercial exploited aggregate"
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "Date information for groups",
-          "infoText": "If you’re applying as the representative member of an aggregates levy group, please show the date or anticipated date of the first occasion aggregate will be subjected to commercial exploitation by any group member including the representative member",
-          "infoType": "long"
-        },
-        {
-          "id": "infoDate2",
-          "type": "info",
-          "label": "Date information for groups 2",
-          "infoText": "If you’re applying as the representative member of an aggregates levy group, please show the date or anticipated date of the first occasion aggregate will be subjected to commercial exploitation by any group member including the representative member",
+          "label": "Help with this question",
+          "infoText": "Examples of commercially exploiting aggregates are:\n\n•the  removal of aggregates from\n\n  – the originating site\n  – another site registered in the name of the same person as the originating site\n  – another site on which the aggregate was intended to be, but in fact was not, subjected to an exempt process\n\n• an agreement to supply aggregate to any person\n\n• its use for construction purposes\n\n• mixing aggregates with anything other than water except in permitted circumstances \n\nFull details are given in Notice AGL1.\n",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Estimate how much aggregates levy you’ll pay in the next 12 months (multiply estimated tonnage by the rate of aggregates levy)",
+      "title": "Estimate how much aggregates levy you’ll pay in the next 12 months ",
       "fields": [
         {
           "id": "aggregatesLevy",
           "type": "text",
-          "label": "Estimate how much aggregates levy you’ll pay in the next 12 months (multiply estimated tonnage by the rate of aggregates levy)",
-          "helpText": "helptext here",
+          "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
+          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
           "format": "sterling"
         },
         {
           "id": "estimateGroup",
           "type": "info",
-          "label": "money drop down info",
+          "label": "Help with estimating you aggregates levy payment",
           "infoText": "If you’re applying as the representative member of an aggregates levy group, please give the estimated aggregates levy for all group members.",
           "infoType": "long"
         }
@@ -322,54 +328,60 @@
           "type": "choice",
           "label": "",
           "format": "yesno"
+        },
+        {
+          "id": "infoexempt4",
+          "type": "info",
+          "label": "Help with this question",
+          "infoText": "If you expect to commercially exploit aggregate that is exempt or relieved from the levy, give an estimate of the tonnage you expect to be exploited in the next 12 months. The following are exempt from the levy:\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\nThe following are relieved from the levy:\n• any aggregate used in prescribed industrial or agricultural processes (such as glass manufacture, fertiliser production)\n• aggregate that has previously borne levy and to which an exempt process is applied\nThis is only a summary of the aggregates levy exemptions and reliefs.\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.r",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Estimate the tonnage of exempt, relieved or exported supplies you expect to make in the next 12 months",
+      "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months",
       "includeIf": "${exemptChoice=0}",
       "description": "If you’re applying as the representative member of an aggregates levy group, give the estimated tonnage for all group members",
       "fields": [
         {
           "id": "exemptLevy",
           "type": "text",
-          "label": "Exempt in tonnes",
+          "label": "Exempt supplies in tonnes",
           "format": "number"
         },
         {
           "id": "relievedLevy",
           "type": "text",
-          "label": "Relieved in tonnes",
+          "label": "Relieved supplies in tonnes",
           "format": "number"
         },
         {
           "id": "exportLevy",
           "type": "text",
-          "label": "Export in tonnes",
+          "label": "Exported supplies in tonnes",
           "format": "number"
         }
       ]
     },
     {
-      "title": "Indicate the preferred stagger for your returns by putting an ‘X’ in the appropriate box",
+      "title": "Tell us about  your preferred return period",
       "fields": [
         {
           "id": "nonTaxPeriod",
           "type": "choice",
-          "label": "Do you wish to apply for non-standard tax periods?",
+          "label": "Do you wish to apply for a non-standard tax period for your aggregates levy returns?",
           "format": "yesno"
         },
         {
           "id": "taxPeriodInfo",
           "type": "info",
           "label": "",
-          "infoText": "If you intend to apply for non-standard tax periods, tick the box for the stagger period most closely matching your non-standard periods.",
           "infoType": "noformat"
         },
         {
           "id": "taxPeriod",
           "type": "choice",
-          "label": "Indicate the preferred stagger for your returns",
+          "label": "Return periods",
           "multivalue": "yes",
           "choices": [
             "Stagger 0 - monthly returns",
@@ -443,7 +455,7 @@
       ]
     },
     {
-      "title": "Have you taken over a business registrable for aggregates levy as a going concern, or changed the legal entity that owns the business (for example, from a sole proprietor to a limited company)?",
+      "title": "Have you taken over an aggregates levy business or changed the registering business's status (for example, from a sole trader to a limited company)?",
       "fields": [
         {
           "id": "businessTakeOver",
