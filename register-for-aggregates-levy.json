@@ -16,34 +16,34 @@
   },
   "sections": [
     {
-      "title": "What is the legal status of the business?",
+      "title": "Which of these best describes your business?",
       "description": "",
       "fields": [
         {
           "id": "legalStatus",
           "type": "choice",
-          "label": "What is the legal status of the business?",
-          "helpText": "Test",
+          "label": "Which of these best describes your business?",
           "choices": [
             "Limited company",
             "Sole trader",
             "Partnership",
             "Public corporation",
+            "Unincorporated body",
             "Local Authority",
-            "Non-profit making body or unincorporated body",
             "Trust"
           ]
         }
       ]
     },
     {
-      "title": "Enter incorporation details",
-      "includeIf": "${legalStatus=2}",
+      "title": "Enter your company details",
+      "includeIf": "${legalStatus=0}",
+      "description": "You can find these details on the 'certificate of incorporation' you received when your company was registered with Companies House. ",
       "fields": [
         {
           "id": "certNo",
           "type": "text",
-          "label": "Certification number",
+          "label": "Company number",
           "format": "text"
         },
         {
@@ -65,42 +65,43 @@
       ]
     },
     {
-      "title": "VAT registration number",
+      "title": "What is your VAT registration number?",
       "includeIf": "${choiceVat=0}",
       "fields": [
         {
           "id": "vatRegNo",
           "type": "text",
-          "label": "VAT registration number",
+          "label": "What is your VAT registration number?",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
           "format": "text(0, 9)"
         }
       ]
     },
     {
-      "title": "Are you applying for group registration? ",
+      "title": "Are you registering as a group? ",
       "fields": [
         {
           "id": "groupReg",
           "type": "choice",
-          "label": "Are you applying for group registration as the representative member of an aggregates levy group?",
-          "helpText": "You must be the representative member of an aggregates levy group to apply for group registration. ",
+          "label": "Are you registering as a group? ",
+          "helpText": "You must be the representative member of the aggregates levy group to register a group. ",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Does your company have regional divisions that you want to register separately?",
+      "title": "Does your business have regional divisions that you want to register separately?",
       "fields": [
         {
           "id": "divReg",
           "type": "choice",
-          "label": "Are you applying to be registered in divisions?",
+          "label": "Does your business have regional divisions that you want to register separately?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Provide your business details",
+      "title": "Enter your business details",
       "shortName": "Business details",
       "fields": [
         {
@@ -112,7 +113,7 @@
         {
           "id": "tradingName",
           "type": "text",
-          "label": "Trading name if different from business name (optional)",
+          "label": "Trading name (optional)",
           "format": "text",
           "mandatory": "false"
         }
@@ -132,13 +133,6 @@
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
-        },
-        {
-          "id": "faxNumber",
-          "type": "text",
-          "label": "Fax number (optional)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
         },
         {
           "id": "mobileNumber",
