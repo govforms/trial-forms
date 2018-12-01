@@ -77,6 +77,30 @@
       ]
     },
     {
+      "title": "Is your business or group registered for VAT?",
+      "fields": [
+        {
+          "id": "choiceVat",
+          "type": "choice",
+          "label": "Is your business or group registered for VAT?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "What is your business or group's VAT registration number?",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "What is the VAT registration number?",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "text(0, 9)"
+        }
+      ]
+    },
+    {
       "title": "Enter your business details",
       "shortName": "Business details",
       "fields": [
@@ -102,7 +126,7 @@
         {
           "id": "businessAddress",
           "type": "address",
-          "label": "Business address"
+          "label": "Principle business address"
         },
         {
           "id": "phoneNumber",
@@ -175,32 +199,103 @@
       ]
     },
     {
-      "title": "Is your business registered for VAT?",
+      "title": "Does the site you are registering have a different address from the business address?",
+      "fields": []
+    },
+    {
+      "title": "Enter the site details",
       "fields": [
         {
-          "id": "choiceVat",
-          "type": "choice",
-          "label": "Is your business registered for VAT?",
-          "format": "yesno"
+          "id": "siteName",
+          "type": "text",
+          "label": "Trading name of site"
+        },
+        {
+          "id": "siteAdd",
+          "type": "address",
+          "label": "Site address"
+        },
+        {
+          "id": "sitePhone",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteFax",
+          "type": "text",
+          "label": "Site fax number (if you have one)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "id": "siteEmail",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
+          "id": "ordananceSurvey",
+          "type": "text",
+          "label": "Ordnance Survey grid reference",
+          "helpText": "Enter the grid reference of the entrance to the site",
+          "multiline": "true"
         }
       ]
     },
     {
-      "title": "What is your VAT registration number?",
-      "includeIf": "${choiceVat=0}",
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
       "fields": [
         {
-          "id": "vatRegNo",
+          "id": "weighbridgeChoice",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you taken over this site from another operator?",
+      "fields": [
+        {
+          "id": "existingSite",
+          "type": "choice",
+          "label": "Have you taken over this site from another operator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of the site's previous operator",
+      "includeIf": "${existingSite=0}",
+      "fields": [
+        {
+          "id": "existingBusinessName",
           "type": "text",
-          "label": "What is your VAT registration number?",
-          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
-          "format": "text(0, 9)"
+          "label": "Business name"
+        },
+        {
+          "id": "alRegNoExist",
+          "type": "text",
+          "label": "Their Aggregates Levy registration number"
         }
       ]
     },
     {
       "title": "Percentage of your total sales from aggregates extraction activities",
-      "description": "Enter the percentage of your business's current or estimated total sales for each activity. \n[INSET TEXT}Enter 0 for any activity your business is not involved in.",
+      "description": "Enter the percentage of your business's current or estimated total sales for each activity. \n[INSET TEXT}Enter 0 for any activity your business is not involved in.\n\n[Ask business per site?]",
       "fields": [
         {
           "id": "quarryPercentage",
@@ -262,7 +357,7 @@
     {
       "title": "Percentage of your total sales from other aggregates activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Enter details about any other aggregates activities your business or group is, or plans to be involved in.",
+      "description": "Enter details about any other aggregates activities your business or group is (or plans to be) involved in.",
       "fields": [
         {
           "id": "otherName",
@@ -376,12 +471,13 @@
           "id": "taxPeriodInfo",
           "type": "info",
           "label": "",
+          "infoText": "If you are applying non-standard return periods, select the periods you wish to apply for.",
           "infoType": "noformat"
         },
         {
           "id": "taxPeriod",
           "type": "choice",
-          "label": "If you are applying non-standard return periods, select the periods you wish to apply for.\n",
+          "label": "\n",
           "multivalue": "yes",
           "choices": [
             "Monthly returns",
@@ -426,7 +522,7 @@
       ]
     },
     {
-      "title": "Will you account for aggregates levy using a computerised system?",
+      "title": "Will you be using accounting software to complete your return accounts?",
       "fields": [
         {
           "id": "compSysChoice",
@@ -437,7 +533,7 @@
       ]
     },
     {
-      "title": "Computerised system details",
+      "title": "Accounting software details",
       "includeIf": "${compSysChoice=0}",
       "fields": [
         {
@@ -455,7 +551,7 @@
       ]
     },
     {
-      "title": "Have you taken over an aggregates levy business or changed the registering business's status (for example, from a sole trader to a limited company)?",
+      "title": "Have you taken over an aggregates levy business or changed the registering business's  status?",
       "fields": [
         {
           "id": "businessTakeOver",
@@ -497,7 +593,7 @@
       ]
     },
     {
-      "title": "Is your business involved in any other activities registered approved or authorised by HM Revenue and Customs?",
+      "title": "Is your business involved in any other activities registered approved or authorised by HMRC?",
       "description": "Tick the boxes as appropriate and give the registration number",
       "fields": [
         {
@@ -559,7 +655,7 @@
       ]
     },
     {
-      "title": "Are there any other aggregates business(es) you are or have been, involved in during the last 24 months?",
+      "title": "Are there any other aggregates businesses you are or have been, involved in during the last 24 months?",
       "description": "If you're a partnership or a limited company this means any businesses in which partners or directors have been involved",
       "fields": [
         {
@@ -567,76 +663,6 @@
           "type": "choice",
           "label": "",
           "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Aggregates Levy registration numbers of other businesses",
-      "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Aggregates Levy registration numbers of any businesses you are or have been involved in. If you’re a partnership or a limited company this means any business n which partners or directors have been involved.",
-      "fields": [
-        {
-          "id": "otherRegNo",
-          "type": "group",
-          "label": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Registration number $n",
-          "repeatAddAnotherText": "Add another registration number",
-          "fields": [
-            {
-              "id": "regNo1",
-              "type": "text",
-              "label": "Registration number",
-              "format": "text"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Site details",
-      "fields": [
-        {
-          "id": "siteName",
-          "type": "text",
-          "label": "Trading name of site"
-        },
-        {
-          "id": "siteAdd",
-          "type": "address",
-          "label": "Site address"
-        },
-        {
-          "id": "sitePhone",
-          "type": "text",
-          "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteMobilePhone",
-          "type": "text",
-          "label": "Site mobile number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteFax",
-          "type": "text",
-          "label": "Site fax number (if you have one)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteEmail",
-          "type": "text",
-          "label": "Site email address",
-          "format": "email"
-        },
-        {
-          "id": "ordananceSurvey",
-          "type": "text",
-          "label": "Ordnance Survey grid reference",
-          "helpText": "Enter the grid reference of the entrance to the site",
-          "multiline": "true"
         }
       ]
     },
@@ -667,41 +693,25 @@
       ]
     },
     {
-      "title": "Site details",
+      "title": "Aggregates Levy registration numbers of other businesses",
+      "includeIf": "${otherBusiness=0}",
+      "description": "Enter the Aggregates Levy registration numbers of any businesses you are or have been involved in. If you’re a partnership or a limited company this means any business n which partners or directors have been involved.",
       "fields": [
         {
-          "id": "weighbridgeChoice",
-          "type": "choice",
-          "label": "Is a weighbridge used to establish the weight of aggregate at this site?",
-          "choices": [
-            "Yes",
-            "No"
+          "id": "otherRegNo",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Registration number $n",
+          "repeatAddAnotherText": "Add another registration number",
+          "fields": [
+            {
+              "id": "regNo1",
+              "type": "text",
+              "label": "Registration number",
+              "format": "text"
+            }
           ]
-        },
-        {
-          "id": "existingSite",
-          "type": "choice",
-          "label": "Have you taken over this site from another operator?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Existing site details",
-      "includeIf": "${existingSite=0}",
-      "fields": [
-        {
-          "id": "existingBusinessName",
-          "type": "text",
-          "label": "Business name"
-        },
-        {
-          "id": "alRegNoExist",
-          "type": "text",
-          "label": "Their Aggregates Levy registration number"
         }
       ]
     }
