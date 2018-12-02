@@ -38,7 +38,7 @@
     {
       "title": "Enter your incorporation details",
       "includeIf": "${legalStatus=0}",
-      "description": "You can find these on the 'certificate of incorporation' you received when your company was registered with Companies House. ",
+      "description": "You can find these on the certificate of incorporation you received when your company was registered with Companies House. ",
       "fields": [
         {
           "id": "certNo",
@@ -50,6 +50,17 @@
           "id": "incorpDate",
           "type": "date",
           "label": "Date of incorporation"
+        }
+      ]
+    },
+    {
+      "title": "Does your business have regional divisions that you want to register separately?",
+      "fields": [
+        {
+          "id": "divReg",
+          "type": "choice",
+          "label": "Does your business have regional divisions that you want to register separately?",
+          "format": "yesno"
         }
       ]
     },
@@ -66,35 +77,24 @@
       ]
     },
     {
-      "title": "Does your business have regional divisions that you want to register separately?",
-      "fields": [
-        {
-          "id": "divReg",
-          "type": "choice",
-          "label": "Does your business have regional divisions that you want to register separately?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Is your business or group registered for VAT?",
+      "title": "Is your business registered for VAT?",
       "fields": [
         {
           "id": "choiceVat",
           "type": "choice",
-          "label": "Is your business or group registered for VAT?",
+          "label": "Is your business registered for VAT?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "What is your business or group's VAT registration number?",
+      "title": "Enter the VAT registration number",
       "includeIf": "${choiceVat=0}",
       "fields": [
         {
           "id": "vatRegNo",
           "type": "text",
-          "label": "What is the VAT registration number?",
+          "label": "Enter the VAT registration number",
           "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
           "format": "text(0, 9)"
         }
@@ -199,11 +199,22 @@
       ]
     },
     {
-      "title": "Does the site you are registering have a different address from the business address?",
-      "fields": []
+      "title": "Is the site you are registering located at a different address to the business?",
+      "fields": [
+        {
+          "id": "differentaddressSite",
+          "type": "choice",
+          "label": "Is the site you are registering located at a different address to the business?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
     },
     {
       "title": "Enter the site details",
+      "includeIf": "${differentaddressSite=0}",
       "fields": [
         {
           "id": "siteName",
@@ -250,20 +261,6 @@
       ]
     },
     {
-      "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "fields": [
-        {
-          "id": "weighbridgeChoice",
-          "type": "choice",
-          "label": "Do you use a weighbridge to weigh aggregates at this site?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Have you taken over this site from another operator?",
       "fields": [
         {
@@ -278,7 +275,7 @@
       ]
     },
     {
-      "title": "Details of the site's previous operator",
+      "title": "Give details of the site's previous operator",
       "includeIf": "${existingSite=0}",
       "fields": [
         {
@@ -294,70 +291,76 @@
       ]
     },
     {
-      "title": "Percentage of your total sales from aggregates extraction activities",
-      "description": "Enter the percentage of your business's current or estimated total sales for each activity. \n[INSET TEXT}Enter 0 for any activity your business is not involved in.\n\n[Ask business per site?]",
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
       "fields": [
+        {
+          "id": "weighbridgeChoice",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What percentage of your total business sales are from aggregates extraction activities?",
+      "fields": [
+        {
+          "id": "test1",
+          "type": "info",
+          "label": "test1",
+          "infoText": "Enter 0 if your business is not involved in an activity. Provide an estimate if your business is involved in an activity but hasn't made any sales from it  yet."
+        },
         {
           "id": "quarryPercentage",
           "type": "text",
           "label": "Percentage of total sales from quarry extraction ",
+          "helpText": "\n",
           "format": "number(9, 2, '%')"
         },
         {
           "id": "SandgravelPercentage",
           "type": "text",
-          "label": "Percentage of total sales from sand/gravel extraction",
+          "label": "Percentage of total sales from sand or gravel extraction",
           "format": "number(9, 2, '%')"
         },
         {
           "id": "crusherPercentage",
           "type": "text",
-          "label": "Percentage of total sales from use of a mobile crusher to extract aggregates",
+          "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupInfo",
-          "type": "info",
-          "label": "What to include if you are registering as a group",
-          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Percentage of your total sales from importing aggregates ",
+      "title": "What percentage of your total sales are from importing aggregates? ",
       "fields": [
         {
           "id": "importPercentage",
           "type": "text",
-          "label": "Percentage of your total sales from importing aggregate from outside the UK",
-          "helpText": "Enter the percentage of your current or estimated total sales from importing aggregates from outside the UK. Enter 0 if your business is not involved in this activity.",
+          "label": "What percentage of your total sales are from importing aggregates?",
+          "helpText": "Enter 0 if your business is not involved in this activity. Provide an estimate if you are planning to import aggregates but have no sales from this yet.",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupInfo3",
-          "type": "info",
-          "label": "What to include if you are registering as a group",
-          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Is your business  or group involved (or planning to be involved) in any other aggregates activities? ",
+      "title": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
       "fields": [
         {
           "id": "otherChoice",
           "type": "choice",
-          "label": "Is your business involved (or planning to be involved) in any other aggregates activities? ",
+          "label": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Percentage of your total sales from other aggregates activities",
+      "title": "Tell us about the other aggregates activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Enter details about any other aggregates activities your business or group is (or plans to be) involved in.",
+      "description": "Provide details about each aggregates activity your business is, or plans to be involved in. ",
       "fields": [
         {
           "id": "otherName",
@@ -367,31 +370,26 @@
         {
           "id": "OtherPercentage",
           "type": "text",
-          "label": "Percentage of your current or estimated total sales from this activity",
+          "label": "Percentage of your total sales from this activity",
+          "helpText": "Provide an estimate if you have not made any sales from this activity yet.",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupInfo4",
-          "type": "info",
-          "label": "What to include if you are registering as a group",
-          "infoText": "If you’re registering as a group, enter the percentage of your group's total sales for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "What date did your business first commercially exploit aggregates?",
+      "title": "What date did your business first commercially use aggregates?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "Enter the date of your business first commercial exploited aggregate"
+          "label": "What date did your business first commercially use aggregates?",
+          "helpText": "Enter the date or the anticipated date."
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "Help with this question",
-          "infoText": "Examples of commercially exploiting aggregates are:\n\n•the  removal of aggregates from\n\n  – the originating site\n  – another site registered in the name of the same person as the originating site\n  – another site on which the aggregate was intended to be, but in fact was not, subjected to an exempt process\n\n• an agreement to supply aggregate to any person\n\n• its use for construction purposes\n\n• mixing aggregates with anything other than water except in permitted circumstances \n\nFull details are given in Notice AGL1.\n",
+          "label": "What does 'first commercially use aggregates' mean?",
+          "infoText": "Aggregate becomes liable to the levy when it’s first commercially used. In practical terms, this means the first of:\n\n• its physical removal from\n\n  – the originating site\n  – another site registered in the name of the same \n     person as the originating site\n  – another site on which the aggregate was intended to \n     be, but in fact was not, subjected to an exempt \n     process\n\n• an agreement to supply aggregate to any person\n• its use for construction purposes\n• mixing with anything other than water except in permitted circumstances \n\nFull details are given in Notice AGL1.",
           "infoType": "long"
         }
       ]
@@ -403,7 +401,7 @@
           "id": "aggregatesLevy",
           "type": "text",
           "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
-          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
+          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially use by the rate of aggregates levy.",
           "format": "sterling"
         },
         {
@@ -436,7 +434,6 @@
     {
       "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months",
       "includeIf": "${exemptChoice=0}",
-      "description": "If you’re applying as the representative member of an aggregates levy group, give the estimated tonnage for all group members",
       "fields": [
         {
           "id": "exemptLevy",
@@ -471,7 +468,7 @@
           "id": "taxPeriodInfo",
           "type": "info",
           "label": "",
-          "infoText": "If you are applying non-standard return periods, select the periods you wish to apply for.",
+          "infoText": "If you are applying for non-standard return periods, select the periods you wish to apply for.",
           "infoType": "noformat"
         },
         {
@@ -489,7 +486,7 @@
       ]
     },
     {
-      "title": "Enter details of the bank or building society account that you use for the aggregates levy business.",
+      "title": "Enter the bank details for your aggregates levy business.",
       "shortName": "Bank details",
       "fields": [
         {
@@ -539,19 +536,19 @@
         {
           "id": "softwareName",
           "type": "text",
-          "label": "Accounting Software",
+          "label": "Accounting software",
           "format": "text"
         },
         {
           "id": "softwareVersion",
           "type": "text",
-          "label": "Accounting Software Version",
+          "label": "Accounting software version",
           "format": "text"
         }
       ]
     },
     {
-      "title": "Have you taken over an aggregates levy business or changed the registering business's  status?",
+      "title": "Have you taken over an aggregates levy business or changed the status of your business?",
       "fields": [
         {
           "id": "businessTakeOver",
@@ -568,7 +565,7 @@
         {
           "id": "transferDate",
           "type": "date",
-          "label": "what date did the transfer take place?",
+          "label": "What date did the transfer take place?",
           "helpText": "For example, 01 08 2018"
         },
         {
@@ -593,13 +590,13 @@
       ]
     },
     {
-      "title": "Is your business involved in any other activities registered approved or authorised by HMRC?",
-      "description": "Tick the boxes as appropriate and give the registration number",
+      "title": "Tell us about any other activities your business is registered with HMRC for ",
+      "description": "Tell us about any other activities your business is registered with HMRC for\n",
       "fields": [
         {
           "id": "landFillReg",
           "type": "group",
-          "label": "Landfill Tax",
+          "label": "Landfill tax",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -613,7 +610,7 @@
         {
           "id": "exciseDuties",
           "type": "group",
-          "label": "Excise Duties",
+          "label": "Excise duties",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -623,15 +620,21 @@
               "mandatory": "false"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "Give details about any other activities your business is approved or authorised by HMRC for",
+      "description": "Give details about any other activities your business is involved in that are registered, approved or authorised by HMRC.",
+      "fields": [
         {
-          "id": "importExport",
+          "id": "importExport2",
           "type": "group",
           "label": "Import or exports",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
-              "id": "impExpDetails",
+              "id": "impExpDetails2",
               "type": "text",
               "label": "Give details",
               "mandatory": "false"
@@ -639,7 +642,7 @@
           ]
         },
         {
-          "id": "otherInfo",
+          "id": "otherInfo2",
           "type": "group",
           "label": "Other",
           "presentationHint": "collapseGroupUnderLabel",
@@ -655,7 +658,7 @@
       ]
     },
     {
-      "title": "Are there any other aggregates businesses you are or have been, involved in during the last 24 months?",
+      "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
       "description": "If you're a partnership or a limited company this means any businesses in which partners or directors have been involved",
       "fields": [
         {
@@ -663,32 +666,6 @@
           "type": "choice",
           "label": "",
           "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Are you telling us about a site closure?",
-      "fields": [
-        {
-          "id": "siteCloseChoice",
-          "type": "choice",
-          "label": "Are you telling us about a site closure?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Give reason for closure",
-      "includeIf": "${siteCloseChoice=0}",
-      "fields": [
-        {
-          "id": "closeExplanation",
-          "type": "text",
-          "label": "Give reason for closure",
-          "multiline": "true"
         }
       ]
     },
