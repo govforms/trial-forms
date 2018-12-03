@@ -122,12 +122,12 @@
     },
     {
       "title": "Business contact details",
-      "description": "Provide the contact details for your business. HMRC may use these if we need to discuss this registration.\n\nTell us the address of your principal place of business, this is where the day-to-day activities are managed. Your aggregates levy correspondence will be sent to this address unless you tell us a different communication address at question 8. If this address is a site where aggregate is extracted you should also include it on form AL1A.",
+      "description": "Enter the contact details for the main place of business, where the day to day activities are managed. ",
       "fields": [
         {
           "id": "businessAddress",
           "type": "address",
-          "label": "Principle business address"
+          "label": "Main business address"
         },
         {
           "id": "phoneNumber",
@@ -159,7 +159,7 @@
     {
       "title": "Registration contact details",
       "includeIf": "${altAdd=1}",
-      "description": "Provide the contact details of someone who is authorised to discuss this aggregates levy registration with HMRC.",
+      "description": "Provide the contact details of someone who is authorised to discuss this registration with HMRC.",
       "fields": [
         {
           "id": "name",
@@ -194,12 +194,12 @@
       ]
     },
     {
-      "title": "Des the site you are registering have a different address to the business?",
+      "title": "Does the site you are registering have a different address to the main business address?",
       "fields": [
         {
           "id": "differentaddressSite",
           "type": "choice",
-          "label": "Des the site you are registering have a different address to the business?",
+          "label": "Does the site you are registering have a different address to the main business address?",
           "choices": [
             "Yes",
             "No"
@@ -300,13 +300,25 @@
       ]
     },
     {
-      "title": "What percentage of your total business sales are from aggregates extraction activities?",
+      "title": "What percentage of your total sales are from importing aggregates? ",
+      "fields": [
+        {
+          "id": "importPercentage",
+          "type": "text",
+          "label": "What percentage of your total sales are from importing aggregates?",
+          "helpText": "Provide your current or estimated percentage of total sales from importing. Enter 0 if your business is not involved in this activity. ",
+          "format": "number(9, 2, '%')"
+        }
+      ]
+    },
+    {
+      "title": "What percentage of your total sales are from aggregates extraction activities?",
       "fields": [
         {
           "id": "test1",
           "type": "info",
           "label": "test1",
-          "infoText": "Enter 0 if your business is not involved in an activity. Provide an estimate if your business is involved in an activity but hasn't made any sales from it  yet."
+          "infoText": "Enter 0 if your business is not involved in an activity. Provide an estimate if your business is involved in an activity but hasn't made any sales from it yet."
         },
         {
           "id": "quarryPercentage",
@@ -325,18 +337,6 @@
           "id": "crusherPercentage",
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
-          "format": "number(9, 2, '%')"
-        }
-      ]
-    },
-    {
-      "title": "What percentage of your total sales are from importing aggregates? ",
-      "fields": [
-        {
-          "id": "importPercentage",
-          "type": "text",
-          "label": "What percentage of your total sales are from importing aggregates?",
-          "helpText": "Enter 0 if your business is not involved in this activity. Provide an estimate if you are planning to import aggregates but have no sales from this yet.",
           "format": "number(9, 2, '%')"
         }
       ]
@@ -366,7 +366,7 @@
           "id": "OtherPercentage",
           "type": "text",
           "label": "Percentage of your total sales from this activity",
-          "helpText": "Provide an estimate if you have not made any sales from this activity yet.",
+          "helpText": "Provide the current percentage of total sales or an estimate if you have not made any sales from this yet.",
           "format": "number(9, 2, '%')"
         }
       ]
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "title": "Do you expect any of your commercial activity to be exempt from the levy or subject to relief?",
+      "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
       "fields": [
         {
           "id": "exemptChoice",
@@ -420,8 +420,8 @@
         {
           "id": "infoexempt4",
           "type": "info",
-          "label": "Help with this question",
-          "infoText": "If you expect to commercially exploit aggregate that is exempt or relieved from the levy, give an estimate of the tonnage you expect to be exploited in the next 12 months. The following are exempt from the levy:\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\nThe following are relieved from the levy:\n• any aggregate used in prescribed industrial or agricultural processes (such as glass manufacture, fertiliser production)\n• aggregate that has previously borne levy and to which an exempt process is applied\nThis is only a summary of the aggregates levy exemptions and reliefs.\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.r",
+          "label": "What does exempt or relieved from the levy mean?",
+          "infoText": "Help text to give examples of exempt and relieved levy.\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.r",
           "infoType": "long"
         }
       ]
@@ -579,14 +579,13 @@
           "id": "keepPrevNumber",
           "type": "choice",
           "label": "Do you want to keep this number?",
-          "helpText": "If you do keep the registration number, you’ll become liable for the previous owner’s aggregates levy debts and you and the previous owner must also complete and send form AL68",
+          "helpText": "If you do keep the registration number, you’ll become liable for the previous owner’s aggregates levy debts.",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Tell us about any other activities your business is registered with HMRC for ",
-      "description": "Tell us about any other activities your business is registered with HMRC for\n",
+      "title": "Tell us if your business is registered with HMRC for any of these taxes",
       "fields": [
         {
           "id": "landFillReg",
@@ -619,8 +618,7 @@
       ]
     },
     {
-      "title": "Give details about any other activities your business is approved or authorised by HMRC for",
-      "description": "Give details about any other activities your business is involved in that are registered, approved or authorised by HMRC.",
+      "title": "Give details of other activities your business is approved or authorised by HMRC for",
       "fields": [
         {
           "id": "importExport2",
@@ -654,7 +652,6 @@
     },
     {
       "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
-      "description": "If you're a partnership or a limited company this means any businesses in which partners or directors have been involved",
       "fields": [
         {
           "id": "otherBusiness",
@@ -665,9 +662,9 @@
       ]
     },
     {
-      "title": "Aggregates Levy registration numbers of other businesses",
+      "title": "Aggregates Levy registration number of other business",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Aggregates Levy registration numbers of any businesses you are or have been involved in. If you’re a partnership or a limited company this means any business n which partners or directors have been involved.",
+      "description": "Enter the Aggregates Levy registration number of any businesses you are or have been involved in.",
       "fields": [
         {
           "id": "otherRegNo",
@@ -711,13 +708,13 @@
         "label": "Choose the appropriate box",
         "helpText": "For corporate bodies, a director or company secretary must sign the form.",
         "choices": [
-          "Sole proprietor",
+          "Sole trader",
           "Partnership",
           "Local Authority",
-          "Non-profit making body or unincorporated body",
+          "Unincorporated body",
           "Public corporation",
           "Trust",
-          "Corporate body (for example, limited company"
+          "Limited company"
         ]
       },
       {
