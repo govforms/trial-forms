@@ -122,7 +122,7 @@
     },
     {
       "title": "Business contact details",
-      "description": "Enter the contact details for the main place of business, where the day to day activities are managed. ",
+      "description": "Enter the contact details for the main place of business, where the day to day business activities are managed. ",
       "fields": [
         {
           "id": "businessAddress",
@@ -456,7 +456,7 @@
         {
           "id": "nonTaxPeriod",
           "type": "choice",
-          "label": "Do you wish to apply for non-standard return periods for your aggregates levy returns?",
+          "label": "Do you wish to apply for non-standard aggregates levy return periods?",
           "format": "yesno"
         },
         {
@@ -678,6 +678,29 @@
               "id": "regNo1",
               "type": "text",
               "label": "Registration number",
+              "format": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "test Aggregates Levy add multiple sites page",
+      "includeIf": "${otherBusiness=1}",
+      "description": "Enter the Aggregates Levy registration number of any businesses you are or have been involved in.",
+      "fields": [
+        {
+          "id": "otherSiteNo",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Site details $o",
+          "repeatAddAnotherText": "Add another site",
+          "fields": [
+            {
+              "id": "siteNo1",
+              "type": "text",
+              "label": "Site details",
               "format": "text"
             }
           ]
