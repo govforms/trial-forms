@@ -194,28 +194,8 @@
       ]
     },
     {
-      "title": "Does the site you are registering have a different address to the main business address?",
+      "title": "Enter your site details 1",
       "fields": [
-        {
-          "id": "differentaddressSite",
-          "type": "choice",
-          "label": "Does the site you are registering have a different address to the main business address?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the site details",
-      "includeIf": "${differentaddressSite=0}",
-      "fields": [
-        {
-          "id": "siteName",
-          "type": "text",
-          "label": "Trading name of site"
-        },
         {
           "id": "siteAdd",
           "type": "address",
@@ -247,11 +227,76 @@
           "format": "email"
         },
         {
+          "id": "siteName",
+          "type": "text",
+          "label": "Trading name of site"
+        },
+        {
           "id": "ordananceSurvey",
           "type": "text",
           "label": "Ordnance Survey grid reference",
           "helpText": "Enter the grid reference of the entrance to the site",
           "multiline": "true"
+        },
+        {
+          "id": "otherSite",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Enter your site details 2",
+      "includeIf": "${otherSite=0}",
+      "fields": [
+        {
+          "id": "siteAdd2",
+          "type": "address",
+          "label": "Site address"
+        },
+        {
+          "id": "sitePhone2",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone2",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteFax2",
+          "type": "text",
+          "label": "Site fax number (if you have one)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "id": "siteEmail2",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
+          "id": "siteName2",
+          "type": "text",
+          "label": "Trading name of site"
+        },
+        {
+          "id": "ordananceSurvey2",
+          "type": "text",
+          "label": "Ordnance Survey grid reference",
+          "helpText": "Enter the grid reference of the entrance to the site",
+          "multiline": "true"
+        },
+        {
+          "id": "secondSite",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "format": "yesno"
         }
       ]
     },
@@ -306,7 +351,7 @@
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your total sales are from importing aggregates?",
-          "helpText": "Provide your current or estimated percentage of total sales from importing. Enter 0 if your business is not involved in this activity. ",
+          "helpText": "Enter the current or estimated percentage of your total sales from importing aggregates. Enter 0 if your business is not involved in this activity. ",
           "format": "number(9, 2, '%')"
         }
       ]
@@ -318,7 +363,7 @@
           "id": "test1",
           "type": "info",
           "label": "test1",
-          "infoText": "Enter 0 if your business is not involved in an activity. Provide an estimate if your business is involved in an activity but hasn't made any sales from it yet."
+          "infoText": "Enter your current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
         },
         {
           "id": "quarryPercentage",
@@ -366,24 +411,24 @@
           "id": "OtherPercentage",
           "type": "text",
           "label": "Percentage of your total sales from this activity",
-          "helpText": "Provide the current percentage of total sales or an estimate if you have not made any sales from this yet.",
+          "helpText": "Enter the percentage of your business's total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
           "format": "number(9, 2, '%')"
         }
       ]
     },
     {
-      "title": "What date did your business first commercially use aggregates?",
+      "title": "What date did your business first commercially exploit aggregates?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did your business first commercially use aggregates?",
+          "label": "What date did your business first commercially exploit aggregates?",
           "helpText": "Enter the date or the anticipated date."
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "What does 'first commercially use aggregates' mean?",
+          "label": "What does 'first commercially exploit aggregates' mean?",
           "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
           "infoType": "long"
         }
@@ -396,7 +441,7 @@
           "id": "aggregatesLevy",
           "type": "text",
           "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
-          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially use by the rate of aggregates levy.",
+          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
           "format": "sterling"
         },
         {
