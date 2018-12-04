@@ -1,0 +1,479 @@
+{
+  "_id": "ex250",
+  "formName": "Apply to register as a bingo promoter",
+  "description": "",
+  "dmsSubmission": {
+    "dmsFormId": "EX250",
+    "customerId": "${eeitt.userId}",
+    "classificationType": "BT-NRU-Environmental",
+    "businessArea": "BT"
+  },
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "BD"
+  },
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "sections": [
+    {
+      "title": "Contact details",
+      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
+      "fields": [
+        {
+          "id": "firstNameBusiness",
+          "type": "text",
+          "label": "First name",
+          "errorMessage": "Enter your first name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastNameBusiness",
+          "type": "text",
+          "label": "Last name",
+          "errorMessage": "Enter your last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAgent",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "Email address",
+          "errorMessage": "Enter your email address",
+          "mandatory": "true",
+          "format": "email"
+        },
+        {
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country and area codes",
+          "format": "telephoneNumber",
+          "errorMessage": "Enter your telephone number",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Select the type that best describes the promoter",
+      "fields": [
+        {
+          "id": "multipleChoiceQuestion",
+          "type": "choice",
+          "label": "",
+          "helpText": "",
+          "choices": [
+            "Limited Company",
+            "Sole Trader",
+            "Partnership",
+            "Limited Liability Partnership (LLP)",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "includeIf": "${multipleChoiceQuestion=1}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Full name",
+          "errorMessage": "Enter the business name",
+          "shortName": "Business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "saUTR",
+          "type": "text",
+          "label": "Your Self Assessment Unique Taxpayer Reference",
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "errorMessage": "Enter the SA UTR",
+          "shortName": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Promoter's details",
+      "includeIf": "${multipleChoiceQuestion=2 || multipleChoiceQuestion=3}",
+      "fields": [
+        {
+          "id": "businessNameThird",
+          "type": "text",
+          "label": "Promoter's name",
+          "errorMessage": "Enter the business name",
+          "shortName": "Business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "saUTRThird",
+          "type": "text",
+          "label": "Partnership Unique Taxpayer Reference (UTR)",
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "errorMessage": "Enter the SA UTR",
+          "shortName": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Promoter's details",
+      "includeIf": "${multipleChoiceQuestion=0}",
+      "fields": [
+        {
+          "id": "businessNameFourth",
+          "type": "text",
+          "label": "Promoter's name",
+          "errorMessage": "Enter the business name",
+          "shortName": "Business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "saUTRFourth",
+          "type": "text",
+          "label": "Corporation Tax or company Unique Taxpayer Reference (UTR)",
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "errorMessage": "Enter the SA UTR",
+          "shortName": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Promoter's details",
+      "includeIf": "${multipleChoiceQuestion=4}",
+      "fields": [
+        {
+          "id": "businessNameFifth",
+          "type": "text",
+          "label": "Promoter's name",
+          "errorMessage": "Enter the business name",
+          "shortName": "Business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "saUTRFifth",
+          "type": "text",
+          "label": "Self Assessment Unique Taxpayer Reference",
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "errorMessage": "Enter the SA UTR",
+          "shortName": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a trading name?",
+      "fields": [
+        {
+          "id": "doYouHaveTrading",
+          "type": "choice",
+          "label": "",
+          "helpText": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Trading name",
+      "includeIf": "${doYouHaveTrading=0}",
+      "fields": [
+        {
+          "id": "tradingNameSetFifth",
+          "type": "text",
+          "label": "Trading name",
+          "helpText": "If different from the promoter's name",
+          "errorMessage": "Enter the trading name",
+          "shortName": ""
+        }
+      ]
+    },
+    {
+      "title": "Provide all business trading addresses",
+      "description": "By law, the promoter must provide all the addresses they plan to trade from.",
+      "fields": [
+        {
+          "type": "address",
+          "id": "userAddress",
+          "label": "",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "tradeMultiplePremises",
+          "type": "choice",
+          "label": "Do you want to add any more trading addresses?",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter all the premises that the business will trade from",
+      "includeIf": "${tradeMultiplePremises=0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "userAddress2",
+          "label": "Business address 2",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "tradeMultiplePremises2",
+          "type": "choice",
+          "label": "Do you want to add any more trading addresses?",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Are you licensed to run bingo games?",
+      "fields": [
+        {
+          "id": "canRunBingo",
+          "type": "choice",
+          "label": "",
+          "helpText": "Your business must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Have you already started trading?",
+      "fields": [
+        {
+          "id": "haveStartedBingo",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter the trading date",
+      "includeIf": "${haveStartedBingo=0}",
+      "fields": [
+        {
+          "id": "tradingDate",
+          "type": "date",
+          "helpText": "For example, 01 01 2020",
+          "label": "",
+          "errorMessage": "Enter the trading date"
+        }
+      ]
+    },
+    {
+      "title": "When will you start to trade?",
+      "includeIf": "${haveStartedBingo=1}",
+      "fields": [
+        {
+          "id": "tradingDateNotStarted",
+          "type": "date",
+          "helpText": "For example, 01 01 2020",
+          "label": "",
+          "errorMessage": "Enter the trading date"
+        },
+        {
+          "type": "info",
+          "id": "importantInfoBox",
+          "infoText": "The business must apply to register with HMRC at least 14 days before trading or risk a financial penalty.",
+          "label": "",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "What is your LLP estimated profit for the next 12 months?",
+      "includeIf": "${multipleChoiceQuestion=2}",
+      "fields": [
+        {
+          "id": "estimatedProfit",
+          "type": "text",
+          "label": "",
+          "format": "sterling",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "What is your business estimated profit for the next 12 months?",
+      "includeIf": "${multipleChoiceQuestion=0 || multipleChoiceQuestion=3}",
+      "fields": [
+        {
+          "id": "estimatedProfitBus",
+          "type": "text",
+          "label": "",
+          "format": "sterling",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "What is your partnership estimated profit for the next 12 months?",
+      "includeIf": "${multipleChoiceQuestion=1}",
+      "fields": [
+        {
+          "id": "estimatedProfitPart",
+          "type": "text",
+          "label": "",
+          "format": "sterling",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "What is your unincorporated body estimated profit for the next 12 months?",
+      "includeIf": "${multipleChoiceQuestion=4}",
+      "fields": [
+        {
+          "id": "estimatedProfitUnincorporated",
+          "type": "text",
+          "label": "",
+          "format": "sterling",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Do you trade only at certain times of the year?",
+      "includeIf": "${multipleChoiceQuestion=0}",
+      "fields": [
+        {
+          "id": "certainTimesYear",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Does your partnership only trade at certain times of the year?",
+      "includeIf": "${multipleChoiceQuestion=1}",
+      "fields": [
+        {
+          "id": "traderQuestionTwo",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Does your LLP only trade at certain times of the year?",
+      "includeIf": "${multipleChoiceQuestion=2}",
+      "fields": [
+        {
+          "id": "llpQuestion",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Does your limited company only trade at certain times of the year?",
+      "includeIf": "${multipleChoiceQuestion=3}",
+      "fields": [
+        {
+          "id": "limitedCompanyQuestion",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Does your unincorporated body only trade at certain times of the year?",
+      "includeIf": "${multipleChoiceQuestion=4}",
+      "fields": [
+        {
+          "id": "areSeasonalTrader",
+          "type": "choice",
+          "label": "",
+          "shortName": "",
+          "format": "yesno",
+          "errorMessage": ""
+        }
+      ]
+    }
+  ],
+  "acknowledgementSection": {
+    "shortName": "Acknowledgement Page",
+    "title": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "next",
+        "type": "info",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "Contact the local authority responsible for licensing bingo premises before you start the business"
+      }
+    ]
+  },
+  "declarationSection": {
+    "title": "Confirm details and send your registration details",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declaration-fullName",
+            "type": "text",
+            "errorMessage": "Enter your full name",
+            "label": "Full name"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Job title",
+            "errorMessage": "Enter your position in company"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm the application has been submitted",
+        "errorMessage": "Enter your email address",
+        "mandatory": "true",
+        "format": "email"
+      },
+      {
+        "type": "info",
+        "id": "decPageContent",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "By submitting this application, you declare that the information that you have provided is true and complete."
+      },
+      {
+        "type": "info",
+        "id": "decPageImportant",
+        "infoText": "You can avoid a financial penalty by applying for registration at the correct time. \n\nYou have the right to appeal if we impose such a penalty.",
+        "label": "",
+        "infoType": "important"
+      }
+    ]
+  }
+}
