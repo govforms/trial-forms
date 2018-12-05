@@ -194,12 +194,39 @@
       ]
     },
     {
-      "title": "Enter your site details 1",
+      "title": "How many sites are you registering?",
+      "fields": [
+        {
+          "id": "numberSites",
+          "type": "choice",
+          "label": "Select how many sites your business has.",
+          "choices": [
+            "None",
+            "10 or less sites",
+            "More than 10 sites"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Upload your site details",
+      "includeIf": "${numberSites=3}",
+      "fields": [
+        {
+          "type": "file",
+          "id": "uploadsite",
+          "label": "Upload your site details"
+        }
+      ]
+    },
+    {
+      "title": "Enter your site details ",
+      "includeIf": "${numberSites=1}",
       "fields": [
         {
           "id": "siteAdd",
           "type": "address",
-          "label": "Site address"
+          "label": "Site 1 address"
         },
         {
           "id": "sitePhone",
@@ -237,71 +264,12 @@
           "label": "Ordnance Survey grid reference",
           "helpText": "Enter the grid reference of the entrance to the site",
           "multiline": "true"
-        },
-        {
-          "id": "otherSite",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Enter your site details 2",
-      "includeIf": "${otherSite=0}",
-      "fields": [
-        {
-          "id": "siteAdd2",
-          "type": "address",
-          "label": "Site address"
-        },
-        {
-          "id": "sitePhone2",
-          "type": "text",
-          "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteMobilePhone2",
-          "type": "text",
-          "label": "Site mobile number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteFax2",
-          "type": "text",
-          "label": "Site fax number (if you have one)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteEmail2",
-          "type": "text",
-          "label": "Site email address",
-          "format": "email"
-        },
-        {
-          "id": "siteName2",
-          "type": "text",
-          "label": "Trading name of site"
-        },
-        {
-          "id": "ordananceSurvey2",
-          "type": "text",
-          "label": "Ordnance Survey grid reference",
-          "helpText": "Enter the grid reference of the entrance to the site",
-          "multiline": "true"
-        },
-        {
-          "id": "secondSite",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "format": "yesno"
         }
       ]
     },
     {
       "title": "Have you taken over this site from another operator?",
+      "includeIf": "${numberSites=1}",
       "fields": [
         {
           "id": "existingSite",
@@ -316,7 +284,7 @@
     },
     {
       "title": "Give details of the site's previous operator",
-      "includeIf": "${existingSite=0}",
+      "includeIf": "${existingSite=0 && numberSites=1} ",
       "fields": [
         {
           "id": "existingBusinessName",
@@ -332,11 +300,27 @@
     },
     {
       "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "includeIf": "${numberSites=1}",
       "fields": [
         {
           "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have another site to add?",
+      "includeIf": "${numberSites=1}",
+      "fields": [
+        {
+          "id": "addotherSite1",
+          "type": "choice",
+          "label": "Do you have another site to add?",
           "choices": [
             "Yes",
             "No"
@@ -351,8 +335,15 @@
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your total sales are from importing aggregates?",
-          "helpText": "Enter the current or estimated percentage of your total sales from importing aggregates. Enter 0 if your business is not involved in this activity. ",
+          "helpText": "Enter the current or estimated percentage of your business's total sales from importing aggregates. Enter 0 if your business is not involved in this activity. \n\n",
           "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp1",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales that are from importing aggregates.",
+          "infoType": "long"
         }
       ]
     },
@@ -363,7 +354,7 @@
           "id": "test1",
           "type": "info",
           "label": "test1",
-          "infoText": "Enter your current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
+          "infoText": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
         },
         {
           "id": "quarryPercentage",
@@ -383,6 +374,13 @@
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp2",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
+          "infoType": "long"
         }
       ]
     },
@@ -411,8 +409,15 @@
           "id": "OtherPercentage",
           "type": "text",
           "label": "Percentage of your total sales from this activity",
-          "helpText": "Enter the percentage of your business's total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
+          "helpText": "Enter the percentage of your total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
           "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp3",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
+          "infoType": "long"
         }
       ]
     },
@@ -430,6 +435,13 @@
           "type": "info",
           "label": "What does 'first commercially exploit aggregates' mean?",
           "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
+          "infoType": "long"
+        },
+        {
+          "id": "groupHelp4",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the date or anticipated date of the first time aggregates will be commercial exploited by any group member.",
           "infoType": "long"
         }
       ]
@@ -501,14 +513,14 @@
         {
           "id": "nonTaxPeriod",
           "type": "choice",
-          "label": "Do you wish to apply for non-standard aggregates levy return periods?",
+          "label": "On START page and SUBMISSION page > include business rule and instruct to contact (EEITTs Enquiries (BT&C) enquiries.eeitts@hmrc.gsi.gov.uk)",
           "format": "yesno"
         },
         {
           "id": "taxPeriodInfo",
           "type": "info",
           "label": "",
-          "infoText": "If you are applying for non-standard return periods, select the periods you wish to apply for.",
+          "infoText": "If you are applying for non-standard return periods, select the periods you would like.",
           "infoType": "noformat"
         },
         {
@@ -630,7 +642,7 @@
       ]
     },
     {
-      "title": "Tell us if your business is registered with HMRC for any of these taxes",
+      "title": "Is your business registered or approved with HMRC for any of the following?",
       "fields": [
         {
           "id": "landFillReg",
@@ -641,7 +653,7 @@
             {
               "id": "landfillRegNo",
               "type": "text",
-              "label": "Registration number",
+              "label": "Landfill tax registration number",
               "mandatory": "false"
             }
           ]
@@ -655,7 +667,7 @@
             {
               "id": "exciseDutiesRegNo",
               "type": "text",
-              "label": "Registration number",
+              "label": "Excise duties registration number",
               "mandatory": "false"
             }
           ]
@@ -663,7 +675,7 @@
       ]
     },
     {
-      "title": "Give details of other activities your business is approved or authorised by HMRC for",
+      "title": "Give details of other activities your business is approved by HMRC for",
       "fields": [
         {
           "id": "importExport2",
@@ -728,29 +740,6 @@
           ]
         }
       ]
-    },
-    {
-      "title": "test Aggregates Levy add multiple sites page",
-      "includeIf": "${otherBusiness=1}",
-      "description": "Enter the Aggregates Levy registration number of any businesses you are or have been involved in.",
-      "fields": [
-        {
-          "id": "otherSiteNo",
-          "type": "group",
-          "label": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Site details $o",
-          "repeatAddAnotherText": "Add another site",
-          "fields": [
-            {
-              "id": "siteNo1",
-              "type": "text",
-              "label": "Site details",
-              "format": "text"
-            }
-          ]
-        }
-      ]
     }
   ],
   "declarationSection": {
@@ -774,7 +763,7 @@
         "id": "legalStatusDec",
         "type": "choice",
         "label": "Choose the appropriate box",
-        "helpText": "For corporate bodies, a director or company secretary must sign the form.",
+        "helpText": "For corporate bodies, a director or company secretary must complete the form.",
         "choices": [
           "Sole trader",
           "Partnership",
