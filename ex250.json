@@ -197,6 +197,34 @@
       ]
     },
     {
+      "title": "Are you VAT registered?",
+      "fields": [
+        {
+          "id": "areYouVATRegistered",
+          "type": "choice",
+          "label": "",
+          "shortName": "Are you VAT registered",
+          "helpText": "",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you are VAT registered"
+        }
+      ]
+    },
+    {
+      "title": "VAT Registration number",
+      "includeIf": "${areYouVATRegistered=0}",
+      "fields": [
+        {
+          "id": "VATRegsiteredNumber",
+          "type": "text",
+          "label": "",
+          "shortName": "",
+          "helpText": "TBC",
+          "errorMessage": "Enter your VAT registration number"
+        }
+      ]
+    },
+    {
       "title": "Provide all business trading addresses",
       "description": "By law, the promoter must provide all the addresses they plan to trade from.",
       "fields": [
