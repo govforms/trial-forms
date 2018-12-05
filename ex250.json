@@ -2,20 +2,18 @@
   "_id": "ex250",
   "formName": "Apply to register as a bingo promoter",
   "description": "",
-  "dmsSubmission": {
-    "dmsFormId": "EX250",
-    "customerId": "${eeitt.userId}",
-    "classificationType": "BT-NRU-Environmental",
-    "businessArea": "BT"
-  },
   "developmentPhase": "beta",
+  "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
     "authModule": "legacyEEITTAuth",
     "regimeId": "BD"
   },
-  "emailTemplateId": "eeitt_submission_confirmation",
-  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
-  "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${eeitt.userId}",
+    "dmsFormId": "EX250"
+  },
   "sections": [
     {
       "title": "Contact details",
@@ -25,24 +23,24 @@
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "errorMessage": "Enter your first name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your first name"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "errorMessage": "Enter your last name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your last name"
         },
         {
           "id": "emailAgent",
           "type": "text",
           "label": "Email address",
           "shortName": "Email address",
-          "errorMessage": "Enter your email address",
+          "format": "email",
           "mandatory": "true",
-          "format": "email"
+          "errorMessage": "Enter your email address"
         },
         {
           "id": "agentTelephone",
@@ -50,8 +48,8 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber",
-          "errorMessage": "Enter your telephone number",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your telephone number"
         }
       ]
     },
@@ -81,18 +79,18 @@
           "id": "businessName",
           "type": "text",
           "label": "Full name",
-          "errorMessage": "Enter the business name",
           "shortName": "Business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the business name"
         },
         {
           "id": "saUTR",
           "type": "text",
           "label": "Your Self Assessment Unique Taxpayer Reference",
-          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
-          "errorMessage": "Enter the SA UTR",
           "shortName": "",
-          "mandatory": "true"
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "mandatory": "true",
+          "errorMessage": "Enter the SA UTR"
         }
       ]
     },
@@ -104,18 +102,18 @@
           "id": "businessNameThird",
           "type": "text",
           "label": "Promoter's name",
-          "errorMessage": "Enter the business name",
           "shortName": "Business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the business name"
         },
         {
           "id": "saUTRThird",
           "type": "text",
           "label": "Partnership Unique Taxpayer Reference (UTR)",
-          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
-          "errorMessage": "Enter the SA UTR",
           "shortName": "",
-          "mandatory": "true"
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "mandatory": "true",
+          "errorMessage": "Enter the SA UTR"
         }
       ]
     },
@@ -127,18 +125,18 @@
           "id": "businessNameFourth",
           "type": "text",
           "label": "Promoter's name",
-          "errorMessage": "Enter the business name",
           "shortName": "Business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the business name"
         },
         {
           "id": "saUTRFourth",
           "type": "text",
           "label": "Corporation Tax or company Unique Taxpayer Reference (UTR)",
-          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
-          "errorMessage": "Enter the SA UTR",
           "shortName": "",
-          "mandatory": "true"
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "mandatory": "true",
+          "errorMessage": "Enter the SA UTR"
         }
       ]
     },
@@ -150,32 +148,32 @@
           "id": "businessNameFifth",
           "type": "text",
           "label": "Promoter's name",
-          "errorMessage": "Enter the business name",
           "shortName": "Business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the business name"
         },
         {
           "id": "saUTRFifth",
           "type": "text",
           "label": "Self Assessment Unique Taxpayer Reference",
-          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
-          "errorMessage": "Enter the SA UTR",
           "shortName": "",
-          "mandatory": "true"
+          "helpText": "This is a 10 digit number, like 123456789. You can find this on your tax return or statement of accounts.",
+          "mandatory": "true",
+          "errorMessage": "Enter the SA UTR"
         }
       ]
     },
     {
-      "title": "Do you have a trading name?",
+      "title": "Do you trade under a different name?",
       "fields": [
         {
           "id": "doYouHaveTrading",
           "type": "choice",
           "label": "",
+          "shortName": "Trading name",
           "helpText": "",
-          "shortName": "",
           "format": "yesno",
-          "errorMessage": ""
+          "errorMessage": "Select yes or no if you trade under a different name"
         }
       ]
     },
@@ -187,9 +185,9 @@
           "id": "tradingNameSetFifth",
           "type": "text",
           "label": "Trading name",
+          "shortName": "",
           "helpText": "If different from the promoter's name",
-          "errorMessage": "Enter the trading name",
-          "shortName": ""
+          "errorMessage": "Enter the trading name"
         }
       ]
     },
@@ -198,8 +196,8 @@
       "description": "By law, the promoter must provide all the addresses they plan to trade from.",
       "fields": [
         {
-          "type": "address",
           "id": "userAddress",
+          "type": "address",
           "label": "",
           "postcodeLookup": "no"
         },
@@ -218,8 +216,8 @@
       "includeIf": "${tradeMultiplePremises=0}",
       "fields": [
         {
-          "type": "address",
           "id": "userAddress2",
+          "type": "address",
           "label": "Business address 2",
           "postcodeLookup": "no"
         },
@@ -240,8 +238,8 @@
           "id": "canRunBingo",
           "type": "choice",
           "label": "",
-          "helpText": "Your business must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
           "shortName": "",
+          "helpText": "Your business must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
           "format": "yesno",
           "errorMessage": ""
         }
@@ -267,8 +265,8 @@
         {
           "id": "tradingDate",
           "type": "date",
-          "helpText": "For example, 01 01 2020",
           "label": "",
+          "helpText": "For example, 01 01 2020",
           "errorMessage": "Enter the trading date"
         }
       ]
@@ -280,15 +278,15 @@
         {
           "id": "tradingDateNotStarted",
           "type": "date",
-          "helpText": "For example, 01 01 2020",
           "label": "",
+          "helpText": "For example, 01 01 2020",
           "errorMessage": "Enter the trading date"
         },
         {
-          "type": "info",
           "id": "importantInfoBox",
-          "infoText": "The business must apply to register with HMRC at least 14 days before trading or risk a financial penalty.",
+          "type": "info",
           "label": "",
+          "infoText": "The business must apply to register with HMRC at least 14 days before trading or risk a financial penalty.",
           "infoType": "important"
         }
       ]
@@ -416,19 +414,6 @@
       ]
     }
   ],
-  "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
-    "title": "Acknowledgement Page",
-    "fields": [
-      {
-        "id": "next",
-        "type": "info",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "Contact the local authority responsible for licensing bingo premises before you start the business"
-      }
-    ]
-  },
   "declarationSection": {
     "title": "Confirm details and send your registration details",
     "fields": [
@@ -440,8 +425,8 @@
           {
             "id": "declaration-fullName",
             "type": "text",
-            "errorMessage": "Enter your full name",
-            "label": "Full name"
+            "label": "Full name",
+            "errorMessage": "Enter your full name"
           },
           {
             "id": "declaration-status",
@@ -456,24 +441,39 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm the application has been submitted",
-        "errorMessage": "Enter your email address",
+        "format": "email",
         "mandatory": "true",
-        "format": "email"
+        "errorMessage": "Enter your email address"
       },
       {
-        "type": "info",
         "id": "decPageContent",
+        "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "By submitting this application, you declare that the information that you have provided is true and complete."
+        "infoText": "By submitting this application, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
       },
       {
-        "type": "info",
         "id": "decPageImportant",
-        "infoText": "You can avoid a financial penalty by applying for registration at the correct time. \n\nYou have the right to appeal if we impose such a penalty.",
+        "type": "info",
         "label": "",
+        "infoText": "You can avoid a financial penalty by applying for registration at the correct time. \n\nYou have the right to appeal if we impose such a penalty.",
         "infoType": "important"
       }
     ]
-  }
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "next",
+        "type": "info",
+        "label": "",
+        "infoText": "Contact the local authority responsible for licensing bingo premises before you start the business",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs"
 }
