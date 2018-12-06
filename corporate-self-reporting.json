@@ -1,0 +1,976 @@
+{
+  "_id": "corporate-self-reporting",
+  "formCategory": "hmrcReturnForm",
+  "formName": "Corporate self reporting",
+  "description": "",
+  "dmsSubmission": {
+    "dmsFormId": "CSR",
+    "customerId": "${auth.payenino}",
+    "classificationType": "BT-NRU-Environmental",
+    "businessArea": "FinanceOpsCorpT"
+  },
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "sections": [
+    {
+      "title": "Introduction and eligibility to report",
+      "fields": [
+        {
+          "id": "crimFac",
+          "type": "choice",
+          "label": "Who do you want to self-report for failing to prevent the criminal facilitation of UK tax evasion?",
+          "choices": [
+            "a company or partnership i work for or represent",
+            "a company or partnership I do not work for or represent",
+            "an individual taxpayer"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Introduction and eligibility to report",
+      "includeIf": "${crimFac=2}",
+      "fields": [
+        {
+          "id": "indTaxPayer",
+          "type": "info",
+          "label": "",
+          "infoText": "To use this form you must have the authorisation of the company or partnership that you are making the report on behalf of. If you wish to report someone else's tax evasion or someone else's facilitation of tax evasion please use the [HMRC’s fraud hotline](www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion) \n\nFor information visit:[www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion](www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion)"
+        }
+      ]
+    },
+    {
+      "title": "Introduction and eligibility to report",
+      "fields": [
+        {
+          "id": "approval",
+          "type": "choice",
+          "label": "Do you have the approval of the company or partnership to make this report on its behalf?",
+          "format": "vertical",
+          "choices": [
+            "Yes, I have approval",
+            "No, I do not have approval"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Introduction and eligibility to report",
+      "includeIf": "${approval=1}",
+      "fields": [
+        {
+          "id": "ownBehalf",
+          "type": "info",
+          "label": "",
+          "infoText": "To use this, you must have the authorisation of the company or partnership that you are making a report on behalf of. if you wish to report someone else's tax evasion or someone else's facilitation of tax evasion please use HMRC's Fraud Hotline at https://www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion"
+        }
+      ]
+    },
+    {
+      "title": "Jurisdiction of interest",
+      "fields": [
+        {
+          "id": "evasionLocation",
+          "type": "choice",
+          "label": "Is the tax being evaded owed in the UK or another country?",
+          "format": "vertical",
+          "choices": [
+            "the tax is owed in the UK",
+            "the tax is owed in the UK and in another country",
+            "the tax is owed in another country only",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Jurisdiction of interest",
+      "includeIf": "${evasionLocation=2}",
+      "fields": [
+        {
+          "id": "evasionLocation2",
+          "type": "info",
+          "label": "",
+          "infoText": "This form is for companies or partnerships to self-report when they’ve failed to prevent the criminal facilitation of UK tax evasion. Failures to prevent the criminal facilitation of foreign tax evasion can be reported to the [Serious Fraud Office](https://www.sfo.gov.uk/contact-us/reporting-serious-fraud-bribery-corruption/) \n\nFor information visit:[https://www.sfo.gov.uk/contact-us/reporting-serious-fraud-bribery-corruption/](https://www.sfo.gov.uk/contact-us/reporting-serious-fraud-bribery-corruption/)"
+        }
+      ]
+    },
+    {
+      "title": "About the Company or Partnership",
+      "fields": [
+        {
+          "type": "group",
+          "id": "titleOne",
+          "label": "Enter the name and address of the relevant body you are making this report for",
+          "fields": [
+            {
+              "id": "legalName",
+              "type": "text",
+              "label": "Legal name",
+              "mandatory": "yes"
+            },
+            {
+              "id": "tradingName",
+              "type": "text",
+              "label": "Trading Name (optional)",
+              "mandatory": "no"
+            },
+            {
+              "id": "addressGroup",
+              "type": "group",
+              "label": "Address",
+              "fields": [
+                {
+                  "id": "addressLine",
+                  "type": "text",
+                  "label": "Address Line",
+                  "mandatory": "yes"
+                },
+                {
+                  "id": "postCode",
+                  "type": "text",
+                  "label": "Post code",
+                  "format": "shortText",
+                  "mandatory": "yes"
+                },
+                {
+                  "id": "countryLine",
+                  "type": "text",
+                  "label": "Country of formation",
+                  "mandatory": "yes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "titleTwo",
+          "label": "Enter any additional information about the relevant body",
+          "fields": [
+            {
+              "id": "regNumber",
+              "type": "text",
+              "label": "Company registration number",
+              "mandatory": "yes"
+            },
+            {
+              "id": "vatNumber",
+              "type": "text",
+              "label": "VAT number of tax reference (optional)",
+              "mandatory": "no"
+            },
+            {
+              "id": "customerRelManager",
+              "type": "text",
+              "label": "HMRC Customer Compliance Manager - if it has one (optional)",
+              "mandatory": "no"
+            },
+            {
+              "id": "digitalTaxAccountNumber",
+              "type": "text",
+              "label": "Digital tax account number - if it has one (optional)",
+              "mandatory": "no"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "titleThree",
+          "label": "Who should HMRC contact to discuss this report?",
+          "fields": [
+            {
+              "id": "contactPersonName",
+              "type": "text",
+              "label": "Name",
+              "mandatory": "yes"
+            },
+            {
+              "id": "contactPersonRole",
+              "type": "text",
+              "label": "Role (optional)",
+              "mandatory": "no"
+            },
+            {
+              "id": "contactPersonPhoneNo",
+              "type": "text",
+              "label": "Phone",
+              "helpText": "i.e +44, ect",
+              "format": "telephoneNumber",
+              "mandatory": "yes"
+            },
+            {
+              "id": "contactPersonEmail",
+              "type": "text",
+              "label": "Email",
+              "format": "email",
+              "mandatory": "yes"
+            },
+            {
+              "id": "contactAddressGroup",
+              "type": "group",
+              "label": "Address",
+              "fields": [
+                {
+                  "id": "contactAddressLine",
+                  "type": "text",
+                  "label": "Address Line (optional)",
+                  "mandatory": "no"
+                },
+                {
+                  "id": "contactPostCode",
+                  "type": "text",
+                  "format": "shortText",
+                  "label": "Post Code (optional)",
+                  "mandatory": "no"
+                },
+                {
+                  "id": "contactCountryLine",
+                  "type": "text",
+                  "label": "Country (optional)",
+                  "mandatory": "no"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "titleFour",
+          "label": "Does this person know that you are making this report on behalf of the company or partnership",
+          "fields": []
+        },
+        {
+          "id": "awareOfReport",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About the Company or Partnership",
+      "includeIf": "${awareOfReport=1}",
+      "fields": [
+        {
+          "id": "indTaxPayerNo",
+          "type": "info",
+          "label": "",
+          "infoText": "To use this form you must have the authorisation of the company or partnership that you are making the report on behalf of. If you wish to report someone else's tax evasion or someone else's facilitation of tax evasion please use the [HMRC’s fraud hotline](www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion) \n\nFor information visit:[www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion](www.gov.uk/government/organisations/hm-revenue-customs/contact/reporting-tax-evasion)"
+        }
+      ]
+    },
+    {
+      "title": "Previous Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "previousWrongdoingTitle",
+          "label": "Has the relevant body previously reported wrongdoing to HMRC about failing to prevent the facilitation of tax evasion?",
+          "fields": []
+        },
+        {
+          "id": "previousReporting",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no",
+            "don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${previousReporting=0}",
+      "title": "Previous Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "whichRouteTitle",
+          "label": "Through which routes was this?",
+          "fields": []
+        },
+        {
+          "id": "whichRoute",
+          "type": "text",
+          "label": "Please enter any route",
+          "mandatory": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Previous Reports",
+      "includeIf": "${previousReporting=0}",
+      "fields": [
+        {
+          "type": "group",
+          "id": "referenceNumbersPreviousTitle",
+          "label": "Enter reference numbers from any previous self-reports made through this portal (if you have them)",
+          "fields": []
+        },
+        {
+          "id": "selfReportReferenceGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatAddAnotherText": "Add other reference number (optional)",
+          "presentationHint": "summariseGroupAsGrid",
+          "fields": [
+            {
+              "id": "previousReportingTrue",
+              "type": "text",
+              "format": "text",
+              "label": "Numerical reference numbers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Suspicious Activity Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "engageInActivityTitle",
+          "label": "Does the relevant body engage in activity that means it needs to be authorised, licensed, supervised or regulated?",
+          "fields": []
+        },
+        {
+          "id": "relevantBody",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${relevantBody=0}",
+      "title": "Suspicious Activity Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "regulatorSupervisorDetails",
+          "label": "Enter the details of the regulator, supervisor or licensing authority",
+          "fields": [
+            {
+              "id": "relevantBodyName",
+              "type": "text",
+              "label": "Name of authority",
+              "mandatory": "yes"
+            },
+            {
+              "id": "relevantBodyAddressGroup",
+              "type": "group",
+              "label": " ",
+              "fields": [
+                {
+                  "id": "RelevantBodyCountryLine",
+                  "type": "text",
+                  "label": "Country (optional)",
+                  "mandatory": "no"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Suspicious Activity Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "criminalAct2002Title",
+          "label": "Is the company or partnership in the regulated sector in the UK, as defined in schedule 9 of Proceeds of Crime Act 2002?",
+          "fields": [
+            {
+              "id": "regulatedHelpText",
+              "type": "info",
+              "infoText": "For information refer to this \n [link](http://www.legislation.gov.uk/ukpga/2002/29/schedule/9) \n\n[http://www.legislation.gov.uk/ukpga/2002/29/schedule/9](http://www.legislation.gov.uk/ukpga/2002/29/schedule/9)",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "id": "regulatedSector",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${regulatedSector=0}",
+      "title": "Suspicious Activity Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "sarCompletedTitle",
+          "label": "Have you completed a Suspicious Activity Report (SAR) for the activity you are reporting on this form?",
+          "fields": [
+            {
+              "id": "sarHelText",
+              "type": "info",
+              "infoText": "Filling in this form is not a SAR. You may need to submit a SAR as well as self-report.",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "id": "sarReport",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no",
+            "don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${sarReport=0}",
+      "title": "Suspicious Activity Reports",
+      "fields": [
+        {
+          "type": "group",
+          "id": "sarReferenceTitle",
+          "label": "What is the SAR reference number for your report related to this wrongdoing",
+          "fields": [
+            {
+              "id": "sarReferenceNo",
+              "type": "text",
+              "label": "SAR reference number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Nature of the Wrongdoing",
+      "fields": [
+        {
+          "type": "group",
+          "id": "criminalFacilitationTitle",
+          "label": "Briefly summarise the criminal act of facilitation that the relevant body you are reporting on behalf of has failed to prevent",
+          "fields": [
+            {
+              "id": "wrongDoingSummary",
+              "type": "text",
+              "label": "",
+              "format": "text(0, 1500)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Taxpayers involved in the evasion of tax",
+      "fields": [
+        {
+          "type": "group",
+          "id": "identifyTaxpayers",
+          "label": "Have you been able to identify specific taxpayers involved in the tax evasion you are reporting?",
+          "fields": [
+            {
+              "id": "identifyTaxpayersEvasionInfo",
+              "type": "info",
+              "label": "",
+              "infoText": "You will not be asked to provide their names on this form but we may ask for their details at a later date. "
+            },
+            {
+              "id": "identifyTaxpayersEvasion",
+              "type": "choice",
+              "label": "",
+              "choices": [
+                "yes",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "estimateTaxpayers",
+          "label": "Estimate how many taxpayers have been facilitated in the same way to evade tax",
+          "fields": [
+            {
+              "id": "helpedTaxpayers",
+              "type": "text",
+              "label": "",
+              "helpText": "Enter numerical value",
+              "format": "positiveWholeNumber"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "whatTaxes",
+          "label": "What taxes have been evaded by the taxpayer or taxpayers(who have been helped)?",
+          "fields": [
+            {
+              "id": "taxTypesGuidance",
+              "type": "info",
+              "label": "",
+              "infoText": "Select any that apply (optional)"
+            }
+          ]
+        },
+        {
+          "id": "taxTypes",
+          "type": "choice",
+          "label": "",
+          "multivalue": "yes",
+          "mandatory": "no",
+          "choices": [
+            "capital gains tax",
+            "corportate tax",
+            "customs duty",
+            "income tax",
+            "inheritance tax",
+            "national insurance",
+            "PAYE",
+            "VAT"
+          ]
+        },
+        {
+          "id": "anotherTaxNotListed",
+          "type": "group",
+          "label": "another tax not listed",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxTypeDescription",
+              "type": "text",
+              "label": "Describe other tax types",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "totalTaxEvadedEstimate",
+          "label": "What is the total amount of tax evaded by these taxpayers (or can you estimate the total)",
+          "fields": [
+            {
+              "id": "evadedTaxAmount",
+              "type": "text",
+              "format": "sterling",
+              "label": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "explainHowTaxesEvaded",
+          "label": "Explain briefly how these taxes were evaded and what help has been given by the person acting for, or on behalf of, the company or partnership",
+          "fields": [
+            {
+              "id": "taxEvation",
+              "type": "text",
+              "label": "",
+              "format": "text(0, 1500)"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "taxEvasionDates",
+          "label": "When did the tax evasion activity happen?",
+          "fields": [
+            {
+              "id": "fromTaxEvasionDate",
+              "type": "date",
+              "helpText": "For example, 31 03 1980",
+              "label": "From",
+              "mandatory": "no"
+            },
+            {
+              "id": "ToTaxEvasionDate",
+              "type": "date",
+              "helpText": "For example, 31 03 1980",
+              "label": "To",
+              "mandatory": "no"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "taxEvasionOngoing",
+          "label": "Is the tax evasion ongoing?",
+          "fields": [
+            {
+              "id": "ongoingTaxEvasion",
+              "type": "choice",
+              "label": "",
+              "choices": [
+                "yes",
+                "no",
+                "I don't know"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Information about the facilitator",
+      "fields": [
+        {
+          "type": "group",
+          "id": "whatIsRelationshipTitle",
+          "label": "What is the relationship or connection between the relevant body and the person who has facilitated tax evasion?",
+          "fields": []
+        },
+        {
+          "id": "relationshipBodyUp",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "director or partner",
+            "employee",
+            "agent"
+          ],
+          "multivalue": "yes",
+          "mandatory": "no"
+        },
+        {
+          "id": "otherPerson",
+          "type": "group",
+          "label": "other person performing services for, or on behalf of, the company or partnership",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "otherPersonDetails",
+              "type": "text",
+              "format": "text(0, 1500)",
+              "label": "Provide details",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "whenDidCriminalActHappenTitle",
+          "label": "When did the criminal act of facilitation happen?",
+          "fields": [
+            {
+              "id": "fromCriminalAct",
+              "type": "date",
+              "helpText": "For example, 31 03 1980",
+              "label": "From",
+              "mandatory": "no"
+            },
+            {
+              "id": "toCriminalAct",
+              "type": "date",
+              "helpText": "For example, 31 03 1980",
+              "label": "To",
+              "mandatory": "no"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "isPersonActingForStillTaxEvading",
+          "label": "Is the person acting for, or on behalf of, the relevant body still facilitating the tax evasion?",
+          "fields": [
+            {
+              "id": "actingOnBehalfOf",
+              "type": "choice",
+              "label": "",
+              "choices": [
+                "yes",
+                "no",
+                "I don't know"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "howWasActivityDiscoveredTitle",
+          "label": "How was the activity discovered?",
+          "fields": [
+            {
+              "id": "evasionDiscovered",
+              "type": "text",
+              "label": "",
+              "format": "text(0, 1500)"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "haveAnyOtherLawTitle",
+          "label": "Have any other law enforcement agencies, regulatory bodies, or supervisors been informed about the wrongdoing of this person?",
+          "fields": []
+        },
+        {
+          "id": "otherAgencyInformed",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${otherAgencyInformed=0}",
+      "title": "Information about the facilitator",
+      "fields": [
+        {
+          "type": "group",
+          "id": "listLawEnforcementTitle",
+          "label": "List the law enforcement agencies, regulatory bodies, or supervisors that have been informed about the wrongdoing of the person who has facilitated tax evasion",
+          "fields": []
+        },
+        {
+          "id": "ListPeopleInvolved",
+          "type": "text",
+          "label": "",
+          "format": "text(0, 1500)"
+        },
+        {
+          "id": "shareAnyRef",
+          "type": "text",
+          "label": "Share any reference numbers associated with these reports",
+          "format": "text(0, 1500)",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Procedures in place",
+      "fields": [
+        {
+          "type": "group",
+          "id": "doesBodyHaveProceduresTitle",
+          "label": "Does the relevant body have procedures in place to prevent persons acting for or on its behalf from criminally facilitating tax evasion?",
+          "fields": []
+        },
+        {
+          "id": "evasionInPlaceProcedures",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "yes",
+            "no"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${evasionInPlaceProcedures=1}",
+      "title": "Procedures in place",
+      "fields": [
+        {
+          "type": "group",
+          "id": "describeWhyNoProceduresTitle",
+          "label": "Briefly describe the reason why the relevant body does not have these procedures in place",
+          "fields": []
+        },
+        {
+          "id": "inPlaceProcedures",
+          "type": "text",
+          "label": "",
+          "format": "text(0, 1500)"
+        }
+      ]
+    },
+    {
+      "includeIf": "${evasionInPlaceProcedures=0}",
+      "title": "Procedures in place",
+      "fields": [
+        {
+          "type": "group",
+          "id": "whenWereProceduresUpdated",
+          "label": "When were the procedures produced or last updated? (optional)",
+          "fields": []
+        },
+        {
+          "id": "inPlaceProceduresUpdatedInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter whichever date is most recent",
+          "mandatory": "no"
+        },
+        {
+          "id": "inPlaceProceduresUpdated",
+          "type": "date",
+          "helpText": "For example, 31 3 1980",
+          "label": "",
+          "mandatory": "false"
+        },
+        {
+          "type": "group",
+          "id": "whichArePartOfPrevention",
+          "label": "Which of the following are part of the relevant body's prevention procedures",
+          "helpText": "Leave blank if not applicable",
+          "fields": []
+        },
+        {
+          "id": "preventionProcedureTypes",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "risk assessment",
+            "proportionality of risk-based prevention procedures",
+            "top level commitment",
+            "due diligence",
+            "communication and training",
+            "monitoring and review "
+          ],
+          "multivalue": "yes",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Is there a senior figure of the relevant body that has approved this self-report who can confirm that you have authorisation to report on behalf of the company?",
+      "fields": [
+        {
+          "id": "seniorFigureNameGroup",
+          "type": "group",
+          "label": "Provide their details",
+          "fields": [
+            {
+              "id": "figureFullName",
+              "type": "text",
+              "label": "Full name",
+              "format": "text"
+            },
+            {
+              "id": "figureJobTitle",
+              "type": "text",
+              "label": "Job title",
+              "helpText": "Example: Finance Director"
+            },
+            {
+              "id": "figureEmail",
+              "type": "text",
+              "label": "Email address",
+              "helpText": "This is required for contact purposes",
+              "format": "email"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "shortName": "Sign and submit your form",
+    "title": "Your details",
+    "fields": [
+      {
+        "id": "yourName",
+        "type": "text",
+        "label": "Name",
+        "mandatory": "yes"
+      },
+      {
+        "id": "yourRole",
+        "type": "text",
+        "label": "Role in the organisation",
+        "mandatory": "yes"
+      },
+      {
+        "id": "yourPhoneNumber",
+        "type": "text",
+        "label": "Phone",
+        "mandatory": "yes",
+        "helpText": "i.e +44, ect"
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email Address",
+        "format": "email",
+        "mandatory": "yes"
+      },
+      {
+        "id": "yourAddressGroup",
+        "type": "group",
+        "label": "Address",
+        "fields": [
+          {
+            "id": "yourAddressLine",
+            "type": "text",
+            "label": "Address Line (optional)",
+            "mandatory": "no"
+          },
+          {
+            "id": "yourPostCode",
+            "type": "text",
+            "format": "shortText",
+            "label": "Post code (optional)",
+            "mandatory": "no"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoType": "noformat",
+            "infoText": "I understand that I may commit a criminal offence if I give wrong information or include information that I don't honestly believe to be true."
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "shortName": "Acknowledgement Page",
+    "title": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "infoType": "noformat",
+        "label": "",
+        "infoText": ""
+      },
+      {
+        "id": "ackPageWarning",
+        "type": "info",
+        "infoType": "important",
+        "label": "",
+        "infoText": ""
+      },
+      {
+        "type": "group",
+        "id": "whatHappensNext",
+        "label": "What happens next",
+        "fields": []
+      },
+      {
+        "type": "info",
+        "id": "submissionInformation",
+        "label": "",
+        "infoText": "We recommend you keep the acknowledgement of completion and a copy of your self report for future reference. (new line) You may not hear again from an officer of HMRC for some time, or at all. HMRC may use information in your report to make a decision whether to start a criminal investigation, and might use evidence in your report in a prosecution or other court proceedings. Where the law permits, HMRC may also share the information in your self-report with other agencies."
+      }
+    ]
+  }
+}
