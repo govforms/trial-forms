@@ -121,20 +121,6 @@
       ]
     },
     {
-      "title": "Business details",
-      "shortName": "Business details",
-      "fields": [
-        {
-          "id": "tradingNamePartners",
-          "type": "text",
-          "label": "Trading name",
-          "helpText": "Enter the trading name of the partnership",
-          "format": "text",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
       "title": "Your details",
       "shortName": "Your details",
       "fields": [
@@ -163,7 +149,8 @@
       ]
     },
     {
-      "title": "Does your Group have a trading name?",
+      "title": "Does your group have a trading name?",
+      "includeIf": "${groupReg=1}",
       "fields": [
         {
           "id": "groupTradingname",
@@ -178,6 +165,7 @@
     },
     {
       "title": "Does your business have a trading name?",
+      "includeIf": "${groupReg=0}",
       "fields": [
         {
           "id": "busTradingname",
@@ -192,14 +180,15 @@
     },
     {
       "title": "What is the trading name?",
-      "includeIf": "${busTradingname=0}",
+      "includeIf": "${busTradingname=0 || groupTradingname=0} ",
       "fields": [
         {
           "id": "busTradingnameEnter",
           "type": "text",
           "label": "What is the trading name?",
-          "helpText": "",
-          "format": "text(0, 9)"
+          "helpText": "if your business is a partnership, enter the partnership trading name",
+          "format": "text(0, 9)",
+          "errorMessage": ""
         }
       ]
     },
