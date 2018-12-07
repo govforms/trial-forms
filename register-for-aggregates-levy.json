@@ -137,7 +137,6 @@
     {
       "title": "Your details",
       "shortName": "Your details",
-      "description": "Provide the name of the  representative member of your aggregates levy group. ",
       "fields": [
         {
           "id": "titleGroup",
@@ -167,8 +166,8 @@
       "title": "Does your Group have a trading name?",
       "fields": [
         {
-          "type": "choice",
           "id": "groupTradingname",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -181,8 +180,8 @@
       "title": "Does your business have a trading name?",
       "fields": [
         {
-          "type": "choice",
           "id": "busTradingname",
+          "type": "choice",
           "label": "Does your business have a trading name?",
           "choices": [
             "Yes",
@@ -198,9 +197,9 @@
         {
           "id": "busTradingnameEnter",
           "type": "text",
+          "label": "What is the trading name?",
           "helpText": "",
-          "format": "text(0, 9)",
-          "label": "What is the trading name?"
+          "format": "text(0, 9)"
         }
       ]
     },
@@ -304,30 +303,25 @@
         {
           "id": "numberSites",
           "type": "choice",
+          "label": "How many aggregates sites are you registering?",
+          "helpText": "You must tell us about all the UK aggregates sites your business operate. ",
           "choices": [
             "None",
             "10 or less sites",
             "More than 10 sites"
-          ],
-          "label": "How many aggregates sites are you registering?"
+          ]
         }
       ]
     },
     {
-      "title": "Upload your site details",
+      "title": "Exit page if more than 10 sites",
       "includeIf": "${numberSites=3}",
-      "fields": [
-        {
-          "id": "uploadsite",
-          "type": "file",
-          "label": "Upload your site details"
-        }
-      ]
+      "fields": []
     },
     {
       "title": "Aggregates site details",
       "includeIf": "${numberSites=1}",
-      "description": "You must tell us about all the UK aggregates sites you operate. You must have at least one registered site.",
+      "description": "Tell us about each UK aggregates site you operate. ",
       "fields": [
         {
           "id": "siteAdd",
@@ -370,6 +364,12 @@
           "label": "Ordnance Survey grid reference",
           "helpText": "Enter the grid reference of the entrance to the site",
           "multiline": "true"
+        },
+        {
+          "id": "altSite",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "format": "yesno"
         }
       ]
     },
@@ -431,6 +431,53 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Aggregates site details",
+      "includeIf": " ${numberSites=1 && altSite=0} ",
+      "fields": [
+        {
+          "id": "siteAdd2",
+          "type": "address",
+          "label": "Site 2 \nAddress"
+        },
+        {
+          "id": "sitePhone2",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone2",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteEmail2",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
+          "id": "siteName2",
+          "type": "text",
+          "label": "Trading name of site"
+        },
+        {
+          "id": "ordananceSurvey2",
+          "type": "text",
+          "label": "Ordnance Survey grid reference",
+          "helpText": "Enter the grid reference of the entrance to the site",
+          "multiline": "true"
+        },
+        {
+          "id": "altSite2",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "format": "yesno"
         }
       ]
     },
@@ -531,8 +578,8 @@
       "title": "Have you already started trading?",
       "fields": [
         {
-          "type": "choice",
           "id": "startedTrading",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
