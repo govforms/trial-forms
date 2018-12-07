@@ -19,20 +19,20 @@
       "title": "Page unavailable",
       "fields": [
         {
-          "type": "info",
           "id": "pageDown",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "This form is currently unavailable."
+          "infoText": "This form is currently unavailable.",
+          "infoType": "noformat"
         },
         {
           "id": "testField",
           "type": "text",
           "label": "Your registration number",
-          "submitMode": "derived",
-          "errorMessage": "This form is unavaliable",
           "value": "${testField}",
-          "validIf": "${testField = pageDown}"
+          "submitMode": "derived",
+          "validIf": "${testField = pageDown}",
+          "errorMessage": "This form is unavaliable"
         }
       ]
     },
@@ -78,15 +78,15 @@
       ]
     },
     {
-      "title": "Which of these best describes the promoter?",
+      "title": "Which of these best describes the bingo promoter?",
       "fields": [
         {
           "id": "multipleChoiceQuestion",
           "type": "choice",
           "label": "",
-          "shortName": "Promoter type",
+          "shortName": "Type of bingo promoter",
           "helpText": "",
-          "errorMessage": "Select the type that best describes the promoter",
+          "errorMessage": "Select the type that best describes the bingo promoter",
           "choices": [
             "Limited company",
             "Sole trader",
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "title": "What is your unincorporated body trading name?",
+      "title": "What is your organisation body trading name?",
       "includeIf": "${doYouHaveTrading=0 && multipleChoiceQuestion=4}",
       "fields": [
         {
@@ -264,17 +264,17 @@
       ]
     },
     {
-      "title": "Is your unincorporated body VAT registered?",
+      "title": "Is your organisation VAT registered?",
       "includeIf": "${multipleChoiceQuestion=4}",
       "fields": [
         {
           "id": "areYouVATRegisteredUn",
           "type": "choice",
           "label": "",
-          "shortName": "unincorporated body VAT registered",
+          "shortName": "Organisation VAT registered",
           "helpText": "",
           "format": "yesno",
-          "errorMessage": "Select yes or no if the unincorporated body is VAT registered"
+          "errorMessage": "Select yes or no if your organisation is VAT registered"
         }
       ]
     },
@@ -500,7 +500,7 @@
       ]
     },
     {
-      "title": "Is your unincorporated body licensed to promote bingo events?",
+      "title": "Is your organisation licensed to promote bingo events?",
       "includeIf": "${multipleChoiceQuestion=4}",
       "fields": [
         {
@@ -570,7 +570,7 @@
       ]
     },
     {
-      "title": "What is your unincorporated body estimated profit for the next 12 months?",
+      "title": "What is your organisation's estimated profit for the next 12 months?",
       "includeIf": "${multipleChoiceQuestion=4}",
       "fields": [
         {
@@ -598,7 +598,7 @@
       ]
     },
     {
-      "title": "Does your unincorporated body only trade at certain times of the year?",
+      "title": "Does your organisation only trade at certain times of the year?",
       "includeIf": "${multipleChoiceQuestion=4}",
       "fields": [
         {
