@@ -2,45 +2,35 @@
   "_id": "r-and-d",
   "formName": "Send details to support a Research and Development tax relief claim for an SME",
   "description": "",
-  "dmsSubmission": {
-    "dmsFormId": "R&D",
-    "customerId": "${utrRepComp}",
-    "classificationType": "CCG-CT-RandDreports",
-    "businessArea": "CCG"
-  },
   "developmentPhase": "beta",
+  "emailTemplateId": "randd_confirmation_submission",
   "authConfig": {
     "authModule": "hmrc"
   },
-  "emailTemplateId": "randd_confirmation_submission",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "dmsSubmission": {
+    "businessArea": "CCG",
+    "classificationType": "CCG-CT-RandDreports",
+    "customerId": "${utrRepComp}",
+    "dmsFormId": "R&D"
+  },
   "sections": [
     {
-      "title": "About you",
+      "title": "About you (merge w/contact details page)",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "errorMessage": "Enter your first name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your first name"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "errorMessage": "Enter your last name",
-          "mandatory": "true"
-        },
-        {
-          "id": "positionInTheCompanyBusiness",
-          "type": "text",
-          "label": "Job title",
-          "shortName": "Job title",
-          "errorMessage": "Enter your job title",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your last name"
         }
       ]
     },
@@ -52,35 +42,35 @@
           "id": "agentOrAdCompanyName",
           "type": "text",
           "label": "Tax adviser's company name",
-          "errorMessage": "Enter your tax adviser's company name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your tax adviser's company name"
         },
         {
           "id": "firstNameAgent",
           "type": "text",
           "label": "First name",
-          "errorMessage": "Enter your first name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your first name"
         },
         {
           "id": "lastNameAgent",
           "type": "text",
           "label": "Last name",
-          "errorMessage": "Enter your last name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your last name"
         },
         {
           "id": "positionInTheCompanyAgent",
           "type": "text",
           "label": "Job title",
           "shortName": "Job title",
-          "errorMessage": "Enter your job title",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your job title"
         }
       ]
     },
     {
-      "title": "Contact details",
+      "title": "Contact details (merge w/ about you page)",
       "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
       "fields": [
         {
@@ -88,9 +78,9 @@
           "type": "text",
           "label": "Email address",
           "shortName": "Email address",
-          "errorMessage": "Enter your email address",
+          "format": "email",
           "mandatory": "false",
-          "format": "email"
+          "errorMessage": "Enter your email address"
         },
         {
           "id": "agentTelephone",
@@ -98,8 +88,8 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber",
-          "errorMessage": "Enter your telephone number",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your telephone number"
         },
         {
           "id": "emailPhone",
@@ -107,11 +97,11 @@
           "label": "Select your preferred contact method.",
           "shortName": "Contact method",
           "multivalue": "yes",
+          "errorMessage": "Select if you would like to be contacted by email or phone",
           "choices": [
             "Email",
             "Phone"
-          ],
-          "errorMessage": "Select if you would like to be contacted by email or phone"
+          ]
         }
       ]
     },
@@ -124,15 +114,15 @@
           "type": "text",
           "label": "Registered company name",
           "shortName": "Registered business name",
-          "errorMessage": "Enter the registered company name",
-          "format": "text"
+          "format": "text",
+          "errorMessage": "Enter the registered company name"
         },
         {
           "id": "oRN",
           "type": "text",
           "label": " Tax office reference number",
-          "format": "text(3,3)",
           "helpText": "Enter the first 3 digits of the tax reference number before the space, for example, 478 4267329427",
+          "format": "text(3,3)",
           "mandatory": "yes",
           "errorMessage": "Enter a valid 3 digit tax office reference number"
         },
@@ -155,15 +145,15 @@
           "type": "text",
           "label": "Registered company name",
           "shortName": "Registered business name",
-          "errorMessage": "Enter the registered company name",
-          "format": "text"
+          "format": "text",
+          "errorMessage": "Enter the registered company name"
         },
         {
           "id": "oRNAgent",
           "type": "text",
           "label": " Tax office reference number",
-          "format": "text(3,3)",
           "helpText": "Enter the first 3 digits of the tax reference number before the space, 123 1234567890",
+          "format": "text(3,3)",
           "mandatory": "yes",
           "errorMessage": "Enter a valid 3 digit tax office reference number"
         },
@@ -180,7 +170,7 @@
     {
       "title": "What is the start and end date for this claim?",
       "shortName": "Claim period",
-      "description": "Your claim date should match the accounting period of your current Corporation Tax return.",
+      "description": "Your claim date should match the accounting period of your current Corporation Tax return. You can only claim for 12 months for each application. Submit a separate form if the claim period is beyond 12 months.",
       "fields": [
         {
           "id": "accountingPeriodStartDate",
@@ -208,56 +198,32 @@
           "id": "info0",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Complete all fields, using ‘0’ if no expenditure is applicable."
+          "infoText": "Complete all fields, using ‘0’ if no expenditure is applicable.",
+          "infoType": "noformat"
         },
         {
           "id": "staffCosts",
           "type": "text",
           "label": "Staff",
           "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
-        },
-        {
-          "id": "software",
-          "type": "text",
-          "label": "Software",
-          "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
-        },
-        {
-          "id": "consumables",
-          "type": "text",
-          "label": "Consumables",
-          "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
-        },
-        {
-          "id": "clinicalTrial",
-          "type": "text",
-          "label": "Clinical trials",
-          "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "epwCon",
           "type": "text",
           "label": "Costs for connected externally provided workers",
           "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "subConCon",
           "type": "text",
           "label": "Costs for connected subcontractors",
           "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "epwUnCon",
@@ -265,8 +231,8 @@
           "label": "Costs for unconnected externally provided workers",
           "helpText": "This amount must be 65% of the qualifying costs",
           "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "subConUncon",
@@ -274,15 +240,42 @@
           "label": "Costs for unconnected subcontractors",
           "helpText": "This amount must be 65% of the qualifying costs",
           "format": "sterling",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable.",
-          "mandatory": "no"
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "software",
+          "type": "text",
+          "label": "Software",
+          "helpText": "PLACEHOLDER TEXT",
+          "format": "sterling",
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "consumables",
+          "type": "text",
+          "label": "Consumables",
+          "helpText": "PLACEHOLDER TEXT",
+          "format": "sterling",
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "clinicalTrial",
+          "type": "text",
+          "label": "Clinical trials",
+          "helpText": "PLACEHOLDER TEXT",
+          "format": "sterling",
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "totalQualifyingExpenditure",
           "type": "text",
           "label": "Total amount of expenditure before any enhancement",
-          "value": "${staffCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "format": "sterling",
+          "value": "${staffCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -304,41 +297,45 @@
           "id": "science",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
-          "format": "text(0, 2500)",
           "shortName": "Scientific/technical knowledge at the start",
+          "helpText": "PLACEHOLDER TEXT",
+          "format": "text(0, 2500)",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "helpText": "PLACEHOLDER TEXT",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "helpText": "PLACEHOLDER TEXT",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "helpText": "PLACEHOLDER TEXT",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe1",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
@@ -352,10 +349,10 @@
       ]
     },
     {
-      "includeIf": "${moreProjects=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName2",
@@ -368,57 +365,57 @@
           "id": "science2",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
+          "shortName": "Scientific/technical knowledge at the start",
           "multiline": "yes",
-          "errorMessage": "Enter level of scientific or technical knowledge at the start of the project",
-          "shortName": "Scientific/technical knowledge at the start"
+          "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience2",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties2",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties2",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe2",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects2",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects2=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects2=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName3",
@@ -431,57 +428,57 @@
           "id": "science3",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
+          "shortName": "Scientific/technical knowledge at the start",
           "multiline": "yes",
-          "errorMessage": "Enter level of scientific or technical knowledge at the start of the project",
-          "shortName": "Scientific/technical knowledge at the start"
+          "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience3",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties3",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties3",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe3",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects3",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects3=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects3=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName4",
@@ -494,57 +491,57 @@
           "id": "science4",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience4",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties4",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties4",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe4",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects4",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects4=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects4=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName5",
@@ -557,57 +554,57 @@
           "id": "science5",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience5",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties5",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties5",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe5",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects5",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects5=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects5=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName6",
@@ -620,57 +617,57 @@
           "id": "science6",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience6",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties6",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties6",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe6",
           "type": "text",
-          "format": "sterling",
-          "shortName": "Total qualifying expenditure",
           "label": "Total qualifying expenditure before any enhancements for this project",
+          "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects6",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects6=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects6=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName7",
@@ -683,57 +680,57 @@
           "id": "science7",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience7",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties7",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties7",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe7",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects7",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects7=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects7=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName8",
@@ -746,57 +743,57 @@
           "id": "science8",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience8",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties8",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties8",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe8",
           "type": "text",
-          "format": "sterling",
-          "shortName": "Total qualifying expenditure",
           "label": "Total qualifying expenditure before any enhancements for this project",
+          "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects8",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects8=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects8=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName9",
@@ -809,57 +806,57 @@
           "id": "science9",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "advanceScience9",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter how the project has aimed to advance that knowledge"
         },
         {
           "id": "uncertainties9",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties9",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe9",
           "type": "text",
-          "format": "sterling",
           "label": "Total qualifying expenditure before any enhancements for this project",
           "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         },
         {
           "id": "moreProjects9",
           "type": "choice",
           "label": "Do you have any further projects to add to this claim?",
+          "shortName": "Any further projects?",
           "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects",
-          "shortName": "Any further projects?"
+          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
     {
-      "includeIf": "${moreProjects9=0}",
       "title": "Research and development projects",
-      "description": "Tell us about the next project you want to claim for.",
       "shortName": "Projects",
+      "includeIf": "${moreProjects9=0}",
+      "description": "Tell us about the next project you want to claim for.",
       "fields": [
         {
           "id": "projectName10",
@@ -872,40 +869,40 @@
           "id": "science10",
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
-          "multiline": "yes",
           "shortName": "Scientific/technical knowledge at the start",
+          "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
           "id": "advanceScience10",
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
-          "multiline": "yes",
           "shortName": "Advance in knowledge",
+          "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
         {
           "id": "uncertainties10",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
-          "multiline": "yes",
           "shortName": "Uncertainties faced",
+          "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "workUncertainties10",
           "type": "text",
           "label": "What work was done to overcome these?",
-          "multiline": "yes",
           "shortName": "Work to overcome these",
+          "multiline": "yes",
           "errorMessage": "Enter work done to overcome these"
         },
         {
           "id": "qe10",
           "type": "text",
-          "format": "sterling",
-          "shortName": "Total qualifying expenditure",
           "label": "Total qualifying expenditure before any enhancements for this project",
+          "shortName": "Total qualifying expenditure",
+          "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
         }
       ]
@@ -913,15 +910,15 @@
     {
       "title": "Research and Development (R&D) tax relief",
       "shortName": "R&D tax relief",
-      "description": "HMRC has taken your qualifying expenditure and multiplied it by 1.3 to calculate the amount of tax relief you can claim.",
+      "description": "HMRC has taken your qualifying expenditure and multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
       "fields": [
         {
           "id": "totalQualifyingExpenditureCalc",
           "type": "text",
           "label": "Claimable tax relief ",
           "helpText": "This figure should match the R&D enhanced expenditure on your Corporation Tax (CT600) return.",
-          "value": "${totalQualifyingExpenditure * 1.3}",
           "format": "sterling",
+          "value": "${totalQualifyingExpenditure * 1.3}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -929,21 +926,22 @@
     },
     {
       "title": "Have you claimed an R&D tax credit for this period?",
+      "description": "If your company has incurred a loss, you can either carry it forward against trading profits in the future or give it up for a cash payment.",
       "fields": [
         {
           "id": "profitOrLoss",
           "type": "choice",
           "label": "",
-          "format": "yesno",
           "shortName": "Tax credit claim",
+          "format": "yesno",
           "errorMessage": "Select yes or no if you have claimed a R&D tax credit"
         }
       ]
     },
     {
       "title": "What is your unrelieved trading loss for this claim period?",
-      "description": "",
       "includeIf": "${profitOrLoss=0}",
+      "description": "",
       "fields": [
         {
           "id": "unrelievedTradingLoss",
@@ -953,38 +951,18 @@
           "mandatory": "yes"
         },
         {
-          "type": "info",
           "id": "longInfoBox",
+          "type": "info",
           "label": "Definition of unrelieved trading loss",
-          "infoType": "long",
-          "infoText": "The unrelieved trading loss is: \n\n* the company's trading loss \n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed"
+          "infoText": "The unrelieved trading loss is: \n\n* the company's trading loss (where the company has spent more than it has made in an accounting period)\n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed",
+          "infoType": "long"
         }
       ]
     }
   ],
-  "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
-    "title": "Acknowledgement Page",
-    "fields": [
-      {
-        "type": "info",
-        "id": "ackpageInfo",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "We have sent you a confirmation email.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form."
-      },
-      {
-        "id": "next",
-        "type": "info",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "In most cases we aim to either pay the tax credit, or contact you about the claim within 28 days.\n\nIf we don’t hold accurate Bankers’ Automated Clearing Services (BACS) details, your payment will take longer to process.\n\nIf we think a claim may be incorrect, we aim to open an enquiry within 60 days. HMRC will contact you regarding the enquiry."
-      }
-    ]
-  },
   "declarationSection": {
-    "shortName": "Confirm details and send the form",
     "title": "Confirm details and send the form",
+    "shortName": "Confirm details and send the form",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -994,9 +972,9 @@
           {
             "id": "declaration-fullName",
             "type": "text",
-            "errorMessage": "Enter your full name",
+            "label": "Full name",
             "helpText": "If an agent, enter name of agent",
-            "label": "Full name"
+            "errorMessage": "Enter your full name"
           },
           {
             "id": "declaration-status",
@@ -1011,24 +989,46 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm the form has been submitted",
-        "errorMessage": "Enter your email address",
+        "format": "email",
         "mandatory": "true",
-        "format": "email"
+        "errorMessage": "Enter your email address"
       },
       {
-        "type": "info",
         "id": "decPageContent",
+        "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "By submitting this return, you declare that the information that you have provided is true and complete."
+        "infoText": "By submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
       },
       {
-        "type": "info",
         "id": "decPageImportant",
-        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nYou must enter the name of someone who is authorised to sign this declaration.",
+        "type": "info",
         "label": "",
+        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nYou must enter the name of someone who is authorised to sign this declaration.",
         "infoType": "important"
       }
     ]
-  }
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "We have sent you a confirmation email.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "next",
+        "type": "info",
+        "label": "",
+        "infoText": "In most cases we aim to either pay the tax credit, or contact you about the claim within 28 days.\n\nIf we don’t hold accurate Bankers’ Automated Clearing Services (BACS) details, your payment will take longer to process.\n\nIf we think a claim may be incorrect, we aim to open an enquiry within 60 days. HMRC will contact you regarding the enquiry.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
