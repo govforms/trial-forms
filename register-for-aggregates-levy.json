@@ -330,13 +330,6 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "siteFax",
-          "type": "text",
-          "label": "Site fax number (if you have one)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
-        },
-        {
           "id": "siteEmail",
           "type": "text",
           "label": "Site email address",
@@ -346,19 +339,6 @@
           "id": "siteName",
           "type": "text",
           "label": "Trading name of site"
-        },
-        {
-          "id": "ordananceSurvey",
-          "type": "text",
-          "label": "Ordnance Survey grid reference",
-          "helpText": "Enter the grid reference of the entrance to the site",
-          "multiline": "true"
-        },
-        {
-          "id": "altSite",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "format": "yesno"
         }
       ]
     },
@@ -425,7 +405,7 @@
     },
     {
       "title": "Aggregates site details",
-      "includeIf": " ${numberSites=1 && altSite=0} ",
+      "includeIf": "${numberSites=0 && addotherSite1=1}",
       "fields": [
         {
           "id": "siteAdd2",
@@ -461,12 +441,67 @@
           "label": "Ordnance Survey grid reference",
           "helpText": "Enter the grid reference of the entrance to the site",
           "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you taken over this site from another operator?",
+      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "fields": [
+        {
+          "id": "existingSite2",
+          "type": "choice",
+          "label": "Have you taken over this site from another operator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give details of the site's previous operator",
+      "includeIf": "${existingSite=0 && numberSites=0 && existingSite2=2} ",
+      "fields": [
+        {
+          "id": "existingBusinessName2",
+          "type": "text",
+          "label": "Business name"
         },
         {
-          "id": "altSite2",
+          "id": "alRegNoExist2",
+          "type": "text",
+          "label": "Their Aggregates Levy registration number"
+        }
+      ]
+    },
+    {
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "fields": [
+        {
+          "id": "weighbridgeChoice2",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have another site to add?",
+      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "fields": [
+        {
+          "id": "addotherSite2",
           "type": "choice",
           "label": "Do you have another site to add?",
-          "format": "yesno"
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
