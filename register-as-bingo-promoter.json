@@ -1,5 +1,4 @@
 {
-  "_id": "register-as-bingo-promoter",
   "formName": "Register as a bingo promoter",
   "description": "",
   "developmentPhase": "beta",
@@ -23,26 +22,20 @@
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "shortName": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "shortName": "First name"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "shortName": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
+          "shortName": "Last name"
         },
         {
           "id": "emailAgent",
           "type": "text",
           "label": "Email address",
           "shortName": "Email address",
-          "format": "email",
-          "mandatory": "true",
-          "errorMessage": "Enter your email address"
+          "format": "email"
         },
         {
           "id": "agentTelephone",
@@ -50,9 +43,7 @@
           "label": "Telephone number",
           "shortName": "Telephone number",
           "helpText": "Include the country and area codes",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "format": "telephoneNumber"
         }
       ]
     },
@@ -60,7 +51,7 @@
       "title": "Which of these best describes the bingo promoter?",
       "fields": [
         {
-          "id": "multipleChoiceQuestion",
+          "id": "orgType",
           "type": "choice",
           "label": "",
           "shortName": "Type of bingo promoter",
@@ -78,7 +69,7 @@
     },
     {
       "title": "Your details",
-      "includeIf": "${multipleChoiceQuestion=1}",
+      "includeIf": "${orgType=1}",
       "fields": [
         {
           "id": "businessName",
@@ -101,7 +92,7 @@
     },
     {
       "title": "Partnership's details",
-      "includeIf": "${multipleChoiceQuestion=2}",
+      "includeIf": "${orgType=2}",
       "fields": [
         {
           "id": "businessNameThird",
@@ -123,7 +114,7 @@
     },
     {
       "title": "LLP's details",
-      "includeIf": "${multipleChoiceQuestion=3}",
+      "includeIf": "${orgType=3}",
       "fields": [
         {
           "id": "businessNameThirds",
@@ -145,7 +136,7 @@
     },
     {
       "title": "Limited company's details",
-      "includeIf": "${multipleChoiceQuestion=0}",
+      "includeIf": "${orgType=0}",
       "fields": [
         {
           "id": "businessNameFourth",
@@ -167,7 +158,7 @@
     },
     {
       "title": "Unincorporated body's details",
-      "includeIf": "${multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=4}",
       "fields": [
         {
           "id": "businessNameFifth",
@@ -202,8 +193,8 @@
       ]
     },
     {
-      "title": "What is your business trading name?",
-      "includeIf": "${doYouHaveTrading=0 && !multipleChoiceQuestion=4}",
+      "title": "What is your trading name?",
+      "includeIf": "${doYouHaveTrading=0}",
       "fields": [
         {
           "id": "tradingNameSetFifth",
@@ -215,21 +206,8 @@
       ]
     },
     {
-      "title": "What is your organisation body trading name?",
-      "includeIf": "${doYouHaveTrading=0 && multipleChoiceQuestion=4}",
-      "fields": [
-        {
-          "id": "tradingNameSetFifthUn",
-          "type": "text",
-          "label": "",
-          "shortName": "Trading name",
-          "errorMessage": "Enter a trading name"
-        }
-      ]
-    },
-    {
       "title": "Is your business registered for VAT?",
-      "includeIf": "${!multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
       "fields": [
         {
           "id": "areYouVATRegistered",
@@ -244,7 +222,7 @@
     },
     {
       "title": "Is your organisation VAT registered?",
-      "includeIf": "${multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=4}",
       "fields": [
         {
           "id": "areYouVATRegisteredUn",
@@ -465,7 +443,7 @@
     },
     {
       "title": "Is your business licensed to promote bingo events?",
-      "includeIf": "${!multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
       "fields": [
         {
           "id": "canRunBingo",
@@ -480,7 +458,7 @@
     },
     {
       "title": "Is your organisation licensed to promote bingo events?",
-      "includeIf": "${multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=4}",
       "fields": [
         {
           "id": "canRunBingoUn",
@@ -536,7 +514,7 @@
     },
     {
       "title": "What is your business estimated profit for the next 12 months?",
-      "includeIf": "${!multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
       "fields": [
         {
           "id": "estimatedProfitBus",
@@ -550,7 +528,7 @@
     },
     {
       "title": "What is your organisation's estimated profit for the next 12 months?",
-      "includeIf": "${multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=4}",
       "fields": [
         {
           "id": "estimatedProfitUnincorporated",
@@ -564,7 +542,7 @@
     },
     {
       "title": "Does your business only trade at certain times of the year?",
-      "includeIf": "${!multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
       "fields": [
         {
           "id": "limitedCompanyQuestion",
@@ -578,7 +556,7 @@
     },
     {
       "title": "Does your organisation only trade at certain times of the year?",
-      "includeIf": "${multipleChoiceQuestion=4}",
+      "includeIf": "${orgType=4}",
       "fields": [
         {
           "id": "areSeasonalTrader",
@@ -659,5 +637,6 @@
     ]
   },
   "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
-  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs"
+  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "_id": "register-as-bingo-promoter"
 }
