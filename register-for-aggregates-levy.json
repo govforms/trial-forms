@@ -88,20 +88,20 @@
       ]
     },
     {
-      "title": "Enter the VAT registration number",
+      "title": "What is the VAT registration number?",
       "includeIf": "${choiceVat=0}",
       "fields": [
         {
           "id": "vatRegNo",
           "type": "text",
-          "label": "Enter the VAT registration number",
+          "label": "What is the VAT registration number?\n",
           "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
           "format": "text(0, 9)"
         }
       ]
     },
     {
-      "title": "Enter your business details",
+      "title": "Business details",
       "shortName": "Business details",
       "fields": [
         {
@@ -115,6 +115,118 @@
           "type": "text",
           "label": "Trading name (optional)",
           "helpText": "If different from the business name",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "tradingNamePartners",
+          "type": "text",
+          "label": "Trading name",
+          "helpText": "Enter the trading name of the partnership",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "shortName": "Your details",
+      "description": "Provide the name of the  representative member of your aggregates levy group. ",
+      "fields": [
+        {
+          "id": "titleGroup",
+          "type": "text",
+          "label": "Title",
+          "format": "text"
+        },
+        {
+          "id": "firstNameGroup",
+          "type": "text",
+          "label": "First name",
+          "helpText": "",
+          "format": "text",
+          "mandatory": "false"
+        },
+        {
+          "id": "lastNameGroup",
+          "type": "text",
+          "label": "Last name",
+          "helpText": "",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Does your Group have a trading name?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "groupTradingname",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Does your business have a trading name?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "busTradingname",
+          "label": "Does your business have a trading name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the trading name?",
+      "includeIf": "${busTradingname=0}",
+      "fields": [
+        {
+          "id": "busTradingnameEnter",
+          "type": "text",
+          "helpText": "",
+          "format": "text(0, 9)",
+          "label": "What is the trading name?"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "shortName": "Your details",
+      "fields": [
+        {
+          "id": "titleSole",
+          "type": "text",
+          "label": "Title",
+          "format": "text"
+        },
+        {
+          "id": "firstNameSole",
+          "type": "text",
+          "label": "First name",
+          "helpText": "",
+          "format": "text",
+          "mandatory": "false"
+        },
+        {
+          "id": "lastNameSole",
+          "type": "text",
+          "label": "Last name",
+          "helpText": "",
           "format": "text",
           "mandatory": "false"
         }
@@ -179,13 +291,6 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "altFaxNumber",
-          "type": "text",
-          "label": "Fax number (optional)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
-        },
-        {
           "id": "altEmail",
           "type": "text",
           "label": "Email address",
@@ -194,17 +299,17 @@
       ]
     },
     {
-      "title": "How many sites are you registering?",
+      "title": "How many aggregates sites are you registering?",
       "fields": [
         {
           "id": "numberSites",
           "type": "choice",
-          "label": "Select how many sites your business has.",
           "choices": [
             "None",
             "10 or less sites",
             "More than 10 sites"
-          ]
+          ],
+          "label": "How many aggregates sites are you registering?"
         }
       ]
     },
@@ -213,15 +318,16 @@
       "includeIf": "${numberSites=3}",
       "fields": [
         {
-          "type": "file",
           "id": "uploadsite",
+          "type": "file",
           "label": "Upload your site details"
         }
       ]
     },
     {
-      "title": "Enter your site details ",
+      "title": "Aggregates site details",
       "includeIf": "${numberSites=1}",
+      "description": "You must tell us about all the UK aggregates sites you operate. You must have at least one registered site.",
       "fields": [
         {
           "id": "siteAdd",
@@ -422,18 +528,32 @@
       ]
     },
     {
-      "title": "What date did your business first commercially exploit aggregates?",
+      "title": "Have you already started trading?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "startedTrading",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What date did you become liable to register for aggregates levy?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did your business first commercially exploit aggregates?",
-          "helpText": "Enter the date or the anticipated date."
+          "label": "What date did you become liable to register for aggregates levy?",
+          "helpText": "For example 6 4 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "What does 'first commercially exploit aggregates' mean?",
+          "label": "What is my trading start date?",
           "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
           "infoType": "long"
         },
