@@ -1,0 +1,950 @@
+{
+  "_id": "resgister-for-aggregates-levy-group-journey",
+  "formName": "Register for Aggregates Levy",
+  "description": "",
+  "formCategory": "hmrcClaimForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "al100_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${utrRepComp}",
+    "dmsFormId": "ALREG"
+  },
+  "sections": [
+    {
+      "title": "Which of these best describes your business?",
+      "description": "",
+      "fields": [
+        {
+          "id": "legalStatus",
+          "type": "choice",
+          "label": "Which of these best describes your business?",
+          "choices": [
+            "Limited company",
+            "Sole trader",
+            "Partnership",
+            "Public corporation",
+            "Unincorporated body",
+            "Local Authority",
+            "Trust"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your incorporation details",
+      "includeIf": "${legalStatus=0}",
+      "description": "You can find these on the certificate of incorporation you received when your company was registered with Companies House. ",
+      "fields": [
+        {
+          "id": "certNo",
+          "type": "text",
+          "label": "Company number",
+          "format": "text"
+        },
+        {
+          "id": "incorpDate",
+          "type": "date",
+          "label": "Date of incorporation"
+        }
+      ]
+    },
+    {
+      "title": "Does your business have regional divisions that you want to register separately?",
+      "fields": [
+        {
+          "id": "divReg",
+          "type": "choice",
+          "label": "Does your business have regional divisions that you want to register separately?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Are you registering as a group? ",
+      "fields": [
+        {
+          "id": "groupReg",
+          "type": "choice",
+          "label": "Are you registering as a group? ",
+          "helpText": "You must be the representative member of an aggregates levy group to register your group. ",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Is your business registered for VAT?",
+      "fields": [
+        {
+          "id": "choiceVat",
+          "type": "choice",
+          "label": "Is your business registered for VAT?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "What is the VAT registration number?",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "What is the VAT registration number?\n",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "text(0, 9)"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "shortName": "Your details",
+      "description": "Provide your details as the representative member of the aggregates levy group.",
+      "fields": [
+        {
+          "id": "titleGroup",
+          "type": "text",
+          "label": "Title",
+          "format": "text"
+        },
+        {
+          "id": "firstNameGroup",
+          "type": "text",
+          "label": "First name",
+          "helpText": "",
+          "format": "text",
+          "mandatory": "false"
+        },
+        {
+          "id": "lastNameGroup",
+          "type": "text",
+          "label": "Last name",
+          "helpText": "",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Does your group have a trading name?",
+      "includeIf": "${groupReg=1}",
+      "fields": [
+        {
+          "id": "groupTradingname",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Does your group have a trading name?",
+      "includeIf": "${groupReg=0}",
+      "fields": [
+        {
+          "id": "busTradingname",
+          "type": "choice",
+          "label": "Does your group have a trading name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the trading name?",
+      "includeIf": "${busTradingname=0 || groupTradingname=0} ",
+      "fields": [
+        {
+          "id": "busTradingnameEnter",
+          "type": "text",
+          "label": "What is the trading name?",
+          "format": "text(0, 9)",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Business contact details",
+      "description": "Enter the business contact details for the main place of business of the aggregates group representative. This should be where your day to day business activities are managed. ",
+      "fields": [
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Main business address"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "mobileNumber",
+          "type": "text",
+          "label": "Mobile number (optional)",
+          "format": "telephoneNumber",
+          "mandatory": "false"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "altAdd",
+          "type": "choice",
+          "label": "Are these the contact details you want HMRC to use if we need to discuss this group registration?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Registration contact details",
+      "includeIf": "${altAdd=1}",
+      "description": "Provide the contact details of someone who is authorised to discuss this aggregates group registration with HMRC.",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Full name",
+          "format": "text"
+        },
+        {
+          "id": "address",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "altPhoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "altEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "How many aggregates sites is your group registering?",
+      "fields": [
+        {
+          "id": "numberSites",
+          "type": "choice",
+          "label": "How many aggregates sites are you registering?",
+          "helpText": "You must tell us about all the UK sites your group operates. ",
+          "choices": [
+            "None",
+            "10 or less sites",
+            "More than 10 sites"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Exit page if more than 10 sites",
+      "includeIf": "${numberSites=2}",
+      "fields": []
+    },
+    {
+      "title": "Aggregates site details",
+      "includeIf": "${numberSites=1}",
+      "description": "Provide details about each UK aggregates site your group operates. ",
+      "fields": [
+        {
+          "id": "siteAdd",
+          "type": "address",
+          "label": "Site 1 address"
+        },
+        {
+          "id": "sitePhone",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteEmail",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
+          "id": "siteName",
+          "type": "text",
+          "label": "Trading name of site"
+        }
+      ]
+    },
+    {
+      "title": "Was this site from another operator?",
+      "includeIf": "${numberSites=1}",
+      "fields": [
+        {
+          "id": "existingSite",
+          "type": "choice",
+          "label": "Was this site from another operator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give details of the site's previous operator",
+      "includeIf": "${existingSite=0 && numberSites=1} ",
+      "fields": [
+        {
+          "id": "existingBusinessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "alRegNoExist",
+          "type": "text",
+          "label": "Their Aggregates Levy registration number"
+        }
+      ]
+    },
+    {
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "includeIf": "${numberSites=1}",
+      "fields": [
+        {
+          "id": "weighbridgeChoice",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have another site to add?",
+      "includeIf": "${numberSites=1}",
+      "fields": [
+        {
+          "id": "addotherSite1",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Aggregates site details",
+      "includeIf": "${numberSites=1 && addotherSite1=0}",
+      "fields": [
+        {
+          "id": "siteAdd2",
+          "type": "address",
+          "label": "Site 2 \nAddress"
+        },
+        {
+          "id": "sitePhone2",
+          "type": "text",
+          "label": "Site telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteMobilePhone2",
+          "type": "text",
+          "label": "Site mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "siteEmail2",
+          "type": "text",
+          "label": "Site email address",
+          "format": "email"
+        },
+        {
+          "id": "siteName2",
+          "type": "text",
+          "label": "Trading name of site"
+        }
+      ]
+    },
+    {
+      "title": "Have you taken over this site from another operator?",
+      "includeIf": "${numberSites=1 && addotherSite1=0}",
+      "fields": [
+        {
+          "id": "existingSite2",
+          "type": "choice",
+          "label": "Have you taken over this site from another operator?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give details of the site's previous operator",
+      "includeIf": "${existingSite=0 && numberSites=1 && existingSite2=0} ",
+      "fields": [
+        {
+          "id": "existingBusinessName2",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "alRegNoExist2",
+          "type": "text",
+          "label": "Their Aggregates Levy registration number"
+        }
+      ]
+    },
+    {
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "fields": [
+        {
+          "id": "weighbridgeChoice2",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have another site to add?",
+      "includeIf": "${numberSites=1 && addotherSite1=0}",
+      "fields": [
+        {
+          "id": "addotherSite2",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What percentage of your total sales are from importing aggregates? ",
+      "fields": [
+        {
+          "id": "importPercentage",
+          "type": "text",
+          "label": "What percentage of your total sales are from importing aggregates?",
+          "helpText": "Enter the current or estimated percentage of your business's total sales from importing aggregates. Enter 0 if your business is not involved in this activity. \n\n",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp1",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales that are from importing aggregates.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "What percentage of your total sales are from aggregates extraction activities?",
+      "fields": [
+        {
+          "id": "test1",
+          "type": "info",
+          "label": "test1",
+          "infoText": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
+        },
+        {
+          "id": "quarryPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from quarry extraction ",
+          "helpText": "\n",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "SandgravelPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from sand or gravel extraction",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "crusherPercentage",
+          "type": "text",
+          "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp2",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+      "fields": [
+        {
+          "id": "otherChoice",
+          "type": "choice",
+          "label": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the other aggregates activities",
+      "includeIf": "${otherChoice=0}",
+      "description": "Provide details about each aggregates activity your business is, or plans to be involved in. ",
+      "fields": [
+        {
+          "id": "otherName",
+          "type": "text",
+          "label": "Description of aggregates activity"
+        },
+        {
+          "id": "OtherPercentage",
+          "type": "text",
+          "label": "Percentage of your total sales from this activity",
+          "helpText": "Enter the percentage of your total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "groupHelp3",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Have you already started trading?",
+      "fields": [
+        {
+          "id": "startedTrading",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What date did you become liable to register for aggregates levy?",
+      "fields": [
+        {
+          "id": "aggregatesDate",
+          "type": "date",
+          "label": "What date did you become liable to register for aggregates levy?",
+          "helpText": "For example 6 4 2018"
+        },
+        {
+          "id": "infoDate",
+          "type": "info",
+          "label": "What is my trading start date?",
+          "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
+          "infoType": "long"
+        },
+        {
+          "id": "groupHelp4",
+          "type": "info",
+          "label": "How to answer this if you are registering as a group",
+          "infoText": "If you’re applying as a group, enter the date or anticipated date of the first time aggregates will be commercial exploited by any group member.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Estimate how much aggregates levy you’ll pay in the next 12 months ",
+      "fields": [
+        {
+          "id": "aggregatesLevy",
+          "type": "text",
+          "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
+          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
+          "format": "sterling"
+        },
+        {
+          "id": "estimateGroup",
+          "type": "info",
+          "label": "Help with estimating you aggregates levy payment",
+          "infoText": "Help text giving more details about how to estimate your levy.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
+      "fields": [
+        {
+          "id": "exemptChoice",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        },
+        {
+          "id": "infoexempt4",
+          "type": "info",
+          "label": "What does exempt or relieved from the levy mean?",
+          "infoText": "Help text to give examples of exempt and relieved levy.\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.r",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
+      "includeIf": "${exemptChoice=0}",
+      "fields": [
+        {
+          "id": "exemptLevy",
+          "type": "text",
+          "label": "Exempt supplies in tonnes",
+          "format": "number"
+        },
+        {
+          "id": "relievedLevy",
+          "type": "text",
+          "label": "Relieved supplies in tonnes",
+          "format": "number"
+        },
+        {
+          "id": "exportLevy",
+          "type": "text",
+          "label": "Exported supplies in tonnes",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about  your preferred return periods",
+      "fields": [
+        {
+          "id": "nonTaxPeriod",
+          "type": "choice",
+          "label": "On START page and SUBMISSION page > include business rule and instruct to contact (EEITTs Enquiries (BT&C) enquiries.eeitts@hmrc.gsi.gov.uk)",
+          "format": "yesno"
+        },
+        {
+          "id": "taxPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are applying for non-standard return periods, select the periods you would like.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "taxPeriod",
+          "type": "choice",
+          "label": "\n",
+          "multivalue": "yes",
+          "choices": [
+            "Monthly returns",
+            "Quarters ending March, June, September and December",
+            "Quarters ending January, April, July and October",
+            "Quarters ending February, May, August and November"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the bank details for your business",
+      "shortName": "Bank details",
+      "fields": [
+        {
+          "id": "bankName",
+          "type": "text",
+          "label": "Bank or building society name",
+          "format": "text"
+        },
+        {
+          "id": "accountNumber",
+          "type": "text",
+          "label": "Account number",
+          "format": "ukBankAccountNumber"
+        },
+        {
+          "id": "sortCode",
+          "type": "text",
+          "label": "Sort code",
+          "format": "ukSortCode"
+        },
+        {
+          "id": "rollNumber",
+          "type": "text",
+          "label": "Building society roll number (if you have one)",
+          "shortName": "Roll number",
+          "helpText": "Enter the roll number as shown on your card or on statements from your building society",
+          "format": "text",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Will you be using accounting software to complete your return accounts?",
+      "fields": [
+        {
+          "id": "compSysChoice",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting software details",
+      "includeIf": "${compSysChoice=0}",
+      "fields": [
+        {
+          "id": "softwareName",
+          "type": "text",
+          "label": "Accounting software",
+          "format": "text"
+        },
+        {
+          "id": "softwareVersion",
+          "type": "text",
+          "label": "Accounting software version",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Have you taken over an aggregates levy business or changed the status of your business?",
+      "fields": [
+        {
+          "id": "businessTakeOver",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Transfer details",
+      "includeIf": "${businessTakeOver=0}",
+      "fields": [
+        {
+          "id": "transferDate",
+          "type": "date",
+          "label": "What date did the transfer take place?",
+          "helpText": "For example, 01 08 2018"
+        },
+        {
+          "id": "prevBusinessName",
+          "type": "text",
+          "label": "Business name of previous owner",
+          "format": "text"
+        },
+        {
+          "id": "prevRegNo",
+          "type": "text",
+          "label": "Aggregates registration number of previous owner",
+          "format": "text"
+        },
+        {
+          "id": "keepPrevNumber",
+          "type": "choice",
+          "label": "Do you want to keep this number?",
+          "helpText": "If you do keep the registration number, you’ll become liable for the previous owner’s aggregates levy debts.",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Is your business registered or approved with HMRC for any of the following?",
+      "fields": [
+        {
+          "id": "landFillReg",
+          "type": "group",
+          "label": "Landfill tax",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "landfillRegNo",
+              "type": "text",
+              "label": "Landfill tax registration number",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "exciseDuties",
+          "type": "group",
+          "label": "Excise duties",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "exciseDutiesRegNo",
+              "type": "text",
+              "label": "Excise duties registration number",
+              "mandatory": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give details of other activities your business is approved by HMRC for",
+      "fields": [
+        {
+          "id": "importExport2",
+          "type": "group",
+          "label": "Import or exports",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "impExpDetails2",
+              "type": "text",
+              "label": "Give details",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "otherInfo2",
+          "type": "group",
+          "label": "Other",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "otherDetails",
+              "type": "text",
+              "label": "Give details",
+              "mandatory": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "fields": [
+        {
+          "id": "otherBusiness",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Aggregates Levy registration number of other business",
+      "includeIf": "${otherBusiness=0}",
+      "description": "Enter the Aggregates Levy registration number of any businesses you are or have been involved in.",
+      "fields": [
+        {
+          "id": "otherRegNo",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Registration number $n",
+          "repeatAddAnotherText": "Add another registration number",
+          "fields": [
+            {
+              "id": "regNo1",
+              "type": "text",
+              "label": "Registration number",
+              "format": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your claim",
+    "fields": [
+      {
+        "id": "declarationFullName",
+        "type": "text",
+        "label": "Full name",
+        "errorMessage": "Enter full name"
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we have received your claim.",
+        "format": "email",
+        "errorMessage": "Enter email address"
+      },
+      {
+        "id": "legalStatusDec",
+        "type": "choice",
+        "label": "Choose the appropriate box",
+        "helpText": "For corporate bodies, a director or company secretary must complete the form.",
+        "choices": [
+          "Sole trader",
+          "Partnership",
+          "Local Authority",
+          "Unincorporated body",
+          "Public corporation",
+          "Trust",
+          "Limited company"
+        ]
+      },
+      {
+        "id": "decInfoCheckTitle",
+        "type": "info",
+        "label": "",
+        "infoText": "## Declaration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By entering your full name above you confirm that the information you have provided is true and complete.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your form has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "Remember that you must: \n* tell us if any of the information given in this application changes \n* fill in and send form(s) ‘AL1A, Aggregates Levy: notify site details’ with this form – we need both forms to register you",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
