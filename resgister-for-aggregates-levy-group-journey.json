@@ -174,7 +174,7 @@
     },
     {
       "title": "Business contact details",
-      "description": "Enter the business contact details for the main place of business of the aggregates group representative. This should be where your day to day business activities are managed. ",
+      "description": "Enter the business contact details for the main place of business of the aggregates group representative.",
       "fields": [
         {
           "id": "businessAddress",
@@ -295,13 +295,14 @@
       ]
     },
     {
-      "title": "Was this site from another operator?",
+      "title": "Was this site taken over from another operator?",
       "includeIf": "${numberSites=1}",
       "fields": [
         {
           "id": "existingSite",
           "type": "choice",
           "label": "Was this site from another operator?",
+          "helpText": "Select whether your group or a group member took this site over from another operator?",
           "choices": [
             "Yes",
             "No"
@@ -326,13 +327,13 @@
       ]
     },
     {
-      "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "title": "Is a weighbridge used to weigh aggregates at this site?",
       "includeIf": "${numberSites=1}",
       "fields": [
         {
           "id": "weighbridgeChoice",
           "type": "choice",
-          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "label": "Is a weighbridge used to weigh aggregates at this site?",
           "choices": [
             "Yes",
             "No"
@@ -341,13 +342,15 @@
       ]
     },
     {
-      "title": "Do you have another site to add?",
+      "title": "Does your group have another site to add?",
       "includeIf": "${numberSites=1}",
+      "description": "",
       "fields": [
         {
           "id": "addotherSite1",
           "type": "choice",
-          "label": "Do you have another site to add?",
+          "label": "Does your group have another site to add?",
+          "helpText": "You must tell us about all the UK sites your group operates. ",
           "choices": [
             "Yes",
             "No"
@@ -390,13 +393,14 @@
       ]
     },
     {
-      "title": "Have you taken over this site from another operator?",
+      "title": "Was this site taken over from another operator?",
       "includeIf": "${numberSites=1 && addotherSite1=0}",
       "fields": [
         {
           "id": "existingSite2",
           "type": "choice",
           "label": "Have you taken over this site from another operator?",
+          "helpText": "Select whether a group member took this site over from another operator?",
           "choices": [
             "Yes",
             "No"
@@ -443,6 +447,7 @@
           "id": "addotherSite2",
           "type": "choice",
           "label": "Do you have another site to add?",
+          "helpText": "",
           "choices": [
             "Yes",
             "No"
@@ -451,32 +456,13 @@
       ]
     },
     {
-      "title": "What percentage of your total sales are from importing aggregates? ",
-      "fields": [
-        {
-          "id": "importPercentage",
-          "type": "text",
-          "label": "What percentage of your total sales are from importing aggregates?",
-          "helpText": "Enter the current or estimated percentage of your business's total sales from importing aggregates. Enter 0 if your business is not involved in this activity. \n\n",
-          "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp1",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales that are from importing aggregates.",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "What percentage of your total sales are from aggregates extraction activities?",
+      "title": "What percentage of your group's total sales are from aggregates extraction activities?",
       "fields": [
         {
           "id": "test1",
           "type": "info",
           "label": "test1",
-          "infoText": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
+          "infoText": "Enter your group's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your group is not involved in an activity.\n"
         },
         {
           "id": "quarryPercentage",
