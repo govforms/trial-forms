@@ -456,6 +456,24 @@
       ]
     },
     {
+      "title": "What percentage of your group's total sales are from importing aggregates?",
+      "fields": [
+        {
+          "id": "importPercentage",
+          "type": "text",
+          "label": "What percentage of your group's total sales are from importing aggregates?",
+          "helpText": "\n",
+          "format": "number(9, 2, '%')"
+        },
+        {
+          "id": "test22",
+          "type": "info",
+          "label": "test1",
+          "infoText": "Enter your group's current or estimated percentage of total sales from importing aggregates.\n\nEnter 0 if your none of your group members are involved in importing aggregates."
+        }
+      ]
+    },
+    {
       "title": "What percentage of your group's total sales are from aggregates extraction activities?",
       "fields": [
         {
@@ -482,23 +500,16 @@
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp2",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+      "title": "Is your group involved in, or planning to be involved in any other aggregates activities? ",
       "fields": [
         {
           "id": "otherChoice",
           "type": "choice",
-          "label": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+          "label": "Is your group involved in, or planning to be involved in any other aggregates activities? ",
           "format": "yesno"
         }
       ]
@@ -506,7 +517,7 @@
     {
       "title": "Tell us about the other aggregates activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Provide details about each aggregates activity your business is, or plans to be involved in. ",
+      "description": "Provide details about each aggregates activity your group is, or plans to be involved in. ",
       "fields": [
         {
           "id": "otherName",
@@ -516,66 +527,31 @@
         {
           "id": "OtherPercentage",
           "type": "text",
-          "label": "Percentage of your total sales from this activity",
-          "helpText": "Enter the percentage of your total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
+          "label": "Percentage of group's total sales from this activity",
+          "helpText": "Enter the percentage of your group's total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp3",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Have you already started trading?",
-      "fields": [
-        {
-          "id": "startedTrading",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What date did you become liable to register for aggregates levy?",
+      "title": "What date did your group become liable to register for aggregates levy?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did you become liable to register for aggregates levy?",
-          "helpText": "For example 6 4 2018"
-        },
-        {
-          "id": "infoDate",
-          "type": "info",
-          "label": "What is my trading start date?",
-          "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
-          "infoType": "long"
-        },
-        {
-          "id": "groupHelp4",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the date or anticipated date of the first time aggregates will be commercial exploited by any group member.",
-          "infoType": "long"
+          "label": "What date did your group become liable to register for aggregates levy?",
+          "helpText": "Enter the date of the first time aggregates were or will be commercial exploited by any group member. For example 06 04 2018"
         }
       ]
     },
     {
-      "title": "Estimate how much aggregates levy you’ll pay in the next 12 months ",
+      "title": "Estimate how much aggregates levy your group will pay in the next 12 months ",
       "fields": [
         {
           "id": "aggregatesLevy",
           "type": "text",
-          "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
-          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
+          "label": "Estimate how much aggregates levy your group will pay in the next 12 months ",
+          "helpText": "Multiply the number of tonnes of aggregate you think your group will commercially exploit by the rate of aggregates levy.",
           "format": "sterling"
         },
         {
@@ -588,7 +564,7 @@
       ]
     },
     {
-      "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
+      "title": "Do you expect any of your group's commercial activity to be exempt or relieved from the levy?",
       "fields": [
         {
           "id": "exemptChoice",
@@ -606,7 +582,7 @@
       ]
     },
     {
-      "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
+      "title": "Estimate the amount of exempt, relieved or exported supplies your group expects to make in the next 12 months ",
       "includeIf": "${exemptChoice=0}",
       "fields": [
         {
@@ -630,37 +606,7 @@
       ]
     },
     {
-      "title": "Tell us about  your preferred return periods",
-      "fields": [
-        {
-          "id": "nonTaxPeriod",
-          "type": "choice",
-          "label": "On START page and SUBMISSION page > include business rule and instruct to contact (EEITTs Enquiries (BT&C) enquiries.eeitts@hmrc.gsi.gov.uk)",
-          "format": "yesno"
-        },
-        {
-          "id": "taxPeriodInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "If you are applying for non-standard return periods, select the periods you would like.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "taxPeriod",
-          "type": "choice",
-          "label": "\n",
-          "multivalue": "yes",
-          "choices": [
-            "Monthly returns",
-            "Quarters ending March, June, September and December",
-            "Quarters ending January, April, July and October",
-            "Quarters ending February, May, August and November"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the bank details for your business",
+      "title": "Enter the bank details for your group",
       "shortName": "Bank details",
       "fields": [
         {
@@ -693,7 +639,7 @@
       ]
     },
     {
-      "title": "Will you be using accounting software to complete your return accounts?",
+      "title": "Will your group be using accounting software to complete your return accounts?",
       "fields": [
         {
           "id": "compSysChoice",
@@ -802,7 +748,7 @@
         {
           "id": "importExport2",
           "type": "group",
-          "label": "Import or exports",
+          "label": "Imports or exports",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -877,7 +823,7 @@
         "id": "email",
         "type": "text",
         "label": "Email address",
-        "helpText": "We will send an email to this address to confirm we have received your claim.",
+        "helpText": "We will send an email to this address to confirm we have received your registration application.",
         "format": "email",
         "errorMessage": "Enter email address"
       },
@@ -888,12 +834,12 @@
         "helpText": "For corporate bodies, a director or company secretary must complete the form.",
         "choices": [
           "Sole trader",
-          "Partnership",
-          "Local Authority",
-          "Unincorporated body",
-          "Public corporation",
-          "Trust",
-          "Limited company"
+          "Partner",
+          "Company Secretary",
+          "Director",
+          "Beneficiary of a trust",
+          "Trustee",
+          "Authorised official"
         ]
       },
       {
