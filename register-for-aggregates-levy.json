@@ -89,7 +89,7 @@
       ]
     },
     {
-      "title": "Business details",
+      "title": "Business name",
       "shortName": "Business details",
       "fields": [
         {
@@ -231,17 +231,27 @@
       ]
     },
     {
-      "title": "How many aggregates sites are you registering?",
+      "title": "How many UK aggregates sites are you registering?",
       "fields": [
         {
           "id": "numberSites",
           "type": "choice",
           "label": "How many aggregates sites are you registering?",
-          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate ",
+          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate [JACK/STEPH - insert progressive reveal help text under second choice saying 'You must also complete and submit an AL1a form for each of your sites.' Also use include-ifs to skip all site related screens if the user selects the second option.]",
           "choices": [
             "10 or less sites",
             "More than 10 sites"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of sites",
+      "fields": [
+        {
+          "type": "text",
+          "id": "noofSites",
+          "label": ""
         }
       ]
     },
@@ -251,7 +261,7 @@
       "fields": []
     },
     {
-      "title": "Aggregates site details",
+      "title": "Enter your aggregates site details",
       "includeIf": "${numberSites=0}",
       "fields": [
         {
@@ -497,7 +507,7 @@
     {
       "title": "Tell us about the other aggregates business activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Provide details about each activity your business is, or plans to be involved in. [*NEEDS REPEATING PATTERN UP TO 4?]",
+      "description": "Provide details about each activity your business is, or plans to be involved in. [*STEPH/JACK NEEDS REPEATING PATTERN UP TO 4]",
       "fields": [
         {
           "id": "otherName",
@@ -514,19 +524,19 @@
       ]
     },
     {
-      "title": "What date did your business first commercially exploit aggregate?",
+      "title": "What date did your business first commercially exploit aggregates?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
           "label": "What date did your business first commercially exploit aggregate?",
-          "helpText": "Enter the date you first commercially exploited aggregate or . For example 06 04 2018"
+          "helpText": "Enter the date you: first commercially exploited aggregate or formally planned to. For example 06 04 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "What counts as commercial exploiting aggregates?",
-          "infoText": "You become liable to register for aggregtes levy within 30 days of: commercially exploiting aggregate or forming the intention to commercially exploit aggregate. ",
+          "label": "What counts as commercially exploiting aggregates?",
+          "infoText": "Aggregate is commercially exploited when it is exploited for the advancement or benefit of business. For example when it is:\n\n•\tsubject to an agreement to supply (such as  \n        a contract)\n\n•\tused for construction purposes\n\n•\tmixed with anything other than water, \n        except in permitted circumstances\n\n•\tremoved from:\n\nit's originating site\n\na connected site that is registered under \nthe same name\n\n a site where it had been intended to apply an exempt process but this was not applied\n\nFull details are given in Notice AGL1.\n",
           "infoType": "long"
         }
       ]
@@ -540,13 +550,6 @@
           "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
           "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
           "format": "sterling"
-        },
-        {
-          "id": "estimateGroup",
-          "type": "info",
-          "label": "Help with estimating you aggregates levy payment",
-          "infoText": "Help text giving more details about how to estimate your levy.",
-          "infoType": "long"
         }
       ]
     },
@@ -562,8 +565,8 @@
         {
           "id": "infoexempt4",
           "type": "info",
-          "label": "What does exempt or relieved from the levy mean?",
-          "infoText": "Help text to give examples of exempt and relieved levy.\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.r",
+          "label": "What activities are exempt or relieved from the levy?",
+          "infoText": "The following activities are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nThe following activities are relieved from the levy:\n\n• any aggregate used in prescribed industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously borne levy and to which an exempt process is applied\n\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.",
           "infoType": "long"
         }
       ]
@@ -571,7 +574,15 @@
     {
       "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
       "includeIf": "${exemptChoice=0}",
+      "description": "",
       "fields": [
+        {
+          "type": "info",
+          "id": "estimateExempt",
+          "label": "",
+          "infoText": "Enter 0 for any option that does not apply to your business.",
+          "infoType": "standard"
+        },
         {
           "id": "exemptLevy",
           "type": "text",
@@ -595,6 +606,7 @@
     {
       "title": "Enter the bank details for your business",
       "shortName": "Bank details",
+      "description": "This information is required as we may, in some circumstances, need to make a repayment to you.",
       "fields": [
         {
           "id": "bankName",
@@ -637,7 +649,7 @@
       ]
     },
     {
-      "title": "Accounting software details",
+      "title": "Enter your accounting software details",
       "includeIf": "${compSysChoice=0}",
       "fields": [
         {
