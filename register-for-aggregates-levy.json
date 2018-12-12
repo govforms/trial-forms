@@ -65,18 +65,6 @@
       ]
     },
     {
-      "title": "Are you registering as a group? ",
-      "fields": [
-        {
-          "id": "groupReg",
-          "type": "choice",
-          "label": "Are you registering as a group? ",
-          "helpText": "You must be the representative member of an aggregates levy group to register your group. ",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
       "title": "Is your business registered for VAT?",
       "fields": [
         {
@@ -121,51 +109,7 @@
       ]
     },
     {
-      "title": "Your details",
-      "shortName": "Your details",
-      "fields": [
-        {
-          "id": "titleGroup",
-          "type": "text",
-          "label": "Title",
-          "format": "text"
-        },
-        {
-          "id": "firstNameGroup",
-          "type": "text",
-          "label": "First name",
-          "helpText": "",
-          "format": "text",
-          "mandatory": "false"
-        },
-        {
-          "id": "lastNameGroup",
-          "type": "text",
-          "label": "Last name",
-          "helpText": "",
-          "format": "text",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Does your group have a trading name?",
-      "includeIf": "${groupReg=1}",
-      "fields": [
-        {
-          "id": "groupTradingname",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Does your business have a trading name?",
-      "includeIf": "${groupReg=0}",
       "fields": [
         {
           "id": "busTradingname",
@@ -180,13 +124,13 @@
     },
     {
       "title": "What is the trading name?",
-      "includeIf": "${busTradingname=0 || groupTradingname=0} ",
+      "includeIf": "${busTradingname=0} ",
       "fields": [
         {
           "id": "busTradingnameEnter",
           "type": "text",
           "label": "What is the trading name?",
-          "helpText": "if your business is a partnership, enter the partnership trading name",
+          "helpText": "If your business is a partnership, enter the partnership trading name",
           "format": "text(0, 9)",
           "errorMessage": ""
         }
@@ -222,7 +166,7 @@
     },
     {
       "title": "Business contact details",
-      "description": "Enter the contact details for the main place of business, where the day to day business activities are managed. ",
+      "description": "Enter the contact details for the main place of business, where the day-to-day business activities are managed. ",
       "fields": [
         {
           "id": "businessAddress",
@@ -293,9 +237,8 @@
           "id": "numberSites",
           "type": "choice",
           "label": "How many aggregates sites are you registering?",
-          "helpText": "You must tell us about all the UK aggregates sites your business operate. ",
+          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate ",
           "choices": [
-            "None",
             "10 or less sites",
             "More than 10 sites"
           ]
@@ -304,13 +247,12 @@
     },
     {
       "title": "Exit page if more than 10 sites",
-      "includeIf": "${numberSites=3}",
+      "includeIf": "${numberSites=1}",
       "fields": []
     },
     {
       "title": "Aggregates site details",
-      "includeIf": "${numberSites=1}",
-      "description": "Tell us about each UK aggregates site you operate. ",
+      "includeIf": "${numberSites=0}",
       "fields": [
         {
           "id": "siteAdd",
@@ -344,7 +286,7 @@
     },
     {
       "title": "Have you taken over this site from another operator?",
-      "includeIf": "${numberSites=1}",
+      "includeIf": "${numberSites=0}",
       "fields": [
         {
           "id": "existingSite",
@@ -359,7 +301,7 @@
     },
     {
       "title": "Give details of the site's previous operator",
-      "includeIf": "${existingSite=0 && numberSites=1} ",
+      "includeIf": "${existingSite=0 && numberSites=0} ",
       "fields": [
         {
           "id": "existingBusinessName",
@@ -375,7 +317,7 @@
     },
     {
       "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "includeIf": "${numberSites=1}",
+      "includeIf": "${numberSites=0}",
       "fields": [
         {
           "id": "weighbridgeChoice",
@@ -390,12 +332,13 @@
     },
     {
       "title": "Do you have another site to add?",
-      "includeIf": "${numberSites=1}",
+      "includeIf": "${numberSites=0}",
       "fields": [
         {
           "id": "addotherSite1",
           "type": "choice",
           "label": "Do you have another site to add?",
+          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate ",
           "choices": [
             "Yes",
             "No"
@@ -405,7 +348,7 @@
     },
     {
       "title": "Aggregates site details",
-      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "includeIf": "${numberSites=0 && addotherSite1=0}",
       "fields": [
         {
           "id": "siteAdd2",
@@ -434,19 +377,12 @@
           "id": "siteName2",
           "type": "text",
           "label": "Trading name of site"
-        },
-        {
-          "id": "ordananceSurvey2",
-          "type": "text",
-          "label": "Ordnance Survey grid reference",
-          "helpText": "Enter the grid reference of the entrance to the site",
-          "multiline": "true"
         }
       ]
     },
     {
       "title": "Have you taken over this site from another operator?",
-      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "includeIf": "${numberSites=0 && addotherSite1=0}",
       "fields": [
         {
           "id": "existingSite2",
@@ -460,8 +396,8 @@
       ]
     },
     {
-      "title": "Give details of the site's previous operator",
-      "includeIf": "${existingSite=0 && numberSites=0 && existingSite2=2} ",
+      "title": "Provide details of the site's previous operator",
+      "includeIf": "${existingSite=0 && numberSites=0 && existingSite2=0} ",
       "fields": [
         {
           "id": "existingBusinessName2",
@@ -477,7 +413,7 @@
     },
     {
       "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "includeIf": "${numberSites=0 && addotherSite1=0}",
       "fields": [
         {
           "id": "weighbridgeChoice2",
@@ -492,7 +428,7 @@
     },
     {
       "title": "Do you have another site to add?",
-      "includeIf": "${numberSites=0 && addotherSite1=1}",
+      "includeIf": "${numberSites=0 && addotherSite1=0}",
       "fields": [
         {
           "id": "addotherSite2",
@@ -506,26 +442,19 @@
       ]
     },
     {
-      "title": "What percentage of your total sales are from importing aggregates? ",
+      "title": "What percentage of your business's total sales are from importing aggregates? ",
       "fields": [
         {
           "id": "importPercentage",
           "type": "text",
-          "label": "What percentage of your total sales are from importing aggregates?",
+          "label": "What percentage of your business's total sales are from importing aggregates?",
           "helpText": "Enter the current or estimated percentage of your business's total sales from importing aggregates. Enter 0 if your business is not involved in this activity. \n\n",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp1",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales that are from importing aggregates.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "What percentage of your total sales are from aggregates extraction activities?",
+      "title": "What percentage of your business's total sales are from aggregates extraction activities?",
       "fields": [
         {
           "id": "test1",
@@ -551,88 +480,53 @@
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp2",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+      "title": "Is your business involved in, or planning to be involved in any other aggregates business activities? ",
       "fields": [
         {
           "id": "otherChoice",
           "type": "choice",
-          "label": "Is your business involved in, or planning to be involved in any other aggregates activities? ",
+          "label": "Is your business involved in, or planning to be involved in any other aggregates business activities? ",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Tell us about the other aggregates activities",
+      "title": "Tell us about the other aggregates business activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Provide details about each aggregates activity your business is, or plans to be involved in. ",
+      "description": "Provide details about each activity your business is, or plans to be involved in. [*NEEDS REPEATING PATTERN UP TO 4?]",
       "fields": [
         {
           "id": "otherName",
           "type": "text",
-          "label": "Description of aggregates activity"
+          "label": "Description of aggregates business activity"
         },
         {
           "id": "OtherPercentage",
           "type": "text",
           "label": "Percentage of your total sales from this activity",
-          "helpText": "Enter the percentage of your total sales from this activity. Provide an estimate if you have not made any sales for this yet.",
+          "helpText": "Enter your business's current or estimated percentage of total sales for this activity",
           "format": "number(9, 2, '%')"
-        },
-        {
-          "id": "groupHelp3",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the percentage of the group's total sales from importing aggregates for each activity.",
-          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Have you already started trading?",
-      "fields": [
-        {
-          "id": "startedTrading",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What date did you become liable to register for aggregates levy?",
+      "title": "What date did your business first commercially exploit aggregate?",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did you become liable to register for aggregates levy?",
-          "helpText": "For example 6 4 2018"
+          "label": "What date did your business first commercially exploit aggregate?",
+          "helpText": "Enter the date you first commercially exploited aggregate or . For example 06 04 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
-          "label": "What is my trading start date?",
-          "infoText": "Help text giving examples of a business's first commercial use of aggregates.\n",
-          "infoType": "long"
-        },
-        {
-          "id": "groupHelp4",
-          "type": "info",
-          "label": "How to answer this if you are registering as a group",
-          "infoText": "If you’re applying as a group, enter the date or anticipated date of the first time aggregates will be commercial exploited by any group member.",
+          "label": "What counts as commercial exploiting aggregates?",
+          "infoText": "You become liable to register for aggregtes levy within 30 days of: commercially exploiting aggregate or forming the intention to commercially exploit aggregate. ",
           "infoType": "long"
         }
       ]
@@ -695,36 +589,6 @@
           "type": "text",
           "label": "Exported supplies in tonnes",
           "format": "number"
-        }
-      ]
-    },
-    {
-      "title": "Tell us about  your preferred return periods",
-      "fields": [
-        {
-          "id": "nonTaxPeriod",
-          "type": "choice",
-          "label": "On START page and SUBMISSION page > include business rule and instruct to contact (EEITTs Enquiries (BT&C) enquiries.eeitts@hmrc.gsi.gov.uk)",
-          "format": "yesno"
-        },
-        {
-          "id": "taxPeriodInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "If you are applying for non-standard return periods, select the periods you would like.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "taxPeriod",
-          "type": "choice",
-          "label": "\n",
-          "multivalue": "yes",
-          "choices": [
-            "Monthly returns",
-            "Quarters ending March, June, September and December",
-            "Quarters ending January, April, July and October",
-            "Quarters ending February, May, August and November"
-          ]
         }
       ]
     },
