@@ -71,7 +71,9 @@
         {
           "id": "CompanyType",
           "type": "choice",
-          "label": "If you are unsure please choose company",
+          "label": "",
+          "shortName": "Organisation type",
+          "helpText": "If you are unsure please choose company",
           "choices": [
             "Company",
             "Limited Partnership or Limited Liability Partnership",
@@ -81,50 +83,50 @@
       ]
     },
     {
-      "title": "About the company or partnership",
+      "title": "Is the company or partnership registered in the UK?",
       "fields": [
         {
           "id": "companyRegUK",
           "type": "choice",
-          "label": "Is the company or partnership registered in the UK?",
+          "label": "",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Enter the details of the company or partnership",
-      "includeIf": "${companyRegUK=0}",
+      "title": "Enter the details of the company",
+      "includeIf": "${CompanyType=0 && companyRegUK=0}",
       "fields": [
         {
-          "id": "legalNameUK",
+          "id": "legalNameUKUK",
           "type": "text",
-          "label": "Legal name",
+          "label": "Legal or Registered name",
           "helpText": "Enter the name as it is registered at Companies House",
           "mandatory": "true"
         },
         {
-          "id": "tradingNameUK",
+          "id": "tradingNameUKUK",
           "type": "text",
           "label": "Trading name (optional)",
           "helpText": "Enter the trading name if it is different from the legal name",
           "mandatory": "false"
         },
         {
-          "id": "ukBaseAddress",
+          "id": "ukBaseAddressUK",
           "type": "address",
           "label": "Address",
           "helpText": "Enter the address as it is registered at Companies House",
           "postcodeLookup": "no"
         },
         {
-          "id": "companyRegNumber",
+          "id": "companyRegNumberUK",
           "type": "text",
-          "label": "Company Registration Number",
+          "label": "Company House Registration Number",
           "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
           "mandatory": "true"
         },
         {
-          "id": "companyUniqueTaxRefNum",
+          "id": "companyUniqueTaxRefNumUK",
           "type": "text",
           "label": "Company Unique Tax Reference number (optional)",
           "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
@@ -133,28 +135,30 @@
       ]
     },
     {
-      "title": "About the company or partnership",
-      "includeIf": "${companyRegUK=1}",
+      "title": "Enter the details of the company",
+      "includeIf": "${CompanyType=0 && companyRegUK=1}",
       "fields": [
         {
-          "id": "legalName",
+          "id": "legalNameUKNotUK",
           "type": "text",
-          "label": "Legal name",
-          "helpText": "Enter the name as it is registered at Companies House",
+          "label": "Legal or Registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
           "mandatory": "true"
         },
         {
-          "id": "tradingName",
+          "id": "tradingNameUKNotUK",
           "type": "text",
           "label": "Trading name (optional)",
           "helpText": "Enter the trading name if it is different from the legal name",
           "mandatory": "false"
         },
         {
-          "id": "baseAddress",
-          "type": "address",
+          "id": "formedAddress",
+          "type": "text",
           "label": "Address",
-          "postcodeLookup": "no"
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
         },
         {
           "id": "formedCountry",
@@ -163,10 +167,160 @@
           "mandatory": "true"
         },
         {
-          "id": "companyRegNumberInternational",
+          "id": "companyRegNumberNotUK",
           "type": "text",
-          "label": "Company Registration Number (if applicable)",
+          "label": "Company registration number (if applicable)",
+          "helpText": "Enter the company registration number in the country of formation (if applicable)",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=1 && companyRegUK=0}",
+      "fields": [
+        {
+          "id": "legalNameUKPartUK",
+          "type": "text",
+          "label": "Legal or Registered name",
+          "helpText": "Enter the name as it is registered at Companies House",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
           "mandatory": "false"
+        },
+        {
+          "id": "ukBaseAddressPartUK",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter the address as it is registered at Companies House",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyRegNumberPartUK",
+          "type": "text",
+          "label": "Company House Registration Number",
+          "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyUniqueTaxRefNumPartUK",
+          "type": "text",
+          "label": "Partnership Unique Tax Reference number (optional)",
+          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=1 && companyRegUK=1}",
+      "fields": [
+        {
+          "id": "legalNameUKPartNotUK",
+          "type": "text",
+          "label": "Legal or Registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartNotUK",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "formedAddressLimited",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "formedCountryLimited",
+          "type": "text",
+          "label": "Country where the partnership was formed",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyRegNumberNotUKLimited",
+          "type": "text",
+          "label": "Partnership registration number (if applicable)",
+          "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=2 && companyRegUK=0}",
+      "fields": [
+        {
+          "id": "tradingNameUKPartOther",
+          "type": "text",
+          "label": "Trading name",
+          "helpText": "Enter the trading name if it is different from the legal name"
+        },
+        {
+          "id": "ukBaseAddressPartOther",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter the address as the partnership is registered",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyUniqueTaxRefNumPartOther",
+          "type": "text",
+          "label": "Partnership Unique Tax Reference number (optional)",
+          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the partnership",
+      "includeIf": "${CompanyType=2 && companyRegUK=1}",
+      "fields": [
+        {
+          "id": "legalNameUKPartNotUKUpdated",
+          "type": "text",
+          "label": "Legal or Registered name",
+          "helpText": "Enter the name as officially registered in the country of formation",
+          "mandatory": "true"
+        },
+        {
+          "id": "tradingNameUKPartNotUKUpdated",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
+        },
+        {
+          "id": "formedAddressLimitedUpdated",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Enter the full registered address in the country of formation",
+          "mandatory": "true",
+          "multiline": "true"
+        },
+        {
+          "id": "formedCountryLimitedUpdated",
+          "type": "text",
+          "label": "Country where the partnership was formed",
+          "mandatory": "true"
+        },
+        {
+          "id": "companyRegNumberNotUKLimitedUpdated",
+          "type": "text",
+          "label": "Partnership registration number (if applicable)",
+          "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
+          "mandatory": "true"
         }
       ]
     },
@@ -184,30 +338,95 @@
         {
           "id": "summariseHowTax",
           "type": "text",
-          "label": "Summarise how the tax evasion was facilitated",
+          "label": "Summarise how the tax evasion was facilitated, include:",
+          "helpText": "Who within the company or partnership facilitated the evasion. \n\nThe capacity in which the person facilitating evasion was acting \n\nWho did this person help to evade tax and what tax was evaded. \n\nHow it was facilitated and when was it facilitated \n\nHow it was discovered",
           "mandatory": "true",
           "multiline": "true"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Tell us what happened",
+      "fields": [
         {
-          "id": "howItWasDiscovered",
+          "id": "estimateTotalValues",
           "type": "text",
-          "label": "How was it discovered?",
-          "mandatory": "true",
-          "multiline": "true"
-        },
+          "label": "Can you estimate the total value of evasion that has been facilitated by this person?",
+          "format": "sterling",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Tell us what happened",
+      "fields": [
         {
-          "id": "whatCapacity",
-          "type": "text",
-          "label": "In what capacity was the person responsible acting?",
-          "mandatory": "true",
-          "multiline": "true"
-        },
+          "id": "facilitationOngoing",
+          "type": "choice",
+          "label": "Is the facilitation ongoing?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Tell us what happened",
+      "includeIf": "${facilitationOngoing=1}",
+      "fields": [
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Estimate when the facilitation ended",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Tell us what happened",
+      "fields": [
+        {
+          "id": "identifySpecific",
+          "type": "choice",
+          "label": "Have you been able to identify specific taxpayers involved in the tax evasion?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Tell us what happened",
+      "fields": [
         {
           "id": "anyOtherInfo",
           "type": "text",
           "label": "Any other information you feel may be relevant",
           "mandatory": "true",
           "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Other reports",
+      "fields": [
+        {
+          "id": "selfReportedFailure",
+          "type": "choice",
+          "label": "Has the company or partnership previously self-reported a failure to prevent the facilitation of tax evasion?",
+          "choices": [
+            "Yes",
+            "No",
+            "I don't know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other reports",
+      "includeIf": "${selfReportedFailure=0}",
+      "fields": [
+        {
+          "id": "summariseHowTaxing",
+          "type": "text",
+          "label": "Please provide the reference numbers for any previous reports",
+          "mandatory": "true"
         }
       ]
     },
@@ -246,19 +465,79 @@
       ]
     },
     {
-      "title": "Authorisation",
-      "description": "You must confirm that the company or partnership has authorised you to make this report.",
+      "title": "Other reports",
       "fields": [
         {
-          "id": "declaration",
+          "id": "overseenByARegulator",
           "type": "choice",
-          "label": "",
-          "mandatory": "yes",
-          "multivalue": "yes",
-          "errorMessage": "You must confirm that you have read and understand the declaration",
+          "label": "Is the company or partnership overseen by a regulator, supervisor or licensing authority?",
           "choices": [
-            "I confirm that I am authorised to make this report and understand that I may commit a criminal offence if I give wrong information or include information that I don't honestly believe to be true."
+            "Yes",
+            "No",
+            "I don't know"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Other reports",
+      "includeIf": "${overseenByARegulator=0}",
+      "fields": [
+        {
+          "id": "nameOfAuthority",
+          "type": "text",
+          "label": "Please provide the name of authority",
+          "mandatory": "true"
+        },
+        {
+          "id": "countryOfAuthority",
+          "type": "text",
+          "label": "Please provide the country the authority",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Prevention procedures",
+      "fields": [
+        {
+          "id": "preventionProcYesNo",
+          "type": "choice",
+          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Prevention procedures",
+      "includeIf": "${preventionProcYesNo=0}",
+      "fields": [
+        {
+          "id": "partOfPrevention",
+          "type": "choice",
+          "label": "Which of the following are part of the prevention procedures?",
+          "multivalue": "yes",
+          "choices": [
+            "Risk assessment",
+            "Proportionality of risk-based prevention procedures ",
+            "Top level commitment",
+            "Due diligence",
+            "Communication and training",
+            "Monitoring and review"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Prevention procedures",
+      "includeIf": "${preventionProcYesNo=1}",
+      "fields": [
+        {
+          "id": "whyNotPrevention",
+          "type": "text",
+          "label": "Briefly describe why not",
+          "mandatory": "true",
+          "multiline": "true"
         }
       ]
     }
