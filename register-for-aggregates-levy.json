@@ -89,32 +89,24 @@
       ]
     },
     {
-      "title": "Business name",
+      "title": "What is your business name?",
       "shortName": "Business details",
       "fields": [
         {
           "id": "businessName",
           "type": "text",
-          "label": "Full name of business",
+          "label": "What is your business name?",
           "format": "text"
-        },
-        {
-          "id": "tradingName",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "helpText": "If different from the business name",
-          "format": "text",
-          "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Does your business have a trading name?",
+      "title": "Does your business trade under a different name?",
       "fields": [
         {
           "id": "busTradingname",
           "type": "choice",
-          "label": "Does your business have a trading name?",
+          "label": "Does your business trade under a different name?",
           "choices": [
             "Yes",
             "No"
@@ -130,37 +122,34 @@
           "id": "busTradingnameEnter",
           "type": "text",
           "label": "What is the trading name?",
-          "helpText": "If your business is a partnership, enter the partnership trading name",
           "format": "text(0, 9)",
           "errorMessage": ""
         }
       ]
     },
     {
-      "title": "Your details",
+      "title": "What is the trading name?",
+      "includeIf": "${busTradingname=0} ",
+      "fields": [
+        {
+          "id": "busTradingnamePartEnter",
+          "type": "text",
+          "label": "What is the trading name?",
+          "helpText": "Enter the trading name for your partnership",
+          "format": "text(0, 9)",
+          "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "What is your full name?",
       "shortName": "Your details",
       "fields": [
         {
           "id": "titleSole",
           "type": "text",
-          "label": "Title",
+          "label": "What is your full name?",
           "format": "text"
-        },
-        {
-          "id": "firstNameSole",
-          "type": "text",
-          "label": "First name",
-          "helpText": "",
-          "format": "text",
-          "mandatory": "false"
-        },
-        {
-          "id": "lastNameSole",
-          "type": "text",
-          "label": "Last name",
-          "helpText": "",
-          "format": "text",
-          "mandatory": "false"
         }
       ]
     },
@@ -168,11 +157,6 @@
       "title": "Business contact details",
       "description": "Enter the contact details for the main place of business, where the day-to-day business activities are managed. ",
       "fields": [
-        {
-          "id": "Fullname",
-          "type": "text",
-          "label": "Full name"
-        },
         {
           "id": "businessAddress",
           "type": "address",
@@ -202,6 +186,11 @@
           "type": "choice",
           "label": "Are these the contact details you want HMRC to use if we need to discuss this registration?",
           "format": "yesno"
+        },
+        {
+          "id": "",
+          "type": "text",
+          "label": ""
         }
       ]
     },
@@ -236,13 +225,13 @@
       ]
     },
     {
-      "title": "How many UK aggregates sites are you registering?",
+      "title": "How many UK aggregates sites do you operate?",
       "fields": [
         {
           "id": "numberSites",
           "type": "choice",
-          "label": "How many aggregates sites are you registering?",
-          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate [JACK/STEPH - insert progressive reveal help text under second choice saying 'You must also complete and submit an AL1a form for each of your sites.' Also use include-ifs to skip all site related screens if the user selects the second option.]",
+          "label": "How many UK aggregates sites do you operate?",
+          "helpText": "You must tell us about all the UK aggregates sites your business operates or intends to operate",
           "choices": [
             "10 or less sites",
             "More than 10 sites"
@@ -256,7 +245,8 @@
         {
           "id": "noofSites",
           "type": "text",
-          "label": ""
+          "label": "Enter the number of sites",
+          "helpText": "Enter the number of sites you operate or intend to operate"
         }
       ]
     },
@@ -266,8 +256,9 @@
       "fields": []
     },
     {
-      "title": "Enter your aggregates site details",
+      "title": "Aggregates site details",
       "includeIf": "${numberSites=0}",
+      "description": "Enter ",
       "fields": [
         {
           "id": "siteAdd",
