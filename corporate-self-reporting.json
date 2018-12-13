@@ -71,9 +71,9 @@
         {
           "id": "CompanyType",
           "type": "choice",
+          "helpText": "If you are unsure please choose company",
           "label": "",
           "shortName": "Organisation type",
-          "helpText": "If you are unsure please choose company",
           "choices": [
             "Company",
             "Limited Partnership or Limited Liability Partnership",
@@ -157,8 +157,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountry",
@@ -171,7 +171,7 @@
           "type": "text",
           "label": "Company registration number (if applicable)",
           "helpText": "Enter the company registration number in the country of formation (if applicable)",
-          "mandatory": "true"
+          "mandatory": "false"
         }
       ]
     },
@@ -239,8 +239,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountryLimited",
@@ -253,7 +253,7 @@
           "type": "text",
           "label": "Partnership registration number (if applicable)",
           "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
-          "mandatory": "true"
+          "mandatory": "false"
         }
       ]
     },
@@ -306,8 +306,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountryLimitedUpdated",
@@ -320,7 +320,7 @@
           "type": "text",
           "label": "Partnership registration number (if applicable)",
           "helpText": "Enter the Partnership registration number in the country of formation (if applicable)",
-          "mandatory": "true"
+          "mandatory": "false"
         }
       ]
     },
@@ -503,8 +503,8 @@
         {
           "id": "preventionProcYesNo",
           "type": "choice",
-          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?",
-          "format": "yesno"
+          "format": "yesno",
+          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?"
         }
       ]
     },
@@ -515,8 +515,8 @@
         {
           "id": "partOfPrevention",
           "type": "choice",
-          "label": "Which of the following are part of the prevention procedures?",
           "multivalue": "yes",
+          "label": "Which of the following are part of the prevention procedures?",
           "choices": [
             "Risk assessment",
             "Proportionality of risk-based prevention procedures ",
@@ -538,6 +538,25 @@
           "label": "Briefly describe why not",
           "mandatory": "true",
           "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Authorisation",
+      "shortName": "",
+      "description": "You must confirm that the company or partnership has authorised you to make this report.",
+      "fields": [
+        {
+          "id": "declaration",
+          "type": "choice",
+          "label": "",
+          "mandatory": "yes",
+          "multivalue": "yes",
+          "presentationHint": "invisibleInSummary",
+          "errorMessage": "You must confirm that you have read and understand the declaration",
+          "choices": [
+            "I confirm that I am authorised to make this report. I confirm that I understand that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true."
+          ]
         }
       ]
     }
@@ -603,33 +622,12 @@
   },
   "acknowledgementSection": {
     "title": "Acknowledgement Page",
-    "shortName": "Acknowledgement Page",
     "fields": [
-      {
-        "id": "ackPageInfoTop",
-        "type": "info",
-        "label": "",
-        "infoText": "",
-        "infoType": "noformat"
-      },
-      {
-        "id": "ackPageWarning",
-        "type": "info",
-        "label": "",
-        "infoText": "",
-        "infoType": "important"
-      },
-      {
-        "id": "whatHappensNext",
-        "type": "group",
-        "label": "What happens next",
-        "fields": []
-      },
       {
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "We recommend you keep the acknowledgement of completion and a copy of your self report for future reference. (new line) You may not hear again from an officer of HMRC for some time, or at all. HMRC may use information in your report to make a decision whether to start a criminal investigation, and might use evidence in your report in a prosecution or other court proceedings. Where the law permits, HMRC may also share the information in your self-report with other agencies."
+        "infoText": "HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies. \n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures."
       }
     ]
   },
