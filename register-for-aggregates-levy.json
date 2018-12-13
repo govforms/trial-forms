@@ -1,5 +1,4 @@
 {
-  "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -255,12 +254,6 @@
           "label": "Site 1 address"
         },
         {
-          "id": "gridref",
-          "type": "text",
-          "label": "Site grid reference ",
-          "helpText": "Enter the Ordnance Survey grid reference of the entrance to the site. For example, TQ 336805"
-        },
-        {
           "id": "sitePhone",
           "type": "text",
           "label": "Site telephone number",
@@ -284,6 +277,22 @@
           "label": "Trading name of site"
         },
         {
+          "id": "gridref",
+          "type": "text",
+          "label": "Site grid reference ",
+          "helpText": "Enter the Ordnance Survey grid reference of the entrance to the site. For example, TQ 336805"
+        },
+        {
+          "id": "weighbridgeChoice",
+          "type": "choice",
+          "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "helpText": "undefined"
+        },
+        {
           "id": "existingSite",
           "type": "choice",
           "label": "Have you taken over this site from another operator?",
@@ -295,22 +304,14 @@
         {
           "id": "existingBusinessName",
           "type": "text",
-          "label": "Business name"
+          "label": "Business name of previous site operator (if applicable)",
+          "helpText": "test"
         },
         {
           "id": "alRegNoExist",
           "type": "text",
-          "label": "Their Aggregates Levy registration number"
-        },
-        {
-          "id": "weighbridgeChoice",
-          "type": "choice",
-          "label": "Do you use a weighbridge to weigh aggregates at this site?",
-          "helpText": "If you do not use a weighbridge you will need to contact us to agree an alternative method of calculating weight. [STEPH/JACK can a progressive reveal under the 'No' option be used for this help text?]",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "label": "Aggregates levy registration number of previous site operator (if applicable)",
+          "helpText": "test"
         }
       ]
     },
@@ -332,18 +333,7 @@
     {
       "title": "Do you have another site to add?",
       "includeIf": "${numberSites=0}",
-      "fields": [
-        {
-          "id": "addotherSite1",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "helpText": "You must tell us about all the UK aggregates sites your business operates, intends to operate or uses for the commercial exploitation of aggregate ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
+      "fields": []
     },
     {
       "title": "Aggregates site details",
@@ -880,5 +870,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "register-for-aggregates-levy"
 }
