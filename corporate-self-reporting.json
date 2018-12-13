@@ -1,4 +1,5 @@
 {
+  "_id": "corporate-self-reporting",
   "formName": "Corporate self reporting",
   "description": "",
   "formCategory": "hmrcReturnForm",
@@ -14,23 +15,21 @@
   },
   "sections": [
     {
-      "title": "Your contact details",
+      "title": "Your details",
       "fields": [
         {
           "id": "firstNameBusiness",
           "type": "text",
-          "label": "First name",
-          "shortName": "First name",
+          "label": "Full name",
+          "shortName": "Full name",
           "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "errorMessage": "Enter your full name"
         },
         {
-          "id": "lastNameBusiness",
+          "id": "connectionToBusiness",
           "type": "text",
-          "label": "Last name",
-          "shortName": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
+          "label": "Connection to the company or partnership",
+          "mandatory": "true"
         },
         {
           "id": "agentTelephone",
@@ -59,25 +58,14 @@
       ]
     },
     {
-      "title": "What is your connection to the organisation?",
-      "fields": [
-        {
-          "id": "connectionToBusiness",
-          "type": "text",
-          "label": "",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
       "title": "Is the organisation a company or a partnership?",
       "fields": [
         {
           "id": "CompanyType",
           "type": "choice",
+          "helpText": "If you are unsure please choose company",
           "label": "",
           "shortName": "Organisation type",
-          "helpText": "If you are unsure please choose company",
           "choices": [
             "Company",
             "Limited Partnership or Limited Liability Partnership",
@@ -87,7 +75,8 @@
       ]
     },
     {
-      "title": "Is the company or partnership registered in the UK?",
+      "title": "Is the company registered in the UK?",
+      "includeIf": "${CompanyType=0}",
       "fields": [
         {
           "id": "companyRegUK",
@@ -98,8 +87,20 @@
       ]
     },
     {
+      "title": "Is the partnership registered in the UK?",
+      "includeIf": "${!CompanyType=0}",
+      "fields": [
+        {
+          "id": "partnershipRegUK",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
       "title": "Enter the details of the company",
-      "includeIf": "${CompanyType=0 && companyRegUK=0}",
+      "includeIf": "${CompanyType=0 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
           "id": "legalNameUKUK",
@@ -140,7 +141,7 @@
     },
     {
       "title": "Enter the details of the company",
-      "includeIf": "${CompanyType=0 && companyRegUK=1}",
+      "includeIf": "${CompanyType=0 && (companyRegUK=1 || partnershipRegUK=1)}",
       "fields": [
         {
           "id": "legalNameUKNotUK",
@@ -161,8 +162,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountry",
@@ -181,7 +182,7 @@
     },
     {
       "title": "Enter the details of the partnership",
-      "includeIf": "${CompanyType=1 && companyRegUK=0}",
+      "includeIf": "${CompanyType=1 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
           "id": "legalNameUKPartUK",
@@ -222,7 +223,7 @@
     },
     {
       "title": "Enter the details of the partnership",
-      "includeIf": "${CompanyType=1 && companyRegUK=1}",
+      "includeIf": "${CompanyType=1 && (companyRegUK=1 || partnershipRegUK=1)}",
       "fields": [
         {
           "id": "legalNameUKPartNotUK",
@@ -243,8 +244,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountryLimited",
@@ -263,7 +264,7 @@
     },
     {
       "title": "Enter the details of the partnership",
-      "includeIf": "${CompanyType=2 && companyRegUK=0}",
+      "includeIf": "${CompanyType=2 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
           "id": "tradingNameUKPartOther",
@@ -289,7 +290,7 @@
     },
     {
       "title": "Enter the details of the partnership",
-      "includeIf": "${CompanyType=2 && companyRegUK=1}",
+      "includeIf": "${CompanyType=2 && (companyRegUK=1 || partnershipRegUK=1)}",
       "fields": [
         {
           "id": "legalNameUKPartNotUKUpdated",
@@ -310,8 +311,8 @@
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
-          "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "mandatory": "true"
         },
         {
           "id": "formedCountryLimitedUpdated",
@@ -507,8 +508,8 @@
         {
           "id": "preventionProcYesNo",
           "type": "choice",
-          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?",
-          "format": "yesno"
+          "format": "yesno",
+          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?"
         }
       ]
     },
@@ -519,8 +520,8 @@
         {
           "id": "partOfPrevention",
           "type": "choice",
-          "label": "Which of the following are part of the prevention procedures?",
           "multivalue": "yes",
+          "label": "Which of the following are part of the prevention procedures?",
           "choices": [
             "Risk assessment",
             "Proportionality of risk-based prevention procedures ",
@@ -636,6 +637,5 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "corporate-self-reporting"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
