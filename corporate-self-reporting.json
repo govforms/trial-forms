@@ -1,20 +1,17 @@
 {
-  "_id": "corporate-self-reporting",
-  "formCategory": "hmrcReturnForm",
   "formName": "Corporate self reporting",
   "description": "",
-  "dmsSubmission": {
-    "dmsFormId": "CSR",
-    "customerId": "${auth.payenino}",
-    "classificationType": "BT-NRU-Environmental",
-    "businessArea": "FinanceOpsCorpT"
-  },
+  "formCategory": "hmrcReturnForm",
+  "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
     "authModule": "hmrc"
   },
-  "emailTemplateId": "eeitt_submission_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${auth.payenino}",
+    "dmsFormId": "CSR"
+  },
   "sections": [
     {
       "title": "Your details",
@@ -59,10 +56,26 @@
           "mandatory": "true"
         },
         {
-          "id": "userAddress",
+          "id": "contactAddress",
           "type": "address",
-          "label": "Address",
+          "label": "Contact  Address",
+          "helpText": "Please include your primary contact address, including the postcode.",
           "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Is the organisation a company or a partnership?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "CompanyType",
+          "label": "If you are unsure please choose company",
+          "choices": [
+            "Company",
+            "Limited Partnership or Limited Liability Partnership",
+            "Other partnership"
+          ]
         }
       ]
     },
@@ -85,15 +98,15 @@
           "id": "legalNameUK",
           "type": "text",
           "label": "Legal name",
-          "mandatory": "true",
-          "helpText": "Enter the name as it is registered at Companies House"
+          "helpText": "Enter the name as it is registered at Companies House",
+          "mandatory": "true"
         },
         {
           "id": "tradingNameUK",
           "type": "text",
           "label": "Trading name (optional)",
-          "mandatory": "false",
-          "helpText": "Enter the trading name if it is different from the legal name"
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
         },
         {
           "id": "ukBaseAddress",
@@ -106,15 +119,15 @@
           "id": "companyRegNumber",
           "type": "text",
           "label": "Company Registration Number",
-          "mandatory": "true",
-          "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers"
+          "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
+          "mandatory": "true"
         },
         {
           "id": "companyUniqueTaxRefNum",
           "type": "text",
           "label": "Company Unique Tax Reference number (optional)",
-          "mandatory": "false",
-          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued"
+          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "mandatory": "false"
         }
       ]
     },
@@ -126,15 +139,15 @@
           "id": "legalName",
           "type": "text",
           "label": "Legal name",
-          "mandatory": "true",
-          "helpText": "Enter the name as it is registered at Companies House"
+          "helpText": "Enter the name as it is registered at Companies House",
+          "mandatory": "true"
         },
         {
           "id": "tradingName",
           "type": "text",
           "label": "Trading name (optional)",
-          "mandatory": "false",
-          "helpText": "Enter the trading name if it is different from the legal name"
+          "helpText": "Enter the trading name if it is different from the legal name",
+          "mandatory": "false"
         },
         {
           "id": "baseAddress",
@@ -170,30 +183,30 @@
         {
           "id": "summariseHowTax",
           "type": "text",
-          "multiline": "true",
           "label": "Summarise how the tax evasion was facilitated",
-          "mandatory": "true"
+          "mandatory": "true",
+          "multiline": "true"
         },
         {
           "id": "howItWasDiscovered",
           "type": "text",
-          "multiline": "true",
           "label": "How was it discovered?",
-          "mandatory": "true"
+          "mandatory": "true",
+          "multiline": "true"
         },
         {
           "id": "whatCapacity",
           "type": "text",
-          "multiline": "true",
           "label": "In what capacity was the person responsible acting?",
-          "mandatory": "true"
+          "mandatory": "true",
+          "multiline": "true"
         },
         {
           "id": "anyOtherInfo",
           "type": "text",
-          "multiline": "true",
           "label": "Any other information you feel may be relevant",
-          "mandatory": "true"
+          "mandatory": "true",
+          "multiline": "true"
         }
       ]
     },
@@ -219,9 +232,9 @@
         {
           "id": "whoYouHaveInformed",
           "type": "text",
-          "multiline": "true",
           "label": "Tell us who you’ve informed about the tax evasion",
-          "mandatory": "true"
+          "mandatory": "true",
+          "multiline": "true"
         },
         {
           "id": "referenceNumbersAssociated",
@@ -236,14 +249,15 @@
       "description": "You must confirm that the company or partnership has authorised you to make this report.",
       "fields": [
         {
-          "type": "choice",
           "id": "declaration",
+          "type": "choice",
           "label": "",
+          "mandatory": "yes",
+          "multivalue": "yes",
+          "errorMessage": "You must confirm that you have read and understand the declaration",
           "choices": [
             "I confirm that I am authorised to make this report and understand that I may commit a criminal offence if I give wrong information or include information that I don't honestly believe to be true."
-          ],
-          "mandatory": "yes",
-          "errorMessage": "You must confirm that you have read and understand the declaration"
+          ]
         }
       ]
     }
@@ -252,97 +266,94 @@
     "title": "Data protection",
     "fields": [
       {
-        "id": "yourName",
-        "type": "text",
-        "label": "Name",
-        "mandatory": "yes"
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "Personal data collected from this form will be processed in accordance with the Data Protection Act 2018. For more information, on what data the HMRC will collect and how it is used, please see our External Privacy Notice. \n\nIf the information submitted leads to an investigation, we may pass your contact details to the relevant HMRC investigation team. We will only pass on these details with your consent, or when a legal or other overriding obligation to do so arises. \n\nIf you do not consent, all further contact with you will be handled by ???????? and the information you give us will be anonymised (as far as possible) before being passed to the investigation team. \n\nPlease select one of the following options:",
+        "infoType": "noformat"
       },
       {
-        "id": "yourRole",
-        "type": "text",
-        "label": "Role in the organisation",
-        "mandatory": "yes"
-      },
-      {
-        "id": "yourPhoneNumber",
-        "type": "text",
-        "label": "Phone",
-        "mandatory": "yes",
-        "helpText": "i.e +44, ect"
-      },
-      {
-        "id": "email",
-        "type": "text",
-        "label": "Email Address",
-        "format": "email",
-        "mandatory": "yes"
-      },
-      {
-        "id": "yourAddressGroup",
-        "type": "group",
-        "label": "Address",
-        "fields": [
-          {
-            "id": "yourAddressLine",
-            "type": "text",
-            "label": "Address Line (optional)",
-            "mandatory": "no"
-          },
-          {
-            "id": "yourPostCode",
-            "type": "text",
-            "format": "shortText",
-            "label": "Post code (optional)",
-            "mandatory": "no"
-          }
+        "id": "givePermissionOne",
+        "type": "choice",
+        "label": "",
+        "mandatory": "no",
+        "multivalue": "yes",
+        "choices": [
+          "I give my permission for my personal data to be passed to any relevant HMRC investigation team"
         ]
       },
       {
-        "id": "declarationGroup",
-        "type": "group",
-        "label": "Declaration",
-        "fields": [
-          {
-            "id": "declarationText",
-            "type": "info",
-            "label": "",
-            "infoType": "noformat",
-            "infoText": "I understand that I may commit a criminal offence if I give wrong information or include information that I don't honestly believe to be true."
-          }
+        "id": "noPermissionOne",
+        "type": "choice",
+        "label": "",
+        "mandatory": "yes",
+        "multivalue": "yes",
+        "choices": [
+          "I do not give permission for my personal data to be passed to any relevant HMRC investigation team, but understand you will do so if obliged"
+        ]
+      },
+      {
+        "id": "moreInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "HMRC may need to pass on the information you supplied for legal, regulatory or operational reasons. For example, we may pass the information to the police, local authorities or other government departments. \nAgain, we will only pass on your personal data or identifying information with your explicit consent, or in the rare circumstances where a legal or other overriding obligation to do so arises. If we are able to notify you about this, we will do so as soon as practicable. \n\nPlease select one of the following options:",
+        "infoType": "noformat"
+      },
+      {
+        "id": "givePermissionTwo",
+        "type": "choice",
+        "label": "",
+        "mandatory": "no",
+        "multivalue": "yes",
+        "choices": [
+          "I give my permission for HMRC to share my personal data or identifying information in the circumstances described above"
+        ]
+      },
+      {
+        "id": "noPermissionTwo",
+        "type": "choice",
+        "label": "",
+        "mandatory": "yes",
+        "multivalue": "yes",
+        "choices": [
+          "I do not give permission for HMRC to share my personal data or identifying information, but understand that the HMRC will do so if obliged."
         ]
       }
     ]
   },
   "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
     "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
         "id": "ackPageInfoTop",
         "type": "info",
-        "infoType": "noformat",
         "label": "",
-        "infoText": ""
+        "infoText": "",
+        "infoType": "noformat"
       },
       {
         "id": "ackPageWarning",
         "type": "info",
-        "infoType": "important",
         "label": "",
-        "infoText": ""
+        "infoText": "",
+        "infoType": "important"
       },
       {
-        "type": "group",
         "id": "whatHappensNext",
+        "type": "group",
         "label": "What happens next",
         "fields": []
       },
       {
-        "type": "info",
         "id": "submissionInformation",
+        "type": "info",
         "label": "",
         "infoText": "We recommend you keep the acknowledgement of completion and a copy of your self report for future reference. (new line) You may not hear again from an officer of HMRC for some time, or at all. HMRC may use information in your report to make a decision whether to start a criminal investigation, and might use evidence in your report in a prosecution or other court proceedings. Where the law permits, HMRC may also share the information in your self-report with other agencies."
       }
     ]
-  }
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "corporate-self-reporting"
 }
