@@ -186,11 +186,6 @@
           "type": "choice",
           "label": "Are these the contact details you want HMRC to use if we need to discuss this registration?",
           "format": "yesno"
-        },
-        {
-          "id": "",
-          "type": "text",
-          "label": ""
         }
       ]
     },
@@ -234,36 +229,36 @@
           "helpText": "You must tell us about all the UK aggregates sites your business operates or intends to operate",
           "choices": [
             "10 or less sites",
-            "More than 10 sites"
+            "11 or more sites "
           ]
         }
       ]
     },
     {
-      "title": "Enter the number of sites",
+      "title": "How many UK aggregates sites do you operate?",
       "fields": [
         {
           "id": "noofSites",
           "type": "text",
-          "label": "Enter the number of sites",
-          "helpText": "Enter the number of sites you operate or intend to operate"
+          "label": "How many UK aggregates levy sites do you operate?",
+          "helpText": "Enter the number of sites you operate or intend to operate. You must have at least one site to register for aggregates levy."
         }
       ]
     },
     {
-      "title": "Exit page if more than 10 sites",
-      "includeIf": "${numberSites=1}",
-      "fields": []
-    },
-    {
-      "title": "Aggregates site details",
+      "title": "Enter aggregates site details",
       "includeIf": "${numberSites=0}",
-      "description": "Enter ",
       "fields": [
         {
           "id": "siteAdd",
           "type": "address",
           "label": "Site 1 address"
+        },
+        {
+          "id": "gridref",
+          "type": "text",
+          "label": "Site grid reference ",
+          "helpText": "Enter the Ordnance Survey grid reference of the entrance to the site. For example, TQ 336805"
         },
         {
           "id": "sitePhone",
@@ -287,13 +282,7 @@
           "id": "siteName",
           "type": "text",
           "label": "Trading name of site"
-        }
-      ]
-    },
-    {
-      "title": "Have you taken over this site from another operator?",
-      "includeIf": "${numberSites=0}",
-      "fields": [
+        },
         {
           "id": "existingSite",
           "type": "choice",
@@ -302,13 +291,7 @@
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "Give details of the site's previous operator",
-      "includeIf": "${existingSite=0 && numberSites=0} ",
-      "fields": [
+        },
         {
           "id": "existingBusinessName",
           "type": "text",
@@ -318,13 +301,7 @@
           "id": "alRegNoExist",
           "type": "text",
           "label": "Their Aggregates Levy registration number"
-        }
-      ]
-    },
-    {
-      "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "includeIf": "${numberSites=0}",
-      "fields": [
+        },
         {
           "id": "weighbridgeChoice",
           "type": "choice",
@@ -336,6 +313,21 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Have you taken over this site from another operator?",
+      "includeIf": "${numberSites=0}",
+      "fields": []
+    },
+    {
+      "title": "Give details of the site's previous operator",
+      "includeIf": "${existingSite=0 && numberSites=0} ",
+      "fields": []
+    },
+    {
+      "title": "Do you use a weighbridge to weigh aggregates at this site?",
+      "includeIf": "${numberSites=0}",
+      "fields": []
     },
     {
       "title": "Do you have another site to add?",
@@ -384,6 +376,20 @@
           "id": "siteName2",
           "type": "text",
           "label": "Trading name of site"
+        },
+        {
+          "id": "grideR",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "addotherSite2",
+          "type": "choice",
+          "label": "Do you have another site to add?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -436,17 +442,7 @@
     {
       "title": "Do you have another site to add?",
       "includeIf": "${numberSites=0 && addotherSite1=0}",
-      "fields": [
-        {
-          "id": "addotherSite2",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
+      "fields": []
     },
     {
       "title": "What percentage of your business's total sales are from importing aggregates? ",
@@ -455,7 +451,7 @@
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your business's total sales are from importing aggregates?",
-          "helpText": "Enter yout current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
+          "helpText": "Enter your current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
           "format": "number(9, 2, '%')"
         }
       ]
