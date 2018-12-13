@@ -249,8 +249,8 @@
       "title": "Enter the number of sites",
       "fields": [
         {
-          "type": "text",
           "id": "noofSites",
+          "type": "text",
           "label": ""
         }
       ]
@@ -333,6 +333,7 @@
           "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "helpText": "If you do not use a weighbridge you will need to contact us to agree an alternative method of calculating weight. [STEPH/JACK can a progressive reveal under the 'No' option be used for this help text?]",
           "choices": [
             "Yes",
             "No"
@@ -458,20 +459,15 @@
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your business's total sales are from importing aggregates?",
-          "helpText": "Enter the current or estimated percentage of your business's total sales from importing aggregates. Enter 0 if your business is not involved in this activity. \n\n",
+          "helpText": "Enter yout current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
           "format": "number(9, 2, '%')"
         }
       ]
     },
     {
       "title": "What percentage of your business's total sales are from aggregates extraction activities?",
+      "description": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity. [STEPH/JACK can u help the line break appear between the two sentences?]",
       "fields": [
-        {
-          "id": "test1",
-          "type": "info",
-          "label": "test1",
-          "infoText": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity.\n"
-        },
         {
           "id": "quarryPercentage",
           "type": "text",
@@ -507,7 +503,7 @@
     {
       "title": "Tell us about the other aggregates business activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Provide details about each activity your business is, or plans to be involved in. [*STEPH/JACK NEEDS REPEATING PATTERN UP TO 4]",
+      "description": "Provide details about each aggregates activity your business is, or plans to be involved in. [*STEPH/JACK NEEDS REPEATING PATTERN UP TO 4]",
       "fields": [
         {
           "id": "otherName",
@@ -529,8 +525,8 @@
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did your business first commercially exploit aggregate?",
-          "helpText": "Enter the date you: first commercially exploited aggregate or formally planned to. For example 06 04 2018"
+          "label": "What date did your business first commercially exploit aggregates?",
+          "helpText": "Enter the date you first commercially exploited aggregate or formally planned to. For example 06 04 2018"
         },
         {
           "id": "infoDate",
@@ -548,8 +544,15 @@
           "id": "aggregatesLevy",
           "type": "text",
           "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
-          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy.",
+          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy",
           "format": "sterling"
+        },
+        {
+          "id": "What is the rate of aggregates levy?",
+          "type": "info",
+          "label": "What is the rate of aggregates levy?",
+          "infoText": "The current rate for aggregates levy can be found in section 1.7 of notice AGL1.",
+          "infoType": "long"
         }
       ]
     },
@@ -566,7 +569,7 @@
           "id": "infoexempt4",
           "type": "info",
           "label": "What activities are exempt or relieved from the levy?",
-          "infoText": "The following activities are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nThe following activities are relieved from the levy:\n\n• any aggregate used in prescribed industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously borne levy and to which an exempt process is applied\n\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.",
+          "infoText": "Commercial activities involving the following substances (when they make up more than half of the total material) are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nCommercial activities involving the following aggregates are relieved from the levy:\n\n• any aggregate used in prescribed industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously borne levy and to which an exempt process is applied\n\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.",
           "infoType": "long"
         }
       ]
@@ -577,8 +580,8 @@
       "description": "",
       "fields": [
         {
-          "type": "info",
           "id": "estimateExempt",
+          "type": "info",
           "label": "",
           "infoText": "Enter 0 for any option that does not apply to your business.",
           "infoType": "standard"
@@ -667,18 +670,26 @@
       ]
     },
     {
-      "title": "Have you taken over an aggregates levy business or changed the status of your business?",
+      "title": "Have you taken over an aggregates levy business or changed the legal status of your business?",
       "fields": [
         {
           "id": "businessTakeOver",
           "type": "choice",
           "label": "",
+          "helpText": "Select yes if you have taken over an aggregates business as a going concern, or changed your business's legal status (for example from a sole trader to limited company)",
           "format": "yesno"
+        },
+        {
+          "id": "goingconcernStatusHelp",
+          "type": "info",
+          "label": "What is taking over an aggregates levy business as a going concern?",
+          "infoText": "Taking over an aggregates levy business as a going concern means taking over an aggregates  business that is live or operating and has everything necessary to keep it in operation.",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Transfer details",
+      "title": "Enter the transfer details",
       "includeIf": "${businessTakeOver=0}",
       "fields": [
         {
@@ -703,7 +714,7 @@
           "id": "keepPrevNumber",
           "type": "choice",
           "label": "Do you want to keep this number?",
-          "helpText": "If you do keep the registration number, you’ll become liable for the previous owner’s aggregates levy debts.",
+          "helpText": "If you do keep the registration number, any of the previous owner's credits or debts from the time of transfer will be transferred to you.  ",
           "format": "yesno"
         }
       ]
@@ -720,7 +731,7 @@
             {
               "id": "landfillRegNo",
               "type": "text",
-              "label": "Landfill tax registration number",
+              "label": "Enter the landfill tax registration number",
               "mandatory": "false"
             }
           ]
@@ -734,7 +745,7 @@
             {
               "id": "exciseDutiesRegNo",
               "type": "text",
-              "label": "Excise duties registration number",
+              "label": "Enter the excise duties registration number",
               "mandatory": "false"
             }
           ]
@@ -742,12 +753,12 @@
       ]
     },
     {
-      "title": "Give details of other activities your business is approved by HMRC for",
+      "title": "Give details of any other activities your business is approved by HMRC for",
       "fields": [
         {
           "id": "importExport2",
           "type": "group",
-          "label": "Import or exports",
+          "label": "Importing or exporting",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -761,7 +772,7 @@
         {
           "id": "otherInfo2",
           "type": "group",
-          "label": "Other",
+          "label": "Other activities",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -830,7 +841,7 @@
         "id": "legalStatusDec",
         "type": "choice",
         "label": "Choose the appropriate box",
-        "helpText": "For corporate bodies, a director or company secretary must complete the form.",
+        "helpText": "For corporate bodies, a director or company secretary must complete this declaration.",
         "choices": [
           "Sole trader",
           "Partnership",
