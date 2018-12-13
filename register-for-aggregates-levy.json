@@ -1,4 +1,5 @@
 {
+  "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -222,20 +223,12 @@
       "title": "How many UK aggregates sites do you operate?",
       "fields": [
         {
-          "id": "numberSites",
-          "type": "choice",
-          "label": "How many UK aggregates sites do you operate?",
-          "helpText": "You must tell us about all the UK aggregates sites your business operates or intends to operate",
-          "choices": [
-            "10 or less sites",
-            "11 or more sites "
-          ]
-        }
-      ]
-    },
-    {
-      "title": "How many UK aggregates sites do you operate?",
-      "fields": [
+          "id": "sitenohelp",
+          "type": "info",
+          "label": "",
+          "infoText": "If you ",
+          "infoType": "important"
+        },
         {
           "id": "noofSites",
           "type": "text",
@@ -246,7 +239,6 @@
     },
     {
       "title": "Enter aggregates site details",
-      "includeIf": "${numberSites=0}",
       "fields": [
         {
           "id": "siteAdd",
@@ -286,11 +278,11 @@
           "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "helpText": "undefined",
           "choices": [
             "Yes",
             "No"
-          ],
-          "helpText": "undefined"
+          ]
         },
         {
           "id": "existingSite",
@@ -314,125 +306,6 @@
           "helpText": "test"
         }
       ]
-    },
-    {
-      "title": "Have you taken over this site from another operator?",
-      "includeIf": "${numberSites=0}",
-      "fields": []
-    },
-    {
-      "title": "Give details of the site's previous operator",
-      "includeIf": "${existingSite=0 && numberSites=0} ",
-      "fields": []
-    },
-    {
-      "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "includeIf": "${numberSites=0}",
-      "fields": []
-    },
-    {
-      "title": "Do you have another site to add?",
-      "includeIf": "${numberSites=0}",
-      "fields": []
-    },
-    {
-      "title": "Aggregates site details",
-      "includeIf": "${numberSites=0 && addotherSite1=0}",
-      "fields": [
-        {
-          "id": "siteAdd2",
-          "type": "address",
-          "label": "Site 2 \nAddress"
-        },
-        {
-          "id": "sitePhone2",
-          "type": "text",
-          "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteMobilePhone2",
-          "type": "text",
-          "label": "Site mobile number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteEmail2",
-          "type": "text",
-          "label": "Site email address",
-          "format": "email"
-        },
-        {
-          "id": "siteName2",
-          "type": "text",
-          "label": "Trading name of site"
-        },
-        {
-          "id": "grideR",
-          "type": "text",
-          "label": ""
-        },
-        {
-          "id": "addotherSite2",
-          "type": "choice",
-          "label": "Do you have another site to add?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have you taken over this site from another operator?",
-      "includeIf": "${numberSites=0 && addotherSite1=0}",
-      "fields": [
-        {
-          "id": "existingSite2",
-          "type": "choice",
-          "label": "Have you taken over this site from another operator?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Provide details of the site's previous operator",
-      "includeIf": "${existingSite=0 && numberSites=0 && existingSite2=0} ",
-      "fields": [
-        {
-          "id": "existingBusinessName2",
-          "type": "text",
-          "label": "Business name"
-        },
-        {
-          "id": "alRegNoExist2",
-          "type": "text",
-          "label": "Their Aggregates Levy registration number"
-        }
-      ]
-    },
-    {
-      "title": "Do you use a weighbridge to weigh aggregates at this site?",
-      "includeIf": "${numberSites=0 && addotherSite1=0}",
-      "fields": [
-        {
-          "id": "weighbridgeChoice2",
-          "type": "choice",
-          "label": "Do you use a weighbridge to weigh aggregates at this site?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Do you have another site to add?",
-      "includeIf": "${numberSites=0 && addotherSite1=0}",
-      "fields": []
     },
     {
       "title": "What percentage of your business's total sales are from importing aggregates? ",
@@ -870,6 +743,5 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "register-for-aggregates-levy"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
