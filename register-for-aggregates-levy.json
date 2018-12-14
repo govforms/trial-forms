@@ -36,26 +36,9 @@
       ]
     },
     {
-      "title": "Enter your incorporation details",
-      "includeIf": "${legalStatus=0}",
-      "description": "You can find these on the certificate of incorporation you received when your company was registered with Companies House. ",
-      "fields": [
-        {
-          "id": "certNo",
-          "type": "text",
-          "label": "Company number",
-          "format": "text"
-        },
-        {
-          "id": "incorpDate",
-          "type": "date",
-          "label": "Date of incorporation"
-        }
-      ]
-    },
-    {
       "title": "What is your business name?",
       "shortName": "Business details",
+      "includeIf": "${legalStatus=0 }",
       "fields": [
         {
           "id": "businessName",
@@ -130,6 +113,24 @@
           "helpText": "Enter the trading name for your partnership",
           "format": "text(0, 9)",
           "errorMessage": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter your incorporation details",
+      "includeIf": "${legalStatus=0}",
+      "description": "You can find these on the certificate of incorporation you received when your company was registered with Companies House. ",
+      "fields": [
+        {
+          "id": "certNo",
+          "type": "text",
+          "label": "Company number",
+          "format": "text"
+        },
+        {
+          "id": "incorpDate",
+          "type": "date",
+          "label": "Date of incorporation"
         }
       ]
     },
@@ -247,7 +248,7 @@
           "id": "sitenohelp",
           "type": "info",
           "label": "",
-          "infoText": "If you operate 11 or more sites you will also need to complete form AL1A for each site.  ",
+          "infoText": "If you operate 11 or more sites you will need to complete form AL1A for each site once you have completed your online registration. ",
           "infoType": "standard"
         }
       ]
@@ -396,7 +397,7 @@
           "id": "aggregatesDate",
           "type": "date",
           "label": "What date did your business first commercially exploit aggregates?",
-          "helpText": "Enter the date you first commercially exploited aggregates or formally planned to. For example 06 04 2018"
+          "helpText": "Enter the date your business first commercially exploited aggregates or formally planned to. For example 06 04 2018"
         },
         {
           "id": "infoDate",
