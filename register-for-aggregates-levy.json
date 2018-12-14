@@ -1,4 +1,5 @@
 {
+  "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -15,7 +16,7 @@
   },
   "sections": [
     {
-      "title": "Confirm details and send your registration",
+      "title": "Which if these best describes your business?",
       "description": "",
       "fields": [
         {
@@ -53,41 +54,6 @@
       ]
     },
     {
-      "title": "Does your business have regional divisions that you want to register separately?",
-      "fields": [
-        {
-          "id": "divReg",
-          "type": "choice",
-          "label": "Does your business have regional divisions that you want to register separately?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Is your business registered for VAT?",
-      "fields": [
-        {
-          "id": "choiceVat",
-          "type": "choice",
-          "label": "Is your business registered for VAT?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "What is the VAT registration number?",
-      "includeIf": "${choiceVat=0}",
-      "fields": [
-        {
-          "id": "vatRegNo",
-          "type": "text",
-          "label": "What is the VAT registration number?\n",
-          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
-          "format": "text(0, 9)"
-        }
-      ]
-    },
-    {
       "title": "What is your business name?",
       "shortName": "Business details",
       "fields": [
@@ -100,12 +66,39 @@
       ]
     },
     {
+      "title": "What is your full name?",
+      "shortName": "Your details",
+      "includeIf": "${legalStatus=1}",
+      "fields": [
+        {
+          "id": "titleSole",
+          "type": "text",
+          "label": "What is your full name?",
+          "format": "text"
+        }
+      ]
+    },
+    {
       "title": "Does your business trade under a different name?",
       "fields": [
         {
           "id": "busTradingname",
           "type": "choice",
           "label": "Does your business trade under a different name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Does your business have a trading name?",
+      "fields": [
+        {
+          "id": "busTradingnamest",
+          "type": "choice",
+          "label": "Does your business have a trading name?",
           "choices": [
             "Yes",
             "No"
@@ -137,18 +130,6 @@
           "helpText": "Enter the trading name for your partnership",
           "format": "text(0, 9)",
           "errorMessage": ""
-        }
-      ]
-    },
-    {
-      "title": "What is your full name?",
-      "shortName": "Your details",
-      "fields": [
-        {
-          "id": "titleSole",
-          "type": "text",
-          "label": "What is your full name?",
-          "format": "text"
         }
       ]
     },
@@ -215,6 +196,41 @@
           "type": "text",
           "label": "Email address",
           "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Does your business have regional divisions that you want to register separately?",
+      "fields": [
+        {
+          "id": "divReg",
+          "type": "choice",
+          "label": "Does your business have regional divisions that you want to register separately?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Is your business registered for VAT?",
+      "fields": [
+        {
+          "id": "choiceVat",
+          "type": "choice",
+          "label": "Is your business registered for VAT?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "What is the VAT registration number?",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "What is the VAT registration number?\n",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "text(0, 9)"
         }
       ]
     },
@@ -728,6 +744,5 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "register-for-aggregates-levy"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
