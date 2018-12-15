@@ -29,7 +29,7 @@
             "Partnership",
             "Public corporation",
             "Unincorporated body",
-            "Local Authority"
+            "Local authority"
           ]
         }
       ]
@@ -62,6 +62,7 @@
     },
     {
       "title": "Does your business trade under a different name?",
+      "includeIf": "${legalStatus =0 || legalStatus =2 || legalStatus =3 || legalStatus =4 || legalStatus =5} ",
       "fields": [
         {
           "id": "busTradingname",
@@ -76,6 +77,7 @@
     },
     {
       "title": "Does your business have a trading name?",
+      "includeIf": "${legalStatus=1}",
       "fields": [
         {
           "id": "busTradingnamest",
@@ -90,26 +92,12 @@
     },
     {
       "title": "What is the trading name?",
-      "includeIf": "${busTradingname=0} ",
+      "includeIf": "${busTradingname=0 || busTradingnamest=0} ",
       "fields": [
         {
           "id": "busTradingnameEnter",
           "type": "text",
           "label": "What is the trading name?",
-          "format": "text(0, 9)",
-          "errorMessage": ""
-        }
-      ]
-    },
-    {
-      "title": "What is the trading name?",
-      "includeIf": "${busTradingname=0} ",
-      "fields": [
-        {
-          "id": "busTradingnamePartEnter",
-          "type": "text",
-          "label": "What is the trading name?",
-          "helpText": "Enter the trading name for your partnership",
           "format": "text(0, 9)",
           "errorMessage": ""
         }
