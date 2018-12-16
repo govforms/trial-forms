@@ -542,10 +542,20 @@
     },
     {
       "title": "Is your business involved in any other activities registered, approved or authorised by HMRC?\n\n",
-      "fields": []
+      "fields": [
+        {
+          "id": "otheracthmrc",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
     },
     {
-      "title": "Is your business registered or approved with HMRC for any of the following?",
+      "title": "Select any of the following that your business is registered with HMRC for",
       "fields": [
         {
           "id": "landFillReg",
@@ -578,7 +588,7 @@
       ]
     },
     {
-      "title": "Give details of any other activities your business is approved by HMRC for",
+      "title": "Select any other activities your business is approved by HMRC for",
       "fields": [
         {
           "id": "importExport2",
@@ -603,7 +613,7 @@
             {
               "id": "otherDetails",
               "type": "text",
-              "label": "Give details (up to **** characters)",
+              "label": "Give details",
               "mandatory": "false"
             }
           ]
@@ -617,14 +627,15 @@
           "id": "otherBusiness",
           "type": "choice",
           "label": "",
+          "helpText": "https://www.govforms.io/editor#",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Aggregates Levy registration number of other business",
+      "title": "Registration number of other business",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Aggregates Levy registration number of any businesses you are or have been involved in.",
+      "description": "Enter the aggregates levy registration number of any businesses you are or have been involved in.",
       "fields": [
         {
           "id": "otherRegNo",
@@ -658,7 +669,7 @@
         "id": "email",
         "type": "text",
         "label": "Email address",
-        "helpText": "We will send an email to this address to confirm we have received your registration.",
+        "helpText": "We will send an email to this address to confirm we have received your registration",
         "format": "email",
         "errorMessage": "Enter email address"
       },
@@ -672,8 +683,6 @@
           "Partner",
           "Company Secretary",
           "Director",
-          "Beneficiary of a trust",
-          "Trustee",
           "Authorised official"
         ]
       },
