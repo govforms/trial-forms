@@ -1,5 +1,4 @@
 {
-  "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -104,6 +103,30 @@
       ]
     },
     {
+      "title": "Is your business registered for VAT?",
+      "fields": [
+        {
+          "id": "choiceVat",
+          "type": "choice",
+          "label": "Is your business registered for VAT?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "What is the VAT registration number?",
+      "includeIf": "${choiceVat=0}",
+      "fields": [
+        {
+          "id": "vatRegNo",
+          "type": "text",
+          "label": "What is the VAT registration number?\n",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
+          "format": "text(0, 9)"
+        }
+      ]
+    },
+    {
       "title": "Enter your incorporation details",
       "includeIf": "${legalStatus=0}",
       "description": "You can find these on the certificate of incorporation you received when your company was registered with Companies House. ",
@@ -117,7 +140,8 @@
         {
           "id": "incorpDate",
           "type": "date",
-          "label": "Date of incorporation"
+          "label": "Date of incorporation",
+          "helpText": "For example, 19 4 2018"
         }
       ]
     },
@@ -135,13 +159,6 @@
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
-        },
-        {
-          "id": "mobileNumber",
-          "type": "text",
-          "label": "Mobile number (optional)",
-          "format": "telephoneNumber",
-          "mandatory": "false"
         },
         {
           "id": "email1",
@@ -166,6 +183,7 @@
           "id": "name",
           "type": "text",
           "label": "Full name",
+          "helpText": "Enter the name of the contact person",
           "format": "text"
         },
         {
@@ -188,62 +206,20 @@
       ]
     },
     {
-      "title": "Does your business have regional divisions that you want to register separately?",
-      "fields": [
-        {
-          "id": "divReg",
-          "type": "choice",
-          "label": "Does your business have regional divisions that you want to register separately?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Is your business registered for VAT?",
-      "fields": [
-        {
-          "id": "choiceVat",
-          "type": "choice",
-          "label": "Is your business registered for VAT?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "What is the VAT registration number?",
-      "includeIf": "${choiceVat=0}",
-      "fields": [
-        {
-          "id": "vatRegNo",
-          "type": "text",
-          "label": "What is the VAT registration number?\n",
-          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
-          "format": "text(0, 9)"
-        }
-      ]
-    },
-    {
       "title": "How many UK aggregates sites do you operate?",
       "fields": [
         {
           "id": "noofSites",
           "type": "text",
-          "label": "How many UK aggregates levy sites do you operate?",
+          "label": "How many UK aggregates sites do you operate?",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
           "displayWidth": "xs"
-        },
-        {
-          "id": "sitenohelp",
-          "type": "info",
-          "label": "",
-          "infoText": "If you operate 11 or more sites you will need to complete form AL1A for each site once you have completed your online registration. ",
-          "infoType": "standard"
         }
       ]
     },
     {
       "title": "Provide aggregates site details",
-      "description": "Enter the details for your aggregates levy site.",
+      "description": "Enter details for your aggregates site where applicable.",
       "fields": [
         {
           "id": "siteAdd",
@@ -254,12 +230,6 @@
           "id": "sitePhone",
           "type": "text",
           "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteMobilePhone",
-          "type": "text",
-          "label": "Site mobile number",
           "format": "telephoneNumber"
         },
         {
@@ -300,7 +270,7 @@
         {
           "id": "existingBusinessName",
           "type": "text",
-          "label": "Business name of previous site operator ",
+          "label": "Business name of previous site operator",
           "helpText": "Enter the previous owner's name if you have taken over this site"
         },
         {
@@ -326,13 +296,12 @@
     },
     {
       "title": "What percentage of your business's total sales are from aggregates extraction activities?",
-      "description": "Enter your business's current or estimated percentage of total sales for each activity.\n\nEnter 0 if your business is not involved in an activity. ",
+      "description": "Enter your business's current or estimated percentage of total sales from each activity.\n\nEnter 0 if your business is not involved in an activity.\n",
       "fields": [
         {
           "id": "quarryPercentage",
           "type": "text",
           "label": "Percentage of total sales from quarry extraction ",
-          "helpText": "\n",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
         },
@@ -348,7 +317,7 @@
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')",
-          "displayWidth": ""
+          "displayWidth": "xs"
         }
       ]
     },
@@ -377,7 +346,7 @@
           "id": "OtherPercentage",
           "type": "text",
           "label": "Percentage of your total sales from this activity",
-          "helpText": "Enter your business's current or estimated percentage of total sales for this activity",
+          "helpText": "Enter your business's current or estimated percentage of total sales from this activity",
           "format": "number(9, 2, '%')"
         }
       ]
@@ -389,13 +358,13 @@
           "id": "aggregatesDate",
           "type": "date",
           "label": "What date did your business first commercially exploit aggregates?",
-          "helpText": "Enter the date your business first commercially exploited aggregates or formally planned to. For example 06 04 2018"
+          "helpText": "Enter the date your business first commercially exploited aggregates or formed the intention to. For example 21 4 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
           "label": "What is commercially exploiting aggregates?",
-          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the advancement or benefit of business. For example when it is:\n\n•\tsubject to an agreement to supply (such as  \n        a contract)\n\n•\tused for construction purposes\n\n•\tmixed with anything other than water, \n        except in permitted circumstances\n\n•\tremoved from it's originating site or a \n        connected site that is registered under \n        the same name\n\nFull details are given in Notice AGL1.\n",
+          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n•\tsubject to an agreement to supply (such as  \n        a contract)\n\n•\tused for construction purposes\n\n•\tmixed with anything other than water, \n        except in permitted circumstances\n\n•\tremoved from it's originating site or a \n        connected site that is registered under \n        the same name\n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.\n",
           "infoType": "long"
         }
       ]
@@ -407,20 +376,20 @@
           "id": "aggregatesLevy",
           "type": "text",
           "label": "Estimate how much aggregates levy you’ll pay in the next 12 months \n",
-          "helpText": "Multiply the number of tonnes of aggregate you think you’ll commercially exploit by the rate of aggregates levy",
+          "helpText": "Multiply the number of tonnes of aggregates you think you’ll commercially exploit by the rate of aggregates levy",
           "format": "sterling"
         },
         {
           "id": "What is the rate of aggregates levy?",
           "type": "info",
-          "label": "What is the rate of aggregates levy?",
-          "infoText": "The current rate for aggregates levy can be found in section 1.7 of notice AGL1.",
+          "label": "Where can I find out the current rate of levy?",
+          "infoText": "The current rate for aggregates levy can be found in section 1.7 of Excise Notice AGL1.",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
+      "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy (for example, exporting aggregates)?",
       "fields": [
         {
           "id": "exemptChoice",
@@ -432,7 +401,7 @@
           "id": "infoexempt4",
           "type": "info",
           "label": "What activities are exempt or relieved from the levy?",
-          "infoText": "Commercial activities involving the following substances (when they make up more than half of the total material) are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nCommercial activities involving the following aggregates are relieved from the levy:\n\n• any aggregate used in certain industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously carried levy and to which an exempt process is applied\n\nFull details of the exemptions and reliefs are given in Notices AGL1 and AGL2.",
+          "infoText": "Commercial activities involving the following substances (when they make up more than half of the total material) are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nCommercial activities involving the following aggregates are relieved from the levy:\n\n• any aggregate used in certain industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously carried levy and to which an exempt process is applied\n\nRelief can also be obtained on aggregates that are exported to a destination outside of the UK.\n\nFull details of the exemptions and reliefs are given in Excise Notices AGL1 and AGL2.",
           "infoType": "long"
         }
       ]
@@ -447,7 +416,7 @@
           "type": "info",
           "label": "",
           "infoText": "Enter 0 for any option that does not apply to your business.",
-          "infoType": "standard"
+          "infoType": "noformat"
         },
         {
           "id": "exemptLevy",
@@ -737,5 +706,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "register-for-aggregates-levy"
 }
