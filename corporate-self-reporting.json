@@ -1,4 +1,5 @@
 {
+  "_id": "corporate-self-reporting",
   "formName": "Corporate self reporting",
   "description": "",
   "formCategory": "hmrcReturnForm",
@@ -569,6 +570,31 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Reference Page",
+      "fields": [
+        {
+          "id": "ggReference",
+          "type": "text",
+          "label": "User GG Reference",
+          "submitMode": "readonly",
+          "value": "${auth.gg}"
+        },
+        {
+          "id": "currentDate",
+          "type": "date",
+          "label": "Date",
+          "submitMode": "readonly",
+          "value": "today"
+        },
+        {
+          "id": "userProvidedID",
+          "type": "text",
+          "label": "Please provide an ID/name for CSR submission",
+          "format": "text"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -642,6 +668,5 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "corporate-self-reporting"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
