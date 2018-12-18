@@ -46,18 +46,18 @@
           "id": "contactAddress",
           "type": "address",
           "label": "Address",
-          "helpText": "Please include your primary contact address, including the postcode.",
+          "helpText": "Enter your main contact address",
           "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "What is your connection to the organisation?",
+      "title": "What is your connection to the organisation this report is about?",
       "fields": [
         {
           "id": "connectionToBusiness",
           "type": "text",
-          "label": "What is your connection to the organisation?",
+          "label": "What is your connection to the organisation this report is about?",
           "mandatory": "true"
         }
       ]
@@ -104,13 +104,13 @@
       ]
     },
     {
-      "title": "Enter the details of the company",
+      "title": "Enter the organisation details",
       "includeIf": "${CompanyType=0 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
           "id": "legalNameUKUK",
           "type": "text",
-          "label": "Legal or registered name",
+          "label": "Organisation name",
           "helpText": "Enter the name as it is registered at Companies House",
           "mandatory": "true"
         },
@@ -131,7 +131,7 @@
         {
           "id": "companyRegNumberUK",
           "type": "text",
-          "label": "Company House Registration Number",
+          "label": "Company House registration number",
           "helpText": "This is issued by Companies House and consists of 8 numbers, or 2 letters followed by 6 numbers",
           "mandatory": "true"
         },
@@ -139,7 +139,7 @@
           "id": "companyUniqueTaxRefNumUK",
           "type": "text",
           "label": "Company Unique Tax Reference number (optional)",
-          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "helpText": "This is a 10 digit number, for example 1234567890. It can be found on documents HMRC has issued",
           "mandatory": "false"
         }
       ]
@@ -342,7 +342,7 @@
           "id": "summariseHowTax",
           "type": "text",
           "label": "Explain how the criminal facilitation of tax evasion took place",
-          "helpText": "Summarise how the tax evasion was facilitated, include: who within the organisation facilitated the evasion, the capacity in which they were acting, who they helped to evade tax, what tax was evaded, and how it was discovered",
+          "helpText": "Summarise how the tax evasion was facilitated, include: who within the organisation facilitated the evasion, the capacity in which they were acting, who they helped to evade tax, what tax was evaded and how it was discovered",
           "mandatory": "true",
           "multiline": "true"
         },
@@ -356,12 +356,12 @@
       ]
     },
     {
-      "title": "Estimate the total value of evasion that has been facilitated by this person",
+      "title": "Estimate the total value of evasion that has been facilitated",
       "fields": [
         {
           "id": "estimateTotalValues",
           "type": "text",
-          "label": "Estimate the total value of evasion that has been facilitated by this person",
+          "label": "Estimate the total value of evasion that has been facilitated",
           "format": "sterling",
           "mandatory": "true"
         }
@@ -430,13 +430,14 @@
       ]
     },
     {
-      "title": "Provide the reference numbers for any previous reports",
+      "title": "Provide the reference numbers for any previous reports ",
       "includeIf": "${selfReportedFailure=0}",
       "fields": [
         {
           "id": "summariseHowTaxing",
           "type": "text",
           "label": "Provide the reference numbers for any previous reports",
+          "helpText": "Enter the reference number (if you have this)",
           "mandatory": "true"
         }
       ]
@@ -457,7 +458,7 @@
       ]
     },
     {
-      "title": "Other reports",
+      "title": "Tell us about the other reports",
       "includeIf": "${madeOtherReports=0}",
       "fields": [
         {
@@ -476,12 +477,12 @@
       ]
     },
     {
-      "title": "Is the company or partnership overseen by a regulator, supervisor or licensing authority?",
+      "title": "Is the organisation you are reporting overseen by a regulator, supervisor or licensing authority?",
       "fields": [
         {
           "id": "overseenByARegulator",
           "type": "choice",
-          "label": "Is the company or partnership overseen by a regulator, supervisor or licensing authority?",
+          "label": "Is the organisation you are reporting overseen by a regulator, supervisor or licensing authority?",
           "choices": [
             "Yes",
             "No",
@@ -491,43 +492,43 @@
       ]
     },
     {
-      "title": "Other reports",
+      "title": "Provide details of the other authorities",
       "includeIf": "${overseenByARegulator=0}",
       "fields": [
         {
           "id": "nameOfAuthority",
           "type": "text",
-          "label": "Please provide the name of authority",
+          "label": "Name of the authority",
           "mandatory": "true"
         },
         {
           "id": "countryOfAuthority",
           "type": "text",
-          "label": "Please provide the country the authority",
+          "label": "Country of the authority",
           "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Prevention procedures",
+      "title": "Does the organisation you are reporting have procedures in place designed to prevent the facilitation of tax evasion?",
       "fields": [
         {
           "id": "preventionProcYesNo",
           "type": "choice",
-          "label": "Does the company or partnership have procedures in place that were designed to prevent the facilitation of tax evasion?",
+          "label": "Does the organisation you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Prevention procedures",
+      "title": "Which of the following are part of the prevention procedures?",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
           "id": "partOfPrevention",
           "type": "choice",
-          "label": "Which of the following are part of the prevention procedures?",
           "multivalue": "yes",
+          "helpText": "Select one or more options",
           "choices": [
             "Risk assessment",
             "Proportionality of risk-based prevention procedures ",
@@ -535,7 +536,8 @@
             "Due diligence",
             "Communication and training",
             "Monitoring and review"
-          ]
+          ],
+          "label": "Which of the following are part of the prevention procedures?"
         }
       ]
     },
@@ -553,9 +555,9 @@
       ]
     },
     {
-      "title": "Authorisation",
+      "title": "Confirm that you are authorised to make this report",
       "shortName": "",
-      "description": "You must confirm that the company or partnership has authorised you to make this report.",
+      "description": "You must confirm that the organisation has authorised you to make this report.",
       "fields": [
         {
           "id": "declaration",
@@ -572,27 +574,29 @@
       ]
     },
     {
-      "title": "Reference Page",
+      "title": "Report reference code",
+      "description": "Create and enter a unique reference code for this report and keep a note of it. HMRC may ask for this, along with your Government Gateway ID and report submission date (both shown below) if we need to contact you about this report. ",
       "fields": [
+        {
+          "id": "userProvidedID",
+          "type": "text",
+          "label": "Unique submission reference code",
+          "helpText": "Create and enter a unique code for this report that is at least 5 characters long, using letters and numbers. For example, JoeSmith1977 ",
+          "format": "text"
+        },
         {
           "id": "ggReference",
           "type": "text",
-          "label": "User GG Reference",
-          "submitMode": "readonly",
-          "value": "${auth.gg}"
+          "label": "Your Government Gateway ID",
+          "value": "${auth.gg}",
+          "submitMode": "readonly"
         },
         {
           "id": "currentDate",
           "type": "date",
-          "label": "Date",
-          "submitMode": "readonly",
-          "value": "today"
-        },
-        {
-          "id": "userProvidedID",
-          "type": "text",
-          "label": "Please provide an ID/name for CSR submission",
-          "format": "text"
+          "label": "Your report submission date ",
+          "value": "today",
+          "submitMode": "readonly"
         }
       ]
     }
