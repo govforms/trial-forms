@@ -17,7 +17,6 @@
   "sections": [
     {
       "title": "Which of these best describes your business?",
-      "description": "",
       "fields": [
         {
           "id": "legalStatus",
@@ -37,7 +36,7 @@
     {
       "title": "What is your business name?",
       "shortName": "Business details",
-      "includeIf": "${legalStatus=0 }",
+      "includeIf": "${legalStatus=0}",
       "fields": [
         {
           "id": "businessName",
@@ -62,7 +61,7 @@
     },
     {
       "title": "Does your business trade under a different name?",
-      "includeIf": "${legalStatus =0 || legalStatus =2 || legalStatus =3 || legalStatus =4 || legalStatus =5} ",
+      "includeIf": "${legalStatus != 1} ",
       "fields": [
         {
           "id": "busTradingname",
@@ -212,6 +211,8 @@
         {
           "id": "noofSites",
           "type": "text",
+          "validIf": "${noofSites>0 && nooFSites<=100}",
+          "shortName": "Number of aggregate sites",
           "label": "How many UK aggregates sites do you operate?",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
           "displayWidth": "xs"
@@ -220,7 +221,9 @@
     },
     {
       "title": "Provide aggregates site details",
-      "description": "Enter details for your aggregates site where applicable.",
+      "repeatsMin": "${noofSites}",
+      "repeatsMax": "${noofSites}",
+      "description": "Enter the details for your aggregates site.",
       "fields": [
         {
           "id": "siteAdd",
@@ -271,14 +274,16 @@
         {
           "id": "existingBusinessName",
           "type": "text",
-          "label": "Business name of previous site operator",
-          "helpText": "Enter the previous owner's name if you have taken over this site"
+          "label": "Business name of previous site operator (if applicable)",
+          "mandatory": "false",
+          "helpText": "Only enter the previous owner's name if you have taken over this site"
         },
         {
           "id": "alRegNoExist",
           "type": "text",
-          "label": "Aggregates levy registration number of previous site operator",
-          "helpText": "Enter the previous owner's aggregates levy registration number if you have taken over this site"
+          "mandatory": "false",
+          "label": "Aggregates levy registration number of previous site operator (if applicable)",
+          "helpText": "Only enter the previous owner's aggregates levy registration number if you have taken over this site"
         }
       ]
     },
@@ -319,12 +324,7 @@
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
-        }
-      ]
-    },
-    {
-      "title": "Is your business involved in, or planning to be involved in any other aggregates business activities? ",
-      "fields": [
+        },
         {
           "id": "otherChoice",
           "type": "choice",
@@ -339,16 +339,26 @@
       "description": "Provide details about each aggregates activity your business is, or plans to be involved in.",
       "fields": [
         {
-          "id": "otherName",
-          "type": "text",
-          "label": "Description of aggregates business activity"
-        },
-        {
-          "id": "OtherPercentage",
-          "type": "text",
-          "label": "Percentage of your total sales from this activity",
-          "helpText": "Enter your business's current or estimated percentage of total sales from this activity",
-          "format": "number(9, 2, '%')"
+          "type": "group",
+          "id": "alcIngredientsAndQuantities",
+          "label": "",
+          "repeatsMax": 4,
+          "format": "horizontal",
+          "fields": [
+            {
+              "id": "otherName",
+              "type": "text",
+              "label": "Description of aggregates business activity",
+              "format": "text(0, 40)"
+            },
+            {
+              "id": "OtherPercentage",
+              "type": "text",
+              "label": "Percentage of your total sales from this activity",
+              "helpText": "Enter your business's current or estimated percentage of total sales from this activity",
+              "format": "number(9, 2, '%')"
+            }
+          ]
         }
       ]
     },
@@ -365,7 +375,7 @@
           "id": "infoDate",
           "type": "info",
           "label": "What is commercially exploiting aggregates?",
-          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n•\tsubject to an agreement to supply (such as  \n        a contract)\n\n•\tused for construction purposes\n\n•\tmixed with anything other than water, \n        except in permitted circumstances\n\n•\tremoved from it's originating site or a \n        connected site that is registered under \n        the same name\n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.\n",
+          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n* subject to an agreement to supply (such as a contract)\n\n* used for construction purposes \n\n* mixed with anything other than water, except in permitted circumstances \n\n*removed from it's originating site or a connected site that is registered under the same name \n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.",
           "infoType": "long"
         }
       ]
@@ -402,7 +412,7 @@
           "id": "infoexempt4",
           "type": "info",
           "label": "What activities are exempt or relieved from the levy?",
-          "infoText": "Commercial aggregates activities involving the following substances (when they make up more than half of the total material) are exempt from the levy:\n\n• coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n• blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n• certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n• waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n• drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nCommercial activities involving the following aggregates are relieved from the levy:\n\n• any aggregate used in certain industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n• aggregate that has previously carried levy and to which an exempt process is applied\n\nRelief can also be obtained on aggregates that are exported to a destination outside of the UK.\n\nFull details of the exemptions and reliefs are given in Excise Notices AGL1 and AGL2.",
+          "infoText": "Commercial aggregates activities involving the following substances (when they make up more than half of the total material) are exempt from the levy:\n\n* coal, lignite, clay, slate, soil or vegetable or other organic matter\n\n* blocks of stone (dimension stone) and limestone for the production of lime or cement\n\n* certain industrial minerals (such as metal ores, gypsum, fluorspar)\n\n* waste that’s wholly from industrial combustion processes or the smelting or refining of metals\n\n* drill cuttings (in permitted circumstances) and waste from certain processes such as highways or railways excavation, navigational dredging and building construction (in permitted circumstances)\n\nCommercial activities involving the following aggregates are relieved from the levy:\n\n* any aggregate used in certain industrial or agricultural processes (such as glass manufacture, fertiliser production)\n\n* aggregate that has previously carried levy and to which an exempt process is applied\n\nRelief can also be obtained on aggregates that are exported to a destination outside of the UK.\n\nFull details of the exemptions and reliefs are given in Excise Notices AGL1 and AGL2.",
           "infoType": "long"
         }
       ]
@@ -422,20 +432,20 @@
         {
           "id": "exemptLevy",
           "type": "text",
-          "label": "Exempt supplies in tonnes",
-          "format": "number"
+          "label": "Exempt supplies",
+          "format": "number(11, 2, 'tonnes')"
         },
         {
           "id": "relievedLevy",
           "type": "text",
-          "label": "Relieved supplies in tonnes",
-          "format": "number"
+          "label": "Relieved supplies",
+          "format": "number(11, 2, 'tonnes')"
         },
         {
           "id": "exportLevy",
           "type": "text",
-          "label": "Exported supplies in tonnes",
-          "format": "number"
+          "label": "Exported supplies",
+          "format": "number(11, 2, 'tonnes')"
         }
       ]
     },
@@ -627,7 +637,6 @@
           "id": "otherBusiness",
           "type": "choice",
           "label": "",
-          "helpText": "https://www.govforms.io/editor#",
           "format": "yesno"
         }
       ]
@@ -641,7 +650,7 @@
           "id": "otherRegNo",
           "type": "group",
           "label": "",
-          "repeatsMax": 20,
+          "repeatsMax": 7,
           "repeatLabel": "Registration number $n",
           "repeatAddAnotherText": "Add another registration number",
           "fields": [
@@ -657,7 +666,7 @@
     }
   ],
   "declarationSection": {
-    "title": "Confirm details and send your claim",
+    "title": "Confirm details and send your registration",
     "fields": [
       {
         "id": "declarationFullName",
@@ -709,7 +718,7 @@
         "id": "ackPageInfoTop",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim.",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
         "infoType": "noformat"
       },
       {
