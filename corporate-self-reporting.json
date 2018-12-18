@@ -56,7 +56,7 @@
         {
           "id": "connectionToBusiness",
           "type": "text",
-          "label": "",
+          "label": "What is your connection to the organisation?",
           "mandatory": "true"
         }
       ]
@@ -67,7 +67,7 @@
         {
           "id": "CompanyType",
           "type": "choice",
-          "label": "",
+          "label": "Is the organisation a company or a partnership?",
           "shortName": "Organisation type",
           "helpText": "If you are unsure please choose company",
           "choices": [
@@ -85,7 +85,7 @@
         {
           "id": "companyRegUK",
           "type": "choice",
-          "label": "",
+          "label": "Is the company registered in the UK?",
           "format": "yesno"
         }
       ]
@@ -97,7 +97,7 @@
         {
           "id": "partnershipRegUK",
           "type": "choice",
-          "label": "",
+          "label": "Is the partnership registered in the UK?",
           "format": "yesno"
         }
       ]
@@ -340,10 +340,10 @@
         {
           "id": "summariseHowTax",
           "type": "text",
+          "label": "Explain how the criminal facilitation of tax evasion took place",
           "helpText": "Summarise how the tax evasion was facilitated, include: who within the organisation facilitated the evasion, the capacity in which they were acting, who they helped to evade tax, what tax was evaded, and how it was discovered",
           "mandatory": "true",
-          "multiline": "true",
-          "label": "Explain how the criminal facilitation of tax evasion took place"
+          "multiline": "true"
         },
         {
           "id": "importantLegalText",
@@ -378,13 +378,14 @@
       ]
     },
     {
-      "title": "Tell us what happened",
+      "title": "Estimate when the facilitation ended",
       "includeIf": "${facilitationOngoing=1}",
       "fields": [
         {
           "id": "endDate",
           "type": "date",
           "label": "Estimate when the facilitation ended",
+          "helpText": "For example, 19 4 2018",
           "mandatory": "true"
         }
       ]
@@ -440,12 +441,12 @@
       ]
     },
     {
-      "title": "Other reports",
+      "title": "Have you made any other reports about this incident, such as a Suspicious Activity Report? ",
       "fields": [
         {
           "id": "madeOtherReports",
           "type": "choice",
-          "label": "Have you made any other report, such as a Suspicious Activity Report to any other body or agency?",
+          "label": "Have you made any other reports about this incident, such as a Suspicious Activity Report? ",
           "choices": [
             "Yes",
             "No",
@@ -474,7 +475,7 @@
       ]
     },
     {
-      "title": "Other reports",
+      "title": "Is the company or partnership overseen by a regulator, supervisor or licensing authority?",
       "fields": [
         {
           "id": "overseenByARegulator",
@@ -502,7 +503,7 @@
           "id": "countryOfAuthority",
           "type": "text",
           "label": "Please provide the country the authority",
-          "mandatory": "false"
+          "mandatory": "true"
         }
       ]
     },
