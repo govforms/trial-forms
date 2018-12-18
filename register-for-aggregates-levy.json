@@ -169,15 +169,15 @@
         {
           "id": "altAdd",
           "type": "choice",
-          "label": "Are these the contact details you want HMRC to use if we need to discuss this registration?",
+          "label": "Are these the contact details you want HMRC to use if we need to discuss your aggregates levy information?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Registration contact details",
+      "title": "Preferred contact details",
       "includeIf": "${altAdd=1}",
-      "description": "Provide the contact details of someone who is authorised to discuss this registration with HMRC.",
+      "description": "Provide the contact details of someone who is authorised to discuss your aggregates levy information with HMRC.",
       "fields": [
         {
           "id": "name",
@@ -211,24 +211,24 @@
         {
           "id": "noofSites",
           "type": "text",
-          "validIf": "${noofSites>0 && nooFSites<=100}",
-          "shortName": "Number of aggregate sites",
           "label": "How many UK aggregates sites do you operate?",
+          "shortName": "Number of aggregate sites",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
-          "displayWidth": "xs"
+          "displayWidth": "xs",
+          "validIf": "${noofSites>0 && nooFSites<=100}"
         }
       ]
     },
     {
-      "title": "Provide aggregates site details",
+      "title": "Details for aggregates site $n",
+      "description": "Enter the details for your aggregates site.",
       "repeatsMin": "${noofSites}",
       "repeatsMax": "${noofSites}",
-      "description": "Enter the details for your aggregates site.",
       "fields": [
         {
           "id": "siteAdd",
           "type": "address",
-          "label": "Site 1 address"
+          "label": "Site address"
         },
         {
           "id": "sitePhone",
@@ -269,21 +269,25 @@
           "choices": [
             "Yes",
             "No"
+          ],
+          "optionHelpText": [
+            "Help text for choice ref 0",
+            "Help text for choice ref 1"
           ]
         },
         {
           "id": "existingBusinessName",
           "type": "text",
           "label": "Business name of previous site operator (if applicable)",
-          "mandatory": "false",
-          "helpText": "Only enter the previous owner's name if you have taken over this site"
+          "helpText": "If you have taken over this site from another operator, enter their business name",
+          "mandatory": "false"
         },
         {
           "id": "alRegNoExist",
           "type": "text",
-          "mandatory": "false",
           "label": "Aggregates levy registration number of previous site operator (if applicable)",
-          "helpText": "Only enter the previous owner's aggregates levy registration number if you have taken over this site"
+          "helpText": "If you have taken over this site from another operator,  registration number ",
+          "mandatory": "false"
         }
       ]
     },
@@ -339,11 +343,11 @@
       "description": "Provide details about each aggregates activity your business is, or plans to be involved in.",
       "fields": [
         {
-          "type": "group",
           "id": "alcIngredientsAndQuantities",
+          "type": "group",
           "label": "",
-          "repeatsMax": 4,
           "format": "horizontal",
+          "repeatsMax": 4,
           "fields": [
             {
               "id": "otherName",
