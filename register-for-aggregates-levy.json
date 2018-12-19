@@ -135,6 +135,7 @@
           "id": "certNo",
           "type": "text",
           "label": "Company number",
+          "helpText": "This is 8 numbers, or 2 letters followed by 6 numbers. For example,12345678 or AA123456",
           "format": "text"
         },
         {
@@ -290,7 +291,7 @@
           "id": "alRegNoExist",
           "type": "text",
           "label": "Aggregates levy registration number of previous site operator (if applicable)",
-          "helpText": "If you have taken over this site from another operator,  registration number ",
+          "helpText": "If you have taken over this site from another operator, enter their registration number ",
           "mandatory": "false"
         }
       ]
@@ -651,13 +652,13 @@
       ]
     },
     {
-      "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "title": "Have the partners in your business been involved with any other aggregates businesses in the last 24 months?",
       "fields": [
         {
           "id": "otherBusinessPart",
           "type": "choice",
-          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
-          "helpText": "As a partnership, select whether partners have been involved with any other aggregates businesses",
+          "label": "Have the partners in your business been involved with any other aggregates businesses in the last 24 months?",
+          "helpText": "",
           "format": "yesno"
         }
       ]
@@ -718,6 +719,29 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Registration numbers of the other businesses",
+      "includeIf": "${otherBusiness=0}",
+      "description": "Enter the aggregates levy registration number of each business that your business's partners have been involved with. ",
+      "fields": [
+        {
+          "id": "otherRegNopartners",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 7,
+          "repeatLabel": "Registration number of business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNo1LtdCo",
+              "type": "text",
+              "label": "Registration number",
+              "format": "text"
+            }
+          ]
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -741,7 +765,7 @@
         "id": "legalStatusDec",
         "type": "choice",
         "label": "Select the status relevant to you",
-        "helpText": "For corporate bodies, a director or company secretary must complete this declaration.",
+        "helpText": "For limited companies, a director or company secretary must complete this declaration.",
         "choices": [
           "Sole trader",
           "Partner",
