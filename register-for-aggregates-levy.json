@@ -215,8 +215,10 @@
           "label": "How many UK aggregates sites do you operate?",
           "shortName": "Number of aggregate sites",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
+          "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${noofSites>0 && nooFSites<=100}"
+          "validIf": "${noofSites > 0 && noofSites <= 100}",
+          "errorMessage": "You must enter a number between 1 and 100"
         }
       ]
     },
@@ -765,7 +767,7 @@
         "id": "legalStatusDec",
         "type": "choice",
         "label": "Select the status relevant to you",
-        "helpText": "For limited companies, a director or company secretary must complete this declaration.",
+        "helpText": "For limited companies, a director or company secretary must complete this declaration",
         "choices": [
           "Sole trader",
           "Partner",
