@@ -23,7 +23,7 @@
           "id": "legalStatus",
           "type": "choice",
           "label": "Which of these best describes your business?",
-          "shortName": "Business description",
+          "shortName": "Business type",
           "choices": [
             "Limited company",
             "Sole trader",
@@ -83,12 +83,14 @@
     },
     {
       "title": "Does your business have a trading name?",
+      "shortName": "Trading name",
       "includeIf": "${legalStatus=1}",
       "fields": [
         {
           "id": "busTradingnameST",
           "type": "choice",
           "label": "Does your business have a trading name?",
+          "shortName": "Does business have a trading name",
           "choices": [
             "Yes",
             "No"
@@ -329,7 +331,7 @@
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your business's total sales are from importing aggregates?",
-          "shortName": "Percentage of total sales from importing",
+          "shortName": "Percentage of total sales from importing aggregates",
           "helpText": "Enter your current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
@@ -338,7 +340,7 @@
     },
     {
       "title": "What percentage of your business's total sales are from aggregates extraction activities?",
-      "shortName": "Extraction activities",
+      "shortName": "Aggregates extraction activities",
       "description": "Enter your business's current or estimated percentage of total sales from each activity.\n\nEnter 0 if your business is not involved in an activity.\n",
       "fields": [
         {
@@ -407,19 +409,20 @@
     },
     {
       "title": "What date did your business first commercially exploit aggregates?",
+      "shortName": "Commercial exploitation of aggregates",
       "fields": [
         {
           "id": "aggregatesDate",
           "type": "date",
           "label": "What date did your business first commercially exploit aggregates?",
-          "shortName": "Date of first commercial exploitatation of aggregates",
+          "shortName": "Date busines first commercially exploited aggregates",
           "helpText": "Enter the date your business first commercially exploited aggregates or formed the intention to. For example 21 4 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
           "label": "What is commercially exploiting aggregates?",
-          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n* subject to an agreement to supply (such as a contract)\n\n* used for construction purposes \n\n* mixed with anything other than water, except in permitted circumstances \n\n* removed from its originating site or a connected site that is registered under the same name \n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.",
+          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n* removed from its originating site or a connected site that is registered under the same name \n\n\n* subject to an agreement to supply (such as a contract)\n\n\n* used for construction purposes \n\n\n* mixed with anything other than water, except in permitted circumstances \n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.",
           "infoType": "long"
         }
       ]
@@ -432,7 +435,7 @@
           "id": "aggregatesLevy",
           "type": "text",
           "label": "Estimate how much aggregates levy you'll pay in the next 12 months ",
-          "shortName": "Aggregates levy payment estimate for 12 months",
+          "shortName": "Estimate of aggregates levy payment for next 12 months",
           "helpText": "Multiply the number of tonnes of aggregates you think you'll commercially exploit by the rate of aggregates levy",
           "format": "sterling"
         },
@@ -447,13 +450,13 @@
     },
     {
       "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
-      "shortName": "Commercial activities exempt or relieved from the levy",
+      "shortName": "Activities exempt or relieved from the levy",
       "fields": [
         {
           "id": "exemptChoice",
           "type": "choice",
           "label": "",
-          "shortName": "Will any of your commercial activitity be exempt or relieved",
+          "shortName": "Will any of your commercial activitity be exempt or relieved from the levy",
           "format": "yesno"
         },
         {
@@ -467,7 +470,7 @@
     },
     {
       "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
-      "shortName": "Estimate amount of exempt, relieved or exported supplies for next 12 months",
+      "shortName": "Estimate of exempt, relieved or exported supplies for next 12 months",
       "includeIf": "${exemptChoice=0}",
       "description": "",
       "fields": [
@@ -581,6 +584,7 @@
     },
     {
       "title": "Enter the transfer details",
+      "shortName": "Transfer details",
       "includeIf": "${businessTakeOver=0}",
       "fields": [
         {
@@ -622,7 +626,7 @@
     },
     {
       "title": "Select any that your business is registered with HMRC for",
-      "shortName": "Activities, taxes or duties you are registered with HMRC for",
+      "shortName": "Activities, taxes or duties registered with HMRC",
       "includeIf": "${otheracthmrc = 0}",
       "fields": [
         {
@@ -635,6 +639,7 @@
               "id": "landfillRegNo",
               "type": "text",
               "label": "Enter the landfill tax registration number",
+              "shortName": "Landfill tax registration number",
               "mandatory": "false"
             }
           ]
@@ -649,6 +654,7 @@
               "id": "exciseDutiesRegNo",
               "type": "text",
               "label": "Enter the excise duties registration number",
+              "shortName": "Excise duties registration number",
               "mandatory": "false"
             }
           ]
@@ -657,13 +663,14 @@
     },
     {
       "title": "Select any that your business is approved by HMRC for",
-      "shortName": "Activities, taxes or duties you are approved by HMRC for",
+      "shortName": "Activities, taxes or duties approved by HMRC",
       "includeIf": "${otheracthmrc = 0}",
       "fields": [
         {
           "id": "importExport2",
           "type": "group",
           "label": "Importing or exporting",
+          "shortName": "Importing or exporting",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -678,6 +685,7 @@
           "id": "otherInfo2",
           "type": "group",
           "label": "Other activities",
+          "shortName": "Other activities",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -736,6 +744,7 @@
     },
     {
       "title": "Registration numbers of the other businesses",
+      "shortName": "Registration numbers of other businesses",
       "includeIf": "${otherBusiness=0}",
       "description": "Enter the aggregates levy registration number of each business that your business has been involved with. ",
       "fields": [
@@ -751,6 +760,7 @@
               "id": "regNo1",
               "type": "text",
               "label": "Registration number",
+              "shortName": "Registration number of other business",
               "format": "text"
             }
           ]
@@ -759,6 +769,7 @@
     },
     {
       "title": "Registration numbers of the other businesses",
+      "shortName": "Registration numbers of other businesses",
       "includeIf": "${otherBusinessLtdCompany = 0}",
       "description": "Enter the aggregates levy registration number of each business that your business directors have been involved with. ",
       "fields": [
@@ -827,6 +838,7 @@
         "id": "legalStatusDec",
         "type": "choice",
         "label": "Select the status relevant to you",
+        "shortName": "Your status",
         "helpText": "For limited companies, a director or company secretary must complete this declaration",
         "choices": [
           "Director",
