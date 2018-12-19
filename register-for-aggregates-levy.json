@@ -44,6 +44,7 @@
           "id": "businessName",
           "type": "text",
           "label": "What is your business name?",
+          "shortName": "Business name",
           "format": "text"
         }
       ]
@@ -57,18 +58,21 @@
           "id": "titleSole",
           "type": "text",
           "label": "What is your full name?",
+          "shortName": "Full name",
           "format": "text"
         }
       ]
     },
     {
       "title": "Does your business trade under a different name?",
+      "shortName": "Trading name ",
       "includeIf": "${!legalStatus = 1} ",
       "fields": [
         {
           "id": "busTradingname",
           "type": "choice",
           "label": "Does your business trade under a different name?",
+          "shortName": "Does business have a trading name",
           "choices": [
             "Yes",
             "No"
@@ -93,36 +97,42 @@
     },
     {
       "title": "What is the trading name?",
+      "shortName": "Trading name details",
       "includeIf": "${busTradingname=0 || busTradingnameST=0} ",
       "fields": [
         {
           "id": "busTradingnameEnter",
           "type": "text",
           "label": "What is the trading name?",
+          "shortName": "Trading name",
           "format": "text(0, 9)",
-          "errorMessage": ""
+          "errorMessage": "Trading name must be entered"
         }
       ]
     },
     {
       "title": "Is your business registered for VAT?",
+      "shortName": "VAT registration",
       "fields": [
         {
           "id": "choiceVat",
           "type": "choice",
           "label": "Is your business registered for VAT?",
+          "shortName": "Is business VAT registered",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "What is the VAT registration number?",
+      "shortName": "VAT registration details",
       "includeIf": "${choiceVat=0}",
       "fields": [
         {
           "id": "vatRegNo",
           "type": "text",
           "label": "What is the VAT registration number?\n",
+          "shortName": "VAT registration number",
           "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
           "format": "text(0, 9)"
         }
@@ -130,6 +140,7 @@
     },
     {
       "title": "Enter your business's incorporation details",
+      "shortName": "Incorporation details",
       "includeIf": "${legalStatus=0}",
       "description": "You can find these on the certificate of incorporation you received when you registered your business as a limited company with Companies House. ",
       "fields": [
@@ -173,6 +184,7 @@
           "id": "altAdd",
           "type": "choice",
           "label": "Are these the contact details you want HMRC to use if we need to discuss your aggregates levy information?",
+          "shortName": "Add preferred contact details",
           "format": "yesno"
         }
       ]
@@ -210,12 +222,13 @@
     },
     {
       "title": "How many UK aggregates sites do you operate?",
+      "shortName": "Aggregates sites",
       "fields": [
         {
           "id": "noofSites",
           "type": "text",
           "label": "How many UK aggregates sites do you operate?",
-          "shortName": "Number of aggregate sites",
+          "shortName": "Number of a sites",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
@@ -341,7 +354,7 @@
         {
           "id": "otherChoice",
           "type": "choice",
-          "label": "Is your business involved in, or planning to be involved in any other aggregates business activities (for example .......)? ",
+          "label": "Is your business involved in, or planning to be involved in any other aggregates business activities? ",
           "format": "yesno"
         }
       ]
@@ -517,14 +530,12 @@
           "id": "softwareName",
           "type": "text",
           "label": "Software name",
-          "helpText": "For example, ..........",
           "format": "text"
         },
         {
           "id": "softwareVersion",
           "type": "text",
           "label": "Software version",
-          "helpText": "For example, .........",
           "format": "text",
           "displayWidth": "l"
         }
