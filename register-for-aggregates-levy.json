@@ -125,7 +125,7 @@
     },
     {
       "title": "What is the VAT registration number?",
-      "shortName": "VAT registration details",
+      "shortName": "VAT details",
       "includeIf": "${choiceVat=0}",
       "fields": [
         {
@@ -228,7 +228,7 @@
           "id": "noofSites",
           "type": "text",
           "label": "How many UK aggregates sites do you operate?",
-          "shortName": "Number of a sites",
+          "shortName": "Number of sites",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
@@ -239,6 +239,7 @@
     },
     {
       "title": "Details for aggregates site $n",
+      "shortName": "Site $n details",
       "description": "Enter the details for your aggregates site.",
       "repeatsMin": "${noofSites}",
       "repeatsMax": "${noofSites}",
@@ -275,6 +276,7 @@
           "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh aggregates at this site?",
+          "shortName": "Do you use a weighbridge",
           "choices": [
             "Yes",
             "No"
@@ -288,6 +290,7 @@
           "id": "existingSite",
           "type": "choice",
           "label": "Have you taken over this site from another operator?",
+          "shortName": "Have you taken over this site",
           "choices": [
             "Yes",
             "No"
@@ -301,6 +304,7 @@
           "id": "existingBusinessName",
           "type": "text",
           "label": "Business name of previous site operator (if applicable)",
+          "shortName": "Business name of previous operator",
           "helpText": "If you have taken over this site from another operator, enter their business name",
           "mandatory": "false"
         },
@@ -308,6 +312,7 @@
           "id": "alRegNoExist",
           "type": "text",
           "label": "Aggregates levy registration number of previous site operator (if applicable)",
+          "shortName": "Registration number of previous operator",
           "helpText": "If you have taken over this site from another operator, enter their registration number ",
           "mandatory": "false"
         }
@@ -315,11 +320,13 @@
     },
     {
       "title": "What percentage of your business's total sales are from importing aggregates? ",
+      "shortName": "Importing aggregates",
       "fields": [
         {
           "id": "importPercentage",
           "type": "text",
           "label": "What percentage of your business's total sales are from importing aggregates?",
+          "shortName": "Percentage of total sales from importing",
           "helpText": "Enter your current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
@@ -328,6 +335,7 @@
     },
     {
       "title": "What percentage of your business's total sales are from aggregates extraction activities?",
+      "shortName": "Extraction activities",
       "description": "Enter your business's current or estimated percentage of total sales from each activity.\n\nEnter 0 if your business is not involved in an activity.\n",
       "fields": [
         {
