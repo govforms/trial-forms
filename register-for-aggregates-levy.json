@@ -73,6 +73,7 @@
           "type": "choice",
           "label": "Does your business trade under a different name?",
           "shortName": "Does business have a trading name",
+          "errorMessage": "Select whether your business has a trading name",
           "choices": [
             "Yes",
             "No"
@@ -119,7 +120,8 @@
           "type": "choice",
           "label": "Is your business registered for VAT?",
           "shortName": "Is business VAT registered",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether your business is VAT registered"
         }
       ]
     },
@@ -184,8 +186,9 @@
           "id": "altAdd",
           "type": "choice",
           "label": "Are these the contact details you want HMRC to use if we need to discuss your aggregates levy information?",
-          "shortName": "Add preferred contact details",
-          "format": "yesno"
+          "shortName": "Use as preferred contact details",
+          "format": "yesno",
+          "errorMessage": "Select if you want HMRC to use these as your preferred contact details"
         }
       ]
     },
@@ -198,7 +201,7 @@
           "id": "name",
           "type": "text",
           "label": "Full name",
-          "helpText": "Enter the name of the contact person",
+          "helpText": "Enter the full name of the contact person",
           "format": "text"
         },
         {
@@ -356,6 +359,7 @@
           "id": "crusherPercentage",
           "type": "text",
           "label": "Percentage of total sales from using a mobile crusher to extract aggregates",
+          "shortName": "Percentage of total sales from mobile crusher extraction",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
         },
@@ -363,12 +367,14 @@
           "id": "otherChoice",
           "type": "choice",
           "label": "Is your business involved in, or planning to be involved in any other aggregates business activities? ",
+          "shortName": "Involvement in other aggregates activities",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "Tell us about the other aggregates business activities",
+      "shortName": "Other aggregates business activities",
       "includeIf": "${otherChoice=0}",
       "description": "Provide details about each aggregates activity your business is, or plans to be involved in.",
       "fields": [
@@ -384,13 +390,14 @@
             {
               "id": "otherName",
               "type": "text",
-              "label": "Description of aggregates business activity",
+              "label": "Description of other aggregates activity",
               "format": "text(0, 40)"
             },
             {
               "id": "OtherPercentage",
               "type": "text",
               "label": "Percentage of your total sales from this activity",
+              "shortName": "Percentage of total sales from activity",
               "helpText": "Enter your business's current or estimated percentage of total sales from this activity",
               "format": "number(9, 2, '%')"
             }
@@ -405,6 +412,7 @@
           "id": "aggregatesDate",
           "type": "date",
           "label": "What date did your business first commercially exploit aggregates?",
+          "shortName": "Date of first commercial exploitatation of aggregates",
           "helpText": "Enter the date your business first commercially exploited aggregates or formed the intention to. For example 21 4 2018"
         },
         {
@@ -418,11 +426,13 @@
     },
     {
       "title": "Estimate how much aggregates levy you'll pay in the next 12 months ",
+      "shortName": "Aggregates levy estimate ",
       "fields": [
         {
           "id": "aggregatesLevy",
           "type": "text",
-          "label": "Estimate how much aggregates levy you'll pay in the next 12 months \n",
+          "label": "Estimate how much aggregates levy you'll pay in the next 12 months ",
+          "shortName": "Aggregates levy payment estimate for 12 months",
           "helpText": "Multiply the number of tonnes of aggregates you think you'll commercially exploit by the rate of aggregates levy",
           "format": "sterling"
         },
@@ -437,11 +447,13 @@
     },
     {
       "title": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
+      "shortName": "Commercial activities exempt or relieved from the levy",
       "fields": [
         {
           "id": "exemptChoice",
           "type": "choice",
           "label": "",
+          "shortName": "Will any of your commercial activitity be exempt or relieved",
           "format": "yesno"
         },
         {
@@ -455,6 +467,7 @@
     },
     {
       "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
+      "shortName": "Estimate amount of exempt, relieved or exported supplies for next 12 months",
       "includeIf": "${exemptChoice=0}",
       "description": "",
       "fields": [
@@ -521,17 +534,20 @@
     },
     {
       "title": "Will you be using accounting software to complete your return accounts?",
+      "shortName": "Accounting software ",
       "fields": [
         {
           "id": "compSysChoice",
           "type": "choice",
           "label": "",
+          "shortName": "Use of accounting software",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "Enter your accounting software details",
+      "shortName": "Accounting software details",
       "includeIf": "${compSysChoice=0}",
       "fields": [
         {
@@ -551,11 +567,13 @@
     },
     {
       "title": "Have you taken over an aggregates business or changed the legal status of your business?",
+      "shortName": "Aggregates business takeover or change of legal status",
       "fields": [
         {
           "id": "businessTakeOver",
           "type": "choice",
           "label": "",
+          "shortName": "Taken over aggregates business or changed business's legal status",
           "helpText": "Select whether you have taken over an aggregates business or changed your business's legal status (for example from a sole trader to a limited company)",
           "format": "yesno"
         }
@@ -569,6 +587,7 @@
           "id": "transferDate",
           "type": "date",
           "label": "What date did the transfer take place?",
+          "shortName": "Date of transfer",
           "helpText": "For example, 21 8 2018"
         },
         {
@@ -586,12 +605,14 @@
       ]
     },
     {
-      "title": "Is your business involved in any other activities that are registered or approved by HMRC?\n\n",
+      "title": "Is your business involved in any other activities that are registered or approved by HMRC?\n",
+      "shortName": "Other activities linked to HMRC",
       "fields": [
         {
           "id": "otheracthmrc",
           "type": "choice",
           "label": "Is your business involved in any other activities that are registered or approved by HMRC?",
+          "shortName": "Involvement in other activities registered or approved by HMRC",
           "choices": [
             "Yes",
             "No"
@@ -601,6 +622,7 @@
     },
     {
       "title": "Select any that your business is registered with HMRC for",
+      "shortName": "Activities, taxes or duties you are registered with HMRC for",
       "includeIf": "${otheracthmrc = 0}",
       "fields": [
         {
@@ -635,6 +657,7 @@
     },
     {
       "title": "Select any that your business is approved by HMRC for",
+      "shortName": "Activities, taxes or duties you are approved by HMRC for",
       "includeIf": "${otheracthmrc = 0}",
       "fields": [
         {
@@ -670,24 +693,28 @@
     },
     {
       "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "shortName": "Other aggregates businesses",
       "includeIf": "${(legalStatus = 1 || legalStatus = 3) || (legalStatus = 4 || legalStatus = 5)}",
       "fields": [
         {
           "id": "otherBusiness",
           "type": "choice",
           "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+          "shortName": "Involvement with other aggregates businesses in last 24 months",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "Have the partners in your business been involved with any other aggregates businesses in the last 24 months?",
+      "shortName": "Other aggregates businesses",
       "includeIf": "${legalStatus=2}",
       "fields": [
         {
           "id": "otherBusinessPart",
           "type": "choice",
           "label": "Have the partners in your business been involved with any other aggregates businesses in the last 24 months?",
+          "shortName": "Involvement with other aggregates businesses in last 24 months",
           "helpText": "",
           "format": "yesno"
         }
@@ -695,12 +722,14 @@
     },
     {
       "title": "Have the directors of your business been involved with any other aggregates businesses in the last 24 months?",
+      "shortName": "Other aggregates businesses",
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
           "id": "otherBusinessLtdCompany",
           "type": "choice",
           "label": "Have the directors of your business been involved with any other aggregates businesses in the last 24 months?",
+          "shortName": "Involvement with other aggregates businesses in last 24 months",
           "format": "yesno"
         }
       ]
@@ -745,6 +774,7 @@
               "id": "regNo1LtdCo",
               "type": "text",
               "label": "Registration number",
+              "shortName": "Registration number of other business",
               "format": "text"
             }
           ]
@@ -768,6 +798,7 @@
               "id": "regNo1LtdCo",
               "type": "text",
               "label": "Registration number",
+              "shortName": "Registration number of other business",
               "format": "text"
             }
           ]
