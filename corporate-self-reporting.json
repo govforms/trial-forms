@@ -1,6 +1,6 @@
 {
   "_id": "corporate-self-reporting",
-  "formName": "Corporate self reporting",
+  "formName": "Tell HMRC about a company failing to stop people evading tax",
   "description": "",
   "formCategory": "hmrcReturnForm",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -104,14 +104,14 @@
       ]
     },
     {
-      "title": "Enter the organisation details",
+      "title": "Enter the company details",
       "includeIf": "${CompanyType=0 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
           "id": "legalNameUKUK",
           "type": "text",
-          "label": "Organisation name",
-          "helpText": "Enter the name as it is registered at Companies House",
+          "label": "Company name",
+          "helpText": "Enter the legal name, as it is registered at Companies House",
           "mandatory": "true"
         },
         {
@@ -233,7 +233,7 @@
         {
           "id": "legalNameUKPartNotUK",
           "type": "text",
-          "label": "Legal or Registered name",
+          "label": "Legal or registered name",
           "helpText": "Enter the name as officially registered in the country of formation",
           "mandatory": "true"
         },
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "title": "Estimate when the facilitation ended",
+      "title": "Estimate the date when the facilitation ended",
       "includeIf": "${facilitationOngoing=1}",
       "fields": [
         {
@@ -415,12 +415,12 @@
       ]
     },
     {
-      "title": "Has the organisation previously self-reported a failure to prevent the facilitation of tax evasion?",
+      "title": "Has the company previously reported a failure to stop tax evasion?",
       "fields": [
         {
           "id": "selfReportedFailure",
           "type": "choice",
-          "label": "Has the organisation previously self-reported a failure to prevent the facilitation of tax evasion?",
+          "label": "Has the company previously reported a failure to stop tax evasion?",
           "choices": [
             "Yes",
             "No",
@@ -430,13 +430,13 @@
       ]
     },
     {
-      "title": "Provide the reference numbers for any previous reports ",
+      "title": "Provide the reference numbers for all previous reports ",
       "includeIf": "${selfReportedFailure=0}",
       "fields": [
         {
           "id": "summariseHowTaxing",
           "type": "text",
-          "label": "Provide the reference numbers for any previous reports",
+          "label": "Provide the reference numbers for all previous reports ",
           "helpText": "Enter the reference number (if you have this)",
           "mandatory": "true"
         }
@@ -448,7 +448,7 @@
         {
           "id": "madeOtherReports",
           "type": "choice",
-          "label": "Have you made any other reports about this incident, such as a Suspicious Activity Report? ",
+          "label": "Have you made any other reports about this incident to other agencies, such as a Suspicious Activity Report? ",
           "choices": [
             "Yes",
             "No",
@@ -477,12 +477,12 @@
       ]
     },
     {
-      "title": "Is the organisation you are reporting overseen by a regulator, supervisor or licensing authority?",
+      "title": "Is the company you are reporting overseen by a regulator, supervisor or licensing authority?",
       "fields": [
         {
           "id": "overseenByARegulator",
           "type": "choice",
-          "label": "Is the organisation you are reporting overseen by a regulator, supervisor or licensing authority?",
+          "label": "Is the company you are reporting overseen by a regulator, supervisor or licensing authority?",
           "choices": [
             "Yes",
             "No",
@@ -494,28 +494,29 @@
     {
       "title": "Provide details of the other authorities",
       "includeIf": "${overseenByARegulator=0}",
+      "description": "Enter the details for each authority.",
       "fields": [
         {
           "id": "nameOfAuthority",
           "type": "text",
-          "label": "Name of the authority",
+          "label": "Name of authority",
           "mandatory": "true"
         },
         {
           "id": "countryOfAuthority",
           "type": "text",
-          "label": "Country of the authority",
+          "label": "Country of authority",
           "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Does the organisation you are reporting have procedures in place designed to prevent the facilitation of tax evasion?",
+      "title": "Does the company you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
       "fields": [
         {
           "id": "preventionProcYesNo",
           "type": "choice",
-          "label": "Does the organisation you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
+          "label": "Does the company you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
           "format": "yesno"
         }
       ]
@@ -527,8 +528,9 @@
         {
           "id": "partOfPrevention",
           "type": "choice",
-          "multivalue": "yes",
+          "label": "Which of the following are part of the prevention procedures?",
           "helpText": "Select one or more options",
+          "multivalue": "yes",
           "choices": [
             "Risk assessment",
             "Proportionality of risk-based prevention procedures ",
@@ -536,19 +538,18 @@
             "Due diligence",
             "Communication and training",
             "Monitoring and review"
-          ],
-          "label": "Which of the following are part of the prevention procedures?"
+          ]
         }
       ]
     },
     {
-      "title": "Prevention procedures",
+      "title": "Briefly describe why no prevention procedures are in place",
       "includeIf": "${preventionProcYesNo=1}",
       "fields": [
         {
           "id": "whyNotPrevention",
           "type": "text",
-          "label": "Briefly describe why not",
+          "label": "Briefly describe why no prevention procedures are in place",
           "mandatory": "true",
           "multiline": "true"
         }
@@ -557,7 +558,7 @@
     {
       "title": "Confirm that you are authorised to make this report",
       "shortName": "",
-      "description": "You must confirm that the organisation has authorised you to make this report.",
+      "description": "You must confirm that the company has authorised you to make this report.",
       "fields": [
         {
           "id": "declaration",
@@ -667,7 +668,7 @@
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies. \n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures."
+        "infoText": "HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies.\n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures."
       }
     ]
   },
