@@ -36,7 +36,7 @@
     {
       "title": "What is your business name?",
       "shortName": "Business details",
-      "includeIf": "${legalStatus=0}",
+      "includeIf": "${!legalStatus=1}",
       "fields": [
         {
           "id": "businessName",
@@ -61,7 +61,7 @@
     },
     {
       "title": "Does your business trade under a different name?",
-      "includeIf": "${legalStatus != 1} ",
+      "includeIf": "${!legalStatus = 1} ",
       "fields": [
         {
           "id": "busTradingname",
@@ -79,7 +79,7 @@
       "includeIf": "${legalStatus=1}",
       "fields": [
         {
-          "id": "busTradingnamest",
+          "id": "busTradingnameST",
           "type": "choice",
           "label": "Does your business have a trading name?",
           "choices": [
@@ -91,7 +91,7 @@
     },
     {
       "title": "What is the trading name?",
-      "includeIf": "${busTradingname=0 || busTradingnamest=0} ",
+      "includeIf": "${busTradingname=0 || busTradingnameST=0} ",
       "fields": [
         {
           "id": "busTradingnameEnter",
@@ -355,6 +355,8 @@
           "label": "",
           "format": "horizontal",
           "repeatsMax": 4,
+          "repeatLabel": "Business activity $n",
+          "repeatAddAnotherText": "Add another business activity",
           "fields": [
             {
               "id": "otherName",
@@ -386,7 +388,7 @@
           "id": "infoDate",
           "type": "info",
           "label": "What is commercially exploiting aggregates?",
-          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n* subject to an agreement to supply (such as a contract)\n\n* used for construction purposes \n\n* mixed with anything other than water, except in permitted circumstances \n\n*removed from its originating site or a connected site that is registered under the same name \n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.",
+          "infoText": "Aggregate is considered as being commercially exploited when it is exploited for the benefit of business. For example when it is:\n\n* subject to an agreement to supply (such as a contract)\n\n* used for construction purposes \n\n* mixed with anything other than water, except in permitted circumstances \n\n* removed from its originating site or a connected site that is registered under the same name \n\nYou become liable to register for aggregates  levy when you first commercially exploit aggregates or form the intention to.\n\nFull details are given in Excise Notice AGL1.",
           "infoType": "long"
         }
       ]
@@ -636,7 +638,8 @@
               "id": "otherDetails",
               "type": "text",
               "label": "Give details",
-              "mandatory": "false"
+              "mandatory": "false",
+              "multiline": "true"
             }
           ]
         }
@@ -644,6 +647,7 @@
     },
     {
       "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "includeIf": "${(legalStatus = 1 || legalStatus = 3) || (legalStatus = 4 || legalStatus = 5)}",
       "fields": [
         {
           "id": "otherBusiness",
@@ -655,6 +659,7 @@
     },
     {
       "title": "Have the partners in your business been involved with any other aggregates businesses in the last 24 months?",
+      "includeIf": "${legalStatus=2}",
       "fields": [
         {
           "id": "otherBusinessPart",
@@ -667,6 +672,7 @@
     },
     {
       "title": "Have the directors of your business been involved with any other aggregates businesses in the last 24 months?",
+      "includeIf": "${legalStatus=0}",
       "fields": [
         {
           "id": "otherBusinessLtdCompany",
@@ -701,7 +707,7 @@
     },
     {
       "title": "Registration numbers of the other businesses",
-      "includeIf": "${otherBusiness=0}",
+      "includeIf": "${otherBusinessLtdCompany = 0}",
       "description": "Enter the aggregates levy registration number of each business that your business directors have been involved with. ",
       "fields": [
         {
@@ -724,7 +730,7 @@
     },
     {
       "title": "Registration numbers of the other businesses",
-      "includeIf": "${otherBusiness=0}",
+      "includeIf": "${otherBusinessPart=0}",
       "description": "Enter the aggregates levy registration number of each business that your business's partners have been involved with. ",
       "fields": [
         {
