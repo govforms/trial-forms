@@ -607,7 +607,7 @@
       ]
     },
     {
-      "title": "Select any that your business is approved with HMRC for",
+      "title": "Select any that your business is approved by HMRC for",
       "fields": [
         {
           "id": "importExport2",
@@ -645,23 +645,46 @@
         {
           "id": "otherBusiness",
           "type": "choice",
-          "label": "",
+          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Registration numbers of other businesses",
+      "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "fields": [
+        {
+          "id": "otherBusinessPart",
+          "type": "choice",
+          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+          "helpText": "As a partnership, select whether partners have been involved with any other aggregates businesses",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Have the directors of your business been involved with any other aggregates businesses in the last 24 months?",
+      "fields": [
+        {
+          "id": "otherBusinessLtdCompany",
+          "type": "choice",
+          "label": "Have the directors of your business been involved with any other aggregates businesses in the last 24 months?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Registration numbers of the other businesses",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the aggregates levy registration number of each aggregates business your business has been involved with. As a partnership this means any business that partners have been involved in.",
+      "description": "Enter the aggregates levy registration number of each business that your business has been involved with. ",
       "fields": [
         {
           "id": "otherRegNo",
           "type": "group",
           "label": "",
           "repeatsMax": 7,
-          "repeatLabel": "Registration number $n",
-          "repeatAddAnotherText": "Add another registration number",
+          "repeatLabel": "Registration number of business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
               "id": "regNo1",
@@ -674,20 +697,20 @@
       ]
     },
     {
-      "title": "Registration numbers of other businesses",
+      "title": "Registration numbers of the other businesses",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the aggregates levy registration number of each aggregates business you are or have been involved in. ",
+      "description": "Enter the aggregates levy registration number of each business that your business directors have been involved with. ",
       "fields": [
         {
-          "id": "otherRegNo",
+          "id": "otherRegNoLtdCo",
           "type": "group",
           "label": "",
           "repeatsMax": 7,
-          "repeatLabel": "Registration number $n",
-          "repeatAddAnotherText": "Add another registration number",
+          "repeatLabel": "Registration number of business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
-              "id": "partregNo1",
+              "id": "regNo1LtdCo",
               "type": "text",
               "label": "Registration number",
               "format": "text"
@@ -757,7 +780,7 @@
         "id": "ackPageInfoBottom",
         "type": "info",
         "label": "",
-        "infoText": "Remember that you must: \n* tell us if any of the information given in this application changes \n* fill in and send form(s) 'AL1A, Aggregates Levy: notify site details' with this form – we need both forms to register you",
+        "infoText": "You must check the Guidance page for this service on GOV.UK to see whether you need to fill in and send any additional forms to complete your registration (for example if you are a partnership you must also filll in and send form AL2) if you haven't already done so.\n\nHMRC will send you a letter to confirm your registration details and return date so you can prepare your first aggregates levy return. The standard aggregates levy return period is 3 monthly and set to start from the second calendar month after your month of your registration. If you would like to apply for non-standard periods or monthly returns you will need to contact [email address for relevant team].\n\nYou will also need to contact [relevant team] if you do not use a weighbridge at any of your aggregates sites, to agree an alternative weighing method.",
         "infoType": "noformat"
       }
     ]
