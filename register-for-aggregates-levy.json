@@ -1,5 +1,4 @@
 {
-  "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
   "developmentPhase": "beta",
@@ -70,11 +69,8 @@
           "type": "choice",
           "label": "",
           "shortName": "Does business have a trading name",
-          "errorMessage": "Select whether your business has a trading name",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "format": "yesno",
+          "errorMessage": "Select whether your business has a trading name"
         }
       ]
     },
@@ -88,11 +84,8 @@
           "type": "choice",
           "label": "",
           "shortName": "Does business have a trading name",
-          "errorMessage": "Select whether your business has a trading name",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "format": "yesno",
+          "errorMessage": "Select whether your business has a trading name"
         }
       ]
     },
@@ -134,7 +127,7 @@
           "label": "",
           "shortName": "VAT registration number",
           "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
-          "format": "ukVrn"
+          "format": "text(9, 11)"
         }
       ]
     },
@@ -147,15 +140,16 @@
         {
           "id": "certNo",
           "type": "text",
-          "label": "Company number",
+          "label": "Company registration number",
           "helpText": "This is 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
-          "format": "text"
+          "format": "text(8,8)"
         },
         {
           "id": "incorpDate",
           "type": "date",
           "label": "Date of incorporation",
-          "helpText": "For example, 19 4 2018"
+          "helpText": "For example, 19 4 2018",
+          "format": "before today +1"
         }
       ]
     },
@@ -226,15 +220,15 @@
       "shortName": "Aggregates sites",
       "fields": [
         {
-          "id": "noofSites",
+          "id": "noOfSites",
           "type": "text",
-          "label": "How many UK aggregates sites do you operate?",
+          "label": "",
           "shortName": "Number of sites",
           "helpText": "You must tell us about all the sites you operate or plan to operate",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${noofSites > 0 && noofSites <= 100}",
-          "errorMessage": "You must enter a number between 1 and 100"
+          "validIf": "${noOfSites > 0 && noOfSites <= 100}",
+          "errorMessage": "You must enter a number between 1 and 100, if you have more than 100 sites refer to the guidance for this service on GOV.UK"
         }
       ]
     },
@@ -242,13 +236,25 @@
       "title": "Details for aggregates site $n",
       "shortName": "Site $n details",
       "description": "Enter the details for your aggregates site.",
-      "repeatsMin": "${noofSites}",
-      "repeatsMax": "${noofSites}",
+      "repeatsMin": "${noOfSites}",
+      "repeatsMax": "${noOfSites}",
       "fields": [
+        {
+          "id": "siteName",
+          "type": "text",
+          "label": "Trading name of site"
+        },
         {
           "id": "siteAdd",
           "type": "address",
           "label": "Site address"
+        },
+        {
+          "id": "gridref",
+          "type": "text",
+          "label": "Site grid reference ",
+          "helpText": "Enter the Ordnance Survey grid reference of the entrance to the site. For example, TQ 336805",
+          "displayWidth": "s"
         },
         {
           "id": "sitePhone",
@@ -263,60 +269,43 @@
           "format": "email"
         },
         {
-          "id": "siteName",
-          "type": "text",
-          "label": "Trading name of site"
-        },
-        {
-          "id": "gridref",
-          "type": "text",
-          "label": "Site grid reference ",
-          "helpText": "Enter the Ordnance Survey grid reference of the entrance to the site. For example, TQ 336805"
-        },
-        {
           "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh aggregates at this site?",
           "shortName": "Do you use a weighbridge",
+          "format": "yesno",
           "errorMessage": "You must select whether you use a weighbridge",
-          "choices": [
-            "Yes",
-            "No"
-          ],
           "optionHelpText": [
             "",
-            "You will need to contact HMRC to agree an alternative method for weighing aggregates after completing this registration "
+            "You will need to contact HMRC to agree an alternative method for weighing aggregates. Contact details will be provided after completing this registration. "
           ]
         },
         {
-          "id": "existingSite",
-          "type": "choice",
-          "label": "Have you taken over this site from another operator?",
-          "shortName": "Have you taken over this site",
-          "errorMessage": "You must select whether you have taken over this site from another operator",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "Provide details below about the previous operator",
-            ""
-          ]
+          "id": "takenOverInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "##Previous site operator details",
+          "infoType": "noformat"
+        },
+        {
+          "id": "previousOwnerINfo",
+          "type": "info",
+          "label": "",
+          "infoText": "You only need to provide the following details if you have recently taken over this site from another operator.",
+          "infoType": "standard"
         },
         {
           "id": "existingBusinessName",
           "type": "text",
-          "label": "Business name of previous site operator (if applicable)",
-          "shortName": "Business name of previous operator",
-          "helpText": "If you have taken over this site from another operator, enter their business name",
+          "label": "Business name of previous site operator",
+          "shortName": "Business name of previous operator ",
           "mandatory": "false"
         },
         {
           "id": "alRegNoExist",
           "type": "text",
-          "label": "Aggregates levy registration number of previous site operator (if applicable)",
+          "label": "Aggregates levy registration number of previous site operator",
           "shortName": "Registration number of previous operator",
-          "helpText": "If you have taken over this site from another operator, enter their registration number ",
           "mandatory": "false"
         }
       ]
@@ -324,13 +313,14 @@
     {
       "title": "What percentage of your business's total sales are from importing aggregates? ",
       "shortName": "Importing aggregates",
+      "description": "Enter your estimated percentage of total sales from importing aggregates.",
       "fields": [
         {
           "id": "importPercentage",
           "type": "text",
-          "label": "What percentage of your business's total sales are from importing aggregates?",
+          "label": "",
           "shortName": "Percentage of total sales from importing aggregates",
-          "helpText": "Enter your current or estimated percentage of total sales from importing aggregates. Enter 0 if your business is not involved in this activity",
+          "helpText": "Enter 0 if your business is not involved in this activity",
           "format": "number(9, 2, '%')",
           "displayWidth": "xs"
         }
@@ -339,8 +329,15 @@
     {
       "title": "What percentage of your business's total sales are from aggregates extraction activities?",
       "shortName": "Aggregates extraction activities",
-      "description": "Enter your business's current or estimated percentage of total sales from each activity.\n\nEnter 0 if your business is not involved in an activity.\n",
+      "description": "Enter your business's current or estimated percentage of total sales from each activity listed below.\n",
       "fields": [
+        {
+          "id": "percentAggregateInfoExtract",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter 0 if your business is not involved in an activity.",
+          "infoType": "standard"
+        },
         {
           "id": "quarryPercentage",
           "type": "text",
@@ -376,7 +373,6 @@
       "title": "Tell us about the other aggregates business activities",
       "shortName": "Other aggregates business activities",
       "includeIf": "${otherChoice=0}",
-      "description": "Provide details about each aggregates activity your business is, or plans to be involved in.",
       "fields": [
         {
           "id": "alcIngredientsAndQuantities",
@@ -390,7 +386,7 @@
             {
               "id": "otherName",
               "type": "text",
-              "label": "Description of other aggregates activity",
+              "label": "Type of aggregates business activity",
               "format": "text(0, 40)"
             },
             {
@@ -399,7 +395,8 @@
               "label": "Percentage of your total sales from this activity",
               "shortName": "Percentage of total sales from activity",
               "helpText": "Enter your business's current or estimated percentage of total sales from this activity",
-              "format": "number(9, 2, '%')"
+              "format": "positiveNumber(9, 2, '%')",
+              "displayWidth": "xs"
             }
           ]
         }
@@ -412,7 +409,7 @@
         {
           "id": "aggregatesDate",
           "type": "date",
-          "label": "What date did your business first commercially exploit aggregates?",
+          "label": "",
           "shortName": "Date busines first commercially exploited aggregates",
           "helpText": "Enter the date your business first commercially exploited aggregates or formed the intention to. For example 21 4 2018"
         },
@@ -432,7 +429,7 @@
         {
           "id": "aggregatesLevy",
           "type": "text",
-          "label": "Estimate how much Aggregates Levy you'll pay in the next 12 months ",
+          "label": "",
           "shortName": "Estimate of Aggregates Levy payment for next 12 months",
           "helpText": "Multiply the number of tonnes of aggregates you think you'll commercially exploit by the rate of Aggregates Levy",
           "format": "sterling"
@@ -453,7 +450,7 @@
         {
           "id": "exemptChoice",
           "type": "choice",
-          "label": "Do you expect any of your commercial activity to be exempt or relieved from the levy?",
+          "label": "",
           "shortName": "Do you expect any of your commercial activitity be exempt or relieved from the levy",
           "format": "yesno"
         },
@@ -470,14 +467,13 @@
       "title": "Estimate the amount of exempt, relieved or exported supplies you expect to make in the next 12 months ",
       "shortName": "Estimate of exempt, relieved or exported supplies for next 12 months",
       "includeIf": "${exemptChoice=0}",
-      "description": "",
       "fields": [
         {
-          "id": "estimateExempt",
+          "id": "exemptInfo",
           "type": "info",
           "label": "",
           "infoText": "Enter 0 for any option that does not apply to your business.",
-          "infoType": "noformat"
+          "infoType": "standard"
         },
         {
           "id": "exemptLevy",
@@ -520,12 +516,13 @@
           "id": "sortCode",
           "type": "text",
           "label": "Sort code",
-          "format": "ukSortCode"
+          "format": "ukSortCode",
+          "errorMessage": "Each sort code box must contain 2 numbers"
         },
         {
           "id": "rollNumber",
           "type": "text",
-          "label": "Building society roll number (if you have one)",
+          "label": "Building society roll number (optional)",
           "shortName": "Roll number",
           "helpText": "Enter the roll number as shown on your card or on statements from your building society",
           "format": "text",
@@ -540,7 +537,7 @@
         {
           "id": "compSysChoice",
           "type": "choice",
-          "label": "Will you be using accounting software to complete your return accounts?",
+          "label": "",
           "shortName": "Use of accounting software",
           "format": "yesno",
           "errorMessage": "Select whether you will be using accounting software "
@@ -574,7 +571,7 @@
         {
           "id": "businessTakeOver",
           "type": "choice",
-          "label": "Have you taken over an aggregates business or changed the legal status of your business?",
+          "label": "",
           "shortName": "Taken over aggregates business or changed business's legal status",
           "helpText": "Select whether you have taken over an aggregates business or changed your business's legal status (for example from a sole trader to a limited company)",
           "format": "yesno"
@@ -608,26 +605,16 @@
       ]
     },
     {
-      "title": "Is your business involved in any other activities that are registered or approved by HMRC?\n",
-      "shortName": "Other activities linked to HMRC",
+      "title": "Is your business involved in any other activities that are registered or approved by HMRC?",
+      "shortName": "Activities registered with HMRC",
       "fields": [
         {
-          "id": "otheracthmrc",
-          "type": "choice",
-          "label": "Is your business involved in any other activities that are registered or approved by HMRC?",
-          "shortName": "Involvement in other activities registered or approved by HMRC",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Select any that your business is registered with HMRC for",
-      "shortName": "Activities registered with HMRC",
-      "includeIf": "${otheracthmrc = 0}",
-      "fields": [
+          "id": "registeredActivities",
+          "type": "info",
+          "label": "",
+          "infoText": "Select any that apply",
+          "infoType": "standard"
+        },
         {
           "id": "landFillReg",
           "type": "group",
@@ -657,14 +644,7 @@
               "mandatory": "false"
             }
           ]
-        }
-      ]
-    },
-    {
-      "title": "Select any that your business is approved by HMRC for",
-      "shortName": "Activities approved by HMRC",
-      "includeIf": "${otheracthmrc = 0}",
-      "fields": [
+        },
         {
           "id": "importExport2",
           "type": "group",
@@ -695,6 +675,17 @@
               "multiline": "true"
             }
           ]
+        },
+        {
+          "type": "choice",
+          "id": "noneInfo",
+          "label": "",
+          "shortName": "No other business activities",
+          "mandatory": "false",
+          "multivalue": "yes",
+          "choices": [
+            "None of the above"
+          ]
         }
       ]
     },
@@ -706,7 +697,7 @@
         {
           "id": "otherBusiness",
           "type": "choice",
-          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+          "label": "",
           "shortName": "Involvement with other aggregates businesses in last 24 months",
           "format": "yesno"
         }
@@ -720,7 +711,7 @@
         {
           "id": "otherBusinessPart",
           "type": "choice",
-          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+          "label": "",
           "shortName": "Involvement with other aggregates businesses in last 24 months",
           "helpText": "As a partnership, select whether any of the business's partners or directors have been involved with any other aggregates business in the last 24 months",
           "format": "yesno"
@@ -735,7 +726,7 @@
         {
           "id": "otherBusinessLtdCompany",
           "type": "choice",
-          "label": "Has your business been involved in any other aggregates businesses in the last 24 months?",
+          "label": "",
           "shortName": "Involvement with other aggregates businesses in last 24 months",
           "helpText": "As a limited company, select whether any of your directors have been involved in any other aggregates business in the last 24 months",
           "format": "yesno",
@@ -886,5 +877,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "register-for-aggregates-levy"
 }
