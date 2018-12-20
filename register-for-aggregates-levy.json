@@ -2,7 +2,6 @@
   "_id": "register-for-aggregates-levy",
   "formName": "Register for Aggregates Levy",
   "description": "",
-  "formCategory": "hmrcClaimForm",
   "developmentPhase": "beta",
   "emailTemplateId": "al_registration_confirmation",
   "authConfig": {
@@ -22,7 +21,7 @@
         {
           "id": "legalStatus",
           "type": "choice",
-          "label": "Which of these best describes your business?",
+          "label": "",
           "shortName": "Business type",
           "choices": [
             "Limited company",
@@ -43,9 +42,8 @@
         {
           "id": "businessName",
           "type": "text",
-          "label": "What is your business name?",
-          "shortName": "Business name",
-          "format": "text"
+          "label": "",
+          "shortName": "Business name"
         }
       ]
     },
@@ -57,9 +55,8 @@
         {
           "id": "titleSole",
           "type": "text",
-          "label": "What is your full name?",
-          "shortName": "Full name",
-          "format": "text"
+          "label": "",
+          "shortName": "Full name"
         }
       ]
     },
@@ -71,7 +68,7 @@
         {
           "id": "busTradingname",
           "type": "choice",
-          "label": "Does your business trade under a different name?",
+          "label": "",
           "shortName": "Does business have a trading name",
           "errorMessage": "Select whether your business has a trading name",
           "choices": [
@@ -89,8 +86,9 @@
         {
           "id": "busTradingnameST",
           "type": "choice",
-          "label": "Does your business have a trading name?",
+          "label": "",
           "shortName": "Does business have a trading name",
+          "errorMessage": "Select whether your business has a trading name",
           "choices": [
             "Yes",
             "No"
@@ -106,10 +104,8 @@
         {
           "id": "busTradingnameEnter",
           "type": "text",
-          "label": "What is the trading name?",
-          "shortName": "Trading name",
-          "format": "text",
-          "errorMessage": "Trading name must be entered"
+          "label": "",
+          "shortName": "Trading name"
         }
       ]
     },
@@ -120,7 +116,7 @@
         {
           "id": "choiceVat",
           "type": "choice",
-          "label": "Is your business registered for VAT?",
+          "label": "",
           "shortName": "Is business VAT registered",
           "format": "yesno",
           "errorMessage": "Select whether your business is VAT registered"
@@ -135,10 +131,10 @@
         {
           "id": "vatRegNo",
           "type": "text",
-          "label": "What is the VAT registration number?\n",
+          "label": "",
           "shortName": "VAT registration number",
           "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
-          "format": "text(0, 11)"
+          "format": "ukVrn"
         }
       ]
     },
@@ -732,17 +728,18 @@
       ]
     },
     {
-      "title": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+      "title": "Has your business been involved in any other aggregates businesses in the last 24 months?",
       "shortName": "Other aggregates businesses",
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
           "id": "otherBusinessLtdCompany",
           "type": "choice",
-          "label": "Has your business been involved with any other aggregates businesses in the last 24 months?",
+          "label": "Has your business been involved in any other aggregates businesses in the last 24 months?",
           "shortName": "Involvement with other aggregates businesses in last 24 months",
-          "helpText": "As a limited company, select whether any of your directors have been involved with any other aggregates business in the last 24 months",
-          "format": "yesno"
+          "helpText": "As a limited company, select whether any of your directors have been involved in any other aggregates business in the last 24 months",
+          "format": "yesno",
+          "errorMessage": "Select whether your business has been involved with any other aggregates businesses"
         }
       ]
     },
