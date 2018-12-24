@@ -1,0 +1,270 @@
+{
+  "_id": "site-registration-landfill-tax",
+  "formName": "Landfill Site Registration",
+  "description": ".",
+  "emailTemplateId": "FormTitle",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "About this form",
+      "fields": [
+        {
+          "type": "info",
+          "id": "AboutLT1a",
+          "label": "AboutLT1a",
+          "infoText": "This form is designed to be filled in on screen. You must answer all the questions except those marked \"optional\". You can't save the form but once you've completed it you'll be able to print a copy and post it.\n\nPlease complete this form with details of all the sites you operate. If you are applying to be registered as a group, you can include your site details on forms LT50. For more information about LT50 follow the link below:\n\nLT50\n\nYou can also use LT51 instead of this form. For more information about LT51 follow the link below:\n\nLT51\n\nLT1A Notes\n\nYou do not need to include any sites which will not recieve further waste.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Site Name",
+      "fields": [
+        {
+          "id": "SiteName",
+          "type": "text",
+          "label": "Name of the site being registered",
+          "shortName": "Site Name",
+          "mandatory": "true",
+          "errorMessage": "Enter site name"
+        },
+        {
+          "type": "choice",
+          "id": "SiteNameYesNo",
+          "label": "Is the site name the same as the site trading name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "LicenceNo",
+          "label": "Licence or permit number"
+        }
+      ]
+    },
+    {
+      "title": "Site trading name",
+      "includeIf": "${SiteNameYesNo=1}",
+      "fields": [
+        {
+          "id": "SiteTradingName",
+          "type": "text",
+          "label": "Site Trading Name",
+          "shortName": "SiteTrading",
+          "includeIf": "SiteNameYesNo=1"
+        },
+        {
+          "type": "choice",
+          "id": "SiteUK",
+          "label": "Is this address in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Site address",
+      "includeIf": "${SiteUK=0}",
+      "fields": [
+        {
+          "id": "UKAddress",
+          "type": "address",
+          "label": "Address",
+          "shortName": "Address",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "usersEmailUK",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Enter a valid email address with no spaces. e.g name@example.com",
+          "format": "email",
+          "errorMessage": "Enter a valid email address with no spaces. e.g name@example.com"
+        },
+        {
+          "id": "userPhoneUK",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "FaxNumberUK",
+          "label": "Fax Number"
+        }
+      ]
+    },
+    {
+      "title": "Site address",
+      "includeIf": "${SiteUK=1}",
+      "fields": [
+        {
+          "id": "IntAddress",
+          "type": "address",
+          "label": "Address",
+          "shortName": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "usersEmailInt",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Enter a valid email address with no spaces. e.g name@example.com",
+          "format": "email",
+          "errorMessage": "Enter a valid email address with no spaces. e.g name@example.com"
+        },
+        {
+          "id": "userPhoneInt",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "FaxNumberInt",
+          "label": "Fax Number"
+        }
+      ]
+    },
+    {
+      "title": "Type of Waste landfilled and estimated tonnes per year",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "TypeWaste",
+          "label": "Type of waste",
+          "choices": [
+            "Standard",
+            "Lower",
+            "Exempt"
+          ]
+        },
+        {
+          "id": "StandardWaste",
+          "type": "text",
+          "label": "Standard waste (tonnes per year)",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "id": "LowerWaste",
+          "type": "text",
+          "label": "Lower waste (tonnes per year)",
+          "includeIf": "TypeWaste,1",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "id": "ExemptWaste",
+          "type": "text",
+          "label": "Exempt waste (tonnes per year)",
+          "includeIf": "TypeWaste,2",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "choice",
+          "id": "Weighbridge",
+          "label": "Is a weighbridge used to establish the weight of waste on this site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "Controller",
+          "label": "Does this site have a controller?",
+          "helpText": "If a person other than the operator determines what materials (if any) are disposed of at this site, or as part of this site, that person is a controller. A person who is purely acting as an agent or employee of someone else is not a controller. If there is a controller you should tick yes.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
