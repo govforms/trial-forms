@@ -1,0 +1,257 @@
+{
+  "_id": "landfill-tax-partnership-registration",
+  "formName": "Landfill Site Registration",
+  "description": ".",
+  "emailTemplateId": "FormTitle",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "About this form",
+      "fields": [
+        {
+          "id": "AboutLT1a",
+          "type": "info",
+          "label": "AboutLT1a",
+          "infoText": "This form is designed to be filled in on screen. You must answer all the questions except those marked \"optional\".\n\nData Protection Act 1998\n\nHM Revenue and Customs collects information in order to administer the taxes for which it is responsible (such as VAT, insurance premium tax, excise duties, air passenger duty, landfill tax), and for detecting and preventing crime.\n\nWhere the law permits we may also get information about you from third parties, or give information to them, for example in order to check its accuracy, prevent or detect crime or protect public funds in other ways. These third parties may include the police, other government departments and agencies.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Trading name of partnership",
+      "fields": [
+        {
+          "type": "text",
+          "id": "PartnershipName",
+          "label": "Trading name of partnership"
+        },
+        {
+          "type": "text",
+          "id": "NumberPartner",
+          "label": "Number of partners",
+          "validIf": "Whole Number"
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "fields": [
+        {
+          "type": "group",
+          "id": "Partner1Details",
+          "label": "Partner 1",
+          "fields": [
+            {
+              "type": "text",
+              "id": "Full Name of Partner",
+              "label": "Partner1Name"
+            },
+            {
+              "type": "address",
+              "id": "Partner1Address",
+              "label": "Home Address"
+            },
+            {
+              "type": "text",
+              "id": "Partner1Telephone",
+              "label": "Home telephone number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${NumberPartners>=2}",
+      "fields": [
+        {
+          "type": "group",
+          "id": "PartnershipDetails2",
+          "label": "Partner 2",
+          "fields": [
+            {
+              "type": "text",
+              "id": "Full Name of Partner",
+              "label": "Partner2Name"
+            },
+            {
+              "type": "address",
+              "id": "Partner2Address",
+              "label": "Home Address"
+            },
+            {
+              "type": "text",
+              "id": "Partner2Telephone",
+              "label": "Home telephone number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${NumberPartners>=3}",
+      "fields": [
+        {
+          "type": "group",
+          "id": "PartnershipDetails3",
+          "label": "Partner 3",
+          "fields": [
+            {
+              "type": "text",
+              "id": "Full Name of Partner",
+              "label": "Partner3Name"
+            },
+            {
+              "type": "address",
+              "id": "Partner3Address",
+              "label": "Home Address"
+            },
+            {
+              "type": "text",
+              "id": "Partner3Telephone",
+              "label": "Home telephone number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${NumberPartners>=4}",
+      "fields": [
+        {
+          "type": "group",
+          "id": "PartnershipDetails4",
+          "label": "Partner 4",
+          "fields": [
+            {
+              "type": "text",
+              "id": "Full Name of Partner",
+              "label": "Partner4Name"
+            },
+            {
+              "type": "address",
+              "id": "Partner4Address",
+              "label": "Home Address"
+            },
+            {
+              "type": "text",
+              "id": "Partner4Telephone",
+              "label": "Home telephone number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${NumberPartners>=5}",
+      "fields": [
+        {
+          "type": "group",
+          "id": "PartnershipDetails5",
+          "label": "Partner 5",
+          "fields": [
+            {
+              "type": "text",
+              "id": "Full Name of Partner",
+              "label": "Partner5Name"
+            },
+            {
+              "type": "address",
+              "id": "Partner5Address",
+              "label": "Home Address"
+            },
+            {
+              "type": "text",
+              "id": "Partner5Telephone",
+              "label": "Home telephone number"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
