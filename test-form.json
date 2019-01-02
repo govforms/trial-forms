@@ -1,0 +1,3423 @@
+{
+  "_id": "test-form",
+  "formName": "Very large test form",
+  "description": "",
+  "developmentPhase": "research",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Gaming",
+    "customerId": "${auth.payenino}",
+    "dmsFormId": "nrgct1"
+  },
+  "sections": [
+    {
+      "title": "Preperation questions",
+      "shortName": "Have you got all the information you need?",
+      "fields": [
+        {
+          "id": "insetInfoBox1",
+          "type": "info",
+          "label": "",
+          "infoText": "Please read the European Commission’s Authorised Economic Operator (AEO) Guidelines, TAXUD/B2/047/2011– REV6), before applying for AEO. This is available via the European Commission’s Europa website.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "whoHelped",
+          "type": "text",
+          "label": "Which departments, including management, have you involved in the process to prepare your company for the AEO application? Have you involved customs or third parties in the process (consultants etc)?",
+          "multiline": "yes",
+          "errorMessage": "Who has been involved?"
+        }
+      ]
+    },
+    {
+      "title": "What authorisation do you require?",
+      "shortName": "Authorisation required \"yes\"",
+      "fields": [
+        {
+          "id": "authInfo",
+          "type": "info",
+          "label": "What authorisation do you require?",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "authorisationChoice",
+          "type": "choice",
+          "label": "",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Customs simplification",
+            "Security and safety",
+            "Both"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Applicant details",
+      "fields": [
+        {
+          "id": "applicantName01",
+          "type": "text",
+          "label": "Name of business applying",
+          "shortName": "Business name",
+          "helpText": "Input the name of the business that is applying here",
+          "format": "shortText",
+          "errorMessage": "Business name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "nonAgentApplicantAddressChoice",
+          "type": "choice",
+          "label": "Is the address where this business is registered in the UK?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Applicant business details",
+      "includeIf": "${nonAgentApplicantAddressChoice = 0}",
+      "fields": [
+        {
+          "id": "officeAddressRefTrue1",
+          "type": "address",
+          "label": "Full registered UK address of the business",
+          "shortName": "UK business address",
+          "international": "false",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Applicant business details",
+      "includeIf": "${nonAgentApplicantAddressChoice = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue2",
+          "type": "text",
+          "label": "Full registered address of the business",
+          "shortName": "Non-UK business address",
+          "helpText": "Input the full registered address for your business including country",
+          "mandatory": "true",
+          "multiline": "yes",
+          "errorMessage": "Input the full registered address for your business including country"
+        }
+      ]
+    },
+    {
+      "title": "Trader identification number(s)",
+      "shortName": "Identification number(s)",
+      "fields": [
+        {
+          "id": "traderIdentificationNumbers",
+          "type": "text",
+          "label": "",
+          "helpText": "Input your Economic operator registration and identification number here",
+          "errorMessage": "Input your Economic operator registration and identification number"
+        }
+      ]
+    },
+    {
+      "title": "Business legal status",
+      "shortName": "Business legal status",
+      "fields": [
+        {
+          "id": "legalStatus1",
+          "type": "choice",
+          "label": "Select your business legal status",
+          "shortName": "Business legal status",
+          "format": "vertical",
+          "choices": [
+            "Sole proprietor",
+            "Partnership",
+            "Limited company",
+            "Registered Charity or Non-Profit Organisation",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Business legal status is other",
+      "shortName": "Legal status other",
+      "includeIf": "${legalStatus1 = 4}",
+      "fields": [
+        {
+          "id": "businessLegalStatusOther",
+          "type": "text",
+          "label": "Describe your business status",
+          "helpText": "Input details of your business legal status - other",
+          "errorMessage": "Input details of your business legal status "
+        }
+      ]
+    },
+    {
+      "title": "Company details",
+      "shortName": "Company details",
+      "fields": [
+        {
+          "id": "dateOfEstablishment",
+          "type": "date",
+          "label": "Date of establishment",
+          "helpText": "Enter the date you started trading, or in the case of a company, the date of your certificate of incorporation",
+          "errorMessage": "Date of establishment can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "customsAccountsAddressChoice",
+          "type": "choice",
+          "label": "Is the address where the main accounts for customs puposes are kept the same as the Registered business address?",
+          "shortName": "Customs accounts addess same as Registered business address",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs accounts address",
+      "shortName": "Customs accounts address",
+      "includeIf": "${customsAccountsAddressChoice = 1}",
+      "fields": [
+        {
+          "id": "customsAccountsCountryChoice",
+          "type": "choice",
+          "label": "Is the address where the main accounts for customs puposes are kept, in the UK?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs accounts address",
+      "shortName": "Customs accounts address",
+      "includeIf": "${customsAccountsAddressChoice = 1 && customsAccountsCountryChoice = 0}",
+      "fields": [
+        {
+          "id": "officeAddressRefTrue3",
+          "type": "address",
+          "label": "UK address where the main accounts for customs puposes are kept",
+          "shortName": "UK customs accounts address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Customs accounts address",
+      "shortName": "Customs accounts address",
+      "includeIf": "${customsAccountsAddressChoice = 1 && customsAccountsCountryChoice = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue4",
+          "type": "text",
+          "label": "Address where the main accounts for customs puposes are kept",
+          "shortName": "Non-UK customs accounts address",
+          "multiline": "yes",
+          "errorMessage": "Input the full address where the main accounts for customs puposes are kept, including country"
+        }
+      ]
+    },
+    {
+      "title": "VAT registration number(s)",
+      "shortName": "VAT registration number(s)",
+      "fields": [
+        {
+          "id": "VatRegNum",
+          "type": "text",
+          "label": "VAT registration number(s)",
+          "shortName": "VAT number(s)",
+          "helpText": "Enter your VAT registration number(s)",
+          "errorMessage": "Enter the VAT registration number(s) of your company"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Responsible person",
+      "fields": [
+        {
+          "id": "responsiblePersonChoice",
+          "type": "choice",
+          "label": "Are you the person responsible for customs matters in relation to this application?",
+          "shortName": "I am the person responsible for customs matters",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Responsible person",
+      "includeIf": "${responsiblePersonChoice = 1}",
+      "fields": [
+        {
+          "id": "applicantName",
+          "type": "text",
+          "label": "Name of the person responsible for customs matters",
+          "shortName": "Responsible persons name",
+          "helpText": "input name here",
+          "errorMessage": "Responsible persons name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "emailContacta",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+        },
+        {
+          "id": "responsiblePersonChoice1",
+          "type": "choice",
+          "label": "Is this persons address the same as the registered business address or the address where the main accounts for customs puposes are kept?",
+          "shortName": "Responsible person address same as business or customs address",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Responsible person address",
+      "includeIf": "${responsiblePersonChoice = 1 && responsiblePersonChoice1 = 1}",
+      "fields": [
+        {
+          "id": "responsiblePersonChoiceAddress",
+          "type": "choice",
+          "label": "Is the responsible persons address in the UK?",
+          "shortName": "Responsible person address in the UK",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Responsible person address",
+      "includeIf": "${responsiblePersonChoice1 = 1 && responsiblePersonChoiceAddress = 0}",
+      "fields": [
+        {
+          "id": "officeAddressRefTrue5",
+          "type": "address",
+          "label": "UK address for the person responsible for customs matters",
+          "shortName": "UK address for the person responsible for customs matters",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Responsible person address",
+      "includeIf": "${responsiblePersonChoice1 = 1 && responsiblePersonChoiceAddress = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue6",
+          "type": "text",
+          "label": "Address for the person responsible for customs matters",
+          "shortName": "Non-UK address for the person responsible for customs matters",
+          "multiline": "yes",
+          "errorMessage": "Input the full address for the person responsible for customs matters, including country"
+        }
+      ]
+    },
+    {
+      "title": "Designated contact",
+      "shortName": "Designated contact",
+      "fields": [
+        {
+          "id": "designatedContactChoice",
+          "type": "choice",
+          "label": "Are you the designated point of contact for HMRC about this application?",
+          "shortName": "I am the designated contact for HMRC",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Designated contact",
+      "shortName": "Designated contact",
+      "includeIf": "${designatedContactChoice = 1}",
+      "fields": [
+        {
+          "id": "designatedInfo",
+          "type": "info",
+          "label": "Designated contact within the compant.\n\n To be the point of contact for HMRC about the application",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "contactName",
+          "type": "text",
+          "label": "Name of the designated contact",
+          "shortName": "Designated contact name",
+          "helpText": "input name here",
+          "errorMessage": "Designated contact name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "companyPosition",
+          "type": "text",
+          "label": "Position held in the company",
+          "shortName": "Company position",
+          "helpText": "Enter the designated contacts position in the company",
+          "mandatory": "true",
+          "errorMessage": "Enter your position in the company"
+        },
+        {
+          "id": "contactNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "input contact telephone number here",
+          "format": "telephoneNumber",
+          "errorMessage": "Enter a valid telephone number"
+        },
+        {
+          "id": "emailContact",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "true",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+        }
+      ]
+    },
+    {
+      "title": "Person in charge",
+      "shortName": "Person in charge",
+      "fields": [
+        {
+          "id": "personInChargeName",
+          "type": "text",
+          "label": "Person in charge of the applicant company or exercising control of its management",
+          "shortName": "Name of person in charge",
+          "helpText": "input name here",
+          "mandatory": "true",
+          "errorMessage": "Name of person in charge can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "companyPosition2",
+          "type": "text",
+          "label": "Position held in the company",
+          "shortName": "Company position",
+          "helpText": "Enter the person in charges position in the company",
+          "mandatory": "true",
+          "errorMessage": "Enter the person in charges position in the company"
+        },
+        {
+          "id": "persInChargeDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "helpText": "Enter the date of birth",
+          "mandatory": "true",
+          "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "persinChargeNino",
+          "type": "text",
+          "label": "National insurance number",
+          "shortName": "NI number",
+          "helpText": "Enter the person in charges national insurance number if they have one, otherwise input No NINO",
+          "mandatory": "true",
+          "errorMessage": "National insurance numbers must be input the format letter, letter, six numbers, letter for example AB123456C"
+        },
+        {
+          "id": "personInChargeAddressChoice",
+          "type": "choice",
+          "label": "Is the address of the person in charge different from the address where the entity is registered?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Address of person in charge",
+      "shortName": "Person in charge address",
+      "includeIf": "${personInChargeAddressChoice = 0}",
+      "fields": [
+        {
+          "id": "personInChargeChoiceAddress1",
+          "type": "choice",
+          "label": "Is the address of the person in charge in the UK?",
+          "shortName": "Person in charge address in the UK",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Address of person in charge",
+      "shortName": "Person in charge address",
+      "includeIf": "${personInChargeAddressChoice = 0 && personInChargeChoiceAddress1 = 0}",
+      "fields": [
+        {
+          "id": "responsiblePersonAddress",
+          "type": "address",
+          "label": "Full correspondence address for person in charge",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Address of person in charge",
+      "shortName": "Person in charge address",
+      "includeIf": "${personInChargeAddressChoice = 0 && personInChargeChoiceAddress1 = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue7",
+          "type": "text",
+          "label": "Address for the person in charge",
+          "shortName": "Non-UK address for the person in charge",
+          "multiline": "yes",
+          "errorMessage": "Input the full address for the person in charge, including country"
+        }
+      ]
+    },
+    {
+      "title": "Company economic activity",
+      "shortName": "Economic activity",
+      "fields": [
+        {
+          "id": "economicActivity",
+          "type": "choice",
+          "label": "The nature of the economic activity carried out by the company",
+          "shortName": "Economic activity carried out",
+          "multivalue": "yes",
+          "errorMessage": "Enter the nature of the economic activity carried out by the company",
+          "choices": [
+            "MF Manufacturer of goods",
+            "IM Importer",
+            "EX Exporter",
+            "CB Customs broker",
+            "CA Carrier",
+            "FW Freight forwarder",
+            "CS Consolidator",
+            "TR Terminal operator",
+            "WH Warehouse keeper",
+            "CF Container operator",
+            "DEP Stevedore",
+            "HR Shipping line service",
+            "999 Other"
+          ]
+        },
+        {
+          "id": "otherText",
+          "type": "text",
+          "label": "If you have selected other above, input the details of your commercial/business activity",
+          "helpText": "Input the details of your commercial/business activity",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Member state(s) where customs related activities are carried out",
+      "shortName": "Member states",
+      "fields": [
+        {
+          "id": "memberStatesInfo",
+          "type": "info",
+          "label": "Member state(s) where customs related activities are carried out.\n\n Provide details for each member state.\n\n This includes :\n\n The ISO alpha-2 country code, contact name, telephone number and address",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "memberStatesText",
+          "type": "text",
+          "label": "",
+          "multiline": "yes",
+          "errorMessage": "Enter the details for each member state"
+        }
+      ]
+    },
+    {
+      "title": "Border crossing information",
+      "shortName": "Border crossing information",
+      "fields": [
+        {
+          "id": "borderCrossingText1",
+          "type": "text",
+          "label": "Border crossing information",
+          "shortName": "Border crossing",
+          "helpText": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.(maximum of 5)",
+          "mandatory": "true",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+        },
+        {
+          "id": "borderCrossingText2",
+          "type": "text",
+          "label": "",
+          "shortName": "Border crossing",
+          "helpText": "",
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+        },
+        {
+          "id": "borderCrossingText3",
+          "type": "text",
+          "label": "",
+          "shortName": "Border crossing",
+          "helpText": "",
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+        },
+        {
+          "id": "borderCrossingText4",
+          "type": "text",
+          "label": "",
+          "shortName": "Border crossing",
+          "helpText": "",
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+        },
+        {
+          "id": "borderCrossingText5",
+          "type": "text",
+          "label": "",
+          "shortName": "Border crossing",
+          "helpText": "",
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+        }
+      ]
+    },
+    {
+      "title": "Granted simplifications or facilitations",
+      "shortName": "Granted simplifications",
+      "fields": [
+        {
+          "id": "grantedSimpInfo",
+          "type": "info",
+          "label": "Simplifications or facilitations already granted and/or safety certificates issued on the basis of international conventions \n\n of an international standard of the International Organisation for Standardisation \n\n or a European standard of a European Standardisation bodies \n\n or AEO-equivalent certificates issued in third countries",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "grantedChoice",
+          "type": "choice",
+          "label": "Have any simplifications or facilitations already been granted?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Granted simplifications or facilitations detail",
+      "shortName": "Simplifications detail",
+      "includeIf": "${grantedChoice = 0}",
+      "fields": [
+        {
+          "id": "simplificationType",
+          "type": "text",
+          "label": "Type of simplification",
+          "shortName": "Simplification type",
+          "helpText": "enter the type of simplification",
+          "errorMessage": "Enter details of the type of simplification already granted"
+        },
+        {
+          "id": "simplificationCode",
+          "type": "text",
+          "label": "Code for the relevant customs procedure",
+          "shortName": "Simplification type",
+          "helpText": "As used in the second or third subdivision of box 1 of the Single Administrative district",
+          "errorMessage": "Enter the code for the relevant customs procedure"
+        },
+        {
+          "id": "authoNumber",
+          "type": "text",
+          "label": "Authorisation number",
+          "shortName": "authorisation number",
+          "helpText": "Enter the authorisation number",
+          "errorMessage": "Enter the authorisation number"
+        },
+        {
+          "id": "certificateNumber",
+          "type": "text",
+          "label": "Number of certificate",
+          "shortName": "Certificate number",
+          "helpText": "Enter the certificate number",
+          "errorMessage": "Enter the number of the certificate already granted"
+        }
+      ]
+    },
+    {
+      "title": "Holder of one or more certificates",
+      "shortName": "Certificate holder",
+      "fields": [
+        {
+          "id": "holderChoice1",
+          "type": "choice",
+          "label": "Do you hold one or more certificates mentioned in article 28 of Commission implementing Regulation (EU) 2015/2447",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Holder of one or more certificates",
+      "shortName": "Certificate details",
+      "includeIf": "${holderChoice1 = 0}",
+      "fields": [
+        {
+          "id": "borderCrossingText",
+          "type": "text",
+          "label": "Enter the type and number of the certificates",
+          "multiline": "yes",
+          "errorMessage": "Enter the type and number of the certificates"
+        }
+      ]
+    },
+    {
+      "title": "Information exchange consent",
+      "shortName": "Information consent",
+      "fields": [
+        {
+          "id": "infoConsentInfo",
+          "type": "info",
+          "label": "I hereby give my consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "consentChoice1",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Information exchange consent details",
+      "shortName": "Consent details",
+      "includeIf": "${consentChoice1 = 0}",
+      "fields": [
+        {
+          "id": "emailConsent",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "false",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+        },
+        {
+          "id": "transliteratedNameConsent",
+          "type": "text",
+          "label": "Transliterated name of country",
+          "shortName": "Transliterated name",
+          "errorMessage": "Enter the transliterated name of your country, for example Rossiya"
+        },
+        {
+          "id": "consentAddress",
+          "type": "address",
+          "label": "Address for consent",
+          "shortName": "Address",
+          "international": "yes",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Business activities",
+      "shortName": "Business activities",
+      "fields": [
+        {
+          "id": "businessActivitiesInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "For a full list of business activities refer to this \n\n [Nace codes](http://www.ec.europa.eu/competition/mergers/cases/index/nace_all.html)",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessActivitiesText",
+          "type": "text",
+          "label": "",
+          "shortName": "Business activities",
+          "helpText": "",
+          "multiline": "yes",
+          "errorMessage": "Enter the name and number of your business activities"
+        }
+      ]
+    },
+    {
+      "title": "Permenant business establishments (PBE's)",
+      "shortName": "PBE's",
+      "fields": [
+        {
+          "id": "groupQuestion3a",
+          "type": "choice",
+          "label": "Does your application cover any Permenant Business Establishments (PBEs)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Permenant business establishments",
+      "shortName": "Group details",
+      "includeIf": "${groupQuestion3a = 0}",
+      "fields": [
+        {
+          "id": "pbeTrue",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": " PBE $n",
+          "repeatAddAnotherText": "Add another permenant business establishment",
+          "fields": [
+            {
+              "id": "additionalPBE1a",
+              "type": "text",
+              "label": "PBE full name",
+              "helpText": "Input the full name of the PBE",
+              "mandatory": "true",
+              "errorMessage": "input the full name of the PBE"
+            },
+            {
+              "id": "additionalPBE1",
+              "type": "text",
+              "label": "Address line 1",
+              "helpText": "Input the first line of the address here",
+              "mandatory": "true"
+            },
+            {
+              "id": "additionalPBE2",
+              "type": "text",
+              "label": "Address line 2 (optional)",
+              "helpText": "",
+              "mandatory": "false"
+            },
+            {
+              "id": "additionalPBE3",
+              "type": "text",
+              "label": "Address line 3 (optional)",
+              "helpText": "",
+              "mandatory": "false"
+            },
+            {
+              "id": "additionalPBE4",
+              "type": "text",
+              "label": "Address line 4 (optional)",
+              "helpText": "",
+              "mandatory": "false"
+            },
+            {
+              "id": "additionalPBE5",
+              "type": "text",
+              "label": "Country",
+              "helpText": "",
+              "mandatory": "true"
+            },
+            {
+              "id": "additionalPBEVAT",
+              "type": "text",
+              "label": "PBE VAT registration number",
+              "helpText": "Input the VAT registration number of the PBE",
+              "format": "ukVrn",
+              "mandatory": "true",
+              "errorMessage": "input the VAT registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Office responsible for providing all customs identifications",
+      "shortName": "Office providing all customs identifications",
+      "fields": [
+        {
+          "id": "customsIdentificationOfficeChoice",
+          "type": "choice",
+          "label": "Is the address of the office responsible for providing all customs identifications situated in the UK?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Office responsible for providing all customs identifications",
+      "shortName": "Office providing all customs identifications",
+      "includeIf": "${customsIdentificationOfficeChoice = 0}",
+      "fields": [
+        {
+          "id": "customsIdentificationsAddress",
+          "type": "address",
+          "label": "Address",
+          "shortName": "Address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Office responsible for providing all customs identifications",
+      "shortName": "Office providing all customs identifications",
+      "includeIf": "${customsIdentificationOfficeChoice = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue8",
+          "type": "text",
+          "label": "Address",
+          "shortName": "Non-UK address for office providing all customs identifications",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the office providing all customs identifications, including country"
+        }
+      ]
+    },
+    {
+      "title": "Office where the customs documentation is kept",
+      "shortName": "Office where customs documents are kept",
+      "fields": [
+        {
+          "id": "customsDocumentationOfficeChoice",
+          "type": "choice",
+          "label": "Is the address of the office where the customs documentation is kept situated in the UK?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Office where the customs documentation is kept",
+      "shortName": "UK office where customs documents are kept",
+      "includeIf": "${customsDocumentationOfficeChoice = 0}",
+      "fields": [
+        {
+          "id": "customsDocumentationAddress",
+          "type": "address",
+          "label": "Address",
+          "shortName": "Address",
+          "international": "no",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Office where the customs documentation is kept",
+      "shortName": "Overseas office where customs documents are kept",
+      "includeIf": "${customsDocumentationOfficeChoice = 1}",
+      "fields": [
+        {
+          "id": "OfficeAddressRefTrue8a",
+          "type": "text",
+          "label": "Address",
+          "shortName": "Non-UK address for office where the customs documentation is kept",
+          "multiline": "yes",
+          "errorMessage": "Input the full address of the office where the customs documentation is kept, including country"
+        }
+      ]
+    },
+    {
+      "title": "Consent to publication",
+      "shortName": "Publication consent",
+      "fields": [
+        {
+          "id": "pbeChoice",
+          "type": "choice",
+          "label": "Do you consent to the publication on the list of authorisation holders",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Business size",
+      "shortName": "Business size",
+      "fields": [
+        {
+          "id": "businessSizeChoice",
+          "type": "choice",
+          "label": "Select one of the following which indicates the size of the business",
+          "format": "vertical",
+          "choices": [
+            "Micro",
+            "Small",
+            "Medium",
+            "Large",
+            "Natural person"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "General company information",
+      "shortName": "Company information",
+      "fields": [
+        {
+          "id": "insetInfoBox2",
+          "type": "info",
+          "label": "",
+          "infoText": "State the name, address, date of establishment/registration and legal status of the organisation of the applying company. Please include the web page address (URL) of your company’s website, if applicable.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "companyName",
+          "type": "text",
+          "label": "Company name",
+          "errorMessage": "Enter your company name"
+        },
+        {
+          "id": "companyAddress",
+          "type": "address",
+          "label": "Company address",
+          "international": "yes",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyDOE",
+          "type": "date",
+          "label": "Date of establishment",
+          "errorMessage": "Date of establishment can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "companyLegalStatus",
+          "type": "text",
+          "label": "Legal status",
+          "errorMessage": "Enter your companys legal status"
+        },
+        {
+          "id": "companyURL",
+          "type": "text",
+          "label": "Company website",
+          "errorMessage": "Enter your company websites URL"
+        }
+      ]
+    },
+    {
+      "title": "General company information",
+      "shortName": "Part of a group",
+      "fields": [
+        {
+          "id": "groupQuestion",
+          "type": "choice",
+          "label": "Is your company part of a group?",
+          "helpText": "Select yes if your company is part of a group",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Group information",
+      "shortName": "Group details",
+      "includeIf": "${groupQuestion = 0}",
+      "fields": [
+        {
+          "id": "groupdescription",
+          "type": "text",
+          "label": "Provide a brief description of the group",
+          "multiline": "yes",
+          "errorMessage": "provide a brief description of the group"
+        },
+        {
+          "id": "groupQuestion1",
+          "type": "choice",
+          "label": "Do any other entities in the group already have an AEO authorisation?",
+          "format": "yesno"
+        },
+        {
+          "id": "groupQuestion2",
+          "type": "choice",
+          "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Established for less than 3 years",
+      "shortName": "Established for less than 3 years",
+      "fields": [
+        {
+          "id": "lessThan3Years",
+          "type": "choice",
+          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Internal reorganisation details",
+      "shortName": "Established for less than 3 years",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "reorganisationDetails",
+          "type": "text",
+          "label": "Provide details of the reorganisation of your company",
+          "mandatory": "true",
+          "multiline": "yes",
+          "errorMessage": "provide reorganisation details"
+        }
+      ]
+    },
+    {
+      "title": "Company location",
+      "shortName": "Company location",
+      "fields": [
+        {
+          "id": "ukBased",
+          "type": "choice",
+          "label": "Is your company based in the UK?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "UK based company owner or main shareholders details",
+      "shortName": "UK based company",
+      "includeIf": "${ukBased = 0}",
+      "fields": [
+        {
+          "id": "UkTrueOwnersOrMainShareholders",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 5,
+          "repeatLabel": "Owner or main shareholder $n",
+          "repeatAddAnotherText": "Add another owner or main shareholder",
+          "fields": [
+            {
+              "id": "additionalOMS1a",
+              "type": "text",
+              "label": "Owner or main shareholder full name",
+              "helpText": "Input the full name of an owner or main shareholder if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalOMS1",
+              "type": "text",
+              "label": "Owner or main shareholder national insurance (NI) number",
+              "helpText": "Input the national insurance number of this owner or main shareholder if these details apply to the legal form of your company, if they do not have a national insurance number input No Nino",
+              "mandatory": "false"
+            },
+            {
+              "id": "additionalOMS2",
+              "type": "text",
+              "label": "Percentage of shares held",
+              "helpText": "Input the percentage of share held by the owner or main shareholder if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Main shareholders that are involved with the day to day running/decision making of the business.",
+      "shortName": "UK based company main shareholders involved in day to day operations ",
+      "includeIf": "${ukBased = 0}",
+      "fields": [
+        {
+          "id": "UkTrueDayToDay",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 5,
+          "repeatLabel": "Main shareholder involved with day to day operations $n",
+          "repeatAddAnotherText": "Add another main shareholder",
+          "fields": [
+            {
+              "id": "additionalD2D1a",
+              "type": "text",
+              "label": "Main shareholder full name",
+              "helpText": "Input the full name of a main shareholder that is involved with the day to day running/decision making of the business if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalD2D1",
+              "type": "text",
+              "label": "Owner or main shareholder national insurance (NI) number",
+              "helpText": "Input the national insurance number of this main shareholder that is involved with the day to day running/decision making of the business if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Board members and/or managers.",
+      "shortName": "UK based company board members and managers",
+      "includeIf": "${ukBased = 0}",
+      "fields": [
+        {
+          "id": "UkTrueBoardManagers",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 8,
+          "repeatLabel": "Board member or manager $n",
+          "repeatAddAnotherText": "Add another board members and/or managers",
+          "fields": [
+            {
+              "id": "additionalBMM1a",
+              "type": "text",
+              "label": "Board members and/or managers full name",
+              "helpText": "Input the full name of a Board member or manager if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalBMM1",
+              "type": "text",
+              "label": "Board member or manager national insurance (NI) number",
+              "helpText": "Input the national insurance number of this Board member or manager if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Advisory board, if any, and board of directors.",
+      "shortName": "UK based company Advisory board",
+      "includeIf": "${ukBased = 0}",
+      "fields": [
+        {
+          "id": "UkTrueAdvisory",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 8,
+          "repeatLabel": "Advisory board member or board of directors member $n",
+          "repeatAddAnotherText": "Add another advisory board member and/or board of directors member",
+          "fields": [
+            {
+              "id": "additionalADV1a",
+              "type": "text",
+              "label": "Advisory board member and/or board of directors members full name",
+              "helpText": "Input the full name of an advisory board member or board of directors member if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an advisory board member and/or board of directors member"
+            },
+            {
+              "id": "additionalADV1",
+              "type": "text",
+              "label": "Advisory board member and/or board of directors members national insurance (NI) number",
+              "helpText": "Input the national insurance number of this Advisory board member and/or board of directors member if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Non-UK based company owner or main shareholder details",
+      "shortName": "Non-UK based company",
+      "includeIf": "${ukBased = 1}",
+      "fields": [
+        {
+          "id": "UkFalseOwnersOrMainShareholders",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 5,
+          "repeatLabel": "Owner or main shareholder $n",
+          "repeatAddAnotherText": "Add another owner or main shareholder",
+          "fields": [
+            {
+              "id": "additionalNonUKOMS1a",
+              "type": "text",
+              "label": "Owner or main shareholder full name",
+              "helpText": "Input the full name of an owner or main shareholder if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalNonUKOMS1",
+              "type": "text",
+              "label": "Address line 1",
+              "helpText": "Input the owner or main shareholders address including country here",
+              "mandatory": "true",
+              "multiline": "yes"
+            },
+            {
+              "id": "additionalNonUKOMS1c",
+              "type": "date",
+              "label": "date of birth",
+              "helpText": "Input the date of birth of this main shareholder that is involved with the day to day running/decision making of the business if these details apply to the legal form of your company",
+              "mandatory": "true"
+            },
+            {
+              "id": "additionalNonUKOMS2",
+              "type": "text",
+              "label": "Percentage of shares held",
+              "helpText": "Input the percentage of share held by the owner or main shareholder if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Main shareholders that are involved with the day to day running/decision making of the business.",
+      "shortName": "Non-UK based company main shareholders involved in day to day operations ",
+      "includeIf": "${ukBased = 1}",
+      "fields": [
+        {
+          "id": "UkFalseDayToDay",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 8,
+          "repeatLabel": "Main shareholder $n",
+          "repeatAddAnotherText": "Add another main shareholder",
+          "fields": [
+            {
+              "id": "additionalNonUKD2D1a",
+              "type": "text",
+              "label": "Main shareholder full name",
+              "helpText": "Input the full name of a main shareholder that is involved with the day to day running/decision making of the business if these details apply to the legal form of your company",
+              "mandatory": "false",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalNonUKD2D1",
+              "type": "text",
+              "label": "Address",
+              "helpText": "Input the main shareholders address including country here",
+              "mandatory": "true",
+              "multiline": "yes"
+            },
+            {
+              "id": "additionalNonUKD2D1c",
+              "type": "date",
+              "label": "date of birth",
+              "helpText": "Input the date of birth of this main shareholder that is involved with the day to day running/decision making of the business if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Board members and/or managers.",
+      "shortName": "Non-UK based company board members and managers",
+      "includeIf": "${ukBased = 1}",
+      "fields": [
+        {
+          "id": "UkFalseBoardManagers",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 8,
+          "repeatLabel": "Board member or manager $n",
+          "repeatAddAnotherText": "Add another board members and/or managers",
+          "fields": [
+            {
+              "id": "additionalNonUKBMM1a",
+              "type": "text",
+              "label": "Board members and/or managers full name",
+              "helpText": "Input the full name of a Board member or manager if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an owner or main shareholder"
+            },
+            {
+              "id": "additionalNonUKBMM1",
+              "type": "text",
+              "label": "Address line 1",
+              "helpText": "Input the board member or managers address including country here",
+              "mandatory": "true",
+              "multiline": "yes"
+            },
+            {
+              "id": "additionalNonUKBMM1c",
+              "type": "date",
+              "label": "Board member or manager national date of birth",
+              "helpText": "Input the date of birth of this Board member or manager if these details apply to the legal form of your company",
+              "mandatory": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Advisory board, if any, and board of directors.",
+      "shortName": "Non-UK based company Advisory board",
+      "includeIf": "${ukBased = 1}",
+      "fields": [
+        {
+          "id": "UkFalseAdvisory",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 8,
+          "repeatLabel": "Advisory board or board of directors member $n",
+          "repeatAddAnotherText": "Add another advisory board member and/or board of directors member",
+          "fields": [
+            {
+              "id": "additionalNonUKADV1a",
+              "type": "text",
+              "label": "Advisory board member and/or board of directors members full name",
+              "helpText": "Input the full name of an advisory board member or board of directors member if these details apply to the legal form of your company",
+              "mandatory": "true",
+              "errorMessage": "input the full name of an advisory board member and/or board of directors member"
+            },
+            {
+              "id": "additionalNonUKADV1",
+              "type": "text",
+              "label": "Address line 1",
+              "helpText": "Input the Advisory board member or board of directors members address here",
+              "mandatory": "true",
+              "multiline": "yes"
+            },
+            {
+              "id": "additionalNonUKADV1c",
+              "type": "date",
+              "label": "Advisory board member and/or board of directors member date of birth",
+              "helpText": "Input the date of birth of this Advisory board member and/or board of directors member if these details apply to the legal form of your company",
+              "mandatory": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Locations involved in customs activities ",
+      "shortName": "Locations involved in customs activities ",
+      "fields": [
+        {
+          "id": "companyLocations",
+          "type": "group",
+          "label": "The individual locations of your company as a legal entity (please indicate approximate number of employees in each department)",
+          "repeatsMax": 20,
+          "repeatLabel": "",
+          "repeatAddAnotherText": "Add another location",
+          "fields": [
+            {
+              "id": "companyLocations1a",
+              "type": "text",
+              "label": "Name of location",
+              "helpText": "Input the name of a location",
+              "mandatory": "false",
+              "errorMessage": "input the name of a location"
+            },
+            {
+              "id": "companyLocations1",
+              "type": "address",
+              "label": "Company location address",
+              "international": "yes",
+              "postcodeLookup": "no"
+            },
+            {
+              "id": "companyLocationsPhone",
+              "type": "text",
+              "label": "Telephone number",
+              "helpText": "input this locations point of contact telephone number here",
+              "format": "telephoneNumber",
+              "errorMessage": "Enter a valid telephone number"
+            },
+            {
+              "id": "companyLocationsEmail",
+              "type": "text",
+              "label": "Email address",
+              "helpText": "input this locations point of contact email address here",
+              "format": "email",
+              "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+            },
+            {
+              "id": "companyLocationsDescription",
+              "type": "text",
+              "label": "Provide a brief description of the business conducted here:\n\n Indicate approximate number of employees in each department at thsi location",
+              "multiline": "yes",
+              "errorMessage": "Provide description of business conducted at this location"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Locations involved in customs activities ",
+      "shortName": "Locations involved in customs activities ",
+      "fields": [
+        {
+          "id": "agentLocations",
+          "type": "group",
+          "label": "The sites where a third party executes outsourced activities for your company",
+          "repeatsMax": 20,
+          "repeatLabel": "",
+          "repeatAddAnotherText": "Add another location",
+          "fields": [
+            {
+              "id": "agentLocations1a",
+              "type": "text",
+              "label": "Name of location",
+              "helpText": "Input the name of a location",
+              "mandatory": "false",
+              "errorMessage": "input the name of a location"
+            },
+            {
+              "id": "agentLocations1",
+              "type": "address",
+              "label": "Third party location address",
+              "international": "yes",
+              "postcodeLookup": "no"
+            },
+            {
+              "id": "agentLocationsPhone",
+              "type": "text",
+              "label": "Telephone number",
+              "helpText": "Input this locations point of contact telephone number here",
+              "format": "telephoneNumber",
+              "errorMessage": "Enter a valid telephone number"
+            },
+            {
+              "id": "agentLocationsEmail",
+              "type": "text",
+              "label": "Email address",
+              "helpText": "Input this locations point of contact email address here",
+              "format": "email",
+              "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+            },
+            {
+              "id": "agentLocationsDescription",
+              "type": "text",
+              "label": "Provide a brief description of the business conducted here",
+              "multiline": "yes",
+              "errorMessage": "Provide description of business conducted at this location"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Purchases and sales",
+      "shortName": "Purchases and sales",
+      "fields": [
+        {
+          "id": "purchases1",
+          "type": "choice",
+          "label": "Do you buy from/sell to businesses with which you are associated?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal organisational structure",
+      "shortName": "Organisational structure",
+      "fields": [
+        {
+          "id": "organisationalDescription",
+          "type": "text",
+          "label": "Describe the internal organisational structure of your company and the tasks/responsibilities of each department",
+          "multiline": "yes",
+          "errorMessage": "Provide description of internal organisational structure of your company"
+        }
+      ]
+    },
+    {
+      "title": "Senior management",
+      "shortName": "Senior management",
+      "fields": [
+        {
+          "id": "seniorManagement",
+          "type": "text",
+          "label": "Give the names of senior management (directors, heads of departments, head of accounting, head of customs department) of the company and briefly the stand in rules",
+          "multiline": "yes",
+          "errorMessage": "Provide description of internal organisational structure of your company"
+        }
+      ]
+    },
+    {
+      "title": "Number of employees",
+      "shortName": "Employees",
+      "fields": [
+        {
+          "id": "numberOfEmployees",
+          "type": "text",
+          "label": "How many employees do you have in your business?",
+          "format": "positiveNumber(11, 0)",
+          "errorMessage": "Enter the number of employees that work for your company"
+        },
+        {
+          "id": "additionalHomeOverseasOwnOrRent",
+          "type": "choice",
+          "label": "Select the size of your business",
+          "format": "vertical",
+          "mandatory": "false",
+          "choices": [
+            "Micro",
+            "Small",
+            "Medium",
+            "Large"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Consent to disclose the AEO details on the TAXUD website",
+      "shortName": "TAXUD consent",
+      "fields": [
+        {
+          "id": "consent1",
+          "type": "choice",
+          "label": "Do you hereby give your consent to the publication of the information in the AEO authorisation in the list of authorised economic operators",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Consent to disclose the AEO details on the TAXUD website",
+      "shortName": "TAXUD consent details",
+      "includeIf": "${consent1 = 0}",
+      "fields": [
+        {
+          "id": "insetInfoBoxConsent1",
+          "type": "info",
+          "label": "",
+          "infoText": "The completed questionnaire should be signed by a director/managing partner/sole proprietor as appropriate but for this case it is recommended that consent is given by an authorised signatory.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "consent1Name",
+          "type": "text",
+          "label": "full name",
+          "helpText": "Input the full name of the person giving consent to disclose AEO details",
+          "mandatory": "true",
+          "errorMessage": "input the full name of person giving consent"
+        },
+        {
+          "id": "consent1-status",
+          "type": "text",
+          "label": "Status in the business",
+          "errorMessage": "Enter the status in the business of the person giving consent"
+        },
+        {
+          "id": "dateConsent1Given",
+          "type": "date",
+          "label": "Date consent is given",
+          "errorMessage": "Date of consent can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Consent to the exchange of the information in the AEO authorisation",
+      "shortName": "Exchange information consent",
+      "fields": [
+        {
+          "id": "consent2",
+          "type": "choice",
+          "label": "Do you hereby give your consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Consent to the exchange of the information in the AEO authorisation",
+      "shortName": "Exchange information consent details",
+      "includeIf": "${consent2 = 0}",
+      "fields": [
+        {
+          "id": "insetInfoBoxConsent2",
+          "type": "info",
+          "label": "",
+          "infoText": "The completed questionnaire should be signed by a director/managing partner/sole proprietor as appropriate but for this case it is recommended that consent is given by an authorised signatory.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "consent2Name",
+          "type": "text",
+          "label": "full name",
+          "helpText": "Input the full name of the person giving consent to disclose AEO details",
+          "mandatory": "true",
+          "errorMessage": "input the full name of person giving consent"
+        },
+        {
+          "id": "consent2status",
+          "type": "text",
+          "label": "Status in the business",
+          "errorMessage": "Enter the status in the business of the person giving consent"
+        },
+        {
+          "id": "dateConsent2Given",
+          "type": "date",
+          "label": "Date consent is given",
+          "errorMessage": "Date of consent can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Volume of business",
+      "shortName": "Volume of business",
+      "fields": [
+        {
+          "id": "insetInfoBoxVolume1",
+          "type": "info",
+          "label": "",
+          "infoText": "Give the annual turnover figure for the last 3 sets of completed annual accounts. If a new business, state 0",
+          "infoType": "noformat"
+        },
+        {
+          "id": "annualAccountsSet1",
+          "type": "text",
+          "label": "Annual turnover completed annual accounts set 1",
+          "format": "sterling",
+          "errorMessage": "Enter the annual turnover figure for completed annual accounts set 1 or if a new business enter 0"
+        },
+        {
+          "id": "annualAccountsSet2",
+          "type": "text",
+          "label": "Annual turnover completed annual accounts set 2",
+          "format": "sterling",
+          "errorMessage": "Enter the annual turnover figure for completed annual accounts set 2 or if a new business enter 0"
+        },
+        {
+          "id": "annualAccountsSet3",
+          "type": "text",
+          "label": "Annual turnover completed annual accounts set 3",
+          "format": "sterling",
+          "errorMessage": "Enter the annual turnover figure for completed annual accounts set 3 or if a new business enter 0"
+        }
+      ]
+    },
+    {
+      "title": "Volume of business",
+      "shortName": "Volume of business",
+      "fields": [
+        {
+          "id": "insetInfoBoxVolume2",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide the annual net profit or loss figure for the last 3 sets of completed annual accounts. If a new, business state 0",
+          "infoType": "noformat"
+        },
+        {
+          "id": "pAndLSet1",
+          "type": "text",
+          "label": "Annual net profit or loss completed annual accounts set 1",
+          "format": "sterling",
+          "errorMessage": "Enter the annual net profit or loss figure for completed annual accounts set 1 or if a new business enter 0"
+        },
+        {
+          "id": "pAndLSet2",
+          "type": "text",
+          "label": "Annual net profit or loss completed annual accounts set 2",
+          "format": "sterling",
+          "errorMessage": "Enter the annual net profit or loss figure for completed annual accounts set 2 or if a new business enter 0"
+        },
+        {
+          "id": "pAndLSet3",
+          "type": "text",
+          "label": "Annual net profit or loss completed annual accounts set 3",
+          "format": "sterling",
+          "errorMessage": "Enter the annual net profit or loss figure for completed annual accounts set 3 or if a new business enter 0"
+        }
+      ]
+    },
+    {
+      "title": "Storage facilities owned by others",
+      "shortName": "Storage facilities owned by others",
+      "fields": [
+        {
+          "id": "insetInfoBoxStorage1",
+          "type": "info",
+          "label": "",
+          "infoText": "If you use storage facilities which are not owned by you indicate who you rent/lease the storage facilities from",
+          "infoType": "noformat"
+        },
+        {
+          "id": "storageFacilities",
+          "type": "text",
+          "label": "",
+          "helpText": "If not applicable to your business state n/a",
+          "multiline": "yes",
+          "errorMessage": "Provide details of who you rent/lease storage facilities from"
+        }
+      ]
+    },
+    {
+      "title": "Previous declerations",
+      "shortName": "Previous declerations",
+      "fields": [
+        {
+          "id": "insetInfoBoxPreviousDeclerations1",
+          "type": "info",
+          "label": "",
+          "infoText": "For each of the following, give an estimate of the number and value of the declarations you have made in each of the last 3 years. If a new business, state N/A",
+          "infoType": "noformat"
+        },
+        {
+          "id": "importDeclerations",
+          "type": "text",
+          "label": "Import declerations",
+          "helpText": "If not applicable to your business state n/a",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the number and value of the import declarations you have made in each of the last 3 years"
+        },
+        {
+          "id": "exportReExportDeclerations",
+          "type": "text",
+          "label": "Export/Re-export declerations",
+          "helpText": "If not applicable to your business state n/a",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the number and value of the export/re-export declarations you have made in each of the last 3 years"
+        },
+        {
+          "id": "specialProcedures",
+          "type": "text",
+          "label": "Special procedures",
+          "helpText": "If not applicable to your business state n/a",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the number and value of the special procedures declarations you have made in each of the last 3 years"
+        }
+      ]
+    },
+    {
+      "title": "Duty paid",
+      "shortName": "Duty paid",
+      "fields": [
+        {
+          "id": "insetInfoBoxDutyPaid1",
+          "type": "info",
+          "label": "",
+          "infoText": "Give an estimate amount paid in each of the last 3 years for the following.\n\nIf you are a new business operating for less than 3 years, provide details from the period you are operating.\n\nIf you are a completely new business, state N/A.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "customsDuty",
+          "type": "text",
+          "label": "Custom duty",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the amount of customs duty paid in each of the last 3 years"
+        },
+        {
+          "id": "exciseDuty",
+          "type": "text",
+          "label": "Excise duty",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the amount of excise duty paid in each of the last 3 years"
+        },
+        {
+          "id": "importVat",
+          "type": "text",
+          "label": "Import VAT",
+          "multiline": "yes",
+          "errorMessage": "Provide an estimate of the amount of Import VAT paid in each of the last 3 years"
+        }
+      ]
+    },
+    {
+      "title": "Future structural changes",
+      "shortName": "Structural changes",
+      "fields": [
+        {
+          "id": "structural1",
+          "type": "choice",
+          "label": "Do you foresee any structural changes in your company in the next 2 years?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Future structural changes",
+      "shortName": "Structural changes",
+      "includeIf": "${structural1 = 0}",
+      "fields": [
+        {
+          "id": "structual2a",
+          "type": "info",
+          "label": "",
+          "infoText": "Briefly describe the changes",
+          "infoType": "noformat"
+        },
+        {
+          "id": "structual2b",
+          "type": "text",
+          "label": "",
+          "shortName": "Details of changes",
+          "multiline": "yes",
+          "errorMessage": "Provide details of any structual changes in your company you forsee in the next 2 years"
+        }
+      ]
+    },
+    {
+      "title": "Future supply chain changes",
+      "shortName": "Supply chain changes",
+      "fields": [
+        {
+          "id": "supply1",
+          "type": "choice",
+          "label": "Do you foresee any supply chain changes in your company in the next 2 years?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Future supply chain changes",
+      "shortName": "Supply chain changes",
+      "includeIf": "${supply1 = 0}",
+      "fields": [
+        {
+          "id": "supply2a",
+          "type": "info",
+          "label": "",
+          "infoText": "Briefly describe the changes",
+          "infoType": "noformat"
+        },
+        {
+          "id": "supply2b",
+          "type": "text",
+          "label": "",
+          "shortName": "Details of changes",
+          "multiline": "yes",
+          "errorMessage": "Provide details of any supply chain changes in your company you forsee in the next 2 years"
+        }
+      ]
+    },
+    {
+      "title": "Information and statistics on customs matters",
+      "shortName": "Information and statistics",
+      "fields": [
+        {
+          "id": "stats1",
+          "type": "choice",
+          "label": "Do you perform customs formalities in your own name and for your own account? ",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Information and statistics on customs matters",
+      "shortName": "Personal representative",
+      "fields": [
+        {
+          "id": "stats2",
+          "type": "choice",
+          "label": "Is someone representing you regarding customs formalities?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Information and statistics on customs matters",
+      "shortName": "Your representative",
+      "includeIf": "${stats2 = 0}",
+      "fields": [
+        {
+          "id": "stats2b",
+          "type": "info",
+          "label": "",
+          "infoText": "If 'Yes', by whom and how (directly or indirectly)?\n\n Include the name, address and EORI number of the representative",
+          "infoType": "noformat"
+        },
+        {
+          "id": "stats2a",
+          "type": "text",
+          "label": "",
+          "shortName": "Person representing you",
+          "multiline": "yes",
+          "errorMessage": "Provide details of who is representing you"
+        }
+      ]
+    },
+    {
+      "title": "Information and statistics on customs matters",
+      "shortName": "People you represent",
+      "fields": [
+        {
+          "id": "stats3",
+          "type": "choice",
+          "label": "Do you represent other persons in customs formalities?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Who do you represent?",
+      "shortName": "People represented",
+      "includeIf": "${stats3 = 0}",
+      "fields": [
+        {
+          "id": "stats3b",
+          "type": "info",
+          "label": "",
+          "infoText": "Who do you represent (Name the most significant clients)?\n\n How do you represent them (directly or indirectly)?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "stats3a",
+          "type": "text",
+          "label": "",
+          "shortName": "People you represent",
+          "multiline": "yes",
+          "errorMessage": "Provide details of who you are representing"
+        }
+      ]
+    },
+    {
+      "title": "Tariff classification of goods",
+      "shortName": "Tariff classification",
+      "fields": [
+        {
+          "id": "tariffLong1",
+          "type": "text",
+          "label": "How, and by whom, is the tariff classification of goods decided? ",
+          "shortName": "How classification is decided",
+          "multiline": "yes",
+          "errorMessage": "Provide details of how and by whom, classification is decided"
+        }
+      ]
+    },
+    {
+      "title": "Tariff classification of goods",
+      "shortName": "Tariff classification quality assurance",
+      "fields": [
+        {
+          "id": "tariffLong2",
+          "type": "text",
+          "label": "What quality assurance measures do you take to make sure that tariff classifications are correct (for example, checks, plausibility checks, internal working instructions, regular training)? ",
+          "shortName": "Quality assurance measures",
+          "multiline": "yes",
+          "errorMessage": "Provide details of quality assurance measures"
+        }
+      ]
+    },
+    {
+      "title": "Tariff classification of goods",
+      "shortName": "Quality assurance notes",
+      "fields": [
+        {
+          "id": "qANotes2",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "format": "yesno"
+        },
+        {
+          "id": "qANotes3",
+          "type": "choice",
+          "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Tariff classification of goods",
+      "shortName": "Tariff classification resources used",
+      "fields": [
+        {
+          "id": "tariffLong3",
+          "type": "text",
+          "label": "What resources do you use for tariff classification (for example, database of standing data on goods)?",
+          "shortName": "Tariff classification resources",
+          "multiline": "yes",
+          "errorMessage": "Provide details of tariff classification resources used"
+        }
+      ]
+    },
+    {
+      "title": "Customs value",
+      "shortName": "Customs value",
+      "fields": [
+        {
+          "id": "customsValue1",
+          "type": "text",
+          "label": "How and by whom is the customs value established?",
+          "shortName": "How and by whom, the customs value is established",
+          "multiline": "yes",
+          "errorMessage": "Provide details of how and by whom, the customs value is established"
+        }
+      ]
+    },
+    {
+      "title": "Customs value quality assurance",
+      "shortName": "Customs value quality assurance",
+      "fields": [
+        {
+          "id": "customsValue2",
+          "type": "text",
+          "label": "What quality assurance measures do you take to make sure that the customs value is correctly established (for example, checks, plausibility checks, internal working instructions, regular training, other means)?",
+          "shortName": "Quality assurance measures",
+          "multiline": "yes",
+          "errorMessage": "Provide details of quality assurance measures"
+        }
+      ]
+    },
+    {
+      "title": "Customs value quality assurance",
+      "shortName": "Customs value quality assurance notes",
+      "fields": [
+        {
+          "id": "qANotes4",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "format": "yesno"
+        },
+        {
+          "id": "qANotes5",
+          "type": "choice",
+          "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Origin of imported goods",
+      "shortName": "Imported goods origins",
+      "fields": [
+        {
+          "id": "origins1",
+          "type": "text",
+          "label": "Give an overview of the preferential or non-preferential origin of the imported goods. If none, state N/A",
+          "shortName": "Overview of imported goods",
+          "multiline": "yes",
+          "errorMessage": "Provide an overview of imported goods"
+        }
+      ]
+    },
+    {
+      "title": "Origin of imported goods internal actions",
+      "shortName": "Imported goods origins internal actions",
+      "fields": [
+        {
+          "id": "origins2",
+          "type": "text",
+          "label": "What internal actions have you implemented to verify that the country of origin of the imported goods is declared correctly? If none, state N/A",
+          "shortName": "Internal actions implemented",
+          "multiline": "yes",
+          "errorMessage": "State what internal actions have been implemented to verify origins"
+        }
+      ]
+    },
+    {
+      "title": "Origin of imported goods issuing of proof",
+      "shortName": "Imported goods issuing of proofs of origins",
+      "fields": [
+        {
+          "id": "origins3",
+          "type": "text",
+          "label": "Describe your approach in the issuing of proof of preferences and certificates of origin for exportation. If none, state N/A",
+          "shortName": "Issuing of proof",
+          "multiline": "yes",
+          "errorMessage": "State your approach in the issuing of proof of preferences and certificates of origin for exportation"
+        }
+      ]
+    },
+    {
+      "title": "Goods subject to anti-dumping duties or countervailing duties?",
+      "shortName": "Anti-dumping duties or countervailing duties",
+      "fields": [
+        {
+          "id": "origins5",
+          "type": "choice",
+          "label": "Do you deal in goods subject to anti-dumping duties or countervailing duties?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods subject to anti-dumping duties or countervailing duties?",
+      "shortName": "Anti-dumping duties or countervailing duties details",
+      "includeIf": "${origins5 = 0}",
+      "fields": [
+        {
+          "id": "origins6",
+          "type": "text",
+          "label": "Provide details of the manufacturer(s) or countries outside the EU whose goods are subject to anti-dumping duties or countervailing duties",
+          "shortName": "Details of anti-dumping or countervailing duties",
+          "multiline": "yes",
+          "errorMessage": "Provide manufacturer details"
+        }
+      ]
+    },
+    {
+      "title": "Compliance records",
+      "shortName": "Compliance records",
+      "description": "Guidance for this section can be found in (Article 39 (a) UCC; Article 24 UCC IA; AEO Guidelines Part 2, Section I)",
+      "fields": [
+        {
+          "id": "lineBreakCompliance1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "complianceRecords1",
+          "type": "choice",
+          "label": "Have breaches of customs and taxation rules been detected within your company or by the customs and/or fiscal authorities in the last 3 years?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Recorded compliance breaches",
+      "shortName": "Compliance breaches",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords2",
+          "type": "text",
+          "label": "Describe the breaches of customs and taxation rules detected",
+          "shortName": "Details of breaches",
+          "multiline": "yes",
+          "errorMessage": "Provide breaches of customs and taxation rules detected"
+        }
+      ]
+    },
+    {
+      "title": "Notifying relevant authorities of breaches",
+      "shortName": "Notifying relevant authorities",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords3",
+          "type": "text",
+          "label": "How did you notify breaches to the relevant governmental authorities?",
+          "shortName": "Details of notification",
+          "multiline": "yes",
+          "errorMessage": "Provide details of notification of authorities"
+        }
+      ]
+    },
+    {
+      "title": "Quality assurance measures introduced to avoid breaches",
+      "shortName": "Future breach avoidance",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords4",
+          "type": "text",
+          "label": "What quality assurance measures were introduced to avoid such breaches in the future?",
+          "shortName": "Quality assurance measures introduced",
+          "multiline": "yes",
+          "errorMessage": "Provide details of quality assurance measures introduced"
+        },
+        {
+          "id": "complianceRecords5",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Condemned for any serious infringement of criminal laws",
+      "shortName": "Serious infringements of criminal laws",
+      "fields": [
+        {
+          "id": "complianceRecords6",
+          "type": "choice",
+          "label": "Has your company been condemned for any serious infringement of criminal laws related to your economic activity?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Descriptions of any serious infringement of criminal laws",
+      "shortName": "Description of serious infringements",
+      "includeIf": "${complianceRecords6 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords7",
+          "type": "text",
+          "label": "Describe the infringement and when it has been committed. Please also make reference to the sentence of the court.",
+          "shortName": "Infringement description",
+          "multiline": "yes",
+          "errorMessage": "Provide details of the infringement"
+        }
+      ]
+    },
+    {
+      "title": "Other customs authorisation applications",
+      "shortName": "Other applications",
+      "fields": [
+        {
+          "id": "complianceRecords8",
+          "type": "choice",
+          "label": "Do you plan to apply or have you already applied for any other customs authorisation?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Descriptions of other customs authorisation applications",
+      "shortName": "Description of other applications",
+      "includeIf": "${complianceRecords8 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords9",
+          "type": "text",
+          "label": "Provide details of other applications",
+          "shortName": "Other applications description",
+          "multiline": "yes",
+          "errorMessage": "Provide details of the other applications"
+        }
+      ]
+    },
+    {
+      "title": "Refused applications or revoked authorisations",
+      "shortName": "Refused or revoked applications or authorisations",
+      "fields": [
+        {
+          "id": "complianceRecords10",
+          "type": "choice",
+          "label": "Have any applications for authorisations/certifications been refused, or existing authorisations been suspended or revoked because of breaches of customs rules in the last 3 years",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Reasons for refusal or revokation",
+      "shortName": "Description of other applications",
+      "includeIf": "${complianceRecords10 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords11",
+          "type": "text",
+          "label": "Provide details of how many times and for what reasons applications where refused or authorisations where revoked",
+          "shortName": "Revoked or refused details",
+          "multiline": "yes",
+          "errorMessage": "Provide details of revoked authorisations or refused applications"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical system",
+      "shortName": "Accounting and logistical system",
+      "description": "Guidance for this section can be found at (Article 39 (b) UCC, Article 25 UCC IA; AEO Guidelines Part 2, Section II)",
+      "fields": [
+        {
+          "id": "lineBreakAudit1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "auditTrail1",
+          "type": "choice",
+          "label": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
+          "shortName": "Audit trail",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical system",
+      "shortName": "Description of other audit trail",
+      "includeIf": "${auditTrail1 = 0}",
+      "fields": [
+        {
+          "id": "auditTrail2",
+          "type": "text",
+          "label": "Provide details of the essential features of this audit trail",
+          "shortName": "Audit trail details",
+          "multiline": "yes",
+          "errorMessage": "Provide details of the audit trail"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system seperation of functions",
+      "description": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+      "fields": [
+        {
+          "id": "lineBreakComputers1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer1",
+          "type": "text",
+          "label": "Provide details on the separation of functions between development, testing and operation",
+          "shortName": "Seperation of functions",
+          "multiline": "yes",
+          "errorMessage": "Provide details of the seperation of functions"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers2",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer2",
+          "type": "text",
+          "label": "Provide details on the Separation of functions between users",
+          "shortName": "Seperation of functions between users",
+          "multiline": "yes",
+          "errorMessage": "Provide details of the seperation of functions between users"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo3",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers3",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer3",
+          "type": "text",
+          "label": "Provide details on Access controls (which ones/to whom)",
+          "shortName": "Access controls",
+          "multiline": "yes",
+          "errorMessage": "Provide details on access controls"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo4",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers4",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer4",
+          "type": "text",
+          "label": "Provide details on Traceability between business system and declaration system",
+          "shortName": "Traceability",
+          "multiline": "yes",
+          "errorMessage": "Provide details on Traceability"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Logistical systems capabilities",
+      "fields": [
+        {
+          "id": "capabilities1",
+          "type": "choice",
+          "label": "Are your logistical systems capable of distinguishing between Union and non-Union goods and indicating their location?",
+          "shortName": "Distinguishing capabilities",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Logistical systems capabilities",
+      "includeIf": "${capabilities1 = 0}",
+      "fields": [
+        {
+          "id": "capabilities2",
+          "type": "text",
+          "label": "Provide details of your systems distinguishing capabilities, if you do not deal with non-Union goods, please indicate N/A. ",
+          "shortName": "Distinguishing capabilities details",
+          "multiline": "yes",
+          "errorMessage": "Provide details of system capabilities"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system location",
+      "fields": [
+        {
+          "id": "compSysLoc1",
+          "type": "text",
+          "label": "At what location are your computer activities undertaken?",
+          "errorMessage": "input the full name of the location"
+        },
+        {
+          "id": "outSourced1",
+          "type": "choice",
+          "label": "Have computer applications been outsourced?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Outsourcing location details",
+      "includeIf": "${outSourced1 = 0}",
+      "fields": [
+        {
+          "id": "outSourced2",
+          "type": "text",
+          "label": "provide details (name address, VAT no.) of company or companies where the applications are outsourced and how do you manage access controls for the outsourced applications?",
+          "shortName": "Outsourcing details",
+          "multiline": "yes",
+          "errorMessage": "Provide details of companies systems are outsourced to"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem1",
+          "type": "choice",
+          "label": "Do you have in-house guidelines for the internal control system in the accounts department, buying department, sales department, customs department, production, material and merchandise management and logistics?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system in-house guidelines",
+      "shortName": "In-house guidelines",
+      "includeIf": "${internalControlSystem1 = 0}",
+      "fields": [
+        {
+          "id": "internalControlSystem2",
+          "type": "text",
+          "label": "Describe your in-house guidelines briefly and how they are updated. For example, actions like job instructions, employee training, instructions for checking faults and mechanism for proofreading",
+          "shortName": "Details of in-house guidelines",
+          "multiline": "yes",
+          "errorMessage": "Provide details of in-house guidelines"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system audits",
+      "shortName": "Control system audits",
+      "fields": [
+        {
+          "id": "internalControlSystem3",
+          "type": "choice",
+          "label": "Have your internal control processes been subject to any internal/external audit?",
+          "shortName": "Subject to internal/external audit",
+          "format": "yesno"
+        },
+        {
+          "id": "internalControlSystem4",
+          "type": "choice",
+          "label": "Does this include audit of your customs routines?",
+          "shortName": "Customs routines audit",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system audits",
+      "shortName": "Control system audits",
+      "includeIf": "${internalControlSystem4 = 0}",
+      "fields": [
+        {
+          "id": "auditUploadInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide a copy of your most recent customs routines audit report\n\n We accept documents in formats like pdf and jpeg (5mb maximum)."
+        },
+        {
+          "id": "uploadAdd1",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Uploaded file",
+          "errorMessage": "Upload a file in the right format and size limit"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem5",
+          "type": "text",
+          "label": "Briefly describe the procedures for checking your computer files (standing data or master files).",
+          "shortName": "Procedures for checking computer files",
+          "multiline": "yes",
+          "errorMessage": "Provide description of computer file checking procedure"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem6",
+          "type": "info",
+          "label": "",
+          "infoText": "How do these procedures cover the following risks from your perspective?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "internalControlSystem7",
+          "type": "text",
+          "label": "Incorrect and/or incomplete recording of transactions in the accounting system",
+          "shortName": "Procedures for checking incorrect and/or incomplete transactions",
+          "multiline": "yes",
+          "errorMessage": "Provide description of incorrect and/or incomplete transactions checking procedure"
+        },
+        {
+          "id": "internalControlSystem8",
+          "type": "text",
+          "label": "Use of incorrect permanent or out-of-date data such as number of articles and tariff codes",
+          "shortName": "Procedures for checking use of incorrect permanent or out-of-date data",
+          "multiline": "yes",
+          "errorMessage": "Provide description of checking procedure for use of incorrect permanent or out-of-date data"
+        },
+        {
+          "id": "internalControlSystem9",
+          "type": "text",
+          "label": "Inadequate control of the company processes within the applicant's business",
+          "shortName": "Procedures for covering the risk of inadequate control of company processes",
+          "multiline": "yes",
+          "errorMessage": "Provide description of procedures for covering the risk of inadequate control of company processes"
+        }
+      ]
+    },
+    {
+      "title": "Flow of goods",
+      "shortName": "Flow of goods",
+      "fields": [
+        {
+          "id": "flowOfGoods1",
+          "type": "text",
+          "label": "Briefly describe the registration procedure (physically and in the records) for the flow of goods starting from their arrival, the storage up to manufacture and shipment. Who keeps records and where are they kept?",
+          "shortName": "Describe the registration procedure for the flow of goods",
+          "multiline": "yes",
+          "errorMessage": "Provide description of the registration procedure for the flow of goods"
+        }
+      ]
+    },
+    {
+      "title": "Flow of goods",
+      "shortName": "Flow of goods",
+      "fields": [
+        {
+          "id": "flowOfGoods2",
+          "type": "text",
+          "label": "Briefly describe the procedures in place for checking stock levels, including the frequency of those checks and how are discrepancies handled, for example, stocktaking and inventory?",
+          "shortName": "Describe the procedures in place for checking stock levels",
+          "multiline": "yes",
+          "errorMessage": "Provide description of the procedures in place for checking stock levels"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "fields": [
+        {
+          "id": "customsRoutines1",
+          "type": "choice",
+          "label": "Do you have documented procedures for verifying the accuracy of customs declarations, including those submitted on your behalf, for example, by a customs agent or a freight forwarder?",
+          "shortName": "Procedures for verifying accuracy of customs declarations",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${customsRoutines1 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines2",
+          "type": "text",
+          "label": "Briefly describe the procedures for verifying accuracy of customs declarations",
+          "shortName": "Describe the procedures for verifying accuracy of customs declarations",
+          "multiline": "yes",
+          "errorMessage": "Provide description of the procedures for verifying accuracy of customs declarations"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${customsRoutines1 = 1}",
+      "fields": [
+        {
+          "id": "customsRoutines3",
+          "type": "choice",
+          "label": "Do you verify the accuracy of customs declarations?",
+          "shortName": "Customs declarations accuracy verified",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${customsRoutines3 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines4",
+          "type": "text",
+          "label": "In what way do you verify the accuracy of customs declarations?",
+          "shortName": "Describe how you verify customs declarations accuracy",
+          "multiline": "yes",
+          "errorMessage": "Provide description of how you verify the accuracy of customs declarations"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines notification of irregularities",
+      "shortName": "Customs routines notification guidelines",
+      "fields": [
+        {
+          "id": "customsRoutines5",
+          "type": "choice",
+          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities (for example, suspicion of theft, burglary or smuggling in connection with customs-related goods)?",
+          "shortName": "Company has guidelines on the notification of irregularities",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines notification of irregularities",
+      "shortName": "Customs routines notification guidelines",
+      "includeIf": "${customsRoutines5 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines6",
+          "type": "choice",
+          "label": "Are these instructions documented, for example, work instructions, manuals, other guidance documents?",
+          "shortName": "Guidelines on the notification of irregularities are documented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines irregularities detected",
+      "shortName": "Customs routines irregularities detected",
+      "fields": [
+        {
+          "id": "customsRoutines7",
+          "type": "choice",
+          "label": "Over the last year, have you detected any irregularities (or presumed irregularities) and notified them to the competent authorities?",
+          "shortName": "Detected irregularities have been reported",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to economic trade licences",
+      "shortName": "Goods that are subject to economic trade licences",
+      "fields": [
+        {
+          "id": "customsRoutines8",
+          "type": "choice",
+          "label": "Do you trade in goods that are subject to economic trade licences, for example, textiles, agricultural goods?",
+          "shortName": "Trade in goods subject to economic trade licences",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to economic trade licences",
+      "shortName": "Goods that are subject to economic trade licences",
+      "includeIf": "${customsRoutines8 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines9",
+          "type": "text",
+          "label": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
+          "shortName": "Describe your procedures for administering the licences",
+          "multiline": "yes",
+          "errorMessage": "Provide description of your procedures for administering the licences related to the import and/or export of such goods"
+        }
+      ]
+    },
+    {
+      "title": "Prohibitions and restrictions",
+      "shortName": "Prohibitions and restrictions",
+      "fields": [
+        {
+          "id": "customsRoutines10",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to import and export licenses connected to prohibitions and restrictions?",
+          "shortName": "Trade in goods subject to prohibitions and restrictions",
+          "format": "yesno"
+        },
+        {
+          "id": "customsRoutines11",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to other import and export licenses?",
+          "shortName": "Trade in goods subject to other import and export licenses",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to other import and export licenses",
+      "shortName": "Goods that are subject to other import and export licenses",
+      "includeIf": "${customsRoutines11 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines12",
+          "type": "text",
+          "label": "Specify the type of goods and any procedures in place for the handling of those licenses?",
+          "shortName": "Specify type of goods and procedures",
+          "multiline": "yes",
+          "errorMessage": "Specify the type of goods and any procedures in place for the handling of other import and export licenses"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "fields": [
+        {
+          "id": "customsRoutines13",
+          "type": "choice",
+          "label": "Are you dealing with goods falling under the Dual Use Regulation (Council Regulation No 428/2009/EC)?",
+          "shortName": "Dealing with goods falling under the Dual Use Regulation",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods falling under the Dual Use Regulation",
+      "shortName": "Goods falling under the Dual Use Regulation",
+      "includeIf": "${customsRoutines13 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines14",
+          "type": "choice",
+          "label": "Have you implemented an Internal Compliance Programme (ICP)?",
+          "shortName": "Internal Compliance Programme (ICP) implemented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "ICP details",
+      "shortName": "ICP details",
+      "includeIf": "${customsRoutines14 = 0}",
+      "fields": [
+        {
+          "id": "customsRoutines15",
+          "type": "text",
+          "label": "How is your ICP updated?",
+          "shortName": "How ICP is updated",
+          "multiline": "yes",
+          "errorMessage": "Describe how your ICP is updated"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "Back-up procedures",
+      "fields": [
+        {
+          "id": "backUp1",
+          "type": "text",
+          "label": "Briefly describe your procedures for back-up, recovery, fallback, archiving and retrieval of your business records",
+          "shortName": "Description of business records recovery procedures",
+          "multiline": "yes",
+          "errorMessage": "Describe how you back-up, recover, fallback, archive and retrieve your business records"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "Storage time",
+      "fields": [
+        {
+          "id": "backUp2",
+          "type": "text",
+          "label": "How long is the data saved in the production system and how long is this data archived?",
+          "shortName": "Data saved and archived",
+          "errorMessage": "Describe how long data is saved in the production system and how long it is archived for"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "System disruption/failure",
+      "fields": [
+        {
+          "id": "backUp3",
+          "type": "choice",
+          "label": "Does the company have a contingency plan for system disruption/failure?",
+          "shortName": "Contingency plan",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems",
+      "shortName": "Protection of computer systems",
+      "fields": [
+        {
+          "id": "csProtect1",
+          "type": "text",
+          "label": "Briefly describe the actions you have taken in order to protect your computer system from unauthorised intrusion, for example, firewall, antivirus programme, password protection?",
+          "shortName": "Actions taken to protect computer system",
+          "multiline": "yes",
+          "errorMessage": "Describe the actions you have taken in order to protect your computer system"
+        },
+        {
+          "id": "csProtect2",
+          "type": "text",
+          "label": "Has any intrusion testing been carried out, what were the results and were any corrective measures taken?",
+          "shortName": "Intrusion testing",
+          "multiline": "yes",
+          "errorMessage": "enter details of any intrusion testing completed, results and corrective measures."
+        },
+        {
+          "id": "csProtect3",
+          "type": "choice",
+          "label": "Have you experienced any IT security incidents in the last year?",
+          "shortName": "IT security incidents",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Computer system access rights",
+      "shortName": "Access rights",
+      "fields": [
+        {
+          "id": "csProtect4",
+          "type": "text",
+          "label": "Briefly describe how access rights for the computer systems are issued",
+          "shortName": "Access rights issued",
+          "multiline": "yes",
+          "errorMessage": "Describe how access rights are issued for the computer system"
+        },
+        {
+          "id": "csProtect5",
+          "type": "text",
+          "label": "Who is responsible for the running and protection of the computer system?",
+          "shortName": "Person responsible",
+          "errorMessage": "Enter details of who is responsible for running and protecting the computer system"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Users",
+      "shortName": "IT security user details",
+      "fields": [
+        {
+          "id": "csProtect6",
+          "type": "choice",
+          "label": "Do you have guidelines or internal instructions for IT security for your personnel?",
+          "shortName": "IT security guidelines",
+          "format": "yesno"
+        },
+        {
+          "id": "csProtect7",
+          "type": "text",
+          "label": "How do you monitor that IT security measures are followed inside your company?",
+          "shortName": "Monitoring IT security measures are followed",
+          "multiline": "yes",
+          "errorMessage": "Describe how you monitor that IT security measures are being followed inside your company"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Servers",
+      "shortName": "IT security server details",
+      "fields": [
+        {
+          "id": "csProtect8",
+          "type": "text",
+          "label": "Where is your main server located?",
+          "shortName": "Main server location",
+          "errorMessage": "Enter the location of your main server"
+        },
+        {
+          "id": "csProtect9",
+          "type": "text",
+          "label": "Give details of how your main server is secured",
+          "shortName": "How main server is secured",
+          "multiline": "yes",
+          "errorMessage": "Describe how your main server is secured"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security",
+      "shortName": "Documentation security",
+      "description": "Guidance for this section can be found at (Guidelines Annex 2, point 2.9)",
+      "fields": [
+        {
+          "id": "docSec1",
+          "type": "text",
+          "label": "Briefly describe what actions have been taken in order to protect information/documents from unauthorised access, abuse, intended destruction and loss (for example, constricted access rights, creation of electronic backup, clear-desk policy)",
+          "shortName": "Actions to protect documents",
+          "multiline": "yes",
+          "errorMessage": "Describe how you protect information/documents from unauthorised access"
+        },
+        {
+          "id": "docSec2",
+          "type": "choice",
+          "label": "Have there been any cases of unauthorised access to documents in the last year?",
+          "shortName": "Unauthorised access to documents",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - incident of unauthorised access occurred",
+      "shortName": "Incident of unauthorised access occurred ",
+      "includeIf": "${docSec2 = 0}",
+      "fields": [
+        {
+          "id": "docSec3",
+          "type": "text",
+          "label": "What measures have been taken to prevent this from happening again?",
+          "shortName": "Measures taken to prevent re-occurrance of unauthorised access to documents",
+          "multiline": "yes",
+          "errorMessage": "Describe what you have done to prevent re-occurrance of unauthorised access to documents"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - employees",
+      "shortName": "Documentation security - employees",
+      "fields": [
+        {
+          "id": "docSec4",
+          "type": "text",
+          "label": "Which categories of employees have access to detailed data about the flow of materials and goods?",
+          "shortName": "categories of employees with access to detailed material and goods flow data ",
+          "multiline": "yes",
+          "errorMessage": "Define which categories of employees have access to detailed data about the flow of materials and goods"
+        },
+        {
+          "id": "docSec5",
+          "type": "text",
+          "label": "Which categories of employees are authorised to change this data?",
+          "shortName": "categories of employees authorised to change this data",
+          "multiline": "yes",
+          "errorMessage": "Define which categories of employees are authorised to change this data about the flow of materials and goods"
+        },
+        {
+          "id": "docSec6",
+          "type": "choice",
+          "label": "Are changes to this data comprehensively documented?",
+          "shortName": "Data changes comprehensively documented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - trade partners",
+      "shortName": "Documentation security - trade partners",
+      "fields": [
+        {
+          "id": "docSec7",
+          "type": "text",
+          "label": "Briefly describe what requirements regarding security and safety you require from your trade partners and other contact persons in order to avoid abuse of information, for example, endangering of the supply chain through unauthorised transfer of shipping details",
+          "shortName": "Security requirements from trade partners",
+          "multiline": "yes",
+          "errorMessage": "Describe what requirements regarding security and safety you require from your trade partners and other contact persons in order to avoid abuse of information"
+        },
+        {
+          "id": "docSec8",
+          "type": "choice",
+          "label": "Are security declarations/agreements in place with your trade partners?",
+          "shortName": "Security declarations/agreements in place",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Trade partners - security declarations/agreements not in place",
+      "shortName": "security declarations/agreements not in place",
+      "includeIf": "${docSec8 = 0}",
+      "fields": [
+        {
+          "id": "docSec9",
+          "type": "text",
+          "label": "How do you ensure the safety and security of information and/or goods?",
+          "shortName": "How safety and security of information and/or goods is ensured",
+          "multiline": "yes",
+          "errorMessage": "Describe how you ensure the safety and security of information and/or goods"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency",
+      "shortName": "Financial solvency",
+      "description": "Guidance for this section can be found at (Article 39 (c) UCC, Article 26 UCC IA, AEO Guidelines Part 2 Section III)",
+      "fields": [
+        {
+          "id": "finSolv1",
+          "type": "choice",
+          "label": "Have any bankruptcy or insolvency proceedings been initiated in respect of your company's assets in the last 3 years?",
+          "shortName": "Bankruptcy or insolvency proceedings initiated in the last 3 years",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Bankruptcy or insolvency proceedings initiated in the last 3 years",
+      "shortName": "Financial solvency -Bankruptcy or insolvency proceedings initiated",
+      "includeIf": "${finSolv1 = 0}",
+      "fields": [
+        {
+          "id": "finSolv2",
+          "type": "text",
+          "label": "Provide details of the bankruptcy or insolvancy proceedings that have been initiated in the last 3 years",
+          "shortName": "Bankruptcy or insolvancy proceedings details",
+          "multiline": "yes",
+          "errorMessage": "Describe the bankruptcy or insolvancy proceedings that have been initiated in the last 3 years"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - financial standing",
+      "shortName": "Financial solvency - financial standing",
+      "fields": [
+        {
+          "id": "finSolv3",
+          "type": "choice",
+          "label": "Has your company had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years?",
+          "shortName": "Consistently good financial standing",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - consistently good financial standing",
+      "shortName": "Consistently good financial standing",
+      "includeIf": "${finSolv3 = 0}",
+      "fields": [
+        {
+          "id": "finSolvUploadInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide evidence such as a letter from your auditors or an audited report, a copy of your finalised accounts (including your management accounts) – if your accounts have not been audited, evidence from your bank or financial institution.\n\n We accept documents in formats like pdf and jpeg (5mb maximum).",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd2",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Uploaded file",
+          "errorMessage": "Upload a file in the right format and size limit"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency -  not consistently good financial standing",
+      "shortName": "Not consistently good financial standing",
+      "includeIf": "${finSolv3 = 1}",
+      "fields": [
+        {
+          "id": "finSolv4",
+          "type": "text",
+          "label": "Provide full details of your financial standing and why it does not meet the consisitently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years",
+          "shortName": "Full details of your financial standing",
+          "multiline": "yes",
+          "errorMessage": "Provide full details of your financial standing and why it does not meet the consisitently good financial standing within the meaning of Article 26 of the UCC IA"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - newly established company",
+      "shortName": "Financial solvency - newly established company",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "finSolvUploadInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are a newly established business, provide all records and information in relation to your financial status. For example, latest cash flow, balance sheet and profit and loss forecasts approved by the directors/partners/sole proprietor.\n\n We accept documents in formats like pdf and jpeg (5mb maximum).",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd3",
+          "type": "file",
+          "label": "Upload your latest cash flow",
+          "shortName": "Uploaded cash flow",
+          "mandatory": "false",
+          "errorMessage": "Upload a file in the right format and size limit"
+        },
+        {
+          "id": "uploadAdd4",
+          "type": "file",
+          "label": "Upload your latest balance sheet",
+          "shortName": "Uploaded balance sheet",
+          "mandatory": "false",
+          "errorMessage": "Upload a file in the right format and size limit"
+        },
+        {
+          "id": "uploadAdd5",
+          "type": "file",
+          "label": "Upload your latest profit and loss forecasts",
+          "shortName": "Uploaded profit and loss forecasts",
+          "mandatory": "false",
+          "errorMessage": "Upload a file in the right format and size limit"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency in the foreseeable future",
+      "shortName": "Financial solvency in the foreseeable future",
+      "fields": [
+        {
+          "id": "finSolv5",
+          "type": "choice",
+          "label": "Is there anything you are aware of that could impact on your financial solvency in the foreseeable future?",
+          "shortName": "Aware of anything that could impact future financial solvency",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Impacted financial solvency",
+      "shortName": "Impacted financial solvency",
+      "includeIf": "${finSolv5 = 0}",
+      "fields": [
+        {
+          "id": "finSolv6",
+          "type": "text",
+          "label": "Give details of anything that you are aware of that may impact future financial solvency",
+          "shortName": "Details of your things that may impact future financial solvency",
+          "multiline": "yes",
+          "errorMessage": "Provide details of anything that you are aware of that may impact future financial solvency"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Duty Deferment Account",
+      "shortName": "Financial solvency - Duty Deferment Account",
+      "fields": [
+        {
+          "id": "finSolv7",
+          "type": "choice",
+          "label": "Do you have a Duty Deferment Account? ",
+          "shortName": "Duty Deferment Account",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Deferment Approval Number (DAN)",
+      "shortName": "Deferment Approval Number (DAN)",
+      "includeIf": "${finSolv7 = 0}",
+      "fields": [
+        {
+          "id": "finSolv8",
+          "type": "text",
+          "label": "Enter your deferment approval number (DAN)",
+          "shortName": "D A N",
+          "errorMessage": "Enter your deferment approval number (DAN)"
+        }
+      ]
+    },
+    {
+      "title": "Practical standards of competence or professional qualifications",
+      "shortName": "Practical standards of competence",
+      "description": "Guidance for this section can be found at (Article 39 (d) UCC, Article 27 UCC IA, AEO Guidelines Part 2 Section IV)",
+      "fields": [
+        {
+          "id": "practComp1",
+          "type": "choice",
+          "label": "Do you or the person in charge of your customs matters have practical experience of a minimum of 3 years in customs matters?",
+          "shortName": "Experienced person in charge of customs matters",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person in charge of customs matters",
+      "shortName": "Person in charge of customs matters",
+      "includeIf": "${practComp1 = 0}",
+      "fields": [
+        {
+          "id": "practComp2",
+          "type": "text",
+          "label": "Provide details proving the person in charge of customs matters has a minumum of 3 years practical experience in customs matters",
+          "shortName": "Details of customs matters experience",
+          "multiline": "yes",
+          "errorMessage": "Provide details proving the person in charge of customs matters has a minumum of 3 years practical experience in customs matters"
+        }
+      ]
+    },
+    {
+      "title": "Practical standards of competence - quality standard",
+      "shortName": "Practical standards of competence - quality standard",
+      "fields": [
+        {
+          "id": "practComp3",
+          "type": "choice",
+          "label": "Do you or the person in charge of your customs matters comply with a quality standard concerning customs matters adopted by a European Standardisation body, when available?",
+          "shortName": "Experienced person in charge of customs matters",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Complies with a quality standard",
+      "shortName": "Complies with a quality standard",
+      "includeIf": "${practComp3 = 0}",
+      "fields": [
+        {
+          "id": "practComp4",
+          "type": "text",
+          "label": "Provide details on this quality standard.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes",
+          "errorMessage": "Provide details on this quality standard"
+        }
+      ]
+    },
+    {
+      "title": "Professional qualifications",
+      "shortName": "Professional qualifications",
+      "fields": [
+        {
+          "id": "proQual1",
+          "type": "info",
+          "label": "",
+          "infoText": "Have you or the person in charge of your customs matters successfully completed training covering customs legislation consistent with, and relevant to, the extent of your involvement in customs-related activities, provided by any of the following:",
+          "infoType": "noformat"
+        },
+        {
+          "id": "proQual2",
+          "type": "choice",
+          "label": "A customs authority of a Member State",
+          "shortName": "Training provided by a customs authority of a member state",
+          "format": "yesno"
+        },
+        {
+          "id": "proQual3",
+          "type": "choice",
+          "label": "An educational establishment recognised, for the purposes of providing such qualification, by the customs authorities or a body of a Member State responsible for professional training",
+          "shortName": "Training provided by a recognised educational establishment",
+          "format": "yesno"
+        },
+        {
+          "id": "proQual4",
+          "type": "choice",
+          "label": "A professional or trade association recognised by the customs authorities of a Member State or accredited in the Union, for the purposes of providing such qualification?",
+          "shortName": "Training provided by a professional or trade association",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${proQual2 = 0}",
+      "fields": [
+        {
+          "id": "proQual5",
+          "type": "text",
+          "label": "provide details regarding the training, provided by a customs authority of a member state, you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes",
+          "errorMessage": "Provide details on this quality standard"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${proQual3 = 0}",
+      "fields": [
+        {
+          "id": "proQual6",
+          "type": "text",
+          "label": "provide details regarding the training, provided by an educational establishment , you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes",
+          "errorMessage": "Provide details on this quality standard"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${proQual4 = 0}",
+      "fields": [
+        {
+          "id": "proQual7",
+          "type": "text",
+          "label": "provide details regarding the training, provided by a professional or trade association , you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes",
+          "errorMessage": "Provide details on this quality standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "test."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
