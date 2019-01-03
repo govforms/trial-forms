@@ -15,8 +15,9 @@
   },
   "sections": [
     {
-      "title": "About you (merge w/contact details page)",
+      "title": "What are your contact details?",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC. We will use these details to contact you if we have a question about this form.",
       "fields": [
         {
           "id": "firstNameBusiness",
@@ -31,6 +32,32 @@
           "label": "Last name",
           "mandatory": "true",
           "errorMessage": "Enter your last name"
+        },
+        {
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country and area codes",
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter your telephone number"
+        },
+        {
+          "id": "Email address",
+          "type": "text",
+          "label": "Email address"
+        },
+        {
+          "id": "emailPhone",
+          "type": "choice",
+          "label": "Select how you would like to be contacted",
+          "shortName": "Contact method",
+          "multivalue": "yes",
+          "errorMessage": "Select if you would like to be contacted by email or phone",
+          "choices": [
+            "Email",
+            "Phone"
+          ]
         }
       ]
     },
@@ -70,44 +97,9 @@
       ]
     },
     {
-      "title": "Contact details (merge w/ about you page)",
-      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
-      "fields": [
-        {
-          "id": "emailAgent",
-          "type": "text",
-          "label": "Email address",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter your email address"
-        },
-        {
-          "id": "agentTelephone",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "Include the country and area codes",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
-        },
-        {
-          "id": "emailPhone",
-          "type": "choice",
-          "label": "Select your preferred contact method.",
-          "shortName": "Contact method",
-          "multivalue": "yes",
-          "errorMessage": "Select if you would like to be contacted by email or phone",
-          "choices": [
-            "Email",
-            "Phone"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Your company details",
+      "title": "Enter your company details",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "This will help us match your details against information we currently hold.",
       "fields": [
         {
           "id": "companyName",
@@ -137,8 +129,9 @@
       ]
     },
     {
-      "title": "Your client's company details",
+      "title": "Enter your client's company details",
       "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "This will help us match your client's details against information we currently hold.",
       "fields": [
         {
           "id": "companyNameAgent",
@@ -170,8 +163,15 @@
     {
       "title": "What is the start and end date for this claim?",
       "shortName": "Claim period",
-      "description": "Your claim date should match the accounting period of your current Corporation Tax return. You can only claim for 12 months for each application. Submit a separate form if the claim period is beyond 12 months.",
+      "description": "Your claim date should match the accounting period of your current Corporation Tax return. You can only claim for 12 months for each application. ",
       "fields": [
+        {
+          "id": "Inset5",
+          "type": "info",
+          "label": "Inset5",
+          "infoText": "Submit a separate form if the claim period is beyond 12 months.",
+          "infoType": "standard"
+        },
         {
           "id": "accountingPeriodStartDate",
           "type": "date",
@@ -195,11 +195,25 @@
       "shortName": "Qualifying expenditure",
       "fields": [
         {
+          "type": "info",
+          "id": "inset6.1",
+          "label": "inset6.1",
+          "infoText": "the calculated amount of the qualifying expenditure should match",
+          "infoType": "standard"
+        },
+        {
           "id": "info0",
           "type": "info",
           "label": "",
-          "infoText": "Complete all fields, using ‘0’ if no expenditure is applicable.\nNote that only costs employed directly in R&D activities qualify for R&D tax relief",
+          "infoText": "Complete all fields, using ‘0’ if no expenditure is applicable.\n",
           "infoType": "noformat"
+        },
+        {
+          "id": "inset6",
+          "type": "info",
+          "label": "inset6",
+          "infoText": "[rewrite] **We will only consider expenses incurred for R&D activities that qualify for R&D tax relief**",
+          "infoType": "standard"
         },
         {
           "id": "staffCosts",
@@ -247,7 +261,7 @@
           "id": "software",
           "type": "text",
           "label": "Software",
-          "helpText": "For example, computer software",
+          "helpText": "For example, project management software, licences software specifically purchased for use in the R&D process",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -297,7 +311,6 @@
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
           "shortName": "Scientific/technical knowledge at the start",
-          "helpText": "Please describe the ‘baseline’ for scientific or technological knowledge in the public domain which your R&D project aimed to surpass. What were the restrictions or limitations at that time? ",
           "format": "text(0, 2500)",
           "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
@@ -307,7 +320,7 @@
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
           "shortName": "Advance in knowledge",
-          "helpText": "How were you hoping to improve on existing knowledge?",
+          "helpText": "Please describe the ‘baseline’ for scientific or technological knowledge in the public domain which your R&D project aimed to surpass. ",
           "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
@@ -964,6 +977,13 @@
     "shortName": "Confirm details and send the form",
     "fields": [
       {
+        "id": "decPageImportant",
+        "type": "info",
+        "label": "",
+        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nYou must enter the name of someone who is authorised to sign this declaration.",
+        "infoType": "important"
+      },
+      {
         "id": "declarationNameGroup",
         "type": "group",
         "label": "",
@@ -996,15 +1016,8 @@
         "id": "decPageContent",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoText": "By submitting this form, you declare that the information that you have provided is true and complete.",
         "infoType": "noformat"
-      },
-      {
-        "id": "decPageImportant",
-        "type": "info",
-        "label": "",
-        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nYou must enter the name of someone who is authorised to sign this declaration.",
-        "infoType": "important"
       }
     ]
   },
