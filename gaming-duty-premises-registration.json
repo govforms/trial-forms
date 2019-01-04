@@ -1,5 +1,6 @@
 {
-  "formName": "New form",
+  "_id": "gaming-duty-premises-registration",
+  "formName": "Add or remove premises from the Gaming Duty register",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -9,31 +10,31 @@
     "businessArea": "For example: FinanceOpsCorpT",
     "classificationType": "For example: BT-NRU-Environmental",
     "customerId": "${fieldIdOfCustomerIdentifier}",
-    "dmsFormId": "CHANGEME"
+    "dmsFormId": "GD58"
   },
   "sections": [
     {
       "title": "About you",
       "fields": [
         {
-          "type": "text",
           "id": "firstName",
+          "type": "text",
           "label": "First name"
         },
         {
-          "type": "text",
           "id": "lastName",
+          "type": "text",
           "label": "Last name"
         },
         {
-          "type": "text",
           "id": "capFill",
+          "type": "text",
           "label": "Capacity in which you are completing this form",
           "helpText": "For example, director, proprietor"
         },
         {
-          "type": "text",
           "id": "telPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         }
@@ -47,15 +48,15 @@
           "id": "emailInfo1",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "We need your consent before using email to communicate"
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
         },
         {
           "id": "emailInfo2",
           "type": "info",
           "label": "Read about the risks of using email",
-          "infoType": "long",
-          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers."
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoType": "long"
         },
         {
           "id": "emCons1",
@@ -69,8 +70,8 @@
           "type": "text",
           "label": "Email address",
           "helpText": "Provide your email address below if you consent to communicating by email",
-          "mandatory": "false",
-          "format": "email"
+          "format": "email",
+          "mandatory": "false"
         }
       ]
     },
@@ -78,8 +79,8 @@
       "title": "About the change",
       "fields": [
         {
-          "type": "choice",
           "id": "changeTypePrem",
+          "type": "choice",
           "label": "What change would you like to notify us about?",
           "helpText": "Choose one of the options below",
           "choices": [
@@ -88,14 +89,14 @@
           ]
         },
         {
-          "type": "text",
           "id": "dtrNumb",
+          "type": "text",
           "label": "Departmental Trader Reference (DTR) number",
           "helpText": "For example 1234567489-1234"
         },
         {
-          "type": "date",
           "id": "changeDate",
+          "type": "date",
           "label": "Date this is to take effect from",
           "helpText": "DD MM YYYY"
         }
@@ -106,8 +107,8 @@
       "includeIf": "${changeTypePrem = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "newPremNumb",
+          "type": "text",
           "label": "How many new premises do you wish to tell us about?",
           "format": "positiveWholeNumber"
         }
@@ -120,18 +121,18 @@
       "repeatsMax": "${newPremNumb}",
       "fields": [
         {
-          "type": "text",
           "id": "premName",
+          "type": "text",
           "label": "Trading name of the premises "
         },
         {
-          "type": "address",
           "id": "premAdd",
+          "type": "address",
           "label": "Address of the premises"
         },
         {
-          "type": "text",
           "id": "premTel",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         }
@@ -142,8 +143,8 @@
       "includeIf": "${changeTypePrem = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "remPremNumb",
+          "type": "text",
           "label": "How many premises do you wish to remove from the register?",
           "format": "positiveWholeNumber"
         }
@@ -156,18 +157,18 @@
       "repeatsMax": "${remPremNumb}",
       "fields": [
         {
-          "type": "text",
           "id": "premNameRem",
+          "type": "text",
           "label": "Trading name of the premises "
         },
         {
-          "type": "address",
           "id": "premAddRem",
+          "type": "address",
           "label": "Address of the premises"
         },
         {
-          "type": "text",
           "id": "premTelRem",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         }
@@ -246,6 +247,5 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "gaming-duty-premises-registration"
+  "submitSuccessUrl": "deprecated"
 }
