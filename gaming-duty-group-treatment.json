@@ -1,0 +1,274 @@
+{
+  "_id": "gaming-duty-group-treatment",
+  "formName": "Application for group treatment for Gaming Duty purposes",
+  "description": "Apply for group treatment for Gaming Duty purposes ",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "GD60"
+  },
+  "sections": [
+    {
+      "title": "Details",
+      "fields": [
+        {
+          "id": "applicationPurpose",
+          "type": "choice",
+          "label": "What are you applying for?",
+          "choices": [
+            "To set up a new Gaming Duty group",
+            "To disband a group"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Set up a new Gaming Duty group",
+      "includeIf": "${applicationPurpose = 0}",
+      "fields": [
+        {
+          "id": "newGroupStartDate",
+          "type": "date",
+          "label": "Date you would like this to take effect? ",
+          "helpText": "DD MM YYYY"
+        },
+        {
+          "id": "newGrpInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "90 days notice is usually required and applications will not be allowed retrospectively",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Disband a group",
+      "includeIf": "${applicationPurpose = 1}",
+      "fields": [
+        {
+          "id": "dTRNum",
+          "type": "text",
+          "label": "Departmental Trader Reference (DTR) number",
+          "helpText": "For example 123456789-1234"
+        },
+        {
+          "id": "disbandDate",
+          "type": "date",
+          "label": "Date you would like this to take effect? ",
+          "helpText": "DD MM YYYY"
+        },
+        {
+          "id": "disbandInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "90 days notice is usually required and applications will not be allowed retrospectively",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Representative member's details",
+      "fields": [
+        {
+          "id": "nameRN",
+          "type": "text",
+          "label": "Full name of representative member"
+        },
+        {
+          "id": "corpMembChoice",
+          "type": "choice",
+          "label": "Is each member of the group, including the representative member, a member of a corporate group?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "membResiChoice",
+          "type": "choice",
+          "label": "Is each member of the group, including the representative member, either resident or established within the UK or Isle of Man? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Group member details",
+      "fields": [
+        {
+          "id": "numberMembers",
+          "type": "text",
+          "label": "How many members are there in the proposed group? ",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Member $n",
+      "repeatsMin": "${numberMembers}",
+      "repeatsMax": "${numberMembers}",
+      "fields": [
+        {
+          "id": "memberFullName",
+          "type": "text",
+          "label": "Full name of member"
+        }
+      ]
+    },
+    {
+      "title": "Group name",
+      "fields": [
+        {
+          "id": "tradingNameChoice",
+          "type": "choice",
+          "label": "Is the trading name used by the controlling individual/body different from the name(s) given above?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trading name",
+      "includeIf": "${tradingNameChoice = 0}",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Representative member's details",
+      "fields": [
+        {
+          "id": "rmAdd",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "rmPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "emailInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "Read about the risks of using email",
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoType": "long"
+        },
+        {
+          "id": "emCons1",
+          "type": "choice",
+          "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details.",
+          "shortName": "Confirm consent to use email communication",
+          "format": "yesno"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Provide your email address below if you consent to communicating by email",
+          "format": "email",
+          "mandatory": "false"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationTicks",
+        "type": "choice",
+        "label": "",
+        "multivalue": "true",
+        "choices": [
+          "I declare that all information on this fpormand on any accompanying documents is correct and complete",
+          "I understand that all members of the group will be jointly and severally liable for Gaming Duty due from the representative member for the period of existence of the group"
+        ]
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
