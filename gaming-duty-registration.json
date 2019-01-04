@@ -1,4 +1,5 @@
 {
+  "_id": "gaming-duty-registration",
   "formName": "Gaming duty registration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -184,8 +185,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "corpTaxRefChoice",
+          "type": "choice",
           "label": "Do you have a Corporation Tax reference?",
           "choices": [
             "Yes",
@@ -217,18 +218,18 @@
       "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
-          "type": "text",
           "id": "coName",
+          "type": "text",
           "label": "Company name"
         },
         {
-          "type": "text",
           "id": "certIncorpNumberLC",
+          "type": "text",
           "label": "Certificate of incorporation number"
         },
         {
-          "type": "date",
           "id": "lcDate",
+          "type": "date",
           "label": "Date of certificate",
           "helpText": "DD MM YYYY"
         },
@@ -242,8 +243,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "corpTaxRefChoiceLC",
+          "type": "choice",
           "label": "Do you have a Corporation Tax reference?",
           "choices": [
             "Yes",
@@ -275,8 +276,8 @@
       "includeIf": "${legalStatus1 = 3}",
       "fields": [
         {
-          "type": "text",
           "id": "coNameUB",
+          "type": "text",
           "label": "Company name"
         },
         {
@@ -289,8 +290,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "corpTaxRefChoiceUB",
+          "type": "choice",
           "label": "Do you have a Corporation Tax reference?",
           "choices": [
             "Yes",
@@ -359,8 +360,8 @@
       "includeIf": "${(corpTaxRefChoice = 0 || corpTaxRefChoiceLC = 0) || corpTaxRefChoiceUB = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "corpTaxRef",
+          "type": "text",
           "label": "Corporation Tax reference",
           "helpText": "Your Corporation Tax reference is a 10 digit number. It can also be called a Unque Taxpayer referce (UTR). You can find it on the form CT603 'Notice to deliver a company Tax return' or other official documents issued by HMRC. Depending on the document , the reference may be printed next to the headings 'Tax Reference', 'UTR' or 'Official Use'. If the number is more than 10 digits, you only need to enter the last 10 digits, ignoring any prefix numbers."
         }
@@ -411,14 +412,14 @@
       "title": "Your principal place of business",
       "fields": [
         {
-          "type": "address",
           "id": "ppbAdd",
+          "type": "address",
           "label": "Address",
           "international": "true"
         },
         {
-          "type": "text",
           "id": "ppbTel",
+          "type": "text",
           "label": "Telephone number",
           "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code.",
           "format": "telephoneNumber"
@@ -429,8 +430,8 @@
       "title": "Your records and accounts",
       "fields": [
         {
-          "type": "choice",
           "id": "recAddChoice",
+          "type": "choice",
           "label": "Is the address for your records and accounts different to the principal place of business?",
           "choices": [
             "Yes",
@@ -438,8 +439,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "recsOnComp",
+          "type": "choice",
           "label": "Are any of your accounts or records to be kept on a computer?",
           "choices": [
             "Yes",
@@ -453,8 +454,8 @@
       "includeIf": "${recAddChoice = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "recAccAdd",
+          "type": "address",
           "label": "Address where your records and accounts are held"
         }
       ]
@@ -464,8 +465,8 @@
       "includeIf": "${recsOnComp = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "compStor",
+          "type": "text",
           "label": "Give details of the type of computer and software you use to store your records and accounts",
           "multiline": "true"
         }
@@ -475,20 +476,20 @@
       "title": "Additional information",
       "fields": [
         {
-          "type": "date",
           "id": "startTradingDate",
+          "type": "date",
           "label": "When will the business start trading?",
           "helpText": "DD MM YYYY"
         },
         {
-          "type": "text",
           "id": "estProf",
+          "type": "text",
           "label": "Your estimated profit for the next 12 months",
           "format": "sterling"
         },
         {
-          "type": "choice",
           "id": "addInfoChoice",
+          "type": "choice",
           "label": "Is there any additional information you need to add?",
           "choices": [
             "Yes",
@@ -501,8 +502,8 @@
       "title": "Additional Information",
       "fields": [
         {
-          "type": "text",
           "id": "addInfoText",
+          "type": "text",
           "label": "",
           "multiline": "true"
         }
@@ -581,6 +582,5 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "gaming-duty-registration"
+  "submitSuccessUrl": "deprecated"
 }
