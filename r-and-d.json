@@ -45,7 +45,8 @@
         {
           "id": "Email address",
           "type": "text",
-          "label": "Email address"
+          "label": "Email address",
+          "mandatory": "true"
         },
         {
           "id": "emailPhone",
@@ -62,29 +63,30 @@
       ]
     },
     {
-      "title": "About the tax adviser",
+      "title": "What are the tax adviser's contact details?",
       "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "Provide the contact details of a tax adviser who is authorised by the client to discuss this form with HMRC. We will use these details to contact them if we have a question about this form.",
       "fields": [
         {
-          "id": "agentOrAdCompanyName",
-          "type": "text",
-          "label": "Tax adviser's company name",
-          "mandatory": "true",
-          "errorMessage": "Enter your tax adviser's company name"
-        },
-        {
-          "id": "firstNameAgent",
+          "id": "firstNameBusiness2",
           "type": "text",
           "label": "First name",
           "mandatory": "true",
           "errorMessage": "Enter your first name"
         },
         {
-          "id": "lastNameAgent",
+          "id": "lastNameBusiness2",
           "type": "text",
           "label": "Last name",
           "mandatory": "true",
           "errorMessage": "Enter your last name"
+        },
+        {
+          "id": "agentOrAdCompanyName2",
+          "type": "text",
+          "label": "Company name",
+          "mandatory": "true",
+          "errorMessage": "Enter your tax adviser's company name"
         },
         {
           "id": "positionInTheCompanyAgent",
@@ -93,6 +95,33 @@
           "shortName": "Job title",
           "mandatory": "true",
           "errorMessage": "Enter your job title"
+        },
+        {
+          "id": "agentTelephone2",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country and area codes",
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter your telephone number"
+        },
+        {
+          "id": "Email address2",
+          "type": "text",
+          "label": "Email address",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailPhone2",
+          "type": "choice",
+          "label": "Select how you would like to be contacted",
+          "shortName": "Contact method",
+          "multivalue": "yes",
+          "errorMessage": "Select if you would like to be contacted by email or phone",
+          "choices": [
+            "Email",
+            "Phone"
+          ]
         }
       ]
     },
@@ -112,8 +141,8 @@
         {
           "id": "oRN",
           "type": "text",
-          "label": " Tax office reference number",
-          "helpText": "Enter the first 3 digits of the tax reference number before the space, for example, 478 4267329427",
+          "label": "Tax office reference number",
+          "helpText": "Enter the first 3 digits of your 10 digit tax reference number before the space",
           "format": "text(3,3)",
           "mandatory": "yes",
           "errorMessage": "Enter a valid 3 digit tax office reference number"
@@ -144,8 +173,8 @@
         {
           "id": "oRNAgent",
           "type": "text",
-          "label": " Tax office reference number",
-          "helpText": "Enter the first 3 digits of the tax reference number before the space, 123 1234567890",
+          "label": "Tax office reference number",
+          "helpText": "Enter the first 3 digits of the 10 digit tax reference number before the space",
           "format": "text(3,3)",
           "mandatory": "yes",
           "errorMessage": "Enter a valid 3 digit tax office reference number"
@@ -195,13 +224,6 @@
       "shortName": "Qualifying expenditure",
       "fields": [
         {
-          "id": "inset6.1",
-          "type": "info",
-          "label": "inset6.1",
-          "infoText": "the calculated amount of the qualifying expenditure should match",
-          "infoType": "standard"
-        },
-        {
           "id": "info0",
           "type": "info",
           "label": "",
@@ -219,6 +241,7 @@
           "id": "staffCosts",
           "type": "text",
           "label": "Employees",
+          "helpText": "Include gross salary, bonuses, overtime pay, National Insurance contributions and pension contributions, reimbursed staffing costs ",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -282,6 +305,13 @@
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "inset6.1",
+          "type": "info",
+          "label": "inset6.1",
+          "infoText": "This amount should match the qualifying expendi",
+          "infoType": "standard"
         },
         {
           "id": "totalQualifyingExpenditure",
@@ -970,12 +1000,40 @@
           "infoType": "long"
         }
       ]
+    },
+    {
+      "title": "What is your company's trading loss before claiming R&D tax relief for this period?",
+      "includeIf": "${profitOrLoss=0}",
+      "description": "",
+      "fields": [
+        {
+          "id": "TradingLoss",
+          "type": "text",
+          "label": "Trading loss",
+          "format": "sterling",
+          "mandatory": "yes"
+        },
+        {
+          "id": "longInfoBox2",
+          "type": "info",
+          "label": "How do I work out my trading loss before relief?",
+          "infoText": "The trading loss before relief is:\n\n* the company's trading loss (where the company has spent more than it has made in an accounting period)\n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed",
+          "infoType": "long"
+        }
+      ]
     }
   ],
   "declarationSection": {
     "title": "Confirm details and send the form",
     "shortName": "Confirm details and send the form",
     "fields": [
+      {
+        "id": "someoneAuthorised",
+        "type": "info",
+        "label": "someoneAuthorised",
+        "infoText": "You must enter the name of someone who is authorised to sign this declaration.",
+        "infoType": "noformat"
+      },
       {
         "id": "declarationNameGroup",
         "type": "group",
