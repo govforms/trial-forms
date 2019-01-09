@@ -1,5 +1,4 @@
 {
-  "_id": "r-and-d",
   "formName": "Send details to support a Research and Development tax relief claim for an SME",
   "description": "",
   "developmentPhase": "beta",
@@ -241,7 +240,7 @@
         {
           "id": "generatedId-5b092219-9e8e-49f9-99d4-21bcbe50fb46",
           "type": "info",
-          "label": "What staff costs qualify for R&D relief?",
+          "label": "What staff costs qualify for relief?",
           "infoText": "You can include:\n\n-    gross salary\nincluding cash bonuses and overtime pay \n-    reimbursed staff\nexpenses to do with R&D activities where staff have paid for their expenses\nbefore the company pays them back\n-    National\nInsurance contributions\n-    pension\ncontributions",
           "infoType": "long"
         },
@@ -266,7 +265,7 @@
           "id": "epwUnCon",
           "type": "text",
           "label": "Costs for unconnected EPWs",
-          "helpText": "You can claim up to 65% of the costs paid to EPWs",
+          "helpText": "You can only claim 65% of the costs of EPWs",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -275,7 +274,7 @@
           "id": "subConUncon",
           "type": "text",
           "label": "Costs for unconnected subcontractors",
-          "helpText": "You can claim up to 65% of the costs paid to subcontractors",
+          "helpText": "You can only claim 65% of the costs of subcontractors",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -301,18 +300,11 @@
         {
           "id": "clinicalTrial",
           "type": "text",
-          "label": "Clinical trials",
-          "helpText": "Include payments made to volunteers involved in clinical\ntests as part of an R&D project",
+          "label": "Clinical trials volunteers",
+          "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical\ntests",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
-          "id": "inset6.1",
-          "type": "info",
-          "label": "inset6.1",
-          "infoText": "This amount should match the qualifying expendi",
-          "infoType": "standard"
         },
         {
           "id": "totalQualifyingExpenditure",
@@ -322,6 +314,13 @@
           "value": "${staffCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
+        },
+        {
+          "id": "inset6.1",
+          "type": "info",
+          "label": "inset6.1",
+          "infoText": "This amount should match the qualifying expenditure on your Corporation Tax return.",
+          "infoType": "standard"
         }
       ]
     },
@@ -953,8 +952,24 @@
     {
       "title": "Research and Development (R&D) tax relief",
       "shortName": "R&D tax relief",
-      "description": "HMRC has taken your qualifying expenditure and multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
       "fields": [
+        {
+          "id": "totalQualifyingExpenditurePulledThrough",
+          "type": "text",
+          "label": "Qualifying expenditure ",
+          "helpText": "This is based on the amount you entered on a previous page",
+          "value": "${totalQualifyingExpenditure}",
+          "format": "sterling",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "type": "info",
+          "id": "generatedId-aceaf0f2-7597-499b-a7a6-5c415d94f312",
+          "label": "",
+          "infoText": "HMRC has taken your qualifying expenditure and multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
+          "infoType": "noformat"
+        },
         {
           "id": "totalQualifyingExpenditureCalc",
           "type": "text",
@@ -1003,7 +1018,7 @@
       ]
     },
     {
-      "title": "What is your company's trading loss before claiming R&D tax relief for this period?",
+      "title": "What is your company's unused trading loss for this period?",
       "includeIf": "${profitOrLoss=0}",
       "description": "",
       "fields": [
@@ -1017,8 +1032,8 @@
         {
           "id": "longInfoBox2",
           "type": "info",
-          "label": "How do I work out my trading loss before relief?",
-          "infoText": "The trading loss before relief is:\n\n* the company's trading loss (where the company has spent more than it has made in an accounting period)\n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed",
+          "label": "How do I work out my unused trading loss?",
+          "infoText": "The unused trading loss is:\n\n* the company's trading loss (where the company has spent more than it has made in an accounting period)\n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed",
           "infoType": "long"
         }
       ]
@@ -1101,5 +1116,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "r-and-d"
 }
