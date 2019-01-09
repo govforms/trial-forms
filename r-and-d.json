@@ -1,4 +1,5 @@
 {
+  "_id": "r-and-d",
   "formName": "Send details to support a Research and Development tax relief claim for an SME",
   "description": "",
   "developmentPhase": "beta",
@@ -327,7 +328,7 @@
     {
       "title": "Research and development projects",
       "shortName": "Projects",
-      "description": "Tell us about the projects you want to claim for.",
+      "description": "Tell us about the projects you want to claim for. If you have over 10 projects to claim, you only need to provide details of 10 projects.",
       "fields": [
         {
           "id": "projectName1",
@@ -341,6 +342,7 @@
           "type": "text",
           "label": "What level of scientific or technical knowledge existed at the start of the project?",
           "shortName": "Scientific/technical knowledge at the start",
+          "helpText": "Describe the science or technology knowledge or capability that is available in the public that you aim to improve  ",
           "format": "text(0, 2500)",
           "multiline": "yes",
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
@@ -350,16 +352,23 @@
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
           "shortName": "Advance in knowledge",
-          "helpText": "Please describe the ‘baseline’ for scientific or technological knowledge in the public domain which your R&D project aimed to surpass. ",
+          "helpText": "List the goals of your R&D project, and explain what change to the knowledge or capability you made, so it is better than before in 1000 words",
           "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
+        },
+        {
+          "type": "info",
+          "id": "generatedId-a84cac69-1e14-4626-909d-69d023d1380c",
+          "label": "What counts as advanced knowledge or capability?",
+          "infoText": "The improvement can be physical or not, and a competent professional would recognise it as a significant improvement.\nFor example, you made a new or efficient cleaning product, material, device, service or improved an existing process, which results in cost savings or less waste",
+          "infoType": "long"
         },
         {
           "id": "uncertainties",
           "type": "text",
           "label": "What scientific or technological uncertainties were faced?",
           "shortName": "Uncertainties faced",
-          "helpText": "PLACEHOLDER TEXT",
+          "helpText": "Explain what problems you found from research that the product, devise, material or process is workable in 1000 words",
           "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
@@ -958,14 +967,14 @@
           "type": "text",
           "label": "Qualifying expenditure ",
           "helpText": "This is based on the amount you entered on a previous page",
-          "value": "${totalQualifyingExpenditure}",
           "format": "sterling",
+          "value": "${totalQualifyingExpenditure}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "generatedId-aceaf0f2-7597-499b-a7a6-5c415d94f312",
+          "type": "info",
           "label": "",
           "infoText": "HMRC has taken your qualifying expenditure and multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
           "infoType": "noformat"
@@ -1116,6 +1125,5 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "r-and-d"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
