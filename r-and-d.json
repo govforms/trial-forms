@@ -16,7 +16,6 @@
   "sections": [
     {
       "title": "What are your contact details?",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC. We will use these details to contact you if we have a question about this form.",
       "fields": [
         {
@@ -46,6 +45,7 @@
           "id": "Email address",
           "type": "text",
           "label": "Email address",
+          "format": "email",
           "mandatory": "true"
         },
         {
@@ -233,7 +233,7 @@
         {
           "id": "staffCosts",
           "type": "text",
-          "label": "Employees",
+          "label": "Staff costs",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
