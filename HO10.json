@@ -1,0 +1,235 @@
+{
+  "_id": "HO10",
+  "formName": "Hydrocarbon oils",
+  "description": "",
+  "dmsSubmission": {
+    "dmsFormId": "HO10",
+    "customerId": "${eeitt.userId}",
+    "classificationType": "BT-NRU-Priority",
+    "businessArea": "BT"
+  },
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "DA"
+  },
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "emailTemplateId": "ho10_confirmation_submission",
+  "sections": [
+    {
+      "title": "Hydrocarbon oils return",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "HO10Reg",
+          "type": "text",
+          "label": "These are your registration details",
+          "submitMode": "readonly",
+          "value": "${eeitt.businessUser}"
+        }
+      ]
+    },
+    {
+      "title": "Have you changed your business address since you submitted your last HO10 return?",
+      "shortName": "Business details changed",
+      "fields": [
+        {
+          "id": "haveDetailsChanged",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "includeIf": "${haveDetailsChanged=0}",
+      "title": "Enter your business details",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "mandatory": "true",
+          "format": "text",
+          "errorMessage": "Input business details"
+        },
+        {
+          "id": "telephoneNumber",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber",
+          "helpText": "Optional",
+          "mandatory": "no"
+        },
+        {
+          "id": "businessAddress",
+          "label": "Registered business address",
+          "mandatory": "true",
+          "type": "address",
+          "international": "yes",
+          "errorMessage": "Enter a registered business address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the start and end dates for this return",
+      "shortName": "Start and end dates for this return",
+      "fields": [
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "mandatory": "true",
+          "helpText": "Find this on the letter you received informing you the return is due, for example 15 03 2018",
+          "errorMessage": "Enter the return period start date using the correct format"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "mandatory": "true",
+          "format": "before today +1",
+          "helpText": "Find this on the letter you received informing you the return is due, for example: 14 04 2018",
+          "errorMessage": "Enter the return period end date using the correct format you cannot input a date in advance of today's date"
+        }
+      ]
+    },
+    {
+      "title": "Upload your return document",
+      "fields": [
+        {
+          "type": "file",
+          "id": "spreadsheet",
+          "label": "",
+          "errorMessage": "Upload the required return document"
+        },
+        {
+          "id": "uploadInfo",
+          "type": "info",
+          "infoText": "The document you upload must be:  \n\n* less than 10 megabytes (10MB)  \n* in PDF or Excel format",
+          "label": ""
+        },
+        {
+          "id": "uploadContentsInfo",
+          "type": "info",
+          "infoType": "long",
+          "infoText": "Open this link in a new window:\n https://www.gov.uk/government/publications/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat#appendix-q---how-to-complete-form-ho10",
+          "label": "What your document must contain"
+        }
+      ]
+    },
+    {
+      "title": "Enter the total amount of your return",
+      "fields": [
+        {
+          "id": "totalClaim",
+          "type": "text",
+          "label": "",
+          "mandatory": "true",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of your return"
+        }
+      ]
+    },
+    {
+      "title": "Enter your contact person's details",
+      "description": "This is the person we will contact if we need to discuss your return.",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true",
+          "errorMessage": "Enter your full name",
+          "format": "text"
+        },
+        {
+          "id": "emailAddress",
+          "type": "text",
+          "label": "Email address",
+          "mandatory": "true",
+          "format": "email",
+          "errorMessage": "Enter a valid email address"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "shortName": "Sign and submit your return",
+    "title": "Sign and submit your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Approver's details",
+        "helpText": "Tell us who is approving this return.",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name",
+            "errorMessage": "Enter full name"
+          },
+          {
+            "id": "declarationJobTitle",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "Example: Finance Director",
+            "errorMessage": "Enter job title"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email",
+            "errorMessage": "Enter valid email address"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoType": "noformat",
+            "infoText": "By submitting the return, you confirm that the details provided are true and complete."
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "shortName": "Acknowledgement Page",
+    "title": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "infoType": "noformat",
+        "label": "If you owe duty",
+        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number on any payment.\n\nSort code: 20-05-17\n\nAccount number: 23372545\n\nAccount name: Customs Duty Schemes"
+      },
+      {
+        "id": "ackPageWarning",
+        "type": "info",
+        "infoType": "important",
+        "label": "",
+        "infoText": "Make sure you pay the duty owed or you may face a penalty."
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "infoType": "noformat",
+        "label": "If you need to contact us about your return",
+        "infoText": "## If you need to contact us about your return  \n\nCall 0300 200 3700 or email [morc.exciseenquiries@hmrc.gsi.gov.uk](morc.exciseenquiries@hmrc.gsi.gov.uk), quoting your registration number."
+      }
+    ]
+  }
+}
