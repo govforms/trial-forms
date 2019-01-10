@@ -333,7 +333,10 @@
           "type": "text",
           "label": "How many projects do you want to tell us about?",
           "helpText": "If you have more than 10 projects, tell us about the 10 with the highest costs involved",
-          "format": "positiveNumber(2,0)"
+          "format": "positiveNumber(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${numOfProj <= 10}",
+          "errorMessage": "Enter a positive number between 1 and 10"
         }
       ]
     },
@@ -347,7 +350,7 @@
         {
           "id": "projectName1",
           "type": "text",
-          "label": "Project name $n",
+          "label": "Project name",
           "format": "text(0, 2500)",
           "errorMessage": "Enter name of project"
         },
@@ -362,7 +365,7 @@
           "errorMessage": "Enter level of scientific or technical knowledge at the start of the project"
         },
         {
-          "id": "generatedId_97d75d06-3cd7-4bbc-9aa8-77c66f29f1a8",
+          "id": "advInfo",
           "type": "info",
           "label": "",
           "infoText": "**What advance in that knowledge did you aim to achieve?**",
@@ -437,14 +440,6 @@
           "shortName": "Total qualifying expenditure",
           "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
-        },
-        {
-          "id": "moreProjects",
-          "type": "choice",
-          "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects?",
-          "format": "yesno",
-          "errorMessage": "Select either yes or no to add further projects"
         }
       ]
     },
