@@ -30,8 +30,15 @@
     },
     {
       "title": "Your contact details",
-      "description": "HMRC will use these details to contact you if we have any questions about this report or need any further information. ",
+      "description": "HMRC will use these details to contact you if we have any questions about this report or need any further information. \n\n",
       "fields": [
+        {
+          "id": "contact info",
+          "type": "info",
+          "label": "",
+          "infoText": "This can include requesting details of the company’s prevention procedures.",
+          "infoType": "noformat"
+        },
         {
           "id": "firstNameBusiness",
           "type": "text",
@@ -470,7 +477,7 @@
       ]
     },
     {
-      "title": "Enter the reference number for each previous report",
+      "title": "Enter the reference number for each previous report to HMRC",
       "includeIf": "${selfReportedFailure=0 && haveReferenceNumber=0}",
       "fields": [
         {
@@ -494,7 +501,7 @@
       ]
     },
     {
-      "title": "Have you made any reports about this incident to other agencies? ",
+      "title": "Have you made any reports about this incident to agencies other than HMRC? ",
       "fields": [
         {
           "id": "madeOtherReports",
@@ -511,7 +518,7 @@
     {
       "title": "Tell us about the reports",
       "includeIf": "${madeOtherReports=0}",
-      "description": "Enter the details for each report you have made about this incident to agencies other than HMRC.",
+      "description": "Enter the details for each report you have made about this incident to agencies other than HMRC. *MENTIONS SARS AGAIN.",
       "fields": [
         {
           "id": "otherReportsGroup",
@@ -599,7 +606,7 @@
       ]
     },
     {
-      "title": "Which of the following are part of the prevention procedures?",
+      "title": "Are any of the following  part of the prevention procedures?[NON MANDATORY]",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
@@ -627,7 +634,7 @@
       ]
     },
     {
-      "title": "Briefly describe why no prevention procedures are in place",
+      "title": "Briefly describe why no prevention procedures are in place [ENTER IF KNOWN HINT TEXT}",
       "includeIf": "${preventionProcYesNo=1}",
       "fields": [
         {
@@ -669,7 +676,7 @@
       ]
     },
     {
-      "title": "Create a report name",
+      "title": "Create a unique report name",
       "description": "",
       "fields": [
         {
@@ -680,60 +687,55 @@
           "infoType": "noformat"
         },
         {
+          "id": "insetformname",
+          "type": "info",
+          "label": "",
+          "infoText": "If you or the company have previously made a report to HMRC, make sure that you enter a name that has not been used previously.",
+          "infoType": "standard"
+        },
+        {
           "id": "userProvidedID2",
           "type": "text",
           "label": "Report name",
-          "helpText": "The report name you enter must be different to any previous reports that you or the company have made. Use at least 5 characters, including letters and numbers. For example, MyCompany1 ",
+          "helpText": "Use at least 5 characters, including letters and numbers",
           "format": "text"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Terms and conditions",
-    "description": "Before you send this report you must confirm your contact details and agree to the conditions set out below.",
+    "title": "Declaration",
     "fields": [
-      {
-        "id": "nameDec",
-        "type": "text",
-        "label": "Full name"
-      },
-      {
-        "id": "emailDec",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "HMRC will send an email to this address to confirm we have received this report"
-      },
       {
         "id": "generatedId-c16393dd-8f4e-446b-9825-345406f467dc",
         "type": "info",
         "label": "",
-        "infoText": "##Conditions you must meet ",
+        "infoText": "##I understand and agree that:",
         "infoType": "noformat"
       },
       {
         "id": "termsAndConditions",
         "type": "info",
         "label": "Terms and conditions",
-        "infoText": "You must confirm that you understand that:\n\n* you may commit a criminal offence if you give false information or include information that you don’t honestly believe to be true\n\n* if the information you submit leads to an investigation, HMRC may share your contact details with other relevant third parties. \n\n* HMRC may use evidence from your report in a prosecution or other court proceedings\n\n* HMRC will collect and use information you submit in this report in to accordance with it's Privacy Policy\n",
+        "infoText": "* I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true\n\n* if the information I submit leads to an investigation, HMRC may share my contact details with other relevant third parties\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings\n\n* HMRC will collect,  use and share information I submit in this report in accordance with its Privacy Notice\n\n* HMRC may contact me to request further information and will send me a confirmation email using the contact details I have provided ",
         "infoType": "noformat",
         "presentationHint": "summariseGroupAsGrid"
       },
       {
-        "id": "generatedId-ea5a1d6d-257f-4b39-b2ab-80b1710b9b20",
-        "type": "info",
-        "label": "",
-        "infoText": "",
-        "infoType": "noformat"
-      },
-      {
-        "id": "confirmDec",
         "type": "choice",
+        "id": "Tickbox",
         "label": "",
         "multivalue": "true",
         "choices": [
-          "I confirm that I have met these conditions"
+          "I confirm that I understand and agree"
         ]
+      },
+      {
+        "id": "decInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this form you declare that the information you have provided is true and complete",
+        "infoType": "important"
       }
     ]
   },
@@ -744,7 +746,7 @@
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies.\n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures."
+        "infoText": "[Previous text]     HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies.\n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures.\n\n\n[Proposed text]\n\nHMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form. We recommend that you keep a copy for your records."
       }
     ]
   },
