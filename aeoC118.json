@@ -381,7 +381,8 @@
           "id": "UKNatCO1",
           "type": "text",
           "label": "How many owners or main shareholders are UK nationals",
-          "helpText": "Input the number of owners or main shareholders who are UK nationals"
+          "helpText": "Input the number of owners or main shareholders who are UK nationals",
+          "format": "positiveWholeNumber"
         }
       ]
     },
@@ -4486,6 +4487,20 @@
           "label": "I have completed and sent form C117",
           "shortName": "Form C117 sent",
           "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Form C117 must be completed and sent before you continue",
+      "includeIf": "${c117Choice = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_6d2eff5e-086a-4753-97d7-b0716f882cd5",
+          "type": "info",
+          "label": "",
+          "infoText": "You must have completed and sent form C117 before you can return this form.\n\nBoth forms should be submitted on the same day.",
+          "infoType": "noformat"
         }
       ]
     }
