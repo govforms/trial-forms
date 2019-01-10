@@ -2,19 +2,17 @@
   "_id": "aeoC117",
   "formName": "Send your application for Authorised Economic Operator certificate online",
   "description": "Fill in your application for Authorised Economic Operator certificate online",
-  "dmsSubmission": {
-    "dmsFormId": "C117",
-    "customerId": "${eORI}",
-    "classificationType": "BT-CTO-AEO",
-    "businessArea": "BT"
-  },
   "developmentPhase": "research",
+  "emailTemplateId": "c117_application_confirmation",
   "authConfig": {
     "authModule": "hmrc"
   },
-  "emailTemplateId": "c117_application_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-CTO-AEO",
+    "customerId": "${eORI}",
+    "dmsFormId": "C117"
+  },
   "sections": [
     {
       "title": "Eligibility checker",
@@ -29,8 +27,8 @@
         {
           "id": "kQ1",
           "type": "choice",
-          "shortName": "Audit trail",
           "label": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
+          "shortName": "Audit trail",
           "format": "yesno"
         },
         {
@@ -98,15 +96,15 @@
           "id": "emailInfo1",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "We need your consent before using email to communicate"
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
         },
         {
           "id": "emailInfo2",
           "type": "info",
           "label": "Read about the risks of using email",
-          "infoType": "long",
-          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers."
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoType": "long"
         },
         {
           "id": "emCons1",
@@ -120,8 +118,13 @@
           "type": "text",
           "label": "Email address",
           "helpText": "Provide your email address below if you consent to communicating by email",
-          "mandatory": "false",
-          "format": "email"
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
+          "type": "text",
+          "id": "nameOfEmailContact",
+          "label": "Full name of email contact"
         }
       ]
     },
@@ -130,16 +133,16 @@
       "fields": [
         {
           "id": "applicantName01",
+          "type": "text",
           "label": "Name of business applying",
           "shortName": "Business name",
-          "type": "text",
           "helpText": "Input the name of the business that is applying here",
-          "errorMessage": "Business name can only include letters a to z, numbers, spaces, hyphens and apostrophes",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Business name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
         },
         {
-          "type": "choice",
           "id": "addressChoice",
+          "type": "choice",
           "label": "Is the address where this business is registered in the UK?",
           "format": "yesno",
           "mandatory": "true"
@@ -151,13 +154,13 @@
       "includeIf": "${addressChoice = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "agentOfficeAddressRefTrue1",
+          "type": "address",
           "label": "Full registered UK address of the business",
           "shortName": "UK business address",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -166,14 +169,14 @@
       "includeIf": "${addressChoice = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "OfficeAddressRefTrue2",
+          "type": "text",
           "label": "Full registered address of the business",
-          "helpText": "Input the full registered address for your business including country",
           "shortName": "Non-UK business address",
+          "helpText": "Input the full registered address for your business including country",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full registered address for your business including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full registered address for your business including country"
         }
       ]
     },
@@ -181,8 +184,8 @@
       "title": "Primary place of business",
       "fields": [
         {
-          "type": "choice",
           "id": "addressChoice2",
+          "type": "choice",
           "label": "Is the address of your primary place of business the same as your registered business address?",
           "format": "yesno",
           "mandatory": "true"
@@ -194,8 +197,8 @@
       "includeIf": "${addressChoice2 = 1}",
       "fields": [
         {
-          "type": "choice",
           "id": "addressChoice3",
+          "type": "choice",
           "label": "Is the address of your primary place of business within the UK?",
           "format": "yesno",
           "mandatory": "true"
@@ -204,36 +207,37 @@
     },
     {
       "title": "Primary place of business UK address",
-      "shortname": "Primary place of business UK address",
       "includeIf": "${addressChoice2 = 1 && addressChoice3 = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "uKPPOB",
+          "type": "address",
           "label": "Full UK address of primary place of business",
           "shortName": "UK primary place of business",
-          "postcodeLookup": "no",
+          "helpText": "Full address where the main activities of the business are carried out",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
-      ]
+      ],
+      "shortname": "Primary place of business UK address"
     },
     {
       "title": "Primary place of business international address",
-      "shortname": "Primary place of business international address",
       "includeIf": "${addressChoice2 = 1 && addressChoice3 = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "intPPOB",
+          "type": "text",
           "label": "Full International address of primary place of business",
-          "helpText": "Input the full address for your primary place of business including country",
           "shortName": "International primary place of business",
+          "helpText": "Full address where the main activities of the business are carried out including country",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full address for your primary place of business including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full address for your primary place of business including country"
         }
-      ]
+      ],
+      "shortname": "Primary place of business international address"
     },
     {
       "title": "What authorisation do you require?",
@@ -251,12 +255,12 @@
           "type": "choice",
           "label": "",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Customs simplification",
             "Security and safety",
             "Both"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -274,25 +278,25 @@
         {
           "id": "eoriGroup",
           "type": "group",
+          "label": "EORI Number",
           "format": "horizontal",
           "presentationHint": "summariseGroupAsGrid",
-          "label": "EORI Number",
           "fields": [
             {
               "id": "mSInfo1",
               "type": "info",
               "label": "Member states country codes",
-              "infoType": "long",
-              "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a) here \n\n You will need to press back in your browser to get back to this form "
+              "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a) here \n\n You will need to press back in your browser to get back to this form ",
+              "infoType": "long"
             },
             {
               "id": "eORI",
               "type": "text",
-              "format": "text(14,14)",
               "label": "",
               "helpText": "Enter your country code, for example GB, and then your 12 numerical digit EORI number",
-              "errorMessage": "Input your country code followed by 12 numbers",
-              "mandatory": "true"
+              "format": "text(14,14)",
+              "mandatory": "true",
+              "errorMessage": "Input your country code followed by 12 numbers"
             }
           ]
         }
@@ -308,14 +312,14 @@
           "label": "Select your business legal status",
           "shortName": "Business legal status",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Sole proprietor",
             "Partnership",
             "Limited company",
             "Registered Charity or Non-Profit Organisation",
             "Other"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -329,8 +333,8 @@
           "type": "text",
           "label": "Describe your business status",
           "helpText": "Input details of your business legal status - other",
-          "errorMessage": "Input details of your business legal status ",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Input details of your business legal status "
         }
       ]
     },
@@ -342,23 +346,23 @@
           "id": "dateOfEstablishment",
           "type": "date",
           "label": "Date of establishment",
-          "format": "before today +1",
           "helpText": "Enter the date you started trading, or in the case of a company, the date of your certificate of incorporation",
-          "errorMessage": "Date of establishment must be in the past and include numbers in this format dd mm yyyy",
-          "mandatory": "true"
+          "format": "before today +1",
+          "mandatory": "true",
+          "errorMessage": "Date of establishment must be in the past and include numbers in this format dd mm yyyy"
         },
         {
+          "id": "cAAC",
           "type": "choice",
           "label": "Is the address where the main accounts for customs puposes are kept the same as any previously mentioned address?",
           "shortName": "Customs accounts address is the same as",
-          "id": "cAAC",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -368,8 +372,8 @@
       "includeIf": "${cAAC = 2}",
       "fields": [
         {
-          "type": "choice",
           "id": "cACC",
+          "type": "choice",
           "label": "Is the address where the main accounts for customs puposes are kept, in the UK?",
           "format": "yesno",
           "mandatory": "true"
@@ -382,13 +386,13 @@
       "includeIf": "${cAAC = 2 && cACC = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "officeAddressRefTrue3",
+          "type": "address",
           "label": "UK address where the main accounts for customs puposes are kept",
           "shortName": "UK customs accounts address",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -398,13 +402,13 @@
       "includeIf": "${cAAC = 2 && cACC = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "OfficeAddressRefTrue4",
+          "type": "text",
           "label": "Address where the main accounts for customs puposes are kept",
           "shortName": "Non-UK customs accounts address",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full address where the main accounts for customs puposes are kept, including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full address where the main accounts for customs puposes are kept, including country"
         }
       ]
     },
@@ -414,13 +418,13 @@
       "fields": [
         {
           "id": "vatRegNum",
+          "type": "text",
           "label": "VAT registration number(s)",
           "shortName": "VAT number(s)",
-          "format": "ukVrn",
-          "type": "text",
           "helpText": "Input GB and then the 9 numerical digits of your VAT registration number(s)",
-          "errorMessage": "Enter the VAT registration number(s) of your company",
-          "mandatory": "true"
+          "format": "ukVrn",
+          "mandatory": "true",
+          "errorMessage": "Enter the VAT registration number(s) of your company"
         }
       ]
     },
@@ -430,13 +434,13 @@
       "fields": [
         {
           "id": "legalRegNum",
+          "type": "text",
           "label": "Legal registration number",
           "shortName": "Legal number",
-          "type": "text",
-          "format": "text(8,8)",
           "helpText": "Your legal registration number is 8 alpha and/or numerical digits",
-          "errorMessage": "Enter the legal registration number of your company",
-          "mandatory": "true"
+          "format": "text(8,8)",
+          "mandatory": "true",
+          "errorMessage": "Enter the legal registration number of your company"
         }
       ]
     },
@@ -446,34 +450,34 @@
       "fields": [
         {
           "id": "applicantName",
+          "type": "text",
           "label": "Name of the person responsible for customs matters",
           "shortName": "Responsible persons name",
-          "type": "text",
           "helpText": "Input name here",
-          "errorMessage": "Responsible persons name can only include letters a to z, numbers, spaces, hyphens and apostrophes",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Responsible persons name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
         },
         {
           "id": "emailContacta",
           "type": "text",
           "label": "Email address",
           "format": "email",
-          "errorMessage": "Enter a valid email address with no spaces, like name@example.com",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         },
         {
+          "id": "rPC",
           "type": "choice",
           "label": "Is the address of this person the same as any previously mentioned address?",
           "shortName": "Person responsible for customs matters address is same as",
-          "id": "rPC",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -483,8 +487,8 @@
       "includeIf": "${rPC = 3}",
       "fields": [
         {
-          "type": "choice",
           "id": "rPCA",
+          "type": "choice",
           "label": "Is the responsible persons address in the UK?",
           "shortName": "Responsible person address in the UK",
           "format": "yesno",
@@ -498,13 +502,13 @@
       "includeIf": "${rPC = 3 && rPCA = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "officeAddressRefTrue5",
+          "type": "address",
           "label": "UK address for the person responsible for customs matters",
           "shortName": "UK address for the person responsible for customs matters",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -514,13 +518,13 @@
       "includeIf": "${rPC = 1 && rPCA = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "OfficeAddressRefTrue6",
+          "type": "text",
           "label": "Address for the person responsible for customs matters",
           "shortName": "International address for the person responsible for customs matters",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full address for the person responsible for customs matters, including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full address for the person responsible for customs matters, including country"
         }
       ]
     },
@@ -537,38 +541,38 @@
         },
         {
           "id": "contactName",
+          "type": "text",
           "label": "Name of the designated contact",
           "shortName": "Designated contact name",
-          "type": "text",
           "helpText": "Input name here",
-          "errorMessage": "Designated contact name can only include letters a to z, numbers, spaces, hyphens and apostrophes",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Designated contact name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
         },
         {
           "id": "companyPosition",
+          "type": "text",
           "label": "Position held in the company",
           "shortName": "Company position",
-          "type": "text",
           "helpText": "Enter the designated contacts position in the company",
-          "errorMessage": "Enter your position in the company",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your position in the company"
         },
         {
           "id": "contactNumber",
           "type": "text",
-          "format": "telephoneNumber",
           "label": "Telephone number",
           "helpText": "Input contact telephone number here",
-          "errorMessage": "Enter a valid telephone number",
-          "mandatory": "true"
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter a valid telephone number"
         },
         {
           "id": "emailContact",
           "type": "text",
           "label": "Email address",
           "format": "email",
-          "errorMessage": "Enter a valid email address with no spaces, like name@example.com",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         }
       ]
     },
@@ -578,52 +582,52 @@
       "fields": [
         {
           "id": "personInChargeName",
+          "type": "text",
           "label": "Person in charge of the applicant company or exercising control of its management",
           "shortName": "Name of person in charge",
-          "type": "text",
           "helpText": "Input name here",
-          "errorMessage": "Name of person in charge can only include letters a to z, numbers, spaces, hyphens and apostrophes",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Name of person in charge can only include letters a to z, numbers, spaces, hyphens and apostrophes"
         },
         {
           "id": "companyPosition2",
+          "type": "text",
           "label": "Position held in the company",
           "shortName": "Company position",
-          "type": "text",
           "helpText": "Enter the person in charges position in the company",
-          "errorMessage": "Enter the person in charges position in the company",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the person in charges position in the company"
         },
         {
           "id": "persInChargeDOB",
           "type": "date",
           "label": "Date of birth",
           "helpText": "Enter the date of birth",
-          "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy"
         },
         {
           "id": "persinChargeNino",
+          "type": "text",
           "label": "National insurance number",
           "shortName": "NI number",
-          "type": "text",
           "helpText": "Enter the person in charges national insurance number",
-          "errorMessage": "National insurance numbers must be input the format letter, letter, six numbers, letter for example AB123456C",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "National insurance numbers must be input the format letter, letter, six numbers, letter for example AB123456C"
         },
         {
+          "id": "pICAC",
           "type": "choice",
           "label": "Is the address of the person in charge of the applicant company the same as any previously mentioned address?",
           "shortName": "Person in charge of company address is same as",
-          "id": "pICAC",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -633,8 +637,8 @@
       "includeIf": "${pICAC = 3}",
       "fields": [
         {
-          "type": "choice",
           "id": "pICCA",
+          "type": "choice",
           "label": "Is the address of the person in charge in the UK?",
           "shortName": "Person in charge address in the UK",
           "format": "yesno",
@@ -648,12 +652,12 @@
       "includeIf": "${pICAC = 3 && pICCA = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "pICAD0",
+          "type": "address",
           "label": "Full UK correspondence address for person in charge",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -663,13 +667,13 @@
       "includeIf": "${pICAC = 3 && pICCA = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "pICAd1",
+          "type": "text",
           "label": "Address for the person in charge",
           "shortName": "International address for the person in charge",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full address for the person in charge, including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full address for the person in charge, including country"
         }
       ]
     },
@@ -678,18 +682,18 @@
       "shortName": "Full correspondence address",
       "fields": [
         {
+          "id": "fCAC",
           "type": "choice",
           "label": "Is the full correspondence address of the applicant company the same as any previously mentioned address?",
           "shortName": "Full correspondence address is same as",
-          "id": "fCAC",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -699,8 +703,8 @@
       "includeIf": "${fCAC = 3}",
       "fields": [
         {
-          "type": "choice",
           "id": "fCCA",
+          "type": "choice",
           "label": "Is the full correspondence address in the UK?",
           "shortName": "Full correspondence address is in the UK",
           "format": "yesno",
@@ -714,12 +718,12 @@
       "includeIf": "${fCAC = 3 && fCCA = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "fCAD0",
+          "type": "address",
           "label": "Full UK correspondence address",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -729,13 +733,13 @@
       "includeIf": "${fCAC = 3 && fCCA = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "fCAd1",
+          "type": "text",
           "label": "Full correspondence address",
           "shortName": "International address for full correspondence",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full correspondence address, including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full correspondence address, including country"
         }
       ]
     },
@@ -748,7 +752,9 @@
           "type": "choice",
           "label": "The nature of the economic activity carried out by the company",
           "shortName": "Economic activity carried out",
+          "mandatory": "true",
           "multivalue": "yes",
+          "errorMessage": "Enter the nature of the economic activity carried out by the company",
           "choices": [
             "MF Manufacturer of goods",
             "IM Importer",
@@ -763,19 +769,17 @@
             "DEP Stevedore",
             "HR Shipping line service",
             "999 Other"
-          ],
-          "errorMessage": "Enter the nature of the economic activity carried out by the company",
-          "mandatory": "true"
+          ]
         },
         {
-          "type": "text",
           "id": "otherAct",
+          "type": "text",
           "label": "Other economic activity",
-          "helpText": "If you have selected 999 other above, describe the economic activity here, otherwise input N/A",
           "shortName": "Other activity",
+          "helpText": "If you have selected 999 other above, describe the economic activity here, otherwise input N/A",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "If you have selected 999 other above, describe the economic activity here, otherwise input N/A",
-          "mandatory": "true"
+          "errorMessage": "If you have selected 999 other above, describe the economic activity here, otherwise input N/A"
         }
       ]
     },
@@ -795,8 +799,8 @@
           "id": "mSInfo1",
           "type": "info",
           "label": "Member states country codes",
-          "infoType": "long",
-          "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a) here \n\n You will need to press back in your browser to get back to this form "
+          "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a) here \n\n You will need to press back in your browser to get back to this form ",
+          "infoType": "long"
         },
         {
           "id": "memberStatesText",
@@ -817,8 +821,8 @@
           "label": "Border crossing information",
           "shortName": "Border crossing",
           "helpText": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.(maximum of 5)",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
         },
         {
           "id": "borderCrossingText2",
@@ -826,8 +830,8 @@
           "label": "",
           "shortName": "Border crossing",
           "helpText": "",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
         },
         {
           "id": "borderCrossingText3",
@@ -835,8 +839,8 @@
           "label": "",
           "shortName": "Border crossing",
           "helpText": "",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
         },
         {
           "id": "borderCrossingText4",
@@ -844,8 +848,8 @@
           "label": "",
           "shortName": "Border crossing",
           "helpText": "",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
         },
         {
           "id": "borderCrossingText5",
@@ -853,8 +857,8 @@
           "label": "",
           "shortName": "Border crossing",
           "helpText": "",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
         }
       ]
     },
@@ -870,8 +874,8 @@
           "infoType": "long"
         },
         {
-          "type": "choice",
           "id": "gC",
+          "type": "choice",
           "label": "Have any simplifications or facilitations already been granted?",
           "format": "yesno",
           "mandatory": "true"
@@ -885,39 +889,39 @@
       "fields": [
         {
           "id": "simplificationType",
+          "type": "text",
           "label": "Type of simplification",
           "shortName": "Simplification type",
-          "type": "text",
           "helpText": "Enter the type of simplification",
-          "errorMessage": "Enter details of the type of simplification already granted",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter details of the type of simplification already granted"
         },
         {
           "id": "simplificationCode",
+          "type": "text",
           "label": "Code for the relevant customs procedure",
           "shortName": "Simplification type",
-          "type": "text",
           "helpText": "As used in the second or third subdivision of box 1 of the Single Administrative district",
-          "errorMessage": "Enter the code for the relevant customs procedure",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the code for the relevant customs procedure"
         },
         {
           "id": "authoNumber",
+          "type": "text",
           "label": "Authorisation number",
           "shortName": "authorisation number",
-          "type": "text",
           "helpText": "Enter the authorisation number",
-          "errorMessage": "Enter the authorisation number",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the authorisation number"
         },
         {
           "id": "certificateNumber",
+          "type": "text",
           "label": "Number of certificate for facilities already granted",
           "shortName": "Certificate number",
-          "type": "text",
           "helpText": "Enter the certificate number",
-          "errorMessage": "Enter the number of the certificate already granted",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the number of the certificate already granted"
         }
       ]
     },
@@ -926,8 +930,8 @@
       "shortName": "Certificate holder",
       "fields": [
         {
-          "type": "choice",
           "id": "holderChoice1",
+          "type": "choice",
           "label": "Do you hold one or more certificates mentioned in article 28 of Commission implementing Regulation (EU) 2015/2447",
           "format": "yesno"
         }
@@ -935,8 +939,8 @@
     },
     {
       "title": "Holder of one or more certificates",
-      "includeIf": "${holderChoice1 = 0}",
       "shortName": "Certificate details",
+      "includeIf": "${holderChoice1 = 0}",
       "fields": [
         {
           "id": "borderCrossingText",
@@ -959,8 +963,8 @@
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "consentChoice1",
+          "type": "choice",
           "label": "",
           "format": "yesno",
           "mandatory": "true"
@@ -969,33 +973,33 @@
     },
     {
       "title": "Information exchange consent details",
-      "includeIf": "${consentChoice1 = 0}",
       "shortName": "Consent details",
+      "includeIf": "${consentChoice1 = 0}",
       "fields": [
         {
           "id": "emailConsent",
           "type": "text",
           "label": "Email address",
-          "mandatory": "false",
           "format": "email",
+          "mandatory": "false",
           "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         },
         {
           "id": "transliteratedNameConsent",
           "type": "text",
           "label": "Transliterated name of country",
-          "helpText": "Enter the transliterated name of your country, for example Rossiya for Russia",
           "shortName": "Transliterated name",
+          "helpText": "Enter the transliterated name of your country, for example Rossiya for Russia",
           "errorMessage": "Enter the transliterated name of your country, for example Rossiya"
         },
         {
-          "type": "text",
           "id": "consentAddress",
+          "type": "text",
           "label": "Full Address for consent",
-          "helpText": "Input your full address including street number, postal code and city",
-          "multiline": "yes",
           "shortName": "text",
-          "mandatory": "true"
+          "helpText": "Input your full address including street number, postal code and city",
+          "mandatory": "true",
+          "multiline": "yes"
         }
       ]
     },
@@ -1012,13 +1016,13 @@
         },
         {
           "id": "businessActivitiesText",
-          "shortName": "Business activities",
           "type": "text",
           "label": "",
+          "shortName": "Business activities",
           "helpText": "",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Enter the name and number of your business activities",
-          "mandatory": "true"
+          "errorMessage": "Enter the name and number of your business activities"
         }
       ]
     },
@@ -1027,8 +1031,8 @@
       "shortName": "PBE's",
       "fields": [
         {
-          "type": "choice",
           "id": "pbeChoice1",
+          "type": "choice",
           "label": "Does the application cover Permanent Business Establishments (PBE's)",
           "format": "yesno"
         }
@@ -1050,26 +1054,26 @@
             {
               "id": "pbeName",
               "type": "text",
-              "format": "text",
               "label": "Site full name",
-              "errorMessage": "Site name can only include letters a to z, numbers, spaces, hyphens and apostrophes",
-              "mandatory": "false"
+              "format": "text",
+              "mandatory": "false",
+              "errorMessage": "Site name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
             },
             {
-              "type": "text",
               "id": "pbeAddress",
+              "type": "text",
               "label": "Full address of permanent business establishment",
-              "helpText": "Input the full address of your permanent business establishment including street number, postal code and city",
-              "multiline": "yes",
               "shortName": "PBE address",
-              "mandatory": "true"
+              "helpText": "Input the full address of your permanent business establishment including street number, postal code and city",
+              "mandatory": "true",
+              "multiline": "yes"
             },
             {
               "id": "pbeVAT",
               "type": "text",
-              "format": "ukVrn",
               "label": "VAT registration number(s)",
               "helpText": "Input GB and then the 9 numerical digits of the permanent business establishment's VAT registration number(s)",
+              "format": "ukVrn",
               "errorMessage": "Enter the VAT registration number(s) for your PBE"
             }
           ]
@@ -1081,30 +1085,30 @@
       "shortName": "Office providing all customs identifications",
       "fields": [
         {
+          "id": "oRFPACI",
           "type": "choice",
           "label": "Is the address of the office responsible for providing all customs identifications the same as any previously mentioned address?",
           "shortName": "Office responsible for providing all customs identifications address is same as",
-          "id": "oRFPACI",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
             "Full correspondence address",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
     {
       "title": "Office responsible for providing all customs identifications",
-      "includeIf": "${oRFPACI= 4}",
       "shortName": "Office providing all customs identifications",
+      "includeIf": "${oRFPACI= 4}",
       "fields": [
         {
-          "type": "choice",
           "id": "oRFPACIA1",
+          "type": "choice",
           "label": "Is the address of the office responsible for providing all customs identifications situated in the UK?",
           "format": "yesno"
         }
@@ -1116,12 +1120,12 @@
       "includeIf": "${oRFPACI= 4 && oRFPACIA1 = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "customsIdentificationsAddress",
+          "type": "address",
           "label": "Address",
           "shortName": "Address",
-          "postcodeLookup": "no",
-          "international": "no"
+          "international": "no",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -1131,8 +1135,8 @@
       "includeIf": "${oRFPACI= 4 && oRFPACIA1 = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "OfficeAddressRefTrue8",
+          "type": "text",
           "label": "Address",
           "shortName": "International address for office providing all customs identifications",
           "multiline": "yes",
@@ -1145,11 +1149,12 @@
       "shortName": "Office where the customs documentation is kept",
       "fields": [
         {
+          "id": "oWCDIK",
           "type": "choice",
           "label": "Is the address of the office where the customs documentation is kept the same as any previously mentioned address?",
           "shortName": "Office where the customs documentation is kept address is same as",
-          "id": "oWCDIK",
           "format": "vertical",
+          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
@@ -1157,8 +1162,7 @@
             "Full correspondence address",
             "Office responsible for providing all customs identifications",
             "No -it is another address"
-          ],
-          "mandatory": "true"
+          ]
         }
       ]
     },
@@ -1168,8 +1172,8 @@
       "includeIf": "${oWCDIK = 5}",
       "fields": [
         {
-          "type": "choice",
           "id": "cDOC",
+          "type": "choice",
           "label": "Is the address of the office where the customs documentation is kept situated in the UK?",
           "format": "yesno",
           "mandatory": "true"
@@ -1182,13 +1186,13 @@
       "includeIf": "${oWCDIK = 5 && cDOC = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "customsDocumentationAddress",
+          "type": "address",
           "label": "Address",
           "shortName": "Address",
-          "postcodeLookup": "no",
           "international": "no",
-          "mandatory": "true"
+          "mandatory": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -1198,13 +1202,13 @@
       "includeIf": "${oWCDIK = 5 && cDOC = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "OfficeAddressRefTrue8a",
+          "type": "text",
           "label": "Address",
           "shortName": "International address for office where the customs documentation is kept",
+          "mandatory": "true",
           "multiline": "yes",
-          "errorMessage": "Input the full address of the office where the customs documentation is kept, including country",
-          "mandatory": "true"
+          "errorMessage": "Input the full address of the office where the customs documentation is kept, including country"
         }
       ]
     },
@@ -1213,8 +1217,8 @@
       "shortName": "Publication consent",
       "fields": [
         {
-          "type": "choice",
           "id": "pbeChoice",
+          "type": "choice",
           "label": "Do you consent to the publication on the list of authorisation holders",
           "format": "yesno"
         }
@@ -1228,8 +1232,8 @@
           "id": "bSInfo1",
           "type": "info",
           "label": "What size is my business?",
-          "infoType": "long",
-          "infoText": "micro – up to 10 staff with turnover of up to £2 million (or balance sheet total up to £2 million)\n\nsmall – up to 50 staff with turnover of up to £10 million (or balance sheet total up to £10 million)\n\nmedium-sized – up to 250 staff with turnover of up to £50 million (or balance sheet total up to £43 million)\n\nlarge – 250 or more staff with turnover of more than £50 million (or balance sheet total of more than £43 million) "
+          "infoText": "micro – up to 10 staff with turnover of up to £2 million (or balance sheet total up to £2 million)\n\nsmall – up to 50 staff with turnover of up to £10 million (or balance sheet total up to £10 million)\n\nmedium-sized – up to 250 staff with turnover of up to £50 million (or balance sheet total up to £43 million)\n\nlarge – 250 or more staff with turnover of more than £50 million (or balance sheet total of more than £43 million) ",
+          "infoType": "long"
         },
         {
           "id": "businessSizeChoice",
@@ -1253,9 +1257,9 @@
         {
           "id": "finSolvUploadInfo2",
           "type": "info",
-          "infoType": "noformat",
           "label": "",
-          "infoText": "Provide the last three years worth of audited accounts\n\n If your business is less than 3 years old submit accounts for the years that you have been trading \n\n We accept documents in formats like pdf and jpeg (5mb maximum)."
+          "infoText": "Provide the last three years worth of audited accounts\n\n If your business is less than 3 years old submit accounts for the years that you have been trading \n\n We accept documents in formats like pdf and jpeg (5mb maximum).",
+          "infoType": "noformat"
         },
         {
           "id": "uploadAdd3a",
@@ -1291,33 +1295,33 @@
           "id": "c118info1",
           "type": "info",
           "label": "",
-          "infoType": "important",
-          "infoText": "You must complete form C118 to become an authorised economic operator"
+          "infoText": "You must complete form C118 to become an authorised economic operator",
+          "infoType": "important"
         },
         {
           "id": "c118info2a",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Click on the link below to go to the C118 form"
+          "infoText": "Click on the link below to go to the C118 form",
+          "infoType": "noformat"
         },
         {
           "id": "c118info2",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Apply to become an [Authorised economic operator for imports or exports](https://www.gov.uk/guidance/authorised-economic-operator-certification) here"
+          "infoText": "Apply to become an [Authorised economic operator for imports or exports](https://www.gov.uk/guidance/authorised-economic-operator-certification) here",
+          "infoType": "noformat"
         },
         {
           "id": "c118info3",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "When you have completed and sent the C118 form return to this form and submit it\n\n Both forms should be submitted on the same day"
+          "infoText": "When you have completed and sent the C118 form return to this form and submit it\n\n Both forms should be submitted on the same day",
+          "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "c118Choice",
+          "type": "choice",
           "label": "I have completed and sent form C118",
           "shortName": "Form C118 sent",
           "format": "yesno"
@@ -1326,8 +1330,8 @@
     }
   ],
   "declarationSection": {
-    "shortName": "Declaration",
     "title": "Confirm details and send your return",
+    "shortName": "Declaration",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -1335,17 +1339,17 @@
         "label": "",
         "fields": [
           {
-            "type": "info",
             "id": "decPageWho",
+            "type": "info",
             "label": "",
-            "infoType": "noformat",
-            "infoText": "The application must be submitted by a responsible person of the business, for example sole proprietor, partner, or director.\n\n You must also include their position within the business, their printed name and the date."
+            "infoText": "The application must be submitted by a responsible person of the business, for example sole proprietor, partner, or director.\n\n You must also include their position within the business, their printed name and the date.",
+            "infoType": "noformat"
           },
           {
             "id": "declaration-fullName",
             "type": "text",
-            "errorMessage": "Enter your full name",
-            "label": "Full name"
+            "label": "Full name",
+            "errorMessage": "Enter your full name"
           },
           {
             "id": "declaration-status",
@@ -1357,10 +1361,10 @@
             "id": "decDate",
             "type": "date",
             "label": "Date of sending",
-            "format": "before today +1",
             "helpText": "Enter the date you are sending your application on, this must not be in advance of today",
-            "errorMessage": "Date of application can only include numbers in this format dd mm yyyy",
-            "mandatory": "true"
+            "format": "before today +1",
+            "mandatory": "true",
+            "errorMessage": "Date of application can only include numbers in this format dd mm yyyy"
           }
         ]
       },
@@ -1369,16 +1373,16 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received your C117 application",
-        "errorMessage": "Enter your email address",
+        "format": "email",
         "mandatory": "true",
-        "format": "email"
+        "errorMessage": "Enter your email address"
       },
       {
-        "type": "info",
         "id": "decPageContent",
+        "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "# Declaration \nBy submitting this application, you declare that the information that you have provided is true and complete."
+        "infoText": "# Declaration \nBy submitting this application, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
       }
     ]
   },
@@ -1387,11 +1391,13 @@
     "fields": [
       {
         "id": "helpText8",
-        "label": "",
         "type": "info",
-        "infoType": "noformat",
-        "infoText": "This is your last opportunity to print or save a copy of your submitted form as you won’t be able to retrieve it later."
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a copy of your submitted form as you won’t be able to retrieve it later.",
+        "infoType": "noformat"
       }
     ]
-  }
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
