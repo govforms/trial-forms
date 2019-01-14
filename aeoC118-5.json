@@ -60,6 +60,140 @@
       ]
     },
     {
+      "title": "5.1.1: Practical standards of competence or professional qualifications",
+      "shortName": "5.1.1: Practical standards of competence",
+      "includeIf": "${aCh != 1}",
+      "description": "Guidance for this section can be found at (Article 39 (d) UCC, Article 27 UCC IA, AEO Guidelines Part 2 Section IV)",
+      "fields": [
+        {
+          "id": "pC1",
+          "type": "choice",
+          "label": "Do you or the person in charge of your customs matters have practical experience of a minimum of 3 years in customs matters?",
+          "shortName": "Experienced person in charge of customs matters",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person in charge of customs matters",
+      "shortName": "Person in charge of customs matters",
+      "includeIf": "${aCh != 1 && pC1 = 0}",
+      "fields": [
+        {
+          "id": "pC2",
+          "type": "text",
+          "label": "Provide details proving the person in charge of customs matters has a minumum of 3 years practical experience in customs matters",
+          "shortName": "Details of customs matters experience",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "5.1.2: Practical standards of competence - quality standard",
+      "shortName": "5.1.2: Practical standards of competence - quality standard",
+      "includeIf": "${aCh != 1}",
+      "fields": [
+        {
+          "id": "pC3",
+          "type": "choice",
+          "label": "Do you or the person in charge of your customs matters comply with a quality standard concerning customs matters adopted by a European Standardisation body, when available?",
+          "shortName": "Experienced person in charge of customs matters",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Complies with a quality standard",
+      "shortName": "Complies with a quality standard",
+      "includeIf": "${aCh != 1 && pC3 = 0}",
+      "fields": [
+        {
+          "id": "pC4",
+          "type": "text",
+          "label": "Provide details on this quality standard.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "5.2.1: Professional qualifications",
+      "shortName": "5.2.1: Professional qualifications",
+      "includeIf": "${aCh != 1}",
+      "fields": [
+        {
+          "id": "pQ1",
+          "type": "info",
+          "label": "",
+          "infoText": "Have you or the person in charge of your customs matters successfully completed training covering customs legislation consistent with, and relevant to, the extent of your involvement in customs-related activities, provided by any of the following:",
+          "infoType": "noformat"
+        },
+        {
+          "id": "pQ2",
+          "type": "choice",
+          "label": "A customs authority of a Member State",
+          "shortName": "Training provided by a customs authority of a member state",
+          "format": "yesno"
+        },
+        {
+          "id": "pQ3",
+          "type": "choice",
+          "label": "An educational establishment recognised, for the purposes of providing such qualification, by the customs authorities or a body of a Member State responsible for professional training",
+          "shortName": "Training provided by a recognised educational establishment",
+          "format": "yesno"
+        },
+        {
+          "id": "pQ4",
+          "type": "choice",
+          "label": "A professional or trade association recognised by the customs authorities of a Member State or accredited in the Union, for the purposes of providing such qualification?",
+          "shortName": "Training provided by a professional or trade association",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${aCh != 1 && pQ2 = 0}",
+      "fields": [
+        {
+          "id": "pQ5",
+          "type": "text",
+          "label": "provide details regarding the training, provided by a customs authority of a member state, you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${aCh != 1 && pQ3 = 0}",
+      "fields": [
+        {
+          "id": "pQ6",
+          "type": "text",
+          "label": "provide details regarding the training, provided by an educational establishment , you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Details of professional qualifications",
+      "shortName": "Professional qualifications details",
+      "includeIf": "${aCh != 1 && pQ4 = 0}",
+      "fields": [
+        {
+          "id": "pQ7",
+          "type": "text",
+          "label": "provide details regarding the training, provided by a professional or trade association , you or the person in charge of your customs matters have successfully completed.",
+          "shortName": "Details of quality standard",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
       "title": "Have you completed Form C117?",
       "shortName": "External services",
       "fields": [
