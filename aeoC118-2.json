@@ -1,0 +1,278 @@
+{
+  "formName": "New form",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Trader identification number(s)",
+      "shortName": "Identification number(s)",
+      "fields": [
+        {
+          "id": "eoriInfo",
+          "type": "info",
+          "label": "Your trader identification number is the same as your Economic Operator Registration and Identification (EORI) number",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "eoriGroup",
+          "type": "group",
+          "label": "EORI Number",
+          "format": "horizontal",
+          "presentationHint": "summariseGroupAsGrid",
+          "fields": [
+            {
+              "id": "mSInfo1",
+              "type": "info",
+              "label": "Member states country codes",
+              "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a \"Member state country codes\") here \n\n You will need to press back in your browser to get back to this form ",
+              "infoType": "long"
+            },
+            {
+              "id": "eORIa",
+              "type": "text",
+              "label": "",
+              "helpText": "Enter your country code, for example GB, followed by your 12 numerical digit EORI number",
+              "format": "text(14,14)",
+              "mandatory": "true",
+              "errorMessage": "Input your country code and EORI number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Compliance records",
+      "shortName": "Compliance records (2.1)",
+      "description": "Guidance for this section can be found in (Article 39 (a) UCC; Article 24 UCC IA; AEO Guidelines Part 2, Section I)",
+      "fields": [
+        {
+          "id": "lineBreakCompliance1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "complianceRecords1",
+          "type": "choice",
+          "label": "Have breaches of customs and taxation rules been detected within your company or by the customs and/or fiscal authorities in the last 3 years?",
+          "shortName": "Breaches detected (2.1a)",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Recorded compliance breaches",
+      "shortName": "Compliance breaches",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords2",
+          "type": "text",
+          "label": "Describe the breaches of customs and taxation rules detected",
+          "shortName": "Details of breaches",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Notifying relevant authorities of breaches",
+      "shortName": "Notifying relevant authorities",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords3",
+          "type": "text",
+          "label": "How did you notify breaches to the relevant governmental authorities?",
+          "shortName": "Details of notification (2.1b)",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Quality assurance measures introduced to avoid breaches",
+      "shortName": "Future breach avoidance",
+      "includeIf": "${complianceRecords1 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords4",
+          "type": "text",
+          "label": "What quality assurance measures were introduced to avoid such breaches in the future?",
+          "shortName": "Quality assurance measures introduced (2.1c)",
+          "multiline": "yes"
+        },
+        {
+          "id": "complianceRecords5",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "shortName": "Notes kept (2.1d)",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Convicted for any serious infringement of criminal laws",
+      "shortName": "Serious infringements of criminal laws",
+      "fields": [
+        {
+          "id": "complianceRecords6",
+          "type": "choice",
+          "label": "Has your company been convicted for any serious infringement of criminal laws related to your economic activity?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Descriptions of any serious infringement of criminal laws",
+      "shortName": "Description of serious infringements",
+      "includeIf": "${complianceRecords6 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords7",
+          "type": "text",
+          "label": "Describe the infringement and when it has been committed. Please also make reference to the sentence of the court.",
+          "shortName": "Infringement description",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Other customs authorisation applications",
+      "shortName": "Other applications",
+      "fields": [
+        {
+          "id": "complianceRecords8",
+          "type": "choice",
+          "label": "Do you plan to apply or have you already applied for any other customs authorisation?",
+          "shortName": "Applied for other customs authorisation (2.2a)",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Descriptions of other customs authorisation applications",
+      "shortName": "Description of other applications",
+      "includeIf": "${complianceRecords8 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords9",
+          "type": "text",
+          "label": "Provide details of other applications",
+          "shortName": "Other applications description",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Refused applications or revoked authorisations",
+      "shortName": "Refused or revoked applications or authorisations",
+      "fields": [
+        {
+          "id": "complianceRecords10",
+          "type": "choice",
+          "label": "Have any applications for authorisations/certifications been refused, or existing authorisations been suspended or revoked because of breaches of customs rules in the last 3 years",
+          "shortName": "Applications refused, authorisations suspended or revoked (2.2b)",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Reasons for refusal or revokation",
+      "shortName": "Description of other applications",
+      "includeIf": "${complianceRecords10 = 0}",
+      "fields": [
+        {
+          "id": "complianceRecords11",
+          "type": "text",
+          "label": "Provide details of how many times and for what reasons applications where refused or authorisations where revoked",
+          "shortName": "Revoked or refused details",
+          "multiline": "yes"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "aeoC118-2"
+}
