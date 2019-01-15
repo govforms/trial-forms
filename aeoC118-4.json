@@ -1,0 +1,245 @@
+{
+  "formName": "New form",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Financial solvency",
+      "shortName": "Financial solvency",
+      "description": "Guidance for this section can be found at (Article 39 (c) UCC, Article 26 UCC IA, AEO Guidelines Part 2 Section III)",
+      "fields": [
+        {
+          "id": "finSolv1",
+          "type": "choice",
+          "label": "Have any bankruptcy or insolvency proceedings been initiated in respect of your company's assets in the last 3 years?",
+          "shortName": "Bankruptcy or insolvency proceedings initiated in the last 3 years",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Bankruptcy or insolvency proceedings initiated in the last 3 years",
+      "shortName": "Financial solvency -Bankruptcy or insolvency proceedings initiated",
+      "includeIf": "${finSolv1 = 0}",
+      "fields": [
+        {
+          "id": "finSolv2",
+          "type": "text",
+          "label": "Provide details of the bankruptcy or insolvancy proceedings that have been initiated in the last 3 years",
+          "shortName": "Bankruptcy or insolvancy proceedings details",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - financial standing",
+      "shortName": "Financial solvency - financial standing",
+      "fields": [
+        {
+          "id": "finSolv3",
+          "type": "choice",
+          "label": "Has your company had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years?",
+          "shortName": "Consistently good financial standing",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency -  not consistently good financial standing",
+      "shortName": "Not consistently good financial standing",
+      "includeIf": "${finSolv3 = 1}",
+      "fields": [
+        {
+          "id": "finSolv4",
+          "type": "text",
+          "label": "Provide full details of your financial standing and why it does not meet the consisitently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years",
+          "shortName": "Full details of your financial standing",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Established for less than 3 years",
+      "shortName": "Established for less than 3 years",
+      "fields": [
+        {
+          "id": "lessThan3Years",
+          "type": "choice",
+          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - newly established company",
+      "shortName": "Financial solvency - newly established company",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "finSolvUploadInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are a newly established business, provide all records and information in relation to your financial status. For example, latest cash flow, balance sheet and profit and loss forecasts approved by the directors/partners/sole proprietor.\n\n We accept documents in formats like pdf and jpeg (5mb maximum).",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd3a",
+          "type": "file",
+          "label": "Upload your latest cash flow",
+          "shortName": "Uploaded cash flow",
+          "mandatory": "false"
+        },
+        {
+          "id": "uploadAdd4",
+          "type": "file",
+          "label": "Upload your latest balance sheet",
+          "shortName": "Uploaded balance sheet",
+          "mandatory": "false"
+        },
+        {
+          "id": "uploadAdd5",
+          "type": "file",
+          "label": "Upload your latest profit and loss forecasts",
+          "shortName": "Uploaded profit and loss forecasts",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency in the foreseeable future",
+      "shortName": "Financial solvency in the foreseeable future",
+      "fields": [
+        {
+          "id": "finSolv5",
+          "type": "choice",
+          "label": "Is there anything you are aware of that could impact on your financial solvency in the foreseeable future?",
+          "shortName": "Aware of anything that could impact future financial solvency",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Impacted financial solvency",
+      "shortName": "Impacted financial solvency",
+      "includeIf": "${finSolv5 = 0}",
+      "fields": [
+        {
+          "id": "finSolv6",
+          "type": "text",
+          "label": "Give details of anything that you are aware of that may impact future financial solvency",
+          "shortName": "Details of your things that may impact future financial solvency",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Duty Deferment Account",
+      "shortName": "Financial solvency - Duty Deferment Account",
+      "fields": [
+        {
+          "id": "finSolv7",
+          "type": "choice",
+          "label": "Do you have a Duty Deferment Account? ",
+          "shortName": "Duty Deferment Account",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Deferment Approval Number (DAN)",
+      "shortName": "Deferment Approval Number (DAN)",
+      "includeIf": "${finSolv7 = 0}",
+      "fields": [
+        {
+          "id": "finSolv8",
+          "type": "text",
+          "label": "Enter your deferment approval number (DAN)",
+          "shortName": "D A N"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "aeoC118-4"
+}
