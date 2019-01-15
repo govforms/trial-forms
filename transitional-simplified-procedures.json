@@ -1,0 +1,179 @@
+{
+  "formName": "Transitional Simplified Procedures",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${eoriNo}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Business details",
+      "fields": [
+        {
+          "type": "text",
+          "id": "busName",
+          "label": "Business or trading name"
+        },
+        {
+          "type": "text",
+          "id": "eoriNo",
+          "label": "EORI reference",
+          "helpText": "This includes the country code of GB followed by 12 numerical digits, for example GB123456789123",
+          "format": "text(14,14)"
+        },
+        {
+          "type": "text",
+          "id": "utrNo",
+          "label": "Unique taxpayer reference (if you have one)",
+          "format": "utr",
+          "mandatory": "false"
+        },
+        {
+          "type": "text",
+          "id": "vatNo",
+          "label": "VAT registration number (if you have one)",
+          "format": "ukVrn",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Applicants details",
+      "fields": [
+        {
+          "type": "text",
+          "id": "appName",
+          "label": "Full name"
+        },
+        {
+          "type": "text",
+          "id": "appPhone",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "appEmail",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "type": "choice",
+          "id": "contactPref",
+          "label": "Select how you would like to be contacted",
+          "multivalue": "true",
+          "choices": [
+            "Email",
+            "Phone"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Address",
+      "fields": [
+        {
+          "type": "address",
+          "id": "yourAddress",
+          "label": "Your address"
+        },
+        {
+          "type": "choice",
+          "id": "regAdd",
+          "label": "Are the details for the registered address different to your details?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Registered office address",
+      "includeIf": "${regAdd = 0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "appAdd",
+          "label": "Registered office address"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By signing below I confirm that the information given in this form is true, complete and accurate and that I will notify HMRC when I import goods to the UK, including all appropriate customs declarations. I confirm that I will pay the customs duties for which I may be liable on those imports"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "transitional-simplified-procedures"
+}
