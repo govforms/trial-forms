@@ -1,0 +1,840 @@
+{
+  "formName": "New form",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Accounting and logistical system",
+      "shortName": "Accounting and logistical system",
+      "description": "Guidance for this section can be found at (Article 39 (b) UCC, Article 25 UCC IA; AEO Guidelines Part 2, Section II)",
+      "fields": [
+        {
+          "id": "lineBreakAudit1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "aT1",
+          "type": "choice",
+          "label": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
+          "shortName": "Audit trail",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical system",
+      "shortName": "Description of other audit trail",
+      "includeIf": "${aT1 = 0}",
+      "fields": [
+        {
+          "id": "auditTrail2",
+          "type": "text",
+          "label": "Provide details of the essential features of this audit trail",
+          "shortName": "Audit trail details",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system seperation of functions",
+      "description": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+      "fields": [
+        {
+          "id": "lineBreakComputers1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer1",
+          "type": "text",
+          "label": "Provide details on the separation of functions between development, testing and operation",
+          "shortName": "Seperation of functions",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers2",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer2",
+          "type": "text",
+          "label": "Provide details on the Separation of functions between users",
+          "shortName": "Seperation of functions between users",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo3",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers3",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer3",
+          "type": "text",
+          "label": "Provide details on Access controls (which ones/to whom)",
+          "shortName": "Access controls",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system",
+      "fields": [
+        {
+          "id": "computerMainInfo4",
+          "type": "info",
+          "label": "",
+          "infoText": "What computer system (hardware/software) do you use for your business in general, and for customs matters in particular?\n\n Are those 2 systems integrated or not?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "lineBreakComputers4",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "computer4",
+          "type": "text",
+          "label": "Provide details on Traceability between business system and declaration system",
+          "shortName": "Traceability",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Logistical systems capabilities",
+      "fields": [
+        {
+          "id": "capabilities1",
+          "type": "choice",
+          "label": "Are your logistical systems capable of distinguishing between Union and non-Union goods and indicating their location?",
+          "shortName": "Distinguishing capabilities",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Logistical systems capabilities",
+      "includeIf": "${capabilities1 = 0}",
+      "fields": [
+        {
+          "id": "capabilities2",
+          "type": "text",
+          "label": "Provide details of your systems distinguishing capabilities, but if you do not deal with non-Union goods, please indicate N/A. ",
+          "shortName": "Distinguishing capabilities details",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Computer system location",
+      "fields": [
+        {
+          "id": "compSysLoc1",
+          "type": "text",
+          "label": "At what location are your computer activities undertaken?"
+        },
+        {
+          "id": "outSourced1",
+          "type": "choice",
+          "label": "Have computer applications been outsourced?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Accounting and logistical computer systems",
+      "shortName": "Outsourcing location details",
+      "includeIf": "${outSourced1 = 0}",
+      "fields": [
+        {
+          "id": "outSourced2",
+          "type": "text",
+          "label": "provide details (name address, VAT no.) of company or companies where the applications are outsourced and how do you manage access controls for the outsourced applications?",
+          "shortName": "Outsourcing details",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem1",
+          "type": "choice",
+          "label": "Do you have in-house guidelines for the internal control system in the accounts department, buying department, sales department, customs department, production, material and merchandise management and logistics?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system in-house guidelines",
+      "shortName": "In-house guidelines",
+      "includeIf": "${internalControlSystem1 = 0}",
+      "fields": [
+        {
+          "id": "internalControlSystem2",
+          "type": "text",
+          "label": "Describe your in-house guidelines briefly and how they are updated. For example, actions like job instructions, employee training, instructions for checking faults and mechanism for proofreading",
+          "shortName": "Details of in-house guidelines",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system audits",
+      "shortName": "Control system audits",
+      "fields": [
+        {
+          "id": "internalControlSystem3",
+          "type": "choice",
+          "label": "Have your internal control processes been subject to any internal/external audit?",
+          "shortName": "Subject to internal/external audit",
+          "format": "yesno"
+        },
+        {
+          "id": "internalControlSystem4",
+          "type": "choice",
+          "label": "Does this include audit of your customs routines?",
+          "shortName": "Customs routines audit",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system audits",
+      "shortName": "Control system audits",
+      "includeIf": "${internalControlSystem4 = 0}",
+      "fields": [
+        {
+          "id": "auditUploadInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide a copy of your most recent customs routines audit report\n\n We accept documents in formats like pdf and jpeg (5mb maximum)."
+        },
+        {
+          "id": "uploadAdd1",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Uploaded file"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem5",
+          "type": "text",
+          "label": "Briefly describe the procedures for checking your computer files (standing data or master files).",
+          "shortName": "Procedures for checking computer files",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem6",
+          "type": "info",
+          "label": "",
+          "infoText": "How do these procedures cover the following risks from your perspective?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "internalControlSystem7",
+          "type": "text",
+          "label": "Incorrect and/or incomplete recording of transactions in the accounting system",
+          "shortName": "Procedures for checking incorrect and/or incomplete transactions",
+          "multiline": "yes"
+        },
+        {
+          "id": "internalControlSystem8",
+          "type": "text",
+          "label": "Use of incorrect permanent or out-of-date data such as number of articles and tariff codes",
+          "shortName": "Procedures for checking use of incorrect permanent or out-of-date data",
+          "multiline": "yes"
+        },
+        {
+          "id": "internalControlSystem9",
+          "type": "text",
+          "label": "Inadequate control of the company processes within the applicant's business",
+          "shortName": "Procedures for covering the risk of inadequate control of company processes",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Flow of goods",
+      "shortName": "Flow of goods",
+      "fields": [
+        {
+          "id": "flowOfGoods1",
+          "type": "text",
+          "label": "Briefly describe the registration procedure (physically and in the records) for the flow of goods starting from their arrival, the storage up to manufacture and shipment. Who keeps records and where are they kept?",
+          "shortName": "Describe the registration procedure for the flow of goods",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Flow of goods",
+      "shortName": "Flow of goods",
+      "fields": [
+        {
+          "id": "flowOfGoods2",
+          "type": "text",
+          "label": "Briefly describe the procedures in place for checking stock levels, including the frequency of those checks and how are discrepancies handled, for example, stocktaking and inventory?",
+          "shortName": "Describe the procedures in place for checking stock levels",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "fields": [
+        {
+          "id": "cR1",
+          "type": "choice",
+          "label": "Do you have documented procedures for verifying the accuracy of customs declarations, including those submitted on your behalf, for example, by a customs agent or a freight forwarder?",
+          "shortName": "Procedures for verifying accuracy of customs declarations",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${cR1 = 0}",
+      "fields": [
+        {
+          "id": "cR2",
+          "type": "text",
+          "label": "Briefly describe the procedures for verifying accuracy of customs declarations",
+          "shortName": "Describe the procedures for verifying accuracy of customs declarations",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${cR1 = 1}",
+      "fields": [
+        {
+          "id": "cR3",
+          "type": "choice",
+          "label": "Do you verify the accuracy of customs declarations?",
+          "shortName": "Customs declarations accuracy verified",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "includeIf": "${cR1 = 1 && cR3 = 0}",
+      "fields": [
+        {
+          "id": "cR4",
+          "type": "text",
+          "label": "In what way do you verify the accuracy of customs declarations?",
+          "shortName": "Describe how you verify customs declarations accuracy",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines notification of irregularities",
+      "shortName": "Customs routines notification guidelines",
+      "fields": [
+        {
+          "id": "cR5",
+          "type": "choice",
+          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities (for example, suspicion of theft, burglary or smuggling in connection with customs-related goods)?",
+          "shortName": "Company has guidelines on the notification of irregularities",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines notification of irregularities",
+      "shortName": "Customs routines notification guidelines",
+      "includeIf": "${cR5 = 0}",
+      "fields": [
+        {
+          "id": "cR6",
+          "type": "choice",
+          "label": "Are these instructions documented, for example, work instructions, manuals, other guidance documents?",
+          "shortName": "Guidelines on the notification of irregularities are documented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines irregularities detected",
+      "shortName": "Customs routines irregularities detected",
+      "fields": [
+        {
+          "id": "cR7",
+          "type": "choice",
+          "label": "Over the last year, have you detected any irregularities (or presumed irregularities) and notified them to the competent authorities?",
+          "shortName": "Detected irregularities have been reported",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to economic trade licences",
+      "shortName": "Goods that are subject to economic trade licences",
+      "fields": [
+        {
+          "id": "cR8",
+          "type": "choice",
+          "label": "Do you trade in goods that are subject to economic trade licences, for example, textiles, agricultural goods?",
+          "shortName": "Trade in goods subject to economic trade licences",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to economic trade licences",
+      "shortName": "Goods that are subject to economic trade licences",
+      "includeIf": "${cR8 = 0}",
+      "fields": [
+        {
+          "id": "cR9",
+          "type": "text",
+          "label": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
+          "shortName": "Describe your procedures for administering the licences",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Prohibitions and restrictions",
+      "shortName": "Prohibitions and restrictions",
+      "fields": [
+        {
+          "id": "cR10",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to import and export licenses connected to prohibitions and restrictions?",
+          "shortName": "Trade in goods subject to prohibitions and restrictions",
+          "format": "yesno"
+        },
+        {
+          "id": "cR11",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to other import and export licenses?",
+          "shortName": "Trade in goods subject to other import and export licenses",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods that are subject to other import and export licenses",
+      "shortName": "Goods that are subject to other import and export licenses",
+      "includeIf": "${cR11 = 0}",
+      "fields": [
+        {
+          "id": "cR12",
+          "type": "text",
+          "label": "Specify the type of goods and any procedures in place for the handling of those licenses?",
+          "shortName": "Specify type of goods and procedures",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs routines",
+      "shortName": "Customs routines",
+      "fields": [
+        {
+          "id": "cR13",
+          "type": "choice",
+          "label": "Are you dealing with goods falling under the Dual Use Regulation (Council Regulation No 428/2009/EC)?",
+          "shortName": "Dealing with goods falling under the Dual Use Regulation",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Goods falling under the Dual Use Regulation",
+      "shortName": "Goods falling under the Dual Use Regulation",
+      "includeIf": "${cR13 = 0}",
+      "fields": [
+        {
+          "id": "cR14",
+          "type": "choice",
+          "label": "Have you implemented an Internal Compliance Programme (ICP)?",
+          "shortName": "Internal Compliance Programme (ICP) implemented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "ICP details",
+      "shortName": "ICP details",
+      "includeIf": "${cR14 = 0}",
+      "fields": [
+        {
+          "id": "cR15",
+          "type": "text",
+          "label": "How is your ICP updated?",
+          "shortName": "How ICP is updated",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "Back-up procedures",
+      "fields": [
+        {
+          "id": "backUp1",
+          "type": "text",
+          "label": "Briefly describe your procedures for back-up, recovery, fallback, archiving and retrieval of your business records",
+          "shortName": "Description of business records recovery procedures",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "Storage time",
+      "fields": [
+        {
+          "id": "backUp2",
+          "type": "text",
+          "label": "How long is the data saved in the production system and how long is this data archived?",
+          "shortName": "Data saved and archived",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "shortName": "System disruption/failure",
+      "fields": [
+        {
+          "id": "backUp3",
+          "type": "choice",
+          "label": "Does the company have a contingency plan for system disruption/failure?",
+          "shortName": "Contingency plan",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems",
+      "shortName": "Protection of computer systems",
+      "fields": [
+        {
+          "id": "csProtect1",
+          "type": "text",
+          "label": "Briefly describe the actions you have taken in order to protect your computer system from unauthorised intrusion, for example, firewall, antivirus programme, password protection?",
+          "shortName": "Actions taken to protect computer system",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect2",
+          "type": "text",
+          "label": "Has any intrusion testing been carried out, what were the results and were any corrective measures taken?",
+          "shortName": "Intrusion testing",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect3",
+          "type": "choice",
+          "label": "Have you experienced any IT security incidents in the last year?",
+          "shortName": "IT security incidents",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Computer system access rights",
+      "shortName": "Access rights",
+      "fields": [
+        {
+          "id": "csProtect4",
+          "type": "text",
+          "label": "Briefly describe how access rights for the computer systems are issued",
+          "shortName": "Access rights issued",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect5",
+          "type": "text",
+          "label": "Who is responsible for the running and protection of the computer system?",
+          "shortName": "Person responsible"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Users",
+      "shortName": "IT security user details",
+      "fields": [
+        {
+          "id": "csProtect6",
+          "type": "choice",
+          "label": "Do you have guidelines or internal instructions for IT security for your personnel?",
+          "shortName": "IT security guidelines",
+          "format": "yesno"
+        },
+        {
+          "id": "csProtect7",
+          "type": "text",
+          "label": "How do you monitor that IT security measures are followed inside your company?",
+          "shortName": "Monitoring IT security measures are followed",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Servers",
+      "shortName": "IT security server details",
+      "fields": [
+        {
+          "id": "csProtect8",
+          "type": "text",
+          "label": "Where is your main server located?",
+          "shortName": "Main server location"
+        },
+        {
+          "id": "csProtect9",
+          "type": "text",
+          "label": "Give details of how your main server is secured",
+          "shortName": "How main server is secured",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security",
+      "shortName": "Documentation security",
+      "description": "Guidance for this section can be found at (Guidelines Annex 2, point 2.9)",
+      "fields": [
+        {
+          "id": "docSec1",
+          "type": "text",
+          "label": "Briefly describe what actions have been taken in order to protect information/documents from unauthorised access, abuse, intended destruction and loss (for example, constricted access rights, creation of electronic backup, clear-desk policy)",
+          "shortName": "Actions to protect documents",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec2",
+          "type": "choice",
+          "label": "Have there been any cases of unauthorised access to documents in the last year?",
+          "shortName": "Unauthorised access to documents",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - incident of unauthorised access occurred",
+      "shortName": "Incident of unauthorised access occurred ",
+      "includeIf": "${docSec2 = 0}",
+      "fields": [
+        {
+          "id": "docSec3",
+          "type": "text",
+          "label": "What measures have been taken to prevent this from happening again?",
+          "shortName": "Measures taken to prevent re-occurrance of unauthorised access to documents",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - employees",
+      "shortName": "Documentation security - employees",
+      "fields": [
+        {
+          "id": "docSec4",
+          "type": "text",
+          "label": "Which categories of employees have access to detailed data about the flow of materials and goods?",
+          "shortName": "categories of employees with access to detailed material and goods flow data ",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec5",
+          "type": "text",
+          "label": "Which categories of employees are authorised to change this data?",
+          "shortName": "categories of employees authorised to change this data",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec6",
+          "type": "choice",
+          "label": "Are changes to this data comprehensively documented?",
+          "shortName": "Data changes comprehensively documented",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - trade partners",
+      "shortName": "Documentation security - trade partners",
+      "fields": [
+        {
+          "id": "docSec7",
+          "type": "text",
+          "label": "Briefly describe what requirements regarding security and safety you require from your trade partners and other contact persons in order to avoid abuse of information, for example, endangering of the supply chain through unauthorised transfer of shipping details",
+          "shortName": "Security requirements from trade partners",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec8",
+          "type": "choice",
+          "label": "Are security declarations/agreements in place with your trade partners?",
+          "shortName": "Security declarations/agreements in place",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Trade partners - security declarations/agreements not in place",
+      "shortName": "security declarations/agreements not in place",
+      "includeIf": "${docSec8 = 1}",
+      "fields": [
+        {
+          "id": "docSec9",
+          "type": "text",
+          "label": "How do you ensure the safety and security of information and/or goods?",
+          "shortName": "How safety and security of information and/or goods is ensured",
+          "multiline": "yes"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "aeoC118-3"
+}
