@@ -1,6 +1,6 @@
 {
   "_id": "r-and-d",
-  "formName": "Send details to support a Research and Development tax relief claim for an SME",
+  "formName": "Send details to support an R&D tax relief claim for an SME",
   "description": "",
   "developmentPhase": "beta",
   "emailTemplateId": "randd_confirmation_submission",
@@ -140,15 +140,6 @@
           "errorMessage": "Enter the registered company name"
         },
         {
-          "id": "oRN",
-          "type": "text",
-          "label": "Tax office reference number",
-          "helpText": "Enter the first 3 digits of your 13 digit tax reference number before the space",
-          "format": "number(3,0)",
-          "mandatory": "yes",
-          "errorMessage": "Enter a valid 3 digit tax office reference number"
-        },
-        {
           "id": "utrRepComp",
           "type": "text",
           "label": "Unique Taxpayer Reference",
@@ -170,15 +161,6 @@
           "shortName": "Registered business name",
           "format": "text",
           "errorMessage": "Enter the registered company name"
-        },
-        {
-          "id": "oRNAgent",
-          "type": "text",
-          "label": "Tax office reference number",
-          "helpText": "Enter the first 3 digits of the 13 digit tax reference number before the space",
-          "format": "text(3,3)",
-          "mandatory": "yes",
-          "errorMessage": "Enter a valid 3 digit tax office reference number"
         },
         {
           "id": "utrRepCompAgent",
@@ -251,7 +233,6 @@
           "id": "epwCon",
           "type": "text",
           "label": "Costs for connected externally provided workers (EPWs)",
-          "helpText": "",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -293,7 +274,7 @@
           "id": "consumables",
           "type": "text",
           "label": "Consumables",
-          "helpText": "Include expenditure on materials consumed or transformed in\nthe R&D process. For example, water, fuel, power and laboratory consumables used in trials ",
+          "helpText": "Include costs on materials consumed or transformed in\nthe R&D process, for example, water, fuel, power and laboratory consumables used in trials",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -302,7 +283,7 @@
           "id": "clinicalTrial",
           "type": "text",
           "label": "Clinical trials volunteers",
-          "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical\ntests",
+          "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical\ntests.",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -321,7 +302,7 @@
     {
       "title": "Research and development project 1",
       "shortName": "Projects",
-      "description": "Tell us about the projects for which you have claimed in your Corporation Tax return.",
+      "description": "Tell us about the projects you claimed for in your\nCorporation Tax return.",
       "fields": [
         {
           "id": "generatedId_c2fe19e5-3f43-4c7d-b1f3-79cb898ae3fb",
@@ -340,12 +321,12 @@
         {
           "id": "science",
           "type": "text",
-          "label": "What level of scientific or technical knowledge existed at the start of the project?",
+          "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
           "shortName": "Scientific or technical knowledge at the start",
-          "helpText": "Summarise the knowledge which was available in public at the start of your project that you planned to improve. Keep to 3,000 characters (including spaces), or 500 words",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 2500)",
           "multiline": "yes",
-          "errorMessage": "Summarise level of scientific or technical knowledge at the start of the project"
+          "errorMessage": "Summarise the scientific or technical knowledge at the start of the project"
         },
         {
           "id": "generatedId_97d75d06-3cd7-4bbc-9aa8-77c66f29f1a8",
@@ -366,7 +347,7 @@
           "type": "text",
           "label": "",
           "shortName": "Advanced knowledge",
-          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make. Keep to 3,000 characters (including spaces), or 500 words",
+          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
         },
@@ -380,7 +361,7 @@
         {
           "id": "WhatUncertainties",
           "type": "info",
-          "label": "What type of uncertainties should I outline?  ",
+          "label": "What types of uncertainties should I outline?  ",
           "infoText": "Uncertainties may be when you either:\n\n- do not know if it is possible to create or improve the product or process\n- know the product or process can be created from your research but it's too costly \n\nFor example, you tried to build a medical diagnostic tool combining non-invasive testing technology, artificial intelligence (AI) and portability, but you're not sure about the method of updating the AI with the latest medical knowledge.",
           "infoType": "long"
         },
@@ -389,37 +370,30 @@
           "type": "text",
           "label": "",
           "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Keep to 3,000 characters (including spaces), or 500 words",
+          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
         },
         {
           "id": "generatedId_15358287-cd1e-44cb-8059-27cfe4f4cfdf",
           "type": "info",
-          "label": "**What work was done to overcome these?**",
-          "infoText": "**What work was done to overcome these?**",
+          "label": "**How did your project overcome these uncertainties?**",
+          "infoText": "**How did your project overcome these uncertainties?**",
           "infoType": "noformat"
-        },
-        {
-          "id": "What type of work should I include? ",
-          "type": "info",
-          "label": "What type of work should I include?  ",
-          "infoText": "You should tell us more about the direct R&D activities that\ntry to resolve the scientific or\ntechnological uncertainties, and some on qualifying indirect activities.\n\nDirect activities may include: \n\n- creating or adapting software, materials or equipment needed to resolve the uncertainty\n- planning activities such as a detailed plan of how you will carry out the project\n- designing, testing and analysis to resolve the scientific or technological uncertainty\n\nIndirect activities may include: \n\n- promoting a new or improved process, material, device, product or service\n- work to create non-scientific or non-technological features of a new or improved process, material, device, product or service\n- producing and distributing goods and services\n- general support services such as transportation, storage, cleaning, repair, maintenance and security\n\nQualifying indirect activities form part of the project, but do not directly lead to resolving the uncertainty. \n\nThey include:\n\n- creating information services for R&D support such as preparing a report of R&D findings\n- ancillary activities needed to begin R&D, for example, taking on and paying staff, leasing laboratories and maintaining research and development equipment including computers used for R&D purposes)\n- training required to support the R&D project\n- research by students and researchers carried out at universities\n- research including data collection to make new scientific or technological testing, survey, or sampling methods, where this research is not R&D in its own right\n- feasibility studies to inform the strategic direction of a specific R&D activity",
-          "infoType": "long"
         },
         {
           "id": "WorkUncertainties",
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "helpText": "Summarise the actions you took to resolve the uncertainties. Keep to 3,000 characters (including spaces), or 500 words",
+          "helpText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
         {
           "id": "qe1",
           "type": "text",
-          "label": "Total qualifying expenditure before any enhancements for this project",
+          "label": "Total qualifying project costs before any enhancements",
           "shortName": "Total qualifying expenditure",
           "format": "sterling",
           "errorMessage": "Enter total qualifying expenditure for this project"
