@@ -1,4 +1,5 @@
 {
+  "GFC579Ready": "true",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -13,30 +14,92 @@
   },
   "sections": [
     {
+      "title": "Are you eligible for Transitional Simplified Procedures?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choiceDAN",
+          "label": "Do you expect to move goods thart attract duty?",
+          "format": "yesno"
+        },
+        {
+          "type": "choice",
+          "id": "choiceEORI",
+          "label": "Do you have an EORI number?",
+          "format": "yesno"
+        },
+        {
+          "type": "choice",
+          "id": "choiceCHIEF",
+          "label": "Have you obtained software/a CHIEF badge to allow you to submit declarations in CDS/CHIEF?",
+          "helpText": "EPU code? Customs Declaration Service ",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
+      "includeIf": "${choiceDAN=0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "accessToDAN",
+          "label": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Have you subscribed your EORI to Customs Declaration Service (CDS)?",
+      "includeIf": "${choiceEORI = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choiceSubscribeCDS",
+          "label": "Have you subscribed your EORI to Customs Declaration Service (CDS)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Eligibility Checker Failed",
+      "includeIf": "${accessToDAN= 1 || choiceCHIEF=1 || choiceSubscribeCDS= 1 || choiceEORI = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_aa8b55ce-5197-4d3e-a9fc-2c30f6a5aa9f",
+          "label": "",
+          "infoText": "You are unable to continue until you have an EORI which is subscribed to CDS, DAN or CHIEF",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
       "title": "Business details",
       "fields": [
         {
-          "type": "text",
           "id": "busName",
+          "type": "text",
           "label": "Business or trading name"
         },
         {
-          "type": "text",
           "id": "eoriNo",
+          "type": "text",
           "label": "EORI reference",
           "helpText": "This includes the country code of GB followed by 12 numerical digits, for example GB123456789123",
           "format": "text(14,14)"
         },
         {
-          "type": "text",
           "id": "utrNo",
+          "type": "text",
           "label": "Unique taxpayer reference (if you have one)",
           "format": "utr",
           "mandatory": "false"
         },
         {
-          "type": "text",
           "id": "vatNo",
+          "type": "text",
           "label": "VAT registration number (if you have one)",
           "format": "ukVrn",
           "mandatory": "false"
@@ -47,25 +110,25 @@
       "title": "Applicants details",
       "fields": [
         {
-          "type": "text",
           "id": "appName",
+          "type": "text",
           "label": "Full name"
         },
         {
-          "type": "text",
           "id": "appPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "appEmail",
+          "type": "text",
           "label": "Email address",
           "format": "email"
         },
         {
-          "type": "choice",
           "id": "contactPref",
+          "type": "choice",
           "label": "Select how you would like to be contacted",
           "multivalue": "true",
           "choices": [
@@ -79,13 +142,13 @@
       "title": "Address",
       "fields": [
         {
-          "type": "address",
           "id": "yourAddress",
+          "type": "address",
           "label": "Your address"
         },
         {
-          "type": "choice",
           "id": "regAdd",
+          "type": "choice",
           "label": "Are the details for the registered address different to your details?",
           "format": "yesno"
         }
@@ -96,8 +159,8 @@
       "includeIf": "${regAdd = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "appAdd",
+          "type": "address",
           "label": "Registered office address"
         }
       ]
