@@ -1,6 +1,6 @@
 {
   "_id": "ipt-Reg",
-  "formName": "New form",
+  "formName": "ipt1-registration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -10,22 +10,157 @@
     "businessArea": "For example: FinanceOpsCorpT",
     "classificationType": "For example: BT-NRU-Environmental",
     "customerId": "${fieldIdOfCustomerIdentifier}",
-    "dmsFormId": "CHANGEME"
+    "dmsFormId": "IPT1"
   },
   "sections": [
     {
-      "title": "New page",
+      "title": "Business details",
       "fields": [
         {
+          "type": "text",
+          "id": "busName",
+          "label": "Full name"
+        },
+        {
           "type": "info",
+          "id": "generatedId_a87dfa6f-2683-464a-a53f-9cf02ee2bd08",
+          "label": "",
+          "infoText": "**Business address**",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "ukAdd",
+          "label": "Is this address in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "UK business address",
+      "includeIf": "${ukAdd = 0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "ukAddress",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "ukTelNum",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Non-UK business address",
+      "includeIf": "${ukAdd = 1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "nonUkAddress",
+          "label": "",
+          "helpText": "Input the full address of your business including country",
+          "multiline": "true"
+        },
+        {
+          "type": "text",
+          "id": "nonUKTelNum",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "faxChoice",
+          "label": "Do you have a fax number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fax number",
+      "includeIf": "${faxChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "faxYes",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Do you have business establishments in the United Kingdom (UK)?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "ukBEChoice",
+          "label": "Do you have business establishments in the United Kingdom (UK)?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Status of your business",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "statusChoice",
+          "label": "What is the legal status of your business?",
+          "helpText": "If you are a partnership, please remember to complete form IPT2 as well as this form",
+          "choices": [
+            "Sole proprietor",
+            "Limited Company",
+            "Partnership",
+            "Unincorporated body (other than partnership)",
+            "Lloyds syndicate"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will this form be used to notify us that you are going to use the special accounting scheme from the first of your accounting periods?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "specAccChoi",
+          "label": "Will this form be used to notify us that you are going to use the special accounting scheme from the first of your accounting periods?",
+          "helpText": "Use of the scheme is mandatory for a Lloyd's syndicate wishing to elect Lloyd's to act on its behalf.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "",
+      "fields": [
+        {
           "id": "generatedId_d5a31b95-7b91-41a3-85be-70695d597f57",
+          "type": "info",
           "label": "",
           "infoText": "",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_596e7613-7080-4e67-8bb5-cd7ffa1e754b",
+          "type": "info",
           "label": "Classes of insurance",
           "infoText": "**Number Description**\n\n1 Accident\n\n2 Sickness\n\n3 Land vehicles\n\n4 Railway rolling stock\n\n5 Aircraft\n\n6 Ships\n\n7 Goods in transit\n\n8 Fire and natural forces\n\n9 Damage to property\n\n10 Motor vehicle liability\n\n11 Aircraft liability\n\n12 Liability of ships\n\n13 General liability\n\n14 Credit\n\n15 Suretyship \n\n16 Miscellaneous financial loss\n\n17 Legal expenses\n\n18 Assistance\n\nInsurance classes - Contracts of long term insurance (Part II of Schedule 1 to the RAO)\n\n**Number Description**\n\nI      Life and annuity\n\nII     Marriage and birth\n\nIII    Linked long term\n\nIV   Permanent health\n\nV    Tontines\n\nVI   Capital redemption\n\nVII  Contracts\n\nVIII Pension fund management\n\nX    Collective insurance, social insurance",
           "infoType": "long"
