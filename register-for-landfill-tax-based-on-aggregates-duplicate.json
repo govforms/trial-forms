@@ -1,6 +1,6 @@
 {
   "_id": "register-for-landfill-tax-based-on-aggregates-duplicate",
-  "formName": "Register for Aggregates Levy",
+  "formName": "Register for Landfill Tax",
   "description": "",
   "developmentPhase": "beta",
   "emailTemplateId": "al_registration_confirmation",
@@ -15,6 +15,28 @@
   },
   "sections": [
     {
+      "title": "About you",
+      "fields": [
+        {
+          "id": "contact-name",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
       "title": "Which of these best describes your business?",
       "shortName": "Legal status of business",
       "fields": [
@@ -27,8 +49,32 @@
             "Limited company",
             "Sole trader",
             "Partnership",
-            "Other"
+            "Limited liability partnership (LLP)",
+            "Unincorporated body",
+            "Local authority"
           ]
+        }
+      ]
+    },
+    {
+      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "UTR",
+          "label": "",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
+        }
+      ]
+    },
+    {
+      "title": "What is your Self Assessment Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "UTR_copy_1",
+          "label": "",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
       ]
     },
@@ -41,7 +87,8 @@
           "id": "businessName",
           "type": "text",
           "label": "",
-          "shortName": "Business name"
+          "shortName": "Business name",
+          "helpText": "This is the registered name on your company's incorporation certificate from Companies House"
         }
       ]
     },
@@ -131,11 +178,13 @@
       ]
     },
     {
-      "title": "Does your business have an incorporation certificate from Companies House?",
+      "title": "Is your business registered with Companies House?",
+      "shortName": "Incorporation certificate",
+      "includeIf": "${legalStatus=0}",
       "fields": [
         {
-          "type": "choice",
           "id": "incorpCert",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -145,30 +194,22 @@
       ]
     },
     {
-      "title": "Enter your business's incorporation details",
+      "title": "What is your Companies House registration number?",
       "shortName": "Incorporation details",
-      "includeIf": "${legalStatus=0}",
-      "description": "You can find these on the certificate of incorporation you received when you registered your business as a limited company with Companies House. ",
+      "includeIf": "${incorpCert =0}",
       "fields": [
         {
           "id": "certNo",
           "type": "text",
-          "label": "Company registration number",
-          "helpText": "This is 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
+          "label": "What is your Companies House registration number?",
+          "helpText": "This can be found on your certificate of incorporation. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "format": "text(8,8)"
-        },
-        {
-          "id": "incorpDate",
-          "type": "date",
-          "label": "Date of incorporation",
-          "helpText": "For example, 19 4 2018",
-          "format": "before today +1"
         }
       ]
     },
     {
-      "title": "Business details",
-      "description": "Enter the details for the main place of business, where the day-to-day business activities are managed. \n\nThese will be used by HMRC to contact you if we need to discuss your Aggregates Levy information, unless you choose to add alternative contact details.",
+      "title": "Business address",
+      "description": "Enter the details for the main place of business, where the day-to-day business activities are managed. \n\n",
       "fields": [
         {
           "id": "businessAddress",
@@ -176,61 +217,30 @@
           "label": "Address"
         },
         {
-          "id": "phoneNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "email1",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
           "id": "altAdd",
           "type": "choice",
-          "label": "Do you want to add alternative contact details for your Aggregates Levy information?",
-          "shortName": "Use as preferred contact details",
+          "label": "Do you want HMRC to use this as your Landfill Tax correspondence address? ",
+          "shortName": "Add alternative contact details",
           "format": "yesno",
-          "errorMessage": "Select whether you want HMRC to use these as your preferred contact details"
+          "errorMessage": "Select whether you want to add  preferred contact details"
         }
       ]
     },
     {
-      "title": "Preferred contact details",
+      "title": "Contact address",
       "includeIf": "${altAdd=1}",
-      "description": "Provide the contact details of someone who is authorised to discuss your Landfill Tax information with HMRC.",
+      "description": "HMRC will use this for your Landfill Tax correspondence.",
       "fields": [
-        {
-          "id": "name",
-          "type": "text",
-          "label": "Full name",
-          "helpText": "Enter the full name of the contact person",
-          "format": "text"
-        },
         {
           "id": "address",
           "type": "address",
           "label": "Address"
-        },
-        {
-          "id": "altPhoneNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "altEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
         }
       ]
     },
     {
-      "title": "How many UK landfill sites do you operate?",
-      "shortName": "Aggregates sites",
+      "title": "How many landfill sites do you operate in the UK?",
+      "shortName": "Landfill sites",
       "fields": [
         {
           "id": "noOfSites",
@@ -275,8 +285,8 @@
           "format": "email"
         },
         {
-          "type": "text",
           "id": "permitNumber",
+          "type": "text",
           "label": "Site permit number"
         },
         {
@@ -290,13 +300,13 @@
           "id": "previousOwnerINfo",
           "type": "info",
           "label": "",
-          "infoText": "Type of waste landfilled at this site and estimated tonnes per year. ",
+          "infoText": "Select the type of waste landfilled at this site and enter the estimated tonnes per year. ",
           "infoType": "noformat"
         },
         {
           "id": "standard",
           "type": "group",
-          "label": "Standard",
+          "label": "Standard rate waste",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -311,7 +321,7 @@
         {
           "id": "lower",
           "type": "group",
-          "label": "Lower",
+          "label": "Lower rate waste",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -326,7 +336,7 @@
         {
           "id": "exempt",
           "type": "group",
-          "label": "Exempt",
+          "label": "Exempt waste",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
@@ -347,14 +357,15 @@
           "errorMessage": "You must select whether you use a weighbridge",
           "optionHelpText": [
             "",
-            "You will need to contact HMRC to agree an alternative method for weighing aggregates. Contact details will be provided after completing this registration. "
+            "You will need to contact HMRC to agree an alternative method for weighing waste. Contact details will be provided after completing this registration. "
           ]
         },
         {
           "id": "controllerChoice",
           "type": "choice",
           "label": "Do you have a controller at this site?",
-          "shortName": "Do you have a site controller?",
+          "shortName": "Do you have a site controller",
+          "helpText": "If a person other than the operator determines what materials (if any) are disposed of at this site, or as part of this site, that person is a controller. A person who is acting purely as an agent or an employee of someone else is not a controller",
           "format": "yesno",
           "errorMessage": "You must select whether you have a site controller"
         }
@@ -362,7 +373,7 @@
     },
     {
       "title": "Enter the date of your first expected taxable disposal",
-      "shortName": "Date of first taxable disposal",
+      "shortName": "First taxable disposal",
       "fields": [
         {
           "id": "aggregatesDate",
@@ -381,31 +392,14 @@
       ]
     },
     {
-      "title": "Enter your preferred payment method",
-      "shortName": "Payment details",
-      "description": "You need to provide these details so that .........",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "payChoice",
-          "label": "Preferred payment method",
-          "choices": [
-            "Credit transfer",
-            "Cheque",
-            "Other"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Has this landfill business been transferred to you as a going concern?",
-      "shortName": "Aggregates business takeover or change of legal status",
+      "title": "Has this landfill business been transferred to your business as a going concern?",
+      "shortName": "Landfill business takeover",
       "fields": [
         {
           "id": "businessTakeOver",
           "type": "choice",
           "label": "",
-          "shortName": "Taken over aggregates business",
+          "shortName": "Taken over landfill business",
           "format": "yesno"
         }
       ]
@@ -437,8 +431,8 @@
       ]
     },
     {
-      "title": "Have you or any of your business's owners been involved in any other aggregates businesses in the last 2 years?",
-      "shortName": "Other aggregates businesses",
+      "title": "Have you or any of your business's owners been involved in any other landfill businesses in the last 2 years?",
+      "shortName": "Other landfill businesses",
       "includeIf": "${(legalStatus = 1 || legalStatus = 3) || (legalStatus = 4 || legalStatus = 5)}",
       "fields": [
         {
@@ -451,8 +445,8 @@
       ]
     },
     {
-      "title": "Have any of the partners in your business been involved in any other aggregates businesses in the last 24 months?",
-      "shortName": "Other aggregates businesses",
+      "title": "Have any of the partners in your business been involved in any other landfill businesses in the last 24 months?",
+      "shortName": "Other landfill businesses",
       "includeIf": "${legalStatus=2}",
       "fields": [
         {
@@ -466,17 +460,17 @@
       ]
     },
     {
-      "title": "Have any of your business's directors been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Other aggregates businesses",
+      "title": "Have any of your business's directors been involved in other landfill businesses in the last 2 years?",
+      "shortName": "Other landfill businesses",
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
           "id": "otherBusinessLtdCompany",
           "type": "choice",
           "label": "",
-          "shortName": "Involvement with other aggregates businesses in last 24 months",
+          "shortName": "Involvement with other landfill businesses in last 2 years",
           "format": "yesno",
-          "errorMessage": "Select whether your business has been involved with any other aggregates businesses"
+          "errorMessage": "Select whether your business has been involved with any other landfill businesses"
         }
       ]
     },
@@ -484,7 +478,7 @@
       "title": "Registration numbers of the other businesses",
       "shortName": "Details of other businesses",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Aggregates Levy registration number of each business that your business has been involved in. ",
+      "description": "Enter the Landfill Tax registration number of each business that your business has been involved in. ",
       "fields": [
         {
           "id": "otherRegNo",
@@ -506,7 +500,7 @@
       ]
     },
     {
-      "title": "Registration numbers of the other businesses",
+      "title": "Registration numbers of the other landfill businesses",
       "shortName": "Details of other businesses",
       "includeIf": "${otherBusinessLtdCompany = 0}",
       "description": "Enter the Landfill Tax registration number of each business that your business's directors have been involved in. ",
@@ -522,7 +516,7 @@
             {
               "id": "regNo1LtdCo",
               "type": "text",
-              "label": "Registration number",
+              "label": "Landfill Tax registration number",
               "shortName": "Registration number of other business",
               "format": "text"
             }
@@ -534,7 +528,7 @@
       "title": "Registration numbers of the other businesses",
       "shortName": "Details of other businesses",
       "includeIf": "${otherBusinessPart=0}",
-      "description": "Enter the Aggregates Levy registration number of each business that your business's partners have been involved in. ",
+      "description": "Enter the Landfill Tax registration number of each business that your business's partners have been involved in. ",
       "fields": [
         {
           "id": "otherRegNopartners",
@@ -598,7 +592,7 @@
         "id": "decInfoCheck",
         "type": "info",
         "label": "",
-        "infoText": "By entering your full name above you confirm that the information you have provided is true and complete.",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete.",
         "infoType": "important"
       }
     ]
