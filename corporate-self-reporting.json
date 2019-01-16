@@ -15,77 +15,7 @@
   },
   "sections": [
     {
-      "title": "Are you authorised by the company to make this report?",
-      "fields": [
-        {
-          "id": "authorised",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Your contact details",
-      "description": "HMRC will use these details to contact you if we have any questions about this report or need any further information. \n\n",
-      "fields": [
-        {
-          "id": "contact info",
-          "type": "info",
-          "label": "",
-          "infoText": "This can include requesting details of the company’s prevention procedures.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "firstNameBusiness",
-          "type": "text",
-          "label": "Full name",
-          "shortName": "Full name",
-          "mandatory": "true",
-          "errorMessage": "Enter your full name"
-        },
-        {
-          "id": "agentTelephone",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include country and area codes",
-          "format": "telephoneNumber",
-          "mandatory": "true"
-        },
-        {
-          "id": "emailAgent",
-          "type": "text",
-          "label": "Email address",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "true"
-        },
-        {
-          "id": "generatedId_b1569843-aa6e-4b06-8df2-4c2f65c6ab0c",
-          "type": "address",
-          "label": "Address",
-          "helpText": "Enter your main contact address",
-          "international": "true"
-        }
-      ]
-    },
-    {
-      "title": "What is your connection to the organisation this report is about?",
-      "fields": [
-        {
-          "id": "connectiontoBusiness",
-          "type": "text",
-          "label": "",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Which of these best describes the business?",
+      "title": "Which of these best describes the business you are reporting?",
       "fields": [
         {
           "id": "CompanyType",
@@ -102,7 +32,54 @@
       ]
     },
     {
-      "title": "Is the company registered in the UK?",
+      "title": "Are you authorised by the company to make this report? ",
+      "fields": [
+        {
+          "id": "authorised",
+          "type": "choice",
+          "label": "Are you authorised by the company to make this report?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "You can only use this form to self-report on behalf of a company. To report another company, or an individual taxpayer, exit this service and contact the HMRC fraud hotline."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is some or all of the evaded tax owed in the UK?",
+      "fields": [
+        {
+          "id": "authorised_copy_1",
+          "type": "choice",
+          "label": "Is some or all of the evaded tax owed in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "You can only use this form to self-report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. You will need to sign out of this service."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your connection to the company?",
+      "fields": [
+        {
+          "id": "connectiontoBusiness",
+          "type": "text",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Is the company based in the UK?",
       "includeIf": "${CompanyType=0}",
       "fields": [
         {
@@ -126,42 +103,55 @@
       ]
     },
     {
-      "title": "Enter the company details",
-      "includeIf": "${CompanyType=0 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "title": "Registered company details",
+      "includeIf": "${CompanyType=0 && companyRegUK=0}",
+      "description": "Provide the company details as registered at Companies House. You can check this information on GOV.UK (opens in a new tab or window).",
       "fields": [
         {
           "id": "legalNameUKUK",
           "type": "text",
-          "label": "Company name",
-          "helpText": "Enter the registered name as used at Companies House",
+          "label": "Registered company name",
           "mandatory": "true"
-        },
-        {
-          "id": "tradingNameUKUK",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "helpText": "Enter the trading name if different from the company name",
-          "mandatory": "false"
         },
         {
           "id": "ukBaseAddressUK",
           "type": "address",
-          "label": "Address",
-          "helpText": "Enter the address as it is registered at Companies House",
+          "label": "Registered company address",
           "postcodeLookup": "no"
         },
         {
           "id": "companyRegNumberUK",
           "type": "text",
-          "label": "Companies House registration number",
-          "helpText": "This is issued by Companies House. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
+          "label": "Company registration number",
+          "helpText": "It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Does the company trade under a name different to the registered name?",
+      "fields": []
+    },
+    {
+      "title": "What is the trading name?",
+      "fields": [
+        {
+          "id": "tradingNameUKUK",
+          "type": "text",
+          "label": "What is the trading name?",
+          "helpText": "Enter the trading name if different from the registered company name",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "What is the company's Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
         {
           "id": "companyUniqueTaxRefNumUK",
           "type": "text",
-          "label": "Unique Tax Reference number (optional)",
-          "helpText": "This is a 10 digit number, for example 1234567890. It can be found on documents HMRC has issued  ",
+          "label": "What is the company's Corporation Tax Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. [OPTIONAL]",
           "mandatory": "false"
         }
       ]
@@ -625,9 +615,16 @@
           ]
         },
         {
+          "type": "info",
+          "id": "generatedId_0b78953d-0d1b-46f1-af8b-95ef084a1710",
+          "label": "",
+          "infoText": "HMRC may contact you for further details about the company or partnership’s prevention procedures.",
+          "infoType": "standard"
+        },
+        {
           "id": "preventprohelp",
           "type": "info",
-          "label": "More information about prevention procedures",
+          "label": "Where can I find out more about prevention procedures?",
           "infoText": "More information about prevention procedures can be found on GOV.UK in: Failing to prevent criminal facilitation of tax evasion - government guidance on the criminal offences.",
           "infoType": "long"
         }
@@ -701,40 +698,75 @@
           "format": "text"
         }
       ]
+    },
+    {
+      "title": "Your contact details",
+      "description": "HMRC may contact you to request further information about this report. \n\nWe will also send you an email to confirm reciept of this report once submitted.",
+      "fields": [
+        {
+          "id": "firstNameBusiness",
+          "type": "text",
+          "label": "Full name",
+          "shortName": "Full name",
+          "mandatory": "true",
+          "errorMessage": "Enter your full name"
+        },
+        {
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include country and area codes",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAgent",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "Email address",
+          "format": "email",
+          "mandatory": "true"
+        },
+        {
+          "id": "generatedId_b1569843-aa6e-4b06-8df2-4c2f65c6ab0c",
+          "type": "address",
+          "label": "Address",
+          "helpText": "Enter your main contact address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "How HMRC will use your information\n",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_336b132f-d675-4bb7-b4a0-3a5a19cd9707",
+          "label": "",
+          "infoText": "* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018.\n* HMRC will collect, use and share information submitted in this report in accordance with our Privacy Notice [Link to privacy notice]\n\n* if the information submitted leads to an investigation, HMRC may share your contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law\n \n[TICK BOX] I confirm that I understand and agree",
+          "infoType": "noformat"
+        }
+      ]
     }
   ],
   "declarationSection": {
     "title": "Declaration",
     "fields": [
       {
-        "id": "generatedId-c16393dd-8f4e-446b-9825-345406f467dc",
-        "type": "info",
-        "label": "",
-        "infoText": "##I understand and agree to the following:",
-        "infoType": "noformat"
-      },
-      {
-        "id": "termsAndConditions",
-        "type": "info",
-        "label": "Terms and conditions",
-        "infoText": "* I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true\n\n* if the information I submit leads to an investigation, HMRC may share my contact details with other relevant third parties\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings\n\n* HMRC will collect,  use and share information I submit in this report in accordance with its Privacy Notice\n\n* HMRC may contact me to request further information and will send me a confirmation email using the contact details I have provided ",
-        "infoType": "noformat",
-        "presentationHint": "summariseGroupAsGrid"
-      },
-      {
         "id": "Tickbox",
         "type": "choice",
         "label": "",
         "multivalue": "true",
         "choices": [
-          "I confirm that I understand and agree"
+          "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report.\n"
         ]
       },
       {
         "id": "decInfo",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this form you declare that the information you have provided is true and complete",
+        "infoText": "By submitting this report I declare that the information I have provided is true and complete",
         "infoType": "important"
       }
     ]
@@ -750,6 +782,7 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
   "submitSuccessUrl": "http://www.google.co.uk"
 }
