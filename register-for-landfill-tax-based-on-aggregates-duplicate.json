@@ -1,5 +1,5 @@
 {
-  "_id": "register-for-landfill-tax-based-on-aggregates-duplicate",
+  "GFC579Ready": "true",
   "formName": "Register for Landfill Tax",
   "description": "",
   "developmentPhase": "beta",
@@ -15,29 +15,7 @@
   },
   "sections": [
     {
-      "title": "About you",
-      "fields": [
-        {
-          "id": "contact-name",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "phoneNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "email1",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "Which of these best describes your business?",
+      "title": "Declaration",
       "shortName": "Legal status of business",
       "fields": [
         {
@@ -57,24 +35,155 @@
       ]
     },
     {
-      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
+      "title": "About you",
       "fields": [
         {
+          "id": "legalStatusDec_copy_1",
+          "type": "choice",
+          "label": "Select the status relevant to you",
+          "shortName": "Your status",
+          "choices": [
+            "Director",
+            "Company secretary"
+          ]
+        },
+        {
+          "id": "contact-name",
           "type": "text",
-          "id": "UTR",
-          "label": "",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
+          "label": "Full name"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "altContact_1",
+          "type": "choice",
+          "label": "Do you want HMRC to use these as your Landfill Tax contact details? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
         }
       ]
     },
     {
-      "title": "What is your Self Assessment Unique Taxpayer Reference?",
+      "title": "About you",
       "fields": [
         {
+          "id": "legalStatusDec_copy_2",
+          "type": "choice",
+          "label": "Select the status relevant to you",
+          "shortName": "Your status",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Partner",
+            "Authorised official"
+          ]
+        },
+        {
+          "id": "contact-name_copy_1",
           "type": "text",
-          "id": "UTR_copy_1",
-          "label": "",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
+          "label": "Full name"
+        },
+        {
+          "id": "phoneNumber_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1_copy_1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "altContact_1_copy_1",
+          "type": "choice",
+          "label": "Do you want HMRC to use these as your Landfill Tax contact details? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "fields": [
+        {
+          "id": "legalStatusDec_copy_3",
+          "type": "choice",
+          "label": "Select the status relevant to you",
+          "shortName": "Your status",
+          "choices": [
+            "Sole trader",
+            "Authorised official"
+          ]
+        },
+        {
+          "id": "contact-name_copy_2",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "phoneNumber_copy_2",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1_copy_2",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "altContact_1_copy_2",
+          "type": "choice",
+          "label": "Do you want HMRC to use these as your Landfill Tax contact details? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
+        }
+      ]
+    },
+    {
+      "title": "Business address",
+      "description": "Enter the details for the main place of business, where the day-to-day business activities are managed. \n\n",
+      "fields": [
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "altAdd",
+          "type": "choice",
+          "label": "Do you want HMRC to use this as your Landfill Tax correspondence address? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
+        }
+      ]
+    },
+    {
+      "title": "Contact address",
+      "includeIf": "${altAdd=1}",
+      "description": "HMRC will use this for your Landfill Tax correspondence.",
+      "fields": [
+        {
+          "id": "address",
+          "type": "address",
+          "label": "Address"
         }
       ]
     },
@@ -89,19 +198,6 @@
           "label": "",
           "shortName": "Business name",
           "helpText": "This is the registered name on your company's incorporation certificate from Companies House"
-        }
-      ]
-    },
-    {
-      "title": "What is your full name?",
-      "shortName": "Your details",
-      "includeIf": "${legalStatus=1}",
-      "fields": [
-        {
-          "id": "titleSole",
-          "type": "text",
-          "label": "",
-          "shortName": "Full name"
         }
       ]
     },
@@ -208,33 +304,24 @@
       ]
     },
     {
-      "title": "Business address",
-      "description": "Enter the details for the main place of business, where the day-to-day business activities are managed. \n\n",
+      "title": "What is your Self Assessment Unique Taxpayer Reference?",
       "fields": [
         {
-          "id": "businessAddress",
-          "type": "address",
-          "label": "Address"
-        },
-        {
-          "id": "altAdd",
-          "type": "choice",
-          "label": "Do you want HMRC to use this as your Landfill Tax correspondence address? ",
-          "shortName": "Add alternative contact details",
-          "format": "yesno",
-          "errorMessage": "Select whether you want to add  preferred contact details"
+          "type": "text",
+          "id": "UTR_copy_1",
+          "label": "",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
       ]
     },
     {
-      "title": "Contact address",
-      "includeIf": "${altAdd=1}",
-      "description": "HMRC will use this for your Landfill Tax correspondence.",
+      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
       "fields": [
         {
-          "id": "address",
-          "type": "address",
-          "label": "Address"
+          "type": "text",
+          "id": "UTR",
+          "label": "",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
       ]
     },
@@ -554,34 +641,6 @@
     "title": "Confirm details and send your registration",
     "fields": [
       {
-        "id": "declarationFullName",
-        "type": "text",
-        "label": "Full name",
-        "errorMessage": "Enter full name"
-      },
-      {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We will send an email to this address to confirm we have received your registration",
-        "format": "email",
-        "errorMessage": "Enter email address"
-      },
-      {
-        "id": "legalStatusDec",
-        "type": "choice",
-        "label": "Select the status relevant to you",
-        "shortName": "Your status",
-        "helpText": "For limited companies, a director or company secretary must complete this declaration",
-        "choices": [
-          "Director",
-          "Company secretary",
-          "Sole trader",
-          "Partner",
-          "Authorised official"
-        ]
-      },
-      {
         "id": "decInfoCheckTitle",
         "type": "info",
         "label": "",
@@ -617,5 +676,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "register-for-landfill-tax-based-on-aggregates-duplicate"
 }
