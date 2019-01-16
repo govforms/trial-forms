@@ -1,5 +1,5 @@
 {
-  "GFC579Ready": "true",
+  "_id": "transitional-simplified-procedures",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -15,63 +15,62 @@
   "sections": [
     {
       "title": "Are you eligible for Transitional Simplified Procedures?",
+      "shortName": "Eligibility questions",
       "fields": [
         {
-          "type": "choice",
           "id": "choiceDAN",
-          "label": "Do you expect to move goods thart attract duty?",
+          "type": "choice",
+          "label": "Do you expect to move goods that attract duty?",
           "format": "yesno"
         },
         {
+          "id": "accessToDAN",
           "type": "choice",
+          "label": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
+          "shortName": "DAN number",
+          "format": "yesno"
+        },
+        {
           "id": "choiceEORI",
-          "label": "Do you have an EORI number?",
+          "type": "choice",
+          "label": "Do you have an EORI number that is subscribed to Customs Declaration Service (CDS)?",
+          "shortName": "EORI number subscribed to CDS",
           "format": "yesno"
         },
         {
-          "type": "choice",
           "id": "choiceCHIEF",
+          "type": "choice",
           "label": "Have you obtained software/a CHIEF badge to allow you to submit declarations in CDS/CHIEF?",
+          "shortName": "CHIEF badge",
           "helpText": "EPU code? Customs Declaration Service ",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
-      "includeIf": "${choiceDAN=0}",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "accessToDAN",
-          "label": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Have you subscribed your EORI to Customs Declaration Service (CDS)?",
-      "includeIf": "${choiceEORI = 0}",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "choiceSubscribeCDS",
-          "label": "Have you subscribed your EORI to Customs Declaration Service (CDS)?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
       "title": "Eligibility Checker Failed",
-      "includeIf": "${accessToDAN= 1 || choiceCHIEF=1 || choiceSubscribeCDS= 1 || choiceEORI = 1}",
+      "includeIf": "${(choiceDAN = 0 && accessToDAN= 1) || choiceCHIEF=1 || choiceEORI = 1}",
       "continueIf": "false",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_aa8b55ce-5197-4d3e-a9fc-2c30f6a5aa9f",
+          "type": "info",
           "label": "",
           "infoText": "You are unable to continue until you have an EORI which is subscribed to CDS, DAN or CHIEF",
           "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What is your Duty Deferment Account (DAN) reference?",
+      "shortName": "Duty Deferment Account",
+      "includeIf": "${choiceDAN = 0 && accessToDAN=0}",
+      "fields": [
+        {
+          "id": "danNo",
+          "type": "text",
+          "label": "What is your Duty Deferment Account (DAN) reference?",
+          "shortName": "DAN reference"
         }
       ]
     },
@@ -87,13 +86,15 @@
           "id": "eoriNo",
           "type": "text",
           "label": "EORI reference",
-          "helpText": "This includes the country code of GB followed by 12 numerical digits, for example GB123456789123",
+          "helpText": "This includes the country code followed by 12 numerical digits, for example GB123456789123",
           "format": "text(14,14)"
         },
         {
           "id": "utrNo",
           "type": "text",
           "label": "Unique taxpayer reference (if you have one)",
+          "shortName": "Unique taxpayer reference",
+          "helpText": "Enter a valid 10 digit Unique Taxpayer Reference",
           "format": "utr",
           "mandatory": "false"
         },
@@ -101,6 +102,8 @@
           "id": "vatNo",
           "type": "text",
           "label": "VAT registration number (if you have one)",
+          "shortName": "VAT registration number",
+          "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
           "format": "ukVrn",
           "mandatory": "false"
         }
@@ -130,6 +133,7 @@
           "id": "contactPref",
           "type": "choice",
           "label": "Select how you would like to be contacted",
+          "shortName": "Contact preference",
           "multivalue": "true",
           "choices": [
             "Email",
@@ -149,19 +153,21 @@
         {
           "id": "regAdd",
           "type": "choice",
-          "label": "Are the details for the registered address different to your details?",
+          "label": "Is the registered office address the same as your address?",
+          "shortName": "Registered address",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "Registered office address",
-      "includeIf": "${regAdd = 0}",
+      "includeIf": "${regAdd = 1}",
       "fields": [
         {
           "id": "appAdd",
           "type": "address",
-          "label": "Registered office address"
+          "label": "Registered office address",
+          "shortName": "Address"
         }
       ]
     }
@@ -174,7 +180,8 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "By signing below I confirm that the information given in this form is true, complete and accurate and that I will notify HMRC when I import goods to the UK, including all appropriate customs declarations. I confirm that I will pay the customs duties for which I may be liable on those imports"
+        "infoText": "By signing below I confirm that the information given in this form is true, complete and accurate and that I will notify HMRC when I import goods to the UK, including all appropriate customs declarations.\nI confirm that I will pay the customs duties for which I may be liable on those imports",
+        "infoType": "noformat"
       },
       {
         "id": "declarationNameGroup",
@@ -227,16 +234,10 @@
         "type": "info",
         "label": "",
         "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
-      },
-      {
-        "id": "ackpageInfo",
-        "type": "info",
-        "label": "Payment",
-        "infoText": ""
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "transitional-simplified-procedures"
+  "submitSuccessUrl": "deprecated"
 }
