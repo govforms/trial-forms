@@ -1,0 +1,809 @@
+{
+  "_id": "aeoC118-1-1",
+  "formName": "aeoC118-1-1",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "aeoC118-1-1"
+  },
+  "sections": [
+    {
+      "title": "Trader identification number(s)",
+      "shortName": "Identification number(s)",
+      "fields": [
+        {
+          "id": "eoriInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "Your trader identification number is the same as your Economic Operator Registration and Identification (EORI) number",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_b05f7c22-6eb2-4c7c-a9f8-2b0c55159c29",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all 7 forms for your application",
+          "infoType": "long"
+        },
+        {
+          "id": "eoriGroup",
+          "type": "group",
+          "label": "EORI Number",
+          "format": "horizontal",
+          "presentationHint": "summariseGroupAsGrid",
+          "fields": [
+            {
+              "id": "mSInfo1",
+              "type": "info",
+              "label": "Member states country codes",
+              "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a \"Member state country codes\") here \n\n You will need to press back in your browser to get back to this form ",
+              "infoType": "long"
+            },
+            {
+              "id": "eORIa",
+              "type": "text",
+              "label": "",
+              "helpText": "Enter your country code, for example GB, followed by your 12 numerical digit EORI number",
+              "format": "text(14,14)",
+              "mandatory": "true",
+              "errorMessage": "Input your country code and EORI number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you got all the information you need? (0.1)",
+      "shortName": "Preperation questions (0.1)",
+      "fields": [
+        {
+          "id": "insetInfoBox1",
+          "type": "info",
+          "label": "",
+          "infoText": "Please read the [European Commission’s Authorised Economic Operator (AEO) Guidelines](https://ec.europa.eu/taxation_customs/sites/taxation/files/resources/documents/customs/policy_issues/customs_security/aeo_guidelines_en.pdf) before applying for AEO.\n\n You will need to press back in your browser to get back to this form",
+          "infoType": "noformat"
+        },
+        {
+          "id": "whoHelped",
+          "type": "text",
+          "label": "Which departments, including management, have you involved in the process to prepare your company for the AEO application?",
+          "shortName": "Departments involved in preparing for AEO application",
+          "helpText": "Have you involved customs or third parties in the process (consultants etc)?",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "What authorisation do you require?",
+      "shortName": "Authorisation required",
+      "fields": [
+        {
+          "id": "authInfo",
+          "type": "info",
+          "label": "What authorisation do you require?",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "aCh",
+          "type": "choice",
+          "label": "",
+          "format": "vertical",
+          "errorMessage": "You must select customs simplification, security and safety or both",
+          "choices": [
+            "Customs simplification",
+            "Security and safety",
+            "Both"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "General company information",
+      "shortName": "Company information (1.1.1)",
+      "fields": [
+        {
+          "id": "insetInfoBox2",
+          "type": "info",
+          "label": "",
+          "infoText": "State the name, address, date of establishment/registration and legal status of the organisation of the applying company. Please include the web page address (URL) of your company’s website, if applicable.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "companyName",
+          "type": "text",
+          "label": "Company name"
+        },
+        {
+          "id": "companyAddress",
+          "type": "address",
+          "label": "Company address",
+          "international": "yes",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyDOE",
+          "type": "date",
+          "label": "Date of establishment",
+          "format": "before today +1"
+        },
+        {
+          "id": "companyLegalStatus",
+          "type": "text",
+          "label": "Legal status"
+        },
+        {
+          "id": "companyURL",
+          "type": "text",
+          "label": "Company website"
+        }
+      ]
+    },
+    {
+      "title": "General company information",
+      "shortName": "Part of a group",
+      "fields": [
+        {
+          "id": "groupQuestion",
+          "type": "choice",
+          "label": "Is your company part of a group?",
+          "helpText": "Select yes if your company is part of a group",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Group information",
+      "shortName": "Group details",
+      "includeIf": "${groupQuestion = 0}",
+      "fields": [
+        {
+          "id": "groupdescription",
+          "type": "text",
+          "label": "Provide a brief description of the group",
+          "multiline": "yes"
+        },
+        {
+          "id": "groupQuestion1",
+          "type": "choice",
+          "label": "Do any other entities in the group already have an AEO authorisation?",
+          "format": "yesno"
+        },
+        {
+          "id": "groupQuestion2",
+          "type": "choice",
+          "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Permanent business establishments (PBE's)",
+      "shortName": "PBE's",
+      "fields": [
+        {
+          "id": "pbeChoice1",
+          "type": "choice",
+          "label": "Does the application cover Permanent Business Establishments (PBE's)",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Permanent business establishments (PBE's)",
+      "shortName": "PBE's",
+      "includeIf": "${pbeChoice1 = 0}",
+      "fields": [
+        {
+          "id": "pbeGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Permanent business establishment $n",
+          "repeatAddAnotherText": "Add another PBE",
+          "fields": [
+            {
+              "id": "pbeName",
+              "type": "text",
+              "label": "Site full name"
+            },
+            {
+              "id": "pbeAddress",
+              "type": "text",
+              "label": "Full address of permanent business establishment",
+              "shortName": "PBE address",
+              "helpText": "Input the full address of your permanent business establishment including street number, postal code and city",
+              "multiline": "yes"
+            },
+            {
+              "id": "pbeVAT1",
+              "type": "text",
+              "label": "VAT registration number(s)",
+              "helpText": "Input GB and then the 9 numerical digits of the permanent business establishment's VAT registration number(s)",
+              "format": "ukVrn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Established for less than 3 years",
+      "shortName": "Established for less than 3 years",
+      "fields": [
+        {
+          "id": "lessThan3Years",
+          "type": "choice",
+          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal reorganisation details",
+      "shortName": "Established for less than 3 years",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "reorganisationDetails",
+          "type": "text",
+          "label": "Provide details of the reorganisation of your company",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Shareholders, directors and managers (1.1.2)",
+      "fields": [
+        {
+          "id": "generatedId_38cb957c-08c6-482b-a23c-a4cf8713388b",
+          "type": "info",
+          "label": "shdspacer",
+          "infoText": "Over the next four pages you will be asked the following:\n\n\n\n\n\n",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_902e438b-f1c5-4820-9368-6d1f91077f47",
+          "type": "info",
+          "label": "UKQuestion",
+          "infoText": "* How many of the people involved in the ownership, direction or management of your business are UK nationals?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_9772b249-7dbc-43c4-af1c-a1889cea9d70",
+          "type": "info",
+          "label": "What we need to know about UK nationals",
+          "infoText": "We need the persons name and national insurance number.\n\nIf they are a main shareholder we also need to know what percentage of shares they hold in the business\n\nOnce you have filled in those details you will need to indicate their role in the business from the options given, you may select more than one.",
+          "infoType": "long"
+        },
+        {
+          "id": "generatedId_0c6331ab-f7c4-44df-b8be-e95dd1df0aea",
+          "type": "info",
+          "label": "Non-UKQuestion",
+          "infoText": "* How many of the people involved in the ownership, direction or management of your business are Non-UK nationals?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_a49dbb84-9adf-425e-b4f9-e9564b29f296",
+          "type": "info",
+          "label": "What we need to know about Non-UK nationals",
+          "infoText": "We need the persons name, date of birth and residential address.\n\nIf they are a main shareholder we also need to know what percentage of shares they hold in the business\n\nOnce you have filled in those details you will need to indicate their role in the business from the options given, you may select more than one.",
+          "infoType": "long"
+        },
+        {
+          "id": "generatedId_aaac2b13-7c07-4db5-aff1-cf5f7b263f26",
+          "type": "info",
+          "label": "dataRequired",
+          "infoText": "* Who are the owners or main shareholders for your business?\n* Who are the owners or main shareholders involved in the day to day running of your business?\n* Who are the board members or managers of your business?\n* Who are the advisory board or board of directors members of your business?\n* Who is the person in charge of your company or exercising control over your companys management?",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "UK nationals involved in the ownership, direction or management of your business",
+      "shortName": "Number UK nationals involved",
+      "fields": [
+        {
+          "id": "UKNatCO1",
+          "type": "text",
+          "label": "How many people involved in the ownership, direction or management of your business are UK nationals?",
+          "helpText": "",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "generatedId_6f8655d5-75de-4b83-ab4b-3e3bae4ef32c",
+          "type": "info",
+          "label": "Who should I include?",
+          "infoText": "Include all people in the following roles that are UK nationals:\n\n* Main Shareholder\n\n* Main Shareholder involved in the day to day running of your business\n\n* Board members or managers\n\n* Advisory board or board of directors members\n\n* Person in charge of your company or exercising control over your companys management?",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "UK national involved in the ownership, direction or management of your business $n",
+      "shortName": "UK national details $n",
+      "includeIf": "${UKNatCO1 >= 1}",
+      "repeatsMin": "${UKNatCO1}",
+      "repeatsMax": "${UKNatCO1}",
+      "fields": [
+        {
+          "id": "uKNatCO1a",
+          "type": "text",
+          "label": "Owner or main shareholder full name",
+          "helpText": "Input the full name of this person"
+        },
+        {
+          "id": "uKNatCO1b",
+          "type": "text",
+          "label": "Owner or main shareholder national insurance (NI) number",
+          "helpText": "Input the national insurance number of this person"
+        },
+        {
+          "id": "uKNatCO1c",
+          "type": "text",
+          "label": "Percentage of shares held",
+          "helpText": "Input the percentage of share held by this person, if they are not a shareholder leave blank",
+          "mandatory": "false"
+        },
+        {
+          "id": "roleChoiceUK",
+          "type": "choice",
+          "label": "Roles held",
+          "helpText": "Tick all roles that apply to this person",
+          "multivalue": "true",
+          "choices": [
+            "Main Shareholder",
+            "Main Shareholder involved in day to day running of the business",
+            "Board member or manager",
+            "Advisory board member or member of board of directors",
+            "Person in charge of company or exercising control over company management"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Non UK nationals involved in the ownership, direction or management of your business",
+      "shortName": "Number non-UK nationals involved",
+      "fields": [
+        {
+          "id": "nonUKNatCO1",
+          "type": "text",
+          "label": "How many owners or main shareholders are not UK nationals",
+          "helpText": "Input the number of owners or main shareholders who are not UK nationals"
+        },
+        {
+          "id": "nonUkNo",
+          "type": "info",
+          "label": "Who should I include?",
+          "infoText": "Include all  people in the following roles that are Non-UK nationals:\n\n* Main Shareholder\n\n* Main Shareholder involved in the day to day running of your business\n\n* Board members or managers\n\n* Advisory board or board of directors members\n\n* Person in charge of your company or exercising control over your companys management?",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Non UK national involved in the ownership, direction or management of your business $n",
+      "shortName": "Non UK national details $n",
+      "includeIf": "${nonUKNatCO1 >= 1}",
+      "repeatsMin": "${nonUKNatCO1}",
+      "repeatsMax": "${nonUKNatCO1}",
+      "fields": [
+        {
+          "id": "nonUKNatCO1a",
+          "type": "text",
+          "label": "Full name",
+          "helpText": "Input the full name of this person"
+        },
+        {
+          "id": "nonUKNatCO1b",
+          "type": "text",
+          "label": "Residential address",
+          "helpText": "Input this persons full residential address including country here",
+          "multiline": "yes"
+        },
+        {
+          "id": "nonUKNatCO1c",
+          "type": "date",
+          "label": "date of birth",
+          "helpText": "Input this persons date of birth",
+          "format": "before today +1"
+        },
+        {
+          "id": "nonUKNatCO1d",
+          "type": "text",
+          "label": "Percentage of shares held",
+          "helpText": "Input the percentage of shares held by this person, if not applicable leave blank",
+          "format": "positiveNumber(3, 0)"
+        },
+        {
+          "id": "roleChoiceNonUK",
+          "type": "choice",
+          "label": "Roles held",
+          "helpText": "Tick all roles that apply to this person",
+          "multivalue": "true",
+          "choices": [
+            "Main Shareholder",
+            "Main Shareholder involved in day to day running of the business",
+            "Board member or manager",
+            "Advisory board member or member of board of directors",
+            "Person in charge of company or exercising control over company management"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters (1.1.3)",
+      "shortName": "Person responsible for customs matters (1.1.3)",
+      "fields": [
+        {
+          "id": "prcs1",
+          "type": "choice",
+          "label": "Is the person responsible for customs matters a UK national?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Person responsible for customs matters",
+      "includeIf": "${prcs1 = 0}",
+      "fields": [
+        {
+          "id": "prcs1a",
+          "type": "text",
+          "label": "Full name of person responsible for customs matters",
+          "helpText": "Input the full name of the person responsible for customs matters"
+        },
+        {
+          "id": "prcs1b",
+          "type": "text",
+          "label": "Person responsible for customs matters (NI) number",
+          "helpText": "Input the national insurance number of the person responsible for customs matters"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Person responsible for customs matters",
+      "includeIf": "${prcs1 = 1}",
+      "fields": [
+        {
+          "id": "prcs2a",
+          "type": "text",
+          "label": "Full name of person responsible for customs matters",
+          "helpText": "Input the full name of person responsible for customs matters"
+        },
+        {
+          "id": "prcs2b",
+          "type": "text",
+          "label": "Address",
+          "helpText": "Input the address of the person responsible for customs matters",
+          "multiline": "yes"
+        },
+        {
+          "id": "prcs3c",
+          "type": "date",
+          "label": "date of birth",
+          "helpText": "Input the date of birth of the person responsible for customs matters",
+          "format": "before today +1"
+        }
+      ]
+    },
+    {
+      "title": "Locations involved in customs activities (1.1.5)",
+      "shortName": "Locations involved in customs activities (1.1.5)",
+      "fields": [
+        {
+          "id": "companyLocations",
+          "type": "group",
+          "label": "The individual locations of your company as a legal entity (please indicate approximate number of employees in each department)",
+          "repeatsMax": 10,
+          "repeatLabel": "",
+          "repeatAddAnotherText": "Add another location",
+          "fields": [
+            {
+              "id": "companyLocations1a",
+              "type": "text",
+              "label": "Name of location",
+              "helpText": "Input the name of a location",
+              "errorMessage": "input the name of a location"
+            },
+            {
+              "id": "companyLocations1",
+              "type": "address",
+              "label": "Company location address",
+              "international": "true",
+              "postcodeLookup": "no"
+            },
+            {
+              "id": "companyLocationsPhone",
+              "type": "text",
+              "label": "Telephone number",
+              "helpText": "input this locations point of contact telephone number here",
+              "format": "telephoneNumber",
+              "errorMessage": "Enter a valid telephone number"
+            },
+            {
+              "id": "companyLocationsEmail",
+              "type": "text",
+              "label": "Email address",
+              "helpText": "input this locations point of contact email address here",
+              "format": "email"
+            },
+            {
+              "id": "companyLocationsDescription",
+              "type": "text",
+              "label": "Provide a brief description of the business conducted here:\n\n Indicate approximate number of employees in each department at this location",
+              "multiline": "yes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Third party locations involved in customs activities ",
+      "shortName": "Third party locations involved",
+      "fields": [
+        {
+          "id": "tPLiCA1",
+          "type": "text",
+          "label": "How many sites do you have where third parties execute outsourced activities for your company?"
+        }
+      ]
+    },
+    {
+      "title": "Third party locations involved in customs activities ",
+      "shortName": "Third party locations involved",
+      "includeIf": "${tPLiCA1 >= 1}",
+      "repeatsMin": "${tPLiCA1}",
+      "repeatsMax": "${tPLiCA1}",
+      "fields": [
+        {
+          "id": "agentLocations1a",
+          "type": "text",
+          "label": "Name of location",
+          "helpText": "Input the name of a location"
+        },
+        {
+          "id": "agentLocations1",
+          "type": "address",
+          "label": "Third party location address",
+          "international": "yes",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "agentLocationsPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Input this locations point of contact telephone number here",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agentLocationsEmail",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Input this locations point of contact email address here",
+          "format": "email"
+        },
+        {
+          "id": "agentLocationsDescription",
+          "type": "text",
+          "label": "Provide a brief description of the business conducted here",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Purchases and sales (1.1.6)",
+      "shortName": "Purchases and sales (1.1.6)",
+      "fields": [
+        {
+          "id": "purchases1",
+          "type": "choice",
+          "label": "Do you buy from/sell to businesses with which you are associated?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Internal organisational structure (1.1.7)",
+      "shortName": "Organisational structure (1.1.7)",
+      "fields": [
+        {
+          "id": "organisationalDescription",
+          "type": "text",
+          "label": "Describe the internal organisational structure of your company and the tasks/responsibilities of each department",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Senior management (1.1.8)",
+      "shortName": "Senior management (1.1.8)",
+      "fields": [
+        {
+          "id": "seniorManagement",
+          "type": "text",
+          "label": "Give the names of senior management (directors, heads of departments, head of accounting, head of customs department) of the company and briefly the stand in rules",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Number of employees (1.1.9)",
+      "shortName": "Employees (1.1.9)",
+      "fields": [
+        {
+          "id": "numberOfEmployees",
+          "type": "text",
+          "label": "How many employees do you have in your business?",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "title": "Consent to disclose the AEO details on the TAXUD website (1.1.10a)",
+      "shortName": "TAXUD consent (1.1.10a)",
+      "fields": [
+        {
+          "id": "consent1",
+          "type": "choice",
+          "label": "Do you hereby give your consent to the publication of the information in the AEO authorisation in the list of authorised economic operators",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Consent to disclose the AEO details on the TAXUD website ",
+      "shortName": "TAXUD consent details",
+      "includeIf": "${consent1 = 0}",
+      "fields": [
+        {
+          "id": "insetInfoBoxConsent1",
+          "type": "info",
+          "label": "",
+          "infoText": "The completed questionnaire should be signed by a director/managing partner/sole proprietor as appropriate but for this case it is recommended that consent is given by an authorised signatory.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "consent1Name",
+          "type": "text",
+          "label": "Full name",
+          "helpText": "Input the full name of the person giving consent to disclose AEO details"
+        },
+        {
+          "id": "consent1-status",
+          "type": "text",
+          "label": "Status in the business"
+        },
+        {
+          "id": "dateConsent1Given",
+          "type": "date",
+          "label": "Date consent is given",
+          "format": "before today +1"
+        }
+      ]
+    },
+    {
+      "title": "Consent to the exchange of the information in the AEO authorisation (1.1.10b)",
+      "shortName": "Exchange information consent (1.1.10b)",
+      "fields": [
+        {
+          "id": "consent2",
+          "type": "choice",
+          "label": "Do you hereby give your consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Consent to the exchange of the information in the AEO authorisation",
+      "shortName": "Exchange information consent details",
+      "includeIf": "${consent2 = 0}",
+      "fields": [
+        {
+          "id": "insetInfoBoxConsent2",
+          "type": "info",
+          "label": "",
+          "infoText": "The completed questionnaire should be signed by a director/managing partner/sole proprietor as appropriate but for this case it is recommended that consent is given by an authorised signatory.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "consent2Name",
+          "type": "text",
+          "label": "Full name",
+          "helpText": "Input the full name of the person giving consent to disclose AEO details"
+        },
+        {
+          "id": "consent2status",
+          "type": "text",
+          "label": "Status in the business"
+        },
+        {
+          "id": "dateConsent2Given",
+          "type": "date",
+          "label": "Date consent is given",
+          "format": "before today +1"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
