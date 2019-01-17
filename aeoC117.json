@@ -21,49 +21,38 @@
           "id": "elChk",
           "type": "info",
           "label": "",
-          "infoText": "Answer the following five questions to check if you are eligible to apply for AEO status",
+          "infoText": "Answer the following four questions to check if you are eligible to apply for AEO status",
           "infoType": "noformat"
         },
         {
-          "id": "kQ1",
+          "id": "legalEntity",
           "type": "choice",
-          "label": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
-          "shortName": "Audit trail",
+          "label": "Is the business a legal entity?",
           "format": "yesno"
         },
         {
-          "id": "kQ2",
+          "id": "estabilishedEU",
           "type": "choice",
-          "label": "Do you have documented procedures for verifying the accuracy of customs declarations, including those submitted on your behalf, for example, by a customs agent or a freight forwarder?",
-          "shortName": "Procedures for verifying accuracy of customs declarations",
+          "label": "Is the business established in the territory of an European Union member state?",
           "format": "yesno"
         },
         {
-          "id": "kQ3",
+          "id": "internationalCustomsTrade",
           "type": "choice",
-          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities (for example, suspicion of theft, burglary or smuggling in connection with customs-related goods)?",
-          "shortName": "Company has guidelines on the notification of irregularities",
+          "label": "Is the business actively involved in customs operations and international trade?",
           "format": "yesno"
         },
         {
-          "id": "kQ4",
+          "id": "choiceEORI",
           "type": "choice",
-          "label": "Do you or the person in charge of your customs matters have practical experience of a minimum of 3 years in customs matters?",
-          "shortName": "Experienced person in charge of customs matters",
-          "format": "yesno"
-        },
-        {
-          "id": "kQ5",
-          "type": "choice",
-          "label": "Do you have documented stocktaking and procedures for dealing with irregularities?",
-          "shortName": "Documented stocktaking and procedures for dealing with irregularities",
+          "label": "Does the business have an Economic Operator Registration and Identification (EORI) number?",
           "format": "yesno"
         }
       ]
     },
     {
       "title": "Eligibility checker passed",
-      "includeIf": "${(kQ1 = 0 && kQ2 = 0) && (kQ3 = 0 && kQ4 = 0) && kQ5 = 0}",
+      "includeIf": "${legalEntity = 0 || estabilishedEU=0 || internationalCustomsTrade=0 || choiceEORI=0}",
       "fields": [
         {
           "id": "elPass",
@@ -76,7 +65,7 @@
     },
     {
       "title": "Eligibility checker failed",
-      "includeIf": "${(kQ1 = 1 || kQ2 = 1) || (kQ3 = 1 || kQ4 = 1) || kQ5 = 1}",
+      "includeIf": "${legalEntity=1 || estabilishedEU=1 || internationalCustomsTrade=1 || choiceEORI= 1}",
       "continueIf": "false",
       "fields": [
         {
