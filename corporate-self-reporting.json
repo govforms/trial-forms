@@ -15,7 +15,7 @@
   },
   "sections": [
     {
-      "title": "Which of these best describes the business you are reporting?",
+      "title": "Which of these best describes the {business} you are reporting?",
       "fields": [
         {
           "id": "CompanyType",
@@ -35,6 +35,15 @@
       "title": "Are you authorised by the company to make this report on its behalf?",
       "fields": [
         {
+          "id": "authorised_copy_1",
+          "type": "choice",
+          "label": "Is some or all of the evaded tax owed in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
           "id": "authorised",
           "type": "choice",
           "label": "Are you authorised by the company to make this report on its behalf?",
@@ -42,29 +51,21 @@
           "choices": [
             "Yes",
             "No"
-          ],
-          "optionHelpText": [
-            "",
-            "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\n You will need to sign-out of this service."
           ]
         }
       ]
     },
     {
-      "title": "Is some or all of the evaded tax owed in the UK?",
+      "title": "Cannot continue",
+      "includeIf": "${authorised_copy_1 = 1 || authorised = 1}",
+      "continueIf": "false",
       "fields": [
         {
-          "id": "authorised_copy_1",
-          "type": "choice",
-          "label": "Is some or all of the evaded tax owed in the UK?",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "",
-            "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service."
-          ]
+          "type": "info",
+          "id": "generatedId_3ca57c8b-2062-4104-a11f-b113bbd958bf",
+          "label": "",
+          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign-out of this service.\nYou can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -127,7 +128,7 @@
         {
           "id": "companyRegNumberUK",
           "type": "text",
-          "label": "Company registration number (optional)",
+          "label": "Company registration number",
           "helpText": "It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
         }
@@ -521,7 +522,7 @@
       ]
     },
     {
-      "title": "Enter the report ID for each previous report to HMRC",
+      "title": "Enter the report ID for each previous self-report to HMRC",
       "includeIf": "${selfReportedFailure=0 && haveReferenceNumber=0}",
       "fields": [
         {
@@ -658,7 +659,7 @@
           "id": "partOfPrevention",
           "type": "choice",
           "label": "",
-          "helpText": "Select one or more options if any apply (optional)",
+          "helpText": "Select one or more options (optional)",
           "multivalue": "yes",
           "choices": [
             "Risk assessment",
@@ -693,7 +694,7 @@
           "id": "whyNotPrevention",
           "type": "text",
           "label": "",
-          "helpText": "(Optional) Enter a maximum of 1000 characters including spaces",
+          "helpText": "Enter a maximum of 1000 characters including spaces (optional)",
           "format": "text(1,1000)",
           "mandatory": "false",
           "multiline": "true"
@@ -740,14 +741,14 @@
       ]
     },
     {
-      "title": "Create a unique report ID",
+      "title": "Give your report a unique ID",
       "description": "",
       "fields": [
         {
           "id": "userProvidedID2",
           "type": "text",
           "label": "Give your report a unique ID",
-          "helpText": "Give your report a unique ID and keep a note of it. Use 7 characters or more. This must include letters, numbers and at least one special character",
+          "helpText": "Give your report a unique ID and keep a note of it. Use 7 characters or more. This must include letters, two or more numbers and one special character",
           "format": "text"
         },
         {
@@ -761,13 +762,13 @@
           "id": "generatedId_c4098fa4-eb56-4339-9ac8-e6b6d297ed3e",
           "type": "info",
           "label": "",
-          "infoText": "HMRC may use this ID during further correspondence with you.",
+          "infoText": "HMRC will use this report ID during any further correspondence with you.",
           "infoType": "noformat"
         }
       ]
     },
     {
-      "title": "How HMRC will use your information\n",
+      "title": "Give consent to how HMRC will use your information\n",
       "fields": [
         {
           "id": "generatedId_336b132f-d675-4bb7-b4a0-3a5a19cd9707",
@@ -799,13 +800,6 @@
         "choices": [
           "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report.\n"
         ]
-      },
-      {
-        "id": "decInfo",
-        "type": "info",
-        "label": "",
-        "infoText": "By submitting this report I declare that the information I have provided is true and complete",
-        "infoType": "important"
       }
     ]
   },
@@ -816,7 +810,7 @@
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form. We recommend that you keep a copy for your records along with a note of the unique report ID you created for this report."
+        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form (ABOVE). We recommend that you keep a copy for your records along with a note of the unique report ID you created for this report."
       }
     ]
   },
