@@ -127,7 +127,7 @@
         {
           "id": "companyRegNumberUK",
           "type": "text",
-          "label": "Company registration number (CAN THIS BE OPTIONAL?)",
+          "label": "Company registration number (optional)",
           "helpText": "It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
         }
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "title": "Do you have a reference ID for any of the previous self-reports to HMRC?",
+      "title": "Do you have the report ID for any of the previous self-reports to HMRC?",
       "includeIf": "${selfReportedFailure=0}",
       "fields": [
         {
@@ -521,7 +521,7 @@
       ]
     },
     {
-      "title": "Enter the reference ID for each previous report to HMRC",
+      "title": "Enter the report ID for each previous report to HMRC",
       "includeIf": "${selfReportedFailure=0 && haveReferenceNumber=0}",
       "fields": [
         {
@@ -531,8 +531,8 @@
           "mandatory": "true",
           "repeatsMin": 1,
           "repeatsMax": 50,
-          "repeatLabel": "Report reference ID $n",
-          "repeatAddAnotherText": "Add another report reference ID",
+          "repeatLabel": "Report ID $n",
+          "repeatAddAnotherText": "Add another report ID",
           "fields": [
             {
               "id": "summariseHowTaxing2",
@@ -551,7 +551,7 @@
           "id": "madeOtherReports",
           "type": "choice",
           "label": "",
-          "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office for failing to prevent the facilitation of overseas tax evasion",
+          "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office",
           "choices": [
             "Yes",
             "No",
@@ -702,7 +702,7 @@
     },
     {
       "title": "Your contact details",
-      "description": "HMRC may use these details to contact you to ask for further information.",
+      "description": "HMRC may use these details to contact you for further information.",
       "fields": [
         {
           "id": "firstNameBusiness",
@@ -746,7 +746,7 @@
         {
           "id": "userProvidedID2",
           "type": "text",
-          "label": "Create a unique report ID",
+          "label": "Give your report a unique ID",
           "helpText": "Give your report a unique ID and keep a note of it. Use 7 characters or more. This must include letters, numbers and at least one special character",
           "format": "text"
         },
