@@ -35,7 +35,7 @@
       "title": "Are you authorised by the company to make this report on its behalf?",
       "fields": [
         {
-          "id": "authorised_copy_1",
+          "id": "evadedTaxUK",
           "type": "choice",
           "label": "Is some or all of the evaded tax owed in the UK?",
           "choices": [
@@ -57,14 +57,14 @@
     },
     {
       "title": "Cannot continue",
-      "includeIf": "${authorised_copy_1 = 1 || authorised = 1}",
+      "includeIf": "${evadedTaxUK=1 || authorised=1}",
       "continueIf": "false",
       "fields": [
         {
+          "id": "generatedId_bbef2057-bac4-45df-985a-f62f0559ef57",
           "type": "info",
-          "id": "generatedId_3ca57c8b-2062-4104-a11f-b113bbd958bf",
           "label": "",
-          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign-out of this service.\nYou can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service.",
+          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign-out of this service. You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service.",
           "infoType": "noformat"
         }
       ]
