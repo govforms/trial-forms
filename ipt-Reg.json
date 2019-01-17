@@ -134,6 +134,52 @@
       ]
     },
     {
+      "title": "Lloyd's syndicate details",
+      "fields": [
+        {
+          "type": "text",
+          "id": "lloSyn1",
+          "label": "Syndicate number"
+        },
+        {
+          "type": "choice",
+          "id": "lloCho1",
+          "label": "Are you electing that Lloyd's may act for you from the first of your accounting periods?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "lloCho2",
+          "label": "Are all your premiums processed through Lloyd's Policy Signing Office (LPSO)?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "lloCho3",
+          "label": "Are you involved in Mirror Syndicate activity?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "lloCho4",
+          "label": "Are you reinsured to close?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Will this form be used to notify us that you are going to use the special accounting scheme from the first of your accounting periods?",
       "fields": [
         {
@@ -149,13 +195,77 @@
       ]
     },
     {
-      "title": "",
+      "title": "Registration details",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "rOCho",
+          "label": "Are you in run off?",
+          "choices": [
+            "Yes",
+            "Second selectable choiceNo"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "busDesCho",
+          "label": "Business description",
+          "helpText": "Select an option that best describes your business",
+          "choices": [
+            "UK insurer",
+            "Branch of non-UK insurer",
+            "Captive",
+            "Representative office",
+            "Taxable intermediary",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Business description \"other\"",
+      "includeIf": "${busDesCho = 5}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "othText",
+          "label": "Specify the details of your business"
+        }
+      ]
+    },
+    {
+      "title": "Are you applying to register because a business has been transferred to you as a going concern?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "goConCho",
+          "label": "Are you applying to register because a business has been transferred to you as a going concern?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "First taxable premium",
+      "fields": [
+        {
+          "type": "date",
+          "id": "firTaxPremDate",
+          "label": "First taxable premium",
+          "helpText": "Give the date you expect to receive your first taxable premium"
+        }
+      ]
+    },
+    {
+      "title": "Class of insurance business provided",
       "fields": [
         {
           "id": "generatedId_d5a31b95-7b91-41a3-85be-70695d597f57",
           "type": "info",
           "label": "",
-          "infoText": "",
+          "infoText": "See Section 5 of the notice 'Insurance Premium Tax' which will help you to answer the question below.",
           "infoType": "noformat"
         },
         {
