@@ -32,19 +32,20 @@
       ]
     },
     {
-      "title": "Are you authorised by the company to make this report? ",
+      "title": "Are you authorised by the company to make this report on its behalf?",
       "fields": [
         {
           "id": "authorised",
           "type": "choice",
-          "label": "Are you authorised by the company to make this report?",
+          "label": "Are you authorised by the company to make this report on its behalf?",
+          "format": "vertical",
           "choices": [
             "Yes",
             "No"
           ],
           "optionHelpText": [
             "",
-            "You can only use this form to self-report on behalf of a company. To report another company, or an individual taxpayer, exit this service and contact the HMRC fraud hotline."
+            "You can only use this form to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\n You will need to sign-out of this service."
           ]
         }
       ]
@@ -62,7 +63,7 @@
           ],
           "optionHelpText": [
             "",
-            "You can only use this form to self-report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. You will need to sign out of this service."
+            "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service."
           ]
         }
       ]
@@ -83,10 +84,14 @@
       "includeIf": "${CompanyType=0}",
       "fields": [
         {
-          "id": "companyRegUK",
           "type": "choice",
+          "id": "companyRegUK",
           "label": "",
-          "format": "yesno"
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -103,7 +108,7 @@
       ]
     },
     {
-      "title": "Registered company details",
+      "title": "Company details",
       "includeIf": "${CompanyType=0 && companyRegUK=0}",
       "description": "Provide the company details as registered at Companies House. You can check this information on GOV.UK (opens in a new tab or window).",
       "fields": [
@@ -130,7 +135,18 @@
     },
     {
       "title": "Does the company trade under a name different to the registered name?",
-      "fields": []
+      "fields": [
+        {
+          "type": "choice",
+          "id": "tradingNameyesNo",
+          "label": "",
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
     },
     {
       "title": "What is the trading name?",
@@ -139,8 +155,21 @@
           "id": "tradingNameUKUK",
           "type": "text",
           "label": "What is the trading name?",
-          "helpText": "Enter the trading name if different from the registered company name",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Do you know the company's Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "utrYesno",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -157,7 +186,7 @@
       ]
     },
     {
-      "title": "Enter the details of the company",
+      "title": "Company details",
       "includeIf": "${CompanyType=0 && (companyRegUK=1 || partnershipRegUK=1)}",
       "fields": [
         {
@@ -191,14 +220,14 @@
         {
           "id": "companyRegNumberNotUK",
           "type": "text",
-          "label": "Company registration number (if applicable)",
-          "helpText": "Enter the company registration number in the country of formation (if applicable)",
+          "label": "Company registration number (optional)",
+          "helpText": "Enter the company registration number in the country of formation if known",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Enter the details of the partnership",
+      "title": "Partnership details",
       "includeIf": "${CompanyType=1 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
@@ -280,7 +309,7 @@
       ]
     },
     {
-      "title": "Enter the details of the partnership",
+      "title": "Partnership details",
       "includeIf": "${CompanyType=2 && (companyRegUK=0 || partnershipRegUK=0)}",
       "fields": [
         {
@@ -293,7 +322,6 @@
           "id": "ukBaseAddressPartOther",
           "type": "address",
           "label": "Address",
-          "helpText": "Enter the address as the partnership is registered",
           "postcodeLookup": "no"
         },
         {
@@ -306,7 +334,7 @@
       ]
     },
     {
-      "title": "Enter the details of the partnership",
+      "title": "Partnership details",
       "includeIf": "${CompanyType=2 && (companyRegUK=1 || partnershipRegUK=1)}",
       "fields": [
         {
@@ -340,21 +368,21 @@
         {
           "id": "companyRegNumberNotUKLimitedUpdated",
           "type": "text",
-          "label": "Partnership registration number (if applicable)",
-          "helpText": "Enter the partnership registration number in the country of formation (if applicable)",
+          "label": "Partnership registration number (optional)",
+          "helpText": "Enter the partnership registration number in the country of formation if known",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Explain how the criminal facilitation of tax evasion took place",
+      "title": "Tell us how the criminal facilitation of tax evasion took place",
       "description": "",
       "fields": [
         {
           "id": "generatedId-827e9bb9-3f42-46ca-8fbb-495b23732706",
           "type": "info",
           "label": "",
-          "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude details about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* who they helped to evade tax \n* what tax was evaded\n* how it was discovered",
+          "infoText": "Summarise how the tax evasion was facilitated.  \n\nTry to include details about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* who they helped to evade tax \n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
         {
@@ -368,7 +396,7 @@
           "id": "summariseHowTax",
           "type": "text",
           "label": "",
-          "helpText": "Enter a maximum of 5000 characters",
+          "helpText": "Enter a maximum of 5000 characters including spaces",
           "format": "text(1,5000)",
           "mandatory": "true",
           "multiline": "true"
@@ -391,10 +419,14 @@
       "title": "Is the facilitation ongoing?",
       "fields": [
         {
-          "id": "facilitationOngoing",
           "type": "choice",
+          "id": "facilitationOngoing",
           "label": "",
-          "format": "yesno"
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -405,7 +437,7 @@
         {
           "id": "endDate",
           "type": "date",
-          "label": "Estimate when the facilitation ended",
+          "label": "Estimate the date when the facilitation ended",
           "helpText": "For example, 1 4 2018",
           "mandatory": "true"
         }
@@ -415,21 +447,43 @@
       "title": "Have you been able to identify specific individuals involved in the tax evasion?",
       "fields": [
         {
-          "id": "identifySpecific",
           "type": "choice",
+          "id": "identifySpecific",
           "label": "",
-          "format": "yesno"
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "You will not be asked to provide their names on this form but we may ask for their details at a later date",
+            ""
+          ]
         }
       ]
     },
     {
-      "title": "Tell us about any other information you feel may be relevant",
+      "title": "Do you have any other information to tell us about the facilitation that occurred?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "moreDetails",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us any other information that may be relevant",
       "fields": [
         {
           "id": "anyOtherInfo",
           "type": "text",
           "label": "",
-          "helpText": "Enter a maximum of 4000 characters",
+          "helpText": "Enter a maximum of 4000 characters including spaces",
           "format": "text(1,4000)",
           "mandatory": "true",
           "multiline": "true"
@@ -437,7 +491,7 @@
       ]
     },
     {
-      "title": "Has the company previously reported a failure to prevent the facilitation of tax evasion to HMRC?",
+      "title": "Has the company previously self-reported a failure to prevent the facilitation of tax evasion to HMRC?",
       "fields": [
         {
           "id": "selfReportedFailure",
@@ -452,7 +506,7 @@
       ]
     },
     {
-      "title": "Do you have a reference number for any of the previous reports to HMRC?",
+      "title": "Do you have a reference number for any of the previous self-reports to HMRC?",
       "includeIf": "${selfReportedFailure=0}",
       "fields": [
         {
@@ -491,12 +545,13 @@
       ]
     },
     {
-      "title": "Have you made any reports about this incident to agencies other than HMRC? ",
+      "title": "Have you made any other reports about this incident to agencies or bodies other than HMRC? ",
       "fields": [
         {
           "id": "madeOtherReports",
           "type": "choice",
           "label": "",
+          "helpText": "This might include Suspicious Activity Reports, or reports to the SFO for failing to prevent the facilitation of overseas tax evasion",
           "choices": [
             "Yes",
             "No",
@@ -596,18 +651,18 @@
       ]
     },
     {
-      "title": "Are any of the following  part of the prevention procedures?[NON MANDATORY]",
+      "title": "Are any of the following  part of the prevention procedures?",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
           "id": "partOfPrevention",
           "type": "choice",
           "label": "",
-          "helpText": "Select one or more options",
+          "helpText": "Select one or more options if any apply (optional)",
           "multivalue": "yes",
           "choices": [
             "Risk assessment",
-            "Prevention procedures based on proportionality of risk",
+            "Proportionality of risk-based prevention procedures",
             "Top level commitment",
             "Due diligence",
             "Communication and training",
@@ -618,7 +673,7 @@
           "type": "info",
           "id": "generatedId_0b78953d-0d1b-46f1-af8b-95ef084a1710",
           "label": "",
-          "infoText": "HMRC may contact you for further details about the company or partnership’s prevention procedures.",
+          "infoText": "HMRC may contact you for further details about the company’s prevention procedures. ",
           "infoType": "standard"
         },
         {
@@ -631,77 +686,23 @@
       ]
     },
     {
-      "title": "Briefly describe why no prevention procedures are in place [ENTER IF KNOWN HINT TEXT}",
+      "title": "Briefly describe why no prevention procedures are in place if known",
       "includeIf": "${preventionProcYesNo=1}",
       "fields": [
         {
           "id": "whyNotPrevention",
           "type": "text",
           "label": "",
-          "helpText": "Enter a maximum of 1000 characters",
+          "helpText": "(Optional) Enter a maximum of 1000 characters including spaces",
           "format": "text(1,1000)",
-          "mandatory": "true",
+          "mandatory": "false",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "Report reference code",
-      "description": "Create and enter a unique reference code for this report and keep a note of it. HMRC may ask for this, along with your Government Gateway ID and report submission date (both shown below) if we need to contact you about this report. ",
-      "fields": [
-        {
-          "id": "userProvidedID",
-          "type": "text",
-          "label": "Unique submission reference code",
-          "helpText": "Create and enter a unique code for this report that is at least 5 characters long, using letters and numbers. For example, JoeSmith1977 ",
-          "format": "text"
-        },
-        {
-          "id": "ggReference",
-          "type": "text",
-          "label": "Your Government Gateway ID",
-          "value": "${auth.gg}",
-          "submitMode": "readonly"
-        },
-        {
-          "id": "currentDate",
-          "type": "date",
-          "label": "Your report submission date ",
-          "value": "today",
-          "submitMode": "readonly"
-        }
-      ]
-    },
-    {
-      "title": "Create a unique report name",
-      "description": "",
-      "fields": [
-        {
-          "id": "generatedId-a69dc63a-5d51-46f0-99e0-41a32d175a6b",
-          "type": "info",
-          "label": "repname",
-          "infoText": "Enter a name for this report and keep a note of it.\nHMRC may use this during further correspondence with you.\n\n",
-          "infoType": "noformat"
-        },
-        {
-          "id": "insetformname",
-          "type": "info",
-          "label": "",
-          "infoText": "If you or the company have previously made a report to HMRC, make sure that you enter a name that has not been used previously.",
-          "infoType": "standard"
-        },
-        {
-          "id": "userProvidedID2",
-          "type": "text",
-          "label": "Report name",
-          "helpText": "Use at least 5 characters, including letters and numbers",
-          "format": "text"
-        }
-      ]
-    },
-    {
       "title": "Your contact details",
-      "description": "HMRC may contact you to request further information about this report. \n\nWe will also send you an email to confirm reciept of this report once submitted.",
+      "description": "HMRC may use these details to contact you to ask for further information.",
       "fields": [
         {
           "id": "firstNameBusiness",
@@ -725,6 +726,7 @@
           "type": "text",
           "label": "Email address",
           "shortName": "Email address",
+          "helpText": "HMRC will send an email to this address to confirm we have received this report",
           "format": "email",
           "mandatory": "true"
         },
@@ -738,14 +740,50 @@
       ]
     },
     {
+      "title": "Create a unique report ID",
+      "description": "",
+      "fields": [
+        {
+          "id": "userProvidedID2",
+          "type": "text",
+          "label": "Create a unique report ID",
+          "helpText": "Create and enter a unique ID for this report and keep a note of it. Use 7 characters or more. This must include letters, numbers and at least one special character",
+          "format": "text"
+        },
+        {
+          "id": "insetformname",
+          "type": "info",
+          "label": "",
+          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter an ID that has already been used.\n\n",
+          "infoType": "standard"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_c4098fa4-eb56-4339-9ac8-e6b6d297ed3e",
+          "label": "",
+          "infoText": "HMRC may use this ID during further correspondence with you.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
       "title": "How HMRC will use your information\n",
       "fields": [
         {
           "type": "info",
           "id": "generatedId_336b132f-d675-4bb7-b4a0-3a5a19cd9707",
           "label": "",
-          "infoText": "* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018.\n* HMRC will collect, use and share information submitted in this report in accordance with our Privacy Notice [Link to privacy notice]\n\n* if the information submitted leads to an investigation, HMRC may share your contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law\n \n[TICK BOX] I confirm that I understand and agree",
+          "infoText": "* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018.\n* HMRC will collect, use and share information submitted in this report in accordance with our Privacy Notice [Link to privacy notice]\n\n* if the information submitted leads to an investigation, HMRC may share your contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law",
           "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "",
+          "label": "",
+          "multivalue": "true",
+          "choices": [
+            " I confirm that I understand and agree"
+          ]
         }
       ]
     }
@@ -778,7 +816,7 @@
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "[Previous text]     HMRC may use information in your report to decide whether to start a criminal investigation. We may also use evidence from your report in a prosecution or other court proceedings. Where the law permits, we may share the information you have given with other agencies.\n\nHMRC will not contact you again unless we require further information. If an investigation is launched it is likely we will contact you to discuss further details on the case. This can include requesting details of the company or partnership’s prevention procedures.\n\n\n[Proposed text]\n\nHMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form. We recommend that you keep a copy for your records."
+        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form. We recommend that you keep a copy for your records along with a note of the unique report ID you created for this report."
       }
     ]
   },
