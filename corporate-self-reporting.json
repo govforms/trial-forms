@@ -15,7 +15,37 @@
   },
   "sections": [
     {
-      "title": "Which of these best describes the {business} you are reporting?",
+      "title": "Are you authorised by the company to make this report on its behalf?",
+      "fields": [
+        {
+          "id": "authorised",
+          "type": "choice",
+          "label": "Are you authorised by the company to make this report on its behalf?",
+          "format": "horizontal",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is some or all of the evaded tax owed in the UK?",
+      "fields": [
+        {
+          "id": "evadedTaxUK",
+          "type": "choice",
+          "label": "Is some or all of the evaded tax owed in the UK?",
+          "format": "horizontal",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Which of these best describes the organisation you are reporting?",
       "fields": [
         {
           "id": "CompanyType",
@@ -32,39 +62,29 @@
       ]
     },
     {
-      "title": "Are you authorised by the company to make this report on its behalf?",
-      "fields": [
-        {
-          "id": "evadedTaxUK",
-          "type": "choice",
-          "label": "Is some or all of the evaded tax owed in the UK?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "authorised",
-          "type": "choice",
-          "label": "Are you authorised by the company to make this report on its behalf?",
-          "format": "vertical",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Cannot continue",
-      "includeIf": "${evadedTaxUK=1 || authorised=1}",
+      "includeIf": "${evadedTaxUK=1}",
       "continueIf": "false",
       "fields": [
         {
           "id": "generatedId_bbef2057-bac4-45df-985a-f62f0559ef57",
           "type": "info",
           "label": "",
-          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign-out of this service. You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. \n\nYou will need to sign out of this service.",
+          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign out of this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Cannot continue 2",
+      "includeIf": "${authorised=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_cf4294ac-d659-4e75-ab39-306a5bae5748",
+          "type": "info",
+          "label": "",
+          "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. ",
           "infoType": "noformat"
         }
       ]
@@ -81,7 +101,7 @@
       ]
     },
     {
-      "title": "Is the company based in the UK?",
+      "title": "Is the company registered in the UK?",
       "includeIf": "${CompanyType=0}",
       "fields": [
         {
@@ -98,7 +118,7 @@
     },
     {
       "title": "Is the partnership registered in the UK?",
-      "includeIf": "${!CompanyType=0}",
+      "includeIf": "${CompanyType!=0}",
       "fields": [
         {
           "id": "partnershipRegUK",
@@ -110,8 +130,8 @@
     },
     {
       "title": "Company details",
-      "includeIf": "${CompanyType=0 && companyRegUK=0}",
-      "description": "Provide the company details as registered at Companies House. You can check this information on GOV.UK (opens in a new tab or window).",
+      "includeIf": "${CompanyType=0 && companyRegUK =0}",
+      "description": "Provide the company details as registered at Companies House.",
       "fields": [
         {
           "id": "legalNameUKUK",
@@ -135,60 +155,8 @@
       ]
     },
     {
-      "title": "Does the company trade under a name different to the registered name?",
-      "fields": [
-        {
-          "id": "tradingNameyesNo",
-          "type": "choice",
-          "label": "",
-          "format": "vertical",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the trading name?",
-      "fields": [
-        {
-          "id": "tradingNameUKUK",
-          "type": "text",
-          "label": "What is the trading name?",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Do you know the company's Corporation Tax Unique Taxpayer Reference?",
-      "fields": [
-        {
-          "id": "utrYesno",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the company's Corporation Tax Unique Taxpayer Reference?",
-      "fields": [
-        {
-          "id": "companyUniqueTaxRefNumUK",
-          "type": "text",
-          "label": "What is the company's Corporation Tax Unique Taxpayer Reference?",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
       "title": "Company details",
-      "includeIf": "${CompanyType=0 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "includeIf": "${CompanyType=0 && companyRegUK=1}",
       "fields": [
         {
           "id": "legalNameUKNotUK",
@@ -223,6 +191,59 @@
           "type": "text",
           "label": "Company registration number (optional)",
           "helpText": "Enter the company registration number in the country of formation if known",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Does the company trade under a name different to the registered name?",
+      "fields": [
+        {
+          "id": "tradingNameyesNo",
+          "type": "choice",
+          "label": "",
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the trading name?",
+      "includeIf": "${tradingNameyesNo=0}",
+      "fields": [
+        {
+          "id": "tradingNameUKUK",
+          "type": "text",
+          "label": "What is the trading name?",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Do you know the company's Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "id": "utrYesno",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the company's Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "id": "companyUniqueTaxRefNumUK",
+          "type": "text",
+          "label": "What is the company's Corporation Tax Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
           "mandatory": "false"
         }
       ]
@@ -383,7 +404,7 @@
           "id": "generatedId-827e9bb9-3f42-46ca-8fbb-495b23732706",
           "type": "info",
           "label": "",
-          "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* who they helped to evade tax \n* what tax was evaded\n* how it was discovered",
+          "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* who they helped to evade tax \n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
         {
@@ -479,6 +500,7 @@
     },
     {
       "title": "Tell us any other information that may be relevant",
+      "includeIf": "${moreDetails=0}",
       "fields": [
         {
           "id": "anyOtherInfo",
@@ -641,7 +663,7 @@
       ]
     },
     {
-      "title": "Does the company you are reporting have procedures in place that were designed to prevent the facilitation of tax evasion?",
+      "title": "Does the company you are reporting have procedures in place that were designed to prevent this incident?",
       "fields": [
         {
           "id": "preventionProcYesNo",
@@ -652,7 +674,7 @@
       ]
     },
     {
-      "title": "Are any of the following  part of the prevention procedures?",
+      "title": "Are any of the following part of the prevention procedures?",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
@@ -674,7 +696,7 @@
           "id": "generatedId_0b78953d-0d1b-46f1-af8b-95ef084a1710",
           "type": "info",
           "label": "",
-          "infoText": "HMRC may contact you for further details about the company’s prevention procedures. ",
+          "infoText": "You will not be asked for further details about the company's procedures in this report.  HMRC will contact you if more details are required.",
           "infoType": "standard"
         },
         {
@@ -741,21 +763,21 @@
       ]
     },
     {
-      "title": "Give your report a unique ID",
+      "title": "Unique report ID",
       "description": "",
       "fields": [
         {
           "id": "userProvidedID2",
           "type": "text",
-          "label": "Give your report a unique ID",
-          "helpText": "Give your report a unique ID and keep a note of it. Use 7 characters or more. This must include letters, two or more numbers and one special character",
+          "label": "",
+          "helpText": "Give your report a unique ID and keep a note of it. Use 7 characters or more. This must include letters, 2 or more numbers and one special character",
           "format": "text"
         },
         {
           "id": "insetformname",
           "type": "info",
           "label": "",
-          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter an ID that has already been used.\n\n",
+          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter a report ID that has already been used.\n\n",
           "infoType": "standard"
         },
         {
