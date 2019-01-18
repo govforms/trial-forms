@@ -1,5 +1,6 @@
 {
-  "formName": "Tell HMRC about a company failing to stop people evading tax",
+  "_id": "corporate-self-reporting",
+  "formName": "Tell HMRC your organisation failed to prevent the facilitation of tax evasion",
   "description": "",
   "formCategory": "hmrcReturnForm",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -14,19 +15,31 @@
   },
   "sections": [
     {
-      "title": "Which of these best describes the organisation you are reporting?",
+      "title": "Is some or all of the evaded tax owed in the UK?",
       "fields": [
         {
-          "id": "CompanyType",
+          "id": "evadedTaxUK",
           "type": "choice",
-          "label": "",
-          "shortName": "Organisation type",
-          "helpText": "If you are unsure please choose company",
+          "label": "Is some or all of the evaded tax owed in the UK?",
+          "format": "vertical",
           "choices": [
-            "Company",
-            "Limited liability partnership (LLP)",
-            "Other partnership"
+            "Yes",
+            "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Sign out of this service",
+      "includeIf": "${evadedTaxUK=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_bbef2057-bac4-45df-985a-f62f0559ef57",
+          "type": "info",
+          "label": "",
+          "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. \n\nFailure to prevent the facilitation of foreign tax evasion should be reported to the [Serious Fraud Office](https://www.sfo.gov.uk/).\n\nYou will need to sign out of this service.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -37,7 +50,7 @@
           "id": "authorised",
           "type": "choice",
           "label": "Are you authorised by the company to make this report on its behalf?",
-          "format": "horizontal",
+          "format": "vertical",
           "choices": [
             "Yes",
             "No"
@@ -46,7 +59,7 @@
       ]
     },
     {
-      "title": "Text TBC",
+      "title": "Sign out of this service",
       "includeIf": "${authorised=1}",
       "continueIf": "false",
       "fields": [
@@ -54,37 +67,25 @@
           "id": "generatedId_cf4294ac-d659-4e75-ab39-306a5bae5748",
           "type": "info",
           "label": "",
-          "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. ",
+          "infoText": "You can only use this service to self-report on behalf of a company if the company has authorised you to do so. \n\nTo report another company, or an individual taxpayer, contact the [HMRC fraud hotline]. \n\nYou will need to sign out of this service. ",
           "infoType": "noformat"
         }
       ]
     },
     {
-      "title": "Is some or all of the evaded tax owed in the UK?",
+      "title": "Which of these best describes the organisation you are reporting?",
       "fields": [
         {
-          "id": "evadedTaxUK",
+          "id": "CompanyType",
           "type": "choice",
-          "label": "Is some or all of the evaded tax owed in the UK?",
-          "format": "horizontal",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Text TBC",
-      "includeIf": "${evadedTaxUK=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_bbef2057-bac4-45df-985a-f62f0559ef57",
-          "type": "info",
           "label": "",
-          "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign out of this service.",
-          "infoType": "noformat"
+          "shortName": "Organisation type",
+          "helpText": "If you are unsure please choose company",
+          "choices": [
+            "Company or limited company",
+            "Limited liability partnership (LLP)",
+            "Other partnership"
+          ]
         }
       ]
     },
@@ -95,7 +96,9 @@
           "id": "connectiontoBusiness",
           "type": "text",
           "label": "",
-          "mandatory": "false"
+          "helpText": "For example, I am the company Director ",
+          "mandatory": "false",
+          "displayWidth": "xl"
         }
       ]
     },
@@ -397,6 +400,25 @@
       ]
     },
     {
+      "title": "Have you been able to identify specific individuals involved in the facilitating of tax evasion?",
+      "fields": [
+        {
+          "id": "identifySpecific",
+          "type": "choice",
+          "label": "Have you been able to identify specific individuals involved in the facilitating of tax evasion?",
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "You will not be asked to provide the names in this report but HMRC may contact you to ask for their details at a later date",
+            ""
+          ]
+        }
+      ]
+    },
+    {
       "title": "Tell us how the criminal facilitation of tax evasion took place",
       "description": "",
       "fields": [
@@ -432,6 +454,7 @@
           "id": "estimateTotalValues",
           "type": "text",
           "label": "",
+          "helpText": "Leave blank if not known",
           "format": "sterling",
           "mandatory": "false"
         }
@@ -460,32 +483,13 @@
           "id": "endDate",
           "type": "date",
           "label": "Estimate the date when the facilitation ended",
-          "helpText": "For example, 1 4 2018",
+          "helpText": "For example, 01 04 2018",
           "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Have you been able to identify specific individuals involved in the facilitating of tax evasion?",
-      "fields": [
-        {
-          "id": "identifySpecific",
-          "type": "choice",
-          "label": "Have you been able to identify specific individuals involved in the facilitating of tax evasion?",
-          "format": "vertical",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "You will not be asked to provide their names in this report but HMRC may contact you to ask for their details at a later date",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Do you have any other information to tell us about the facilitation that occurred?",
+      "title": "Do you have any additional information to tell us about the facilitation that occurred?",
       "fields": [
         {
           "id": "moreDetails",
@@ -514,7 +518,8 @@
       ]
     },
     {
-      "title": "Has the company previously self-reported a failure to prevent the facilitation of tax evasion to HMRC?",
+      "title": "Is this the first self-report the company has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+      "description": "REPLACED PREVIOUS TITLE TEXT:  Has the company previously self-reported a failure to prevent the facilitation of tax evasion to HMRC? ",
       "fields": [
         {
           "id": "selfReportedFailure",
@@ -674,14 +679,15 @@
       ]
     },
     {
-      "title": "Are any of the following part of the prevention procedures?",
+      "title": "Select any of the following that are part of the company's prevention procedures",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
           "id": "partOfPrevention",
           "type": "choice",
           "label": "",
-          "helpText": "Select one or more options (optional)",
+          "helpText": "Select one or more options if any apply (optional)",
+          "mandatory": "false",
           "multivalue": "yes",
           "choices": [
             "Risk assessment",
@@ -696,14 +702,14 @@
           "id": "generatedId_0b78953d-0d1b-46f1-af8b-95ef084a1710",
           "type": "info",
           "label": "",
-          "infoText": "You will not be asked for further details about the company's procedures in this report.  HMRC will contact you if more details are required.",
-          "infoType": "standard"
+          "infoText": "You will not be asked for further details about the company's procedures in this report.\n\n[HMRC](https://www.govforms.io/editor) will contact you if more details are required.",
+          "infoType": "noformat"
         },
         {
           "id": "preventprohelp",
           "type": "info",
           "label": "Where can I find out more about prevention procedures?",
-          "infoText": "More information about prevention procedures can be found on GOV.UK in: [https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/672231/Tackling-tax-evasion-corporate-offences.pdf](Failing to prevent criminal facilitation of tax evasion - government guidance on the criminal offences.)",
+          "infoText": "More information about prevention procedures can be found in [this government guidance on GOV.UK](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/672231/Tackling-tax-evasion-corporate-offences.pdf)",
           "infoType": "long"
         }
       ]
@@ -770,21 +776,21 @@
           "id": "userProvidedID2",
           "type": "text",
           "label": "",
-          "helpText": "Give your report a unique reference and keep a note of it. Use 7 characters or more. This must include letters, 2 or more numbers and one special character",
+          "helpText": "Create a unique submission reference for your report and keep a note of it. Use 7 characters or more. This must include letters, 2 or more numbers and one special character",
           "format": "text"
         },
         {
           "id": "insetformname",
           "type": "info",
           "label": "",
-          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter a report ID that has already been used.\n\n",
+          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter a submission reference that has already been used.\n\n",
           "infoType": "standard"
         },
         {
           "id": "generatedId_c4098fa4-eb56-4339-9ac8-e6b6d297ed3e",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use this report ID during any further correspondence with you.",
+          "infoText": "HMRC will use this submission reference during any further correspondence with you.",
           "infoType": "noformat"
         }
       ]
@@ -803,6 +809,7 @@
           "id": "gdprConsent",
           "type": "choice",
           "label": "",
+          "mandatory": "true",
           "multivalue": "true",
           "choices": [
             " I confirm that I understand and agree"
@@ -818,6 +825,7 @@
         "id": "Tickbox",
         "type": "choice",
         "label": "",
+        "mandatory": "true",
         "multivalue": "true",
         "choices": [
           "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report.\n"
@@ -832,12 +840,11 @@
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form, you can use the link above to do this. We recommend that you keep a copy for your records along with a note of the unique report ID you created for this report."
+        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form, you can use the link above to do this. \n\nWe recommend that you keep a copy for your records along with a note of the unique submission reference you gave this report."
       }
     ]
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "corporate-self-reporting"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
