@@ -15,6 +15,23 @@
   },
   "sections": [
     {
+      "title": "Which of these best describes the organisation you are reporting?",
+      "fields": [
+        {
+          "id": "CompanyType",
+          "type": "choice",
+          "label": "",
+          "shortName": "Organisation type",
+          "helpText": "If you are unsure please choose company",
+          "choices": [
+            "Company",
+            "Limited liability partnership (LLP)",
+            "Other partnership"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Are you authorised by the company to make this report on its behalf?",
       "fields": [
         {
@@ -26,6 +43,20 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Text TBC",
+      "includeIf": "${authorised=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_cf4294ac-d659-4e75-ab39-306a5bae5748",
+          "type": "info",
+          "label": "",
+          "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. ",
+          "infoType": "noformat"
         }
       ]
     },
@@ -45,24 +76,7 @@
       ]
     },
     {
-      "title": "Which of these best describes the organisation you are reporting?",
-      "fields": [
-        {
-          "id": "CompanyType",
-          "type": "choice",
-          "label": "",
-          "shortName": "Organisation type",
-          "helpText": "If you are unsure please choose company",
-          "choices": [
-            "Company",
-            "Limited liability partnership (LLP)",
-            "Other partnership"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Cannot continue",
+      "title": "Text TBC",
       "includeIf": "${evadedTaxUK=1}",
       "continueIf": "false",
       "fields": [
@@ -71,20 +85,6 @@
           "type": "info",
           "label": "",
           "infoText": "You can only use this service to self-report on behalf of a company. To report another company, or an individual taxpayer, contact the HMRC fraud hotline.\n\nYou will need to sign out of this service.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Cannot continue 2",
-      "includeIf": "${authorised=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_cf4294ac-d659-4e75-ab39-306a5bae5748",
-          "type": "info",
-          "label": "",
-          "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. Failure to prevent the facilitation of foreign tax evasion should be reported to the Serious Fraud Office. ",
           "infoType": "noformat"
         }
       ]
@@ -238,6 +238,7 @@
     },
     {
       "title": "What is the company's Corporation Tax Unique Taxpayer Reference?",
+      "includeIf": "${utrYesno=0} ",
       "fields": [
         {
           "id": "companyUniqueTaxRefNumUK",
