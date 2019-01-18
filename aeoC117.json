@@ -1,5 +1,4 @@
 {
-  "_id": "aeoC117",
   "formName": "Application for Authorised Economic Operator (Part 1 C117)",
   "description": "Fill in your application for Authorised Economic Operator certificate online",
   "developmentPhase": "research",
@@ -52,7 +51,7 @@
     },
     {
       "title": "Eligibility checker passed",
-      "includeIf": "${legalEntity = 0 || estabilishedEU=0 || internationalCustomsTrade=0 || choiceEORI=0}",
+      "includeIf": "${(legalEntity = 0 && estabilishedEU=0) && (internationalCustomsTrade=0 && choiceEORI=0)}",
       "fields": [
         {
           "id": "elPass",
@@ -65,7 +64,7 @@
     },
     {
       "title": "Eligibility checker failed",
-      "includeIf": "${legalEntity=1 || estabilishedEU=1 || internationalCustomsTrade=1 || choiceEORI= 1}",
+      "includeIf": "${(legalEntity=1 || estabilishedEU=1) || (internationalCustomsTrade=1 || choiceEORI= 1)}",
       "continueIf": "false",
       "fields": [
         {
@@ -1388,5 +1387,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "aeoC117"
 }
