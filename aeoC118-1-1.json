@@ -79,64 +79,9 @@
       ]
     },
     {
-      "title": "What authorisation do you require?",
-      "shortName": "Authorisation required",
-      "fields": [
-        {
-          "id": "authInfo",
-          "type": "info",
-          "label": "What authorisation do you require?",
-          "infoText": "",
-          "infoType": "noformat"
-        },
-        {
-          "id": "aCh",
-          "type": "choice",
-          "label": "",
-          "format": "vertical",
-          "errorMessage": "You must select customs simplification, security and safety or both",
-          "choices": [
-            "Customs simplification",
-            "Security and safety",
-            "Both"
-          ]
-        }
-      ]
-    },
-    {
       "title": "General company information",
       "shortName": "Company information (1.1.1)",
       "fields": [
-        {
-          "id": "insetInfoBox2",
-          "type": "info",
-          "label": "",
-          "infoText": "State the name, address, date of establishment/registration and legal status of the organisation of the applying company. Please include the web page address (URL) of your company’s website, if applicable.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "companyName",
-          "type": "text",
-          "label": "Company name"
-        },
-        {
-          "id": "companyAddress",
-          "type": "address",
-          "label": "Company address",
-          "international": "yes",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "companyDOE",
-          "type": "date",
-          "label": "Date of establishment",
-          "format": "before today +1"
-        },
-        {
-          "id": "companyLegalStatus",
-          "type": "text",
-          "label": "Legal status"
-        },
         {
           "id": "companyURL",
           "type": "text",
@@ -179,55 +124,6 @@
           "type": "choice",
           "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
           "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Permanent business establishments (PBE's)",
-      "shortName": "PBE's",
-      "fields": [
-        {
-          "id": "pbeChoice1",
-          "type": "choice",
-          "label": "Does the application cover Permanent Business Establishments (PBE's)",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Permanent business establishments (PBE's)",
-      "shortName": "PBE's",
-      "includeIf": "${pbeChoice1 = 0}",
-      "fields": [
-        {
-          "id": "pbeGroup",
-          "type": "group",
-          "label": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Permanent business establishment $n",
-          "repeatAddAnotherText": "Add another PBE",
-          "fields": [
-            {
-              "id": "pbeName",
-              "type": "text",
-              "label": "Site full name"
-            },
-            {
-              "id": "pbeAddress",
-              "type": "text",
-              "label": "Full address of permanent business establishment",
-              "shortName": "PBE address",
-              "helpText": "Input the full address of your permanent business establishment including street number, postal code and city",
-              "multiline": "yes"
-            },
-            {
-              "id": "pbeVAT1",
-              "type": "text",
-              "label": "VAT registration number(s)",
-              "helpText": "Input GB and then the 9 numerical digits of the permanent business establishment's VAT registration number(s)",
-              "format": "ukVrn"
-            }
-          ]
         }
       ]
     },
@@ -496,6 +392,21 @@
     {
       "title": "Locations involved in customs activities (1.1.5)",
       "shortName": "Locations involved in customs activities (1.1.5)",
+      "fields": [
+        {
+          "id": "coLocNum",
+          "type": "text",
+          "fomat": "positiveWholeNumber(2,0)",
+          "label": "How many locations do you have involved in customs activities for your company?"
+        }
+      ]
+    },
+    {
+      "title": "Locations involved in customs activities (1.1.5)",
+      "shortName": "Locations involved in customs activities (1.1.5)",
+      "includeIf": "${coLocNum >= 1}",
+      "repeatsMin": "${coLocNum}",
+      "repeatsMax": "${coLocNum}",
       "fields": [
         {
           "id": "companyLocations",
