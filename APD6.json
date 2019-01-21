@@ -174,13 +174,86 @@
           "infoType": "noformat"
         },
         {
-          "id": "",
+          "id": "bacsChoice",
           "type": "choice",
           "label": "Are you making payment by Bacs/CHAPS or enclosing a cheque?",
           "choices": [
             "BACS or CHAPS payment",
             "Cheque"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Operator details",
+      "fields": [
+        {
+          "type": "text",
+          "id": "opName",
+          "label": "Operators name"
+        },
+        {
+          "type": "address",
+          "id": "opAdd",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "type": "choice",
+          "id": "emailChoice",
+          "label": "Do you have an email address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Email address",
+      "includeIf": "${emailChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Telephone number",
+      "fields": [
+        {
+          "type": "text",
+          "id": "",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a fax number?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "faxChoice",
+          "label": "Do you have a fax number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fax number",
+      "includeIf": "${faxChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "faxNum",
+          "label": "Fax number"
         }
       ]
     },
