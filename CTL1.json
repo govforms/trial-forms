@@ -1,4 +1,5 @@
 {
+  "_id": "CTL1",
   "formName": "Contractor Loans",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -21,32 +22,32 @@
           "type": "text",
           "label": "Enter your title",
           "shortName": "title",
-          "errorMessage": "enter your title, for example, Dr, Mr, Mrs etc.",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "enter your title, for example, Dr, Mr, Mrs etc."
         },
         {
           "id": "firstName",
           "type": "text",
           "label": "First name",
           "shortName": "First name",
-          "errorMessage": "enter your first name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "enter your first name"
         },
         {
           "id": "middleName",
           "type": "text",
           "label": "Middle name",
           "shortName": "Middle name",
-          "errorMessage": "enter your middle name or names",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "enter your middle name or names"
         },
         {
           "id": "lastName",
           "type": "text",
           "label": "Last name",
           "shortName": "Last name",
-          "errorMessage": "enter your last name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "enter your last name"
         }
       ]
     },
@@ -57,11 +58,11 @@
         {
           "id": "uTR",
           "type": "text",
-          "format": "number(10,0)",
           "label": "Your Unique Taxpayer Reference (UTR)",
           "shortName": "UTR",
-          "errorMessage": "enter your UTR, this must be 10 numbers",
-          "mandatory": "true"
+          "format": "number(10,0)",
+          "mandatory": "true",
+          "errorMessage": "enter your UTR, this must be 10 numbers"
         }
       ]
     },
@@ -72,11 +73,11 @@
         {
           "id": "nINO",
           "type": "text",
-          "format": "text",
           "label": "Your National Insurance Number",
           "shortName": "National insurance number",
-          "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter",
-          "mandatory": "true"
+          "format": "text",
+          "mandatory": "true",
+          "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter"
         }
       ]
     },
@@ -88,8 +89,8 @@
           "id": "caseflowGroupInfo",
           "type": "info",
           "label": "",
-          "infotype": "noformat",
-          "infoText": "Enter your caseflow references here\n\n caseflow references are prefixed with CFS, CFSS or CFSC"
+          "infoText": "Enter your caseflow references here\n\n caseflow references are prefixed with CFS, CFSS or CFSC",
+          "infotype": "noformat"
         },
         {
           "id": "caseflowGroup",
@@ -103,11 +104,11 @@
             {
               "id": "caseFlowRef",
               "type": "text",
-              "format": "text",
               "label": "Your Caseflow reference",
               "shortName": "Caseflow reference",
-              "errorMessage": "enter your caseflow reference number, this must be in the format: two letters, six numbers, one letter",
-              "mandatory": "true"
+              "format": "text",
+              "mandatory": "true",
+              "errorMessage": "enter your caseflow reference number, this must be in the format: two letters, six numbers, one letter"
             }
           ]
         }
@@ -117,8 +118,8 @@
       "title": "Do you have a United Kingdom or international address?",
       "fields": [
         {
-          "type": "choice",
           "id": "addChoice",
+          "type": "choice",
           "label": "Do you have a United Kingdom or international address?",
           "choices": [
             "United Kingdom",
@@ -133,21 +134,21 @@
       "includeIf": "${addChoice = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "ukAddress",
+          "type": "address",
           "label": "Enter your UK address details",
           "shortName": "UK address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "false",
+          "postcodeLookup": "no"
         },
         {
           "id": "contactNumberUK",
           "type": "text",
-          "format": "telephoneNumber",
           "label": "Your telephone number",
           "helpText": "input your telephone number here",
-          "errorMessage": "Enter a valid telephone number",
-          "mandatory": "true"
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter a valid telephone number"
         }
       ]
     },
@@ -159,30 +160,30 @@
           "id": "emailInfo1",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "We need your consent before using email to communicate"
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
         },
         {
           "id": "emailInfo2",
           "type": "info",
           "label": "Read the HMRC privacy policy",
-          "infoType": "long",
           "infoText": "Read the [HMRC Privacy policy](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you) here \n\n You will need to press back in your browser to get back to this form",
+          "infoType": "long",
           "mandatory": "false"
         },
         {
           "id": "emailInfo3",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "By supplying your email address you consent to the use of email communication"
+          "infoText": "By supplying your email address you consent to the use of email communication",
+          "infoType": "noformat"
         },
         {
           "id": "email",
           "type": "text",
           "label": "Email address",
-          "mandatory": "true",
           "format": "email",
+          "mandatory": "true",
           "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         }
       ]
@@ -246,12 +247,12 @@
       "includeIf": "${agentChoice = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "agentUkAddress",
+          "type": "address",
           "label": "Enter your agents UK address details",
           "shortName": "Agents UK address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
@@ -278,38 +279,38 @@
               "id": "schemeDate",
               "type": "date",
               "label": "tell us the tax year where you recieved the loan",
-              "helptext": "The tax year must be input as ending 05/04/YYYY",
               "shortName": "Tax year of loan",
               "format": "after 1999/04/05, before 2019/04/05",
+              "mandatory": "true",
               "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "mandatory": "true"
+              "helptext": "The tax year must be input as ending 05/04/YYYY"
             },
             {
               "id": "totalLoanAmount",
               "type": "text",
-              "format": "sterling",
-              "shortname": "Loan amount",
               "label": "Total loan amount for the year",
-              "mandatory": "true"
+              "format": "sterling",
+              "mandatory": "true",
+              "shortname": "Loan amount"
             },
             {
               "id": "engagementType",
               "type": "choice",
               "label": "Engagement Type",
               "format": "vertical",
+              "mandatory": "true",
               "choices": [
                 "Employed",
                 "Self-employed",
                 "Partnership"
-              ],
-              "mandatory": "true"
+              ]
             },
             {
               "id": "schemeInfo1",
               "type": "info",
               "label": "",
-              "infoType": "noformat",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+              "infoType": "noformat"
             },
             {
               "id": "writeOffChoice",
@@ -353,38 +354,38 @@
               "id": "schemeDate2",
               "type": "date",
               "label": "tell us the tax year where you recieved the loan",
-              "helptext": "The tax year must be input as ending 05/04/YYYY",
               "shortName": "Tax year of loan",
               "format": "after 1999/04/05, before 2019/04/05",
+              "mandatory": "true",
               "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "mandatory": "true"
+              "helptext": "The tax year must be input as ending 05/04/YYYY"
             },
             {
               "id": "totalLoanAmount2",
               "type": "text",
-              "format": "sterling",
-              "shortname": "Loan amount",
               "label": "Total loan amount for the year",
-              "mandatory": "true"
+              "format": "sterling",
+              "mandatory": "true",
+              "shortname": "Loan amount"
             },
             {
               "id": "engagementType2",
               "type": "choice",
               "label": "Engagement Type",
               "format": "vertical",
+              "mandatory": "true",
               "choices": [
                 "Employed",
                 "Self-employed",
                 "Partnership"
-              ],
-              "mandatory": "true"
+              ]
             },
             {
               "id": "schemeInfo12",
               "type": "info",
               "label": "",
-              "infoType": "noformat",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+              "infoType": "noformat"
             },
             {
               "id": "writeOffChoice2",
@@ -428,38 +429,38 @@
               "id": "schemeDate3",
               "type": "date",
               "label": "tell us the tax year where you recieved the loan",
-              "helptext": "The tax year must be input as ending 05/04/YYYY",
               "shortName": "Tax year of loan",
               "format": "after 1999/04/05, before 2019/04/05",
+              "mandatory": "true",
               "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "mandatory": "true"
+              "helptext": "The tax year must be input as ending 05/04/YYYY"
             },
             {
               "id": "totalLoanAmount3",
               "type": "text",
-              "format": "sterling",
-              "shortname": "Loan amount",
               "label": "Total loan amount for the year",
-              "mandatory": "true"
+              "format": "sterling",
+              "mandatory": "true",
+              "shortname": "Loan amount"
             },
             {
               "id": "engagementType3",
               "type": "choice",
               "label": "Engagement Type",
               "format": "vertical",
+              "mandatory": "true",
               "choices": [
                 "Employed",
                 "Self-employed",
                 "Partnership"
-              ],
-              "mandatory": "true"
+              ]
             },
             {
               "id": "schemeInfo13",
               "type": "info",
               "label": "",
-              "infoType": "noformat",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+              "infoType": "noformat"
             },
             {
               "id": "writeOffChoice3",
@@ -503,38 +504,38 @@
               "id": "schemeDate4",
               "type": "date",
               "label": "tell us the tax year where you recieved the loan",
-              "helptext": "The tax year must be input as ending 05/04/YYYY",
               "shortName": "Tax year of loan",
               "format": "after 1999/04/05, before 2019/04/05",
+              "mandatory": "true",
               "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "mandatory": "true"
+              "helptext": "The tax year must be input as ending 05/04/YYYY"
             },
             {
               "id": "totalLoanAmount4",
               "type": "text",
-              "format": "sterling",
-              "shortname": "Loan amount",
               "label": "Total loan amount for the year",
-              "mandatory": "true"
+              "format": "sterling",
+              "mandatory": "true",
+              "shortname": "Loan amount"
             },
             {
               "id": "engagementType4",
               "type": "choice",
               "label": "Engagement Type",
               "format": "vertical",
+              "mandatory": "true",
               "choices": [
                 "Employed",
                 "Self-employed",
                 "Partnership"
-              ],
-              "mandatory": "true"
+              ]
             },
             {
               "id": "schemeInfo14",
               "type": "info",
               "label": "",
-              "infoType": "noformat",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+              "infoType": "noformat"
             },
             {
               "id": "writeOffChoice4",
@@ -578,38 +579,38 @@
               "id": "schemeDate5",
               "type": "date",
               "label": "tell us the tax year where you recieved the loan",
-              "helptext": "The tax year must be input as ending 05/04/YYYY",
               "shortName": "Tax year of loan",
               "format": "after 1999/04/05, before 2019/04/05",
+              "mandatory": "true",
               "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "mandatory": "true"
+              "helptext": "The tax year must be input as ending 05/04/YYYY"
             },
             {
               "id": "totalLoanAmount5",
               "type": "text",
-              "format": "sterling",
-              "shortname": "Loan amount",
               "label": "Total loan amount for the year",
-              "mandatory": "true"
+              "format": "sterling",
+              "mandatory": "true",
+              "shortname": "Loan amount"
             },
             {
               "id": "engagementType5",
               "type": "choice",
               "label": "Engagement Type",
               "format": "vertical",
+              "mandatory": "true",
               "choices": [
                 "Employed",
                 "Self-employed",
                 "Partnership"
-              ],
-              "mandatory": "true"
+              ]
             },
             {
               "id": "schemeInfo15",
               "type": "info",
               "label": "",
-              "infoType": "noformat",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+              "infoType": "noformat"
             },
             {
               "id": "writeOffChoice5",
@@ -695,6 +696,5 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "CTL1"
+  "submitSuccessUrl": "deprecated"
 }
