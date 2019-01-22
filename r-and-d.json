@@ -1,5 +1,4 @@
 {
-  "_id": "r-and-d",
   "formName": "Send details to support an R&D tax relief claim for an SME",
   "description": "",
   "developmentPhase": "beta",
@@ -201,9 +200,9 @@
           "infoType": "standard"
         },
         {
-          "id": "staffCosts",
+          "id": "EmployeeCosts",
           "type": "text",
-          "label": "Staff costs",
+          "label": "Employee costs",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -211,8 +210,8 @@
         {
           "id": "generatedId_7bbd78dc-505a-4060-b0ff-dfa18abd9f55",
           "type": "info",
-          "label": "What staff costs qualify for relief?",
-          "infoText": "You can include:\n\n-    salary before tax\nincluding cash bonuses and overtime pay \n-    reimbursed staff expenses to do with R&D activities (where staff have paid for their expenses before the company pays them back)\n-    National Insurance contributions\n-    pension contributions",
+          "label": "What employee costs qualify for relief?",
+          "infoText": "You can include:\n\n-    salary before tax\nincluding cash bonuses and overtime pay \n-    reimbursed employee expenses to do with R&D activities (where employee have paid for their expenses before the company pays them back)\n-    National Insurance contributions\n-    pension contributions",
           "infoType": "long"
         },
         {
@@ -286,7 +285,7 @@
           "type": "text",
           "label": "Total amount of costs before any enchancements",
           "format": "sterling",
-          "value": "${staffCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
+          "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -1163,5 +1162,6 @@
     ]
   },
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "r-and-d"
 }
