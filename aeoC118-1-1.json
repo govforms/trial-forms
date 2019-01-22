@@ -386,61 +386,51 @@
           "id": "coLocNum",
           "type": "text",
           "label": "How many locations do you have involved in customs activities for your company?",
-          "fomat": "positiveWholeNumber(2,0)"
+          "fomat": "positiveWholeNumber"
         }
       ]
     },
     {
-      "title": "Locations involved in customs activities (1.1.5)",
-      "shortName": "Locations involved in customs activities (1.1.5)",
+      "title": "Locations involved in customs activities $n",
+      "shortName": "Locations involved in customs activities $n",
       "includeIf": "${coLocNum >= 1}",
       "repeatsMin": "${coLocNum}",
       "repeatsMax": "${coLocNum}",
       "fields": [
         {
-          "id": "companyLocations",
-          "type": "group",
-          "label": "The individual locations of your company as a legal entity (please indicate approximate number of employees in each department)",
-          "repeatsMax": 10,
-          "repeatLabel": "",
-          "repeatAddAnotherText": "Add another location",
-          "fields": [
-            {
-              "id": "companyLocations1a",
-              "type": "text",
-              "label": "Name of location",
-              "helpText": "Input the name of a location",
-              "errorMessage": "input the name of a location"
-            },
-            {
-              "id": "companyLocations1",
-              "type": "address",
-              "label": "Company location address",
-              "international": "true",
-              "postcodeLookup": "no"
-            },
-            {
-              "id": "companyLocationsPhone",
-              "type": "text",
-              "label": "Telephone number",
-              "helpText": "input this locations point of contact telephone number here",
-              "format": "telephoneNumber",
-              "errorMessage": "Enter a valid telephone number"
-            },
-            {
-              "id": "companyLocationsEmail",
-              "type": "text",
-              "label": "Email address",
-              "helpText": "input this locations point of contact email address here",
-              "format": "email"
-            },
-            {
-              "id": "companyLocationsDescription",
-              "type": "text",
-              "label": "Provide a brief description of the business conducted here:\n\n Indicate approximate number of employees in each department at this location",
-              "multiline": "yes"
-            }
-          ]
+          "id": "companyLocations1a",
+          "type": "text",
+          "label": "Name of location",
+          "helpText": "Input the name of a location",
+          "errorMessage": "input the name of a location"
+        },
+        {
+          "id": "companyLocations1",
+          "type": "address",
+          "label": "Company location address",
+          "international": "true",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "companyLocationsPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "input this locations point of contact telephone number here",
+          "format": "telephoneNumber",
+          "errorMessage": "Enter a valid telephone number"
+        },
+        {
+          "id": "companyLocationsEmail",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "input this locations point of contact email address here",
+          "format": "email"
+        },
+        {
+          "id": "companyLocationsDescription",
+          "type": "text",
+          "label": "Provide a brief description of the business conducted here:\n\n Indicate approximate number of employees in each department at this location",
+          "multiline": "yes"
         }
       ]
     },
