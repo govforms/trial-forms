@@ -13,355 +13,717 @@
   },
   "sections": [
     {
-      "title": "number of years",
+      "title": "About you",
+      "shortName": "About you",
       "fields": [
         {
-          "id": "numbeScheme",
+          "id": "title",
           "type": "text",
-          "label": "How many schemes do you wanat to tell us about?"
+          "label": "Enter your title",
+          "shortName": "title",
+          "errorMessage": "enter your title, for example, Dr, Mr, Mrs etc.",
+          "mandatory": "true"
+        },
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name",
+          "shortName": "First name",
+          "errorMessage": "enter your first name",
+          "mandatory": "true"
+        },
+        {
+          "id": "middleName",
+          "type": "text",
+          "label": "Middle name",
+          "shortName": "Middle name",
+          "errorMessage": "enter your middle name or names",
+          "mandatory": "false"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "errorMessage": "enter your last name",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "How many years do you need to tell us about regarding scheme $n",
-      "includeIf": "${numbeScheme >=1}",
-      "repeatMin": "${numbeScheme}",
-      "repeatMax": "${numbeScheme}",
+      "title": "Your Unique taxpayer referenece",
+      "shortName": "Unique taxpayer reference",
       "fields": [
         {
-          "id": "noFormatInfoBox",
+          "id": "uTR",
           "type": "text",
-          "label": "How many years do you need to tell us about regarading this scheme?"
-        },
-        {
-          "id": "insetInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "### Inset text\nThis can be used to draw attention to important information on the page"
-        },
-        {
-          "id": "hiddenTextInformation",
-          "type": "info",
-          "label": "",
-          "infoText": "### Hidden Text\nThis can be used to make the page easier to scan by only showing contextual information when required. Click on the 'Help with nationality' to see how this works. ",
-          "infoType": "noformat"
-        },
-        {
-          "id": "longInfoBox",
-          "type": "info",
-          "label": "Help with nationality.",
-          "infoText": "If you're not sure about your nationality, try to find out from an official document like a passport or national ID card. We need to know your nationality so we can work out which elections you're entitled to vote in. If you can't provide your nationality, you'll have to send copies of identity documents through the post.",
-          "infoType": "long"
-        },
-        {
-          "id": "importantInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "### Warning text \nThe exclamation icon can be used with bold text to warn people about something important, for example if there are legal consequences like a fine.",
-          "infoType": "important"
+          "format": "number(10,0)",
+          "label": "Your Unique Taxpayer Reference (UTR)",
+          "shortName": "UTR",
+          "errorMessage": "enter your UTR, this must be 10 numbers",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Form fields",
+      "title": "Your national insurance number",
+      "shortName": "National insurance number",
       "fields": [
         {
-          "id": "textBoxShort",
+          "id": "nINO",
           "type": "text",
-          "label": "Text box",
-          "helpText": "This is the default text field. It is set to mandatory and will only accept 0-9, Aa-Zz and '-.",
-          "errorMessage": "Enter a word"
-        },
-        {
-          "id": "textBoxFormat",
-          "type": "text",
-          "label": "Text box including special characters",
-          "helpText": "This text field is set to mandatory and allows special characters to be entered without restriction",
           "format": "text",
-          "errorMessage": "Insert special characters"
-        },
-        {
-          "id": "textBoxLimited",
-          "type": "text",
-          "label": "Limited character text box",
-          "helpText": "This text field is set to mandatory and limits input to a maximum of 10 characters including spaces. The user cannot continue if they enter more than 10 characters",
-          "format": "text(0,10)",
-          "errorMessage": "Enter a maximum of 10 characters"
-        },
-        {
-          "id": "mandOpt",
-          "type": "text",
-          "label": "Optional text box",
-          "helpText": "This text field can be left blank and does not require any input to enable the user to continue.",
-          "mandatory": "no"
-        },
-        {
-          "id": "hintTextInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "### Hint text \nHint text sits above a form field and provides supporting contextual help.",
-          "infoType": "noformat"
+          "label": "Your National Insurance Number",
+          "shortName": "National insurance number",
+          "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Contact details",
+      "title": "Caseflow reference numbers",
+      "shortName": "Caseflow reference numbers",
       "fields": [
         {
-          "id": "textFieldInfoFormat",
+          "type": "text",
+          "id": "cfNo",
+          "label": "How many caseflow references do you want to tell us about?"
+        }
+      ]
+    },
+    {
+      "title": "Caseflow reference numbers",
+      "shortName": "Caseflow reference numbers",
+      "repeatsMin": "${cfNo}",
+      "repeatsMax": "${cfNo}",
+      "fields": [
+        {
+          "id": "caseflowGroupInfo",
           "type": "info",
           "label": "",
-          "infoText": "The type of text field used to provide contact details can be set to meet the needs of the form owner. For example whether a field is optional or mandatory.",
-          "infoType": "noformat"
+          "infotype": "noformat",
+          "infoText": "Enter your caseflow reference here\n\n caseflow references are prefixed with CFS, CFSS or CFSC"
         },
         {
-          "id": "usersFirstName",
+          "id": "caseFlowRef",
           "type": "text",
-          "label": "First name"
-        },
+          "format": "text",
+          "label": "Your Caseflow reference",
+          "shortName": "Caseflow reference",
+          "errorMessage": "enter your caseflow reference number here",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a United Kingdom or international address?",
+      "fields": [
         {
-          "id": "usersLastName",
+          "type": "choice",
+          "id": "ukAddChoi",
+          "label": "Do you have a United Kingdom or international address?",
+          "choices": [
+            "United Kingdom",
+            "International"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your international address",
+      "fields": [
+        {
           "type": "text",
-          "label": "Last name"
+          "id": "intAdd",
+          "label": "International address",
+          "helpText": "Enter your full address including country here"
         },
         {
-          "id": "userAddress",
+          "type": "text",
+          "id": "telNoInt",
+          "label": "Your telephone number",
+          "helpText": "input your telephone number here",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Your UK address",
+      "shortName": "UK address",
+      "includeIf": "${ukAddChoi = 0}",
+      "fields": [
+        {
           "type": "address",
-          "label": "Address",
-          "postcodeLookup": "no"
+          "id": "ukAddress",
+          "label": "Enter your UK address details",
+          "shortName": "UK address",
+          "postcodeLookup": "no",
+          "international": "false"
         },
         {
-          "id": "usersEmail",
+          "id": "contactNumberUK",
+          "type": "text",
+          "format": "telephoneNumber",
+          "label": "Your telephone number",
+          "helpText": "input your telephone number here",
+          "errorMessage": "Enter a valid telephone number",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Communicating with HMRC using email",
+      "shortName": "Email communications",
+      "fields": [
+        {
+          "id": "emailInfo1",
+          "type": "info",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "We need your consent before using email to communicate"
+        },
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "Read the HMRC privacy policy",
+          "infoType": "long",
+          "infoText": "Read the [HMRC Privacy policy](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you) here \n\n You will need to press back in your browser to get back to this form",
+          "mandatory": "false"
+        },
+        {
+          "id": "emailInfo3",
+          "type": "info",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "By supplying your email address you consent to the use of email communication"
+        },
+        {
+          "id": "email",
           "type": "text",
           "label": "Email address",
-          "helpText": "Enter a valid email address with no spaces. e.g name@example.com",
+          "mandatory": "true",
           "format": "email",
-          "errorMessage": "Enter a valid email address with no spaces. e.g name@example.com"
-        },
-        {
-          "id": "userPhone",
-          "type": "text",
-          "label": "Phone number",
-          "format": "telephoneNumber"
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         }
       ]
     },
     {
-      "title": "Numbers and currency",
+      "title": "About your agent(s)",
+      "shortName": "About agents",
       "fields": [
         {
-          "id": "positiveNumberTextBox",
-          "type": "text",
-          "label": "Positive whole number text box",
-          "helpText": "This field only accepts positive whole numbers and is limited to 11 digits. If a user enters a negative value or a decimal place, they will receive an error message.",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "id": "sterlingTextBox",
-          "type": "text",
-          "label": "Sterling box",
-          "helpText": "This is formatted to receive values in Sterling, including pounds and pence and is also limited to 11 digits. Negative values can be entered by using a minus(-) symbol. Commas can be used to display larger numbers.",
-          "format": "sterling"
-        }
-      ]
-    },
-    {
-      "title": "Calculations",
-      "fields": [
-        {
-          "id": "calcInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "gForms are able to perform calculations using values entered on the same or previous pages. The following examples demonstrate the addition and multiplication expressions."
-        },
-        {
-          "id": "valOne",
-          "type": "text",
-          "label": "Enter any number",
-          "helpText": "Addition will be demonstrated in the following field through an automated calculation.",
-          "format": "number"
-        },
-        {
-          "id": "valTwo",
-          "type": "text",
-          "label": "Automated field showing the number entered + 2",
-          "helpText": "Multiple fields can be added together",
-          "format": "number",
-          "value": "${valOne + 2}",
-          "submitMode": "readonly"
-        },
-        {
-          "id": "valThree",
-          "type": "text",
-          "label": "Multiplication is also possible, this field shows the number entered * 2",
-          "helpText": "This box is read only, users are unable to edit this field and it is automated",
-          "format": "number",
-          "value": "${valOne * 2}",
-          "submitMode": "readonly"
-        }
-      ]
-    },
-    {
-      "title": "Dates",
-      "fields": [
-        {
-          "id": "dateInfoBox",
-          "type": "info",
-          "label": "",
-          "infoText": "This is a standard date component frequently used to declare the start and end dates of a return period."
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start/end date",
-          "helpText": "",
-          "mandatory": "true",
-          "errorMessage": "Enter the return period start date using the correct format"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "There is some validation on this field, which prevents users submitting an end date prior to the start date",
-          "format": "after ${startDate}",
-          "mandatory": "true",
-          "errorMessage": "Enter the end date as a period later than the start date"
-        },
-        {
-          "id": "dateInformationBox",
-          "type": "info",
-          "label": "",
-          "infoText": "Date entries can be customised based on requirements, such as limiting them by number of days, months and years."
-        }
-      ]
-    },
-    {
-      "title": "File upload",
-      "fields": [
-        {
-          "id": "spreadsheet",
-          "type": "file",
-          "label": "",
-          "mandatory": "false",
-          "errorMessage": "Upload the required return document"
-        },
-        {
-          "id": "uploadInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "This is the file upload feature. Accepted file types include: documents, spreadsheets, PowerPoint presentations, images, and PDFs."
-        }
-      ]
-    },
-    {
-      "title": "Grouping components",
-      "fields": [
-        {
-          "id": "group1",
-          "type": "group",
-          "label": "This is a 'group' - which allows the grouping of multiple components.",
-          "format": "horizontal",
-          "fields": [
-            {
-              "id": "field1",
-              "type": "text",
-              "label": "An example of grouping fields together"
-            },
-            {
-              "id": "horizontal",
-              "type": "text",
-              "label": "This field is grouped to the above title and accepts monetary values",
-              "format": "number (20, 5)"
-            }
-          ]
-        },
-        {
-          "id": "group2",
-          "type": "group",
-          "label": "This is a 'group' - which allows the grouping of multiple components.",
-          "format": "horizontal",
-          "fields": [
-            {
-              "id": "field2",
-              "type": "text",
-              "label": "This is a second group"
-            },
-            {
-              "id": "horizontal1",
-              "type": "text",
-              "label": "This is a second group showing numbers",
-              "format": "number (20, 5)"
-            },
-            {
-              "id": "field3",
-              "type": "text",
-              "label": "This relates to the second group"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Choice and journey routing",
-      "fields": [
-        {
-          "id": "multipleChoiceQuestion",
+          "id": "agentChoice",
           "type": "choice",
-          "label": "Multiple choice options are available. They can be static or branch off into separate journeys depending on the user input.",
-          "helpText": "This is a static example and will not affect the journey",
+          "label": "Do you have an agent who represents you for tax purposes?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Your agents details",
+      "shortName": "Agent details",
+      "includeIf": "${agentChoice = 0}",
+      "fields": [
+        {
+          "id": "agentTitle",
+          "type": "text",
+          "label": "Title",
+          "shortName": "title"
+        },
+        {
+          "id": "agentFirstName",
+          "type": "text",
+          "label": "First name",
+          "shortName": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "agentMiddleName",
+          "type": "text",
+          "label": "Middle name",
+          "shortName": "Middle name",
+          "mandatory": "false"
+        },
+        {
+          "id": "agentLastName",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name"
+        },
+        {
+          "id": "organisationName",
+          "type": "text",
+          "label": "Agent organisation name",
+          "shortName": "Organisation name",
+          "errorMessage": "enter the name of the organisation your agent works for"
+        }
+      ]
+    },
+    {
+      "title": "Your agents address details",
+      "shortName": "Agent details",
+      "includeIf": "${agentChoice = 0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "agentUkAddress",
+          "label": "Enter your agents UK address details",
+          "shortName": "Agents UK address",
+          "postcodeLookup": "no",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "fields": [
+        {
+          "id": "schemeName1",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 1 number of years",
+      "fields": [
+        {
+          "id": "yearNo",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo >=1}",
+      "repeatsMin": "${yearNo}",
+      "repeatsMax": "${yearNo}",
+      "fields": [
+        {
+          "id": "schemeDate1",
+          "type": "date",
+          "label": "tell us the tax year where you recieved the loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "shortName": "Tax year of loan",
+          "format": "after 1999/04/05, before 2019/04/05",
+          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "mandatory": "true"
+        },
+        {
+          "id": "totalLoanAmount1",
+          "type": "text",
+          "format": "sterling",
+          "shortname": "Loan amount",
+          "label": "Total loan amount for the year",
+          "mandatory": "true"
+        },
+        {
+          "id": "engagementType1",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
           "choices": [
-            "This",
-            "Will",
-            "Not",
-            "Affect",
-            "The",
-            "Journey"
-          ]
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ],
+          "mandatory": "true"
         },
         {
-          "id": "yesNoQuestion",
-          "type": "choice",
-          "label": "This is an example of a Yes/No choice. In this case, when the 'Yes' radio button is selected additional pages will be generated.",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Include if pages",
-      "includeIf": "${yesNoQuestion=0}",
-      "fields": [
-        {
-          "id": "includeIfStatement",
+          "id": "schemeInfo1",
           "type": "info",
           "label": "",
-          "infoText": "Pages can be generated in direct response to previous user input. For example, this page is displayed if 'Yes' was selected on the previous page. If 'No' was selected the journey would continue without this page."
+          "infoType": "noformat",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+        },
+        {
+          "id": "writeOffChoice1",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Checkboxes",
+      "title": "Do you need to tell us about another scheme?",
       "fields": [
         {
-          "id": "checkBoxExample",
-          "type": "group",
-          "label": "This is an example of a checkbox that can expand into more components if selected.",
-          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "textBoxCheckExample",
-              "type": "text",
-              "label": "You can then have multiple components within the checkbox",
-              "format": "text",
-              "mandatory": "false"
-            },
-            {
-              "id": "secondCheckBoxExample",
-              "type": "text",
-              "label": "You can also have multiple checkboxes",
-              "format": "sterling",
-              "mandatory": "false"
-            }
+          "type": "choice",
+          "id": "scheme2",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme2 = 0}",
+      "fields": [
+        {
+          "id": "schemeName2",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 2 number of years",
+      "fields": [
+        {
+          "id": "yearNo2",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo2 >=1}",
+      "repeatsMin": "${yearNo2}",
+      "repeatsMax": "${yearNo2}",
+      "fields": [
+        {
+          "id": "schemeDate2",
+          "type": "date",
+          "label": "tell us the tax year where you recieved the loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "shortName": "Tax year of loan",
+          "format": "after 1999/04/05, before 2019/04/05",
+          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "mandatory": "true"
+        },
+        {
+          "id": "totalLoanAmount2",
+          "type": "text",
+          "format": "sterling",
+          "shortname": "Loan amount",
+          "label": "Total loan amount for the year",
+          "mandatory": "true"
+        },
+        {
+          "id": "engagementType2",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ],
+          "mandatory": "true"
+        },
+        {
+          "id": "schemeInfo2",
+          "type": "info",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+        },
+        {
+          "id": "writeOffChoice2",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme2 = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "scheme3",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme3 = 0 && scheme2 = 0}",
+      "fields": [
+        {
+          "id": "schemeName3",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 3 number of years",
+      "includeIf": "${scheme2 = 0 &&  scheme3 = 0}",
+      "fields": [
+        {
+          "id": "yearNo3",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo3 >=1}",
+      "repeatsMin": "${yearNo3}",
+      "repeatsMax": "${yearNo3}",
+      "fields": [
+        {
+          "id": "schemeDate3",
+          "type": "date",
+          "label": "tell us the tax year where you recieved the loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "shortName": "Tax year of loan",
+          "format": "after 1999/04/05, before 2019/04/05",
+          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "mandatory": "true"
+        },
+        {
+          "id": "totalLoanAmount3",
+          "type": "text",
+          "format": "sterling",
+          "shortname": "Loan amount",
+          "label": "Total loan amount for the year",
+          "mandatory": "true"
+        },
+        {
+          "id": "engagementType3",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ],
+          "mandatory": "true"
+        },
+        {
+          "id": "schemeInfo3",
+          "type": "info",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+        },
+        {
+          "id": "writeOffChoice3",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme3 = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "scheme4",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme2 = 0 && (scheme4 = 0 && scheme3 = 0)}",
+      "fields": [
+        {
+          "id": "schemeName4",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 4 number of years",
+      "includeIf": "${scheme2 = 0 && (scheme4 = 0 && scheme3 = 0)}",
+      "fields": [
+        {
+          "id": "yearNo4",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo4 >=1}",
+      "repeatsMin": "${yearNo4}",
+      "repeatsMax": "${yearNo4}",
+      "fields": [
+        {
+          "id": "schemeDate4",
+          "type": "date",
+          "label": "tell us the tax year where you recieved the loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "shortName": "Tax year of loan",
+          "format": "after 1999/04/05, before 2019/04/05",
+          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "mandatory": "true"
+        },
+        {
+          "id": "totalLoanAmount4",
+          "type": "text",
+          "format": "sterling",
+          "shortname": "Loan amount",
+          "label": "Total loan amount for the year",
+          "mandatory": "true"
+        },
+        {
+          "id": "engagementType4",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ],
+          "mandatory": "true"
+        },
+        {
+          "type": "info",
+          "id": "schemeInfo4",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+        },
+        {
+          "id": "writeOffChoice4",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme4 = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "scheme5",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0)}",
+      "fields": [
+        {
+          "id": "schemeName5",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 5 number of years",
+      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0)}",
+      "fields": [
+        {
+          "id": "yearNo5",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo5 >=1}",
+      "repeatsMin": "${yearNo5}",
+      "repeatsMax": "${yearNo5}",
+      "fields": [
+        {
+          "id": "schemeDate5",
+          "type": "date",
+          "label": "tell us the tax year where you recieved the loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "shortName": "Tax year of loan",
+          "format": "after 1999/04/05, before 2019/04/05",
+          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "mandatory": "true"
+        },
+        {
+          "id": "totalLoanAmount5",
+          "type": "text",
+          "format": "sterling",
+          "shortname": "Loan amount",
+          "label": "Total loan amount for the year",
+          "mandatory": "true"
+        },
+        {
+          "id": "engagementType5",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ],
+          "mandatory": "true"
+        },
+        {
+          "type": "info",
+          "id": "schemeInfo5",
+          "label": "",
+          "infoType": "noformat",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax"
+        },
+        {
+          "id": "writeOffChoice5",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
         }
       ]
     }
