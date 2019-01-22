@@ -131,12 +131,14 @@
     },
     {
       "title": "Your international address",
+      "includeIf": "${ukAddChoi = 1}",
       "fields": [
         {
           "type": "text",
           "id": "intAdd",
           "label": "International address",
-          "helpText": "Enter your full address including country here"
+          "helpText": "Enter your full address including country here",
+          "multiline": "true"
         },
         {
           "type": "text",
@@ -222,9 +224,22 @@
       ]
     },
     {
+      "title": "How many agents do you use?",
+      "includeIf": "${agentChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "noAgents",
+          "label": "How many agents do you use?"
+        }
+      ]
+    },
+    {
       "title": "Your agents details",
       "shortName": "Agent details",
       "includeIf": "${agentChoice = 0}",
+      "repeatsMin": "${noAgents}",
+      "repeatsMax": "${noAgents}",
       "fields": [
         {
           "id": "agentTitle",
@@ -240,13 +255,6 @@
           "mandatory": "true"
         },
         {
-          "id": "agentMiddleName",
-          "type": "text",
-          "label": "Middle name",
-          "shortName": "Middle name",
-          "mandatory": "false"
-        },
-        {
           "id": "agentLastName",
           "type": "text",
           "label": "Last name",
@@ -258,14 +266,7 @@
           "label": "Agent organisation name",
           "shortName": "Organisation name",
           "errorMessage": "enter the name of the organisation your agent works for"
-        }
-      ]
-    },
-    {
-      "title": "Your agents address details",
-      "shortName": "Agent details",
-      "includeIf": "${agentChoice = 0}",
-      "fields": [
+        },
         {
           "type": "address",
           "id": "agentUkAddress",
@@ -273,6 +274,12 @@
           "shortName": "Agents UK address",
           "postcodeLookup": "no",
           "international": "true"
+        },
+        {
+          "type": "text",
+          "id": "schName",
+          "label": "Tell us the scheme name where this agent handles your tax affairs",
+          "multiline": "true"
         }
       ]
     },
@@ -286,6 +293,12 @@
           "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
+        },
+        {
+          "type": "text",
+          "id": "schRefNo1",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters"
         }
       ]
     },
@@ -308,11 +321,23 @@
       "repeatsMax": "${yearNo}",
       "fields": [
         {
+          "type": "text",
+          "id": "schNameYr1",
+          "label": "Scheme name"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_5389dbee-9415-4ee3-a106-873e02369641",
+          "label": "Tax year input format",
+          "infoText": "The tax year must be input as ending 05/04/YYYY \n\nThe tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "long"
+        },
+        {
           "id": "schemeDate1",
           "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "helptext": "The tax year must be input as ending 05/04/YYYY",
+          "label": "Tell us the tax year where you recieved the loan",
           "shortName": "Tax year of loan",
+          "helptext": "The tax year must be input as ending 05/04/YYYY \n\n The tax year cannot be before 05/04/2000 or after 05/04/2019",
           "format": "after 1999/04/05, before 2019/04/05",
           "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
           "mandatory": "true"
@@ -378,6 +403,12 @@
           "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
+        },
+        {
+          "type": "text",
+          "id": "schRefNo2",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters"
         }
       ]
     },
@@ -399,6 +430,11 @@
       "repeatsMin": "${yearNo2}",
       "repeatsMax": "${yearNo2}",
       "fields": [
+        {
+          "type": "text",
+          "id": "schNameYr2",
+          "label": "Scheme name"
+        },
         {
           "id": "schemeDate2",
           "type": "date",
@@ -471,6 +507,12 @@
           "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
+        },
+        {
+          "type": "text",
+          "id": "schRefNo3",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters"
         }
       ]
     },
@@ -493,6 +535,11 @@
       "repeatsMin": "${yearNo3}",
       "repeatsMax": "${yearNo3}",
       "fields": [
+        {
+          "type": "text",
+          "id": "schNameYr3",
+          "label": "Scheme name"
+        },
         {
           "id": "schemeDate3",
           "type": "date",
@@ -565,6 +612,12 @@
           "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
+        },
+        {
+          "type": "text",
+          "id": "schRefNo4",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters"
         }
       ]
     },
@@ -587,6 +640,11 @@
       "repeatsMin": "${yearNo4}",
       "repeatsMax": "${yearNo4}",
       "fields": [
+        {
+          "type": "text",
+          "id": "schNameYr4",
+          "label": "Scheme name"
+        },
         {
           "id": "schemeDate4",
           "type": "date",
@@ -659,6 +717,12 @@
           "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
+        },
+        {
+          "type": "text",
+          "id": "schRefNo5",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters"
         }
       ]
     },
@@ -681,6 +745,11 @@
       "repeatsMin": "${yearNo5}",
       "repeatsMax": "${yearNo5}",
       "fields": [
+        {
+          "type": "text",
+          "id": "schNameYr5",
+          "label": "Scheme name"
+        },
         {
           "id": "schemeDate5",
           "type": "date",
@@ -724,6 +793,66 @@
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
           "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are you or have you been involved in other disguised remuneration schemes that you haven't told us about on this form",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "otherChoice",
+          "label": "Are you or have you been involved in other disguised remuneration schemes that you haven't told us about on this form",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many other schemes do you want to tell HMRC about?",
+      "includeIf": "${otherChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "othSchNo",
+          "label": "Number of other schemes ",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Other Scheme $n",
+      "includeIf": "${otherChoice = 0}",
+      "repeatsMin": "${othSchNo}",
+      "repeatsMax": "${othSchNo}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "othSchNam",
+          "label": "Scheme Name"
+        },
+        {
+          "type": "text",
+          "id": "othSchRef",
+          "label": "Scheme Reference"
+        }
+      ]
+    },
+    {
+      "title": "I have now stopped using tax avoidance schemes",
+      "includeIf": "${otherChoice = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "stopChoi",
+          "label": "I have now stopped using tax avoidance schemes",
+          "helpText": "If you agree, choose yes",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     }
