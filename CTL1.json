@@ -114,8 +114,23 @@
       ]
     },
     {
+      "title": "Do you have a United Kingdom or international address?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "addChoice",
+          "label": "Do you have a United Kingdom or international address?",
+          "choices": [
+            "United Kingdom",
+            "International"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Your UK address",
       "shortName": "UK address",
+      "includeIf": "${addChoice = 0}",
       "fields": [
         {
           "type": "address",
