@@ -14,7 +14,7 @@
   },
   "sections": [
     {
-      "title": "Air Passenger duty",
+      "title": "Air Passenger dutys",
       "fields": [
         {
           "id": "generatedId_53fb5b6c-bf23-41c1-89a2-d67cdb6dac58",
@@ -261,8 +261,8 @@
       "title": "Aircraft details",
       "fields": [
         {
-          "type": "text",
           "id": "planeDetsNo",
+          "type": "text",
           "label": "How many aircraft do you need to tell HMRC about?",
           "format": "positiveWholeNumber"
         }
@@ -275,8 +275,8 @@
       "repeatsMax": "${planeDetsNo}",
       "fields": [
         {
-          "type": "text",
           "id": "regNo",
+          "type": "text",
           "label": "Aircraft Registration number $n"
         }
       ]
@@ -285,8 +285,8 @@
       "title": "Flight details",
       "fields": [
         {
-          "type": "date",
           "id": "depdate",
+          "type": "date",
           "label": "Departure date",
           "helpText": "Enter the date of departure in the format DD MM YYYY"
         }
@@ -296,8 +296,8 @@
       "title": "Departure Airport",
       "fields": [
         {
-          "type": "text",
           "id": "depAirpNo",
+          "type": "text",
           "label": "How many departure airports do you need to tell HMRC about?",
           "format": "positiveWholeNumber"
         }
@@ -310,13 +310,13 @@
       "repeatsMax": "${depAirpNo}",
       "fields": [
         {
-          "type": "text",
           "id": "airPName",
+          "type": "text",
           "label": "Departure Airport"
         },
         {
-          "type": "text",
           "id": "iATACode",
+          "type": "text",
           "label": "IATA Code"
         }
       ]
@@ -325,8 +325,8 @@
       "title": "Destination Country",
       "fields": [
         {
-          "type": "text",
           "id": "desCouNo",
+          "type": "text",
           "label": "How many destination countries do you need to tell HMRC about?",
           "format": "positiveNumber"
         }
@@ -339,8 +339,8 @@
       "repeatsMax": "${desCouNo}",
       "fields": [
         {
-          "type": "text",
           "id": "desCo",
+          "type": "text",
           "label": "Destination country"
         }
       ]
@@ -349,8 +349,8 @@
       "title": "Band(s) of destination country (or countries)",
       "fields": [
         {
-          "type": "choice",
           "id": "bandChoice",
+          "type": "choice",
           "label": "Band(s) of destination country (or countries)",
           "choices": [
             "Band A",
@@ -365,13 +365,13 @@
       "includeIf": "${bandChoice = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "noFliA",
+          "type": "text",
           "label": "Number of flights"
         },
         {
-          "type": "text",
           "id": "noPassA",
+          "type": "text",
           "label": "Number of passengers"
         }
       ]
@@ -381,13 +381,13 @@
       "includeIf": "${bandChoice = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "noFliB",
+          "type": "text",
           "label": "Number of flights"
         },
         {
-          "type": "text",
           "id": "noPassB",
+          "type": "text",
           "label": "Number of passengers"
         }
       ]
@@ -397,23 +397,23 @@
       "includeIf": "${bandChoice = 2}",
       "fields": [
         {
-          "type": "text",
           "id": "noFliAb",
+          "type": "text",
           "label": "Number of flights band A"
         },
         {
-          "type": "text",
           "id": "noPassAb",
+          "type": "text",
           "label": "Number of passengers band A"
         },
         {
-          "type": "text",
           "id": "noFliBb",
+          "type": "text",
           "label": "Number of flights band B"
         },
         {
-          "type": "text",
           "id": "noPassBb",
+          "type": "text",
           "label": "Number of passengers band B"
         }
       ]
@@ -422,22 +422,22 @@
       "title": "Duty Payable",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_c66a0cda-2c27-4168-8f5c-bc8e5bc15795",
+          "type": "info",
           "label": "",
           "infoText": "The duty is equal to the number of chargeable passengers multiplied by the appropriate rate for the band of the destination country.",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_886a63a3-f646-407a-8bd7-7f138ce751f3",
+          "type": "info",
           "label": "Duty payable",
           "infoText": "**Example 1**\n\nYou are operating a Cessna Citation III, with a certified maximum take-off weight of 9,980kg. It carries 2 crew members and has seating for 6 passengers. You are returning to Nice, France, which is in Band A and you are carrying 3 passengers home who came to the UK for a meeting.  Your duty will be: 3 (passengers) x £13 (Band A, reduced rate as lowest class of travel with less than 40-inch seat pitch) = £39 APD due.\n\n**Example 2**\n\nYou are operating a Gulfstream G550, with a certified maximum take-off weight of 42,000kg. It carries 4 crew members and has seating for 16 passengers. You are based in Canada, near Toronto, and are returning there with 5 passengers who were in the UK to watch a football match. Your duty will be: 5 (passengers) x £426 (Band B, higher rate as weight greater than 20 tonnes and seating for fewer than 19 passengers) = £2,130 APD due.\n\n**Please note:**\n\nIf you think you may do this trip or similar 2 times or more in a year, then you should consider registering for APD (see 'About this form' page). \n\n**APD rates** \n\nThe reduced rates apply where passengers are carried in the lowest class of travel on any flight unless the seat pitch exceeds 1.016 metres (40 inches), in which case, either the standard or higher rates apply. \n\nThe standard rates apply where passengers are carried in any class of travel other than the lowest or where the seat pitch exceeds 1.016 metres (40 inches), unless the conditions for the higher rate below are met. \n\nThe higher rates apply where passengers are carried on aircraft with an authorised take-off weight of 20 tonnes or more and equipped to carry fewer than 19 passengers. \n\n**APD rates from 1 April 2015**\n  \nDestination bands and distance from London (miles) \n                            (reduced/standard/higher)  \n\n Band A (0-2,000)     £13     £26    £78  \n    \nBand (over 2,000)    £71     £142 £426   \n\n**For Northern Ireland only**\n\nAPD rates from 1 April 2015 on flights from Northern Ireland Destination bands and distance from London (miles)  \n\nDirect flights (reduced/standard/higher)   \n\nBand A (0-2,000)         £13/£26/£78 \n                                                                 \nBand B (2,001-4,000)    £0/£0/£0   \n\nIndirect or connected flights (reduced/standard/higher)\n\nBand A (0-2,000)         £13/£26/£78\n\nBand B (over 2,000)    £71/£142/£426 \n    \n**Please note** \n\nThe rates shown in the tables above are correct for flights that take off from a UK airport from 1 April 2015. However, rates are liable to change and you should check that you use the most recent rates when filling in this form. ",
           "infoType": "long"
         },
         {
-          "type": "text",
           "id": "costAmount",
+          "type": "text",
           "label": "",
           "format": "sterling"
         }
