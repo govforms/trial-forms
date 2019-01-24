@@ -1,5 +1,5 @@
 {
-  "GFC579Ready": "true",
+  "_id": "register-for-landfill-tax-based-on-aggregates-duplicate",
   "formName": "Register for Landfill Tax",
   "description": "",
   "developmentPhase": "beta",
@@ -15,7 +15,7 @@
   },
   "sections": [
     {
-      "title": "Declaration",
+      "title": "What is your business type?",
       "shortName": "Legal status of business",
       "fields": [
         {
@@ -36,16 +36,14 @@
     },
     {
       "title": "About you",
+      "includeIf": "${legalStatus=0}",
       "fields": [
         {
-          "id": "legalStatusDec_copy_1",
-          "type": "choice",
-          "label": "Select the status relevant to you",
-          "shortName": "Your status",
-          "choices": [
-            "Director",
-            "Company secretary"
-          ]
+          "id": "generatedId_9745ce54-7613-43dd-b554-3b746246cc66",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration.",
+          "infoType": "noformat"
         },
         {
           "id": "contact-name",
@@ -65,17 +63,20 @@
           "format": "email"
         },
         {
-          "id": "altContact_1",
+          "id": "legalStatusDec_copy_1",
           "type": "choice",
-          "label": "Do you want HMRC to use these as your Landfill Tax contact details? ",
-          "shortName": "Add alternative contact details",
-          "format": "yesno",
-          "errorMessage": "Select whether you want to add  preferred contact details"
+          "label": "Select the status relevant to you",
+          "shortName": "Your status",
+          "choices": [
+            "Director",
+            "Company secretary"
+          ]
         }
       ]
     },
     {
       "title": "About you",
+      "includeIf": "${(legalStatus = 2 || legalStatus = 3) || (legalStatus = 4 || legalStatus = 5)}",
       "fields": [
         {
           "id": "legalStatusDec_copy_2",
@@ -118,6 +119,7 @@
     },
     {
       "title": "About you",
+      "includeIf": "${legalStatus=1}",
       "fields": [
         {
           "id": "legalStatusDec_copy_3",
@@ -172,6 +174,29 @@
           "shortName": "Add alternative contact details",
           "format": "yesno",
           "errorMessage": "Select whether you want to add  preferred contact details"
+        }
+      ]
+    },
+    {
+      "title": "Contact details",
+      "description": "Add the contact details of somone who is authorised to discuss your Landfill Tax details with HMRC.",
+      "fields": [
+        {
+          "id": "contact-name_copy_3",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "phoneNumber_copy_3",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1_copy_3",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
         }
       ]
     },
@@ -307,8 +332,8 @@
       "title": "What is your Self Assessment Unique Taxpayer Reference?",
       "fields": [
         {
-          "type": "text",
           "id": "UTR_copy_1",
+          "type": "text",
           "label": "",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
@@ -318,8 +343,8 @@
       "title": "What is your Corporation Tax Unique Taxpayer Reference?",
       "fields": [
         {
-          "type": "text",
           "id": "UTR",
+          "type": "text",
           "label": "",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
@@ -638,15 +663,8 @@
     }
   ],
   "declarationSection": {
-    "title": "Confirm details and send your registration",
+    "title": "Declaration",
     "fields": [
-      {
-        "id": "decInfoCheckTitle",
-        "type": "info",
-        "label": "",
-        "infoText": "## Declaration",
-        "infoType": "noformat"
-      },
       {
         "id": "decInfoCheck",
         "type": "info",
@@ -675,7 +693,7 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "register-for-landfill-tax-based-on-aggregates-duplicate"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
