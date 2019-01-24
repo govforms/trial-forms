@@ -196,8 +196,23 @@
           "id": "agentChoice",
           "type": "choice",
           "label": "Do you have an agent who represents you for tax purposes?",
-          "format": "yesno",
-          "mandatory": "true"
+          "mandatory": "true",
+          "choices": [
+            "Yes I have one or more agent(s) representing me",
+            "No I do not have an agent"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Mutiple Agents",
+      "includeIf": "${agentChoice =0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "howMany",
+          "label": "how many agents do you have reprtesenting you for tax purposes?",
+          "format": "number(2,0)"
         }
       ]
     },
@@ -205,6 +220,8 @@
       "title": "Your agents details",
       "shortName": "Agent details",
       "includeIf": "${agentChoice = 0}",
+      "repeatsMin": "${howMany}",
+      "repeatsMax": "${howMany}",
       "fields": [
         {
           "id": "agentTitle",
@@ -247,18 +264,51 @@
       "includeIf": "${agentChoice = 0}",
       "fields": [
         {
+          "type": "text",
+          "id": "agentCode",
+          "label": "Enter your agents code",
+          "helpText": "For example: for self assessment the agent code is SA followed by 8 numerical digits"
+        },
+        {
           "id": "agentUkAddress",
           "type": "address",
           "label": "Enter your agents UK address details",
           "shortName": "Agents UK address",
           "international": "true",
           "postcodeLookup": "no"
+        },
+        {
+          "type": "group",
+          "id": "generatedId_c4974b73-8b60-4b84-b8b2-3ee749c595f8",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatAddAnotherText": "Tell us about another scheme where this agent handles your tax affairs",
+          "fields": [
+            {
+              "type": "text",
+              "id": "agentSchemeRep",
+              "label": "Tell us the scheme name where this agent handles your tax affairs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many loan schemes have you participated in? ",
+      "fields": [
+        {
+          "type": "text",
+          "id": "howManySchemes",
+          "label": "How many loan schemes have you participated in? ",
+          "format": "number(6,0)"
         }
       ]
     },
     {
       "title": "Scheme details",
       "shortName": "Scheme details",
+      "repeatsMin": "${howManySchemes}",
+      "repeatsMax": "${howManySchemes}",
       "fields": [
         {
           "id": "schemeName",
@@ -314,306 +364,6 @@
             },
             {
               "id": "writeOffChoice",
-              "type": "choice",
-              "label": "Do you intend to have this loan written off?",
-              "format": "yesno",
-              "mandatory": "true"
-            }
-          ]
-        },
-        {
-          "id": "addAnotherScheme",
-          "type": "choice",
-          "label": "Do you want to tell us about another scheme?",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${addAnotherScheme = 0}",
-      "fields": [
-        {
-          "id": "schemeName2",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schemeGroup2",
-          "type": "group",
-          "label": "Scheme details",
-          "helpText": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Scheme tax year $n",
-          "fields": [
-            {
-              "id": "schemeDate2",
-              "type": "date",
-              "label": "tell us the tax year where you recieved the loan",
-              "shortName": "Tax year of loan",
-              "format": "after 1999/04/05, before 2019/04/05",
-              "mandatory": "true",
-              "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "helptext": "The tax year must be input as ending 05/04/YYYY"
-            },
-            {
-              "id": "totalLoanAmount2",
-              "type": "text",
-              "label": "Total loan amount for the year",
-              "format": "sterling",
-              "mandatory": "true",
-              "shortname": "Loan amount"
-            },
-            {
-              "id": "engagementType2",
-              "type": "choice",
-              "label": "Engagement Type",
-              "format": "vertical",
-              "mandatory": "true",
-              "choices": [
-                "Employed",
-                "Self-employed",
-                "Partnership"
-              ]
-            },
-            {
-              "id": "schemeInfo12",
-              "type": "info",
-              "label": "",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-              "infoType": "noformat"
-            },
-            {
-              "id": "writeOffChoice2",
-              "type": "choice",
-              "label": "Do you intend to have this loan written off?",
-              "format": "yesno",
-              "mandatory": "true"
-            }
-          ]
-        },
-        {
-          "id": "addAnotherScheme2",
-          "type": "choice",
-          "label": "Do you want to tell us about another scheme?",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${addAnotherScheme2 = 0}",
-      "fields": [
-        {
-          "id": "schemeName3",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schemeGroup3",
-          "type": "group",
-          "label": "Scheme details",
-          "helpText": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Scheme tax year $n",
-          "fields": [
-            {
-              "id": "schemeDate3",
-              "type": "date",
-              "label": "tell us the tax year where you recieved the loan",
-              "shortName": "Tax year of loan",
-              "format": "after 1999/04/05, before 2019/04/05",
-              "mandatory": "true",
-              "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "helptext": "The tax year must be input as ending 05/04/YYYY"
-            },
-            {
-              "id": "totalLoanAmount3",
-              "type": "text",
-              "label": "Total loan amount for the year",
-              "format": "sterling",
-              "mandatory": "true",
-              "shortname": "Loan amount"
-            },
-            {
-              "id": "engagementType3",
-              "type": "choice",
-              "label": "Engagement Type",
-              "format": "vertical",
-              "mandatory": "true",
-              "choices": [
-                "Employed",
-                "Self-employed",
-                "Partnership"
-              ]
-            },
-            {
-              "id": "schemeInfo13",
-              "type": "info",
-              "label": "",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-              "infoType": "noformat"
-            },
-            {
-              "id": "writeOffChoice3",
-              "type": "choice",
-              "label": "Do you intend to have this loan written off?",
-              "format": "yesno",
-              "mandatory": "true"
-            }
-          ]
-        },
-        {
-          "id": "addAnotherScheme3",
-          "type": "choice",
-          "label": "Do you want to tell us about another scheme?",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${addAnotherScheme3 = 0}",
-      "fields": [
-        {
-          "id": "schemeName4",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schemeGroup4",
-          "type": "group",
-          "label": "Scheme details",
-          "helpText": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Scheme tax year $n",
-          "fields": [
-            {
-              "id": "schemeDate4",
-              "type": "date",
-              "label": "tell us the tax year where you recieved the loan",
-              "shortName": "Tax year of loan",
-              "format": "after 1999/04/05, before 2019/04/05",
-              "mandatory": "true",
-              "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "helptext": "The tax year must be input as ending 05/04/YYYY"
-            },
-            {
-              "id": "totalLoanAmount4",
-              "type": "text",
-              "label": "Total loan amount for the year",
-              "format": "sterling",
-              "mandatory": "true",
-              "shortname": "Loan amount"
-            },
-            {
-              "id": "engagementType4",
-              "type": "choice",
-              "label": "Engagement Type",
-              "format": "vertical",
-              "mandatory": "true",
-              "choices": [
-                "Employed",
-                "Self-employed",
-                "Partnership"
-              ]
-            },
-            {
-              "id": "schemeInfo14",
-              "type": "info",
-              "label": "",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-              "infoType": "noformat"
-            },
-            {
-              "id": "writeOffChoice4",
-              "type": "choice",
-              "label": "Do you intend to have this loan written off?",
-              "format": "yesno",
-              "mandatory": "true"
-            }
-          ]
-        },
-        {
-          "id": "addAnotherScheme4",
-          "type": "choice",
-          "label": "Do you want to tell us about another scheme?",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${addAnotherScheme4 = 0}",
-      "fields": [
-        {
-          "id": "schemeName5",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schemeGroup5",
-          "type": "group",
-          "label": "Scheme details",
-          "helpText": "",
-          "repeatsMax": 20,
-          "repeatLabel": "Scheme tax year $n",
-          "fields": [
-            {
-              "id": "schemeDate5",
-              "type": "date",
-              "label": "tell us the tax year where you recieved the loan",
-              "shortName": "Tax year of loan",
-              "format": "after 1999/04/05, before 2019/04/05",
-              "mandatory": "true",
-              "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-              "helptext": "The tax year must be input as ending 05/04/YYYY"
-            },
-            {
-              "id": "totalLoanAmount5",
-              "type": "text",
-              "label": "Total loan amount for the year",
-              "format": "sterling",
-              "mandatory": "true",
-              "shortname": "Loan amount"
-            },
-            {
-              "id": "engagementType5",
-              "type": "choice",
-              "label": "Engagement Type",
-              "format": "vertical",
-              "mandatory": "true",
-              "choices": [
-                "Employed",
-                "Self-employed",
-                "Partnership"
-              ]
-            },
-            {
-              "id": "schemeInfo15",
-              "type": "info",
-              "label": "",
-              "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-              "infoType": "noformat"
-            },
-            {
-              "id": "writeOffChoice5",
               "type": "choice",
               "label": "Do you intend to have this loan written off?",
               "format": "yesno",
