@@ -1,5 +1,4 @@
 {
-  "_id": "CTL1",
   "formName": "Contractor Loans",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -218,7 +217,7 @@
       ]
     },
     {
-      "title": "Your agents details",
+      "title": "Your agents details $n",
       "shortName": "Agent details",
       "includeIf": "${agentChoice = 0}",
       "repeatsMin": "${howMany}",
@@ -267,15 +266,8 @@
         {
           "id": "agentSchemeRep",
           "type": "text",
-          "label": "Tell us the scheme name where this agent handles your tax affairs"
-        },
-        {
-          "id": "agentSchemeGroup",
-          "type": "group",
-          "label": "",
-          "repeatsMax": 20,
-          "repeatAddAnotherText": "Tell us about another scheme where this agent handles your tax affairs",
-          "fields": []
+          "label": "Tell us the scheme name(s) where this agent handles your tax affairs",
+          "multiline": "true"
         }
       ]
     },
@@ -297,13 +289,6 @@
       "repeatsMax": "${howManySchemes}",
       "fields": [
         {
-          "id": "schemeName",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
           "id": "schemeGroup",
           "type": "group",
           "label": "Scheme details",
@@ -311,6 +296,13 @@
           "repeatsMax": 20,
           "repeatLabel": "Scheme tax year $n",
           "fields": [
+            {
+              "id": "schemeName",
+              "type": "text",
+              "label": "Scheme name",
+              "shortName": "Scheme name",
+              "errorMessage": "enter your scheme name"
+            },
             {
               "id": "schemeDate",
               "type": "date",
@@ -563,5 +555,6 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "CTL1"
 }
