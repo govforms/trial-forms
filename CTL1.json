@@ -806,7 +806,6 @@
     },
     {
       "title": "I have now stopped using tax avoidance schemes",
-      "includeIf": "${moreSchemesQuestion = 0}",
       "fields": [
         {
           "id": "stoppedChoice",
@@ -868,8 +867,8 @@
       "title": "How many other periods have you resided in the UK?",
       "fields": [
         {
-          "type": "text",
           "id": "otherPeriods",
+          "type": "text",
           "label": "How many other periods have you resided in the UK?",
           "format": "number(20,0)"
         }
@@ -900,6 +899,228 @@
           "shortName": "Reason for visit"
         }
       ]
+    },
+    {
+      "title": "Request to pay by instalments",
+      "fields": [
+        {
+          "id": "instalConsider",
+          "type": "choice",
+          "label": "I will need HMRC to consider an instalment offer",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "belowFiftyK",
+          "type": "choice",
+          "label": "My current income is below £50,000 per annum",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Not eligible for automatic installment arrangements",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_63a4aec6-0ebf-4f9e-9df2-bb0c28af7da3",
+          "label": "We cannot consider an installment scheme in this case",
+          "infoText": "Installment schemes cannot be considered if\n\n* You haven't stopped using tax avoidance schemes\n\n* You have an income over £50,000 per annum",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Payments information",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "id": "howMuchWadge",
+          "type": "text",
+          "label": "What lump sum can you pay within 30 days?",
+          "format": "sterling"
+        },
+        {
+          "id": "monthlyPayments",
+          "type": "text",
+          "label": "What monthly payments can you afford to pay after 30 days?",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Income",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "id": "generatedId_7936611d-f55c-4b93-956e-29332ca30357",
+          "type": "info",
+          "label": "",
+          "infoText": "Monthly Income",
+          "infoType": "noformat"
+        },
+        {
+          "id": "salary",
+          "type": "text",
+          "label": "Salary or earnings",
+          "format": "sterling"
+        },
+        {
+          "id": "otherIncome",
+          "type": "text",
+          "label": "Other income",
+          "format": "sterling"
+        },
+        {
+          "id": "totalIncome",
+          "type": "text",
+          "label": "Total",
+          "format": "sterling",
+          "value": "${salary + otherIncome}"
+        }
+      ]
+    },
+    {
+      "title": "Expenditure",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "id": "generatedId_afe8c95f-0fa5-45a1-b528-1ce29d454fcb",
+          "type": "info",
+          "label": "Monthly expenses",
+          "infoText": "Do not include any payment made by members of your household",
+          "infoType": "noformat"
+        },
+        {
+          "id": "mortgage",
+          "type": "text",
+          "label": "Mortgage, rent or boarding",
+          "helpText": "including any second mortgage",
+          "format": "sterling"
+        },
+        {
+          "id": "bills",
+          "type": "text",
+          "label": "Household bills",
+          "format": "sterling"
+        },
+        {
+          "id": "totalOut",
+          "type": "text",
+          "label": "Total",
+          "format": "sterling",
+          "value": "${mortgage + bills}"
+        }
+      ]
+    },
+    {
+      "title": "Disposable income",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "id": "generatedId_93c60c32-9264-4c0b-bb80-e8877f0b8dfa",
+          "type": "info",
+          "label": "Income less expenditure",
+          "infoText": "Income less expenditure",
+          "infoType": "noformat"
+        },
+        {
+          "id": "disposableIncome",
+          "type": "text",
+          "label": "Disposable income",
+          "format": "sterling",
+          "value": "${totalIncome - totalOut}"
+        }
+      ]
+    },
+    {
+      "title": "Debts",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "loansOut",
+          "label": "Loan amounts outstanding",
+          "format": "sterling"
+        },
+        {
+          "type": "date",
+          "id": "finPayloan",
+          "label": "date of final payment"
+        },
+        {
+          "type": "text",
+          "id": "otherDebtsOutstanding",
+          "label": "Other debts outstanding",
+          "format": "sterling"
+        },
+        {
+          "type": "date",
+          "id": "finPayOtherDebts",
+          "label": "date of final payment (if applicable)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Other arrangements",
+      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "otherPaymentsInPlace",
+          "label": "Do you have any other payment arrangements in place?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other arrangements",
+      "includeIf": "${otherPaymentsInPlace = 0 && (belowFiftyK = 0 && stoppedChoice = 0)}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "affordIt",
+          "label": "Can you confirm that you are able to fund a settlement offer on top of these arrangements?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "type": "choice",
+          "id": "upToDate",
+          "label": "Have you kept up to date with these payments?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Not up to date with payments",
+      "includeIf": "${(otherPaymentsInPlace = 0 && upToDate = 1) && (belowFiftyK = 0 && stoppedChoice = 0)}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "whyDefault",
+          "label": "Reason for defaulting on arrangement payments",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "fields": []
     }
   ],
   "declarationSection": {
