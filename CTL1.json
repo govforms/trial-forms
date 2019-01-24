@@ -399,6 +399,7 @@
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
       "shortName": "Scheme 2 number of years",
+      "includeIf": "${scheme2 = 0}",
       "fields": [
         {
           "id": "yearNo2",
@@ -865,6 +866,7 @@
     },
     {
       "title": "How many other periods have you resided in the UK?",
+      "includeIf": "${domChoice = 1}",
       "fields": [
         {
           "id": "otherPeriods",
@@ -925,6 +927,7 @@
     },
     {
       "title": "Not eligible for automatic installment arrangements",
+      "includeIf": "${belowFiftyK = 1 || stoppedChoice = 1}",
       "fields": [
         {
           "type": "info",
@@ -1119,8 +1122,53 @@
       ]
     },
     {
-      "title": "",
-      "fields": []
+      "title": "Certificate of tax deposit",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "certPurchQues",
+          "label": "Have you purchased one or more certificates of tax deposit (CTD)?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Number of certificates",
+      "includeIf": "${certPurchQues = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "noCerts",
+          "label": "How many Certificates of tax deposit have you purcheased?"
+        }
+      ]
+    },
+    {
+      "title": "Certificate of tax deposit",
+      "includeIf": "${certPurchQues = 0}",
+      "repeatsMin": "${noCerts}",
+      "repeatsMax": "${noCerts}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "ctdRefNo",
+          "label": "CTD reference number"
+        },
+        {
+          "type": "text",
+          "id": "ctdAmount",
+          "label": "CTD amount",
+          "format": "sterling"
+        },
+        {
+          "type": "date",
+          "id": "ctdDate",
+          "label": "Purchase date"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -1131,7 +1179,7 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+        "infoText": "Text here should be along the lines of ... alll this is true etc. "
       },
       {
         "id": "declarationNameGroup",
