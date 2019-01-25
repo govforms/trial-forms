@@ -929,7 +929,7 @@
     {
       "title": "Year $n",
       "shortName": "Year $n",
-      "includeIf": "${yearNo6 >=1}",
+      "includeIf": "${yearNo7 >=1}",
       "repeatsMin": "${yearNo7}",
       "repeatsMax": "${yearNo7}",
       "fields": [
@@ -1029,7 +1029,7 @@
     {
       "title": "Year $n",
       "shortName": "Year $n",
-      "includeIf": "${yearNo6 >=1}",
+      "includeIf": "${yearNo8 >=1}",
       "repeatsMin": "${yearNo8}",
       "repeatsMax": "${yearNo8}",
       "fields": [
@@ -1095,187 +1095,15 @@
       ]
     },
     {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && (scheme8 = 0 && scheme9 = 0)}",
-      "fields": [
-        {
-          "id": "schemeName9",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schRefNo9",
-          "type": "text",
-          "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
-        }
-      ]
-    },
-    {
-      "title": "How many years do you need to tell us about regarding this scheme?",
-      "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && (scheme8 = 0 && scheme9 = 0)}",
-      "fields": [
-        {
-          "id": "yearNo9",
-          "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
-        }
-      ]
-    },
-    {
-      "title": "Year $n",
-      "shortName": "Year $n",
-      "includeIf": "${yearNo9 >=1}",
-      "repeatsMin": "${yearNo9}",
-      "repeatsMax": "${yearNo9}",
-      "fields": [
-        {
-          "id": "schemeDate9",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
-        },
-        {
-          "id": "totalLoanAmount9",
-          "type": "text",
-          "label": "Total loan amount for the year",
-          "format": "sterling",
-          "mandatory": "true",
-          "shortname": "Loan amount"
-        },
-        {
-          "id": "engagementType9",
-          "type": "choice",
-          "label": "Engagement Type",
-          "format": "vertical",
-          "mandatory": "true",
-          "choices": [
-            "Employed",
-            "Self-employed",
-            "Partnership"
-          ]
-        },
-        {
-          "id": "schemeInfo9",
-          "type": "info",
-          "label": "",
-          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-          "infoType": "noformat"
-        },
-        {
-          "id": "writeOffChoice9",
-          "type": "choice",
-          "label": "Do you intend to have this loan written off?",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Do you need to tell us about another scheme?",
+      "title": "More than 8 schemes",
       "includeIf": "${scheme9 = 0}",
       "fields": [
         {
-          "id": "scheme10",
-          "type": "choice",
-          "label": "Do you need to tell us about another scheme?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Scheme details",
-      "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && (scheme8 = 0 && scheme9 = 0) && scheme10 = 0}",
-      "fields": [
-        {
-          "id": "schemeName10",
-          "type": "text",
-          "label": "Scheme name",
-          "shortName": "Scheme name",
-          "errorMessage": "enter your scheme name"
-        },
-        {
-          "id": "schRefNo10",
-          "type": "text",
-          "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
-        }
-      ]
-    },
-    {
-      "title": "How many years do you need to tell us about regarding this scheme?",
-      "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && (scheme8 = 0 && scheme9 = 0) && scheme10 = 0}",
-      "fields": [
-        {
-          "id": "yearNo10",
-          "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
-        }
-      ]
-    },
-    {
-      "title": "Year $n",
-      "shortName": "Year $n",
-      "includeIf": "${yearNo10 >= 1}",
-      "repeatsMin": "${yearNo10}",
-      "repeatsMax": "${yearNo10}",
-      "fields": [
-        {
-          "id": "schemeDate10",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
-        },
-        {
-          "id": "totalLoanAmount10",
-          "type": "text",
-          "label": "Total loan amount for the year",
-          "format": "sterling",
-          "mandatory": "true",
-          "shortname": "Loan amount"
-        },
-        {
-          "id": "engagementType10",
-          "type": "choice",
-          "label": "Engagement Type",
-          "format": "vertical",
-          "mandatory": "true",
-          "choices": [
-            "Employed",
-            "Self-employed",
-            "Partnership"
-          ]
-        },
-        {
-          "id": "schemeInfo10",
           "type": "info",
-          "label": "",
-          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
-          "infoType": "noformat"
-        },
-        {
-          "id": "writeOffChoice10",
-          "type": "choice",
-          "label": "Do you intend to have this loan written off?",
-          "format": "yesno",
-          "mandatory": "true"
+          "id": "generatedId_bb0eea15-cf43-4b78-b947-da0ffc6b461f",
+          "label": "What to do if you have more than 10 schemes to tell us about",
+          "infoText": "If you have to tell HMRC about more than 10 schemes we advise the following\n\n* Prepare a document to upload with this form",
+          "infoType": "long"
         }
       ]
     },
