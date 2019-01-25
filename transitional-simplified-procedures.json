@@ -245,6 +245,19 @@
       ]
     },
     {
+      "title": "Notification",
+      "includeIf": "${choiceDDA= 1}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_2d23deb7-fbb8-43a2-96c9-d931c593d652",
+          "label": "",
+          "infoText": "Based on your previous answers, you will need to hold or have access to a Duty Deferement Account by the time you submit a declaration that will attract duty",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
       "title": "Duty Deferment Account Number (DAN)",
       "includeIf": "${choiceDDA=0}",
       "fields": [
@@ -252,6 +265,17 @@
           "type": "text",
           "id": "dDANo",
           "label": "Duty Deferment Account Number (DAN)"
+        }
+      ]
+    },
+    {
+      "title": "Do you intend to move controlled goods?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "controlledGoods",
+          "label": "Do you intend to move controlled goods?",
+          "format": "yesno"
         }
       ]
     }
@@ -273,39 +297,25 @@
         "label": "Provide details below of who is signing the declaration",
         "fields": [
           {
-            "id": "declaration-firstname",
+            "id": "declarationFullName",
             "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-lastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+            "label": "Full name"
           },
           {
             "id": "declaration-status",
             "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+            "label": "Job role",
+            "helpText": "For example, director, financial controller or secretary"
           }
         ]
       },
       {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true"
-          }
-        ]
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "To receive confirmation that your return has been submitted, enter an email address below",
+        "format": "email",
+        "mandatory": "true"
       }
     ]
   },
