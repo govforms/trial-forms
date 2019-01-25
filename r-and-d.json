@@ -15,49 +15,6 @@
   },
   "sections": [
     {
-      "title": "Contact details",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC. We will use these details to contact you if we have a question about this form.",
-      "fields": [
-        {
-          "id": "firstNameBusiness",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true",
-          "errorMessage": "Enter your full name"
-        },
-        {
-          "id": "agentTelephone",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "Include the country and area codes",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
-        },
-        {
-          "id": "Email address",
-          "type": "text",
-          "label": "Email address",
-          "format": "email",
-          "mandatory": "true"
-        },
-        {
-          "id": "emailPhone",
-          "type": "choice",
-          "label": "Select how you would like to be contacted",
-          "shortName": "Contact method",
-          "mandatory": "true",
-          "multivalue": "yes",
-          "errorMessage": "Select if you would like to be contacted by email or phone",
-          "choices": [
-            "Email",
-            "Phone"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Contact details of authorised individual",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC. We will use these details to contact them if we have a question about this form.",
@@ -140,6 +97,7 @@
           "id": "Email address2",
           "type": "text",
           "label": "Email address",
+          "format": "email",
           "mandatory": "true"
         },
         {
@@ -338,7 +296,7 @@
     {
       "title": "Research and development project 1",
       "shortName": "Projects",
-      "description": "Tell us about the next project you want to claim for.",
+      "description": "Tell us about the project you want to claim for.",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
@@ -459,13 +417,14 @@
           "id": "authorisedTextIndividual",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
           "id": "WorkUncertaintiesInd",
           "type": "text",
           "label": "",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
@@ -482,7 +441,7 @@
           "id": "moreProjectsIndividual",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -604,7 +563,7 @@
           "id": "authorisedTextIndividual2",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -613,6 +572,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -627,7 +587,7 @@
           "id": "moreProjectsIndividual2",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -749,8 +709,8 @@
           "id": "authorisedTextIndividual3",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
-          "infoType": "noformat"
+          "infoType": "noformat",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900)."
         },
         {
           "id": "WorkUncertaintiesInd3",
@@ -758,6 +718,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -772,7 +733,7 @@
           "id": "moreProjectsIndividual3",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -894,7 +855,7 @@
           "id": "authorisedTextIndividual4",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -903,6 +864,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -917,7 +879,7 @@
           "id": "moreProjectsIndividual4",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1039,7 +1001,7 @@
           "id": "authorisedTextIndividual5",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1049,6 +1011,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1062,7 +1025,7 @@
           "id": "moreProjectsIndividual5",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1184,8 +1147,8 @@
           "id": "authorisedTextIndividual6",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
-          "infoType": "noformat"
+          "infoType": "noformat",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900)."
         },
         {
           "id": "WorkUncertaintiesInd6",
@@ -1194,6 +1157,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1207,7 +1171,7 @@
           "id": "moreProjectsIndividual6",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1329,7 +1293,7 @@
           "id": "authorisedTextIndividual7",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1339,6 +1303,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1352,7 +1317,7 @@
           "id": "moreProjectsIndividual7",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1474,7 +1439,7 @@
           "id": "authorisedTextIndividual8",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1484,6 +1449,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1497,7 +1463,7 @@
           "id": "moreProjectsIndividual8",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1619,7 +1585,7 @@
           "id": "authorisedTextIndividual9",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1629,6 +1595,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1642,7 +1609,7 @@
           "id": "moreProjectsIndividual9",
           "type": "choice",
           "label": "",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1764,7 +1731,7 @@
           "id": "authorisedTextIndividual10",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1773,6 +1740,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -1866,7 +1834,7 @@
           "id": "authorisedText",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1875,6 +1843,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -1890,7 +1859,7 @@
           "id": "moreProjects",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -1984,7 +1953,7 @@
           "id": "authorisedText2",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -1993,6 +1962,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2008,7 +1978,7 @@
           "id": "moreProjects2",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2102,7 +2072,7 @@
           "id": "authorisedTe3xt",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2111,6 +2081,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2126,7 +2097,7 @@
           "id": "moreProjects3",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2220,7 +2191,7 @@
           "id": "authorisedText4",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2229,6 +2200,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2244,7 +2216,7 @@
           "id": "moreProjects4",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2338,7 +2310,7 @@
           "id": "authorisedText5",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2347,6 +2319,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2362,7 +2335,7 @@
           "id": "moreProjects5",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2456,7 +2429,7 @@
           "id": "authorisedText6",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2465,6 +2438,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2480,7 +2454,7 @@
           "id": "moreProjects6",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2574,7 +2548,7 @@
           "id": "authorisedText7",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2584,6 +2558,7 @@
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
         {
@@ -2598,7 +2573,7 @@
           "id": "moreProjects7",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2692,7 +2667,7 @@
           "id": "authorisedText8",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2701,6 +2676,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2716,7 +2692,7 @@
           "id": "moreProjects8",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2810,7 +2786,7 @@
           "id": "authorisedText9",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
@@ -2819,6 +2795,7 @@
           "label": "",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2834,7 +2811,7 @@
           "id": "moreProjects9",
           "type": "choice",
           "label": "Do you want to claim tax relief for any more projects?",
-          "shortName": "Any further projects",
+          "shortName": "Any more projects",
           "format": "yesno",
           "errorMessage": "Select either yes or no to add further projects"
         }
@@ -2928,13 +2905,14 @@
           "id": "authorisedText10",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900). Enter up to 3,000 characters including spaces",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
           "infoType": "noformat"
         },
         {
           "id": "WorkUncertainties10",
           "type": "text",
           "label": "",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "shortName": "Work to overcome uncertainties",
           "format": "text(0, 3000)",
           "multiline": "yes",
