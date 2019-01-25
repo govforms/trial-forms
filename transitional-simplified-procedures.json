@@ -232,6 +232,28 @@
           "format": "yesno"
         }
       ]
+    },
+    {
+      "title": "Do you hold or have access to a Duty Deferment Account (DDA)?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choiceDDA",
+          "label": "Do you hold or have access to a Duty Deferment Account (DDA)?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Duty Deferment Account Number (DAN)",
+      "includeIf": "${choiceDDA=0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "dDANo",
+          "label": "Duty Deferment Account Number (DAN)"
+        }
+      ]
     }
   ],
   "declarationSection": {
