@@ -14,56 +14,27 @@
   },
   "sections": [
     {
-      "title": "Are you eligible for Transitional Simplified Procedures?",
-      "shortName": "Eligibility questions",
+      "title": "Are you legally established within the UK?",
       "fields": [
         {
-          "id": "accessToDAN",
           "type": "choice",
-          "label": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
-          "shortName": "DAN number",
-          "format": "yesno"
-        },
-        {
-          "id": "choiceEORI",
-          "type": "choice",
-          "label": "Do you have an EORI number that is subscribed to Customs Declaration Service (CDS)?",
-          "shortName": "EORI number subscribed to CDS",
-          "format": "yesno"
-        },
-        {
-          "id": "choiceCHIEF",
-          "type": "choice",
-          "label": "Have you obtained software/a CHIEF badge to allow you to submit declarations in CDS/CHIEF?",
-          "shortName": "CHIEF badge",
-          "helpText": "EPU code? Customs Declaration Service ",
+          "id": "choiceLegalEstablishment",
+          "label": "Are you legally established within the UK?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Eligibility Checker Failed",
-      "includeIf": "${choiceCHIEF=1 || choiceEORI = 1}",
+      "title": "Notification",
+      "includeIf": "${choiceLegalEstablishment=1}",
       "continueIf": "false",
       "fields": [
         {
-          "id": "generatedId_aa8b55ce-5197-4d3e-a9fc-2c30f6a5aa9f",
           "type": "info",
+          "id": "generatedId_4c9bb828-0441-4ea6-af93-5612109d73ab",
           "label": "",
-          "infoText": "You are unable to continue until you have an EORI which is subscribed to CDS, DAN or CHIEF",
+          "infoText": "You will not be able to continue as you are not legally established within the United Kingdom.",
           "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "What is your Duty Deferment Account (DAN) reference?",
-      "shortName": "Duty Deferment Account",
-      "fields": [
-        {
-          "id": "danNo",
-          "type": "text",
-          "label": "What is your Duty Deferment Account (DAN) reference?",
-          "shortName": "DAN reference"
         }
       ]
     },
@@ -81,24 +52,6 @@
           "id": "busName",
           "type": "text",
           "label": "Business or trading name"
-        },
-        {
-          "id": "utrNo",
-          "type": "text",
-          "label": "Unique taxpayer reference (if you have one)",
-          "shortName": "Unique taxpayer reference",
-          "helpText": "Enter a valid 10 digit Unique Taxpayer Reference",
-          "format": "utr",
-          "mandatory": "false"
-        },
-        {
-          "id": "vatNo",
-          "type": "text",
-          "label": "VAT registration number (if you have one)",
-          "shortName": "VAT registration number",
-          "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
-          "format": "ukVrn",
-          "mandatory": "false"
         }
       ]
     },
@@ -158,7 +111,8 @@
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "Your address"
+          "label": "Your address",
+          "international": "true"
         },
         {
           "id": "regAdd",
@@ -178,6 +132,34 @@
           "type": "address",
           "label": "Registered office address",
           "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a new Direct Trader Input (DTI) badge?",
+      "description": "We only require this information if you have your own declarations software",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choiceDTI",
+          "label": "Do you have a new Direct Trader Input (DTI) badge?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Direct Trader Input details",
+      "fields": [
+        {
+          "type": "text",
+          "id": "badgeNo",
+          "label": "Badge issue number"
+        },
+        {
+          "type": "text",
+          "id": "cspOperatorDetails",
+          "label": "CSP operator details for this badge",
+          "helpText": "For example, Pentant, CNS, CCS, FCP, DHB"
         }
       ]
     },
