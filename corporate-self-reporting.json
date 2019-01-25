@@ -1,5 +1,4 @@
 {
-  "_id": "corporate-self-reporting",
   "formName": "Tell HMRC your organisation failed to prevent the facilitation of tax evasion",
   "description": "",
   "formCategory": "hmrcReturnForm",
@@ -9,7 +8,7 @@
   },
   "dmsSubmission": {
     "businessArea": "FinanceOpsCorpT",
-    "classificationType": "BT-NRU-Environmental",
+    "classificationType": "RIS-Intel-CCO",
     "customerId": "${auth.payenino}",
     "dmsFormId": "CSR"
   },
@@ -67,7 +66,7 @@
           "id": "generatedId_cf4294ac-d659-4e75-ab39-306a5bae5748",
           "type": "info",
           "label": "",
-          "infoText": "You can only use this service to self-report on behalf of a company if the company has authorised you to do so. \n\nTo report another company, or an individual taxpayer, contact the [HMRC fraud hotline].\n\nYou will need to sign out of this service.\n\n\n",
+          "infoText": "You can only use this service to self-report on behalf of a company if the company has authorised you to do so. \n\nTo report another company, or an individual taxpayer, contact the [HMRC fraud hotline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/customs-excise-and-vat-fraud-reporting).\n\nYou will need to sign out of this service.\n\n",
           "infoType": "noformat"
         }
       ]
@@ -82,7 +81,7 @@
           "shortName": "Organisation type",
           "helpText": "If you are unsure please choose company",
           "choices": [
-            "Company or limited company",
+            "Company",
             "Limited liability partnership (LLP)",
             "Other partnership"
           ]
@@ -406,7 +405,7 @@
           "id": "identifySpecific",
           "type": "choice",
           "label": "Have you been able to identify specific taxpayers involved in the facilitated tax evasion",
-          "helpText": "Have you identified specific individuals who were helped to evade tax through the faciitation ",
+          "helpText": "",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -455,7 +454,7 @@
           "id": "anyOtherInfo",
           "type": "text",
           "label": "",
-          "helpText": "Enter a maximum of 4000 characters including spaces. If there is nothing else you want to add, leave blank.",
+          "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank.",
           "format": "text(1,4000)",
           "mandatory": "true",
           "multiline": "true"
@@ -546,7 +545,7 @@
           "mandatory": "true",
           "repeatsMin": 1,
           "repeatsMax": 50,
-          "repeatLabel": "Report ID $n",
+          "repeatLabel": "Submission reference $n",
           "repeatAddAnotherText": "Add another submission reference",
           "fields": [
             {
@@ -754,8 +753,8 @@
         {
           "id": "generatedId_b1569843-aa6e-4b06-8df2-4c2f65c6ab0c",
           "type": "address",
-          "label": "Work address where",
-          "helpText": "Enter your work addres where we can contact you",
+          "label": "Work address where we can contact you",
+          "helpText": "",
           "international": "true"
         }
       ]
@@ -768,7 +767,7 @@
           "id": "userProvidedID2",
           "type": "text",
           "label": "",
-          "helpText": "Create a unique submission reference for your report and keep a note of it. Use 12 characters, including numbers and upper-case letters. For example, 3H2M94VZ1FS4 ",
+          "helpText": "Create a unique submission reference for your report. Use 12 characters, including numbers and upper-case letters. For example, 3H2M94VZ1FS4 ",
           "format": "text(12,12)"
         },
         {
@@ -776,14 +775,21 @@
           "type": "info",
           "label": "",
           "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter a submission reference that has already been used.\n\n",
-          "infoType": "standard"
+          "infoType": "noformat"
         },
         {
           "id": "generatedId_c4098fa4-eb56-4339-9ac8-e6b6d297ed3e",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use this submission reference during any further correspondence with you.",
+          "infoText": "",
           "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_56cc1078-0454-47b7-86d1-98a1418d9880",
+          "type": "info",
+          "label": "",
+          "infoText": "Make a note of your submission reference. HMRC will use this during any further correspondence with you.",
+          "infoType": "important"
         }
       ]
     },
@@ -830,14 +836,23 @@
     "title": "Acknowledgement Page",
     "fields": [
       {
+        "id": "submissionInformation2",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. ",
+        "infoType": "important"
+      },
+      {
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form, you can use the link above to do this. \n\nWe recommend that you keep a copy for your records along with a note of the unique submission reference you gave this report."
+        "infoText": "We recommend that you keep a copy for your records along with a note of the unique submission reference you gave this report\n\nHMRC have sent you a confirmation email. We will not contact you again unless we require further information.",
+        "infoType": "noformat"
       }
     ]
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "corporate-self-reporting"
 }
