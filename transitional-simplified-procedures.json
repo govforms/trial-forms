@@ -1,4 +1,5 @@
 {
+  "_id": "transitional-simplified-procedures",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "emailTemplateId": "tsp_application_confirmation",
@@ -200,8 +201,8 @@
       "includeIf": "${moveGoodsChoice=0}",
       "fields": [
         {
-          "type": "choice",
           "id": "choiceVAT",
+          "type": "choice",
           "label": "Are you VAT registered?",
           "format": "yesno"
         }
@@ -209,13 +210,26 @@
     },
     {
       "title": "VAT Registration number",
+      "includeIf": "${choiceVAT=0}",
       "fields": [
         {
-          "type": "text",
           "id": "vATNo",
+          "type": "text",
           "label": "VAT Registration number",
           "helpText": "This is GB followed by 9 numerical digits, for example, GB123456789. You can find this on your VAT registration certificate",
           "format": "ukVrn"
+        }
+      ]
+    },
+    {
+      "title": "Do you intend to use VAT Postponed Accounting?",
+      "fields": [
+        {
+          "id": "choiceVPA",
+          "type": "choice",
+          "label": "Do you intend to use VAT Postponed Accounting?",
+          "helpText": "Postponed VAT Accounting allows you to pay Import VAT due on goods you import to the UK to be paid on your next VAT return",
+          "format": "yesno"
         }
       ]
     }
@@ -287,6 +301,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "transitional-simplified-procedures"
+  "submitSuccessUrl": "deprecated"
 }
