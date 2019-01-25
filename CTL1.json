@@ -154,6 +154,7 @@
     },
     {
       "title": "International address",
+      "includeIf": "${addChoice = 1}",
       "fields": [
         {
           "id": "intAdd1",
@@ -394,7 +395,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 2",
       "shortName": "Scheme details",
       "includeIf": "${scheme2 = 0}",
       "fields": [
@@ -495,14 +496,14 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 3",
       "shortName": "Scheme details",
       "includeIf": "${scheme3 = 0 && scheme2 = 0}",
       "fields": [
         {
           "id": "schemeName3",
           "type": "text",
-          "label": "Scheme name",
+          "label": "Scheme name ",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
         },
@@ -595,7 +596,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 4",
       "shortName": "Scheme details",
       "includeIf": "${scheme2 = 0 && (scheme4 = 0 && scheme3 = 0)}",
       "fields": [
@@ -695,7 +696,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 5",
       "shortName": "Scheme details",
       "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0)}",
       "fields": [
@@ -795,7 +796,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 6",
       "shortName": "Scheme details",
       "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && scheme6 = 0}",
       "fields": [
@@ -895,7 +896,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 7",
       "shortName": "Scheme details",
       "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0)}",
       "fields": [
@@ -995,7 +996,7 @@
       ]
     },
     {
-      "title": "Scheme details",
+      "title": "Scheme details 8",
       "shortName": "Scheme details",
       "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && scheme8 = 0}",
       "fields": [
@@ -1036,7 +1037,7 @@
         {
           "id": "schemeDate8",
           "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
+          "label": "tell us the tax year when you recieved the loan",
           "shortName": "Tax year of loan",
           "format": "after 1999/04/05, before 2019/04/05",
           "mandatory": "true",
@@ -1099,11 +1100,18 @@
       "includeIf": "${scheme9 = 0}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_bb0eea15-cf43-4b78-b947-da0ffc6b461f",
+          "type": "info",
           "label": "What to do if you have more than 10 schemes to tell us about",
-          "infoText": "If you have to tell HMRC about more than 10 schemes we advise the following\n\n* Prepare a document to upload with this form",
+          "infoText": "If you have to tell HMRC about more than 8 schemes you will need to prepare a document to upload with this form;\n\nThe document will need seperate sections for each scheme telling us the following information\n\n* Scheme name\n\n* Scheme reference number\n\n* How many years you want to tell us about in regards to that scheme\n\n\nIn each year you tell us about you will need to include the following information\n\n* Tax year when you recieved the loan\n\n* Total loan amount for the year\n\n* Whether you where employed, self employed or in a partnership that year\n\n* If you intend to have this loan written off",
           "infoType": "long"
+        },
+        {
+          "type": "file",
+          "id": "uploadSchemeDetails",
+          "label": "Upload your document",
+          "helpText": "we accept files in the following formats: ",
+          "mandatory": "false"
         }
       ]
     },
