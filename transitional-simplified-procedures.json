@@ -1,5 +1,4 @@
 {
-  "_id": "transitional-simplified-procedures",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "emailTemplateId": "tsp_application_confirmation",
@@ -118,8 +117,8 @@
           "label": "Full name"
         },
         {
-          "type": "text",
           "id": "companyRole",
+          "type": "text",
           "label": "Role in company"
         },
         {
@@ -129,21 +128,33 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "appEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
+          "id": "emailInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
         },
         {
-          "id": "contactPref",
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "Read about the risks of using email",
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoType": "long"
+        },
+        {
+          "id": "emCons1",
           "type": "choice",
-          "label": "Select how you would like to be contacted",
-          "shortName": "Contact preference",
-          "multivalue": "true",
-          "choices": [
-            "Email",
-            "Phone"
-          ]
+          "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details.",
+          "shortName": "Confirm consent to use email communication",
+          "format": "yesno"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "The email address provided below must be the applicants email address",
+          "format": "email",
+          "mandatory": "false"
         }
       ]
     },
@@ -244,5 +255,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "transitional-simplified-procedures"
 }
