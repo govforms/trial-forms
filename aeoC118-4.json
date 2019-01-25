@@ -1,5 +1,4 @@
 {
-  "_id": "aeoC118-4",
   "formName": "Application for Authorised Economic Operator (Section 4 C118-questionnaire)",
   "description": "",
   "emailTemplateId": "c118_section4_application_confirmation",
@@ -213,6 +212,26 @@
           "shortName": "D A N"
         }
       ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "External services",
+      "fields": [
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.\n\nIf you are not ready to send all your forms within this period, you need to save and come back later.\n",
+          "infoType": "standard"
+        },
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -220,51 +239,36 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decText",
-        "type": "info",
-        "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
-      },
-      {
         "id": "declarationNameGroup",
         "type": "group",
         "label": "Provide details below of who is signing the declaration",
         "fields": [
           {
-            "id": "declaration-firstname",
+            "id": "declarationFullName",
             "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-lastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+            "label": "Full name"
           },
           {
             "id": "declaration-status",
             "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
           }
         ]
       },
       {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true",
-            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
-          }
-        ]
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
       }
     ]
   },
@@ -276,16 +280,26 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
       },
       {
         "id": "ackpageInfo",
         "type": "info",
-        "label": "Payment",
-        "infoText": ""
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 60 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0-1f67-4dcc-bcd3-7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
       }
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "aeoC118-4"
 }
