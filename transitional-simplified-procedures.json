@@ -17,12 +17,6 @@
       "shortName": "Eligibility questions",
       "fields": [
         {
-          "id": "choiceDAN",
-          "type": "choice",
-          "label": "Do you expect to move goods that attract duty?",
-          "format": "yesno"
-        },
-        {
           "id": "accessToDAN",
           "type": "choice",
           "label": " Do you hold or have access to use a Duty Deferment Account (DAN)?",
@@ -48,7 +42,7 @@
     },
     {
       "title": "Eligibility Checker Failed",
-      "includeIf": "${(choiceDAN = 0 && accessToDAN= 1) || choiceCHIEF=1 || choiceEORI = 1}",
+      "includeIf": "${choiceCHIEF=1 || choiceEORI = 1}",
       "continueIf": "false",
       "fields": [
         {
@@ -63,7 +57,6 @@
     {
       "title": "What is your Duty Deferment Account (DAN) reference?",
       "shortName": "Duty Deferment Account",
-      "includeIf": "${choiceDAN = 0 && accessToDAN=0}",
       "fields": [
         {
           "id": "danNo",
@@ -184,6 +177,45 @@
           "type": "address",
           "label": "Registered office address",
           "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Do you expect to move goods that attract duty?",
+      "fields": [
+        {
+          "id": "moveGoodsChoice",
+          "type": "choice",
+          "label": "Do you expect to move goods that attract duty?",
+          "choices": [
+            "Yes",
+            "No",
+            "I dont know"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you VAT registered?",
+      "includeIf": "${moveGoodsChoice=0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choiceVAT",
+          "label": "Are you VAT registered?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "VAT Registration number",
+      "fields": [
+        {
+          "type": "text",
+          "id": "vATNo",
+          "label": "VAT Registration number",
+          "helpText": "This is GB followed by 9 numerical digits, for example, GB123456789. You can find this on your VAT registration certificate",
+          "format": "ukVrn"
         }
       ]
     }
