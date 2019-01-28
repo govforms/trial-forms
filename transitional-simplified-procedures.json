@@ -1,5 +1,4 @@
 {
-  "_id": "transitional-simplified-procedures",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "emailTemplateId": "tsp_application_confirmation",
@@ -26,7 +25,7 @@
       ]
     },
     {
-      "title": "Notification",
+      "title": "You can not apply for Transitional Simplified Procedures",
       "includeIf": "${choiceLegalEstablishment=1}",
       "continueIf": "false",
       "fields": [
@@ -34,7 +33,7 @@
           "id": "generatedId_4c9bb828-0441-4ea6-af93-5612109d73ab",
           "type": "info",
           "label": "",
-          "infoText": "You will not be able to continue as you are not legally established within the United Kingdom.",
+          "infoText": "You will not be able to conitune as you are not legally established within the United Kingdom.",
           "infoType": "noformat"
         }
       ]
@@ -46,7 +45,7 @@
           "id": "eoriNo",
           "type": "text",
           "label": "EORI reference",
-          "helpText": "This includes the country code followed by up to 15 numerical digits, for example GB123456789123",
+          "helpText": "This includes the country code followed by up to 15 numbers, for example GB123456789123",
           "format": "text(14,17)"
         },
         {
@@ -57,7 +56,7 @@
       ]
     },
     {
-      "title": "Applicants details",
+      "title": "Contact person details",
       "fields": [
         {
           "id": "appName",
@@ -67,7 +66,7 @@
         {
           "id": "companyRole",
           "type": "text",
-          "label": "Role in company"
+          "label": "Job title"
         },
         {
           "id": "appPhone",
@@ -86,7 +85,7 @@
           "id": "emailInfo2",
           "type": "info",
           "label": "Read about the risks of using email",
-          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows:\n\n* Confidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\n* Confirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\n* There is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\n* We will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
           "infoType": "long"
         },
         {
@@ -112,7 +111,7 @@
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "Your address",
+          "label": "Your business address",
           "international": "true"
         },
         {
@@ -165,7 +164,7 @@
         {
           "id": "cspOperatorDetails",
           "type": "text",
-          "label": "CSP operator details for this badge",
+          "label": "Community Service Provider (CSP) operator details for this badge",
           "helpText": "For example, Pentant, CNS, CCS, FCP, DHB"
         }
       ]
@@ -191,13 +190,13 @@
       ]
     },
     {
-      "title": "Are you VAT registered?",
+      "title": "Is your business VAT registered?",
       "includeIf": "${moveGoodsChoice=0}",
       "fields": [
         {
-          "id": "choiceVAT",
           "type": "choice",
-          "label": "Are you VAT registered?",
+          "id": "choiceVAT",
+          "label": "Is your business VAT registered?",
           "choices": [
             "Yes",
             "No"
@@ -206,13 +205,13 @@
       ]
     },
     {
-      "title": "VAT Registration number",
+      "title": "VAT registration number",
       "includeIf": "${choiceVAT=0}",
       "fields": [
         {
           "id": "vATNo",
           "type": "text",
-          "label": "VAT Registration number",
+          "label": "VAT registration number",
           "helpText": "This is GB followed by 9 numerical digits, for example, GB123456789. You can find this on your VAT registration certificate",
           "format": "ukVrn"
         }
@@ -226,7 +225,7 @@
           "id": "choiceVPA",
           "type": "choice",
           "label": "Do you intend to use VAT Postponed Accounting?",
-          "helpText": "Postponed VAT Accounting allows you to pay Import VAT due on goods you import to the UK to be paid on your next VAT return",
+          "helpText": "VAT Postponed Accounting allows you to pay Import VAT due on goods you import to the UK to be paid on your next VAT return",
           "choices": [
             "Yes",
             "No"
@@ -331,5 +330,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "transitional-simplified-procedures"
 }
