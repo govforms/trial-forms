@@ -15,11 +15,13 @@
   "sections": [
     {
       "title": "Are you legally established within the United Kingdom?",
+      "shortName": "Legally established within UK",
       "fields": [
         {
           "id": "choiceLegalEstablishment",
           "type": "choice",
           "label": "Are you legally established within the United Kingdom?",
+          "shortName": "Established in UK",
           "helpText": "This means you have a registered office, central headquarters or a permanent business establishment in the United Kingdom",
           "format": "yesno"
         }
@@ -93,7 +95,7 @@
           "id": "emCons1",
           "type": "choice",
           "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details",
-          "shortName": "Confirm consent to use email communication",
+          "shortName": "Confirm email consent",
           "format": "yesno"
         },
         {
@@ -130,6 +132,7 @@
     },
     {
       "title": " Registered UK office address",
+      "shortName": "Registered UK office",
       "includeIf": "${regAdd = 1}",
       "fields": [
         {
@@ -143,11 +146,13 @@
     },
     {
       "title": "Do you have a new Direct Trader Input (DTI) badge?",
+      "shortName": "New Direct Trader Input (DTI) badge",
       "fields": [
         {
           "id": "choiceDTI",
           "type": "choice",
           "label": "Do you have a new Direct Trader Input (DTI) badge?",
+          "shortName": "DTI badge",
           "helpText": "We only need this information if you have your own declarations software",
           "choices": [
             "Yes",
@@ -168,17 +173,20 @@
           "id": "cspOperatorDetails",
           "type": "text",
           "label": "Community Service Provider (CSP) operator details for this badge",
+          "shortName": "Community Service Provider details",
           "helpText": "For example, Pentant, CNS, CCS, FCP, DHB"
         }
       ]
     },
     {
       "title": "Do you expect to move goods that attract duty?",
+      "shortName": "Moving goods that attract duty",
       "fields": [
         {
           "id": "moveGoodsChoice",
           "type": "choice",
           "label": "Do you expect to move goods that attract duty?",
+          "shortName": "Expect to move goods ",
           "choices": [
             "Yes",
             "No",
@@ -194,12 +202,14 @@
     },
     {
       "title": "Is your business VAT registered?",
+      "shortName": "Business VAT registration",
       "includeIf": "${moveGoodsChoice=0}",
       "fields": [
         {
           "id": "choiceVAT",
           "type": "choice",
           "label": "Is your business VAT registered?",
+          "shortName": "VAT registered",
           "choices": [
             "Yes",
             "No"
@@ -215,6 +225,7 @@
           "id": "vATNo",
           "type": "text",
           "label": "VAT registration number",
+          "shortName": "Number",
           "helpText": "This is GB followed by 9 numbers, for example GB123456789. You can find this on your VAT registration certificate.",
           "format": "ukVrn"
         }
@@ -222,12 +233,14 @@
     },
     {
       "title": "Do you intend to use VAT Postponed Accounting?",
+      "shortName": " Intent to use VAT Postponed Accounting",
       "includeIf": "${choiceVAT=0}",
       "fields": [
         {
           "id": "choiceVPA",
           "type": "choice",
           "label": "Do you intend to use VAT Postponed Accounting?",
+          "shortName": "Postponed Accounting",
           "choices": [
             "Yes",
             "No"
@@ -244,11 +257,13 @@
     },
     {
       "title": "Do you hold or have access to a Duty Deferment Account (DDA)?",
+      "shortName": "Access to Duty Deferment Account (DDA)",
       "fields": [
         {
           "id": "choiceDDA",
           "type": "choice",
           "label": "Do you hold or have access to a Duty Deferment Account (DDA)?",
+          "shortName": "DDA access",
           "choices": [
             "Yes",
             "No"
@@ -274,17 +289,20 @@
         {
           "id": "dDANo",
           "type": "text",
-          "label": "Duty Deferment Account Number (DAN)"
+          "label": "Duty Deferment Account Number (DAN)",
+          "shortName": "DAN"
         }
       ]
     },
     {
       "title": "Do you intend to move controlled goods?",
+      "shortName": "Intent to move controlled goods",
       "fields": [
         {
           "id": "controlledGoods",
           "type": "choice",
           "label": "Do you intend to move controlled goods?",
+          "shortName": "Controlled goods",
           "choices": [
             "Yes",
             "No"
