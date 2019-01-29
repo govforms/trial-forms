@@ -115,30 +115,15 @@
       ]
     },
     {
-      "title": "Do you have a United Kingdom or international address?",
-      "fields": [
-        {
-          "id": "addChoice",
-          "type": "choice",
-          "label": "Do you have a United Kingdom or international address?",
-          "choices": [
-            "United Kingdom",
-            "International"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Your UK address",
-      "shortName": "UK address",
-      "includeIf": "${addChoice = 0}",
+      "title": "Your address",
+      "shortName": "Address",
       "fields": [
         {
           "id": "ukAddress",
           "type": "address",
           "label": "Enter your UK address details",
           "shortName": "UK address",
-          "international": "false",
+          "international": "true",
           "postcodeLookup": "no"
         },
         {
@@ -147,26 +132,8 @@
           "label": "Your telephone number",
           "helpText": "input your telephone number here",
           "format": "telephoneNumber",
-          "mandatory": "true",
+          "mandatory": "false",
           "errorMessage": "Enter a valid telephone number"
-        }
-      ]
-    },
-    {
-      "title": "International address",
-      "includeIf": "${addChoice = 1}",
-      "fields": [
-        {
-          "id": "intAdd1",
-          "type": "text",
-          "label": "International address",
-          "helpText": "Enter your residential address including country",
-          "multiline": "true"
-        },
-        {
-          "id": "intPhone",
-          "type": "text",
-          "label": "Your telephone number"
         }
       ]
     },
@@ -201,7 +168,7 @@
           "type": "text",
           "label": "Email address",
           "format": "email",
-          "mandatory": "true",
+          "mandatory": "false",
           "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
         }
       ]
@@ -216,22 +183,9 @@
           "label": "Do you have an agent who represents you for tax purposes?",
           "mandatory": "true",
           "choices": [
-            "Yes I have one or more agent(s) representing me",
+            "Yes I have an agent representing me for this settlement",
             "No I do not have an agent"
           ]
-        }
-      ]
-    },
-    {
-      "title": "Mutiple Agents",
-      "includeIf": "${agentChoice =0}",
-      "fields": [
-        {
-          "id": "howMany",
-          "type": "text",
-          "label": "how many agents do you have representing you for tax purposes?",
-          "format": "number(2,0)",
-          "displayWidth": "xs"
         }
       ]
     },
@@ -239,8 +193,6 @@
       "title": "Your agents details $n",
       "shortName": "Agent details",
       "includeIf": "${agentChoice = 0}",
-      "repeatsMin": "${howMany}",
-      "repeatsMax": "${howMany}",
       "fields": [
         {
           "id": "agentTitle",
@@ -281,12 +233,6 @@
           "shortName": "Agents UK address",
           "international": "true",
           "postcodeLookup": "no"
-        },
-        {
-          "id": "agentSchemeRep",
-          "type": "text",
-          "label": "Tell us the scheme name(s) where this agent handles your tax affairs",
-          "multiline": "true"
         }
       ]
     },
@@ -316,7 +262,8 @@
         {
           "id": "yearNo",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "validIf": "${yearNo >=1 && yearNo<21}"
         }
       ]
     },
@@ -333,6 +280,15 @@
           "label": "Tax year input format",
           "infoText": "The tax year must be input as ending 05/04/YYYY \n\nThe tax year cannot be before 05/04/2000 or after 05/04/2019",
           "infoType": "long"
+        },
+        {
+          "type": "text",
+          "id": "endYearDate",
+          "label": "Tells us the tax year ending 05/04/????",
+          "helpText": "Enter the year ending date in this format YYYY",
+          "format": "number(4,0)",
+          "validIf": "${endYearDate>=2000 && endYearDate<2020}",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
         },
         {
           "id": "schemeDate1",
@@ -1175,7 +1131,7 @@
       ]
     },
     {
-      "title": "Your residency",
+      "title": "Your domicile",
       "fields": [
         {
           "id": "domChoice",
@@ -1200,12 +1156,14 @@
         {
           "id": "priorUKDate",
           "type": "date",
-          "label": "The date you resided in the UK prior to receiving the loan(s)"
+          "label": "The date you arrived in the UK prior to receiving the loan(s)"
         },
         {
           "id": "leftUKDate",
           "type": "date",
-          "label": "The date you left the UK after receiving the loan(s)"
+          "label": "The date you left the UK after receiving the loan(s)",
+          "mandatory": "false",
+          "validIf": "${leftUKDate > priorUKDate}"
         },
         {
           "id": "otherDatesChoice",
@@ -1276,19 +1234,6 @@
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "Not eligible for automatic installment arrangements",
-      "includeIf": "${belowFiftyK = 1 || stoppedChoice = 1}",
-      "fields": [
-        {
-          "id": "generatedId_63a4aec6-0ebf-4f9e-9df2-bb0c28af7da3",
-          "type": "info",
-          "label": "We cannot consider an installment scheme in this case",
-          "infoText": "Installment schemes cannot be considered if\n\n* You haven't stopped using tax avoidance schemes\n\n* You have an income over £50,000 per annum",
-          "infoType": "noformat"
         }
       ]
     },
@@ -1396,7 +1341,7 @@
       ]
     },
     {
-      "title": "Debts",
+      "title": "Other debts",
       "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
       "fields": [
         {
