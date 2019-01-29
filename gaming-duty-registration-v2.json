@@ -32,7 +32,7 @@
           "id": "capacity",
           "type": "text",
           "label": "Capacity in which you are completing this form",
-          "helpText": "For example, director, proprietor"
+          "helpText": "For example, a director or proprietor"
         }
       ]
     },
@@ -225,14 +225,14 @@
       ]
     },
     {
-      "title": "Self Assessment",
+      "title": "What is your Self Assessment Unique Taxpayer Reference?",
       "includeIf": "${saNumberChoice = 0}",
       "fields": [
         {
           "id": "saUTR",
           "type": "text",
-          "label": "Self Assessment Unique Taxpayer Reference (UTR)",
-          "helpText": "Your UTR is a 10 digit number. If you are already registered for Self Assessment, you will find your UTR on the front page of your tax return or any Self Assessment calculations we have sent you.",
+          "label": "",
+          "helpText": "This is 10 numbers and will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’",
           "format": "utr"
         }
       ]
@@ -244,19 +244,19 @@
         {
           "id": "spTradingName",
           "type": "text",
-          "label": "Trading name"
+          "label": "Trading Name"
         }
       ]
     },
     {
-      "title": "Corporation Tax reference",
+      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
       "includeIf": "${(corpTaxRefChoice = 0 || corpTaxRefChoiceLC = 0) || corpTaxRefChoiceUB = 0}",
       "fields": [
         {
           "id": "corpTaxRef",
           "type": "text",
-          "label": "Corporation Tax reference",
-          "helpText": "Your Corporation Tax reference is a 10 digit number. It can also be called a Unque Taxpayer referce (UTR). You can find it on the form CT603 'Notice to deliver a company Tax return' or other official documents issued by HMRC. Depending on the document , the reference may be printed next to the headings 'Tax Reference', 'UTR' or 'Official Use'. If the number is more than 10 digits, you only need to enter the last 10 digits, ignoring any prefix numbers."
+          "label": "",
+          "helpText": "This is 10 numbers and will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’"
         }
       ]
     },
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "title": "REMOVE Your records and accounts",
+      "title": "Your records and accounts",
       "fields": [
         {
           "id": "recAddChoice",
@@ -307,48 +307,27 @@
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "recsOnComp",
-          "type": "choice",
-          "label": "Are any of your accounts or records to be kept on a computer?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
     {
-      "title": "Address of records and accounts",
+      "title": "Enter the address of the place you keep your records and accounts",
       "includeIf": "${recAddChoice = 0}",
       "fields": [
         {
           "id": "recAccAdd",
           "type": "address",
-          "label": "Address where your records and accounts are held"
+          "label": ""
         }
       ]
     },
     {
-      "title": "REMOVE Records and accounts Computer storage",
-      "includeIf": "${recsOnComp = 0}",
-      "fields": [
-        {
-          "id": "compStor",
-          "type": "text",
-          "label": "Give details of the type of computer and software you use to store your records and accounts",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Premises registration",
+      "title": "Would you like to register more than one premises for gaming duty? ",
       "fields": [
         {
           "id": "gd58Choice",
           "type": "choice",
-          "label": "Would you like to register one or more premesis? ",
+          "label": " ",
           "choices": [
             "Yes",
             "No"
@@ -357,13 +336,13 @@
       ]
     },
     {
-      "title": "Register your premises for gaming duty",
+      "title": "Enter the number of new premises you want to register",
       "includeIf": "${gd58Choice = 0}",
       "fields": [
         {
           "id": "newPremNumb",
           "type": "text",
-          "label": "How many new premises do you wish to tell us about?",
+          "label": "",
           "format": "positiveWholeNumber"
         }
       ]
@@ -533,14 +512,19 @@
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
-    "shortName": "Declaration",
+    "title": "Submit your application",
+    "shortName": "Submit your application",
     "fields": [
+      {
+        "id": "Make your declaration",
+        "type": "text",
+        "label": ""
+      },
       {
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+        "infoText": "By submitting this application, you declare that the information you have provided is true and complete.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you."
       },
       {
         "id": "declarationNameGroup",
@@ -563,7 +547,7 @@
             "id": "declaration-status",
             "type": "text",
             "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
+            "helpText": "For example, director or financial controller or secretary",
             "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
           }
         ]
