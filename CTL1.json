@@ -1427,8 +1427,8 @@
           "type": "choice",
           "label": "Have you purchased one or more certificates of tax deposit (CTD)?",
           "choices": [
-            "I have purchased between one to five CTD's",
-            "I have purchased over five CTD's",
+            "I have purchased between one and twenty CTD's",
+            "I have purchased over twenty CTD's",
             "No I have not purchased any CTD's"
           ]
         }
@@ -1441,7 +1441,9 @@
         {
           "id": "noCerts",
           "type": "text",
-          "label": "How many Certificates of tax deposit have you purcheased?"
+          "label": "How many Certificates of tax deposit have you purcheased?",
+          "format": "positiveNumber(2,0)",
+          "validIf": "{noCerts >=1 && noCerts <=20}"
         }
       ]
     },
@@ -1470,28 +1472,22 @@
       ]
     },
     {
-      "title": "Over five CTD's",
+      "title": "Over twenty CTD's ",
       "includeIf": "${certPurchQues = 1}",
       "fields": [
         {
           "id": "generatedId_33abe374-8ee0-44db-aa46-bdff47d04c30",
           "type": "info",
           "label": "",
-          "infoText": "Have purchased over five CTD's",
+          "infoText": "Have purchased over twenty CTD's",
           "infoType": "noformat"
         },
         {
           "id": "generatedId_df9ca190-9d54-4c26-863d-df44f985c137",
           "type": "info",
-          "label": "What should I do if I need to tell HMRC about six or more CTD's?",
-          "infoText": "If you have purchased six or more CTD's you will need to upload a docment with the details of these on.\n\nThe document will need to tell us the following information about each CTD:\n\n* CTD reference number\n\n* CTD amount\n\n* Purchase date",
+          "label": "What should I do if I need to tell HMRC about twenty-one  or more CTD's?",
+          "infoText": "If you have purchased twenty or more CTD's you will need to contact us at this email address.......",
           "infoType": "long"
-        },
-        {
-          "id": "cTDUP",
-          "type": "file",
-          "label": "Upload your document here",
-          "helpText": "We accept documents in formats like pdf and jpeg (5mb maximum)"
         }
       ]
     }
