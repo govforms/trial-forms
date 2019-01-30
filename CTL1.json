@@ -267,6 +267,7 @@
           "id": "yearNo",
           "type": "text",
           "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
           "displayWidth": "xs",
           "validIf": "${yearNo >=1 && yearNo<21}",
           "errorMessage": "Enter a number of years between one and twenty"
@@ -298,10 +299,10 @@
           "id": "year",
           "type": "text",
           "label": "Tell us the tax year where you recieved the loan",
-          "displayWidth": "xs",
+          "helpText": "Enter the year ending date in the format YYYY",
           "format": "number(4,0)",
-          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019",
-          "helpText": "Enter the year ending date in the format YYYY"
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
         },
         {
           "id": "totalLoanAmount1",
@@ -354,7 +355,7 @@
       ]
     },
     {
-      "title": "Scheme details 2",
+      "title": "Scheme details",
       "shortName": "Scheme details",
       "includeIf": "${scheme2 = 0}",
       "fields": [
@@ -369,7 +370,8 @@
           "id": "schRefNo2",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
@@ -382,7 +384,10 @@
           "id": "yearNo2",
           "type": "text",
           "label": "How many years do you need to tell us about regarding this scheme?",
-          "format": "number(20,0)"
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo2 >=1 && yearNo2 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -394,17 +399,30 @@
       "repeatsMax": "${yearNo2}",
       "fields": [
         {
-          "id": "schemeDate2",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_ca2f36d3-574f-48ca-a28e-3f785905c5dc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount2",
+          "id": "generatedId_f4a65353-2401-40c3-a7f3-10853687e0f4",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_1",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_1",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -412,7 +430,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType2",
+          "id": "engagementType1_copy_1",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -424,14 +442,14 @@
           ]
         },
         {
-          "id": "schemeInfo2",
+          "id": "schemeInfo1_copy_1",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice2",
+          "id": "writeOffChoice1_copy_1",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -455,14 +473,14 @@
       ]
     },
     {
-      "title": "Scheme details 3",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${scheme3 = 0 && scheme2 = 0}",
+      "includeIf": "${scheme3 = 0}",
       "fields": [
         {
           "id": "schemeName3",
           "type": "text",
-          "label": "Scheme name ",
+          "label": "Scheme name",
           "shortName": "Scheme name",
           "errorMessage": "enter your scheme name"
         },
@@ -470,19 +488,24 @@
           "id": "schRefNo3",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
       "shortName": "Scheme 3 number of years",
-      "includeIf": "${scheme2 = 0 &&  scheme3 = 0}",
+      "includeIf": "${scheme3 = 0}",
       "fields": [
         {
           "id": "yearNo3",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo3 >=1 && yearNo3 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -494,17 +517,30 @@
       "repeatsMax": "${yearNo3}",
       "fields": [
         {
-          "id": "schemeDate3",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_cd2163c5-7371-4b6f-a34b-ce7d962cc287",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount3",
+          "id": "generatedId_1f417597-7473-4064-8e1b-c78e55802ec8",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_2",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_2",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -512,7 +548,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType3",
+          "id": "engagementType1_copy_2",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -524,14 +560,14 @@
           ]
         },
         {
-          "id": "schemeInfo3",
+          "id": "schemeInfo1_copy_2",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice3",
+          "id": "writeOffChoice1_copy_2",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -555,9 +591,9 @@
       ]
     },
     {
-      "title": "Scheme details 4",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${scheme2 = 0 && (scheme4 = 0 && scheme3 = 0)}",
+      "includeIf": "${scheme4 = 0}",
       "fields": [
         {
           "id": "schemeName4",
@@ -570,19 +606,24 @@
           "id": "schRefNo4",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
       "shortName": "Scheme 4 number of years",
-      "includeIf": "${scheme2 = 0 && (scheme4 = 0 && scheme3 = 0)}",
+      "includeIf": "${scheme4 = 0}",
       "fields": [
         {
           "id": "yearNo4",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo4 >=1 && yearNo4 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -594,17 +635,30 @@
       "repeatsMax": "${yearNo4}",
       "fields": [
         {
-          "id": "schemeDate4",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_b7bf8f26-3840-4f7d-a77a-529605246a89",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount4",
+          "id": "generatedId_fa55c6aa-909a-43ff-8ce6-7cb2fecaeeba",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_3",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_3",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -612,7 +666,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType4",
+          "id": "engagementType1_copy_3",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -624,14 +678,14 @@
           ]
         },
         {
-          "id": "schemeInfo4",
+          "id": "schemeInfo1_copy_3",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice4",
+          "id": "writeOffChoice1_copy_3",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -655,9 +709,9 @@
       ]
     },
     {
-      "title": "Scheme details 5",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0)}",
+      "includeIf": "${scheme5 = 0}",
       "fields": [
         {
           "id": "schemeName5",
@@ -670,19 +724,24 @@
           "id": "schRefNo5",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
       "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0)}",
+      "includeIf": "${scheme5 = 0}",
       "fields": [
         {
           "id": "yearNo5",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo5 >=1 && yearNo5 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -694,17 +753,30 @@
       "repeatsMax": "${yearNo5}",
       "fields": [
         {
-          "id": "schemeDate5",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_1dbe3d6d-d5e1-4ea2-9b64-8a0e109cef59",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount5",
+          "id": "generatedId_d539370d-6a7e-402f-b302-67b2e728d22e",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_4",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_4",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -712,7 +784,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType5",
+          "id": "engagementType1_copy_4",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -724,14 +796,14 @@
           ]
         },
         {
-          "id": "schemeInfo5",
+          "id": "schemeInfo1_copy_4",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice5",
+          "id": "writeOffChoice1_copy_4",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -755,9 +827,9 @@
       ]
     },
     {
-      "title": "Scheme details 6",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && scheme6 = 0}",
+      "includeIf": "${scheme6 = 0}",
       "fields": [
         {
           "id": "schemeName6",
@@ -770,19 +842,24 @@
           "id": "schRefNo6",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
-      "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && scheme6 = 0}",
+      "shortName": "Scheme 6 number of years",
+      "includeIf": "${scheme6 = 0}",
       "fields": [
         {
           "id": "yearNo6",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo6 >=1 && yearNo6 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -794,17 +871,30 @@
       "repeatsMax": "${yearNo6}",
       "fields": [
         {
-          "id": "schemeDate6",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_1bd38667-4316-4206-b2bd-bda8c439a0bc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount6",
+          "id": "generatedId_a1ad224a-4ab0-43c6-b43d-5e51f3cbf353",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_5",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_5",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -812,7 +902,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType6",
+          "id": "engagementType1_copy_5",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -824,14 +914,14 @@
           ]
         },
         {
-          "id": "schemeInfo6",
+          "id": "schemeInfo1_copy_5",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice6",
+          "id": "writeOffChoice1_copy_5",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -855,9 +945,9 @@
       ]
     },
     {
-      "title": "Scheme details 7",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0)}",
+      "includeIf": "${scheme7 = 0}",
       "fields": [
         {
           "id": "schemeName7",
@@ -870,19 +960,24 @@
           "id": "schRefNo7",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
-      "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0)}",
+      "shortName": "Scheme 7 number of years",
+      "includeIf": "${scheme7 = 0}",
       "fields": [
         {
           "id": "yearNo7",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo7 >=1 && yearNo7 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -894,17 +989,30 @@
       "repeatsMax": "${yearNo7}",
       "fields": [
         {
-          "id": "schemeDate7",
-          "type": "date",
-          "label": "tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_3ddaeea7-07f6-4301-acd4-7b397f3ed221",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount7",
+          "id": "generatedId_34d00203-518b-4018-8bec-b18650f6ef70",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_6",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_6",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -912,7 +1020,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType7",
+          "id": "engagementType1_copy_6",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -924,14 +1032,14 @@
           ]
         },
         {
-          "id": "schemeInfo7",
+          "id": "schemeInfo1_copy_6",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice7",
+          "id": "writeOffChoice1_copy_6",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -955,9 +1063,9 @@
       ]
     },
     {
-      "title": "Scheme details 8",
+      "title": "Scheme details",
       "shortName": "Scheme details",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && scheme8 = 0}",
+      "includeIf": "${scheme8 = 0}",
       "fields": [
         {
           "id": "schemeName8",
@@ -970,19 +1078,24 @@
           "id": "schRefNo8",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "How many years do you need to tell us about regarding this scheme?",
-      "shortName": "Scheme 5 number of years",
-      "includeIf": "${(scheme5 = 0 && scheme2 = 0) && (scheme4 = 0 && scheme3 = 0) && (scheme6 = 0 && scheme7 = 0) && scheme8 = 0}",
+      "shortName": "Scheme 8 number of years",
+      "includeIf": "${scheme8 = 0}",
       "fields": [
         {
           "id": "yearNo8",
           "type": "text",
-          "label": "How many years do you need to tell us about regarding this scheme?"
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo8 >=1 && yearNo8 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
         }
       ]
     },
@@ -994,17 +1107,30 @@
       "repeatsMax": "${yearNo8}",
       "fields": [
         {
-          "id": "schemeDate8",
-          "type": "date",
-          "label": "tell us the tax year when you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY"
+          "id": "generatedId_ab3fdd90-a2c1-4fad-846c-1269fa28ef48",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
         },
         {
-          "id": "totalLoanAmount8",
+          "id": "generatedId_f455ff08-d58a-4819-95d0-349fe2d54da7",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_7",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_7",
           "type": "text",
           "label": "Total loan amount for the year",
           "format": "sterling",
@@ -1012,7 +1138,7 @@
           "shortname": "Loan amount"
         },
         {
-          "id": "engagementType8",
+          "id": "engagementType1_copy_7",
           "type": "choice",
           "label": "Engagement Type",
           "format": "vertical",
@@ -1024,14 +1150,14 @@
           ]
         },
         {
-          "id": "schemeInfo8",
+          "id": "schemeInfo1_copy_7",
           "type": "info",
           "label": "",
           "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
           "infoType": "noformat"
         },
         {
-          "id": "writeOffChoice8",
+          "id": "writeOffChoice1_copy_7",
           "type": "choice",
           "label": "Do you intend to have this loan written off?",
           "format": "yesno",
@@ -1055,22 +1181,1382 @@
       ]
     },
     {
-      "title": "More than 8 schemes",
+      "title": "Scheme details",
+      "shortName": "Scheme details",
       "includeIf": "${scheme9 = 0}",
       "fields": [
         {
-          "id": "generatedId_bb0eea15-cf43-4b78-b947-da0ffc6b461f",
+          "id": "schemeName9",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo9",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 9 number of years",
+      "includeIf": "${scheme9 = 0}",
+      "fields": [
+        {
+          "id": "yearNo9",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo9 >=1 && yearNo9 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo9 >=1}",
+      "repeatsMin": "${yearNo9}",
+      "repeatsMax": "${yearNo9}",
+      "fields": [
+        {
+          "id": "generatedId_f7f6b5ca-87ef-4492-915c-4e644bed35ca",
           "type": "info",
-          "label": "What to do if you have more than 10 schemes to tell us about",
-          "infoText": "If you have to tell HMRC about more than 8 schemes you will need to prepare a document to upload with this form;\n\nThe document will need seperate sections for each scheme telling us the following information\n\n* Scheme name\n\n* Scheme reference number\n\n* How many years you want to tell us about in regards to that scheme\n\n\nIn each year you tell us about you will need to include the following information\n\n* Tax year when you recieved the loan\n\n* Total loan amount for the year\n\n* Whether you where employed, self employed or in a partnership that year\n\n* If you intend to have this loan written off",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ad4cda6c-547f-4ff6-acae-bf797617260c",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
-          "id": "uploadSchemeDetails",
-          "type": "file",
-          "label": "Upload your document",
-          "helpText": "We accept documents in formats like pdf and jpeg (5mb maximum)",
+          "id": "year_copy_8",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_8",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_8",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_8",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_8",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme9 = 0}",
+      "fields": [
+        {
+          "id": "scheme10",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "schemeName10",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo10",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 10 number of years",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "yearNo10",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo10 >=1 && yearNo10 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo10 >=1}",
+      "repeatsMin": "${yearNo10}",
+      "repeatsMax": "${yearNo10}",
+      "fields": [
+        {
+          "id": "generatedId_3e87c07e-aa89-4097-8cfd-8760aa683fb1",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_222fbbf1-9ca7-4371-b509-fc0abb40c9c3",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_9",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_9",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_9",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_9",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_9",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "scheme11",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "schemeName11",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo11",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 11 number of years",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "yearNo11",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo11 >=1 && yearNo11 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo11 >=1}",
+      "repeatsMin": "${yearNo11}",
+      "repeatsMax": "${yearNo11}",
+      "fields": [
+        {
+          "id": "generatedId_2ec2258a-7430-4ea8-9aa1-60884cdabbc5",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ad468a0f-3530-4049-a500-ac4833196edc",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_10",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_10",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_10",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_10",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_10",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "scheme12",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "schemeName12",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo12",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 12 number of years",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "yearNo12",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo12 >=1 && yearNo12 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo12 >=1}",
+      "repeatsMin": "${yearNo12}",
+      "repeatsMax": "${yearNo12}",
+      "fields": [
+        {
+          "id": "generatedId_d9784056-1bc4-46d8-bf50-0cbb5cb9e35d",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_dfcc7e0c-baec-4b6e-9c53-22088670db35",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_11",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_11",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_11",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_11",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_11",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "scheme13",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 13 number of years",
+      "includeIf": "${scheme13 = 0}",
+      "fields": [
+        {
+          "id": "yearNo13",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo13 >=1 && yearNo13 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo13 >=1}",
+      "repeatsMin": "${yearNo13}",
+      "repeatsMax": "${yearNo13}",
+      "fields": [
+        {
+          "id": "generatedId_280a3d98-5ec2-4e24-9f24-a30266cd538e",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_92def486-b9ae-4b0a-9440-54a5f9aa0661",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_12",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_12",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_12",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_12",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_12",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme13 = 0}",
+      "fields": [
+        {
+          "id": "scheme14",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "schemeName14",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo14",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 14 number of years",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "yearNo14",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo14 >=1 && yearNo14 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo14 >=1}",
+      "repeatsMin": "${yearNo14}",
+      "repeatsMax": "${yearNo14}",
+      "fields": [
+        {
+          "id": "generatedId_f0c8e54d-76bd-40c7-9cec-ff44fd9dcee8",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_25ced4d4-1087-4693-9ee4-ffffcc504668",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_13",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_13",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_13",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_13",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_13",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "scheme15",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "schemeName15",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo15",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 15 number of years",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "yearNo15",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo15 >=1 && yearNo15 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo15 >=1}",
+      "repeatsMin": "${yearNo15}",
+      "repeatsMax": "${yearNo15}",
+      "fields": [
+        {
+          "id": "generatedId_de209d5e-9357-4fed-a0b5-ea65075fcf1a",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_715d8995-d20b-43ae-891e-a9aa9e23c173",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_14",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_14",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_14",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_14",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_14",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "scheme16",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "schemeName16",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo16",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 16 number of years",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "yearNo16",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo16 >=1 && yearNo16 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo16 >=1}",
+      "repeatsMin": "${yearNo16}",
+      "repeatsMax": "${yearNo16}",
+      "fields": [
+        {
+          "id": "generatedId_4bbb5f5a-421c-428d-9210-1bc919ef69a9",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_4e6bd05b-82b4-4e67-a455-a36b1f98a0b4",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_15",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_15",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_15",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_15",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_15",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "scheme17",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "schemeName17",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo17",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 17 number of years",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "yearNo17",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo17 >=1 && yearNo17 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo17 >=1}",
+      "repeatsMin": "${yearNo17}",
+      "repeatsMax": "${yearNo17}",
+      "fields": [
+        {
+          "id": "generatedId_6c404aef-53e4-4bc8-ac0e-450b25f713bf",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_f04a940b-d708-49c0-b363-adc7acae0856",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_17a",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_17a",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_17a",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_17a",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_17a",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "scheme18",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "schemeName18",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo18",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 18 number of years",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "yearNo18",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo18 >=1 && yearNo18 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo18 >=1}",
+      "repeatsMin": "${yearNo18}",
+      "repeatsMax": "${yearNo18}",
+      "fields": [
+        {
+          "id": "generatedId_1b56e8e9-0a83-411f-b9b7-29cfbafeaa1e",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_b88bfce7-6215-422f-8808-a9be97aa7d7b",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_16",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_16",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_16",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_16",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_16",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "scheme19",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "schemeName19",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo19",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 19 number of years",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "yearNo19",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo19 >=1 && yearNo19 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo19 >=1}",
+      "repeatsMin": "${yearNo19}",
+      "repeatsMax": "${yearNo19}",
+      "fields": [
+        {
+          "id": "generatedId_47458440-83a5-498d-afe0-78bd35985147",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_5abc807c-076e-4273-ae70-2e0c33add12e",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_17",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_17",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_17",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_17",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_17",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "scheme20",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme20 = 0}",
+      "fields": [
+        {
+          "id": "schemeName20",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo20",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 20 number of years",
+      "includeIf": "${scheme20 = 0}",
+      "fields": [
+        {
+          "id": "yearNo20",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo20 >=1 && yearNo20 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo20 >=1}",
+      "repeatsMin": "${yearNo20}",
+      "repeatsMax": "${yearNo20}",
+      "fields": [
+        {
+          "id": "generatedId_8c1bd2e3-8ec5-42ee-b753-c89d566288fc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_cc63e748-ebf8-4c56-8a61-b52f75cd5e62",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_18",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_18",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_18",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1_copy_18",
+          "type": "info",
+          "label": "",
+          "infoText": "If you intend to have this loan written off, there may be a charge to inheritance tax",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1_copy_18",
+          "type": "choice",
+          "label": "Do you intend to have this loan written off?",
+          "format": "yesno",
+          "mandatory": "true"
         }
       ]
     },
@@ -1114,7 +2600,8 @@
         {
           "id": "otherSchemeRef",
           "type": "text",
-          "label": "Scheme Reference number"
+          "label": "Scheme Reference number",
+          "mandatory": "false"
         }
       ]
     },
@@ -1232,17 +2719,17 @@
         {
           "id": "belowFiftyK",
           "type": "choice",
-          "label": "My current income is below £50,000 per annum",
+          "label": "My current annual income is",
           "choices": [
-            "Yes",
-            "No"
+            "Under £30,000",
+            "Between £30,000 and £50,000",
+            "Over £50,000"
           ]
         }
       ]
     },
     {
       "title": "Payments information",
-      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
       "fields": [
         {
           "id": "howMuchWadge",
@@ -1260,7 +2747,6 @@
     },
     {
       "title": "Income",
-      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
       "fields": [
         {
           "id": "generatedId_7936611d-f55c-4b93-956e-29332ca30357",
@@ -1292,7 +2778,6 @@
     },
     {
       "title": "Expenditure",
-      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
       "fields": [
         {
           "id": "generatedId_afe8c95f-0fa5-45a1-b528-1ce29d454fcb",
@@ -1345,7 +2830,6 @@
     },
     {
       "title": "Other debts",
-      "includeIf": "${belowFiftyK = 0 && stoppedChoice = 0}",
       "fields": [
         {
           "id": "loansOut",
