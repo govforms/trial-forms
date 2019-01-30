@@ -22,7 +22,9 @@
           "type": "text",
           "label": "Enter your title",
           "shortName": "title",
+          "format": "text(0,50)",
           "mandatory": "true",
+          "displayWidth": "xs",
           "errorMessage": "enter your title, for example, Dr, Mr, Mrs etc."
         },
         {
@@ -52,6 +54,39 @@
       ]
     },
     {
+      "title": "Required details",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_48ca4dfb-736b-4dbf-bcc2-ac76a14f4b97",
+          "label": "",
+          "infoText": "Over the next two pages you will be asked about your  Unique tax payer reference and National Insurance number.\n\nYou will need to supply at least one of these reference details.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_498ee61d-dc9a-4a62-9910-391020638323",
+          "label": "Unique taxpayer reference (UTR)",
+          "infoText": "* This is a 10-digit number that you will have recieved when you registered for self assessment or set up a limited company\n\n* Your UTR is on previous tax returns and other documents from HMRC, for example, notices to file a return or payment reminders",
+          "infoType": "long"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_7659ec0f-63c5-43d6-ab69-bb017bc770f4",
+          "label": "",
+          "infoText": "You have a National Insurance number to make sure your National Insurance contributions and tax are recorded against your name only",
+          "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_cd3e1576-8f54-4123-8152-7d0ab46ed90c",
+          "label": "National Insurance number (NINO)",
+          "infoText": "* It’s made up of letters and numbers and never changes\n\n* It's in the format 2 letters, six numbers , 1 letter\n\n* You can find your NINO on your payslip, on your P60 and on letters about your tax, pension or benefits\n\n* It is also In the National Insurance section of your HMRC personal tax account",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
       "title": "Your Unique taxpayer referenece",
       "shortName": "Unique taxpayer reference",
       "fields": [
@@ -61,7 +96,7 @@
           "label": "Your Unique Taxpayer Reference (UTR)",
           "shortName": "UTR",
           "format": "number(10,0)",
-          "mandatory": "true",
+          "mandatory": "false",
           "errorMessage": "enter your UTR, this must be 10 numbers"
         }
       ]
@@ -76,41 +111,8 @@
           "label": "Your National Insurance Number",
           "shortName": "National insurance number",
           "format": "text",
-          "mandatory": "true",
+          "mandatory": "false",
           "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter"
-        }
-      ]
-    },
-    {
-      "title": "Caseflow reference numbers",
-      "shortName": "Caseflow reference numbers",
-      "fields": [
-        {
-          "id": "caseflowGroupInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "Enter your caseflow references here\n\n caseflow references are prefixed with CFS, CFSS or CFSC",
-          "infotype": "noformat"
-        },
-        {
-          "id": "caseflowGroup",
-          "type": "group",
-          "label": "Caseflow reference number",
-          "helpText": "",
-          "repeatsMax": 15,
-          "repeatLabel": "Add a caseflow reference $n",
-          "presentationHint": "summariseGroupAsGrid",
-          "fields": [
-            {
-              "id": "caseFlowRef",
-              "type": "text",
-              "label": "Your Caseflow reference",
-              "shortName": "Caseflow reference",
-              "format": "text",
-              "mandatory": "true",
-              "errorMessage": "enter your caseflow reference number, this must be in the format: two letters, six numbers, one letter"
-            }
-          ]
         }
       ]
     },
@@ -121,7 +123,7 @@
         {
           "id": "ukAddress",
           "type": "address",
-          "label": "Enter your UK address details",
+          "label": "Enter you address details",
           "shortName": "UK address",
           "international": "true",
           "postcodeLookup": "no"
@@ -130,7 +132,7 @@
           "id": "contactNumberUK",
           "type": "text",
           "label": "Your telephone number",
-          "helpText": "input your telephone number here",
+          "helpText": "Enter your telephone number here",
           "format": "telephoneNumber",
           "mandatory": "false",
           "errorMessage": "Enter a valid telephone number"
@@ -180,7 +182,7 @@
         {
           "id": "agentChoice",
           "type": "choice",
-          "label": "Do you have an agent who represents you for tax purposes?",
+          "label": "Do you have an agent who will be representing you for this settlement?",
           "mandatory": "true",
           "choices": [
             "Yes I have an agent representing me for this settlement",
@@ -198,7 +200,9 @@
           "id": "agentTitle",
           "type": "text",
           "label": "Title",
-          "shortName": "title"
+          "shortName": "title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
         },
         {
           "id": "agentFirstName",
@@ -251,7 +255,8 @@
           "id": "schRefNo1",
           "type": "text",
           "label": "Scheme reference number",
-          "helpText": "Can be up to 25 Alpha numeric characters"
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
         }
       ]
     },
@@ -263,7 +268,9 @@
           "id": "yearNo",
           "type": "text",
           "label": "How many years do you need to tell us about regarding this scheme?",
-          "validIf": "${yearNo >=1 && yearNo<21}"
+          "displayWidth": "xs",
+          "validIf": "${yearNo >=1 && yearNo<21}",
+          "errorMessage": "Enter a number of years between one and twenty that you want to tell us about in regards to this scheme"
         }
       ]
     },
