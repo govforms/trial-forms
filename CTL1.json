@@ -1,5 +1,4 @@
 {
-  "_id": "CTL1",
   "formName": "Contractor Loans",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -57,29 +56,29 @@
       "title": "Required details",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_48ca4dfb-736b-4dbf-bcc2-ac76a14f4b97",
+          "type": "info",
           "label": "",
           "infoText": "Over the next two pages you will be asked about your  Unique tax payer reference and National Insurance number.\n\nYou will need to supply at least one of these reference details.",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_498ee61d-dc9a-4a62-9910-391020638323",
+          "type": "info",
           "label": "Unique taxpayer reference (UTR)",
           "infoText": "* This is a 10-digit number that you will have recieved when you registered for self assessment or set up a limited company\n\n* Your UTR is on previous tax returns and other documents from HMRC, for example, notices to file a return or payment reminders",
           "infoType": "long"
         },
         {
-          "type": "info",
           "id": "generatedId_7659ec0f-63c5-43d6-ab69-bb017bc770f4",
+          "type": "info",
           "label": "",
           "infoText": "You have a National Insurance number to make sure your National Insurance contributions and tax are recorded against your name only",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_cd3e1576-8f54-4123-8152-7d0ab46ed90c",
+          "type": "info",
           "label": "National Insurance number (NINO)",
           "infoText": "* It’s made up of letters and numbers and never changes\n\n* It's in the format 2 letters, six numbers , 1 letter\n\n* You can find your NINO on your payslip, on your P60 and on letters about your tax, pension or benefits\n\n* It is also In the National Insurance section of your HMRC personal tax account",
           "infoType": "long"
@@ -282,8 +281,8 @@
       "repeatsMax": "${yearNo}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_e556ff53-91ab-4aba-bb30-e1e7f0be0256",
+          "type": "info",
           "label": "",
           "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
           "infoType": "noformat"
@@ -291,28 +290,18 @@
         {
           "id": "generatedId_5389dbee-9415-4ee3-a106-873e02369641",
           "type": "info",
-          "label": "What do i enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* So in thuis example you need to enter 2001",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
-          "id": "endYearDate",
+          "id": "eYD",
           "type": "text",
-          "label": "Tells us the tax year ending 05/04/????",
-          "helpText": "Enter the year ending date in this format YYYY",
-          "format": "number(4,0)",
-          "validIf": "${endYearDate>=2000 && endYearDate<2020}",
-          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
-        },
-        {
-          "id": "schemeDate1",
-          "type": "date",
           "label": "Tell us the tax year where you recieved the loan",
-          "shortName": "Tax year of loan",
-          "format": "after 1999/04/05, before 2019/04/05",
-          "mandatory": "true",
-          "errorMessage": "Tax year must be input in the format 05/04/YYYY. The tax year cannot be before 05/04/2000 or after 05/04/2019",
-          "helptext": "The tax year must be input as ending 05/04/YYYY \n\n The tax year cannot be before 05/04/2000 or after 05/04/2019"
+          "helpText": "Enter the year ending date in the format YYYY",
+          "format": "number(4,0)",
+          "validIf": "${eYD >=2000 && eYD <=2020}",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
         },
         {
           "id": "totalLoanAmount1",
@@ -1578,5 +1567,6 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "CTL1"
 }
