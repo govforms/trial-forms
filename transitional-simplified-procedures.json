@@ -79,50 +79,53 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "emailInfo1",
-          "type": "info",
-          "label": "",
-          "infoText": "###Your consent to use email",
-          "infoType": "noformat"
-        },
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Your consent to use email",
+      "fields": [
         {
           "id": "emailInfo2",
           "type": "info",
-          "label": "Read about the risks of using email",
+          "label": "",
           "infoText": "Email is not 100% secure, as it is sent over the internet.\n\nThis means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
-          "infoType": "long"
+          "infoType": "noformat"
         },
         {
           "id": "emCons1",
           "type": "choice",
           "label": "Do you agree to let us contact you by email about your application?",
           "shortName": "Confirm email consent",
-          "format": "yesno",
-          "errorMessage": "Select whether you consent to being contacted using your email address"
-        },
-        {
-          "id": "email1",
-          "type": "text",
-          "label": "Email address",
-          "helpText": "This must be the applicant’s email address",
-          "format": "email",
-          "mandatory": "false"
+          "errorMessage": "Select whether you consent to being contacted using your email address",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "We will contact you via telephone/post"
+          ]
         }
       ]
     },
     {
-      "title": "Address",
+      "title": "Business address",
       "fields": [
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "Your business address",
+          "label": "",
           "international": "true"
         },
         {
           "id": "regAdd",
           "type": "choice",
-          "label": "Is the registered office address the same as your address?",
+          "label": "Is the registered office address the same as your business address?",
           "shortName": "Registered address",
           "helpText": "Your registered office must be based in the UK",
           "errorMessage": "Select whether the registered office address is the same as your business address",
