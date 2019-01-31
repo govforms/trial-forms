@@ -242,7 +242,7 @@
           "id": "generatedId_ce1ffd62-3925-439a-ad3e-2a56af7ab5d3",
           "type": "info",
           "label": "Is my company connected or unconnected?",
-          "infoText": "Your company and the\nsubcontractor or staff supplier are connected if both are controlled by the\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the subcontractor or staff supplier or\n- the subcontractors or staff supplier own costs\n\nWhere unconnected, you may claim 65% of the costs of\nsubcontractors or externally provider workers.",
+          "infoText": "Your company and the\nsubcontractor or staff supplier are connected if both are controlled by\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the subcontractor or staff supplier or\n- the subcontractors or staff supplier own costs\n\nWhere unconnected, you may claim 65% of the costs of\nsubcontractors or externally provider workers.",
           "infoType": "long"
         },
         {
@@ -304,27 +304,6 @@
           "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "How many projects have you claimed for in your Corporation Tax return?",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "fields": [
-        {
-          "id": "generatedId_22b3f648-3d47-4c1e-bba3-a1fcbcf7234d",
-          "type": "info",
-          "label": "",
-          "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
-          "infoType": "noformat"
-        },
-        {
-          "id": "projTot",
-          "type": "text",
-          "label": "Number of projects",
-          "format": "number(2,0)",
-          "validIf": "${projTot <=10 && projTot >=1}",
-          "errorMessage": "You must enter a number between 1 and 10"
         }
       ]
     },
