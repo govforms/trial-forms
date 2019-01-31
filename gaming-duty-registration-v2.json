@@ -74,7 +74,7 @@
     },
     {
       "title": "Sole proprietor details",
-      "includeIf": "${legalStatus1 = 0}",
+      "includeIf": "${legalStatus1 = 1}",
       "fields": [
         {
           "id": "spNameChoice",
@@ -107,7 +107,7 @@
     },
     {
       "title": "Partnership details",
-      "includeIf": "${legalStatus1 = 1}",
+      "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "nameChoicePA",
@@ -140,7 +140,7 @@
     },
     {
       "title": "Limited company",
-      "includeIf": "${legalStatus1 = 2}",
+      "includeIf": "${legalStatus1 = 0}",
       "fields": [
         {
           "id": "coName",
@@ -183,7 +183,7 @@
     },
     {
       "title": "Unincorporated body",
-      "includeIf": "${legalStatus1 = 3}",
+      "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "coNameUB",
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "title": "Would you like to register more than one premises for Gaming Duty? ",
+      "title": "Do you want to register more than one premises for Gaming Duty? ",
       "fields": [
         {
           "id": "gd58Choice",
@@ -462,14 +462,14 @@
       ]
     },
     {
-      "title": "Member $n",
+      "title": "Enter the full name of group member number $n",
       "repeatsMin": "${numberMembers}",
       "repeatsMax": "${numberMembers}",
       "fields": [
         {
           "id": "memberFullName",
           "type": "text",
-          "label": "Full Name of member $n"
+          "label": ""
         }
       ]
     },
@@ -485,7 +485,7 @@
         {
           "id": "estProf",
           "type": "text",
-          "label": "What are your estimated profit for the next 12 months?",
+          "label": "What is your estimated profit for the next 12 months?",
           "format": "sterling"
         },
         {
@@ -569,10 +569,10 @@
     "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "type": "info",
         "id": "generatedId_17d4070a-efc2-44a4-90db-f6c40ad644e4",
+        "type": "info",
         "label": "Get a copy of form",
-        "infoText": "If you want a copy of your form you can print or save a PDF. You will not be able to do this once you leave this page.",
+        "infoText": "We’ve sent your application to HMRC.\n\nIf you want a copy of your application you'll need to print it or save it as a PDF before you leave this page. ",
         "infoType": "noformat"
       }
     ]
