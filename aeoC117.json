@@ -269,16 +269,15 @@
       ]
     },
     {
-      "title": "Business legal status",
+      "title": "What is your business legal status?",
       "shortName": "Business legal status",
       "fields": [
         {
           "id": "legalStatus1",
           "type": "choice",
-          "label": "Select your business legal status",
+          "label": "What is your business legal status?",
           "shortName": "Business legal status",
-          "format": "vertical",
-          "mandatory": "true",
+          "errorMessage": "Select your business legal status",
           "choices": [
             "Sole proprietor",
             "Partnership",
@@ -290,17 +289,14 @@
       ]
     },
     {
-      "title": "Business legal status is other",
+      "title": "Describe your business status",
       "shortName": "Legal status other",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "businessLegalStatusOther",
           "type": "text",
-          "label": "Describe your business status",
-          "helpText": "Input details of your business legal status - other",
-          "mandatory": "true",
-          "errorMessage": "Input details of your business legal status "
+          "label": "Describe your business status"
         }
       ]
     },
@@ -313,17 +309,14 @@
           "type": "date",
           "label": "Date of establishment",
           "helpText": "Enter the date you started trading, or in the case of a company, the date of your certificate of incorporation",
-          "format": "before today +1",
-          "mandatory": "true",
-          "errorMessage": "Date of establishment must be in the past and include numbers in this format dd mm yyyy"
+          "format": "before today +1"
         },
         {
           "id": "cAAC",
           "type": "choice",
           "label": "Is the address where the main accounts for customs puposes are kept the same as any previously mentioned address?",
           "shortName": "Customs accounts address is the same as",
-          "format": "vertical",
-          "mandatory": "true",
+          "errorMessage": "Select the address where the main accounts for customs purposes are kept",
           "choices": [
             "Registered business address",
             "Primary place of business",
@@ -333,7 +326,7 @@
       ]
     },
     {
-      "title": "Customs accounts address",
+      "title": "Is the address where the main accounts for customs puposes are kept, in the UK?",
       "shortName": "Customs accounts address",
       "includeIf": "${cAAC = 2}",
       "fields": [
@@ -342,12 +335,12 @@
           "type": "choice",
           "label": "Is the address where the main accounts for customs puposes are kept, in the UK?",
           "format": "yesno",
-          "mandatory": "true"
+          "errorMessage": "Select whether the address where main accounts for customs purpose is in the UK"
         }
       ]
     },
     {
-      "title": "Customs accounts address",
+      "title": "UK address where the main accounts for customs puposes are kept",
       "shortName": "Customs accounts address",
       "includeIf": "${cAAC = 2 && cACC = 0}",
       "fields": [
@@ -355,10 +348,7 @@
           "id": "officeAddressRefTrue3",
           "type": "address",
           "label": "UK address where the main accounts for customs puposes are kept",
-          "shortName": "UK customs accounts address",
-          "international": "no",
-          "mandatory": "true",
-          "postcodeLookup": "no"
+          "shortName": "UK address"
         }
       ]
     },
