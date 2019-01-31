@@ -17,8 +17,15 @@
     {
       "title": "Contact details of authorised individual",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC. We will use these details to contact them if we have a question about this form.",
+      "description": "",
       "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_0a8175d3-be97-4ee1-a6f8-8e6163558aee",
+          "label": "",
+          "infoText": "Provide the contact details of someone who is authorised to discuss this form with HMRC. \n\nWe will use these details to contact them if we have a question about this form.",
+          "infoType": "noformat"
+        },
         {
           "id": "firstNameBusiness_copy_1",
           "type": "text",
@@ -60,8 +67,15 @@
     {
       "title": "Contact details of authorised tax adviser",
       "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "Provide the contact details of the tax adviser who is authorised by the client to discuss this form with HMRC. We will use these details to contact them if we have a question about this form.",
+      "description": "",
       "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_db154f9e-5efd-4124-9805-3cd12cd71d71",
+          "label": "",
+          "infoText": "Provide the contact details of the tax adviser who is authorised by the client to discuss this form with HMRC.\n\nWe will use these details to contact them if we have a question about this form.",
+          "infoType": "noformat"
+        },
         {
           "id": "firstNameBusiness2",
           "type": "text",
@@ -168,7 +182,7 @@
           "id": "Inset5",
           "type": "info",
           "label": "Inset5",
-          "infoText": "If your claim is more than 12 months, submit a separate claim for each accounting period.",
+          "infoText": "If your claim covers more than 12 months, submit a separate claim for each accounting period.",
           "infoType": "standard"
         },
         {
@@ -294,10 +308,31 @@
       ]
     },
     {
+      "title": "How many projects have you claimed for in your Corporation Tax return?",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_22b3f648-3d47-4c1e-bba3-a1fcbcf7234d",
+          "label": "",
+          "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "projTot",
+          "label": "Number of projects",
+          "format": "number(2,0)",
+          "validIf": "${projTot <=10 && projTot >=1}",
+          "errorMessage": "You must enter a number between 1 and 10"
+        }
+      ]
+    },
+    {
       "title": "Research and development project 1",
       "shortName": "Projects",
-      "description": "Tell us about the project you want to claim for.",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "Tell us about the project you want to claim for.",
       "fields": [
         {
           "id": "generatedId_c2fe19e5-3f43-4c7d-b1f3-79cb898ae3fbIndividual",
@@ -424,8 +459,8 @@
           "id": "WorkUncertaintiesInd",
           "type": "text",
           "label": "",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
@@ -571,8 +606,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -709,16 +744,16 @@
           "id": "authorisedTextIndividual3",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900)."
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
+          "infoType": "noformat"
         },
         {
           "id": "WorkUncertaintiesInd3",
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -863,8 +898,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -1009,9 +1044,9 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1147,17 +1182,17 @@
           "id": "authorisedTextIndividual6",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900)."
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
+          "infoType": "noformat"
         },
         {
           "id": "WorkUncertaintiesInd6",
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1301,9 +1336,9 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1447,9 +1482,9 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1593,9 +1628,9 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
       ]
@@ -1739,8 +1774,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         }
@@ -1842,8 +1877,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -1961,8 +1996,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2080,8 +2115,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2199,8 +2234,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2318,8 +2353,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2437,8 +2472,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2556,9 +2591,9 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
         {
@@ -2675,8 +2710,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2794,8 +2829,8 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "format": "text(0, 3000)",
           "helpText": "Enter up to 3,000 characters including spaces",
+          "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
         },
@@ -2912,8 +2947,8 @@
           "id": "WorkUncertainties10",
           "type": "text",
           "label": "",
-          "helpText": "Enter up to 3,000 characters including spaces",
           "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 3,000 characters including spaces",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
