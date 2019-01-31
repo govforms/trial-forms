@@ -14,8 +14,15 @@
   },
   "sections": [
     {
-      "title": "About you",
+      "title": "Enter the contact details of a person we can contact about this form",
       "fields": [
+        {
+          "id": "generatedId_052dc509-0c21-4b28-b306-4252a094ba7b",
+          "type": "info",
+          "label": "",
+          "infoText": "We will only use these details to contact you if we have a question.",
+          "infoType": "noformat"
+        },
         {
           "id": "firstName",
           "type": "text",
@@ -29,27 +36,20 @@
           "mandatory": "true"
         },
         {
+          "id": "Telephone number",
+          "type": "text",
+          "label": "Telephone number "
+        },
+        {
+          "id": "Email address",
+          "type": "text",
+          "label": "Email address"
+        },
+        {
           "id": "capacity",
           "type": "text",
           "label": "Capacity in which you are completing this form",
           "helpText": "For example, a director or proprietor"
-        }
-      ]
-    },
-    {
-      "title": "Contact details",
-      "fields": [
-        {
-          "id": "personalTelephone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "personalEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
         }
       ]
     },
@@ -79,7 +79,7 @@
         {
           "id": "spNameChoice",
           "type": "choice",
-          "label": "Is your trading name different to your full name?",
+          "label": "Is your trading name different to the sole proprietor's name?",
           "choices": [
             "Yes",
             "No"
@@ -121,7 +121,7 @@
         {
           "id": "corpTaxRefChoice",
           "type": "choice",
-          "label": "Do you have a Corporation Tax reference?",
+          "label": "Do you have a Corporation Tax reference number?",
           "choices": [
             "Yes",
             "No"
@@ -164,7 +164,7 @@
         {
           "id": "corpTaxRefChoiceLC",
           "type": "choice",
-          "label": "Do you have a Corporation Tax reference?",
+          "label": "Do you have a Corporation Tax reference number?",
           "choices": [
             "Yes",
             "No"
@@ -207,7 +207,7 @@
         {
           "id": "corpTaxRefChoiceUB",
           "type": "choice",
-          "label": "Do you have a Corporation Tax reference?",
+          "label": "Do you have a Corporation Tax reference number?",
           "choices": [
             "Yes",
             "No"
@@ -238,17 +238,6 @@
       ]
     },
     {
-      "title": "Trading name",
-      "includeIf": "${(spNameChoice = 0 || nameChoicePA = 1) || (nameChoiceLC = 0 || nameChoiceUB = 0)}",
-      "fields": [
-        {
-          "id": "spTradingName",
-          "type": "text",
-          "label": "Trading name"
-        }
-      ]
-    },
-    {
       "title": "What is your Corporation Tax Unique Taxpayer Reference?",
       "includeIf": "${(corpTaxRefChoice = 0 || corpTaxRefChoiceLC = 0) || corpTaxRefChoiceUB = 0}",
       "fields": [
@@ -261,12 +250,12 @@
       ]
     },
     {
-      "title": "Your principal place of business",
+      "title": "Enter the address of your principal place of business",
       "fields": [
         {
           "id": "ppbAdd",
           "type": "address",
-          "label": "Address",
+          "label": "",
           "international": "true"
         },
         {
@@ -277,18 +266,9 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "premAddressChoice",
-          "type": "choice",
-          "label": "Is this address the same as your Gaming Duty premises?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
           "id": "accountsAddressChoice",
           "type": "choice",
-          "label": "Is this the same address where your records of accounts are stored?",
+          "label": "Are your accounts stored at this address?",
           "choices": [
             "Yes",
             "No"
