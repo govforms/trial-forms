@@ -130,9 +130,7 @@
           "type": "text",
           "label": "Name of business applying",
           "shortName": "Business name",
-          "helpText": "Input the name of the business that is applying here",
-          "mandatory": "true",
-          "errorMessage": "Business name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          "helpText": "Input the name of the business that is applying here"
         },
         {
           "id": "companyURL",
@@ -144,13 +142,12 @@
           "type": "choice",
           "label": "Is the address where this business is registered in the UK?",
           "format": "yesno",
-          "mandatory": "true",
           "errorMessage": "Select whether the address where this business is registered is in the UK"
         }
       ]
     },
     {
-      "title": "Applicant business details",
+      "title": "Full registered UK address of the business",
       "includeIf": "${addressChoice = 0}",
       "fields": [
         {
@@ -158,14 +155,12 @@
           "type": "address",
           "label": "Full registered UK address of the business",
           "shortName": "UK business address",
-          "international": "no",
-          "mandatory": "true",
           "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "Applicant business details",
+      "title": "Full registered address of the business",
       "includeIf": "${addressChoice = 1}",
       "fields": [
         {
@@ -174,35 +169,34 @@
           "label": "Full registered address of the business",
           "shortName": "Non-UK business address",
           "helpText": "Input the full registered address for your business including country",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Input the full registered address for your business including country"
+          "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Primary place of business",
+      "title": "Is the address of your primary place of business the same as your registered business address?",
+      "shortName": "Primary place of business",
       "fields": [
         {
           "id": "addressChoice2",
           "type": "choice",
           "label": "Is the address of your primary place of business the same as your registered business address?",
           "format": "yesno",
-          "mandatory": "true",
           "errorMessage": "Select whether the address of your primary place of business is the same as your registered business address"
         }
       ]
     },
     {
-      "title": "Primary place of business",
+      "title": "Is the address of your primary place of business within the UK?",
+      "shortName": "Primary place of business",
       "includeIf": "${addressChoice2 = 1}",
       "fields": [
         {
           "id": "addressChoice3",
           "type": "choice",
           "label": "Is the address of your primary place of business within the UK?",
+          "shortName": "Primary place of business in UK",
           "format": "yesno",
-          "mandatory": "true",
           "errorMessage": "Select whether your primary place of business is within the UK "
         }
       ]
@@ -214,12 +208,9 @@
         {
           "id": "uKPPOB",
           "type": "address",
-          "label": "Full UK address of primary place of business",
+          "label": "Primary place of business UK address",
           "shortName": "UK primary place of business",
-          "helpText": "Full address where the main activities of the business are carried out",
-          "international": "no",
-          "mandatory": "true",
-          "postcodeLookup": "no"
+          "helpText": "Full address where the main activities of the business are carried out"
         }
       ],
       "shortname": "Primary place of business UK address"
@@ -231,10 +222,9 @@
         {
           "id": "intPPOB",
           "type": "text",
-          "label": "Full International address of primary place of business",
+          "label": "Primary place of business international address",
           "shortName": "International primary place of business",
           "helpText": "Full address where the main activities of the business are carried out including country",
-          "mandatory": "true",
           "multiline": "yes",
           "errorMessage": "Input the full address for your primary place of business including country"
         }
