@@ -1,5 +1,4 @@
 {
-  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-2",
   "formName": "C118 section 1 part 2 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section1_part2_application_confirmation",
@@ -14,47 +13,30 @@
   },
   "sections": [
     {
-      "title": "Trader identification number(s)",
-      "shortName": "Identification number(s)",
+      "title": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+      "shortName": "EORI number",
       "fields": [
         {
-          "id": "eoriInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "Your trader identification number is the same as your Economic Operator Registration and Identification (EORI) number",
-          "infoType": "noformat"
+          "id": "eORI",
+          "type": "text",
+          "label": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your 12 numerical digit EORI number",
+          "format": "text(14,17)"
         },
         {
-          "id": "generatedId_b05f7c22_6eb2_4c7c_a9f8_2b0c55159c29",
+          "id": "whyInfo",
           "type": "info",
           "label": "Why am I being asked for this?",
           "infoText": "We use your EORI number to link together all 7 forms for your application",
           "infoType": "long"
         },
         {
-          "id": "eoriGroup",
-          "type": "group",
-          "label": "EORI Number",
-          "format": "horizontal",
-          "presentationHint": "summariseGroupAsGrid",
-          "fields": [
-            {
-              "id": "mSInfo1",
-              "type": "info",
-              "label": "Member states country codes",
-              "infoText": "Find the required [member state country codes](https://www.gov.uk/government/publications/uk-trade-tariff-country-and-currency-codes/uk-trade-tariff-country-and-currency-codes#a \"Member state country codes\") here \n\n You will need to press back in your browser to get back to this form ",
-              "infoType": "long"
-            },
-            {
-              "id": "eORI",
-              "type": "text",
-              "label": "",
-              "helpText": "Enter your country code, for example GB, followed by your 12 numerical digit EORI number",
-              "format": "text(14,17)",
-              "mandatory": "true",
-              "errorMessage": "Input your country code and EORI number"
-            }
-          ]
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Member states country codes",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
         }
       ]
     },
@@ -77,6 +59,7 @@
     },
     {
       "title": "Details of most recent years accounts (CY - 1)",
+      "shortName": "Year 1 accounts",
       "includeIf": "${yearOfAccounts= 1 ||  yearOfAccounts=2 || yearOfAccounts=3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
@@ -89,69 +72,98 @@
           "displayWidth": "xs"
         },
         {
+          "id": "annTurn",
+          "type": "text",
+          "label": "Annual turnover",
+          "shortName": "1.2.1a: Annual turnover",
+          "helpText": "Ref 1.2.1a",
+          "format": "sterling"
+        },
+        {
           "id": "netProfLoss",
           "type": "text",
           "label": "Net profit or loss",
+          "shortName": "1.2.1b: Net profit or loss",
+          "helpText": "Ref 1.2.1b",
           "format": "sterling"
         },
         {
           "id": "estNoImport",
           "type": "text",
           "label": "Estimated number of import declarations",
+          "shortName": "1.2.3: Estimated number of import declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValImport",
           "type": "text",
           "label": "Estimated total value of import declarations",
+          "shortName": "1.2.3: Estimated total value of import declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoExport",
           "type": "text",
           "label": "Estimated number of export/re-export declarations",
+          "shortName": "1.2.3: Estimated number of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValExport",
           "type": "text",
           "label": "Estimated total value of export/re-export declarations",
+          "shortName": "1.2.3: Estimated total value of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoSpecProced",
           "type": "text",
           "label": "Estimated number of special procedure declarations",
+          "shortName": "1.2.3: Estimated number of special procedure declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValSpecProced",
           "type": "text",
           "label": "Estimated total value of special procedure declarations",
+          "shortName": "1.2.3: Estimated total value of special procedure declarations ",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estValCustoms",
           "type": "text",
           "label": "Estimated total value of customs duty declarations",
+          "shortName": "1.2.4: Estimated total value of customs duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValExcise",
           "type": "text",
           "label": "Estimated total value of excise duty declarations",
+          "shortName": "1.2.4: Estimated total value of excise duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValImportVAT",
           "type": "text",
           "label": "Estimated total value of import VAT declarations",
+          "shortName": "1.2.4: Estimated total value of import VAT declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         }
       ]
     },
     {
       "title": "Details of previous years accounts (CY - 2)",
+      "shortName": "Year 2 accounts",
       "includeIf": "${yearOfAccounts= 2 || yearOfAccounts = 3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
@@ -164,69 +176,89 @@
           "displayWidth": "xs"
         },
         {
+          "id": "annTurn2",
+          "type": "text",
+          "label": "Annual turnover",
+          "shortName": "1.2.1a: Annual turnover",
+          "format": "sterling"
+        },
+        {
           "id": "netProfLoss2",
           "type": "text",
           "label": "Net profit or loss",
+          "shortName": "1.2.1b: Net profit or loss",
+          "helpText": "Ref 1.2.1b",
           "format": "sterling"
         },
         {
           "id": "estNoImport2",
           "type": "text",
           "label": "Estimated number of import declarations",
+          "shortName": "1.2.3: Estimated number of import declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValImport2",
           "type": "text",
           "label": "Estimated total value of import declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoExport2",
           "type": "text",
           "label": "Estimated number of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValExport2",
           "type": "text",
           "label": "Estimated total value of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoSpecProced2",
           "type": "text",
           "label": "Estimated number of special procedure declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValSpecProced2",
           "type": "text",
           "label": "Estimated total value of special procedure declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estValCustoms2",
           "type": "text",
           "label": "Estimated total value of customs duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValExcise2",
           "type": "text",
           "label": "Estimated total value of excise duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValImportVAT2",
           "type": "text",
           "label": "Estimated total value of import VAT declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         }
       ]
     },
     {
       "title": "Details of previous years accounts (CY - 3)",
+      "shortName": "Year 3 accounts",
       "includeIf": "${yearOfAccounts = 3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
@@ -239,76 +271,104 @@
           "displayWidth": "xs"
         },
         {
+          "id": "annTurn3",
+          "type": "text",
+          "label": "Annual turnover",
+          "shortName": "1.2.1a: Annual turnover",
+          "helpText": "Ref 1.2.1a",
+          "format": "sterling"
+        },
+        {
           "id": "netProfLoss3",
           "type": "text",
           "label": "Net profit or loss",
+          "shortName": "1.2.1b: Net profit or loss",
+          "helpText": "Ref 1.2.1b",
           "format": "sterling"
         },
         {
           "id": "estNoImport3",
           "type": "text",
           "label": "Estimated number of import declarations",
+          "shortName": "1.2.3: Estimated number of import declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValImport3",
           "type": "text",
           "label": "Estimated total value of import declarations",
+          "shortName": "1.2.3: Estimated total value of import declarations",
+          "helpText": "Ref: 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoExport3",
           "type": "text",
           "label": "Estimated number of export/re-export declarations",
+          "shortName": "1.2.3: Estimated number of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValExport3",
           "type": "text",
           "label": "Estimated total value of export/re-export declarations",
+          "shortName": "1.2.3: Estimated total value of export/re-export declarations",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estNoSpecProced3",
           "type": "text",
           "label": "Estimated number of special procedure declarations",
+          "shortName": "1.2.3: Estimated number of special procedure declarations",
+          "helpText": "Ref 1.2.3",
           "format": "positiveWholeNumber"
         },
         {
           "id": "estValSpecProced3",
           "type": "text",
           "label": "Estimated total value of special procedure declarations",
+          "shortName": "1.2.3: Estimated total value of special procedure declarations ",
+          "helpText": "Ref 1.2.3",
           "format": "sterling"
         },
         {
           "id": "estValCustoms3",
           "type": "text",
           "label": "Estimated total value of customs duty declarations",
+          "shortName": "1.2.4: Estimated total value of customs duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValExcise3",
           "type": "text",
           "label": "Estimated total value of excise duty declarations",
+          "shortName": "1.2.4: Estimated total value of excise duty declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         },
         {
           "id": "estValImportVAT3",
           "type": "text",
           "label": "Estimated total value of import VAT declarations",
+          "shortName": "1.2.4: Estimated total value of import VAT declarations",
+          "helpText": "Ref 1.2.4",
           "format": "sterling"
         }
       ]
     },
     {
       "title": "Do you use storage facilities owned by others?",
-      "shortName": "Storage facilities owned by others (1.2.2)",
       "fields": [
         {
           "id": "storChoice",
           "type": "choice",
           "label": "Do you use storage facilities owned by others?",
-          "shortName": "Use storage facilities owned by others",
+          "shortName": "1.2.2: Storage facilities owned by others",
+          "helpText": "Ref 1.2.2",
           "format": "yesno",
           "errorMessage": "Select whether you use storage facilities used by others"
         }
@@ -323,21 +383,24 @@
           "id": "storageFacilities",
           "type": "text",
           "label": "Tell us who you rent/lease the storage facilities from",
-          "shortName": "Rented from",
+          "shortName": "1.2.2: Rented from",
+          "helpText": "Ref 1.2.2",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Future structural changes (1.2.5a)",
+      "title": "Future structural changes",
       "shortName": "Structural changes",
       "fields": [
         {
           "id": "structural1",
           "type": "choice",
           "label": "Do you foresee any structural changes in your company in the next 2 years?",
-          "shortName": "Structural changes foreseen (1.2.5a)",
-          "format": "yesno"
+          "shortName": "1.2.5a: Structural changes foreseen",
+          "helpText": "Ref 1.2.5a",
+          "format": "yesno",
+          "errorMessage": "Select whether you foresee any structural changes in your company in the next 2 years"
         }
       ]
     },
@@ -347,31 +410,27 @@
       "includeIf": "${structural1 = 0}",
       "fields": [
         {
-          "id": "structual2a",
-          "type": "info",
-          "label": "",
-          "infoText": "Briefly describe the changes",
-          "infoType": "noformat"
-        },
-        {
           "id": "structual2b",
           "type": "text",
-          "label": "",
+          "label": "Briefly describe the changes",
           "shortName": "Details of changes",
+          "helpText": "Ref 1.2.5a",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Future supply chain changes(1.2.5b)",
+      "title": "Future supply chain changes",
       "shortName": "Supply chain changes",
       "fields": [
         {
           "id": "supply1",
           "type": "choice",
           "label": "Do you foresee any supply chain changes in your company in the next 2 years?",
-          "shortName": "Supply chain changes foreseen (1.2.5b)",
-          "format": "yesno"
+          "shortName": "1.2.5b: Supply chain changes foreseen",
+          "helpText": "Ref 1.2.5b",
+          "format": "yesno",
+          "errorMessage": "Select whether you foresee any supply chain changes in your company in the next 2 years"
         }
       ]
     },
@@ -381,38 +440,33 @@
       "includeIf": "${supply1 = 0}",
       "fields": [
         {
-          "id": "supply2a",
-          "type": "info",
-          "label": "",
-          "infoText": "Briefly describe the changes",
-          "infoType": "noformat"
-        },
-        {
           "id": "supply2b",
           "type": "text",
-          "label": "",
-          "shortName": "Details of changes",
+          "label": "Briefly describe the changes",
+          "shortName": "1.2.5b: Details of changes",
+          "helpText": "Ref 1.2.5b",
           "multiline": "yes"
         }
       ]
     },
     {
       "title": "Have you completed all the forms for your application?",
-      "shortName": "External services",
+      "shortName": "Completion of all C117 and C118 forms",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
       "fields": [
-        {
-          "id": "c118Info",
-          "type": "info",
-          "label": "",
-          "infoText": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.\n\nIf you are not ready to send all your forms within this period, you need to save and come back later.\n",
-          "infoType": "standard"
-        },
         {
           "id": "c118StopPage",
           "type": "info",
           "label": "What do I need to complete?",
           "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
           "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
         }
       ]
     }
@@ -444,8 +498,7 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received this form",
-        "format": "email",
-        "mandatory": "true"
+        "format": "email"
       },
       {
         "id": "decText",
@@ -484,5 +537,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-2"
 }
