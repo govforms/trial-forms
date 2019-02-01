@@ -1,0 +1,254 @@
+{
+  "_id": "template-al100-automation",
+  "formName": "Send your Aggregates Levy return online",
+  "description": "Fill in your aggregates levy return form online",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "al100_return_confirmation",
+  "authConfig": {
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "AL"
+  },
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${eeitt.userId}",
+    "dmsFormId": "AL100"
+  },
+  "sections": [
+    {
+      "title": "About you",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "aggregatesLevyReg",
+          "type": "text",
+          "label": "Aggregates Levy registration number",
+          "value": "${eeitt.businessUser}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "firstNameBusiness",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastNameBusiness",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "positionInTheCompanyBusiness",
+          "type": "text",
+          "label": "Your position in the company",
+          "shortName": "Position in company",
+          "helpText": "For example, a company director.",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter your client’s reference number (also known as an access code)",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "accessCode",
+          "type": "text",
+          "label": "Access code",
+          "value": "${eeitt.agent}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "aggregatesLevyRegAgent",
+          "type": "text",
+          "label": "Client's aggregates levy reference number",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        },
+        {
+          "id": "firstNameAgent",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastNameAgent",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "positionInTheCompanyAgent",
+          "type": "text",
+          "label": "Your position in the company",
+          "shortName": "Position in the company",
+          "helpText": "For example, a company director.",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "description": "",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "businessEmailAddress",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "no"
+        },
+        {
+          "id": "businessTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter your Aggregates Levy return dates",
+      "shortName": "Aggregates Levy return dates",
+      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+      "fields": [
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide your Aggregates Levy due for the return period",
+      "shortName": "Aggregates Levy due for the return period",
+      "fields": [
+        {
+          "id": "levyDueForThisPeriod",
+          "type": "text",
+          "label": "Levy due for this period",
+          "shortName": "Levy due",
+          "helpText": "Enter the total amount of Aggregates Levy due deducting any reliefs. You can make adjustments where you've paid too little or too much levy on previous returns.",
+          "format": "sterling"
+        },
+        {
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "You can include adjustments of up to £50,000 as long as it's not over 1% of the total sales on your VAT Return for the return period in which you're adjusting."
+        }
+      ]
+    },
+    {
+      "title": "Provide your aggregates weight in tonnes for the return period",
+      "shortName": "Aggregates weight in tonnes for the return period",
+      "description": "Provide the aggregate comercially exploited, and relieved and exempted from the levy in tonnes.",
+      "fields": [
+        {
+          "id": "taxableAggregateExploitedThisPeriod",
+          "type": "text",
+          "label": "Aggregate commercially exploited in tonnes",
+          "shortName": "Commercially exploited",
+          "helpText": "Include any aggregate that is or may become eligible for relief.",
+          "format": "number(10, 0)",
+          "mandatory": "true"
+        },
+        {
+          "id": "TonnesOfRelievedAggregateThisPeriod",
+          "type": "text",
+          "label": "Relieved aggregate in tonnes",
+          "shortName": "Relieved",
+          "helpText": "Include exported aggregate.",
+          "format": "number",
+          "mandatory": "true"
+        },
+        {
+          "id": "TonnesOfExemptAggregateThisPeriod",
+          "type": "text",
+          "label": "Exempt aggregate in tonnes",
+          "shortName": "Exempt",
+          "format": "number",
+          "mandatory": "true"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your return",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declaration-firstname",
+        "type": "text",
+        "label": "Full Name"
+      },
+      {
+        "id": "declaration-status",
+        "type": "text",
+        "label": "Job title",
+        "helpText": "For example, a company director."
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decPageContent",
+        "type": "info",
+        "label": "",
+        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decPageImportant",
+        "type": "info",
+        "label": "",
+        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": "Make a payment\n\nIf you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use BACS, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\nAccount details:\n\nAccount name: HMRC Aggregates Levy\n\nAccount number:11963171\n\nSort code: 08 32 00\n\nPayment reference: Include your 15 digit registration number  "
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4708003/Feedback-Survey-Aggregates-Levy) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
