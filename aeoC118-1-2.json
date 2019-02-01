@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-2",
   "formName": "C118 section 1 part 2 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section1_part2_application_confirmation",
@@ -58,6 +59,248 @@
       ]
     },
     {
+      "title": "How many years of accounts do you have?",
+      "fields": [
+        {
+          "id": "yearOfAccounts",
+          "type": "choice",
+          "label": "How many years of accounts do you have?",
+          "errorMessage": "Select how many years of accounts you have",
+          "choices": [
+            "None (new business)",
+            "One year of accounts",
+            "Two years of accounts",
+            "Three or more years of accounts"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of most recent years accounts (CY-1)",
+      "includeIf": "${yearOfAccounts= 1 ||  yearOfAccounts=2 || yearOfAccounts=3}",
+      "description": "Enter the details for the current accounting year",
+      "fields": [
+        {
+          "id": "accYearEnd",
+          "type": "text",
+          "label": "Accounting year end",
+          "helpText": "For example, 2018",
+          "format": "number(4, 0)",
+          "displayWidth": "xs"
+        },
+        {
+          "type": "text",
+          "id": "netProfLoss",
+          "label": "Net profit or loss",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoImport",
+          "label": "Estimated number of import declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValImport",
+          "label": "Estimated total value of import declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoExport",
+          "label": "Estimated number of export/re-export declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValExport",
+          "label": "Estimated total value of export/re-export declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoSpecProced",
+          "label": "Estimated number of special procedure declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValSpecProced",
+          "label": "Estimated total value of special procedure declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValCustoms",
+          "label": "Estimated total value of customs duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValExcise",
+          "label": "Estimated total value of excise duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValImportVAT",
+          "label": "Estimated total value of import VAT declarations",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Details of previous years accounts (CY-2)",
+      "includeIf": "${yearOfAccounts= 2 || yearOfAccounts = 3}",
+      "description": "Enter the details for the current accounting year",
+      "fields": [
+        {
+          "id": "accYearEnd2",
+          "type": "text",
+          "label": "Accounting year end",
+          "helpText": "For example, 2018",
+          "format": "number(4, 0)",
+          "displayWidth": "xs"
+        },
+        {
+          "type": "text",
+          "id": "netProfLoss2",
+          "label": "Net profit or loss",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoImport2",
+          "label": "Estimated number of import declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValImport2",
+          "label": "Estimated total value of import declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoExport2",
+          "label": "Estimated number of export/re-export declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValExport2",
+          "label": "Estimated total value of export/re-export declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoSpecProced2",
+          "label": "Estimated number of special procedure declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValSpecProced2",
+          "label": "Estimated total value of special procedure declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValCustoms2",
+          "label": "Estimated total value of customs duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValExcise2",
+          "label": "Estimated total value of excise duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValImportVAT2",
+          "label": "Estimated total value of import VAT declarations",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Details of previous years accounts (CY-3)",
+      "includeIf": "${yearOfAccounts = 3}",
+      "description": "Enter the details for the current accounting year",
+      "fields": [
+        {
+          "id": "accYearEnd3",
+          "type": "text",
+          "label": "Accounting year end",
+          "helpText": "For example, 2018",
+          "format": "number(4, 0)",
+          "displayWidth": "xs"
+        },
+        {
+          "type": "text",
+          "id": "netProfLoss3",
+          "label": "Net profit or loss",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoImport3",
+          "label": "Estimated number of import declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValImport3",
+          "label": "Estimated total value of import declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoExport3",
+          "label": "Estimated number of export/re-export declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValExport3",
+          "label": "Estimated total value of export/re-export declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estNoSpecProced3",
+          "label": "Estimated number of special procedure declarations",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "type": "text",
+          "id": "estValSpecProced3",
+          "label": "Estimated total value of special procedure declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValCustoms3",
+          "label": "Estimated total value of customs duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValExcise3",
+          "label": "Estimated total value of excise duty declarations",
+          "format": "sterling"
+        },
+        {
+          "type": "text",
+          "id": "estValImportVAT3",
+          "label": "Estimated total value of import VAT declarations",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
       "title": "Volume of business (1.2)",
       "shortName": "Volume of business (1.2)",
       "fields": [
@@ -65,7 +308,7 @@
           "id": "insetInfoBoxVolume1",
           "type": "info",
           "label": "",
-          "infoText": "Give the annual turnover figure for the last 3 sets of completed annual accounts. If a new business, state 0",
+          "infoText": "Give the annual turnover figure for the last 3 sets of completed annual accounts and the year. If a new business, state 0",
           "infoType": "noformat"
         },
         {
@@ -76,6 +319,13 @@
           "format": "sterling"
         },
         {
+          "id": "dateYear1Accounts",
+          "type": "text",
+          "label": "Year of accounts set 1",
+          "helpText": "For example, 2018",
+          "displayWidth": "xs"
+        },
+        {
           "id": "annualAccountsSet2",
           "type": "text",
           "label": "Annual turnover completed annual accounts set 2",
@@ -83,11 +333,25 @@
           "format": "sterling"
         },
         {
+          "id": "dateYear2Accounts",
+          "type": "text",
+          "label": "Year of accounts set 2",
+          "helpText": "For example, 2017",
+          "displayWidth": "xs"
+        },
+        {
           "id": "annualAccountsSet3",
           "type": "text",
           "label": "Annual turnover completed annual accounts set 3",
           "shortName": "Annual turnover accounts 3 (1.2.1a)",
           "format": "sterling"
+        },
+        {
+          "id": "dateYear3Accounts",
+          "type": "text",
+          "label": "Year of accounts set 3",
+          "helpText": "For example, 2016",
+          "displayWidth": "xs"
         }
       ]
     },
@@ -99,7 +363,7 @@
           "id": "insetInfoBoxVolume2",
           "type": "info",
           "label": "",
-          "infoText": "Provide the annual net profit or loss figure for the last 3 sets of completed annual accounts. If a new, business state 0",
+          "infoText": "Provide the annual net profit or loss figure for the last 3 sets of completed annual accounts and the year this occurred in. If a new, business state 0",
           "infoType": "noformat"
         },
         {
@@ -110,6 +374,13 @@
           "format": "sterling"
         },
         {
+          "id": "yearAccount1",
+          "type": "text",
+          "label": "Year of net profit or loss account set 1",
+          "helpText": "For example, 2018",
+          "displayWidth": "xs"
+        },
+        {
           "id": "pAndLSet2",
           "type": "text",
           "label": "Annual net profit or loss completed annual accounts set 2",
@@ -117,16 +388,30 @@
           "format": "sterling"
         },
         {
+          "id": "yearAccount2",
+          "type": "text",
+          "label": "Year of net profit or loss account set 2",
+          "helpText": "For example, 2017",
+          "displayWidth": "xs"
+        },
+        {
           "id": "pAndLSet3",
           "type": "text",
           "label": "Annual net profit or loss completed annual accounts set 3",
           "shortName": "Profit and loss accounts 3 (1.2.1b)",
           "format": "sterling"
+        },
+        {
+          "id": "yearAccount3",
+          "type": "text",
+          "label": "Year of net profit or loss account set 3",
+          "helpText": "For example, 2016",
+          "displayWidth": "xs"
         }
       ]
     },
     {
-      "title": "Storage facilities owned by others (1.2.2)",
+      "title": "Do you use storage facilities owned by others?",
       "shortName": "Storage facilities owned by others (1.2.2)",
       "fields": [
         {
@@ -134,21 +419,21 @@
           "type": "choice",
           "label": "Do you use storage facilities owned by others?",
           "shortName": "Use storage facilities owned by others",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether you use storage facilities used by others"
         }
       ]
     },
     {
       "title": "Storage facilities owned by others",
-      "shortName": "Storage facilities owned by others",
+      "shortName": "Rent from",
       "includeIf": "${storChoice = 0}",
       "fields": [
         {
           "id": "storageFacilities",
           "type": "text",
-          "label": "",
+          "label": "Tell us who you rent/lease the storage facilities from",
           "shortName": "Rented from",
-          "helpText": "Tell us who you rent/lease the storage facilities from",
           "multiline": "yes"
         }
       ]
@@ -165,45 +450,60 @@
           "infoType": "noformat"
         },
         {
+          "id": "importDecYear1",
+          "type": "text",
+          "label": "First year of import declarations",
+          "helpText": "For example, 2018",
+          "displayWidth": "xs"
+        },
+        {
           "id": "iD1",
           "type": "text",
           "label": "Number of import declarations year 1",
-          "helpText": "If not applicable to your business state 0",
           "format": "number"
         },
         {
           "id": "iD2",
           "type": "text",
           "label": "Value of import declarations year 1",
-          "helpText": "If not applicable to your business state 0",
           "format": "sterling"
+        },
+        {
+          "id": "importDecYear2",
+          "type": "text",
+          "label": "Second year of import declarations",
+          "helpText": "For example, 2017",
+          "displayWidth": "xs"
         },
         {
           "id": "iD3",
           "type": "text",
           "label": "Number of import declarations year 2",
-          "helpText": "If not applicable to your business state 0",
           "format": "number"
         },
         {
           "id": "iD4",
           "type": "text",
           "label": "Value of import declarations year 2",
-          "helpText": "If not applicable to your business state 0",
           "format": "sterling"
+        },
+        {
+          "id": "importDecYear3",
+          "type": "text",
+          "label": "Third year of import declarations",
+          "helpText": "For example, 2016",
+          "displayWidth": "xs"
         },
         {
           "id": "iD5",
           "type": "text",
           "label": "Number of import declarations year 3",
-          "helpText": "If not applicable to your business state 0",
           "format": "number"
         },
         {
           "id": "iD6",
           "type": "text",
           "label": "Value of import declarations year 3",
-          "helpText": "If not applicable to your business state 0",
           "format": "sterling"
         }
       ]
@@ -567,6 +867,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-2"
+  "submitSuccessUrl": "deprecated"
 }
