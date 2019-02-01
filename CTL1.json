@@ -124,7 +124,7 @@
           "id": "ukAddress",
           "type": "address",
           "label": "Enter you address details",
-          "shortName": "UK address",
+          "shortName": "Address",
           "international": "true",
           "postcodeLookup": "no"
         },
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "title": "Your agents details $n",
+      "title": "Your agent's details",
       "shortName": "Agent details",
       "includeIf": "${agentChoice = 0}",
       "fields": [
@@ -228,7 +228,8 @@
           "id": "agentCode",
           "type": "text",
           "label": "Enter your agents code",
-          "helpText": "For example: for self assessment the agent code is SA followed by 8 numerical digits"
+          "helpText": "For example: for self assessment the agent code is SA followed by 8 numerical digits",
+          "mandatory": "false"
         },
         {
           "id": "agentUkAddress",
@@ -293,14 +294,14 @@
           "id": "generatedId_5389dbee_9415_4ee3_a106_873e02369641",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
           "id": "year",
           "type": "text",
           "label": "Tell us the tax year where you recieved the loan",
-          "helpText": "Enter the year ending date in the format YYYY",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
           "format": "number(4,0)",
           "displayWidth": "xs",
           "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
@@ -2648,7 +2649,7 @@
         {
           "id": "priorUKDate",
           "type": "date",
-          "label": "The date you arrived in the UK prior to receiving the loan(s)"
+          "label": "The date you arrived in the UK prior to receiving the loan(s) or date of birth if resident from birth"
         },
         {
           "id": "leftUKDate",
@@ -2767,7 +2768,8 @@
           "id": "otherIncome",
           "type": "text",
           "label": "Other income",
-          "format": "sterling"
+          "format": "sterling",
+          "mandatory": "false"
         },
         {
           "id": "totalIncome",
@@ -2884,6 +2886,7 @@
     },
     {
       "title": "Other arrangements",
+      "includeIf": "${otherPaymentsInPlace = 0}",
       "fields": [
         {
           "id": "affordIt",
