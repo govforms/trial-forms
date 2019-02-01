@@ -24,7 +24,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_b05f7c22_6eb2_4c7c_a9f8_2b0c55159c29",
+          "id": "eoriInfo2",
           "type": "info",
           "label": "Why am I being asked for this?",
           "infoText": "We use your EORI number to link together all 7 forms for your application",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "title": "General company information",
+      "title": "Is your company part of a group?",
       "shortName": "Part of a group",
       "fields": [
         {
@@ -87,7 +87,8 @@
           "type": "choice",
           "label": "Is your company part of a group?",
           "helpText": "Select yes if your company is part of a group",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether your company is part of a group"
         }
       ]
     },
@@ -106,25 +107,28 @@
           "id": "groupQuestion1",
           "type": "choice",
           "label": "Do any other entities in the group already have an AEO authorisation?",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether any other entities in the group already have an AEO authorisation"
         },
         {
           "id": "groupQuestion2",
           "type": "choice",
           "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority"
         }
       ]
     },
     {
-      "title": "Established for less than 3 years",
+      "title": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (e.g incorporation or sale of a business unit)?",
       "shortName": "Established for less than 3 years",
       "fields": [
         {
           "id": "lessThan3Years",
           "type": "choice",
-          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
-          "format": "yesno"
+          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (e.g incorporation or sale of a business unit)?",
+          "format": "yesno",
+          "errorMessage": "Select whether the company has been established for less than 3 years due to an internal reorganisation of a previously existing company"
         }
       ]
     },
@@ -145,42 +149,42 @@
       "title": "Shareholders, directors and managers (1.1.2)",
       "fields": [
         {
-          "id": "generatedId_38cb957c_08c6_482b_a23c_a4cf8713388b",
+          "id": "shareholderInfo",
           "type": "info",
           "label": "shdspacer",
           "infoText": "Over the next four pages you will be asked the following:\n\n\n\n\n\n",
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_902e438b_f1c5_4820_9368_6d1f91077f47",
+          "id": "directorUKInfo",
           "type": "info",
           "label": "UKQuestion",
           "infoText": "* How many of the people involved in the ownership, direction or management of your business are UK nationals?",
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_9772b249_7dbc_43c4_af1c_a1889cea9d70",
+          "id": "aboutUKNationalInfo",
           "type": "info",
           "label": "What we need to know about UK nationals",
           "infoText": "We need the persons name and national insurance number.\n\nIf they are a main shareholder we also need to know what percentage of shares they hold in the business\n\nOnce you have filled in those details you will need to indicate their role in the business from the options given, you may select more than one.",
           "infoType": "long"
         },
         {
-          "id": "generatedId_0c6331ab_f7c4_44df_b8be_e95dd1df0aea",
+          "id": "howManyInfo",
           "type": "info",
           "label": "Non-UKQuestion",
           "infoText": "* How many of the people involved in the ownership, direction or management of your business are Non-UK nationals?",
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_a49dbb84_9adf_425e_b4f9_e9564b29f296",
+          "id": "nonUKInfo",
           "type": "info",
           "label": "What we need to know about Non-UK nationals",
           "infoText": "We need the persons name, date of birth and residential address.\n\nIf they are a main shareholder we also need to know what percentage of shares they hold in the business\n\nOnce you have filled in those details you will need to indicate their role in the business from the options given, you may select more than one.",
           "infoType": "long"
         },
         {
-          "id": "generatedId_aaac2b13_7c07_4db5_aff1_cf5f7b263f26",
+          "id": "questionsNonUKInfo",
           "type": "info",
           "label": "dataRequired",
           "infoText": "* Who are the owners or main shareholders for your business?\n* Who are the owners or main shareholders involved in the day to day running of your business?\n* Who are the board members or managers of your business?\n* We could add the words: Who are the advisory board or board of directors members of your business? (listed as active at Companies House)\n* Who is the person in charge of your company or exercising control over your companys management?",
@@ -189,14 +193,13 @@
       ]
     },
     {
-      "title": "UK nationals involved in the ownership, direction or management of your business",
+      "title": "How many people involved in the ownership, direction or management of your business are UK nationals?",
       "shortName": "Number UK nationals involved",
       "fields": [
         {
           "id": "UKNatCO1",
           "type": "text",
           "label": "How many people involved in the ownership, direction or management of your business are UK nationals?",
-          "helpText": "",
           "format": "positiveWholeNumber",
           "displayWidth": "xs"
         },
@@ -241,6 +244,7 @@
           "label": "Roles held",
           "helpText": "Tick all roles that apply to this person",
           "multivalue": "true",
+          "errorMessage": "Select all roles that apply to this person",
           "choices": [
             "Main Shareholder",
             "Main Shareholder involved in day to day running of the business",
@@ -252,14 +256,16 @@
       ]
     },
     {
-      "title": "Non UK nationals involved in the ownership, direction or management of your business",
+      "title": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
       "shortName": "Number non-UK nationals involved",
       "fields": [
         {
           "id": "nonUKNatCO1",
           "type": "text",
-          "label": "How many owners or main shareholders are not UK nationals",
-          "helpText": "Input the number of owners or main shareholders who are not UK nationals"
+          "label": "How many non UK-nationals are involved in the ownership, direction or management of your business?",
+          "helpText": "Input the number of owners or main shareholders who are not UK nationals",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
         },
         {
           "id": "nonUkNo",
@@ -293,7 +299,7 @@
         {
           "id": "nonUKNatCO1c",
           "type": "date",
-          "label": "date of birth",
+          "label": "Date of birth",
           "helpText": "Input this persons date of birth",
           "format": "before today +1"
         },
@@ -302,7 +308,8 @@
           "type": "text",
           "label": "Percentage of shares held",
           "helpText": "Input the percentage of shares held by this person, if not applicable leave blank",
-          "format": "positiveNumber(3, 0)"
+          "format": "positiveNumber(3, 0)",
+          "mandatory": "false"
         },
         {
           "id": "roleChoiceNonUK",
@@ -310,6 +317,7 @@
           "label": "Roles held",
           "helpText": "Tick all roles that apply to this person",
           "multivalue": "true",
+          "errorMessage": "Select the roles that apply to this person",
           "choices": [
             "Main Shareholder",
             "Main Shareholder involved in day to day running of the business",
@@ -321,14 +329,15 @@
       ]
     },
     {
-      "title": "Person responsible for customs matters (1.1.3)",
+      "title": "Is the person responsible for customs matters a UK national?",
       "shortName": "Person responsible for customs matters (1.1.3)",
       "fields": [
         {
           "id": "prcs1",
           "type": "choice",
           "label": "Is the person responsible for customs matters a UK national?",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether the person responsible for customs matters is a UK national"
         }
       ]
     },
@@ -372,14 +381,14 @@
         {
           "id": "prcs3c",
           "type": "date",
-          "label": "date of birth",
+          "label": "Date of birth",
           "helpText": "Input the date of birth of the person responsible for customs matters",
           "format": "before today +1"
         }
       ]
     },
     {
-      "title": "Locations involved in customs activities (1.1.5)",
+      "title": "How many locations do you have involved in customs activities for your company?",
       "shortName": "Locations involved in customs activities (1.1.5)",
       "fields": [
         {
@@ -401,8 +410,7 @@
           "id": "companyLocations1a",
           "type": "text",
           "label": "Name of location",
-          "helpText": "Input the name of a location",
-          "errorMessage": "input the name of a location"
+          "helpText": "Input the name of a location"
         },
         {
           "id": "companyLocations1",
@@ -416,8 +424,7 @@
           "type": "text",
           "label": "Telephone number",
           "helpText": "input this locations point of contact telephone number here",
-          "format": "telephoneNumber",
-          "errorMessage": "Enter a valid telephone number"
+          "format": "telephoneNumber"
         },
         {
           "id": "companyLocationsEmail",
@@ -435,7 +442,7 @@
       ]
     },
     {
-      "title": "Third party locations involved in customs activities ",
+      "title": "How many sites do you have where third parties execute outsourced activities for your company?",
       "shortName": "Third party locations involved",
       "fields": [
         {
@@ -488,19 +495,20 @@
       ]
     },
     {
-      "title": "Purchases and sales (1.1.6)",
+      "title": "Do you buy from/sell to businesses with which you are associated?",
       "shortName": "Purchases and sales (1.1.6)",
       "fields": [
         {
           "id": "purchases1",
           "type": "choice",
           "label": "Do you buy from/sell to businesses with which you are associated?",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select whether you buy from/sell to business with which you are associated"
         }
       ]
     },
     {
-      "title": "Internal organisational structure (1.1.7)",
+      "title": "Internal organisation",
       "shortName": "Organisational structure (1.1.7)",
       "fields": [
         {
@@ -524,7 +532,7 @@
       ]
     },
     {
-      "title": "Number of employees (1.1.9)",
+      "title": "How many employees do you have in your business?",
       "shortName": "Employees (1.1.9)",
       "fields": [
         {
@@ -538,20 +546,21 @@
     {
       "title": "Have you completed all the forms for your application?",
       "shortName": "External services",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
       "fields": [
-        {
-          "id": "c118Info",
-          "type": "info",
-          "label": "",
-          "infoText": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.\n\nIf you are not ready to send all your forms within this period, you need to save and come back later.\n",
-          "infoType": "standard"
-        },
         {
           "id": "c118StopPage",
           "type": "info",
           "label": "What do I need to complete?",
           "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
           "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
         }
       ]
     }
@@ -583,8 +592,7 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received this form",
-        "format": "email",
-        "mandatory": "true"
+        "format": "email"
       },
       {
         "id": "decText",
