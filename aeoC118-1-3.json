@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-3",
   "formName": "C118 section 1 part 3 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section1_part3_application_confirmation",
@@ -41,62 +42,62 @@
       ]
     },
     {
-      "title": "Information and statistics on customs matters (1.3.1)",
-      "shortName": "Information and statistics (1.3.1)",
+      "title": "Do you perform customs formalities in your own name and for your own account? ",
+      "shortName": "Information and statistics",
       "fields": [
         {
           "id": "stats1",
           "type": "choice",
           "label": "Do you perform customs formalities in your own name and for your own account? ",
-          "shortName": "Perform own custom formalities (1.3.1a)",
-          "format": "yesno"
+          "shortName": "1.3.1a: Perform own custom formalities",
+          "helpText": "Ref 1.3.1a",
+          "format": "yesno",
+          "errorMessage": "Select whether you perform customs formalities in your own name and for your own account"
         }
       ]
     },
     {
-      "title": "Information and statistics on customs matters",
+      "title": "Is someone representing you regarding customs formalities?",
       "shortName": "Personal representative",
       "fields": [
         {
           "id": "stats2",
           "type": "choice",
           "label": "Is someone representing you regarding customs formalities?",
-          "shortName": "Represented by someone else (1.3.1b) ",
-          "format": "yesno"
+          "shortName": "1.3.1b: Represented by someone else ",
+          "helpText": "Ref 1.3.1b",
+          "format": "yesno",
+          "errorMessage": "Select whether someone is representing you regarding customs formalities"
         }
       ]
     },
     {
-      "title": "Information and statistics on customs matters",
-      "shortName": "Your representative",
+      "title": "Who is representing you and how (directly or indirectly)?",
+      "shortName": "Your reprenstative ",
       "includeIf": "${stats2 = 0}",
       "fields": [
         {
-          "id": "stats2b",
-          "type": "info",
-          "label": "",
-          "infoText": "If 'Yes', by whom and how (directly or indirectly)?\n\n Include the name, address and EORI number of the representative",
-          "infoType": "noformat"
-        },
-        {
           "id": "stats2a",
           "type": "text",
-          "label": "",
-          "shortName": "Person representing you",
+          "label": "Include the name, address and EORI number of the representative",
+          "shortName": "1.3.1b: Person representing you",
+          "helpText": "Ref. 1.3.1b",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Information and statistics on customs matters",
+      "title": "Do you represent other persons in customs formalities?",
       "shortName": "People you represent",
       "fields": [
         {
           "id": "stats3",
           "type": "choice",
           "label": "Do you represent other persons in customs formalities?",
-          "shortName": "Represent others (1.3.1c)",
-          "format": "yesno"
+          "shortName": "1.3.1c: Represent others ",
+          "helpText": "Ref 1.3.1c",
+          "format": "yesno",
+          "errorMessage": "Select whether you represent other persons in customs formalties"
         }
       ]
     },
@@ -106,30 +107,25 @@
       "includeIf": "${stats3 = 0}",
       "fields": [
         {
-          "id": "stats3b",
-          "type": "info",
-          "label": "",
-          "infoText": "Who do you represent (Name the most significant clients)?\n\n How do you represent them (directly or indirectly)?",
-          "infoType": "noformat"
-        },
-        {
           "id": "stats3a",
           "type": "text",
-          "label": "",
-          "shortName": "People you represent",
+          "label": "Who and how do you represent them (directly or indirectly)?",
+          "shortName": "1.3.1c: People you represent",
+          "helpText": "Ref 1.3.1c. Name the most significant clients",
           "multiline": "yes"
         }
       ]
     },
     {
       "title": "Tariff classification of goods",
-      "shortName": "Tariff classification (1.3.2)",
+      "shortName": "Tariff classification",
       "fields": [
         {
           "id": "tariffLong1",
           "type": "text",
           "label": "How, and by whom, is the tariff classification of goods decided? ",
-          "shortName": "How classification is decided (1.3.2a)",
+          "shortName": "1.3.2a: How classification is decided",
+          "helpText": "Ref 1.3.2a",
           "multiline": "yes"
         }
       ]
@@ -142,7 +138,8 @@
           "id": "tariffLong2",
           "type": "text",
           "label": "What quality assurance measures do you take to make sure that tariff classifications are correct (for example, checks, plausibility checks, internal working instructions, regular training)? ",
-          "shortName": "Quality assurance measures (1.3.2b)",
+          "shortName": "1.3.2b: Quality assurance measures ",
+          "helpText": "Ref 1.3.2b",
           "multiline": "yes"
         }
       ]
@@ -155,15 +152,19 @@
           "id": "qANotes2",
           "type": "choice",
           "label": "Do you keep notes on these quality assurance measures?",
-          "shortName": "Notes kept on quality assurance measures (1.3.2c)",
-          "format": "yesno"
+          "shortName": "1.3.2c: Notes kept on quality assurance measures",
+          "helpText": "Ref 1.3.2c",
+          "format": "yesno",
+          "errorMessage": "Select whether you keep notes on these quality assurance measures"
         },
         {
           "id": "qANotes3",
           "type": "choice",
           "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
-          "shortName": "effectiveness monitored (1.3.2d)",
-          "format": "yesno"
+          "shortName": "1.3.2d: Effectiveness monitored",
+          "helpText": "Ref 1.3.2d",
+          "format": "yesno",
+          "errorMessage": "Select whether you regularly monitor the effectiveness of your quality assurance measures"
         }
       ]
     },
@@ -175,20 +176,22 @@
           "id": "tariffLong3",
           "type": "text",
           "label": "What resources do you use for tariff classification (for example, database of standing data on goods)?",
-          "shortName": "Tariff classification resources (1.3.2e)",
+          "shortName": "1.3.2e: Tariff classification resources ",
+          "helpText": "Ref 1.3.2e",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Customs value (1.3.3)",
-      "shortName": "Customs value (1.3.3)",
+      "title": "Customs value ",
+      "shortName": "Customs value",
       "fields": [
         {
           "id": "customsValue1",
           "type": "text",
           "label": "How and by whom is the customs value established?",
-          "shortName": "How and by whom, the customs value is established (1.3.3a)",
+          "shortName": "1.3.3a: How and by whom, the customs value is established",
+          "helpText": "Ref 1.3.3a",
           "multiline": "yes"
         }
       ]
@@ -200,8 +203,9 @@
         {
           "id": "customsValue2",
           "type": "text",
-          "label": "What quality assurance measures do you take to make sure that the customs value is correctly established (for example, checks, plausibility checks, internal working instructions, regular training, other means)?",
-          "shortName": "Quality assurance measures (1.3.3b)",
+          "label": "What quality assurance measures do you take to make sure that the customs value is correctly established?",
+          "shortName": "1.3.3b: Quality assurance measures",
+          "helpText": "Ref 1.3.3b. For example, checks, plausibility checks, internal working instructions, regular training, other means",
           "multiline": "yes"
         }
       ]
@@ -214,15 +218,19 @@
           "id": "qANotes5",
           "type": "choice",
           "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
-          "shortName": "effectiveness monitored (1.3.3c)",
-          "format": "yesno"
+          "shortName": "1.3.3c Effectiveness monitored",
+          "helpText": "Ref 1.3.3c",
+          "format": "yesno",
+          "errorMessage": "Select whether you regularly monitor the effectiveness of your quality assurance measures"
         },
         {
           "id": "qANotes4",
           "type": "choice",
           "label": "Do you keep notes on these quality assurance measures?",
-          "shortName": "Notes on quality assurance measures kept (1.3.3d)",
-          "format": "yesno"
+          "shortName": "1.3.3d: Notes on quality assurance measures kept",
+          "helpText": "Ref 1.3.3d",
+          "format": "yesno",
+          "errorMessage": "Select whether you keep notes on these quality assurance measures"
         }
       ]
     },
@@ -233,8 +241,9 @@
         {
           "id": "origins1",
           "type": "text",
-          "label": "Give an overview of the preferential or non-preferential origin of the imported goods. If none, state N/A",
-          "shortName": "Overview of imported goods (1.3.4a)",
+          "label": "Give an overview of the preferential or non-preferential origin of the imported goods.",
+          "shortName": "1.3.4a: Overview of imported goods",
+          "helpText": "Ref 1.3.4a. If none, state N/A",
           "multiline": "yes"
         }
       ]
@@ -246,8 +255,9 @@
         {
           "id": "origins2",
           "type": "text",
-          "label": "What internal actions have you implemented to verify that the country of origin of the imported goods is declared correctly? If none, state N/A",
-          "shortName": "Internal actions implemented (1.3.4b)",
+          "label": "What internal actions have you implemented to verify that the country of origin of the imported goods is declared correctly? ",
+          "shortName": "1.3.4b: Internal actions implemented",
+          "helpText": "Ref 1.3.4b. If none, state N/A",
           "multiline": "yes"
         }
       ]
@@ -259,21 +269,25 @@
         {
           "id": "origins3",
           "type": "text",
-          "label": "Describe your approach in the issuing of proof of preferences and certificates of origin for exportation. If none, state N/A",
-          "shortName": "Issuing of proof (1.3.4c)",
+          "label": "Describe your approach in the issuing of proof of preferences and certificates of origin for exportation. ",
+          "shortName": "1.3.4c: Issuing of proof",
+          "helpText": "Ref 1.3.4c. If none, state N/A",
           "multiline": "yes"
         }
       ]
     },
     {
       "title": "Goods subject to anti-dumping duties or countervailing duties?",
-      "shortName": "Anti-dumping duties or countervailing duties (1.3.5)",
+      "shortName": "Anti-dumping duties or countervailing duties",
       "fields": [
         {
           "id": "origins5",
           "type": "choice",
           "label": "Do you deal in goods subject to anti-dumping duties or countervailing duties?",
-          "format": "yesno"
+          "shortName": "1.3.5: Do you deal in goods subject to anti-dumping duties or countervailing duties?",
+          "helpText": "Ref 1.3.5",
+          "format": "yesno",
+          "errorMessage": "Select whether you deal in goods subject to anti-dumping duties or countervailing duties"
         }
       ]
     },
@@ -286,7 +300,8 @@
           "id": "origins6",
           "type": "text",
           "label": "Provide details of the manufacturer(s) or countries outside the EU whose goods are subject to anti-dumping duties or countervailing duties",
-          "shortName": "Details of anti-dumping or countervailing duties",
+          "shortName": "1.3.5: Details of anti-dumping or countervailing duties",
+          "helpText": "Ref 1.3.5",
           "multiline": "yes"
         }
       ]
@@ -340,8 +355,7 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received this form",
-        "format": "email",
-        "mandatory": "true"
+        "format": "email"
       },
       {
         "id": "decText",
@@ -380,6 +394,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-1-part-3"
+  "submitSuccessUrl": "deprecated"
 }
