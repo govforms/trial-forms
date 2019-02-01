@@ -2584,7 +2584,7 @@
           "type": "text",
           "label": "How many other disguised remuneration schemes have you been involved in that you haven't told us about on this form? ",
           "format": "number(2,0)",
-          "validIf": "${howManyOthers >=1 && howManyOthers <=20}"
+          "validIf": "${howManyOthers >0 && howManyOthers <21}"
         }
       ]
     },
@@ -2865,12 +2865,6 @@
           "type": "text",
           "label": "Other debts outstanding",
           "format": "sterling"
-        },
-        {
-          "id": "finPayOtherDebts",
-          "type": "date",
-          "label": "date of final payment (if applicable)",
-          "mandatory": "false"
         }
       ]
     },
@@ -2918,7 +2912,8 @@
         {
           "id": "whyDefault",
           "type": "text",
-          "label": "Reason for defaulting on arrangement payments"
+          "label": "Reason for defaulting on arrangement payments",
+          "format": "text(0,250)"
         }
       ]
     },
