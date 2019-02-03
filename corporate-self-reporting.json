@@ -1,4 +1,5 @@
 {
+  "_id": "corporate-self-reporting",
   "formName": "Tell HMRC your organisation failed to prevent the facilitation of tax evasion",
   "description": "",
   "formCategory": "hmrcReturnForm",
@@ -15,11 +16,13 @@
   "sections": [
     {
       "title": "Is some or all of the evaded tax owed in the UK?",
+      "shortName": "Where evaded tax is owed",
       "fields": [
         {
           "id": "evadedTaxUK",
           "type": "choice",
           "label": "Is some or all of the evaded tax owed in the UK?",
+          "shortName": "Is evaded tax is owed in the UK",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -30,25 +33,28 @@
     },
     {
       "title": "To use this service the evaded tax must have been owed in the UK",
+      "shortName": "Evaded tax must be owed in the UK to use this service ",
       "includeIf": "${evadedTaxUK=1}",
       "continueIf": "false",
       "fields": [
         {
           "id": "generatedId_bbef2057_bac4_45df_985a_f62f0559ef57",
           "type": "info",
-          "label": "",
+          "label": "To use this service the evaded tax must have been owed in the UK",
           "infoText": "You can only use this service to report a failure to prevent the facilitation of UK tax evasion. \n\nFailure to prevent the facilitation of foreign tax evasion should be reported to the [Serious Fraud Office](https://www.sfo.gov.uk/).\n\nYou will need to sign out of this service.\n\n\n\n\n",
           "infoType": "noformat"
         }
       ]
     },
     {
-      "title": "Are you authorised by the company to make this report on its behalf?",
+      "title": "Are you authorised by the organisation to make this report on its behalf?",
+      "shortName": "Authorisation to make this report",
       "fields": [
         {
           "id": "authorised",
           "type": "choice",
-          "label": "Are you authorised by the company to make this report on its behalf?",
+          "label": "Are you authorised by the organisation to make this report on its behalf?",
+          "shortName": "Are you authorised to make this report",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -58,27 +64,29 @@
       ]
     },
     {
-      "title": "To use this service you must be authorised by the company",
+      "title": "To use this service you must be authorised by the organisation",
+      "shortName": "You must be authorised to use this service",
       "includeIf": "${authorised=1}",
       "continueIf": "false",
       "fields": [
         {
-          "id": "generatedId_cf4294ac_d659_4e75_ab39_306a5bae5748",
+          "id": "notauthorised",
           "type": "info",
-          "label": "",
-          "infoText": "You can only use this service to self-report on behalf of a company if the company has authorised you to do so. \n\nTo report another company, or an individual taxpayer, contact the [HMRC fraud hotline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/customs-excise-and-vat-fraud-reporting).\n\nYou will need to sign out of this service.\n\n",
+          "label": "To use this service you must be authorised by the organisation",
+          "infoText": "You can only use this service to self-report on behalf of an organisation if they have authorised you to do so. \n\nTo report another organisation, or an individual taxpayer, contact the [HMRC fraud hotline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/customs-excise-and-vat-fraud-reporting).\n\nYou will need to sign out of this service.",
           "infoType": "noformat"
         }
       ]
     },
     {
       "title": "Which of these best describes the organisation you are reporting?",
+      "shortName": "Description of organisation type",
       "fields": [
         {
           "id": "CompanyType",
           "type": "choice",
-          "label": "",
-          "shortName": "Organisation type",
+          "label": "Which of these best describes the organisation you are reporting?",
+          "shortName": "Type of organisation",
           "helpText": "If you are unsure please choose company",
           "choices": [
             "Company",
@@ -89,26 +97,30 @@
       ]
     },
     {
-      "title": "What is your connection to the company?",
+      "title": "What is your connection to the organisation?",
+      "shortName": "Connection to the organisation",
       "fields": [
         {
           "id": "connectiontoBusiness",
           "type": "text",
-          "label": "",
+          "label": "What is your connection to the organisation?",
+          "shortName": "Your connection to the organisation",
           "helpText": " ",
-          "mandatory": "false",
+          "mandatory": "true",
           "displayWidth": "xl"
         }
       ]
     },
     {
-      "title": "Is the company registered in the UK?",
+      "title": "Is the organisation registered in the UK?",
+      "shortName": "Where the organisation is registered",
       "includeIf": "${CompanyType=0}",
       "fields": [
         {
           "id": "companyRegUK",
           "type": "choice",
-          "label": "",
+          "label": "Is the organisation registered in the UK?",
+          "shortName": "Is the organisation UK registered",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -118,21 +130,23 @@
       ]
     },
     {
-      "title": "Is the partnership registered in the UK?",
+      "title": "Is the organisation registered in the UK?",
+      "shortName": "Where the organisation is registered",
       "includeIf": "${CompanyType!=0}",
       "fields": [
         {
           "id": "partnershipRegUK",
           "type": "choice",
-          "label": "Is the partnership registered in the UK?",
+          "label": "Is the organisation registered in the UK?",
+          "shortName": "Is the organisation UK registered",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Company details",
+      "title": "Organisation details",
       "includeIf": "${CompanyType=0 && companyRegUK =0}",
-      "description": "Provide the company details as registered at Companies House.",
+      "description": "Provide the organisation's details as registered at Companies House.",
       "fields": [
         {
           "id": "legalNameUKUK",
@@ -143,7 +157,7 @@
         {
           "id": "ukBaseAddressUK",
           "type": "address",
-          "label": "Registered company address",
+          "label": "Registered address",
           "postcodeLookup": "no"
         },
         {
@@ -156,21 +170,22 @@
       ]
     },
     {
-      "title": "Company details",
+      "title": "Organisation details",
       "includeIf": "${CompanyType=0 && companyRegUK=1}",
+      "description": "",
       "fields": [
         {
           "id": "legalNameUKNotUK",
           "type": "text",
-          "label": "Company name",
+          "label": "Organisation name",
           "helpText": "Enter the name as officially registered in the country of formation",
           "mandatory": "true"
         },
         {
-          "id": "tradingNameUKNotUK",
+          "id": "tradingNameUKNotUK_copy_1",
           "type": "text",
           "label": "Trading name (optional)",
-          "helpText": "Enter the trading name if it is different from the company name",
+          "helpText": "Enter the trading name if it is different from the organisation name",
           "mandatory": "false"
         },
         {
@@ -184,75 +199,23 @@
         {
           "id": "formedCountry",
           "type": "text",
-          "label": "Country where the company was formed",
+          "label": "Country where the organisation was formed",
+          "shortName": "Country where organisation was formed",
           "mandatory": "true"
         },
         {
           "id": "companyRegNumberNotUK",
           "type": "text",
-          "label": "Company registration number (optional)",
-          "helpText": "Enter the company registration number in the country of formation if known",
+          "label": "Organisation registration number (optional)",
+          "shortName": "Organisation registration number",
+          "helpText": "Enter the organisation registration number in the country of formation. Leave blank if not known ",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Does the company trade under a name different to the registered name?",
-      "fields": [
-        {
-          "id": "tradingNameyesNo",
-          "type": "choice",
-          "label": "",
-          "format": "vertical",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the trading name?",
-      "includeIf": "${tradingNameyesNo=0}",
-      "fields": [
-        {
-          "id": "tradingNameUKUK",
-          "type": "text",
-          "label": "What is the trading name?",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Do you know the company's Corporation Tax Unique Taxpayer Reference?",
-      "fields": [
-        {
-          "id": "utrYesno",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the company's Corporation Tax Unique Taxpayer Reference?",
-      "includeIf": "${utrYesno=0} ",
-      "fields": [
-        {
-          "id": "companyUniqueTaxRefNumUK",
-          "type": "text",
-          "label": "What is the company's Corporation Tax Unique Taxpayer Reference?",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Partnership details",
-      "includeIf": "${CompanyType=1 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "title": "Organisation details",
+      "includeIf": "${CompanyType=1 && partnershipRegUK=0}",
       "fields": [
         {
           "id": "legalNameUKPartUK",
@@ -264,36 +227,31 @@
         {
           "id": "tradingNameUKPartUK",
           "type": "text",
-          "label": "Trading name (optional)",
-          "helpText": "Enter the trading name if it is different from the company name",
+          "label": "Partnership's trading name (optional)",
+          "shortName": "Partnership's trading name",
+          "helpText": "Enter the trading name if it is different from the registered name",
           "mandatory": "false"
         },
         {
           "id": "ukBaseAddressPartUK",
           "type": "address",
           "label": "Address",
-          "helpText": "Enter the address as it is registered at Companies House",
+          "helpText": "Enter the partnership's address as it is registered at Companies House",
           "postcodeLookup": "no"
         },
         {
           "id": "companyRegNumberPartUK",
           "type": "text",
-          "label": "Companies House registration number",
+          "label": "Partnership's Companies House registration number",
+          "shortName": "Partnership's registration number",
           "helpText": "This is issued by Companies House. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
-        },
-        {
-          "id": "companyUniqueTaxRefNumPartUK",
-          "type": "text",
-          "label": "Unique Tax Reference number (optional)",
-          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
-          "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Enter the details of the partnership",
-      "includeIf": "${CompanyType=1 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "title": "Organisation details",
+      "includeIf": "${CompanyType=1 && partnershipRegUK=1}",
       "fields": [
         {
           "id": "legalNameUKPartNotUK",
@@ -301,13 +259,6 @@
           "label": "Partnership name",
           "helpText": "Enter the name as officially registered in the country of formation",
           "mandatory": "true"
-        },
-        {
-          "id": "tradingNameUKPartNotUK",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "helpText": "Enter the trading name if different from the registered partnership name",
-          "mandatory": "false"
         },
         {
           "id": "formedAddressLimited",
@@ -327,14 +278,15 @@
           "id": "companyRegNumberNotUKLimited",
           "type": "text",
           "label": "Partnership registration number (if applicable)",
+          "shortName": "Partnership registration number",
           "helpText": "Enter the partnership registration number in the country of formation (if applicable)",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Partnership details",
-      "includeIf": "${CompanyType=2 && (companyRegUK=0 || partnershipRegUK=0)}",
+      "title": "Organisation details",
+      "includeIf": "${CompanyType=2 && partnershipRegUK=0}",
       "fields": [
         {
           "id": "tradingNameUKPartOther",
@@ -351,15 +303,16 @@
         {
           "id": "companyUniqueTaxRefNumPartOther",
           "type": "text",
-          "label": "Unique Tax Reference number (optional)",
-          "helpText": "This is a 10 digit number, for example 123456789. It can be found on documents HMRC has issued",
+          "label": "Self Assessment Unique Taxpayer Reference (optional)",
+          "shortName": "Self Assessment Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. Leave blank if not known",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Partnership details",
-      "includeIf": "${CompanyType=2 && (companyRegUK=1 || partnershipRegUK=1)}",
+      "title": "Organisation details",
+      "includeIf": "${CompanyType=2 && partnershipRegUK=1}",
       "fields": [
         {
           "id": "legalNameUKPartNotUKUpdated",
@@ -372,6 +325,7 @@
           "id": "tradingNameUKPartNotUKUpdated",
           "type": "text",
           "label": "Trading name (optional)",
+          "shortName": "Trading name",
           "helpText": "Enter the trading name if different from the registered partnership name",
           "mandatory": "false"
         },
@@ -387,24 +341,125 @@
           "id": "formedCountryLimitedUpdated",
           "type": "text",
           "label": "Country where the partnership was formed",
+          "shortName": "Country where partnership was formed",
           "mandatory": "true"
         },
         {
           "id": "companyRegNumberNotUKLimitedUpdated",
           "type": "text",
           "label": "Partnership registration number (optional)",
+          "shortName": "Partnership registration number",
           "helpText": "Enter the partnership registration number in the country of formation if known",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Have you been able to identify specific taxpayers involved in the facilitated tax evasion",
+      "title": "Does the organisation trade under a different name?",
+      "shortName": "Does the organisation have a trading name",
+      "includeIf": "${CompanyType=0 && companyRegUK =0 || CompanyType=1 && partnershipRegUK=0}",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "choice",
+          "label": "Does the organisation trade under a different name?",
+          "shortName": "Does the organisation trade under a different name",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the trading name?",
+      "shortName": "What is the trading name",
+      "includeIf": "${tradingName=0}",
+      "fields": [
+        {
+          "id": "tradNameEnter",
+          "type": "text",
+          "label": "What is the trading name?",
+          "shortName": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
+      "includeIf": "${CompanyType=0 && companyRegUK=0}",
+      "fields": [
+        {
+          "id": "utrYesno",
+          "type": "choice",
+          "label": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
+      "includeIf": "${CompanyType=0 && companyRegUK=0 && utrYesno=0} ",
+      "fields": [
+        {
+          "id": "companyUniqueTaxRefNumUK",
+          "type": "text",
+          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
+      "includeIf": "${CompanyType=1 && partnershipRegUK=0}",
+      "fields": [
+        {
+          "id": "utrYesnoPart",
+          "type": "choice",
+          "label": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+      "includeIf": "${CompanyType=0 && companyRegUK=0  && utrYesno=0} ",
+      "fields": [
+        {
+          "id": "companyUniqueTaxRefNumUK_copy_1",
+          "type": "text",
+          "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+      "includeIf": "${CompanyType=1 && utrYesnoPart=0} ",
+      "fields": [
+        {
+          "id": "companyUniqueTaxRefNumUK_copy_2",
+          "type": "text",
+          "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
       "fields": [
         {
           "id": "identifySpecific",
           "type": "choice",
-          "label": "Have you been able to identify specific taxpayers involved in the facilitated tax evasion",
+          "label": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
           "helpText": "",
           "format": "vertical",
           "choices": [
@@ -412,7 +467,7 @@
             "No"
           ],
           "optionHelpText": [
-            "You will not be asked to provide the names in this report but HMRC may contact you to ask for their details at a later date ",
+            "You will not be asked to provide their names in this report but HMRC may contact you to ask for their details at a later date ",
             ""
           ]
         }
@@ -426,7 +481,7 @@
           "id": "generatedId_827e9bb9_3f42_46ca_8fbb_495b23732706",
           "type": "info",
           "label": "",
-          "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* who they helped to evade tax \n* what tax was evaded\n* how it was discovered",
+          "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
         {
@@ -439,7 +494,7 @@
         {
           "id": "summariseHowTax",
           "type": "text",
-          "label": "",
+          "label": "Summary of how the tax evasion was facilitated",
           "helpText": "Enter a maximum of 5000 characters including spaces",
           "format": "text(1,5000)",
           "mandatory": "true",
@@ -453,24 +508,11 @@
         {
           "id": "anyOtherInfo",
           "type": "text",
-          "label": "",
+          "label": "Additional information about how the tax evasion was facilitated",
           "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank.",
           "format": "text(1,4000)",
           "mandatory": "true",
           "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Estimate the total value of tax evasion that has been facilitated (if known)",
-      "fields": [
-        {
-          "id": "estimateTotalValues",
-          "type": "text",
-          "label": "",
-          "helpText": "Leave blank if not know",
-          "format": "sterling",
-          "mandatory": "false"
         }
       ]
     },
@@ -504,13 +546,13 @@
       ]
     },
     {
-      "title": "Is this the first self-report the company has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+      "title": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
       "description": "",
       "fields": [
         {
           "id": "selfReportedFailure",
           "type": "choice",
-          "label": "Is this the first self-report the company has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+          "label": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
           "choices": [
             "Yes",
             "No",
@@ -565,7 +607,7 @@
           "id": "madeOtherReports",
           "type": "choice",
           "label": "",
-          "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office (SFO).",
+          "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office (SFO)",
           "choices": [
             "Yes",
             "No",
@@ -610,12 +652,25 @@
       ]
     },
     {
-      "title": "Is the company overseen by a regulator, supervisor or a licensing authority?",
+      "title": "Estimate the total value of tax evasion that has been facilitated",
+      "fields": [
+        {
+          "id": "estimateTotalValues",
+          "type": "text",
+          "label": "",
+          "helpText": "Leave blank if not know",
+          "format": "sterling",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
       "fields": [
         {
           "id": "overseenByARegulator",
           "type": "choice",
-          "label": "",
+          "label": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
           "choices": [
             "Yes",
             "No",
@@ -654,7 +709,7 @@
       ]
     },
     {
-      "title": "Does the company have procedures in place that were designed to prevent this incident?",
+      "title": "Does the organisation have procedures in place that were designed to prevent this incident?",
       "fields": [
         {
           "id": "preventionProcYesNo",
@@ -693,7 +748,7 @@
           "id": "generatedId_0b78953d_0d1b_46f1_af8b_95ef084a1710",
           "type": "info",
           "label": "",
-          "infoText": "You will not be asked for further details about the company's prevention procedures in this report.\n\nHMRC will contact you if more details are required.",
+          "infoText": "You will not be asked for further details about the organisation's prevention procedures in this report.\n\nHMRC will contact you if more details are required.",
           "infoType": "noformat"
         },
         {
@@ -706,14 +761,14 @@
       ]
     },
     {
-      "title": "Briefly describe why no prevention procedures are in place if known",
+      "title": "Briefly describe why no prevention procedures are in place",
       "includeIf": "${preventionProcYesNo=1}",
       "fields": [
         {
           "id": "whyNotPrevention",
           "type": "text",
-          "label": "",
-          "helpText": "Enter a maximum of 1000 characters including spaces (optional)",
+          "label": "Summary of why no prevention procedures are in place.",
+          "helpText": "Enter a maximum of 1000 characters including spaces",
           "format": "text(1,1000)",
           "mandatory": "false",
           "multiline": "true"
@@ -760,7 +815,7 @@
       ]
     },
     {
-      "title": "Give your report a submission reference",
+      "title": "Submission reference number",
       "description": "",
       "fields": [
         {
@@ -836,23 +891,29 @@
     "title": "Acknowledgement Page",
     "fields": [
       {
-        "id": "submissionInformation2",
-        "type": "info",
-        "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. ",
-        "infoType": "important"
-      },
-      {
         "id": "submissionInformation",
         "type": "info",
         "label": "",
-        "infoText": "We recommend that you keep a copy for your records along with a note of the unique submission reference you gave this report\n\nHMRC have sent you a confirmation email. We will not contact you again unless we require further information.",
+        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.",
         "infoType": "noformat"
+      },
+      {
+        "id": "submissionInformation2",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. We recommend that you keep a copy for your records.   ",
+        "infoType": "important"
+      },
+      {
+        "id": "generatedId_4dcfa65a_de36_4b53_a225_0654fb75a118",
+        "type": "info",
+        "label": "refNoReminder",
+        "infoText": "This is also your last opportunity to make a note of your submission reference. HMRC will use this during any further correspondence with you about this report. ",
+        "infoType": "important"
       }
     ]
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "corporate-self-reporting"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
