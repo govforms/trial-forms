@@ -216,33 +216,26 @@
     {
       "title": "Organisation details",
       "includeIf": "${CompanyType=1 && partnershipRegUK=0}",
+      "description": "Provide details of the limited liability partnership as registered at Companies House.",
       "fields": [
         {
           "id": "legalNameUKPartUK",
           "type": "text",
           "label": "Partnership name",
-          "helpText": "Enter the registered name as used at Companies House",
+          "helpText": "Enter the registered name",
           "mandatory": "true"
-        },
-        {
-          "id": "tradingNameUKPartUK",
-          "type": "text",
-          "label": "Partnership's trading name (optional)",
-          "shortName": "Partnership's trading name",
-          "helpText": "Enter the trading name if it is different from the registered name",
-          "mandatory": "false"
         },
         {
           "id": "ukBaseAddressPartUK",
           "type": "address",
           "label": "Address",
-          "helpText": "Enter the partnership's address as it is registered at Companies House",
+          "helpText": "Enter the partnership's address as it is registered ",
           "postcodeLookup": "no"
         },
         {
           "id": "companyRegNumberPartUK",
           "type": "text",
-          "label": "Partnership's Companies House registration number",
+          "label": "Partnership's registration number",
           "shortName": "Partnership's registration number",
           "helpText": "This is issued by Companies House. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
@@ -252,6 +245,7 @@
     {
       "title": "Organisation details",
       "includeIf": "${CompanyType=1 && partnershipRegUK=1}",
+      "description": "Provide details of the limited liability partnership.",
       "fields": [
         {
           "id": "legalNameUKPartNotUK",
@@ -287,6 +281,7 @@
     {
       "title": "Organisation details",
       "includeIf": "${CompanyType=2 && partnershipRegUK=0}",
+      "description": "Provide details of the partnership.",
       "fields": [
         {
           "id": "tradingNameUKPartOther",
@@ -313,6 +308,7 @@
     {
       "title": "Organisation details",
       "includeIf": "${CompanyType=2 && partnershipRegUK=1}",
+      "description": "Provide details of the partnership.",
       "fields": [
         {
           "id": "legalNameUKPartNotUKUpdated",
@@ -429,7 +425,7 @@
     },
     {
       "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
-      "includeIf": "${CompanyType=0 && companyRegUK=0  && utrYesno=0} ",
+      "includeIf": "${CompanyType=1 && companyRegUK=0  && utrYesno=0} ",
       "fields": [
         {
           "id": "companyUniqueTaxRefNumUK_copy_1",
