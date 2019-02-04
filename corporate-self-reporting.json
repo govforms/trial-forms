@@ -24,6 +24,7 @@
           "label": "Is some or all of the evaded tax owed in the UK?",
           "shortName": "Is evaded tax is owed in the UK",
           "format": "vertical",
+          "errorMessage": "Select whether the evaded tax is owed in the UK",
           "choices": [
             "Yes",
             "No"
@@ -55,6 +56,7 @@
           "type": "choice",
           "label": "Are you authorised by the organisation to make this report on its behalf?",
           "shortName": "Are you authorised to make this report",
+          "helpText": "Select whether you are authorised to make this report",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -122,6 +124,7 @@
           "label": "Is the organisation registered in the UK?",
           "shortName": "Is the organisation UK registered",
           "format": "vertical",
+          "errorMessage": "Select whether the organisation is registered in the UK",
           "choices": [
             "Yes",
             "No"
@@ -172,7 +175,7 @@
     {
       "title": "Organisation details",
       "includeIf": "${CompanyType=0 && companyRegUK=1}",
-      "description": "",
+      "description": "Provide details of the organisation.",
       "fields": [
         {
           "id": "legalNameUKNotUK",
@@ -360,6 +363,7 @@
           "type": "choice",
           "label": "Does the organisation trade under a different name?",
           "shortName": "Does the organisation trade under a different name",
+          "errorMessage": "Select whether the organisation has a trading name",
           "choices": [
             "Yes",
             "No"
@@ -388,6 +392,7 @@
           "id": "utrYesno",
           "type": "choice",
           "label": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
+          "errorMessage": "Select whether you know the organisation's Unique Taxpayer Reference",
           "choices": [
             "Yes",
             "No"
@@ -425,19 +430,6 @@
     },
     {
       "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
-      "includeIf": "${CompanyType=1 && companyRegUK=0  && utrYesno=0} ",
-      "fields": [
-        {
-          "id": "companyUniqueTaxRefNumUK_copy_1",
-          "type": "text",
-          "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
       "includeIf": "${CompanyType=1 && utrYesnoPart=0} ",
       "fields": [
         {
@@ -458,6 +450,7 @@
           "label": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
           "helpText": "",
           "format": "vertical",
+          "errorMessage": "Select whether you have identified the specific taxpayers involved",
           "choices": [
             "Yes",
             "No"
@@ -505,9 +498,9 @@
           "id": "anyOtherInfo",
           "type": "text",
           "label": "Additional information about how the tax evasion was facilitated",
-          "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank.",
+          "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank",
           "format": "text(1,4000)",
-          "mandatory": "true",
+          "mandatory": "false",
           "multiline": "true"
         }
       ]
@@ -520,6 +513,7 @@
           "type": "choice",
           "label": "",
           "format": "vertical",
+          "errorMessage": "Select whether the facilitation is ongoing",
           "choices": [
             "Yes",
             "No",
@@ -549,6 +543,7 @@
           "id": "selfReportedFailure",
           "type": "choice",
           "label": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+          "errorMessage": "Select whether this is the organisation's first self report to HMRC",
           "choices": [
             "Yes",
             "No",
@@ -565,6 +560,7 @@
           "id": "haveReferenceNumber",
           "type": "choice",
           "label": "",
+          "errorMessage": "Select whether you have the submission reference for previous self-reports to HMRC",
           "choices": [
             "Yes",
             "No"
@@ -604,6 +600,7 @@
           "type": "choice",
           "label": "",
           "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office (SFO)",
+          "errorMessage": "Select whether you've made any other reports about this incident to agencies other than HMRC ",
           "choices": [
             "Yes",
             "No",
@@ -667,6 +664,7 @@
           "id": "overseenByARegulator",
           "type": "choice",
           "label": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
+          "errorMessage": "Select whether the organisation is overseen by a regulator, supervisor or a licensing authority ",
           "choices": [
             "Yes",
             "No",
@@ -712,6 +710,7 @@
           "type": "choice",
           "label": "",
           "format": "vertical",
+          "errorMessage": "Select whether the organisation has prevention procedures in place",
           "choices": [
             "Yes",
             "No"
@@ -811,47 +810,13 @@
       ]
     },
     {
-      "title": "Submission reference number",
-      "description": "",
-      "fields": [
-        {
-          "id": "userProvidedID2",
-          "type": "text",
-          "label": "",
-          "helpText": "Create a unique submission reference for your report. Use 12 characters, including numbers and upper-case letters. For example, 3H2M94VZ1FS4 ",
-          "format": "text(12,12)"
-        },
-        {
-          "id": "insetformname",
-          "type": "info",
-          "label": "",
-          "infoText": "If you or the company have previously made a report to HMRC, make sure you do not enter a submission reference that has already been used.\n\n",
-          "infoType": "noformat"
-        },
-        {
-          "id": "generatedId_c4098fa4_eb56_4339_9ac8_e6b6d297ed3e",
-          "type": "info",
-          "label": "",
-          "infoText": "",
-          "infoType": "noformat"
-        },
-        {
-          "id": "generatedId_56cc1078_0454_47b7_86d1_98a1418d9880",
-          "type": "info",
-          "label": "",
-          "infoText": "Make a note of your submission reference. HMRC will use this during any further correspondence with you.",
-          "infoType": "important"
-        }
-      ]
-    },
-    {
       "title": "Give consent to how HMRC will use your information\n",
       "fields": [
         {
           "id": "generatedId_336b132f_d675_4bb7_b4a0_3a5a19cd9707",
           "type": "info",
           "label": "",
-          "infoText": "I understand and agree to the following: \n\n* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018\n* HMRC will collect, use and share information submitted in this report in accordance with our  [Privacy Notice](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you)\n\n* if the information submitted leads to an investigation, HMRC may share your contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law",
+          "infoText": "Confirm that you understand and agree to the following: \n\n* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018\n* HMRC will collect, use and share information submitted in this report in accordance with their  [Privacy Notice](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you)\n\n* if the information submitted leads to an investigation, HMRC may share my contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law",
           "infoType": "noformat"
         },
         {
@@ -860,6 +825,7 @@
           "label": "",
           "mandatory": "true",
           "multivalue": "true",
+          "errorMessage": "Select if you understand and agree to how HMRC will use your information",
           "choices": [
             " I confirm that I understand and agree"
           ]
