@@ -1,6 +1,5 @@
 {
-  "_id": "gaming-duty-registration-v2",
-  "formName": "Register for Gaming Duty",
+  "formName": "Register your business for Gaming Duty",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -17,7 +16,7 @@
       "title": "Enter your details",
       "fields": [
         {
-          "id": "generatedId_052dc509-0c21-4b28-b306-4252a094ba7b",
+          "id": "generatedId_052dc509_0c21_4b28_b306_4252a094ba7b",
           "type": "info",
           "label": "",
           "infoText": "We will only use your email address and phone number to contact you if we have a question.",
@@ -54,17 +53,17 @@
       ]
     },
     {
-      "title": "Business details",
+      "title": "What type of business do you want to register?",
       "fields": [
         {
           "id": "legalStatus1",
           "type": "choice",
-          "label": "Legal status of the business",
+          "label": "",
           "shortName": "Business legal status",
           "format": "vertical",
           "choices": [
             "Limited company",
-            "Sole proprietor",
+            "Sole proprietorship",
             "Partnership",
             "Group",
             "Unincorporated body"
@@ -73,9 +72,19 @@
       ]
     },
     {
-      "title": "Sole proprietor details",
+      "title": "Tell us about your sole proprietorship",
       "includeIf": "${legalStatus1 = 1}",
       "fields": [
+        {
+          "id": "spName",
+          "type": "text",
+          "label": "Sole proprietor's name"
+        },
+        {
+          "id": "spTradingName",
+          "type": "text",
+          "label": "Trading name"
+        },
         {
           "id": "spNameChoice",
           "type": "choice",
@@ -106,9 +115,19 @@
       ]
     },
     {
-      "title": "Partnership details",
+      "title": "Tell us about your partnership",
       "includeIf": "${legalStatus1 = 2}",
       "fields": [
+        {
+          "id": "pName",
+          "type": "text",
+          "label": "Name of partnership"
+        },
+        {
+          "id": "pTradingName",
+          "type": "text",
+          "label": "Trading name"
+        },
         {
           "id": "nameChoicePA",
           "type": "choice",
@@ -139,7 +158,7 @@
       ]
     },
     {
-      "title": "Limited company",
+      "title": "Tell us about your company",
       "includeIf": "${legalStatus1 = 0}",
       "fields": [
         {
@@ -182,13 +201,13 @@
       ]
     },
     {
-      "title": "Unincorporated body",
+      "title": "Tell us about your unincorporated body",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "coNameUB",
           "type": "text",
-          "label": "Company name"
+          "label": "Unicorporated body's name"
         },
         {
           "id": "tradingNameUB",
@@ -328,7 +347,7 @@
       ]
     },
     {
-      "title": "About the business - premises $n",
+      "title": "Enter the details of premises $n",
       "includeIf": "${gd58Choice = 0}",
       "repeatsMin": "${newPremNumb}",
       "repeatsMax": "${newPremNumb}",
@@ -454,7 +473,7 @@
       ]
     },
     {
-      "title": "Enter the date your organisation will start providing gambling services",
+      "title": "What date will gaming start at the premises you are registering?",
       "fields": [
         {
           "id": "startTradingDate",
@@ -471,7 +490,7 @@
           "id": "estProf",
           "type": "text",
           "label": "",
-          "helpText": "The amo",
+          "helpText": "You might call your 'profits'  your ‘gross gaming yield’ ",
           "format": "sterling"
         }
       ]
@@ -482,17 +501,17 @@
     "shortName": "Submit your form",
     "fields": [
       {
+        "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
         "type": "info",
-        "id": "generatedId_a70019c1-5d05-4e58-a95c-76fae7c29fd3",
         "label": "",
-        "infoText": "Terms and conditions",
+        "infoText": "##Terms and conditions",
         "infoType": "noformat"
       },
       {
-        "id": "generatedId_1d54a30c-5867-4bd0-86c9-d5b8fc6dc625",
+        "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
         "type": "info",
-        "label": "test",
-        "infoText": "By submitting this form, you declare that the information you have provided is true and complete.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "label": "",
+        "infoText": "Before you submit your form to register for Gaming Duty, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you ",
         "infoType": "noformat"
       }
     ]
@@ -502,14 +521,15 @@
     "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "id": "generatedId_17d4070a-efc2-44a4-90db-f6c40ad644e4",
+        "id": "generatedId_17d4070a_efc2_44a4_90db_f6c40ad644e4",
         "type": "info",
         "label": "Get a copy of form",
-        "infoText": "We’ve sent your form to HMRC.\n\nIf you want a copy of your form you'll need to print it or save it as a PDF before you leave this page. ",
+        "infoText": "If you want a copy of your form you'll need to print it or save it as a PDF before you leave this page.\n\nWe will contact you if we have a question. \n\n\n\n\n",
         "infoType": "noformat"
       }
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "gaming-duty-registration-v2"
 }
