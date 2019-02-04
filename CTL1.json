@@ -70,6 +70,15 @@
           "infoType": "long"
         },
         {
+          "type": "choice",
+          "id": "utrAvailable",
+          "label": "Do you have a UTR?",
+          "choices": [
+            "Yes I have a UTR",
+            "No I do not have a UTR"
+          ]
+        },
+        {
           "id": "rI3",
           "type": "info",
           "label": "",
@@ -82,6 +91,15 @@
           "label": "National Insurance number (NINO)",
           "infoText": "* It’s made up of letters and numbers and never changes\n\n* It's in the format 2 letters, six numbers , 1 letter\n\n* You can find your NINO on your payslip, on your P60 and on letters about your tax, pension or benefits\n\n* It is also In the National Insurance section of your HMRC personal tax account",
           "infoType": "long"
+        },
+        {
+          "type": "choice",
+          "id": "ninoAvailable",
+          "label": "Do you have a NINO?",
+          "choices": [
+            "Yes I have a NINO",
+            "No I do not have a NINO"
+          ]
         }
       ]
     },
@@ -112,6 +130,34 @@
           "format": "text",
           "mandatory": "false",
           "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter"
+        }
+      ]
+    },
+    {
+      "title": "I have neither a UTR or a NINO",
+      "includeIf": "${ninoAvailable =1 && utrAvailable = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_00bdcb3b_1ea9_43a8_a819_e1d86be6ed5b",
+          "label": "",
+          "infoText": "You must have either entered either a UTR or a NINO to be able to continue with this form.",
+          "infoType": "important"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_e87e4728_b1f0_4024_8b0a_c45331360945",
+          "label": "If you cannot find your UTR:",
+          "infoText": "[Call the Self Assessment helpline to request your UTR](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/self-assessment) if you cannot find any documents from HMRC.\n\nIf you have a limited company:\n\nyou can [request your Corporation Tax UTR online](https://www.tax.service.gov.uk/ask-for-copy-of-your-corporation-tax-utr). HMRC will send it to the business address that’s registered with Companies House.",
+          "infoType": "long"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_3041fa6c_44e1_4a46_896b_9ffd695e57a1",
+          "label": "If you cannot find your NINO:",
+          "infoText": "Go to [Find a lost National Insurance number](https://www.gov.uk/lost-national-insurance-number) \n\non the .gov website and follow the advice that applies in your situation.",
+          "infoType": "long"
         }
       ]
     },
@@ -161,7 +207,7 @@
           "id": "emailInfo3",
           "type": "info",
           "label": "",
-          "infoText": "By supplying your email address you consent to the use of email communication",
+          "infoText": "By supplying your email address you consent to the use of email communication\n\nIf you leave this section blank you are opting out of communicating with HMRC by email",
           "infoType": "noformat"
         },
         {
@@ -175,8 +221,8 @@
       ]
     },
     {
-      "title": "About your agent(s)",
-      "shortName": "About agents",
+      "title": "About your agent",
+      "shortName": "About agent",
       "fields": [
         {
           "id": "agentChoice",
@@ -293,7 +339,7 @@
           "id": "generatedId_5389dbee_9415_4ee3_a106_873e02369641",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -410,7 +456,7 @@
           "id": "generatedId_f4a65353_2401_40c3_a7f3_10853687e0f4",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -528,7 +574,7 @@
           "id": "generatedId_1f417597_7473_4064_8e1b_c78e55802ec8",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -646,7 +692,7 @@
           "id": "generatedId_fa55c6aa_909a_43ff_8ce6_7cb2fecaeeba",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -764,7 +810,7 @@
           "id": "generatedId_d539370d_6a7e_402f_b302_67b2e728d22e",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -882,7 +928,7 @@
           "id": "generatedId_a1ad224a_4ab0_43c6_b43d_5e51f3cbf353",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1000,7 +1046,7 @@
           "id": "generatedId_34d00203_518b_4018_8bec_b18650f6ef70",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1118,7 +1164,7 @@
           "id": "generatedId_f455ff08_d58a_4819_95d0_349fe2d54da7",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1236,7 +1282,7 @@
           "id": "generatedId_ad4cda6c_547f_4ff6_acae_bf797617260c",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1354,7 +1400,7 @@
           "id": "generatedId_222fbbf1_9ca7_4371_b509_fc0abb40c9c3",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1472,7 +1518,7 @@
           "id": "generatedId_ad468a0f_3530_4049_a500_ac4833196edc",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1590,7 +1636,7 @@
           "id": "generatedId_dfcc7e0c_baec_4b6e_9c53_22088670db35",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1687,7 +1733,7 @@
           "id": "generatedId_92def486_b9ae_4b0a_9440_54a5f9aa0661",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1805,7 +1851,7 @@
           "id": "generatedId_25ced4d4_1087_4693_9ee4_ffffcc504668",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -1923,7 +1969,7 @@
           "id": "generatedId_715d8995_d20b_43ae_891e_a9aa9e23c173",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2041,7 +2087,7 @@
           "id": "generatedId_4e6bd05b_82b4_4e67_a455_a36b1f98a0b4",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2159,7 +2205,7 @@
           "id": "generatedId_f04a940b_d708_49c0_b363_adc7acae0856",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2277,7 +2323,7 @@
           "id": "generatedId_b88bfce7_6215_422f_8808_a9be97aa7d7b",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2395,7 +2441,7 @@
           "id": "generatedId_5abc807c_076e_4273_ae70_2e0c33add12e",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2513,7 +2559,7 @@
           "id": "generatedId_cc63e748_ebf8_4c56_8a61_b52f75cd5e62",
           "type": "info",
           "label": "What do I enter on the form?",
-          "infoText": "The tax year ends on the fith of April every year.\n\n* For example, you are in a scheme between 30/06/2001 and 15/12/2001.\n\n* In this example you would need to enter 2001",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
           "infoType": "long"
         },
         {
@@ -2776,7 +2822,8 @@
           "type": "text",
           "label": "Total",
           "format": "sterling",
-          "value": "${salary + otherIncome}"
+          "value": "${salary + otherIncome}",
+          "submitMode": "readonly"
         }
       ]
     },
@@ -2809,7 +2856,8 @@
           "type": "text",
           "label": "Total",
           "format": "sterling",
-          "value": "${mortgage + bills}"
+          "value": "${mortgage + bills}",
+          "submitMode": "readonly"
         }
       ]
     },
