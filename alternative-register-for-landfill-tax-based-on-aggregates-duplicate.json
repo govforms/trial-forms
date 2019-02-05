@@ -642,7 +642,7 @@
           "shortName": "Environmental permit applied for",
           "helpText": "Select one option",
           "format": "vertical",
-          "mandatory": "false",
+          "mandatory": "true",
           "multivalue": "true",
           "choices": [
             "The permit has been applied for"
@@ -685,7 +685,7 @@
           "type": "text",
           "label": "Trading name of site",
           "shortName": "Site trading name",
-          "helpText": "Enter site trading name if different from business name",
+          "helpText": "Enter site trading name if different from the business name",
           "mandatory": "false"
         },
         {
@@ -715,40 +715,6 @@
           "infoType": "noformat"
         },
         {
-          "id": "previousOwnerINfo_copy_1",
-          "type": "info",
-          "label": "Material types",
-          "infoText": "Select the types of materials landfilled at this site. ",
-          "infoType": "noformat"
-        },
-        {
-          "id": "altStdRate",
-          "type": "text",
-          "label": "Standard rate materials",
-          "shortName": "Standard rate materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "xs"
-        },
-        {
-          "id": "altLowRate",
-          "type": "text",
-          "label": "Lower rate materials",
-          "shortName": "Lower rate materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "xs"
-        },
-        {
-          "id": "altLowRate_copy_1",
-          "type": "text",
-          "label": "Exempt materials",
-          "shortName": "Exempt materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "xs"
-        },
-        {
           "id": "weighbridgeChoice_copy_1",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh materials at this site?",
@@ -765,22 +731,81 @@
           "type": "choice",
           "label": "Do you have a controller at this site?",
           "shortName": "Site controller",
-          "helpText": "If a person other than the site operator determines what materials (if any) are disposed of at this site, or as part of this site, that person is a controller. \n\nA person who is acting purely as an agent or an employee of someone else is not a controller.",
+          "helpText": "If a person other than the site operator (or permit holder) determines what materials (if any) are disposed of at this site, or as part of this site, that person is a controller. \n\nA person who is acting purely as an agent or an employee of someone else is not a controller",
           "format": "yesno",
           "errorMessage": "You must select whether you have a site controller"
         },
         {
+          "id": "generatedId_0aac6495_35f4_4bf0_babf_ff170224d041",
+          "type": "info",
+          "label": "",
+          "infoText": "##Landfill details",
+          "infoType": "noformat"
+        },
+        {
+          "id": "previousOwnerINfo_copy_1",
+          "type": "info",
+          "label": "Material types",
+          "infoText": "Provide details for the types of materials landfilled at this site. ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "altStdRate",
+          "type": "text",
+          "label": "Standard rate materials",
+          "shortName": "Standard rate materials in tonnes",
+          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
+          "format": "number(10,0)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "altLowRate",
+          "type": "text",
+          "label": "Lower rate materials",
+          "shortName": "Lower rate materials in tonnes",
+          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
+          "format": "number(10,0)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "altLowRate_copy_1",
+          "type": "text",
+          "label": "Exempt materials",
+          "shortName": "Exempt materials in tonnes",
+          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
+          "format": "number(10,0)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "generatedId_4bfd8037_20f7_408c_9174_8198724f5df9",
+          "type": "info",
+          "label": "",
+          "infoText": "##Environmental permit details",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_5dc502f7_cbfc_42ca_a2fb_a8d8997f159c",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details about this site's environmental permit. These are issued by environmental regulators such as the Environment Agency.",
+          "infoType": "noformat"
+        },
+        {
           "id": "permitNotwo_copy_1",
           "type": "choice",
-          "label": "Select the status of the environmental permit for this site",
-          "shortName": "Environmental permit applied for or granted",
-          "helpText": "Select one option",
+          "label": "Select the status of your site's permit",
+          "shortName": "Environmental permit status",
           "format": "vertical",
-          "mandatory": "false",
+          "mandatory": "true",
           "multivalue": "false",
+          "errorMessage": "Status of site permit must be selected",
           "choices": [
-            "The permit has been applied for",
-            "The permit has been granted "
+            "Permit has been applied for",
+            "Permit has been granted "
+          ],
+          "optionHelpText": [
+            "Once your site permit has been granted, or if it is not granted, you will need to contact HMRC to let us know the details. Contact details will be provided after completing this registration",
+            ""
           ]
         },
         {
@@ -788,9 +813,9 @@
           "type": "text",
           "label": "Enter the permit number for this site",
           "shortName": "Permit number",
-          "helpText": "This will have been issued to you by an environmental regulator such as the Environment Agency, if not applicable leave blank",
+          "helpText": "If you have not been issued a permit yet, leave blank",
           "mandatory": "false",
-          "displayWidth": "xs"
+          "displayWidth": "l"
         }
       ]
     },
@@ -803,7 +828,8 @@
           "type": "choice",
           "label": "",
           "shortName": "Taken over landfill business",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "You must select whether you have taken over another landfill business"
         }
       ]
     },
@@ -818,7 +844,7 @@
           "type": "date",
           "label": "Date the transfer took place",
           "shortName": "Date of transfer",
-          "helpText": "For example, 21 8 2018"
+          "helpText": "For example, 21 08 2018"
         },
         {
           "id": "prevBusinessName",
@@ -830,7 +856,7 @@
           "id": "prevRegNo",
           "type": "text",
           "label": "Landfill Tax registration number of previous business",
-          "shortName": "Landfill Tax registration number of other business",
+          "shortName": "Landfill Tax registration number of previous business",
           "format": "text"
         },
         {
@@ -838,40 +864,47 @@
           "type": "choice",
           "label": "Do you want to keep the Landfill Tax registration number of the previous business?",
           "shortName": "Keep previous Landfill Tax registration number",
-          "helpText": "Help text to be added",
+          "helpText": "If you keep the registration number, you’ll become liable for the previous owner’s Landfill Tax debts",
+          "errorMessage": "You must select whether you want to keep the previous registration number",
           "choices": [
             "Yes",
             "No"
+          ],
+          "optionHelpText": [
+            "You will need to contact HMRC if you wish to keep the previous business's registration number. Contact details will be provided once you have submitted this registration.",
+            "Help text for choice ref 1"
           ]
         }
       ]
     },
     {
-      "title": "Have any of your business owners been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Sole trader's  involvement in other aggregates businesses in last 2 years",
-      "includeIf": "${(legalStatus = 1 || legalStatus = 3) || (legalStatus = 4 || legalStatus = 5)}",
+      "title": "Have you (the sole trader) been involved in any other landfill businesses in the last 2 years?",
+      "shortName": "Sole trader's involvement in other landfill businesses in last 2 years",
+      "includeIf": "${legalStatus = 1}",
       "fields": [
         {
           "id": "otherBusiness",
           "type": "choice",
           "label": "",
-          "shortName": "Involved in other aggregates businesses ",
-          "format": "yesno"
+          "shortName": "Involved in other landfill businesses ",
+          "format": "yesno",
+          "mandatory": "true"
         }
       ]
     },
     {
       "title": "Have any of the partners in your business been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Partners involvement in other aggregates businesses in last 2 years",
-      "includeIf": "${legalStatus=2}",
+      "shortName": "Partners involvement in other landfill businesses in last 2 years",
+      "includeIf": "${legalStatus=2 || legalStatus=3}",
       "fields": [
         {
           "id": "otherBusinessPart",
           "type": "choice",
           "label": "",
-          "shortName": "Partners involved in other aggregates businesses",
+          "shortName": "Partners involved in other landfill businesses",
           "helpText": "",
-          "format": "yesno"
+          "format": "yesno",
+          "mandatory": "true"
         }
       ]
     },
@@ -886,7 +919,8 @@
           "label": "",
           "shortName": "Directors involved in other landfill businesses",
           "format": "yesno",
-          "errorMessage": "Select whether your business has been involved with any other landfill businesses"
+          "mandatory": "true",
+          "errorMessage": "Select whether your directors have been involved with other landfill businesses"
         }
       ]
     },
@@ -894,7 +928,7 @@
       "title": "Registration numbers of the other businesses",
       "shortName": "Details of other landfill businesses",
       "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Landfill Tax registration number of each business that your business has been involved in within the last 2 years. ",
+      "description": "Enter the Landfill Tax registration number of each business that you (the sole trader) has been involved in within the last 2 years. ",
       "fields": [
         {
           "id": "otherRegNo",
