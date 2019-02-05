@@ -16,13 +16,13 @@
   "sections": [
     {
       "title": "Is some or all of the evaded tax owed in the UK?",
-      "shortName": "Where evaded tax is owed",
+      "shortName": "Where the evaded tax is owed",
       "fields": [
         {
           "id": "evadedTaxUK",
           "type": "choice",
           "label": "Is some or all of the evaded tax owed in the UK?",
-          "shortName": "Is evaded tax is owed in the UK",
+          "shortName": "Is evaded tax owed in the UK",
           "format": "vertical",
           "errorMessage": "Select whether the evaded tax is owed in the UK",
           "choices": [
@@ -82,7 +82,7 @@
     },
     {
       "title": "Which of these best describes the organisation you are reporting?",
-      "shortName": "Description of organisation type",
+      "shortName": "Description of organisation",
       "fields": [
         {
           "id": "CompanyType",
@@ -100,7 +100,7 @@
     },
     {
       "title": "What is your connection to the organisation?",
-      "shortName": "Connection to the organisation",
+      "shortName": "Connection to organisation",
       "fields": [
         {
           "id": "connectiontoBusiness",
@@ -115,7 +115,7 @@
     },
     {
       "title": "Is the organisation registered in the UK?",
-      "shortName": "Where the organisation is registered",
+      "shortName": "Where organisation is registered",
       "includeIf": "${CompanyType=0}",
       "fields": [
         {
@@ -402,6 +402,7 @@
     },
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
+      "shortName": "",
       "includeIf": "${CompanyType=0 && companyRegUK=0 && utrYesno=0} ",
       "fields": [
         {
@@ -415,12 +416,14 @@
     },
     {
       "title": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
+      "shortName": "Do you know the organisation's Unique Taxpayer Reference",
       "includeIf": "${CompanyType=1 && partnershipRegUK=0}",
       "fields": [
         {
           "id": "utrYesnoPart",
           "type": "choice",
           "label": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
+          "shortName": "Organisation's Unique Taxpayer Reference known",
           "choices": [
             "Yes",
             "No"
@@ -430,6 +433,7 @@
     },
     {
       "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+      "shortName": "Self Assessment Tax Unique Taxpayer Reference",
       "includeIf": "${CompanyType=1 && utrYesnoPart=0} ",
       "fields": [
         {
@@ -437,17 +441,20 @@
           "type": "text",
           "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "What is the Unique Taxpayer Reference"
         }
       ]
     },
     {
       "title": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
+      "shortName": "Taxpayers involved in the facilitated evasion",
       "fields": [
         {
           "id": "identifySpecific",
           "type": "choice",
           "label": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
+          "shortName": "Have you identified taxpayers involved in the evasion",
           "helpText": "",
           "format": "vertical",
           "errorMessage": "Select whether you have identified the specific taxpayers involved",
@@ -464,12 +471,14 @@
     },
     {
       "title": "Tell us how the criminal facilitation of tax evasion took place",
+      "shortName": "How the facilitation of tax evasion took place",
       "description": "",
       "fields": [
         {
           "id": "generatedId_827e9bb9_3f42_46ca_8fbb_495b23732706",
           "type": "info",
           "label": "",
+          "shortName": "Summary Tell of how facilitation took place",
           "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
@@ -493,11 +502,13 @@
     },
     {
       "title": "Tell us any other information that may be relevant",
+      "shortName": "Other relevant information",
       "fields": [
         {
           "id": "anyOtherInfo",
           "type": "text",
           "label": "Additional information about how the tax evasion was facilitated",
+          "shortName": "Summary of additional information",
           "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank",
           "format": "text(1,4000)",
           "mandatory": "false",
@@ -507,11 +518,13 @@
     },
     {
       "title": "Is the facilitation ongoing?",
+      "shortName": "Facilitation ongoing or ended",
       "fields": [
         {
           "id": "facilitationOngoing",
           "type": "choice",
           "label": "",
+          "shortName": "Is the facilitation ongoing",
           "format": "vertical",
           "errorMessage": "Select whether the facilitation is ongoing",
           "choices": [
@@ -530,6 +543,7 @@
           "id": "endDate",
           "type": "date",
           "label": "Estimate the date when the facilitation ended",
+          "shortName": "Estimated facilitation end date",
           "helpText": "For example, 01 04 2018",
           "mandatory": "true"
         }
