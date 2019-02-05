@@ -1,0 +1,535 @@
+{
+  "_id": "gaming-duty-registration-v3",
+  "formName": "Register your business for Gaming Duty",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "GD56"
+  },
+  "sections": [
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "id": "generatedId_052dc509_0c21_4b28_b306_4252a094ba7b",
+          "type": "info",
+          "label": "",
+          "infoText": "We will only use your email address and phone number to contact you if we have a question.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "Telephone number",
+          "type": "text",
+          "label": "Telephone number "
+        },
+        {
+          "id": "Email address",
+          "type": "text",
+          "label": "Email address"
+        },
+        {
+          "id": "capacity",
+          "type": "text",
+          "label": "What is your role within the organisation?",
+          "helpText": "For example, a director or proprietor"
+        }
+      ]
+    },
+    {
+      "title": "What type of business do you want to register?",
+      "fields": [
+        {
+          "id": "legalStatus1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business legal status",
+          "format": "vertical",
+          "choices": [
+            "Limited company",
+            "Sole proprietorship",
+            "Partnership",
+            "Group",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your sole proprietorship",
+      "includeIf": "${legalStatus1 = 1}",
+      "fields": [
+        {
+          "id": "spName",
+          "type": "text",
+          "label": "Sole proprietor's name"
+        },
+        {
+          "id": "spTradingName",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "id": "spNameChoice",
+          "type": "choice",
+          "label": "Is your trading name different to the sole proprietor's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "saNumberChoice",
+          "type": "choice",
+          "label": "Does the sole proprietor have a Self Assessment number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "groupChoiceSP",
+          "type": "choice",
+          "label": "Are you the representative member of a group for Gaming Duty purposes?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your partnership",
+      "includeIf": "${legalStatus1 = 2}",
+      "fields": [
+        {
+          "id": "pName",
+          "type": "text",
+          "label": "Name of partnership"
+        },
+        {
+          "id": "pTradingName",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "id": "nameChoicePA",
+          "type": "choice",
+          "label": "Is the trading name different to your full name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "corpTaxRefChoice",
+          "type": "choice",
+          "label": "Do you have a Corporation Tax reference number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "groupChoicePA",
+          "type": "choice",
+          "label": "Are you the representative member of a group for Gaming Duty purposes?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your company",
+      "includeIf": "${legalStatus1 = 0}",
+      "fields": [
+        {
+          "id": "coName",
+          "type": "text",
+          "label": "Registered company name"
+        },
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "id": "nameChoiceLC",
+          "type": "choice",
+          "label": "Is the trading name different from the company name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "corpTaxRefChoiceLC",
+          "type": "choice",
+          "label": "Do you have a Corporation Tax reference number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "groupChoiceLC",
+          "type": "choice",
+          "label": "Are you the representative member of a group for Gaming Duty purposes?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your unincorporated body",
+      "includeIf": "${legalStatus1 = 4}",
+      "fields": [
+        {
+          "id": "coNameUB",
+          "type": "text",
+          "label": "Unicorporated body's name"
+        },
+        {
+          "id": "tradingNameUB",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "id": "nameChoiceUB",
+          "type": "choice",
+          "label": "Is the trading name different from the unincorporated body's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "corpTaxRefChoiceUB",
+          "type": "choice",
+          "label": "Do you have a Corporation Tax reference number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "groupChoiceUB",
+          "type": "choice",
+          "label": "Are you the representative member of a group for Gaming Duty purposes?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your Self Assessment Unique Taxpayer Reference?",
+      "includeIf": "${saNumberChoice = 0}",
+      "fields": [
+        {
+          "id": "saUTR",
+          "type": "text",
+          "label": "",
+          "helpText": "This is 10 numbers and will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "format": "utr"
+        }
+      ]
+    },
+    {
+      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
+      "includeIf": "${(corpTaxRefChoice = 0 || corpTaxRefChoiceLC = 0) || corpTaxRefChoiceUB = 0}",
+      "fields": [
+        {
+          "id": "corpTaxRef",
+          "type": "text",
+          "label": "",
+          "helpText": "This is 10 numbers and will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’"
+        }
+      ]
+    },
+    {
+      "title": "Enter the address of your principal place of business",
+      "fields": [
+        {
+          "id": "ppbAdd",
+          "type": "address",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "id": "ppbTel",
+          "type": "text",
+          "label": "Business's telephone number",
+          "helpText": "You must always include the area or dialling code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "accountsAddressChoice",
+          "type": "choice",
+          "label": "Are your business records stored at this address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you keep your records and accounts at your principal place of business?",
+      "fields": [
+        {
+          "id": "recAddChoice",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the address of where your business records are kept",
+      "includeIf": "${recAddChoice = 0}",
+      "fields": [
+        {
+          "id": "recAccAdd",
+          "type": "address",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Do you want to register more than one premises for Gaming Duty? ",
+      "fields": [
+        {
+          "id": "gd58Choice",
+          "type": "choice",
+          "label": " ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of new premises you want to register",
+      "includeIf": "${gd58Choice = 0}",
+      "fields": [
+        {
+          "id": "newPremNumb",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of premises $n",
+      "includeIf": "${gd58Choice = 0}",
+      "repeatsMin": "${newPremNumb}",
+      "repeatsMax": "${newPremNumb}",
+      "fields": [
+        {
+          "id": "premName",
+          "type": "text",
+          "label": "Trading name "
+        },
+        {
+          "id": "premAdd",
+          "type": "address",
+          "label": "Address "
+        },
+        {
+          "id": "premTel",
+          "type": "text",
+          "label": "Telephone number at this premises",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "How many partners would you like to register?",
+      "includeIf": "${legalStatus1 = 1}",
+      "fields": [
+        {
+          "id": "numberPartners",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Partner $n details",
+      "repeatsMin": "${numberPartners}",
+      "repeatsMax": "${numberPartners}",
+      "fields": [
+        {
+          "id": "PartnerFirstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "PartnerLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "PartnerAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "PartnerTel",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "What date should group treatment start?",
+      "includeIf": "${groupChoiceUB = 0 || groupChoiceLC = 0 || groupChoicePA = 0 || groupChoiceSP = 0 } ",
+      "fields": [
+        {
+          "id": "newGroupStartDate",
+          "type": "date",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter group representation details",
+      "fields": [
+        {
+          "id": "nameRN",
+          "type": "text",
+          "label": "Full name of representative member"
+        },
+        {
+          "id": "corpMembChoice",
+          "type": "choice",
+          "label": "Is each member of the group, including the representative member, a member of a corporate group?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "membResiChoice",
+          "type": "choice",
+          "label": "Is each member of the group, including the representative member, either resident or established within the UK or Isle of Man?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many members are there in the group?",
+      "fields": [
+        {
+          "id": "numberMembers",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the full name of group member number $n",
+      "repeatsMin": "${numberMembers}",
+      "repeatsMax": "${numberMembers}",
+      "fields": [
+        {
+          "id": "memberFullName",
+          "type": "text",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "What date will gaming start at the premises you are registering?",
+      "fields": [
+        {
+          "id": "startTradingDate",
+          "type": "date",
+          "label": "",
+          "helpText": "DD MM YYYY"
+        }
+      ]
+    },
+    {
+      "title": "Enter an estimate of your profits over the next 12 months",
+      "fields": [
+        {
+          "id": "estProf",
+          "type": "text",
+          "label": "",
+          "helpText": "You might call your 'profits'  your ‘gross gaming yield’ ",
+          "format": "sterling"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit your form to register for Gaming Duty",
+    "shortName": "Submit your form",
+    "fields": [
+      {
+        "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
+        "type": "info",
+        "label": "",
+        "infoText": "##Terms and conditions",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
+        "type": "info",
+        "label": "",
+        "infoText": "Before you submit your form to register for Gaming Duty, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you ",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "generatedId_17d4070a_efc2_44a4_90db_f6c40ad644e4",
+        "type": "info",
+        "label": "Get a copy of form",
+        "infoText": "If you want a copy of your form you'll need to print it or save it as a PDF before you leave this page.\n\nWe will contact you if we have a question. \n\n\n\n\n",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
