@@ -52,7 +52,7 @@
           "id": "agentTelephone_copy_1",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "Include the country and area codes",
+          "helpText": "For international and UK numbers include the country code and area codes, for example +44 20 7946 0000",
           "format": "telephoneNumber",
           "mandatory": "true",
           "errorMessage": "Enter your telephone number"
@@ -158,7 +158,7 @@
         {
           "id": "utrRepComp",
           "type": "text",
-          "label": "Unique Taxpayer Reference",
+          "label": "Company Unique Taxpayer Reference",
           "format": "text(10,10)",
           "mandatory": "yes",
           "errorMessage": "Enter a valid 10 digit Unique Taxpayer Reference"
@@ -254,24 +254,31 @@
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
+          "id": "generatedId_ed3e4e45_8ec7_4ee3_ae7c_01367856c8e0",
+          "type": "info",
+          "label": "What qualifies as connected or unconnected externally provided workers?  ",
+          "infoText": "Add description here",
+          "infoType": "long"
+        },
+        {
+          "id": "epwUnCon",
+          "type": "text",
+          "label": "65% costs for unconnected EPWs",
+          "format": "sterling",
+          "mandatory": "no",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
           "id": "generatedId_ce1ffd62_3925_439a_ad3e_2a56af7ab5d3",
           "type": "info",
-          "label": "Is my company connected or unconnected?",
-          "infoText": "Your company and the\nsubcontractor or staff supplier are connected if both are controlled by the\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the subcontractor or staff supplier or\n- the subcontractors or staff supplier own costs\n\nWhere unconnected, you may claim 65% of the costs of\nsubcontractors or externally provider workers.",
+          "label": "What qualifies as connected or unconnected subcontractors?",
+          "infoText": "[Text to be revisited]\nYour company and the\nsubcontractor or staff supplier are connected if both are controlled by the\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the subcontractor or staff supplier or\n- the subcontractors or staff supplier own costs\n\nWhere unconnected, you may claim 65% of the costs of\nsubcontractors or externally provider workers.",
           "infoType": "long"
         },
         {
           "id": "subConCon",
           "type": "text",
           "label": "Costs for connected subcontractors",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
-          "id": "epwUnCon",
-          "type": "text",
-          "label": "65% costs for unconnected EPWs",
           "format": "sterling",
           "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
@@ -287,7 +294,7 @@
         {
           "id": "software",
           "type": "text",
-          "label": "Software",
+          "label": "Software costs",
           "helpText": "Include software licence fees bought for R&D and a reasonable share of the costs for software partly used in your R&D activities",
           "format": "sterling",
           "mandatory": "no",
@@ -296,7 +303,7 @@
         {
           "id": "consumables",
           "type": "text",
-          "label": "Consumables",
+          "label": "Consumables costs",
           "helpText": "Include costs on materials consumed or transformed in the R&D process, for example, water, fuel, power and laboratory consumables used in trials",
           "format": "sterling",
           "mandatory": "no",
@@ -305,7 +312,7 @@
         {
           "id": "clinicalTrial",
           "type": "text",
-          "label": "Clinical trials volunteers",
+          "label": "Costs for clinical trials volunteers",
           "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical tests",
           "format": "sterling",
           "mandatory": "no",
@@ -344,7 +351,7 @@
       ]
     },
     {
-      "title": "New repeating projects page individual and organisation $n",
+      "title": "Research and development project $n",
       "shortName": "Projects",
       "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
       "description": "Tell us about the project you want to claim for.",
@@ -369,7 +376,7 @@
           "type": "text",
           "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
           "shortName": "Scientific or technical knowledge at the start",
-          "helpText": "Enter up to 3,000 characters including spaces",
+          "helpText": "Enter up to 3,000 characters including spaces (approximately 600 words)",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Summarise the scientific or technical knowledge at the start of the project"
@@ -393,7 +400,7 @@
           "type": "text",
           "label": "",
           "shortName": "Advanced knowledge",
-          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3,000 characters including spaces",
+          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3,000 characters including spaces (approximately 600 words)",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter the knowledge you aimed to achieve"
@@ -417,7 +424,7 @@
           "type": "text",
           "label": "",
           "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3,000 characters including spaces",
+          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3,000 characters including spaces (approximately 600 words)",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter scientific or technological uncertainties faced"
@@ -441,7 +448,7 @@
           "type": "text",
           "label": "",
           "shortName": "Work to overcome uncertainties",
-          "helpText": "Enter up to 3,000 characters including spaces",
+          "helpText": "Enter up to 3,000 characters including spaces (approximately 600 words)",
           "format": "text(0, 3000)",
           "multiline": "yes",
           "errorMessage": "Enter work done to overcome these uncertainties"
@@ -624,7 +631,7 @@
       ]
     },
     {
-      "title": "Have you claimed an R&D tax credit for this period?",
+      "title": "Did your company incur loss during the period your are claiming for?",
       "description": "If your company has incurred a loss, you can either carry it forward against trading profits in the future or give it up for a cash payment.",
       "fields": [
         {
@@ -660,7 +667,7 @@
     }
   ],
   "declarationSection": {
-    "title": "Confirm details and send the form",
+    "title": "Declaration",
     "shortName": "Confirm details and send the form",
     "fields": [
       {
