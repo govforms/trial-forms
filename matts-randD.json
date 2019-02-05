@@ -321,7 +321,7 @@
         {
           "id": "totalQualifyingExpenditure",
           "type": "text",
-          "label": "Total amount of costs before any enchancements",
+          "label": "Total amount of costs before any enhancements",
           "format": "sterling",
           "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
@@ -608,6 +608,15 @@
           "helpText": "This is based on the amount you entered on a previous page",
           "format": "sterling",
           "value": "${totalQualifyingExpenditure}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "sumRemaining",
+          "type": "text",
+          "label": "Amount of R and D total costs before enhancements remaining",
+          "format": "sterling",
+          "value": "${totalQualifyingExpenditure - qe1Individual}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
