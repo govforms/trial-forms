@@ -16,7 +16,7 @@
   "sections": [
     {
       "title": "Is some or all of the evaded tax owed in the UK?",
-      "shortName": "Where the evaded tax is owed",
+      "shortName": "Where evaded tax is owed",
       "fields": [
         {
           "id": "evadedTaxUK",
@@ -49,13 +49,13 @@
     },
     {
       "title": "Are you authorised by the organisation to make this report on its behalf?",
-      "shortName": "Authorisation to make this report",
+      "shortName": "Authorisation to make this self-report",
       "fields": [
         {
           "id": "authorised",
           "type": "choice",
           "label": "Are you authorised by the organisation to make this report on its behalf?",
-          "shortName": "Are you authorised to make this report",
+          "shortName": "Are you authorised",
           "helpText": "Select whether you are authorised to make this report",
           "format": "vertical",
           "choices": [
@@ -106,7 +106,7 @@
           "id": "connectiontoBusiness",
           "type": "text",
           "label": "What is your connection to the organisation?",
-          "shortName": "Your connection to the organisation",
+          "shortName": "Your connection",
           "helpText": " ",
           "mandatory": "true",
           "displayWidth": "xl"
@@ -122,7 +122,7 @@
           "id": "companyRegUK",
           "type": "choice",
           "label": "Is the organisation registered in the UK?",
-          "shortName": "Is the organisation UK registered",
+          "shortName": "Is organisation UK registered",
           "format": "vertical",
           "errorMessage": "Select whether the organisation is registered in the UK",
           "choices": [
@@ -141,7 +141,7 @@
           "id": "partnershipRegUK",
           "type": "choice",
           "label": "Is the organisation registered in the UK?",
-          "shortName": "Is the organisation UK registered",
+          "shortName": "UK registered",
           "format": "yesno"
         }
       ]
@@ -355,14 +355,14 @@
     },
     {
       "title": "Does the organisation trade under a different name?",
-      "shortName": "Does the organisation have a trading name",
+      "shortName": "Trading name details",
       "includeIf": "${CompanyType=0 && companyRegUK =0 || CompanyType=1 && partnershipRegUK=0}",
       "fields": [
         {
           "id": "tradingName",
           "type": "choice",
           "label": "Does the organisation trade under a different name?",
-          "shortName": "Does the organisation trade under a different name",
+          "shortName": "Organisation trading name",
           "errorMessage": "Select whether the organisation has a trading name",
           "choices": [
             "Yes",
@@ -373,7 +373,7 @@
     },
     {
       "title": "What is the trading name?",
-      "shortName": "What is the trading name",
+      "shortName": "Trading name of organisation",
       "includeIf": "${tradingName=0}",
       "fields": [
         {
@@ -386,12 +386,14 @@
     },
     {
       "title": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${CompanyType=0 && companyRegUK=0}",
       "fields": [
         {
           "id": "utrYesno",
           "type": "choice",
           "label": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
+          "shortName": "Unique Taxpayer Reference known",
           "errorMessage": "Select whether you know the organisation's Unique Taxpayer Reference",
           "choices": [
             "Yes",
@@ -402,13 +404,14 @@
     },
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "",
+      "shortName": "Organisation's Unique Taxpayer Reference",
       "includeIf": "${CompanyType=0 && companyRegUK=0 && utrYesno=0} ",
       "fields": [
         {
           "id": "companyUniqueTaxRefNumUK",
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
+          "shortName": "Corporation Tax Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
           "mandatory": "false"
         }
@@ -416,14 +419,14 @@
     },
     {
       "title": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
-      "shortName": "Do you know the organisation's Unique Taxpayer Reference",
+      "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${CompanyType=1 && partnershipRegUK=0}",
       "fields": [
         {
           "id": "utrYesnoPart",
           "type": "choice",
           "label": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
-          "shortName": "Organisation's Unique Taxpayer Reference known",
+          "shortName": "Unique Taxpayer Reference known",
           "choices": [
             "Yes",
             "No"
@@ -433,13 +436,14 @@
     },
     {
       "title": "What is the Self Assessment Tax Unique Taxpayer Reference?",
-      "shortName": "Self Assessment Tax Unique Taxpayer Reference",
+      "shortName": "Organisation's Unique Taxpayer Reference",
       "includeIf": "${CompanyType=1 && utrYesnoPart=0} ",
       "fields": [
         {
           "id": "companyUniqueTaxRefNumUK_copy_2",
           "type": "text",
           "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
+          "shortName": "Self Assessment Tax Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
           "mandatory": "false",
           "errorMessage": "What is the Unique Taxpayer Reference"
@@ -454,7 +458,7 @@
           "id": "identifySpecific",
           "type": "choice",
           "label": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
-          "shortName": "Have you identified taxpayers involved in the evasion",
+          "shortName": "Identified taxpayers",
           "helpText": "",
           "format": "vertical",
           "errorMessage": "Select whether you have identified the specific taxpayers involved",
@@ -471,14 +475,14 @@
     },
     {
       "title": "Tell us how the criminal facilitation of tax evasion took place",
-      "shortName": "How the facilitation of tax evasion took place",
+      "shortName": "How facilitation of tax evasion took place",
       "description": "",
       "fields": [
         {
           "id": "generatedId_827e9bb9_3f42_46ca_8fbb_495b23732706",
           "type": "info",
           "label": "",
-          "shortName": "Summary Tell of how facilitation took place",
+          "shortName": "Summary of how facilitation took place",
           "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
@@ -493,6 +497,7 @@
           "id": "summariseHowTax",
           "type": "text",
           "label": "Summary of how the tax evasion was facilitated",
+          "shortName": "Summary of how tax evasion was facilitated",
           "helpText": "Enter a maximum of 5000 characters including spaces",
           "format": "text(1,5000)",
           "mandatory": "true",
@@ -508,7 +513,7 @@
           "id": "anyOtherInfo",
           "type": "text",
           "label": "Additional information about how the tax evasion was facilitated",
-          "shortName": "Summary of additional information",
+          "shortName": "Additional information",
           "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank",
           "format": "text(1,4000)",
           "mandatory": "false",
@@ -518,13 +523,13 @@
     },
     {
       "title": "Is the facilitation ongoing?",
-      "shortName": "Facilitation ongoing or ended",
+      "shortName": "Facilitation details",
       "fields": [
         {
           "id": "facilitationOngoing",
           "type": "choice",
           "label": "",
-          "shortName": "Is the facilitation ongoing",
+          "shortName": "Facilitation ongoing",
           "format": "vertical",
           "errorMessage": "Select whether the facilitation is ongoing",
           "choices": [
@@ -537,13 +542,15 @@
     },
     {
       "title": "Estimate the date when the facilitation ended",
+      "shortName": "Estimated end date of facilitation",
       "includeIf": "${facilitationOngoing=1}",
+      "description": "Estimate of facilitation end date",
       "fields": [
         {
           "id": "endDate",
           "type": "date",
           "label": "Estimate the date when the facilitation ended",
-          "shortName": "Estimated facilitation end date",
+          "shortName": "Estimated end date",
           "helpText": "For example, 01 04 2018",
           "mandatory": "true"
         }
@@ -551,12 +558,14 @@
     },
     {
       "title": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+      "shortName": "Previous self-reports to HMRC ",
       "description": "",
       "fields": [
         {
           "id": "selfReportedFailure",
           "type": "choice",
           "label": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
+          "shortName": "First self-report made to HMRC",
           "errorMessage": "Select whether this is the organisation's first self report to HMRC",
           "choices": [
             "Yes",
@@ -568,12 +577,14 @@
     },
     {
       "title": "Do you have the submission reference for any of the previous self-reports to HMRC?",
+      "shortName": "Details of previous self-reports",
       "includeIf": "${selfReportedFailure=1}",
       "fields": [
         {
           "id": "haveReferenceNumber",
           "type": "choice",
           "label": "",
+          "shortName": "Previous self-report submission references",
           "errorMessage": "Select whether you have the submission reference for previous self-reports to HMRC",
           "choices": [
             "Yes",
@@ -584,12 +595,14 @@
     },
     {
       "title": "Enter the submission reference for each previous self-report to HMRC",
+      "shortName": "Submission references for previous self-reports",
       "includeIf": "${selfReportedFailure=1 && haveReferenceNumber=0}",
       "fields": [
         {
           "id": "summariseHowTaxingGroup",
           "type": "group",
           "label": "",
+          "shortName": "Previous submission references",
           "mandatory": "true",
           "repeatsMin": 1,
           "repeatsMax": 50,
@@ -608,11 +621,13 @@
     },
     {
       "title": "Have you made any other reports about this incident to agencies or bodies other than HMRC? ",
+      "shortName": "Reports to agencies or bodies other than HMRC ",
       "fields": [
         {
           "id": "madeOtherReports",
           "type": "choice",
           "label": "",
+          "shortName": "Reports made to other agencies ",
           "helpText": "This might include Suspicious Activity Reports, or reports to the Serious Fraud Office (SFO)",
           "errorMessage": "Select whether you've made any other reports about this incident to agencies other than HMRC ",
           "choices": [
@@ -625,6 +640,7 @@
     },
     {
       "title": "Tell us about the reports",
+      "shortName": "Details of reports to other agencies",
       "includeIf": "${madeOtherReports=0}",
       "description": "Enter the details for each report you have made about this incident to agencies other than HMRC.",
       "fields": [
@@ -632,6 +648,7 @@
           "id": "otherReportsGroup",
           "type": "group",
           "label": "",
+          "shortName": "Report details",
           "repeatsMin": 1,
           "repeatsMax": 99,
           "repeatLabel": "Report details $n",
@@ -650,6 +667,7 @@
               "id": "referenceNumbersAssociated",
               "type": "text",
               "label": "Reference number (optional)",
+              "shortName": "Reference number",
               "helpText": "Enter the reference number associated with this report ",
               "format": "text(1,60)",
               "mandatory": "false"
@@ -660,11 +678,13 @@
     },
     {
       "title": "Estimate the total value of tax evasion that has been facilitated",
+      "shortName": "Total value of tax evasion",
       "fields": [
         {
           "id": "estimateTotalValues",
           "type": "text",
           "label": "",
+          "shortName": "Estimate of total value",
           "helpText": "Leave blank if not know",
           "format": "sterling",
           "mandatory": "false"
@@ -673,11 +693,13 @@
     },
     {
       "title": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
+      "shortName": "Organisation overseen by a licensing authority",
       "fields": [
         {
           "id": "overseenByARegulator",
           "type": "choice",
           "label": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
+          "shortName": "Organisation overseen",
           "errorMessage": "Select whether the organisation is overseen by a regulator, supervisor or a licensing authority ",
           "choices": [
             "Yes",
@@ -689,27 +711,31 @@
     },
     {
       "title": "Enter the details for each regulator, supervisor or licensing authority ",
+      "shortName": "Details for each authority",
       "includeIf": "${overseenByARegulator=0}",
       "fields": [
         {
           "id": "nameAuthorityGroup",
           "type": "group",
           "label": "",
+          "shortName": "Authority name",
           "repeatsMin": 1,
           "repeatsMax": 99,
-          "repeatLabel": "Details of authority $n",
+          "repeatLabel": "Details of authority",
           "repeatAddAnotherText": "Add details of another authority",
           "fields": [
             {
               "id": "nameOfAuthority",
               "type": "text",
               "label": "Name of authority",
+              "shortName": "Authority name",
               "mandatory": "true"
             },
             {
               "id": "countryOfAuthority",
               "type": "text",
               "label": "Country of authority",
+              "shortName": "Country of authority",
               "mandatory": "true"
             }
           ]
@@ -718,11 +744,13 @@
     },
     {
       "title": "Does the organisation have procedures in place that were designed to prevent this incident?",
+      "shortName": "Organisation's prevention procedures",
       "fields": [
         {
           "id": "preventionProcYesNo",
           "type": "choice",
           "label": "",
+          "shortName": "Prevention procedures in place",
           "format": "vertical",
           "errorMessage": "Select whether the organisation has prevention procedures in place",
           "choices": [
@@ -734,12 +762,14 @@
     },
     {
       "title": "Which of the following are part of the procedures?",
+      "shortName": "Details of prevention procedures",
       "includeIf": "${preventionProcYesNo=0}",
       "fields": [
         {
           "id": "partOfPrevention",
           "type": "choice",
           "label": "",
+          "shortName": "Prevention procedures used",
           "helpText": "Select one or more options",
           "mandatory": "false",
           "multivalue": "yes",
@@ -771,12 +801,14 @@
     },
     {
       "title": "Briefly describe why no prevention procedures are in place",
+      "shortName": "Why no prevention procedures are in place",
       "includeIf": "${preventionProcYesNo=1}",
       "fields": [
         {
           "id": "whyNotPrevention",
           "type": "text",
           "label": "Summary of why no prevention procedures are in place.",
+          "shortName": "Summary of why no procedures are in place",
           "helpText": "Enter a maximum of 1000 characters including spaces",
           "format": "text(1,1000)",
           "mandatory": "false",
@@ -818,6 +850,7 @@
           "id": "generatedId_b1569843_aa6e_4b06_8df2_4c2f65c6ab0c",
           "type": "address",
           "label": "Work address where we can contact you",
+          "shortName": "Work contact address",
           "helpText": "",
           "international": "true"
         }
@@ -837,6 +870,7 @@
           "id": "gdprConsent",
           "type": "choice",
           "label": "",
+          "shortName": "Consent given",
           "mandatory": "true",
           "multivalue": "true",
           "errorMessage": "Select if you understand and agree to how HMRC will use your information",
