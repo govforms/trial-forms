@@ -67,7 +67,7 @@
           "id": "youInfo2",
           "type": "info",
           "label": "",
-          "infoText": "##Capacity in which you are completing this registration",
+          "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
@@ -105,6 +105,13 @@
           "type": "text",
           "label": "Email address",
           "format": "email"
+        },
+        {
+          "id": "capacityCompleting",
+          "type": "text",
+          "label": "What is your role within the business?",
+          "shortName": "Role within organisation",
+          "helpText": ""
         }
       ]
     },
@@ -133,7 +140,7 @@
           "id": "infoPartner3",
           "type": "info",
           "label": "",
-          "infoText": "##Capacity in which you are completing this registration",
+          "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
@@ -174,7 +181,7 @@
           "id": "info4",
           "type": "info",
           "label": "",
-          "infoText": "##Capacity in which you are completing this registration",
+          "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
@@ -191,14 +198,14 @@
       ]
     },
     {
-      "title": "Are you authorised by your business to register on their behalf?",
+      "title": "Are you authorised by the business to register on their behalf?",
       "shortName": "Authorisation to register",
       "includeIf": "${legalStatus=2 || legalStatus=4 || legalStatus=5}",
       "fields": [
         {
           "id": "authYesNo",
           "type": "choice",
-          "label": "Are you authorised by your business to register on their behalf?",
+          "label": "Are you authorised by the business to register on their behalf?",
           "shortName": "Authorised to register",
           "errorMessage": "Select whether you are authorised to register",
           "choices": [
@@ -246,14 +253,14 @@
       ]
     },
     {
-      "title": "Sole trader details",
+      "title": "Business details",
       "shortName": "Business details",
       "includeIf": "${legalStatus=1}",
       "fields": [
         {
           "id": "businessName_copy_1_st",
           "type": "text",
-          "label": "Full name of business owner",
+          "label": "Full name of sole trader owner",
           "shortName": "Business owner name",
           "helpText": ""
         },
@@ -353,7 +360,7 @@
     },
     {
       "title": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference details",
+      "shortName": "Unique Taxpayer Reference status",
       "includeIf": "${legalStatus=4}",
       "fields": [
         {
@@ -361,6 +368,7 @@
           "type": "choice",
           "label": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
           "shortName": "Unique Taxpayer Reference",
+          "errorMessage": "Select whether your business has a Corporation Tax Unique Taxpayer Reference ",
           "choices": [
             "Yes",
             "No"
@@ -370,7 +378,7 @@
     },
     {
       "title": "What is your Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Business's Unique Taxpayer Reference",
+      "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
@@ -386,7 +394,7 @@
     },
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Business's Unique Taxpayer Reference",
+      "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${CTUTRyesno=0}",
       "fields": [
         {
@@ -401,7 +409,7 @@
     },
     {
       "title": "What is your business's Self Assessment Unique Taxpayer Reference?",
-      "shortName": "Business's Unique Taxpayer Reference",
+      "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${legalStatus=1 || legalStatus=3 || legalStatus=2}",
       "fields": [
         {
@@ -518,158 +526,6 @@
     {
       "title": "Details for landfill site $n",
       "shortName": "Site $n details",
-      "repeatsMin": "${noOfSites}",
-      "repeatsMax": "${noOfSites}",
-      "fields": [
-        {
-          "id": "takenOverInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site contact details",
-          "infoType": "noformat"
-        },
-        {
-          "id": "siteName",
-          "type": "text",
-          "label": "Trading name of site",
-          "shortName": "Site trading name",
-          "helpText": "Enter site trading name if different from business name",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteAdd",
-          "type": "address",
-          "label": "Site address"
-        },
-        {
-          "id": "sitePhone",
-          "type": "text",
-          "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteEmail",
-          "type": "text",
-          "label": "Site email address (optional)",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site information",
-          "infoType": "noformat"
-        },
-        {
-          "id": "previousOwnerINfo",
-          "type": "info",
-          "label": "Material types",
-          "infoText": "Select the types of materials landfilled at this site. ",
-          "infoType": "noformat"
-        },
-        {
-          "id": "standard",
-          "type": "group",
-          "label": "Standard rate materials",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "standardwasteamount",
-              "type": "text",
-              "label": "Estimated tonnes per year",
-              "shortName": "Standard rate materials in tonnes",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "lower",
-          "type": "group",
-          "label": "Lower rate materials",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "lowerwasteamount",
-              "type": "text",
-              "label": "Estimated tonnes per year",
-              "shortName": "Lower rate materials in tonnes",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "exempt",
-          "type": "group",
-          "label": "Exempt materials",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "exemptwasteamount",
-              "type": "text",
-              "label": "Estimated tonnes per year",
-              "shortName": "Exempt materials in tonnes",
-              "mandatory": "false"
-            }
-          ]
-        },
-        {
-          "id": "weighbridgeChoice",
-          "type": "choice",
-          "label": "Do you use a weighbridge to weigh materials at this site?",
-          "shortName": "Weighbridge used",
-          "format": "yesno",
-          "errorMessage": "You must select whether you use a weighbridge",
-          "optionHelpText": [
-            "",
-            "You will need to contact HMRC to agree an alternative method for weighing materials. Contact details will be provided after completing this registration. "
-          ]
-        },
-        {
-          "id": "controllerChoice",
-          "type": "choice",
-          "label": "Do you have a controller at this site?",
-          "shortName": "Site controller",
-          "helpText": "If a person other than the site operator determines what materials (if any) are disposed of at this site, or as part of this site, that person is a controller. \n\nA person who is acting purely as an agent or an employee of someone else is not a controller.",
-          "format": "yesno",
-          "errorMessage": "You must select whether you have a site controller"
-        },
-        {
-          "id": "permitNotwo",
-          "type": "choice",
-          "label": "Select the status of the environmental permit for this site",
-          "shortName": "Environmental permit applied for",
-          "helpText": "Select one option",
-          "format": "vertical",
-          "mandatory": "true",
-          "multivalue": "true",
-          "choices": [
-            "The permit has been applied for"
-          ]
-        },
-        {
-          "id": "permitNumbermore",
-          "type": "group",
-          "label": "The permit has been granted ",
-          "shortName": "Environmental permit granted",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "permitTextfield",
-              "type": "text",
-              "label": "Enter the permit number for this site",
-              "shortName": "Permit number",
-              "helpText": "This will have been issued to you by an environmental regulator such as the Environment Agency",
-              "mandatory": "false"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Details for landfill site MATT VERSION $n",
-      "shortName": "Site $n details MATT VERSION",
       "repeatsMin": "${noOfSites}",
       "repeatsMax": "${noOfSites}",
       "fields": [
@@ -800,8 +656,8 @@
           "multivalue": "false",
           "errorMessage": "Status of site permit must be selected",
           "choices": [
-            "Permit has been applied for",
-            "Permit has been granted "
+            "Permit application made",
+            "Permit granted "
           ],
           "optionHelpText": [
             "Once your site permit has been granted, or if it is not granted, you will need to contact HMRC to let us know the details. Contact details will be provided after completing this registration",
@@ -864,7 +720,7 @@
           "type": "choice",
           "label": "Do you want to keep the Landfill Tax registration number of the previous business?",
           "shortName": "Keep previous Landfill Tax registration number",
-          "helpText": "If you keep the registration number, you’ll become liable for the previous owner’s Landfill Tax debts",
+          "helpText": "If you keep the previous registration number, you’ll become liable for the previous owner’s Landfill Tax debts",
           "errorMessage": "You must select whether you want to keep the previous registration number",
           "choices": [
             "Yes",
@@ -872,29 +728,31 @@
           ],
           "optionHelpText": [
             "You will need to contact HMRC if you wish to keep the previous business's registration number. Contact details will be provided once you have submitted this registration.",
-            "Help text for choice ref 1"
+            ""
           ]
         }
       ]
     },
     {
-      "title": "Have you (the sole trader) been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Sole trader's involvement in other landfill businesses in last 2 years",
+      "title": "Have you been involved in any other landfill businesses in the last 2 years?",
+      "shortName": "Involved in other landfill businesses in last 2 years",
       "includeIf": "${legalStatus = 1}",
       "fields": [
         {
           "id": "otherBusiness",
           "type": "choice",
           "label": "",
-          "shortName": "Involved in other landfill businesses ",
+          "shortName": "Sole trader involved in other landfill businesses ",
+          "helpText": "Select whether you (the sole trader) has been involved in any other landfill business",
           "format": "yesno",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "You must select whether you have been involved in any other landfill businesses"
         }
       ]
     },
     {
       "title": "Have any of the partners in your business been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Partners involvement in other landfill businesses in last 2 years",
+      "shortName": "Business partners involved in any other landfill businesses",
       "includeIf": "${legalStatus=2 || legalStatus=3}",
       "fields": [
         {
@@ -904,13 +762,14 @@
           "shortName": "Partners involved in other landfill businesses",
           "helpText": "",
           "format": "yesno",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Select whether any of the business partners have been involved with other landfill businesses"
         }
       ]
     },
     {
       "title": "Have any of your business directors been involved in other landfill businesses in the last 2 years?",
-      "shortName": "Directors involvement in other landfill businesses in last 2 years",
+      "shortName": "Directors involved in other landfill businesses in last 2 years",
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
@@ -926,7 +785,7 @@
     },
     {
       "title": "Registration numbers of the other businesses",
-      "shortName": "Details of other landfill businesses",
+      "shortName": "Details of the other landfill businesses",
       "includeIf": "${otherBusiness=0}",
       "description": "Enter the Landfill Tax registration number of each business that you (the sole trader) has been involved in within the last 2 years. ",
       "fields": [
@@ -952,9 +811,9 @@
     },
     {
       "title": "Registration numbers of the other landfill businesses",
-      "shortName": "Details of other landfill businesses",
+      "shortName": "Details of the other landfill businesses",
       "includeIf": "${otherBusinessLtdCompany = 0}",
-      "description": "Enter the Landfill Tax registration number of each business that the directors have been involved in. ",
+      "description": "Enter the Landfill Tax registration number of each business that your business directors have been involved in within the last 2 years. ",
       "fields": [
         {
           "id": "otherRegNoLtdCo",
@@ -978,9 +837,9 @@
     },
     {
       "title": "Registration numbers of the other businesses",
-      "shortName": "Details of other landfill businesses",
+      "shortName": "Details of the other landfill businesses",
       "includeIf": "${otherBusinessPart=0}",
-      "description": "Enter the Landfill Tax registration number of each business that your business's partners have been involved in. ",
+      "description": "Enter the Landfill Tax registration number of each business that any partners in your business have been involved in within the last 2 years. ",
       "fields": [
         {
           "id": "otherRegNopartners",
