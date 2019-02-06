@@ -72,199 +72,102 @@
       ]
     },
     {
-      "title": "Tell us about your sole proprietorship",
+      "title": "Enter your full name",
       "includeIf": "${legalStatus1 = 1}",
       "fields": [
         {
           "id": "spName",
           "type": "text",
-          "label": "Sole proprietor's name"
+          "label": ""
+        },
+        {
+          "id": "spNameChoice",
+          "type": "choice",
+          "label": "Is your trading name different to your full name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "spTradingName",
           "type": "text",
           "label": "Trading name"
-        },
-        {
-          "id": "spNameChoice",
-          "type": "choice",
-          "label": "Is your trading name different to the sole proprietor's name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "saNumberChoice",
-          "type": "choice",
-          "label": "Does the sole proprietor have a Self Assessment number?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "groupChoiceSP",
-          "type": "choice",
-          "label": "Are you the representative member of a group for Gaming Duty purposes?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
     {
-      "title": "Tell us about your partnership",
+      "title": "Enter the name of your partnership",
       "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "pName",
           "type": "text",
-          "label": "Name of partnership"
+          "label": ""
+        },
+        {
+          "id": "nameChoicePA",
+          "type": "choice",
+          "label": "Is your trading name different to your partnership's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "pTradingName",
           "type": "text",
           "label": "Trading name"
-        },
-        {
-          "id": "nameChoicePA",
-          "type": "choice",
-          "label": "Is the trading name different to your full name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "corpTaxRefChoice",
-          "type": "choice",
-          "label": "Do you have a Corporation Tax reference number?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "groupChoicePA",
-          "type": "choice",
-          "label": "Are you the representative member of a group for Gaming Duty purposes?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
     {
-      "title": "Tell us about your company",
+      "title": "Enter the name of your company",
       "includeIf": "${legalStatus1 = 0}",
       "fields": [
         {
           "id": "coName",
           "type": "text",
-          "label": "Registered company name"
+          "label": ""
+        },
+        {
+          "id": "nameChoiceLC",
+          "type": "choice",
+          "label": "Is your trading name different from your company's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "tradingName",
           "type": "text",
           "label": "Trading name"
-        },
-        {
-          "id": "nameChoiceLC",
-          "type": "choice",
-          "label": "Is the trading name different from the company name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "corpTaxRefChoiceLC",
-          "type": "choice",
-          "label": "Do you have a Corporation Tax reference number?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "groupChoiceLC",
-          "type": "choice",
-          "label": "Are you the representative member of a group for Gaming Duty purposes?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
     {
-      "title": "Tell us about your unincorporated body",
+      "title": "Enter the name of your unincorporated body",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "coNameUB",
           "type": "text",
-          "label": "Unicorporated body's name"
+          "label": ""
+        },
+        {
+          "id": "nameChoiceUB",
+          "type": "choice",
+          "label": "Is your trading name different from your unincorporated body's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "tradingNameUB",
           "type": "text",
           "label": "Trading name"
-        },
-        {
-          "id": "nameChoiceUB",
-          "type": "choice",
-          "label": "Is the trading name different from the unincorporated body's name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "corpTaxRefChoiceUB",
-          "type": "choice",
-          "label": "Do you have a Corporation Tax reference number?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "groupChoiceUB",
-          "type": "choice",
-          "label": "Are you the representative member of a group for Gaming Duty purposes?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is your Self Assessment Unique Taxpayer Reference?",
-      "includeIf": "${saNumberChoice = 0}",
-      "fields": [
-        {
-          "id": "saUTR",
-          "type": "text",
-          "label": "",
-          "helpText": "This is 10 numbers and will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’",
-          "format": "utr"
-        }
-      ]
-    },
-    {
-      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
-      "includeIf": "${(corpTaxRefChoice = 0 || corpTaxRefChoiceLC = 0) || corpTaxRefChoiceUB = 0}",
-      "fields": [
-        {
-          "id": "corpTaxRef",
-          "type": "text",
-          "label": "",
-          "helpText": "This is 10 numbers and will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’"
         }
       ]
     },
@@ -274,13 +177,12 @@
         {
           "id": "ppbAdd",
           "type": "address",
-          "label": "",
-          "international": "true"
+          "label": ""
         },
         {
           "id": "ppbTel",
           "type": "text",
-          "label": "Business's telephone number",
+          "label": "Business' telephone number",
           "helpText": "You must always include the area or dialling code",
           "format": "telephoneNumber"
         },
@@ -296,22 +198,8 @@
       ]
     },
     {
-      "title": "Do you keep your records and accounts at your principal place of business?",
-      "fields": [
-        {
-          "id": "recAddChoice",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Enter the address of where your business records are kept",
-      "includeIf": "${recAddChoice = 0}",
+      "includeIf": "${accountsAddressChoice = 2}",
       "fields": [
         {
           "id": "recAccAdd",
