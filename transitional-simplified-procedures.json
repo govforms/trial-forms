@@ -1,4 +1,5 @@
 {
+  "_id": "transitional-simplified-procedures",
   "formName": "Transitional Simplified Procedures",
   "description": "",
   "developmentPhase": "beta",
@@ -43,6 +44,47 @@
       ]
     },
     {
+      "title": "What is your legally established address in the UK?",
+      "fields": [
+        {
+          "id": "appAdd",
+          "type": "address",
+          "label": "What is your legally established address in the UK?",
+          "shortName": "Address",
+          "helpText": "You must provide an address based in the UK. For example, registered office, central headquarters or a permanent business establishment in the United Kingdom"
+        }
+      ]
+    },
+    {
+      "title": "Is your legally established UK address the same as your business address?",
+      "fields": [
+        {
+          "id": "regAdd",
+          "type": "choice",
+          "label": "Is your legally established UK address the same as your business address?",
+          "shortName": "Registered address",
+          "errorMessage": "Select whether the registered office address is the same as your business address",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide your business address",
+      "shortName": "Registered UK office",
+      "includeIf": "${regAdd = 1}",
+      "fields": [
+        {
+          "id": "yourAddress",
+          "type": "address",
+          "label": "Provide your business address",
+          "international": "true"
+        }
+      ]
+    },
+    {
       "title": "Business details",
       "fields": [
         {
@@ -77,6 +119,7 @@
           "id": "appPhone",
           "type": "text",
           "label": "Telephone number",
+          "helpText": "Include country code if outside the UK",
           "format": "telephoneNumber"
         },
         {
@@ -115,43 +158,6 @@
       ]
     },
     {
-      "title": "Business address",
-      "fields": [
-        {
-          "id": "yourAddress",
-          "type": "address",
-          "label": "",
-          "international": "true"
-        },
-        {
-          "id": "regAdd",
-          "type": "choice",
-          "label": "Is the registered office address the same as your business address?",
-          "shortName": "Registered address",
-          "helpText": "Your registered office must be based in the UK",
-          "errorMessage": "Select whether the registered office address is the same as your business address",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": " Registered UK office address",
-      "shortName": "Registered UK office",
-      "includeIf": "${regAdd = 1}",
-      "fields": [
-        {
-          "id": "appAdd",
-          "type": "address",
-          "label": " Registered UK office address",
-          "shortName": "Address",
-          "helpText": "Your registered office must be based in the UK"
-        }
-      ]
-    },
-    {
       "title": "Do you have a new Direct Trader Input (DTI) badge?",
       "shortName": "New Direct Trader Input (DTI) badge",
       "fields": [
@@ -177,6 +183,7 @@
           "id": "badgeNo",
           "type": "text",
           "label": "Badge issue number",
+          "helpText": "For example, PN1KCU",
           "format": "text(6,6)"
         },
         {
@@ -296,15 +303,16 @@
       ]
     },
     {
-      "title": "Duty Deferment Account Number (DAN)",
+      "title": "What is your Duty Deferment Account Number (DAN)?",
       "includeIf": "${choiceDDA=0}",
       "fields": [
         {
           "id": "dDANo",
           "type": "text",
-          "label": "Duty Deferment Account Number (DAN)",
+          "label": "What is your Duty Deferment Account Number (DAN)?",
           "shortName": "DAN",
-          "format": "positiveNumber(7, 0)"
+          "helpText": "This is 7 digits, for example, 1234567",
+          "format": "text(7,7)"
         }
       ]
     },
@@ -366,7 +374,7 @@
         "id": "email",
         "type": "text",
         "label": "Email address",
-        "helpText": "To receive confirmation that your registration has been submitted, enter an email address below",
+        "helpText": "We will only use this to send a confirmation that we have received your application",
         "format": "email"
       }
     ]
@@ -386,6 +394,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "transitional-simplified-procedures"
+  "submitSuccessUrl": "deprecated"
 }
