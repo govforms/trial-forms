@@ -271,8 +271,33 @@
       ]
     },
     {
+      "title": "What date will gaming start at the premises you are registering?",
+      "fields": [
+        {
+          "id": "startTradingDate",
+          "type": "date",
+          "label": "",
+          "helpText": "DD MM YYYY"
+        }
+      ]
+    },
+    {
+      "title": "Do you want to add a partner to the Gaming Duty register?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "Yes",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "How many partners would you like to register?",
-      "includeIf": "${legalStatus1 = 1}",
+      "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "numberPartners",
@@ -283,7 +308,7 @@
       ]
     },
     {
-      "title": "Partner $n details",
+      "title": "Enter details of partner $n",
       "repeatsMin": "${numberPartners}",
       "repeatsMax": "${numberPartners}",
       "fields": [
@@ -336,22 +361,49 @@
       ]
     },
     {
-      "title": "Enter group representation details",
+      "title": "Enter the group members' names",
       "fields": [
         {
-          "id": "nameRN",
           "type": "text",
-          "label": "Full name of representative member"
+          "id": "",
+          "label": ""
         },
+        {
+          "type": "text",
+          "id": "nameRN",
+          "label": "Full name representative member"
+        },
+        {
+          "type": "text",
+          "id": "",
+          "label": "Enter the full name of group member number $n"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_a517d5f4_42bc_448c_acbe_d783ac852888",
+          "label": "",
+          "infoText": "Add new member",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Is each member of the group, including the representative member, a member of a corporate group?",
+      "fields": [
         {
           "id": "corpMembChoice",
           "type": "choice",
-          "label": "Is each member of the group, including the representative member, a member of a corporate group?",
+          "label": " ",
           "choices": [
             "Yes",
             "No"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "Choice field: Is each member of the group, including the representative member, either resident or established within the UK or Isle of Man?",
+      "fields": [
         {
           "id": "membResiChoice",
           "type": "choice",
@@ -360,40 +412,6 @@
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "How many members are there in the group?",
-      "fields": [
-        {
-          "id": "numberMembers",
-          "type": "text",
-          "label": "",
-          "format": "positiveWholeNumber"
-        }
-      ]
-    },
-    {
-      "title": "Enter the full name of group member number $n",
-      "repeatsMin": "${numberMembers}",
-      "repeatsMax": "${numberMembers}",
-      "fields": [
-        {
-          "id": "memberFullName",
-          "type": "text",
-          "label": ""
-        }
-      ]
-    },
-    {
-      "title": "What date will gaming start at the premises you are registering?",
-      "fields": [
-        {
-          "id": "startTradingDate",
-          "type": "date",
-          "label": "",
-          "helpText": "DD MM YYYY"
         }
       ]
     }
