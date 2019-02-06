@@ -15,7 +15,7 @@
   },
   "sections": [
     {
-      "title": "What is your business type?",
+      "title": "What is the business type?",
       "shortName": "Legal status of business",
       "fields": [
         {
@@ -39,11 +39,22 @@
       "includeIf": "${legalStatus=0}",
       "fields": [
         {
-          "id": "generatedId_9745ce54-7613-43dd-b554-3b746246cc66",
+          "id": "generatedId_9745ce54_7613_43dd_b554_3b746246cc66",
           "type": "info",
           "label": "",
           "infoText": "HMRC will use these details if we need to discuss this registration.",
           "infoType": "noformat"
+        },
+        {
+          "id": "legalStatusDec_copy_1",
+          "type": "choice",
+          "label": "Select the status relevant to you",
+          "shortName": "Your status",
+          "format": "vertical",
+          "choices": [
+            "Director",
+            "Company secretary"
+          ]
         },
         {
           "id": "contact-name",
@@ -63,14 +74,12 @@
           "format": "email"
         },
         {
-          "id": "legalStatusDec_copy_1",
+          "id": "altContact_1_copy_3",
           "type": "choice",
-          "label": "Select the status relevant to you",
-          "shortName": "Your status",
-          "choices": [
-            "Director",
-            "Company secretary"
-          ]
+          "label": "Do you want HMRC to use these as the Landfill Tax contact details? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
         }
       ]
     },
@@ -159,27 +168,8 @@
       ]
     },
     {
-      "title": "Business address",
-      "description": "Enter the details for the main place of business, where the day-to-day business activities are managed. \n\n",
-      "fields": [
-        {
-          "id": "businessAddress",
-          "type": "address",
-          "label": "Address"
-        },
-        {
-          "id": "altAdd",
-          "type": "choice",
-          "label": "Do you want HMRC to use this as your Landfill Tax correspondence address? ",
-          "shortName": "Add alternative contact details",
-          "format": "yesno",
-          "errorMessage": "Select whether you want to add  preferred contact details"
-        }
-      ]
-    },
-    {
       "title": "Contact details",
-      "description": "Add the contact details of somone who is authorised to discuss your Landfill Tax details with HMRC.",
+      "description": "Provide the contact details of someone who is authorised to discuss the business's Landfill Tax details with HMRC.",
       "fields": [
         {
           "id": "contact-name_copy_3",
@@ -201,9 +191,28 @@
       ]
     },
     {
+      "title": "Main place of business",
+      "description": "Enter the address for the main place of business, where the day-to-day business activities are managed. \n\n",
+      "fields": [
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "altAdd",
+          "type": "choice",
+          "label": "Do you want HMRC to use this as the Landfill Tax correspondence address? ",
+          "shortName": "Add alternative contact details",
+          "format": "yesno",
+          "errorMessage": "Select whether you want to add  preferred contact details"
+        }
+      ]
+    },
+    {
       "title": "Contact address",
       "includeIf": "${altAdd=1}",
-      "description": "HMRC will use this for your Landfill Tax correspondence.",
+      "description": "HMRC will use this for Landfill Tax correspondence.",
       "fields": [
         {
           "id": "address",
@@ -213,7 +222,7 @@
       ]
     },
     {
-      "title": "What is your business name?",
+      "title": "What is the business name?",
       "shortName": "Business details",
       "includeIf": "${legalStatus=0 || legalStatus=2 || legalStatus=3 || legalStatus=4 || legalStatus=5}",
       "fields": [
@@ -222,12 +231,12 @@
           "type": "text",
           "label": "",
           "shortName": "Business name",
-          "helpText": "This is the registered name on your company's incorporation certificate from Companies House"
+          "helpText": ""
         }
       ]
     },
     {
-      "title": "Does your business trade under a different name?",
+      "title": "Does the business trade under a different name?",
       "shortName": "Trading name ",
       "includeIf": "${legalStatus=0 || legalStatus=2 || legalStatus=3 || legalStatus=4 || legalStatus=5}",
       "fields": [
@@ -270,7 +279,7 @@
       ]
     },
     {
-      "title": "Is your business registered for VAT?",
+      "title": "Is the business registered for VAT?",
       "shortName": "VAT registration",
       "fields": [
         {
@@ -299,7 +308,7 @@
       ]
     },
     {
-      "title": "Is your business registered with Companies House?",
+      "title": "Is the business registered with Companies House?",
       "shortName": "Incorporation certificate",
       "includeIf": "${legalStatus=0}",
       "fields": [
@@ -315,7 +324,7 @@
       ]
     },
     {
-      "title": "What is your Companies House registration number?",
+      "title": "What is the Companies House registration number?",
       "shortName": "Incorporation details",
       "includeIf": "${incorpCert =0}",
       "fields": [
@@ -325,6 +334,17 @@
           "label": "What is your Companies House registration number?",
           "helpText": "This can be found on your certificate of incorporation. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "format": "text(8,8)"
+        }
+      ]
+    },
+    {
+      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
+      "fields": [
+        {
+          "id": "UTR",
+          "type": "text",
+          "label": "",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
         }
       ]
     },
@@ -340,18 +360,7 @@
       ]
     },
     {
-      "title": "What is your Corporation Tax Unique Taxpayer Reference?",
-      "fields": [
-        {
-          "id": "UTR",
-          "type": "text",
-          "label": "",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’. You can find a lost UTR number."
-        }
-      ]
-    },
-    {
-      "title": "How many landfill sites do you operate in the UK?",
+      "title": "How many landfill sites does the business operate in the UK?",
       "shortName": "Landfill sites",
       "fields": [
         {
@@ -370,7 +379,7 @@
     {
       "title": "Details for landfill site $n",
       "shortName": "Site $n details",
-      "description": "Enter the details for your landfill site.",
+      "description": "Enter the landfill site details.",
       "repeatsMin": "${noOfSites}",
       "repeatsMax": "${noOfSites}",
       "fields": [
@@ -484,7 +493,7 @@
       ]
     },
     {
-      "title": "Enter the date of your first expected taxable disposal",
+      "title": "Enter the date of the first expected taxable landfill disposal",
       "shortName": "First taxable disposal",
       "fields": [
         {
@@ -504,7 +513,7 @@
       ]
     },
     {
-      "title": "Has this landfill business been transferred to your business as a going concern?",
+      "title": "Was the business transferred from another landfill business as a going concern?",
       "shortName": "Landfill business takeover",
       "fields": [
         {
@@ -539,6 +548,16 @@
           "type": "text",
           "label": "Previous business's Landfill Tax registration number ",
           "format": "text"
+        },
+        {
+          "id": "keep-reg-number",
+          "type": "choice",
+          "label": "Do you want to keep the previous business's Landfill Tax registration number?",
+          "helpText": "Add help text",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -615,7 +634,7 @@
       "title": "Registration numbers of the other landfill businesses",
       "shortName": "Details of other businesses",
       "includeIf": "${otherBusinessLtdCompany = 0}",
-      "description": "Enter the Landfill Tax registration number of each business that your business's directors have been involved in. ",
+      "description": "Enter the Landfill Tax registration number of each business that the business's directors have been involved in. ",
       "fields": [
         {
           "id": "otherRegNoLtdCo",
