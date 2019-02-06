@@ -45,24 +45,26 @@
     },
     {
       "title": "What is your legally established address in the UK?",
+      "shortName": "Legally established UK address",
       "fields": [
         {
           "id": "appAdd",
           "type": "address",
           "label": "What is your legally established address in the UK?",
           "shortName": "Address",
-          "helpText": "You must provide an address based in the UK. For example, registered office, central headquarters or a permanent business establishment in the United Kingdom"
+          "helpText": "You must provide an address based in the UK. For example, registered office, central headquarters or a permanent business establishment in the United Kingdom."
         }
       ]
     },
     {
       "title": "Is your legally established UK address the same as your business address?",
+      "shortName": "Legally established UK address same as business address",
       "fields": [
         {
           "id": "regAdd",
           "type": "choice",
           "label": "Is your legally established UK address the same as your business address?",
-          "shortName": "Registered address",
+          "shortName": "Same address",
           "errorMessage": "Select whether the registered office address is the same as your business address",
           "choices": [
             "Yes",
@@ -72,14 +74,15 @@
       ]
     },
     {
-      "title": "Provide your business address",
-      "shortName": "Registered UK office",
+      "title": "Enter your business address",
+      "shortName": "Business address",
       "includeIf": "${regAdd = 1}",
       "fields": [
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "Provide your business address",
+          "label": "Enter your business address",
+          "shortName": "Address",
           "international": "true"
         }
       ]
@@ -311,7 +314,7 @@
           "type": "text",
           "label": "What is your Duty Deferment Account Number (DAN)?",
           "shortName": "DAN",
-          "helpText": "This is 7 digits, for example, 1234567",
+          "helpText": "This should be 7 numbers. For example, 8514329.",
           "format": "text(7,7)"
         }
       ]
