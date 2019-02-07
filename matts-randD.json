@@ -14,12 +14,13 @@
   },
   "sections": [
     {
-      "title": "What are you?",
+      "title": "In what capacity are you applying for R & D tax relief?",
       "fields": [
         {
           "id": "useraffinityGroup",
           "type": "choice",
           "label": "In what capacity are you applying for R & D tax relief?",
+          "errorMessage": "Select what capacity you are applying for R & D tax relief",
           "choices": [
             "I am applying as an individual",
             "I am applying as an organisation",
@@ -31,7 +32,6 @@
     {
       "title": "Contact details of authorised individual",
       "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
-      "description": "",
       "fields": [
         {
           "id": "generatedId_0a8175d3_be97_4ee1_a6f8_8e6163558aee",
@@ -43,32 +43,26 @@
         {
           "id": "firstNameBusiness_copy_1",
           "type": "text",
-          "label": "Full name",
-          "mandatory": "true",
-          "errorMessage": "Enter your full name"
+          "label": "Full name"
         },
         {
           "id": "agentTelephone_copy_1",
           "type": "text",
           "label": "Telephone number",
           "helpText": "For UK numbers include the area code, for example 020 7946 0000",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "format": "telephoneNumber"
         },
         {
           "id": "Email address_copy_1",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "mandatory": "true"
+          "format": "email"
         },
         {
           "id": "emailPhone_copy_1",
           "type": "choice",
           "label": "Select how you would like to be contacted",
           "shortName": "Contact method",
-          "mandatory": "true",
           "multivalue": "yes",
           "errorMessage": "Select if you would like to be contacted by email or phone",
           "choices": [
@@ -81,7 +75,6 @@
     {
       "title": "Contact details of authorised tax adviser",
       "includeIf": "${useraffinityGroup = 2}",
-      "description": "",
       "fields": [
         {
           "id": "generatedId_db154f9e_5efd_4124_9805_3cd12cd71d71",
@@ -93,40 +86,31 @@
         {
           "id": "firstNameBusiness2",
           "type": "text",
-          "label": "Full name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "label": "Full name"
         },
         {
           "id": "agentOrAdCompanyName2",
           "type": "text",
-          "label": "Company name",
-          "mandatory": "true",
-          "errorMessage": "Enter your tax adviser's company name"
+          "label": "Company name"
         },
         {
           "id": "positionInTheCompanyAgent",
           "type": "text",
           "label": "Job title",
-          "shortName": "Job title",
-          "mandatory": "true",
-          "errorMessage": "Enter your job title"
+          "shortName": "Job title"
         },
         {
           "id": "agentTelephone2",
           "type": "text",
           "label": "Telephone number",
           "helpText": "For UK numbers include the area code, for example 020 7946 0000",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "format": "telephoneNumber"
         },
         {
           "id": "Email address2",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "mandatory": "true"
+          "format": "email"
         },
         {
           "id": "emailPhone2",
