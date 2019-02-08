@@ -1,7 +1,7 @@
 {
-  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme",
   "formName": "Send details to support an R&D tax relief claim for an SME",
   "description": "",
+  "formCategory": "hmrcReturnForm",
   "developmentPhase": "beta",
   "emailTemplateId": "randd_confirmation_submission",
   "authConfig": {
@@ -42,25 +42,25 @@
           "infoType": "noformat"
         },
         {
-          "id": "firstNameBusiness_copy_1",
+          "id": "firstNameIndiviudal",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "agentTelephone_copy_1",
+          "id": "telephoneIndividual",
           "type": "text",
           "label": "Telephone number",
           "helpText": "For UK numbers include the area code, for example 020 7946 0000",
           "format": "telephoneNumber"
         },
         {
-          "id": "Email address_copy_1",
+          "id": "emailIndividual",
           "type": "text",
           "label": "Email address",
           "format": "email"
         },
         {
-          "id": "emailPhone_copy_1",
+          "id": "emailPhoneIndividual",
           "type": "choice",
           "label": "Select how you would like to be contacted",
           "shortName": "Contact method",
@@ -85,36 +85,35 @@
           "infoType": "noformat"
         },
         {
-          "id": "firstNameBusiness2",
+          "id": "firstNameAdvisor",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "agentOrAdCompanyName2",
+          "id": "companyNameAdvisor",
           "type": "text",
           "label": "Company name"
         },
         {
           "id": "positionInTheCompanyAgent",
           "type": "text",
-          "label": "Job title",
-          "shortName": "Job title"
+          "label": "Job title"
         },
         {
-          "id": "agentTelephone2",
+          "id": "telephoneAdvisor",
           "type": "text",
           "label": "Telephone number",
           "helpText": "For UK numbers include the area code, for example 020 7946 0000",
           "format": "telephoneNumber"
         },
         {
-          "id": "Email address2",
+          "id": "emailAdvisor",
           "type": "text",
           "label": "Email address",
           "format": "email"
         },
         {
-          "id": "emailPhone2",
+          "id": "emailPhoneAdvisor",
           "type": "choice",
           "label": "Select how you would like to be contacted",
           "shortName": "Contact method",
@@ -129,46 +128,18 @@
     },
     {
       "title": "Company details",
-      "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
-      "description": "Provide your company details to help us match against information we currently hold.",
+      "description": "Provide the company details to help us match against information we currently hold.",
       "fields": [
         {
           "id": "companyName",
           "type": "text",
-          "label": "Registered company name",
-          "format": "text",
-          "errorMessage": "Enter the registered company name"
+          "label": "Registered company name"
         },
         {
           "id": "utrRepComp",
           "type": "text",
           "label": "Company Unique Taxpayer Reference",
-          "format": "text(10,10)",
-          "mandatory": "yes",
-          "errorMessage": "Enter a valid 10 digit Unique Taxpayer Reference"
-        }
-      ]
-    },
-    {
-      "title": "Client's company details",
-      "includeIf": "${useraffinityGroup = 2}",
-      "description": "Provide your client's company details to help us match against information we currently hold.",
-      "fields": [
-        {
-          "id": "companyNameAgent",
-          "type": "text",
-          "label": "Registered company name",
-          "shortName": "Registered business name",
-          "format": "text",
-          "errorMessage": "Enter the registered company name"
-        },
-        {
-          "id": "utrRepCompAgent",
-          "type": "text",
-          "label": "Unique Taxpayer Reference",
-          "format": "text(10,10)",
-          "mandatory": "yes",
-          "errorMessage": "Enter a valid 10 digit Unique Taxpayer Reference"
+          "format": "text(10,10)"
         }
       ]
     },
@@ -180,7 +151,7 @@
         {
           "id": "Inset5",
           "type": "info",
-          "label": "Inset5",
+          "label": "",
           "infoText": "If your claim covers more than 12 months, submit a separate claim for each accounting period.",
           "infoType": "standard"
         },
@@ -189,16 +160,14 @@
           "type": "date",
           "label": "Start date",
           "helpText": "For example, 01 01 2017",
-          "format": "before ${accountingPeriodEndDate}",
-          "errorMessage": "Enter the accounting period start date in the format dd/mm/yyyy"
+          "format": "before ${accountingPeriodEndDate}"
         },
         {
           "id": "accountingPeriodEndDate",
           "type": "date",
           "label": "End date",
           "helpText": "For example, 31 12 2017",
-          "format": "after ${accountingPeriodStartDate}",
-          "errorMessage": "Enter the accounting period end date in the format dd/mm/yyyy"
+          "format": "after ${accountingPeriodStartDate}"
         }
       ]
     },
@@ -215,14 +184,6 @@
           "infoType": "standard"
         },
         {
-          "id": "EmployeeCosts",
-          "type": "text",
-          "label": "Employee costs",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
           "id": "generatedId_7bbd78dc_505a_4060_b0ff_dfa18abd9f55",
           "type": "info",
           "label": "What employee costs qualify for relief?",
@@ -230,28 +191,18 @@
           "infoType": "long"
         },
         {
+          "id": "EmployeeCosts",
+          "type": "text",
+          "label": "Employee costs",
+          "format": "sterling",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
           "id": "generatedId_b610f01e_0ef3_4d17_929b_7b3af12b4352",
           "type": "info",
-          "label": "Costs for externally provided workers (EPWs)",
-          "infoText": "Costs for externally provided workers (EPWs)",
+          "label": "",
+          "infoText": "###Costs for externally provided workers (EPWs)",
           "infoType": "noformat"
-        },
-        {
-          "id": "epwCon",
-          "type": "text",
-          "label": "100% costs for connected EPWs",
-          "helpText": "EPWs are workers from a staff agency",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
-          "id": "epwUnCon",
-          "type": "text",
-          "label": "65% costs for unconnected EPWs",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "generatedId_ed3e4e45_8ec7_4ee3_ae7c_01367856c8e0",
@@ -261,27 +212,26 @@
           "infoType": "long"
         },
         {
+          "id": "epwCon",
+          "type": "text",
+          "label": "100% costs for connected EPWs",
+          "helpText": "EPWs are workers from a staff agency",
+          "format": "sterling",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "epwUnCon",
+          "type": "text",
+          "label": "65% costs for unconnected EPWs",
+          "format": "sterling",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
           "id": "generatedId_7b8b00ea_57e8_4bfe_b520_7a79b8a090ce",
           "type": "info",
-          "label": "Costs for subcontractors",
-          "infoText": "Costs for subcontractors",
+          "label": "",
+          "infoText": "###Costs for subcontractors",
           "infoType": "noformat"
-        },
-        {
-          "id": "subConCon",
-          "type": "text",
-          "label": "Costs for connected subcontractors",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
-          "id": "subConUncon",
-          "type": "text",
-          "label": "65% costs for unconnected subcontractors",
-          "format": "sterling",
-          "mandatory": "no",
-          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
           "id": "generatedId_ce1ffd62_3925_439a_ad3e_2a56af7ab5d3",
@@ -291,12 +241,25 @@
           "infoType": "long"
         },
         {
+          "id": "subConCon",
+          "type": "text",
+          "label": "Costs for connected subcontractors",
+          "format": "sterling",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "subConUncon",
+          "type": "text",
+          "label": "65% costs for unconnected subcontractors",
+          "format": "sterling",
+          "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
           "id": "software",
           "type": "text",
           "label": "Software costs",
           "helpText": "Include software licence fees bought for R&D and a reasonable share of the costs for software partly used in your R&D activities",
           "format": "sterling",
-          "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
@@ -305,7 +268,6 @@
           "label": "Consumables costs",
           "helpText": "Include costs on materials consumed or transformed in the R&D process, for example, water, fuel, power and laboratory consumables used in trials",
           "format": "sterling",
-          "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
@@ -314,7 +276,6 @@
           "label": "Costs for clinical trial volunteers",
           "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical tests",
           "format": "sterling",
-          "mandatory": "no",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
         },
         {
@@ -344,7 +305,8 @@
           "type": "text",
           "label": "Number of projects",
           "format": "number(2,0)",
-          "validIf": "${projTot <=10 && projTot >=1}",
+          "displayWidth": "xs",
+          "validIf": "${projTot >= 1 && projTot<=10}",
           "errorMessage": "You must enter a number between 1 and 10"
         }
       ]
@@ -360,32 +322,23 @@
         {
           "id": "generatedId_c2fe19e5_3f43_4c7d_b1f3_79cb898ae3fbIndividual",
           "type": "info",
-          "label": "Maximum",
+          "label": "",
           "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
           "infoType": "noformat"
         },
         {
           "id": "projectName1Individual",
           "type": "text",
-          "label": "Project name",
-          "errorMessage": "Enter name of project"
+          "label": "Project name"
         },
         {
-          "id": "scienceIndividual_copy_1",
+          "id": "scienceIndividual",
           "type": "text",
           "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
           "shortName": "Scientific or technical knowledge at the start",
           "helpText": "Enter up to 600 words including spaces",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Summarise the scientific or technical knowledge at the start of the project"
-        },
-        {
-          "id": "generatedId_40fbf373_733e_4296_9473_eee2bc9de6dd",
-          "type": "info",
-          "label": "",
-          "infoText": "What advance in that knowledge did you aim to achieve?",
-          "infoType": "noformat"
+          "multiline": "yes"
         },
         {
           "id": "adIndividual_copy_1",
@@ -395,21 +348,22 @@
           "infoType": "long"
         },
         {
-          "id": "advanceScienceIndividual_copy_1",
+          "id": "advanceScienceIndividual",
           "type": "text",
-          "label": "",
+          "label": "What advance in that knowledge did you aim to achieve?",
           "shortName": "Advanced knowledge",
           "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 600 words including spaces",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter the knowledge you aimed to achieve"
+          "multiline": "yes"
         },
         {
-          "id": "generatedId_54454a11_7546_400b_b7ff_ea4dccc4ac27",
-          "type": "info",
-          "label": "",
-          "infoText": "What scientific or technological uncertainties did you face?",
-          "infoType": "noformat"
+          "id": "UncertaintiesFacedIndividual_copy_1",
+          "type": "text",
+          "label": "What scientific or technological uncertainties did you face?",
+          "shortName": "Uncertainties faced",
+          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words including spaces",
+          "format": "text(0, 3000)",
+          "multiline": "yes"
         },
         {
           "id": "WhatUncertaintiesIndividual_copy_1",
@@ -419,21 +373,13 @@
           "infoType": "long"
         },
         {
-          "id": "UncertaintiesFacedIndividual_copy_1",
+          "id": "WorkUncertaintiesInd_copy_1",
           "type": "text",
-          "label": "",
-          "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words including spaces",
+          "label": "How did your project overcome these uncertainties?",
+          "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 600 words including spaces",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter scientific or technological uncertainties faced"
-        },
-        {
-          "id": "generatedId_7ecff996_1334_4f2e_8903_d006fc1d2d13",
-          "type": "info",
-          "label": "**How did your project attempt to overcome these uncertainties?**",
-          "infoText": "How did your project overcome these uncertainties?",
-          "infoType": "noformat"
+          "multiline": "yes"
         },
         {
           "id": "authorisedTextIndividual_copy_1",
@@ -443,22 +389,11 @@
           "infoType": "noformat"
         },
         {
-          "id": "WorkUncertaintiesInd_copy_1",
-          "type": "text",
-          "label": "",
-          "shortName": "Work to overcome uncertainties",
-          "helpText": "Enter up to 600 words including spaces",
-          "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter work done to overcome these uncertainties"
-        },
-        {
           "id": "qe1Individual",
           "type": "text",
           "label": "Total qualifying project costs before any enhancements",
           "shortName": "Total qualifying costs",
-          "format": "sterling",
-          "errorMessage": "Enter total qualifying costs for this project"
+          "format": "sterling"
         }
       ]
     },
@@ -477,8 +412,9 @@
           "id": "projTotAgent",
           "type": "text",
           "label": "Number of projects",
-          "format": "number(2,0)",
-          "validIf": "${projTotAgent <=10 && projTotAgent >=1}",
+          "format": "number(2, 0)",
+          "displayWidth": "xs",
+          "validIf": "${projTotAgent>=1 && projTotAgent<=10}",
           "errorMessage": "You must enter a number between 1 and 10"
         }
       ]
@@ -501,8 +437,7 @@
         {
           "id": "projectName1",
           "type": "text",
-          "label": "Project name",
-          "errorMessage": "Enter name of project"
+          "label": "Project name"
         },
         {
           "id": "science",
@@ -511,15 +446,16 @@
           "shortName": "Scientific or technical knowledge at the start",
           "helpText": "Enter up to 600 words",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Summarise the scientific or technical knowledge at the start of the project"
+          "multiline": "yes"
         },
         {
-          "id": "generatedId_97d75d06_3cd7_4bbc_9aa8_77c66f29f1a8",
-          "type": "info",
-          "label": "",
-          "infoText": "What advance in that knowledge did you aim to achieve?",
-          "infoType": "noformat"
+          "id": "advanceScience",
+          "type": "text",
+          "label": "What advance in that knowledge did you aim to achieve?",
+          "shortName": "Advanced knowledge",
+          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 600 words",
+          "format": "text(0, 3000)",
+          "multiline": "yes"
         },
         {
           "id": "ad",
@@ -529,21 +465,13 @@
           "infoType": "long"
         },
         {
-          "id": "advanceScience",
+          "id": "UncertaintiesFaced",
           "type": "text",
-          "label": "",
-          "shortName": "Advanced knowledge",
-          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 600 words",
+          "label": "What scientific or technological uncertainties did you face?",
+          "shortName": "Uncertainties faced",
+          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter the knowledge you aimed to achieve"
-        },
-        {
-          "id": "generatedId_c5eac521_8f6b_4f60_bdca_5105b23e00b3",
-          "type": "info",
-          "label": "",
-          "infoText": "What scientific or technological uncertainties did you face?",
-          "infoType": "noformat"
+          "multiline": "yes"
         },
         {
           "id": "WhatUncertainties",
@@ -553,46 +481,27 @@
           "infoType": "long"
         },
         {
-          "id": "UncertaintiesFaced",
+          "id": "WorkUncertainties",
           "type": "text",
-          "label": "",
-          "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words",
+          "label": "How did your project overcome these uncertainties?",
+          "shortName": "Work to overcome uncertainties",
+          "helpText": "Enter up to 600 words",
           "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter scientific or technological uncertainties faced"
-        },
-        {
-          "id": "generatedId_15358287_cd1e_44cb_8059_27cfe4f4cfdf",
-          "type": "info",
-          "label": "**How did your project attempt to overcome these uncertainties?**",
-          "infoText": "How did your project overcome these uncertainties?",
-          "infoType": "noformat"
+          "multiline": "true"
         },
         {
           "id": "authorisedText",
           "type": "info",
           "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
+          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900)  (opens in a new window).",
           "infoType": "noformat"
-        },
-        {
-          "id": "WorkUncertainties",
-          "type": "text",
-          "label": "",
-          "shortName": "Work to overcome uncertainties",
-          "helpText": "Enter up to 600 words",
-          "format": "text(0, 3000)",
-          "multiline": "yes",
-          "errorMessage": "Enter work done to overcome these uncertainties"
         },
         {
           "id": "qe1",
           "type": "text",
           "label": "Total qualifying project costs before any enhancements",
           "shortName": "Total qualifying costs",
-          "format": "sterling",
-          "errorMessage": "Enter total qualifying costs for this project"
+          "format": "sterling"
         }
       ]
     },
@@ -631,27 +540,29 @@
     },
     {
       "title": "Did your company make a trading loss for the period you are claiming for?",
-      "description": "If your company has incurred a loss, you can either carry the loss forward against trading profits in the future or give the loss up for a cash payment.",
       "fields": [
         {
           "id": "profitOrLoss",
           "type": "choice",
-          "label": "",
+          "label": "Did your company make a trading loss for the period you are claiming for?",
           "shortName": "Tax credit claim",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you have claimed a R&D tax credit"
+          "helpText": "If your company has incurred a loss, you can either carry the loss forward against trading profits in the future or give the loss up for a cash payment.",
+          "errorMessage": "Select yes or no if you have claimed a R&D tax credit",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
       "title": "What is your company's unused trading loss for this period?",
       "includeIf": "${profitOrLoss=0}",
-      "description": "",
       "fields": [
         {
           "id": "TradingLoss",
           "type": "text",
-          "label": "Trading loss",
+          "label": "What is your company's unused trading loss for this period?",
           "format": "sterling",
           "mandatory": "yes"
         },
@@ -701,9 +612,7 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm the form has been submitted",
-        "format": "email",
-        "mandatory": "true",
-        "errorMessage": "Enter your email address"
+        "format": "email"
       },
       {
         "id": "decPageContent",
@@ -743,5 +652,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme"
 }
