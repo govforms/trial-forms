@@ -38,12 +38,12 @@
         {
           "id": "Telephonenumber",
           "type": "text",
-          "label": "Telephon enumber "
+          "label": "Telephone number "
         },
         {
           "id": "Emailaddress",
           "type": "text",
-          "label": "Email address (optional)"
+          "label": "Email address "
         },
         {
           "id": "capacity",
@@ -194,7 +194,7 @@
         {
           "id": "ppbTel",
           "type": "text",
-          "label": "Business' telephone number",
+          "label": "Telephone number of business",
           "helpText": "",
           "format": "telephoneNumber"
         },
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "title": "Do you want to register more than one premises for Gaming Duty? ",
+      "title": "Do you want to register other premises for Gaming Duty? ",
       "fields": [
         {
           "id": "gd58Choice",
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "title": "Enter the number of premises you want to register",
+      "title": "Enter the number of other premises you want to register",
       "includeIf": "${gd58Choice = 0}",
       "fields": [
         {
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "title": "What date will gaming start at the premises?",
+      "title": "What date will gaming start at this premises?",
       "fields": [
         {
           "id": "startTradingDate",
@@ -350,46 +350,34 @@
       ]
     },
     {
-      "title": "What date should group treatment start?",
-      "includeIf": "${newGroup = 0} ",
+      "title": "Are you the representative member of the group?",
       "fields": [
         {
-          "id": "newGroupStartDate",
-          "type": "date",
-          "label": ""
-        }
-      ]
-    },
-    {
-      "title": "Enter the group members' names",
-      "fields": [
-        {
-          "id": "nameRN",
-          "type": "text",
-          "label": "Full name representative member"
-        },
-        {
-          "id": "",
-          "type": "text",
-          "label": "Full name of member $n"
-        },
-        {
-          "id": "generatedId_a517d5f4_42bc_448c_acbe_d783ac852888",
           "type": "info",
+          "id": "generatedId_dd159028_bad6_415f_a5ee_332f091a2b42",
           "label": "",
-          "infoText": "Add new member",
+          "infoText": "You must be the representative member to set up a new group.",
           "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "repMemb",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Are all members of the new group also members of a corporate group?",
+      "title": "Are all members of the group a business?",
       "fields": [
         {
           "id": "generatedId_4914ebfe_d877_40a8_8118_b4c08d0af436",
           "type": "info",
           "label": "",
-          "infoText": "You must also include the representative member.",
+          "infoText": "This must also include the representative member.",
           "infoType": "noformat"
         },
         {
@@ -404,7 +392,7 @@
       ]
     },
     {
-      "title": "Are all members of the new group either resident or established within the UK or Isle of Man?",
+      "title": "Are all members of the group either resident or established within the UK or Isle of Man?",
       "fields": [
         {
           "id": "generatedId_bc6474a3_fd70_4661_9e17_f42b70cc9195",
@@ -421,6 +409,34 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the names of the other group members",
+      "fields": [
+        {
+          "id": "nameRN",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "generatedId_a517d5f4_42bc_448c_acbe_d783ac852888",
+          "type": "info",
+          "label": "",
+          "infoText": "Add new member",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What date will the group start?",
+      "includeIf": "${newGroup = 0} ",
+      "fields": [
+        {
+          "id": "newGroupStartDate",
+          "type": "date",
+          "label": ""
         }
       ]
     }
