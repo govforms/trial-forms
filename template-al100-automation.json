@@ -6,51 +6,46 @@
   "developmentPhase": "beta",
   "emailTemplateId": "al100_return_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "AL"
-  },
-  "dmsSubmission": {
-    "businessArea": "FinanceOpsCorpT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${eeitt.userId}",
-    "dmsFormId": "AL100"
+    "authModule": "hmrc",
+    "agentAccess": "allowAnyAgentAffinityUser",
+    "enrolmentCheck": "always",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "AL",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your AGL number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Aggregates Levy",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
   },
   "sections": [
     {
-      "title": "About you",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "fields": [
-        {
-          "id": "aggregatesLevyReg",
-          "type": "text",
-          "label": "Aggregates Levy registration number",
-          "value": "${eeitt.businessUser}",
-          "submitMode": "derived"
-        },
-        {
-          "id": "firstNameBusiness",
-          "type": "text",
-          "label": "First name",
-          "mandatory": "true"
-        },
-        {
-          "id": "lastNameBusiness",
-          "type": "text",
-          "label": "Last name",
-          "mandatory": "true"
-        },
-        {
-          "id": "positionInTheCompanyBusiness",
-          "type": "text",
-          "label": "Your position in the company",
-          "shortName": "Position in company",
-          "helpText": "For example, a company director.",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Enter your client’s reference number (also known as an access code)",
+      "title": "Enter your client's reference number (also known as an access code)",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
@@ -65,18 +60,67 @@
           "type": "text",
           "label": "Client's aggregates levy reference number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        }
+      ]
+    },
+    {
+      "title": "Choose your client's Aggregates Levy return dates",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "$(aggregatesLevyRegAgent)",
+          "regimeType": "AGL"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Aggregates Levy return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+      "fields": [
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "$(aggregatesLevyReg)",
+          "regimeType": "AGL"
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "yourInfoAgent",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this return. ",
+          "infoType": "noformat"
         },
         {
-          "id": "firstNameAgent",
+          "id": "regContactNameAgent",
           "type": "text",
-          "label": "First name",
-          "mandatory": "true"
+          "label": "Full name"
         },
         {
-          "id": "lastNameAgent",
+          "id": "RegPhoneNumberAgent",
           "type": "text",
-          "label": "Last name",
-          "mandatory": "true"
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "regEmailAgent",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false"
         },
         {
           "id": "positionInTheCompanyAgent",
@@ -89,51 +133,47 @@
       ]
     },
     {
-      "title": "Business details",
-      "description": "",
+      "title": "About you",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "businessName",
+          "id": "aggregatesLevyReg",
           "type": "text",
-          "label": "Business name",
-          "shortName": "Business name",
-          "mandatory": "true"
+          "label": "Aggregates Levy registration number",
+          "value": "${eeitt.businessUser}",
+          "submitMode": "derived"
         },
         {
-          "id": "businessEmailAddress",
+          "id": "yourInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this return. ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "regContactName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "RegPhoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "regEmail",
           "type": "text",
           "label": "Email address (optional)",
           "format": "email",
-          "mandatory": "no"
+          "mandatory": "false"
         },
         {
-          "id": "businessTelephone",
+          "id": "positionInTheCompanyBusiness",
           "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Enter your Aggregates Levy return dates",
-      "shortName": "Aggregates Levy return dates",
-      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
-      "fields": [
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "For example, 01 03 2018.",
-          "format": "before ${endDate}",
-          "mandatory": "true"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "For example, 31 05 2018.",
-          "format": "before today +1",
+          "label": "Your position in the company",
+          "shortName": "Position in company",
+          "helpText": "For example, a company director.",
           "mandatory": "true"
         }
       ]
@@ -238,7 +278,7 @@
         "id": "ackpageInfo",
         "type": "info",
         "label": "Payment",
-        "infoText": "Make a payment\n\nIf you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use BACS, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\nAccount details:\n\nAccount name: HMRC Aggregates Levy\n\nAccount number:11963171\n\nSort code: 08 32 00\n\nPayment reference: Include your 15 digit registration number  "
+        "infoText": "Make a payment\n\nIf you have already set up a Direct Debit for this tax, you don't need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use BACS, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\nAccount details:\n\nAccount name: HMRC Aggregates Levy\n\nAccount number:11963171\n\nSort code: 08 32 00\n\nPayment reference: Include your 15 digit registration number  "
       },
       {
         "id": "ackpageSurvey",
@@ -249,6 +289,26 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/AGL/eeits/{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}','periodFrom':'{{hmrcTaxPeriodFromDate returnPeriod}}','periodTo':'{{hmrcTaxPeriodToDate returnPeriod}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{getCurrentTimestamp}}'}"
+    },
+    {
+      "id": "TST123HMRCDMS",
+      "type": "hmrcDms",
+      "dmsFormId": "TST123",
+      "customerId": "${auth.gg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "FinanceOpsCorpT"
+    }
+  ],
   "submitErrorUrl": "http://www.yahoo.co.uk",
   "submitSuccessUrl": "http://www.google.co.uk"
 }
