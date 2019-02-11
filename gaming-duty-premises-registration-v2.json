@@ -14,7 +14,7 @@
   },
   "sections": [
     {
-      "title": "Enter your details",
+      "title": "Submit form to add or remove a premises from the Gaming Duty register",
       "fields": [
         {
           "id": "firstName",
@@ -76,23 +76,22 @@
       ]
     },
     {
-      "title": "About the change",
+      "title": "What do you want to do?",
       "fields": [
         {
           "id": "changeTypePrem",
           "type": "choice",
-          "label": "What change would you like to notify us about?",
-          "helpText": "Choose one of the options below",
+          "label": "",
           "choices": [
-            "Notify new premises for inclusion on the Gaming Duty register",
-            "Remove premises from the Gaming Duty register"
+            "Add a premises to the Gaming Duty register ",
+            "Remove a premises from the Gaming Duty register "
           ]
         },
         {
           "id": "dtrNumb",
           "type": "text",
-          "label": "Departmental Trader Reference (DTR) number",
-          "helpText": "For example 1234567489-1234"
+          "label": "Businesses' Gaming Duty registration number",
+          "helpText": "For example, XAA00000000000"
         },
         {
           "id": "changeDate",
@@ -103,13 +102,13 @@
       ]
     },
     {
-      "title": "New premises to be included on the Gaming Duty register.",
+      "title": "Enter the number of new premises you want to add to the Gaming Duty register",
       "includeIf": "${changeTypePrem = 0}",
       "fields": [
         {
           "id": "newPremNumb",
           "type": "text",
-          "label": "How many new premises do you wish to tell us about?",
+          "label": "Enter the number of new premises you want to add to the Gaming Duty register",
           "format": "positiveWholeNumber"
         }
       ]
@@ -139,13 +138,13 @@
       ]
     },
     {
-      "title": "Premises to be removed from the Gaming Duty register",
+      "title": "Enter the number of new premises you want to remove from the Gaming Duty register",
       "includeIf": "${changeTypePrem = 1}",
       "fields": [
         {
           "id": "remPremNumb",
           "type": "text",
-          "label": "How many premises do you wish to remove from the register?",
+          "label": "",
           "format": "positiveWholeNumber"
         }
       ]
@@ -159,72 +158,39 @@
         {
           "id": "premNameRem",
           "type": "text",
-          "label": "Trading name of the premises "
+          "label": "Trading name used at the premises "
         },
         {
           "id": "premAddRem",
           "type": "address",
-          "label": "Address of the premises"
+          "label": "Address"
         },
         {
           "id": "premTelRem",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Business' telephone number",
           "format": "telephoneNumber"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
-    "shortName": "Declaration",
+    "title": "Submit form to add or remove a premises from the Gaming Duty register",
+    "shortName": "Submit form",
     "fields": [
       {
-        "id": "decText",
+        "id": "generatedId_e57a459f_5ee4_4d2f_b6ec_a87cfd795c26",
         "type": "info",
         "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+        "infoText": "##Terms and conditions",
+        "infoType": "noformat"
       },
       {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Provide details below of who is signing the declaration",
-        "fields": [
-          {
-            "id": "declaration-firstname",
-            "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-lastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
-          }
-        ]
-      },
-      {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true",
-            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
-          }
-        ]
+        "id": "generatedId_38aff881_2dfe_445d_81d0_106d7abb8b56",
+        "type": "info",
+        "label": "",
+        "infoText": "Before you submit this form, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you",
+        "infoType": "noformat"
       }
     ]
   },
@@ -233,10 +199,11 @@
     "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "id": "helpText8",
+        "id": "generatedId_e5469855_ea30_4021_9e07_e32df666d031",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+        "infoText": "If you want a copy of your form you'll need to print it or save it as a PDF before you leave this page.\n\nWe will contact you if we have a question. ",
+        "infoType": "noformat"
       },
       {
         "id": "ackpageInfo",
