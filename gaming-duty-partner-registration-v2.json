@@ -29,7 +29,20 @@
         {
           "id": "namePartnership",
           "type": "text",
-          "label": "Enter the name of the business partnership"
+          "label": "Business partnership name"
+        },
+        {
+          "id": "declaration-status",
+          "type": "text",
+          "label": "What is your role within the organisation?",
+          "helpText": "For example, director, financial controller or secretary",
+          "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "gamingdutyReg",
+          "type": "text",
+          "label": "Partnership's Gaming Duty registration number",
+          "helpText": "This is a 14 digit number and begins with an X "
         },
         {
           "id": "emailInfo1",
@@ -48,7 +61,7 @@
         {
           "id": "emCons1",
           "type": "choice",
-          "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details.",
+          "label": "By selecting, 'yes', you confirm you understand and accept the risks associated with email. You also agree that we can sent you information about your business by email.",
           "shortName": "Confirm consent to use email communication",
           "format": "yesno"
         },
@@ -56,25 +69,25 @@
           "id": "email",
           "type": "text",
           "label": "Email address",
-          "helpText": "Provide your email address below if you consent to communicating by email",
+          "helpText": "Enter your email address if you consent to us contacting you by email",
           "format": "email",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Partner details",
+      "title": "How many business partners do you want to add to the Gaming Duty register?",
       "fields": [
         {
           "id": "partnerNumber",
           "type": "text",
-          "label": "How many business partners do you wish to add to the Gaming Duty register?",
+          "label": "How many business partners do you want to add to the Gaming Duty register?",
           "format": "positiveWholeNumber"
         }
       ]
     },
     {
-      "title": "Partner details $n",
+      "title": "Enter the partner's details ($n)",
       "repeatsMin": "${partnerNumber}",
       "repeatsMax": "${partnerNumber}",
       "fields": [
@@ -97,21 +110,28 @@
           "id": "phoneP",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "helpText": "",
           "format": "telephoneNumber"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
+    "title": "Submit form to register a partner for Gaming Duty",
     "shortName": "Declaration",
     "fields": [
+      {
+        "type": "info",
+        "id": "generatedId_69e7d6d9_be3d_45c4_b557_fa3735ea6440",
+        "label": "terms",
+        "infoText": "##Terms and conditions",
+        "infoType": "noformat"
+      },
       {
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+        "infoText": "Before you submit this form to register for Gaming Duty, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you "
       },
       {
         "id": "declarationNameGroup",
@@ -129,13 +149,6 @@
             "type": "text",
             "label": "Last name",
             "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
           }
         ]
       },
