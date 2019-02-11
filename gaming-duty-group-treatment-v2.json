@@ -1,6 +1,6 @@
 {
   "_id": "gaming-duty-group-treatment-v2",
-  "formName": "Application for group treatment for Gaming Duty purposes",
+  "formName": "Set up or disband a Gaming Duty group",
   "description": "Apply for group treatment for Gaming Duty purposes ",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -14,143 +14,53 @@
   },
   "sections": [
     {
-      "title": "Details",
+      "title": "What do you want to do?",
       "fields": [
         {
           "id": "applicationPurpose",
           "type": "choice",
-          "label": "What are you applying for?",
+          "label": "",
           "choices": [
-            "To set up a new Gaming Duty group",
-            "To disband a group"
+            "Set up a Gaming Duty group",
+            "Disband a Gaming Duty group"
           ]
         }
       ]
     },
     {
-      "title": "Set up a new Gaming Duty group",
-      "includeIf": "${applicationPurpose = 0}",
+      "title": "Are you the representative member of the group?",
       "fields": [
         {
-          "id": "newGroupStartDate",
-          "type": "date",
-          "label": "Date you would like this to take effect? ",
-          "helpText": "DD MM YYYY"
-        },
+          "id": "areRepmemb",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot set up or disband a Gaming Duty group",
+      "fields": [
         {
-          "id": "newGrpInfo",
+          "id": "generatedId_db7e6ab9_36d7_4782_909b_25065e53288d",
           "type": "info",
           "label": "",
-          "infoText": "90 days notice is usually required and applications will not be allowed retrospectively",
+          "infoText": "You must be the representative member to set or disband a group for Gaming Duty. \n\nThe representative member of the group will need to do this another time. They can do this on GOV.UK.",
           "infoType": "noformat"
         }
       ]
     },
     {
-      "title": "Disband a group",
-      "includeIf": "${applicationPurpose = 1}",
+      "title": "Enter your details",
       "fields": [
         {
-          "id": "dTRNum",
+          "id": "fullName",
           "type": "text",
-          "label": "Departmental Trader Reference (DTR) number",
-          "helpText": "For example 123456789-1234"
+          "label": "Full name"
         },
-        {
-          "id": "disbandDate",
-          "type": "date",
-          "label": "Date you would like this to take effect? ",
-          "helpText": "DD MM YYYY"
-        },
-        {
-          "id": "disbandInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "90 days notice is usually required and applications will not be allowed retrospectively",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Representative member's details",
-      "fields": [
-        {
-          "id": "nameRN",
-          "type": "text",
-          "label": "Full name of representative member"
-        },
-        {
-          "id": "corpMembChoice",
-          "type": "choice",
-          "label": "Is each member of the group a corporate body?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "membResiChoice",
-          "type": "choice",
-          "label": "Is each member of the group, including the representative member, either resident or established within the UK or Isle of Man? ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Group member details",
-      "fields": [
-        {
-          "id": "numberMembers",
-          "type": "text",
-          "label": "How many members are there in the proposed group? ",
-          "format": "positiveWholeNumber",
-          "displayWidth": "xs"
-        }
-      ]
-    },
-    {
-      "title": "Member $n",
-      "repeatsMin": "${numberMembers}",
-      "repeatsMax": "${numberMembers}",
-      "fields": [
-        {
-          "id": "memberFullName",
-          "type": "text",
-          "label": "Full name of member"
-        }
-      ]
-    },
-    {
-      "title": "Group name",
-      "fields": [
-        {
-          "id": "tradingNameChoice",
-          "type": "choice",
-          "label": "Is the trading name used by the controlling individual/body different from the name(s) given above?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Trading name",
-      "includeIf": "${tradingNameChoice = 0}",
-      "fields": [
-        {
-          "id": "tradingName",
-          "type": "text",
-          "label": ""
-        }
-      ]
-    },
-    {
-      "title": "Representative member's details",
-      "fields": [
         {
           "id": "rmAdd",
           "type": "address",
@@ -190,6 +100,128 @@
           "helpText": "Provide your email address below if you consent to communicating by email",
           "format": "email",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Is each member of the group a corporate body?",
+      "fields": [
+        {
+          "id": "corpMembChoice",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is each member of the group either resident or established within the UK or Isle of Man?",
+      "fields": [
+        {
+          "id": "membResiChoice",
+          "type": "choice",
+          "label": "",
+          "helpText": "This must include the representative member",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Group member details",
+      "fields": [
+        {
+          "id": "numberMembers",
+          "type": "text",
+          "label": "How many members are there in the proposed group? ",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Disband a Gaming Duty group",
+      "includeIf": "${applicationPurpose = 1}",
+      "fields": [
+        {
+          "id": "dTRNum",
+          "type": "text",
+          "label": "Departmental Trader Reference (DTR) number",
+          "helpText": "For example 123456789-1234"
+        },
+        {
+          "id": "disbandDate",
+          "type": "date",
+          "label": "Date you would like this to take effect? ",
+          "helpText": "DD MM YYYY"
+        },
+        {
+          "id": "disbandInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "90 days notice is usually required and applications will not be allowed retrospectively",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What date will this change take place?",
+      "includeIf": "${applicationPurpose = 0}",
+      "fields": [
+        {
+          "id": "newGroupStartDate",
+          "type": "date",
+          "label": "",
+          "helpText": "DD MM YYYY"
+        },
+        {
+          "id": "newGrpInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "You must ususally give 90 days' notice.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Member $n",
+      "repeatsMin": "${numberMembers}",
+      "repeatsMax": "${numberMembers}",
+      "fields": [
+        {
+          "id": "memberFullName",
+          "type": "text",
+          "label": "Full name of member"
+        }
+      ]
+    },
+    {
+      "title": "Group name",
+      "fields": [
+        {
+          "id": "tradingNameChoice",
+          "type": "choice",
+          "label": "Is the trading name used by the controlling individual/body different from the name(s) given above?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trading name",
+      "includeIf": "${tradingNameChoice = 0}",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": ""
         }
       ]
     }
