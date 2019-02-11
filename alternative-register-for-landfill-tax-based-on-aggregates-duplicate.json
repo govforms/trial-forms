@@ -8,9 +8,9 @@
     "authModule": "hmrc"
   },
   "dmsSubmission": {
-    "businessArea": "FinanceOpsCorpT",
+    "businessArea": "BT",
     "classificationType": "BT-NRU-Environmental",
-    "customerId": "${utrRepComp}",
+    "customerId": "${''}",
     "dmsFormId": "ALREG"
   },
   "sections": [
@@ -21,7 +21,7 @@
         {
           "id": "legalStatus",
           "type": "choice",
-          "label": "",
+          "label": "What is your business type?",
           "shortName": "Business type",
           "choices": [
             "Limited company",
@@ -54,32 +54,32 @@
           "infoType": "noformat"
         },
         {
-          "id": "contactName",
+          "id": "regContactName1",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "phoneNumber",
+          "id": "RegPhoneNumber1",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "email1",
+          "id": "regEmail1",
           "type": "text",
           "label": "Email address",
           "helpText": "We’ll use this to send you a confirmation email ",
           "format": "email"
         },
         {
-          "id": "youInfo2",
+          "id": "roleWit",
           "type": "info",
           "label": "",
           "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
-          "id": "youStatus1",
+          "id": "roleInBusiness1",
           "type": "choice",
           "label": "Select the role relevant to you",
           "shortName": "Your role",
@@ -103,25 +103,25 @@
       "description": "HMRC will use these details if we need to discuss this registration.",
       "fields": [
         {
-          "id": "contactName2",
+          "id": "regContactName2",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "phoneNumber2",
+          "id": "regPhoneNumber2",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "email1a",
+          "id": "regEmail2",
           "type": "text",
           "label": "Email address",
           "helpText": "We’ll use this to send you a confirmation email ",
           "format": "email"
         },
         {
-          "id": "capacityCompleting",
+          "id": "roleInBusiness2",
           "type": "text",
           "label": "What is your role within the business?",
           "shortName": "Role within the business",
@@ -135,18 +135,18 @@
       "description": "HMRC will use these details if we need to discuss this registration.",
       "fields": [
         {
-          "id": "contactName3",
+          "id": "regContactName3",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "phoneNumber3",
+          "id": "regPhoneNumber3",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "email1_partner2",
+          "id": "regEmail3",
           "type": "text",
           "label": "Email address",
           "helpText": "We’ll use this to send you a confirmation email ",
@@ -160,7 +160,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "legalStatusPartner2",
+          "id": "roleInBusiness3",
           "type": "choice",
           "label": "Select the role relevant to you",
           "shortName": "Your role",
@@ -182,18 +182,18 @@
       "description": "HMRC will use these details if we need to discuss this registration.",
       "fields": [
         {
-          "id": "contactName4",
+          "id": "regContactName4",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "phoneNumber4",
+          "id": "regPhoneNumber4",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "email1c",
+          "id": "regEmail4",
           "type": "text",
           "label": "Email address",
           "helpText": "We’ll use this to send you a confirmation email ",
@@ -207,7 +207,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "legalStatusDec4",
+          "id": "roleInBusiness4",
           "type": "choice",
           "label": "Select the role relevant to you",
           "shortName": "Your role",
@@ -269,7 +269,7 @@
           "helpText": ""
         },
         {
-          "id": "businessName_copy_1",
+          "id": "businessTradingName",
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
@@ -284,14 +284,14 @@
       "includeIf": "${legalStatus=1}",
       "fields": [
         {
-          "id": "businessName_copy_1_st",
+          "id": "businessNameSoleTrader",
           "type": "text",
           "label": "Full name of sole trader owner",
           "shortName": "Business owner name",
           "helpText": ""
         },
         {
-          "id": "businessName_copy_2",
+          "id": "businessTradingNameSoleTrader",
           "type": "text",
           "label": "Trading name of business (optional)",
           "shortName": "Trading name",
@@ -306,7 +306,7 @@
       "description": "Provide details for the main place of business, where the day-to-day business activities are managed. \n",
       "fields": [
         {
-          "id": "infoDets1",
+          "id": "infoBusinessDetails",
           "type": "info",
           "label": "",
           "infoText": "HMRC may use these to verify your business information with records we hold.\n\n\n",
@@ -319,7 +319,7 @@
           "helpText": ""
         },
         {
-          "id": "email1_copy_4",
+          "id": "businessEmail",
           "type": "text",
           "label": "Email address (optional)",
           "shortName": "Email address",
@@ -327,7 +327,7 @@
           "mandatory": "false"
         },
         {
-          "id": "phoneNumber_copy_4",
+          "id": "BusinessPhone",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
@@ -337,8 +337,11 @@
           "type": "choice",
           "label": "Do you want HMRC to also use these details for your Landfill Tax correspondence? ",
           "shortName": "Use as contact details",
-          "format": "yesno",
-          "errorMessage": "Select whether you want to use these as your correspondence details"
+          "errorMessage": "Select whether you want to use these as your correspondence details",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -348,12 +351,12 @@
       "description": "HMRC will use these for your ongoing Landfill Tax correspondence. ",
       "fields": [
         {
-          "id": "businessAddress_copy_1",
+          "id": "businessAddressPreferred",
           "type": "address",
           "label": "Address"
         },
         {
-          "id": "email1_copy_5",
+          "id": "emailPreferred",
           "type": "text",
           "label": "Email address (optional)",
           "shortName": "Email address",
@@ -361,7 +364,7 @@
           "mandatory": "false"
         },
         {
-          "id": "phoneNumber_copy_5",
+          "id": "phoneNumberPreferred",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
@@ -379,21 +382,20 @@
           "label": "What is your Companies House registration number?",
           "shortName": "Registration number",
           "helpText": "This can be found on your certificate of incorporation. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
-          "format": "text(8,8)",
-          "mandatory": "true"
+          "format": "text(8,8)"
         }
       ]
     },
     {
       "title": "Does your business have a Self Assessment Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference status",
+      "shortName": "Self Assessment Unique Taxpayer Reference status",
       "includeIf": "${legalStatus=3 || legalStatus=1 || legalStatus=2}",
       "fields": [
         {
           "id": "SAUTRyesno",
           "type": "choice",
           "label": "Does your business have a Self Assessment Unique Taxpayer Reference?",
-          "shortName": "Unique Taxpayer Reference",
+          "shortName": "Self Assessment Unique Taxpayer Reference",
           "errorMessage": "Select whether your business has a Self Assessment Unique Taxpayer Reference ",
           "choices": [
             "Yes",
@@ -404,14 +406,14 @@
     },
     {
       "title": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference status",
-      "includeIf": "${legalStatus=4 || legalStatus=0 || legalStatus=2 && SAUTRyesno=1}",
+      "shortName": "Corporation Tax Unique Taxpayer Reference status",
+      "includeIf": "${legalStatus=4 || legalStatus=0 || (legalStatus=2 && SAUTRyesno=1)}",
       "fields": [
         {
           "id": "CTUTRyesno",
           "type": "choice",
           "label": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "Unique Taxpayer Reference",
+          "shortName": "Corporation Tax Unique Taxpayer Reference",
           "errorMessage": "Select whether your business has a Corporation Tax Unique Taxpayer Reference ",
           "choices": [
             "Yes",
@@ -422,33 +424,31 @@
     },
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference details",
+      "shortName": "Corporation Tax Unique Taxpayer Reference details",
       "includeIf": "${CTUTRyesno=0}",
       "fields": [
         {
           "id": "UTRuni",
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "Corporation Tax Unique Taxpayer Reference",
+          "shortName": "Business Corporation Tax Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’ ",
-          "format": "utr",
-          "mandatory": "true"
+          "format": "utr"
         }
       ]
     },
     {
       "title": "What is your business's Self Assessment Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference details",
+      "shortName": "Self Assessment Unique Taxpayer Reference details",
       "includeIf": "${SAUTRyesno=0}",
       "fields": [
         {
-          "id": "UTR_copy_1",
+          "id": "saUTR",
           "type": "text",
           "label": "What is your business's Self Assessment Unique Taxpayer Reference?",
-          "shortName": "Self Assessment Unique Taxpayer Reference",
+          "shortName": "Business Self Assessment Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
-          "format": "utr",
-          "mandatory": "true"
+          "format": "utr"
         }
       ]
     },
@@ -461,9 +461,11 @@
           "type": "choice",
           "label": "Is your business registered for VAT?",
           "shortName": "Business VAT registered",
-          "format": "yesno",
-          "mandatory": "true",
-          "errorMessage": "Select whether your business is VAT registered"
+          "errorMessage": "Select whether your business is VAT registered",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -478,8 +480,7 @@
           "label": "What is the VAT registration number?",
           "shortName": "VAT registration number",
           "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
-          "format": "text(9, 11)",
-          "mandatory": "true"
+          "format": "text(9, 11)"
         }
       ]
     },
@@ -488,17 +489,17 @@
       "shortName": "Details of first taxable disposal",
       "fields": [
         {
-          "id": "aggregatesDate",
+          "id": "taxableDisposalDate",
           "type": "date",
           "label": "What is the date of your first expected taxable landfill disposal?",
-          "shortName": "Date of first taxable disposal",
+          "shortName": "Date",
           "helpText": "For example 21 04 2018"
         },
         {
           "id": "infoDate",
           "type": "info",
           "label": "Where can I find out more about what a taxable disposal is?",
-          "infoText": "More information about what a taxable disposal is can be found on GOV.UK in [Excise Notice LFT1: a general guide to Landfill Tax.](https://www.gov.uk/government/publications/excise-notice-lft1-a-general-guide-to-landfill-tax/excise-notice-lft1-a-general-guide-to-landfill-tax#scope-of-the-tax)",
+          "infoText": "Open a new tab or window, go to GOV.UK and search for 'Excise Notice LFT1: a general guide to Landfill Tax' to find out more about what a taxable disposal is.",
           "infoType": "long"
         }
       ]
@@ -579,14 +580,14 @@
       "repeatsMax": "${noOfSites}",
       "fields": [
         {
-          "id": "takenOverInfo_copy_1",
+          "id": "siteContactDeats",
           "type": "info",
           "label": "",
           "infoText": "##Site contact details",
           "infoType": "noformat"
         },
         {
-          "id": "siteName_copy_1",
+          "id": "siteTradingName",
           "type": "text",
           "label": "Trading name of site",
           "shortName": "Site trading name",
@@ -594,18 +595,18 @@
           "mandatory": "false"
         },
         {
-          "id": "siteAdd_copy_1",
+          "id": "siteAddress",
           "type": "address",
           "label": "Site address"
         },
         {
-          "id": "sitePhone_copy_1",
+          "id": "sitePhone",
           "type": "text",
           "label": "Site telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "siteEmail_copy_1",
+          "id": "siteEmail",
           "type": "text",
           "label": "Site email address (optional)",
           "shortName": "Email address",
@@ -613,32 +614,38 @@
           "mandatory": "false"
         },
         {
-          "id": "siteInfo_copy_1",
+          "id": "siteInfo",
           "type": "info",
           "label": "",
           "infoText": "##Site information",
           "infoType": "noformat"
         },
         {
-          "id": "weighbridgeChoice_copy_1",
+          "id": "weighbridgeChoice",
           "type": "choice",
           "label": "Do you use a weighbridge to weigh materials at this site?",
           "shortName": "Weighbridge used",
-          "format": "yesno",
           "errorMessage": "You must select whether you use a weighbridge",
+          "choices": [
+            "Yes",
+            "No"
+          ],
           "optionHelpText": [
             "",
             "You will need to contact HMRC to agree an alternative method for weighing materials. Contact details will be provided after completing this registration. "
           ]
         },
         {
-          "id": "controllerChoice_copy_1",
+          "id": "controllerChoice",
           "type": "choice",
           "label": "Do you have a controller at this site?",
           "shortName": "Site controller",
           "helpText": "If a person other than the site operator determines what materials (if any) are disposed of at this site, that person is a controller. \n\nA person who is acting purely as an agent or an employee of someone else is not a controller",
-          "format": "yesno",
-          "errorMessage": "You must select whether you have a site controller"
+          "errorMessage": "You must select whether you have a site controller",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "generatedId_0aac6495_35f4_4bf0_babf_ff170224d041",
@@ -648,7 +655,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "previousOwnerINfo_copy_1",
+          "id": "materialTypeInfo",
           "type": "info",
           "label": "Material types",
           "infoText": "Provide details for the types of materials landfilled at this site. ",
@@ -673,7 +680,7 @@
           "displayWidth": "l"
         },
         {
-          "id": "altLowRate_copy_1",
+          "id": "altExamptMaterials",
           "type": "text",
           "label": "Exempt materials",
           "shortName": "Estimated exempt materials in tonnes",
@@ -696,12 +703,11 @@
           "infoType": "noformat"
         },
         {
-          "id": "permitNotwo_copy_1",
+          "id": "permitNoAppliedGranted",
           "type": "choice",
           "label": "Select the status of this site's environmental permit",
           "shortName": "Environmental permit status",
           "format": "vertical",
-          "mandatory": "true",
           "multivalue": "false",
           "errorMessage": "Status of site permit must be selected",
           "choices": [
@@ -733,8 +739,11 @@
           "type": "choice",
           "label": "Has your business taken over another landfill business as a going concern?",
           "shortName": "Taken over landfill business",
-          "format": "yesno",
-          "errorMessage": "You must select whether you have taken over another landfill business"
+          "errorMessage": "You must select whether you have taken over another landfill business",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -747,8 +756,8 @@
         {
           "id": "transferDate",
           "type": "date",
-          "label": "Date the transfer took place",
-          "shortName": "Date of transfer",
+          "label": "Date of transfer",
+          "shortName": "Date",
           "helpText": "For example, 21 08 2018"
         },
         {
@@ -793,9 +802,11 @@
           "label": "Have you been involved in any other landfill businesses in the last 2 years?",
           "shortName": "Sole trader involved in other landfill businesses ",
           "helpText": "Select whether you (the sole trader) has been involved in any other landfill business",
-          "format": "yesno",
-          "mandatory": "true",
-          "errorMessage": "You must select whether you have been involved in any other landfill businesses"
+          "errorMessage": "You must select whether you have been involved in any other landfill businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -810,9 +821,11 @@
           "label": "Have any of the partners in your business been involved in any other landfill businesses in the last 2 years?",
           "shortName": "Partners involved in other landfill businesses",
           "helpText": "",
-          "format": "yesno",
-          "mandatory": "true",
-          "errorMessage": "Select whether any of the business partners have been involved with other landfill businesses"
+          "errorMessage": "Select whether any of the business partners have been involved with other landfill businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -826,9 +839,11 @@
           "type": "choice",
           "label": "Have any of your business directors been involved in other landfill businesses in the last 2 years?",
           "shortName": "Directors involved in other landfill businesses",
-          "format": "yesno",
-          "mandatory": "true",
-          "errorMessage": "Select whether your directors have been involved with other landfill businesses"
+          "errorMessage": "Select whether your directors have been involved with other landfill businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -902,7 +917,7 @@
               "id": "regNo1LtdCo",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Registration number of other business",
+              "shortName": "Registration number",
               "format": "text"
             }
           ]
@@ -945,13 +960,6 @@
         "label": "",
         "infoText": "You must check the guidance for this service on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
         "infoType": "standard"
-      },
-      {
-        "id": "ackPageInfoBottom",
-        "type": "info",
-        "label": "",
-        "infoText": "HMRC will send you a letter to confirm your registration details and return dates so that you can prepare your first Landfill Tax return. ",
-        "infoType": "noformat"
       },
       {
         "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
