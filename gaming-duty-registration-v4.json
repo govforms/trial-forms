@@ -1,0 +1,492 @@
+{
+  "_id": "gaming-duty-registration-v4",
+  "formName": "Register your business for Gaming Duty",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "GD56"
+  },
+  "sections": [
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "Telephonenumber",
+          "type": "text",
+          "label": "Telephone number ",
+          "helpText": "We will only use this number if we need to contact you about this form"
+        },
+        {
+          "id": "Emailaddress",
+          "type": "text",
+          "label": "Email address ",
+          "helpText": "We will only use this address if we need to contact you about this form"
+        },
+        {
+          "id": "capacity",
+          "type": "text",
+          "label": "What is your role within the organisation?",
+          "helpText": "For example, a director or proprietor"
+        }
+      ]
+    },
+    {
+      "title": "What type of business do you want to register?",
+      "fields": [
+        {
+          "id": "legalStatus1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business legal status",
+          "format": "vertical",
+          "choices": [
+            "Limited company",
+            "Sole proprietorship",
+            "Partnership",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter sole proprietor's full name",
+      "includeIf": "${legalStatus1 = 1}",
+      "fields": [
+        {
+          "id": "spName",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "spNameChoice",
+          "type": "choice",
+          "label": "Is the trading name different to the sole proprietor's full name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "spTradingName",
+          "type": "text",
+          "label": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your partnership",
+      "includeIf": "${legalStatus1 = 2}",
+      "fields": [
+        {
+          "id": "pName",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "nameChoicePA",
+          "type": "choice",
+          "label": "Is your trading name different to your partnership's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "pTradingName",
+          "type": "text",
+          "label": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your company",
+      "includeIf": "${legalStatus1 = 0}",
+      "fields": [
+        {
+          "id": "coName",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "nameChoiceLC",
+          "type": "choice",
+          "label": "Is your trading name different from your company's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your unincorporated body",
+      "includeIf": "${legalStatus1 = 4}",
+      "fields": [
+        {
+          "id": "coNameUB",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "nameChoiceUB",
+          "type": "choice",
+          "label": "Is your trading name different from your unincorporated body's name?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "tradingNameUB",
+          "type": "text",
+          "label": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Enter an estimate of your profits over the next 12 months",
+      "fields": [
+        {
+          "id": "estProf",
+          "type": "text",
+          "label": "",
+          "helpText": "You might call your 'profits'  your ‘gross gaming yield’ ",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Enter the address of your principal place of business",
+      "fields": [
+        {
+          "id": "ppbAdd",
+          "type": "address",
+          "label": ""
+        },
+        {
+          "id": "ppbTel",
+          "type": "text",
+          "label": "Telephone number of business",
+          "helpText": "",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "accountsAddressChoice",
+          "type": "choice",
+          "label": "Are your business records stored at this address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "dutiableGamingTakingPlaceAtAddress",
+          "type": "choice",
+          "label": "Will dutiable gaming take place at this address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the address of where your business records are kept",
+      "includeIf": "${accountsAddressChoice = 2}",
+      "fields": [
+        {
+          "id": "recAccAdd",
+          "type": "address",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "What date will gaming start at this address?",
+      "fields": [
+        {
+          "id": "startTradingDate_copy_1",
+          "type": "date",
+          "label": "",
+          "helpText": "DD MM YYYY"
+        }
+      ]
+    },
+    {
+      "title": "Do you want to register other premises for Gaming Duty? ",
+      "fields": [
+        {
+          "id": "gd58Choice",
+          "type": "choice",
+          "label": " ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of other premises you want to register",
+      "includeIf": "${gd58Choice = 0}",
+      "fields": [
+        {
+          "id": "newPremNumb",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of premises $n",
+      "includeIf": "${gd58Choice = 0}",
+      "repeatsMin": "${newPremNumb}",
+      "repeatsMax": "${newPremNumb}",
+      "fields": [
+        {
+          "id": "premName",
+          "type": "text",
+          "label": "Trading name "
+        },
+        {
+          "id": "premAdd",
+          "type": "address",
+          "label": "Address "
+        },
+        {
+          "id": "premTel",
+          "type": "text",
+          "label": "Telephone number at this premises",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "What date will gaming start at this address?",
+      "fields": [
+        {
+          "id": "startTradingDate",
+          "type": "date",
+          "label": "",
+          "helpText": "DD MM YYYY"
+        }
+      ]
+    },
+    {
+      "title": "How many other partners are in your partnership?",
+      "includeIf": "${legalStatus1 = 2}",
+      "fields": [
+        {
+          "id": "numberPartners",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter details of partner $n",
+      "repeatsMin": "${numberPartners}",
+      "repeatsMax": "${numberPartners}",
+      "fields": [
+        {
+          "id": "PartnerFirstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "PartnerLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "PartnerAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "PartnerTel",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Do you want to set up a Gaming Duty group?",
+      "fields": [
+        {
+          "id": "newGroup",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you the representative member of the group?",
+      "fields": [
+        {
+          "id": "generatedId_dd159028_bad6_415f_a5ee_332f091a2b42",
+          "type": "info",
+          "label": "",
+          "infoText": "You must be the representative member to set up a new group.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "repMemb",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot set up a group",
+      "fields": [
+        {
+          "id": "generatedId_f21d2657_ffda_44bd_b6e0_e32991fc0eb5",
+          "type": "info",
+          "label": "",
+          "infoText": "You must be the representative member to set up a group. \n\nSelect 'Save and continue' to continue with the form to register your business for Gaming Duty. \n\nThe representative member of the group will need to set up the group another time. They can do this on GOV.UK.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Are all group members a corporate body?",
+      "fields": [
+        {
+          "id": "generatedId_4914ebfe_d877_40a8_8118_b4c08d0af436",
+          "type": "info",
+          "label": "",
+          "infoText": "This must also include the representative member.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "corpMembChoice",
+          "type": "choice",
+          "label": " ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are all members of the group either resident or established within the UK or Isle of Man?",
+      "fields": [
+        {
+          "id": "generatedId_bc6474a3_fd70_4661_9e17_f42b70cc9195",
+          "type": "info",
+          "label": "",
+          "infoText": "You must also include the representative member.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "membResiChoice",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the names of the other group members",
+      "fields": [
+        {
+          "id": "nameRN",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "generatedId_a517d5f4_42bc_448c_acbe_d783ac852888",
+          "type": "info",
+          "label": "",
+          "infoText": "Add new member",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What date will group registration start?",
+      "includeIf": "${newGroup = 0} ",
+      "fields": [
+        {
+          "id": "newGroupStartDate",
+          "type": "date",
+          "label": ""
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit form to register your business for Gaming Duty",
+    "shortName": "Submit your form",
+    "fields": [
+      {
+        "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
+        "type": "info",
+        "label": "",
+        "infoText": "##Terms and conditions",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
+        "type": "info",
+        "label": "",
+        "infoText": "Before you submit this form to register for Gaming Duty, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you ",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "generatedId_17d4070a_efc2_44a4_90db_f6c40ad644e4",
+        "type": "info",
+        "label": "Get a copy of form",
+        "infoText": "If you want a copy of your form you'll need to print it or save it as a PDF before you leave this page.\n\nWe will contact you if we have a question. \n\n\n\n\n",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
