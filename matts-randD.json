@@ -2,7 +2,7 @@
   "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme",
   "formName": "Send details to support an R&D tax relief claim for an SME",
   "description": "",
-  "formCategory": "hmrcReturnForm",
+  "formCategory": "hmrcClaimForm",
   "developmentPhase": "beta",
   "emailTemplateId": "randd_confirmation_submission",
   "authConfig": {
@@ -65,11 +65,11 @@
           "type": "choice",
           "label": "Select how you would like to be contacted",
           "shortName": "Contact method",
-          "multivalue": "yes",
           "errorMessage": "Select if you would like to be contacted by email or phone",
           "choices": [
             "Email",
-            "Phone"
+            "Phone",
+            "Both"
           ]
         }
       ]
@@ -140,6 +140,7 @@
           "id": "utrRepComp",
           "type": "text",
           "label": "Company Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Corporation Tax.",
           "format": "text(10,10)"
         }
       ]
@@ -175,21 +176,13 @@
     {
       "title": "Qualifying costs for all your projects",
       "shortName": "Qualifying costs",
-      "description": "Complete all fields, using '0' if you have no costs.",
       "fields": [
         {
           "id": "inset6",
           "type": "info",
           "label": "inset6",
-          "infoText": "We will only consider costs for R&D activities that qualify for R&D tax relief.",
-          "infoType": "standard"
-        },
-        {
-          "id": "generatedId_7bbd78dc_505a_4060_b0ff_dfa18abd9f55",
-          "type": "info",
-          "label": "What employee costs qualify for relief?",
-          "infoText": "If you have employees working part-time on R&D activities, you should only include a reasonable share of their total employee costs.\n\nYou can include your employees' :\n\n-    salary before tax\nincluding cash bonuses and overtime pay \n-    reimbursed employee expenses to do with R&D activities (where employee have paid for their expenses before the company pays them back)\n-    Employer's National Insurance contributions\n-    Employer's pension contributions",
-          "infoType": "long"
+          "infoText": "Complete all fields, using '0' if you have no costs. We will only consider costs for R&D activities that qualify for R&D tax relief.",
+          "infoType": "noformat"
         },
         {
           "id": "EmployeeCosts",
@@ -197,6 +190,13 @@
           "label": "Employee costs",
           "format": "sterling",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+        },
+        {
+          "id": "generatedId_7bbd78dc_505a_4060_b0ff_dfa18abd9f55",
+          "type": "info",
+          "label": "What employee costs qualify for relief?",
+          "infoText": "If you have employees working part-time on R&D activities, you should only include a reasonable share of their total employee costs.\n\nYou can include your employees' :\n\n-    salary before tax\nincluding cash bonuses and overtime pay \n-    reimbursed employee expenses to do with R&D activities (where employee have paid for their expenses before the company pays them back)\n-    employer's National Insurance contributions\n-    employer's pension contributions",
+          "infoType": "long"
         },
         {
           "id": "generatedId_b610f01e_0ef3_4d17_929b_7b3af12b4352",
@@ -278,15 +278,6 @@
           "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical tests",
           "format": "sterling",
           "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
-        },
-        {
-          "id": "totalQualifyingExpenditure",
-          "type": "text",
-          "label": "Total amount of costs before any enhancements",
-          "format": "sterling",
-          "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
         }
       ]
     },
@@ -313,8 +304,7 @@
       ]
     },
     {
-      "title": "Research and development project $n",
-      "shortName": "Projects",
+      "title": "Project $n",
       "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
       "description": "Tell us about the project you want to claim for.",
       "repeatsMin": "${projTot}",
@@ -337,7 +327,7 @@
           "type": "text",
           "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
           "shortName": "Scientific or technical knowledge at the start",
-          "helpText": "Enter up to 600 words including spaces",
+          "helpText": "Enter up to 600 words",
           "format": "text(0, 3000)",
           "multiline": "yes"
         },
@@ -353,7 +343,7 @@
           "type": "text",
           "label": "What advance in that knowledge did you aim to achieve?",
           "shortName": "Advanced knowledge",
-          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 600 words including spaces",
+          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 600 words",
           "format": "text(0, 3000)",
           "multiline": "yes"
         },
@@ -362,7 +352,7 @@
           "type": "text",
           "label": "What scientific or technological uncertainties did you face?",
           "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words including spaces",
+          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 600 words",
           "format": "text(0, 3000)",
           "multiline": "yes"
         },
@@ -378,16 +368,16 @@
           "type": "text",
           "label": "How did your project overcome these uncertainties?",
           "shortName": "Work to overcome uncertainties",
-          "helpText": "Enter up to 600 words including spaces",
+          "helpText": "Outline the R&D activities you did to try to resolve the uncertainties. Enter up to 600 words",
           "format": "text(0, 3000)",
           "multiline": "yes"
         },
         {
-          "id": "authorisedTextIndividual_copy_1",
+          "id": "generatedId_abcf6120_3314_4c37_8a92_7ec13509477f",
           "type": "info",
-          "label": "",
-          "infoText": "Outline the R&D activities you did to try to resolve the uncertainties. For help with the types of activities you should include, see [paragraph 26 to 32 in this guidance (opens in a new window)](https://www.gov.uk/hmrc-internal-manuals/corporate-intangibles-research-and-development-manual/cird81900).",
-          "infoType": "noformat"
+          "label": "What types of activities should I include?",
+          "infoText": "You should tell us more about the direct R&D activities that\ntry to resolve the scientific or technological uncertainties, and some on qualifying indirect activities.\n\n\nDirect activities may include:\n\n- creating or adapting software, materials or equipment needed to resolve the uncertainty\n- planning activities such as a detailed plan of how you will carry out the project\n- designing, testing and analysis to resolve the scientific or technological uncertainty\n\nIndirect activities may include:\n\n- promoting a new or improved process, material, device, product or service\n- work to create non-scientific or non-technological features of a new or improved process, material, device, product or service\n- producing and distributing goods and services\n- general support services such as transportation, storage, cleaning, repair, maintenance and security\n\nQualifying indirect activities form part of the project, but do not directly lead to resolving the uncertainty.\n\nThey include:\n\n- creating information services for R&D support such as preparing a report of R&D findings\n- ancillary activities needed to begin R&D, for example, taking on and paying staff, leasing laboratories and maintaining research and development equipment including computers used for R&D purposes)\n- training required to support the R&D project\n- research by students and researchers carried out at universities\n- research including data collection to make new scientific or technological testing, survey, or sampling methods, where this research is not R&D in its own right\n- feasibility studies to inform the strategic direction of a specific R&D activity",
+          "infoType": "long"
         },
         {
           "id": "qe1Individual",
@@ -421,8 +411,7 @@
       ]
     },
     {
-      "title": "Research and development project 1",
-      "shortName": "Projects",
+      "title": "Project 1",
       "includeIf": "${useraffinityGroup = 2}",
       "description": "Tell us about the projects you claimed for in your Corporation Tax return.",
       "repeatsMin": "${projTotAgent}",
@@ -511,12 +500,12 @@
       "shortName": "R&D tax relief",
       "fields": [
         {
-          "id": "totalQualifyingExpenditurePulledThrough",
+          "id": "totalQualifyingExpenditure",
           "type": "text",
           "label": "Qualifying costs for all projects",
           "helpText": "This is based on the amount you entered on a previous page",
           "format": "sterling",
-          "value": "${totalQualifyingExpenditure}",
+          "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -541,6 +530,7 @@
     },
     {
       "title": "Did your company make a trading loss for the period you are claiming for?",
+      "shortName": "Trading loss for this period",
       "fields": [
         {
           "id": "profitOrLoss",
@@ -558,12 +548,14 @@
     },
     {
       "title": "What is your company's unused trading loss for this period?",
+      "shortName": "Unused trading loss for this period",
       "includeIf": "${profitOrLoss=0}",
       "fields": [
         {
           "id": "TradingLoss",
           "type": "text",
           "label": "What is your company's unused trading loss for this period?",
+          "shortName": "Amount of trading loss",
           "format": "sterling",
           "mandatory": "yes"
         },
@@ -578,8 +570,7 @@
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
-    "shortName": "Confirm details and send the form",
+    "title": "Confirm details and send the form",
     "fields": [
       {
         "id": "someoneAuthorised",
