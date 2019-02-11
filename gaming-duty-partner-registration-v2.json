@@ -1,0 +1,179 @@
+{
+  "_id": "gaming-duty-partner-registration-v2",
+  "formName": "Add a business partner to the Gaming Duty register",
+  "description": "add your business partners to the gaming duty register",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "GD57"
+  },
+  "sections": [
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "type": "text",
+          "id": "",
+          "label": "Enter the name of the business partnership"
+        },
+        {
+          "id": "emailInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "We need your consent before using email to communicate",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "Read about the risks of using email",
+          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
+          "infoType": "long"
+        },
+        {
+          "id": "emCons1",
+          "type": "choice",
+          "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details.",
+          "shortName": "Confirm consent to use email communication",
+          "format": "yesno"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Provide your email address below if you consent to communicating by email",
+          "format": "email",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Partner details",
+      "fields": [
+        {
+          "id": "partnerNumber",
+          "type": "text",
+          "label": "How many business partners do you wish to add to the Gaming Duty register?",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Partner details $n",
+      "repeatsMin": "${partnerNumber}",
+      "repeatsMax": "${partnerNumber}",
+      "fields": [
+        {
+          "id": "firstNameP",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastNameP",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "addressP",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "phoneP",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
