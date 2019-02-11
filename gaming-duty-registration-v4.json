@@ -14,24 +14,86 @@
   },
   "sections": [
     {
-      "title": "What is your role within the busines?",
+      "title": "What type of business do you want to register?",
       "fields": [
         {
-          "id": "role",
+          "id": "legalStatus1",
           "type": "choice",
           "label": "",
+          "shortName": "Business legal status",
+          "format": "vertical",
           "choices": [
-            "Director",
-            "Sole proprietor",
-            "Partner",
-            "Authorised offical"
+            "Limited company",
+            "Sole proprietorship",
+            "Partnership",
+            "Unincorporated body"
           ]
         }
       ]
     },
     {
-      "title": "Enter your name and contact details",
+      "title": "What is your role within the business?",
       "fields": [
+        {
+          "type": "choice",
+          "id": "roleComp",
+          "label": "",
+          "choices": [
+            "Director",
+            "Company secretary ",
+            "Authorised individual"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your role within the business?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "roleSoleT",
+          "label": "",
+          "choices": [
+            "Sole proprietor",
+            "Authorised individual"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your role within the business?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "rolePart",
+          "label": "",
+          "choices": [
+            "Partner",
+            "Authorised individual"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your role within the business?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "roleUB",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_6c6adffe_a0c9_485e_b54a_9579a2119bb4",
+          "label": "contact",
+          "infoText": "We will use these details to contact you if we need to discuss this form.",
+          "infoType": "noformat"
+        },
         {
           "id": "firstName",
           "type": "text",
@@ -48,31 +110,13 @@
           "id": "Telephonenumber",
           "type": "text",
           "label": "Telephone number ",
-          "helpText": "We will only use this number if we need to contact you about this form"
+          "helpText": ""
         },
         {
           "id": "Emailaddress",
           "type": "text",
           "label": "Email address ",
-          "helpText": "We will only use this address if we need to contact you about this form"
-        }
-      ]
-    },
-    {
-      "title": "What type of business do you want to register?",
-      "fields": [
-        {
-          "id": "legalStatus1",
-          "type": "choice",
-          "label": "",
-          "shortName": "Business legal status",
-          "format": "vertical",
-          "choices": [
-            "Limited company",
-            "Sole proprietorship",
-            "Partnership",
-            "Unincorporated body"
-          ]
+          "helpText": ""
         }
       ]
     },
@@ -152,7 +196,7 @@
       ]
     },
     {
-      "title": "Enter the name of the unincorporated body",
+      "title": "Enter the unincorporated body's name",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
@@ -177,13 +221,13 @@
       ]
     },
     {
-      "title": "Enter an estimate of your profits over the next 12 months",
+      "title": "Enter an estimate of the business' profits over the next 12 months",
       "fields": [
         {
           "id": "estProf",
           "type": "text",
           "label": "",
-          "helpText": "You might call your 'profits'  your ‘gross gaming yield’ ",
+          "helpText": "'Profit' can also be called ‘gross gaming yield’",
           "format": "sterling"
         }
       ]
@@ -348,8 +392,8 @@
     }
   ],
   "declarationSection": {
-    "title": "Submit form to register your business for Gaming Duty",
-    "shortName": "Submit your form",
+    "title": "Submit form to register the business for Gaming Duty",
+    "shortName": "Submit form",
     "fields": [
       {
         "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
@@ -362,7 +406,7 @@
         "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
         "type": "info",
         "label": "",
-        "infoText": "Before you submit this form to register for Gaming Duty, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you ",
+        "infoText": "Before you submit this form, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you",
         "infoType": "noformat"
       }
     ]
