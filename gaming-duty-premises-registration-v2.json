@@ -14,7 +14,7 @@
   },
   "sections": [
     {
-      "title": "Submit form to add or remove a premises from the Gaming Duty register",
+      "title": "Enter your details",
       "fields": [
         {
           "id": "firstName",
@@ -29,7 +29,7 @@
         {
           "id": "capFill",
           "type": "text",
-          "label": "Capacity in which you are completing this form",
+          "label": "Your role within the business",
           "helpText": "For example, director or proprietor"
         },
         {
@@ -86,17 +86,27 @@
             "Add a premises to the Gaming Duty register ",
             "Remove a premises from the Gaming Duty register "
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "Enter the Gaming Duty registration number",
+      "fields": [
         {
           "id": "dtrNumb",
           "type": "text",
-          "label": "Businesses' Gaming Duty registration number",
+          "label": "",
           "helpText": "For example, XAA00000000000"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Enter the date when dutiable gaming will start at the premises",
+      "fields": [
         {
           "id": "changeDate",
           "type": "date",
-          "label": "Date this is to take effect from",
+          "label": "",
           "helpText": "DD MM YYYY"
         }
       ]
@@ -108,13 +118,13 @@
         {
           "id": "newPremNumb",
           "type": "text",
-          "label": "Enter the number of new premises you want to add to the Gaming Duty register",
+          "label": "",
           "format": "positiveWholeNumber"
         }
       ]
     },
     {
-      "title": "About the business - Premises $n",
+      "title": "Enter the details of premises $n",
       "includeIf": "${changeTypePrem = 0}",
       "repeatsMin": "${newPremNumb}",
       "repeatsMax": "${newPremNumb}",
@@ -122,17 +132,17 @@
         {
           "id": "premName",
           "type": "text",
-          "label": "Trading name of the premises "
+          "label": "Trading name used at the premises "
         },
         {
           "id": "premAdd",
           "type": "address",
-          "label": "Address of the premises"
+          "label": "Address"
         },
         {
           "id": "premTel",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Business' telephone number",
           "format": "telephoneNumber"
         }
       ]
@@ -150,7 +160,7 @@
       ]
     },
     {
-      "title": "About the business - Premises $n",
+      "title": "Enter the details of premises you want to remove $n",
       "includeIf": "${changeTypePrem = 1}",
       "repeatsMin": "${remPremNumb}",
       "repeatsMax": "${remPremNumb}",
