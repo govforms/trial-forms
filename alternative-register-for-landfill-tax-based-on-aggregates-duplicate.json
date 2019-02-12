@@ -11,7 +11,7 @@
     "businessArea": "BT",
     "classificationType": "BT-NRU-Environmental",
     "customerId": "${''}",
-    "dmsFormId": "ALREG"
+    "dmsFormId": "LTREG"
   },
   "sections": [
     {
@@ -68,7 +68,6 @@
           "id": "regEmail1",
           "type": "text",
           "label": "Email address",
-          "helpText": "We’ll use this to send you a confirmation email ",
           "format": "email"
         },
         {
@@ -433,7 +432,8 @@
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
           "shortName": "Business Corporation Tax Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’ ",
-          "format": "utr"
+          "format": "utr",
+          "errorMessage": "Enter a Corporation Tax Unique Taxpayer Reference in the correct format"
         }
       ]
     },
@@ -448,7 +448,8 @@
           "label": "What is your business's Self Assessment Unique Taxpayer Reference?",
           "shortName": "Business Self Assessment Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
-          "format": "utr"
+          "format": "utr",
+          "errorMessage": "Enter a Self Assessment Tax Unique Taxpayer Reference in the correct format"
         }
       ]
     },
@@ -551,7 +552,7 @@
           "id": "generatedId_770f8576_2bcc_459c_ab59_3ea834083c3f",
           "type": "info",
           "label": "To use this service you must have applied for, or been granted an environmental permit for each of your sites",
-          "infoText": "You now need to sign out of this service, or save your progress and come back when all your site permits or permit applications are in place.",
+          "infoText": "You now need to sign out of this service.",
           "infoType": "noformat"
         }
       ]
@@ -592,6 +593,7 @@
           "label": "Trading name of site",
           "shortName": "Site trading name",
           "helpText": "Enter site trading name if different from the business name",
+          "format": "text(0,160)",
           "mandatory": "false"
         },
         {
@@ -667,8 +669,8 @@
           "label": "Standard rate materials",
           "shortName": "Estimated standard rate materials in tonnes",
           "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "l"
+          "format": "number(10,2)",
+          "displayWidth": "m"
         },
         {
           "id": "altLowRate",
@@ -676,8 +678,8 @@
           "label": "Lower rate materials",
           "shortName": "Estimated lower rate materials in tonnes",
           "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "l"
+          "format": "number(10, 2)",
+          "displayWidth": "m"
         },
         {
           "id": "altExamptMaterials",
@@ -685,8 +687,8 @@
           "label": "Exempt materials",
           "shortName": "Estimated exempt materials in tonnes",
           "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,0)",
-          "displayWidth": "l"
+          "format": "number(10,2)",
+          "displayWidth": "m"
         },
         {
           "id": "generatedId_4bfd8037_20f7_408c_9174_8198724f5df9",
@@ -932,15 +934,15 @@
         "id": "decInfoCheck",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. ",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
         "infoType": "important"
       },
       {
-        "id": "generatedId_460f6e7f_50df_4dd6_8c08_03cd33881223",
-        "type": "info",
-        "label": "",
-        "infoText": "If you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
-        "infoType": "noformat"
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We’ll use this to send you a confirmation email ",
+        "format": "email"
       }
     ]
   },
@@ -958,7 +960,7 @@
         "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
         "type": "info",
         "label": "",
-        "infoText": "You must check the guidance for this service on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
+        "infoText": "You must check [the guidance for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
         "infoType": "standard"
       },
       {
@@ -972,7 +974,7 @@
         "id": "generatedId_7c97b037_036a_45a0_9ad3_ebbea72206db",
         "type": "info",
         "label": "",
-        "infoText": "You will need to contact HMRC if you do not use a weighbridge at one or more of you sites (to agree an alternative method for weighing materials).\n\nIf you have registered any sites without environmental permits you must also contact us when the permits have been granted (or if they are refused). \n\nContact details for Landfill Tax enquiries are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk ",
+        "infoText": "You will need to contact HMRC if you do not use a weighbridge at one or more of your sites (to agree an alternative method for weighing materials).\n\nIf you have registered any sites without environmental permits you must also contact us when the permits have been granted (or if they are refused). \n\n[Contact details](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/landfill-tax) for Landfill Tax enquiries are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk",
         "infoType": "noformat"
       },
       {
@@ -986,7 +988,7 @@
         "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
         "type": "info",
         "label": "",
-        "infoText": "If your business is a partnership you must also complete form LT2 to complete your registration. You can access this from the guidance page for this service on GOV.UK.",
+        "infoText": "If your business is a partnership you must also complete form LT2 to complete your registration. You can access this from [the guidance page for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK.",
         "infoType": "noformat"
       }
     ]
