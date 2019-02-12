@@ -8,7 +8,7 @@
   "dmsSubmission": {
     "businessArea": "For example: FinanceOpsCorpT",
     "classificationType": "For example: BT-NRU-Environmental",
-    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "customerId": "${eeitt.userId}",
     "dmsFormId": "CHANGEME"
   },
   "sections": [
@@ -17,7 +17,7 @@
       "fields": [
         {
           "type": "choice",
-          "id": "user.affinityGroup",
+          "id": "useraffinitygroup",
           "label": "Pick one of these to start with",
           "choices": [
             "Agent",
@@ -29,13 +29,13 @@
     },
     {
       "title": "Confirm the following conditions apply to your application",
-      "includeIf": "${user.affinityGroup = 0}",
+      "includeIf": "${useraffinitygroup = 0}",
       "fields": [
         {
           "id": "authInfo0",
           "type": "info",
           "label": "Confirm the following conditions apply to your application",
-          "infoText": "You aren't VAT Registered in the UK\n\nYou're sending goods to a country outside the EU\n\nThe goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
+          "infoText": "You aren't VAT Registered in the UK\n\n* You're sending goods to a country outside the EU\n\n* The goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
           "infoType": "noformat"
         },
         {
@@ -48,13 +48,13 @@
     },
     {
       "title": "Confirm the following conditions apply to your application",
-      "includeIf": "${user.affinityGroup = 1 || user.affinityGroup = 2}",
+      "includeIf": "${useraffinitygroup = 1 || useraffinitygroup = 2}",
       "fields": [
         {
           "id": "authInfo1",
           "type": "info",
           "label": "Confirm the following conditions apply to your application",
-          "infoText": "You aren't VAT Registered in the UK\n\nYou're sending goods to a country outside the EU\n\nThe goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
+          "infoText": "You aren't VAT Registered in the UK\n\n* You're sending goods to a country outside the EU\n\n* The goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
           "infoType": "noformat"
         },
         {
@@ -69,6 +69,7 @@
       "title": "Conditions do not apply",
       "shortName": "Conditions do not apply",
       "includeIf": "${confirmConditions0 = 1 || confirmConditions1 = 1}",
+      "continueIf": "false",
       "fields": [
         {
           "id": "authInfo2",
