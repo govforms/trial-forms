@@ -23,7 +23,7 @@
           "label": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
           "shortName": "EORI",
           "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
-          "format": "text(14,17)"
+          "format": "EORI"
         },
         {
           "id": "whyInfo",
@@ -48,19 +48,21 @@
           "id": "yearOfAccounts",
           "type": "choice",
           "label": "How many years of accounts do you have?",
+          "shortName": "Years of accounts",
+          "helpText": "HMRC will check your record of compliance with customs and tax requirements for your business over the last 3 years, or use the latest available information if you have been established for less than that time.",
           "errorMessage": "Select how many years of accounts you have",
           "choices": [
             "None (new business)",
-            "One year of accounts",
-            "Two years of accounts",
-            "Three or more years of accounts"
+            "Last year of accounts",
+            "Last two years of accounts",
+            "Last three years of accounts"
           ]
         }
       ]
     },
     {
-      "title": "Details of most recent years accounts (CY - 1)",
-      "shortName": "Year 1 accounts",
+      "title": "Details of last year of accounts",
+      "shortName": "Last year of accounts",
       "includeIf": "${yearOfAccounts= 1 ||  yearOfAccounts=2 || yearOfAccounts=3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
@@ -163,8 +165,8 @@
       ]
     },
     {
-      "title": "Details of previous years accounts (CY - 2)",
-      "shortName": "Year 2 accounts",
+      "title": "Details of last 2 years of accounts",
+      "shortName": "Last 2 years of accounts",
       "includeIf": "${yearOfAccounts= 2 || yearOfAccounts = 3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
@@ -258,8 +260,8 @@
       ]
     },
     {
-      "title": "Details of previous years accounts (CY - 3)",
-      "shortName": "Year 3 accounts",
+      "title": "Details of last 3 years of accounts",
+      "shortName": "Last 3 years of accounts",
       "includeIf": "${yearOfAccounts = 3}",
       "description": "Enter the details for the current accounting year",
       "fields": [
