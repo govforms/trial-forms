@@ -14,34 +14,132 @@
   },
   "sections": [
     {
-      "title": "Registration details",
+      "title": "What is the legal status of your business?",
+      "fields": [
+        {
+          "id": "legalchoice",
+          "type": "choice",
+          "label": "What is the legal status of your business?",
+          "choices": [
+            "Sole proprietor",
+            "Limited company",
+            "LLP",
+            "Unincorporated body",
+            "Partnership",
+            "Trust"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_45c00d79_7668_4a54_9923_c49c440e55d7",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration. ",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "fullname",
+          "label": "Full Name"
+        },
+        {
+          "type": "text",
+          "id": "telNumber",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "emailAddress",
+          "label": "Email Address",
+          "format": "email"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_eb6d6325_28a8_4a03_b8d5_b370895276a8",
+          "label": "",
+          "infoText": "##Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "role",
+          "label": "Select the role relevant to you",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Partner",
+            "Authorised official"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your business",
       "fields": [
         {
           "id": "busName",
           "type": "text",
-          "label": "Name of business"
+          "label": "Business name"
         },
         {
-          "id": "busAdd",
-          "type": "address",
-          "label": "Address of business",
-          "international": "true"
-        },
-        {
-          "id": "telNum",
           "type": "text",
+          "id": "busTrading",
+          "label": "Trading name (optional)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Is your business based in the UK?",
+      "fields": [
+        {
+          "id": "UKreg",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details for main place of business (UK)",
+      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_42de4fc5_7188_4b6f_b8ae_f7822bbb14de",
+          "label": "",
+          "infoText": "HMRC may use these to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "address",
+          "id": "busAddress",
+          "label": "Address"
+        },
+        {
+          "type": "text",
+          "id": "busEmail",
+          "label": "Email address (optional)",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "busTelephone",
           "label": "Telephone number",
           "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Do you have an email address?",
-      "fields": [
+        },
         {
-          "id": "emailChoice",
           "type": "choice",
-          "label": "Do you have an email address?",
+          "id": "contactChoice",
+          "label": "Do you want HMRC to also use these details for your Landfill Tax correspondence? ",
           "choices": [
             "Yes",
             "No"
@@ -50,39 +148,24 @@
       ]
     },
     {
-      "title": "Email address",
-      "includeIf": "${emailChoice = 0}",
+      "title": "Preferred contact details (UK)",
       "fields": [
         {
-          "id": "emailAdd",
+          "type": "address",
+          "id": "contactAddress",
+          "label": "Address"
+        },
+        {
           "type": "text",
-          "label": "Email address",
+          "id": "contactEmail",
+          "label": "Email address (optional)",
           "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "Is your trading name different from your name of business?",
-      "fields": [
+        },
         {
-          "id": "tradChoice",
-          "type": "choice",
-          "label": "Is your trading name different from your name of business?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Trading name",
-      "includeIf": "${tradChoice = 0}",
-      "fields": [
-        {
-          "id": "tradName",
           "type": "text",
-          "label": "Trading name"
+          "id": "contactTel",
+          "label": "Telephone",
+          "format": "telephoneNumber"
         }
       ]
     },
@@ -113,34 +196,33 @@
       ]
     },
     {
-      "title": "What is the legal status of your business?",
+      "title": "Details for main place of business (International)",
+      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
       "fields": [
         {
-          "id": "legalchoice",
-          "type": "choice",
-          "label": "What is the legal status of your business?",
-          "choices": [
-            "Sole proprietor",
-            "Limited company",
-            "LLP",
-            "Unincorporated body",
-            "Partnership",
-            "Trust"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Is your business based in the UK?",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "UKreg",
+          "type": "info",
+          "id": "generatedId_79d489d2_9dfd_44f6_84c5_167062e59dfc",
           "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "infoText": "HMRC may use these to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "address",
+          "id": "busAddress_copy_1",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "type": "text",
+          "id": "busEmail_copy_1",
+          "label": "Email address (optional)",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "busTelephone_copy_1",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
         }
       ]
     },
@@ -148,8 +230,8 @@
       "title": "(conditional) Would you like to appoint an agent or representative?",
       "fields": [
         {
-          "type": "choice",
           "id": "AppointAgent",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -162,8 +244,8 @@
       "title": "(conditional) Agent or representative details",
       "fields": [
         {
-          "type": "choice",
           "id": "AgentType",
+          "type": "choice",
           "label": "Type of agent",
           "choices": [
             "Administrative representative",
@@ -172,29 +254,29 @@
           ]
         },
         {
-          "type": "text",
           "id": "agentName",
+          "type": "text",
           "label": "Name of agent/ representative"
         },
         {
-          "type": "text",
           "id": "agentTrading",
+          "type": "text",
           "label": "Trading name of agent/ representative"
         },
         {
-          "type": "address",
           "id": "agentAddress",
+          "type": "address",
           "label": "Address of agent/ representative"
         },
         {
-          "type": "text",
           "id": "agentTel",
+          "type": "text",
           "label": "Telephone number of agent/ representative",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "agentEmail",
+          "type": "text",
           "label": "Email address of agent/ representative",
           "format": "email"
         }
