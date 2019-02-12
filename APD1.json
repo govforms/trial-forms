@@ -36,32 +36,6 @@
       ]
     },
     {
-      "title": "Do you have a fax number?",
-      "fields": [
-        {
-          "id": "faxChoice",
-          "type": "choice",
-          "label": "Do you have a fax number?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Fax number",
-      "includeIf": "${faxChoice = 0}",
-      "fields": [
-        {
-          "id": "faxNo",
-          "type": "text",
-          "label": "Enter your fax number here",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
       "title": "Do you have an email address?",
       "fields": [
         {
@@ -146,23 +120,83 @@
           "type": "choice",
           "label": "What is the legal status of your business?",
           "choices": [
-            "PLC",
-            "Partnership",
+            "Sole proprietor",
             "Limited company",
-            "Other"
+            "LLP",
+            "Unincorporated body",
+            "Partnership",
+            "Trust"
           ]
         }
       ]
     },
     {
-      "title": "Legal status - other",
-      "includeIf": "${legalchoice = 3}",
+      "title": "Is your business based in the UK?",
       "fields": [
         {
-          "id": "otherText",
+          "type": "choice",
+          "id": "UKreg",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(conditional) Would you like to appoint an agent or representative?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "AppointAgent",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(conditional) Agent or representative details",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "AgentType",
+          "label": "Type of agent",
+          "choices": [
+            "Administrative representative",
+            "Agent",
+            "Fiscal representative"
+          ]
+        },
+        {
           "type": "text",
-          "label": "Give details of your legal status here",
-          "multiline": "true"
+          "id": "agentName",
+          "label": "Name of agent/ representative"
+        },
+        {
+          "type": "text",
+          "id": "agentTrading",
+          "label": "Trading name of agent/ representative"
+        },
+        {
+          "type": "address",
+          "id": "agentAddress",
+          "label": "Address of agent/ representative"
+        },
+        {
+          "type": "text",
+          "id": "agentTel",
+          "label": "Telephone number of agent/ representative",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "agentEmail",
+          "label": "Email address of agent/ representative",
+          "format": "email"
         }
       ]
     },
@@ -172,7 +206,7 @@
         {
           "id": "bigPlanes",
           "type": "choice",
-          "label": "Do you operate aircraft with an authorised weight of 10 tonnes or more?",
+          "label": "Do you operate or intend to operate aircraft with an authorised weight of 10 tonnes or more?",
           "choices": [
             "Yes",
             "No"
@@ -181,7 +215,7 @@
         {
           "id": "littlePlanes",
           "type": "choice",
-          "label": "Do you operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more? ",
+          "label": "Do you operate or intend to operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more?",
           "choices": [
             "Yes",
             "No"
@@ -195,7 +229,7 @@
         {
           "id": "bigSeats",
           "type": "choice",
-          "label": "Do you operate aircraft that are authorised to seat 20 passengers or more?",
+          "label": "Do you operate or intend to operate aircraft that are authorised to seat 20 passengers or more?",
           "choices": [
             "Yes",
             "No"
@@ -204,7 +238,7 @@
         {
           "id": "littleSeats",
           "type": "choice",
-          "label": "Do you operate aircraft that are authorised to seat fewer than 20 passengers?",
+          "label": "Do you operate or intend to operate aircraft that are authorised to seat fewer than 20 passengers?",
           "choices": [
             "Yes",
             "No"
@@ -216,7 +250,7 @@
       "title": "Estimate of chargeable passengers",
       "fields": [
         {
-          "id": "generatedId_756285d0-5c78-4d0d-80bd-7f83feee27a2",
+          "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
           "type": "info",
           "label": "passNo",
           "infoText": "Give an estimate of the number of chargeable passengers that you will carry in each band from a UK airport during the coming year",
@@ -248,7 +282,7 @@
       ]
     },
     {
-      "title": "Do you operate direct long haul flights from Northern Ireland?",
+      "title": "Do you operate or intend to operate direct long haul flights from Northern Ireland?",
       "fields": [
         {
           "id": "NIChoice",
@@ -258,30 +292,6 @@
           "choices": [
             "Yes",
             "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Paying your Air Passenger Duty",
-      "fields": [
-        {
-          "id": "generatedId_9b3e86cd-72d3-44c0-99a1-2c48f8715ccb",
-          "type": "info",
-          "label": "",
-          "infoText": "We recommend that you make all of your Air Passenger Duty payments electronically.\n\nPaying electronically is safe and secure and provides certainty about when your payment will reach us.\n\nWhichever way you choose to pay, you will need to send in your form APD2 Air Passenger Duty Return by the due date. \n\nFollow the link below for information on how you can pay HMRC\n\n(HM Revenue & Customs homepage) ---- LINK-----",
-          "infoType": "noformat"
-        },
-        {
-          "id": "payChoice",
-          "type": "choice",
-          "label": "Tell us how you intend to pay",
-          "choices": [
-            "By Direct Debit",
-            "By CHAPS",
-            "By cheque",
-            "By Bank Giro Credit transfer ",
-            "By your own personal internet or telephone banking service or by BACS credit transfer"
           ]
         }
       ]
@@ -295,7 +305,7 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+        "infoText": "I declare that the information given on this form is true and complete"
       },
       {
         "id": "declarationNameGroup",
