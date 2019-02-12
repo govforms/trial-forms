@@ -1,0 +1,589 @@
+{
+  "formName": "Send your application for an Economic Operator Registration and Identification (EORI) number - Exports form",
+  "description": "EORI registration",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "User affinity page.... thing wot powers the journey",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "user.affinityGroup",
+          "label": "Pick one of these to start with",
+          "choices": [
+            "Agent",
+            "Individual",
+            "Organisation"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Confirm the following conditions apply to your application",
+      "includeIf": "${user.affinityGroup = 0}",
+      "fields": [
+        {
+          "id": "authInfo0",
+          "type": "info",
+          "label": "Confirm the following conditions apply to your application",
+          "infoText": "You aren't VAT Registered in the UK\n\nYou're sending goods to a country outside the EU\n\nThe goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "confirmConditions0",
+          "label": "I agree that my application meets the criteria",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Confirm the following conditions apply to your application",
+      "includeIf": "${user.affinityGroup = 1 || user.affinityGroup = 2}",
+      "fields": [
+        {
+          "id": "authInfo1",
+          "type": "info",
+          "label": "Confirm the following conditions apply to your application",
+          "infoText": "You aren't VAT Registered in the UK\n\nYou're sending goods to a country outside the EU\n\nThe goods you're sending are intended for a commercial sale or for a commercial/promotional activity as part of your business",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "confirmConditions1",
+          "label": "I agree that my application meets this criteria",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Conditions do not apply",
+      "shortName": "Conditions do not apply",
+      "includeIf": "${confirmConditions0 = 1 || confirmConditions1 = 1}",
+      "fields": [
+        {
+          "id": "authInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "If you don't meet the criteria please refer to the [Economic Operator Registration and Identification scheme](https://www.gov.uk/eori) web page on GOV.UK.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Details of who requires an EORI number",
+      "shortName": "EORI applicant details",
+      "description": "Complete this section with the name and address details of the business you require an EORI number to be issued to.",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "businessName1",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Business name",
+          "mandatory": "true",
+          "errorMessage": "Input your business name"
+        },
+        {
+          "id": "tradingName1",
+          "type": "text",
+          "label": "Trading name",
+          "shortName": "Trading name",
+          "mandatory": "true",
+          "errorMessage": "Input your business name"
+        },
+        {
+          "type": "address",
+          "id": "businessAddress",
+          "label": "Business address",
+          "postcodeLookup": "no",
+          "shortName": "Business address",
+          "mandatory": "true",
+          "international": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Contact details",
+      "shortName": "Contact details",
+      "description": "The contact information entered below will be used to contact you, in regards to your application.\n\nYour EORI number will be emailed to the email address given below",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Your EORI number will be emailed to this email",
+          "errorMessage": "Enter your email address",
+          "shortName": "Email",
+          "mandatory": "true",
+          "format": "email"
+        },
+        {
+          "id": "contactNumber",
+          "type": "text",
+          "format": "telephoneNumber",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "input contact telephone number here",
+          "errorMessage": "Enter a valid telephone number"
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business",
+      "shortName": "Business legal status",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "legalStatus0",
+          "type": "choice",
+          "label": "Select your business legal status",
+          "shortName": "Business legal status",
+          "format": "vertical",
+          "choices": [
+            "Sole proprietor",
+            "Partnership",
+            "Limited company",
+            "Registered Charity, Non-Profit Organisation, Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business - Sole proprietor",
+      "shortName": "Sole proprietor",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 && legalStatus0 = 0}",
+      "fields": [
+        {
+          "id": "dateOfBirth0",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "ninoAndPassport0",
+          "type": "text",
+          "label": "National Insurance number and passport number",
+          "shortName": "National Insurance number and passport number",
+          "multiline": "yes",
+          "errorMessage": "Enter your national insurance number and passport number"
+        },
+        {
+          "id": "nationality0",
+          "label": "Nationality",
+          "shortName": "Nationality",
+          "type": "text",
+          "errorMessage": "Enter your nationality"
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business - Partnership",
+      "shortName": "Partnership",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 && legalStatus0 = 1}",
+      "fields": [
+        {
+          "id": "partnerDetails",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 20,
+          "repeatLabel": "",
+          "repeatAddAnotherText": "Add another partner",
+          "fields": [
+            {
+              "id": "fullNamePartner",
+              "label": "Full name of partner",
+              "shortName": "First partner name",
+              "type": "text",
+              "errorMessage": "Full name of first partner can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+            },
+            {
+              "id": "dateOfBirthPartner",
+              "type": "date",
+              "label": "Date of birth",
+              "shortName": "Date of birth",
+              "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy"
+            },
+            {
+              "id": "ninoAndPassportPartner",
+              "type": "text",
+              "label": "National Insurance number and passport number",
+              "shortName": "National Insurance number and passport number",
+              "multiline": "yes",
+              "errorMessage": "Enter the national insurance number and passport number for the first partner"
+            },
+            {
+              "id": "nationalityPartner",
+              "label": "Nationality",
+              "shortName": "Nationality",
+              "type": "text",
+              "errorMessage": "Enter partner nationality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business - Limited company",
+      "shortName": "Limited company",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 && legalStatus0 = 2}",
+      "fields": [
+        {
+          "id": "companyIncorporationNumber",
+          "label": "Company incorporation number",
+          "shortName": "Company incorporation number",
+          "type": "text",
+          "helpText": "input Company incorporation number here",
+          "errorMessage": "Company incorporation number can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "Date of incorporation",
+          "shortName": "Date of incorporation",
+          "errorMessage": "Date of incorporation can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "countryOfIncorporation",
+          "label": "Country of incorporation",
+          "shortName": "Country of incorporation",
+          "type": "text",
+          "helpText": "input Country of incorporation here",
+          "errorMessage": "Country of incorporation can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business - Registered Charity, Non-Profit Organisation, Other",
+      "shortName": "Registered Charity, Non-Profit Organisation, Other",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 && legalStatus0 = 3}",
+      "fields": [
+        {
+          "id": "charityNonProfOtherChoice",
+          "type": "choice",
+          "label": "Confirm the nature of your organisation",
+          "shortName": "Nature of organisation",
+          "format": "vertical",
+          "choices": [
+            "Charity",
+            "Non-Profit Organisation",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Legal status of business - Registered Charity",
+      "shortName": "Registered Charity",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 &&  charityNonProfOtherChoice = 0}",
+      "fields": [
+        {
+          "id": "registeredCharityNumber",
+          "label": "Registered charity number",
+          "shortName": "Registered charity number",
+          "type": "text",
+          "helpText": "input Registered charity number here",
+          "errorMessage": "Registered charity number can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "countryOfregistration",
+          "label": "Country of registration",
+          "shortName": "Country of registration",
+          "type": "text",
+          "errorMessage": "Enter country of registration"
+        }
+      ]
+    },
+    {
+      "title": "Details of export",
+      "shortName": "Details of export",
+      "description": "Complete this section with details of a shipment you are currently intending to clear out of the EU.\n\nIf you don't currently have a shipment pending or don't have all of the details required below you will need to wait until this information is available before applying",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "authInfo7",
+          "type": "info",
+          "label": "",
+          "infoText": "To apply for Non-VAT registered EORI number within the UK you are required to evidence an example of customs activity as proof that you are an Economic Operator.\n\nFor further information please refer to the [Economic Operator Registration and Identification scheme](https://www.gov.uk/eori) web page on GOV.UK.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "descriptionAndQuantityOfGoods",
+          "type": "text",
+          "label": "Description and quantity of goods",
+          "shortName": "Goods quantity and description",
+          "multiline": "yes",
+          "errorMessage": "Enter the description and quantity of goods"
+        },
+        {
+          "id": "valueOfGoods",
+          "type": "text",
+          "label": "Value of goods",
+          "shortName": "Value",
+          "format": "number",
+          "errorMessage": "Enter the value of goods"
+        },
+        {
+          "id": "currencyValue0",
+          "type": "choice",
+          "label": "Select currency for the value of goods",
+          "shortName": "Currency",
+          "format": "vertical",
+          "choices": [
+            "£ Sterling",
+            "€ Euros"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Appointed freight agents",
+      "shortName": "Appointed freight agents",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "appointedFreightAgent0",
+          "type": "choice",
+          "label": "Do you have an appointed freight agent?",
+          "shortName": "Appointed freight agent",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Freight agent's details",
+      "shortName": "Freight agent's details",
+      "description": "Complete this section with the details of the freight or clearance agent dealing with your export in the EU",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0 && appointedFreightAgent0 = 0}",
+      "fields": [
+        {
+          "id": "freightAgentInfo",
+          "type": "info",
+          "label": "This may be a freight or clearance agent who has contacted you for an EORI number so they can clear your goods into the EU",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullNameAgent",
+          "label": "Full name",
+          "shortName": "Full name",
+          "type": "text",
+          "errorMessage": "Full name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "type": "address",
+          "id": "agentAddress",
+          "label": "Agent address",
+          "shortName": "Agent address",
+          "postcodeLookup": "no",
+          "international": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Delivery details",
+      "shortName": "Delivery details",
+      "description": "Complete this section with details of the address where the goods are being delivered to outside the EU",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "deliveryInfo",
+          "type": "info",
+          "label": "If the goods are being exported as part of a commercial sale then this will be your customer's details. If the delivery address differs to your customer's invoiced address then please enter the delivery address and include the invoice address in the 'Additional information' box.\n\nIf the goods are intended for your business's use overseas, for example, an exhibition, then please enter the address they are being delivered to.",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "deliveryName",
+          "label": "Full name",
+          "shortName": "Full name",
+          "type": "text",
+          "errorMessage": "Full name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "type": "address",
+          "id": "deliveryAddress",
+          "label": "Delivery address",
+          "shortName": "Delivery address",
+          "postcodeLookup": "no",
+          "international": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Method of export",
+      "shortName": "Export method",
+      "description": "",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "transportMethod",
+          "label": "Method of transport - sea/air/road",
+          "shortName": "Transport method",
+          "type": "text",
+          "errorMessage": "Method of transport can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "portOfExport",
+          "label": "Port of export",
+          "shortName": "Port of export",
+          "type": "text",
+          "errorMessage": "Port of export can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "dateOfExport",
+          "type": "date",
+          "label": "Date of export",
+          "shortName": "Export date",
+          "errorMessage": "Date of export can only include numbers in this format dd mm yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Additional information",
+      "shortName": "Additional information",
+      "description": "Use this section to provide any additional information you feel is relevant to your application for an EORI number",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "additionalInformation",
+          "type": "text",
+          "label": "",
+          "shortName": "Additional information",
+          "multiline": "yes",
+          "errorMessage": "Enter any additional information"
+        }
+      ]
+    },
+    {
+      "title": "EU EORI validation checker",
+      "shortName": "EU EORI validation checker",
+      "includeIf": "${confirmConditions0 = 0 || confirmConditions1 = 0}",
+      "fields": [
+        {
+          "id": "validationChecker0",
+          "type": "info",
+          "label": "",
+          "infoText": "The EU EORI validation checker is an online tool that allows anyone to check the validity of your EORI number to aid customs clearances throughout the EU.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "appointedFreightAgent0a",
+          "type": "choice",
+          "label": "Do you agree to the businesses' full name and address details being disclosed on the EU EORI validation checker when the EORI number is validated?",
+          "shortName": "Agree to details being disclosed on the EU EORI validation checker",
+          "helpText": "",
+          "format": "yesno"
+        },
+        {
+          "id": "validationChecker01a",
+          "type": "info",
+          "label": "",
+          "infoText": "If you do not agree to the businesses' full name and address details being disclosed on the EU EORI validation checker when the EORI number is validated, a validation check against the EORI number will only confirm if the number is valid and no personal information regarding the business will be disclosed.",
+          "infoType": "noformat"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "shortName": "Declaration",
+    "title": "Confirm details and send your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declaration-fullName",
+            "type": "text",
+            "errorMessage": "Enter your full name",
+            "label": "Full name"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Job title",
+            "errorMessage": "Enter your job title"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received your return",
+        "errorMessage": "Enter your email address",
+        "mandatory": "true",
+        "format": "email"
+      },
+      {
+        "type": "info",
+        "id": "decPageContent",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete."
+      },
+      {
+        "type": "info",
+        "id": "decPageImportant",
+        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "label": "",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "label": "",
+        "type": "info",
+        "infoType": "noformat",
+        "infoText": "This is your last opportunity to print or save a copy of your submitted form as you won’t be able to retrieve it later."
+      },
+      {
+        "type": "info",
+        "id": "lineBreakOne",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "\n\n### Make a payment"
+      },
+      {
+        "type": "info",
+        "id": "ackpageInfo",
+        "label": "Information about paying Gaming Duty",
+        "infoType": "noformat",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank."
+      },
+      {
+        "type": "info",
+        "id": "ackpageInfo2",
+        "label": "Information about paying Gaming Duty",
+        "infoType": "noformat",
+        "infoText": "\n\nYou can also use Bacs, CHAPS or Faster Payments to pay. \n\nAccount details: \n\n Account name: HMRC GACA \n\n Account number: 12000911 \n\n Sort code: 08-32-002"
+      },
+      {
+        "type": "info",
+        "id": "ackpageInfo3",
+        "label": "Information about paying Gaming Duty",
+        "infoText": "You must include your 15 digit Gaming Duty registration number as a payment reference."
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "eoriReg"
+}
