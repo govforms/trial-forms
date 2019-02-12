@@ -10,7 +10,7 @@
   "dmsSubmission": {
     "businessArea": "FinanceOpsCorpT",
     "classificationType": "RIS-Intel-CCO Corp Self Rep",
-    "customerId": "${auth.payenino}",
+    "customerId": "${''}",
     "dmsFormId": "CSR"
   },
   "sections": [
@@ -56,7 +56,7 @@
           "type": "choice",
           "label": "Are you authorised by the organisation to make this report on its behalf?",
           "shortName": "Are you authorised",
-          "helpText": "Select whether you are authorised to make this report",
+          "helpText": "",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -158,6 +158,13 @@
           "mandatory": "true"
         },
         {
+          "id": "tradNamecomp",
+          "type": "text",
+          "label": "Trading name",
+          "shortName": "Trading name",
+          "helpText": "Enter the trading name if different from registered name"
+        },
+        {
           "id": "ukBaseAddressUK",
           "type": "address",
           "label": "Registered address",
@@ -167,7 +174,7 @@
           "id": "companyRegNumberUK",
           "type": "text",
           "label": "Company registration number",
-          "helpText": "It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
+          "helpText": "This is issued by Companies House. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
           "mandatory": "true"
         }
       ]
@@ -180,7 +187,7 @@
         {
           "id": "legalNameUKNotUK",
           "type": "text",
-          "label": "Organisation name",
+          "label": "Company name",
           "helpText": "Enter the name as officially registered in the country of formation",
           "mandatory": "true"
         },
@@ -188,7 +195,7 @@
           "id": "tradingNameUKNotUK_copy_1",
           "type": "text",
           "label": "Trading name (optional)",
-          "helpText": "Enter the trading name if it is different from the organisation name",
+          "helpText": "Enter the trading name if it is different from the company name",
           "mandatory": "false"
         },
         {
@@ -209,7 +216,7 @@
         {
           "id": "companyRegNumberNotUK",
           "type": "text",
-          "label": "Organisation registration number (optional)",
+          "label": "Company registration number (optional)",
           "shortName": "Organisation registration number",
           "helpText": "Enter the organisation registration number in the country of formation. Leave blank if not known ",
           "mandatory": "false"
@@ -227,6 +234,13 @@
           "label": "Partnership name",
           "helpText": "Enter the registered name",
           "mandatory": "true"
+        },
+        {
+          "id": "tradNamellp",
+          "type": "text",
+          "label": "Trading name",
+          "shortName": "Trading name",
+          "helpText": "Enter the trading name if different from registered name"
         },
         {
           "id": "ukBaseAddressPartUK",
@@ -301,7 +315,7 @@
         {
           "id": "companyUniqueTaxRefNumPartOther",
           "type": "text",
-          "label": "Self Assessment Unique Taxpayer Reference (optional)",
+          "label": "Partnership's Self Assessment Unique Taxpayer Reference (optional)",
           "shortName": "Self Assessment Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. Leave blank if not known",
           "mandatory": "false"
@@ -325,7 +339,7 @@
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
-          "helpText": "Enter the trading name if different from the registered partnership name",
+          "helpText": "Enter the partnership's trading name if different from the registered partnership name",
           "mandatory": "false"
         },
         {
@@ -354,37 +368,6 @@
       ]
     },
     {
-      "title": "Does the organisation trade under a different name?",
-      "shortName": "Trading name details",
-      "includeIf": "${CompanyType=0 && companyRegUK =0 || CompanyType=1 && partnershipRegUK=0}",
-      "fields": [
-        {
-          "id": "tradingName",
-          "type": "choice",
-          "label": "Does the organisation trade under a different name?",
-          "shortName": "Organisation trading name",
-          "errorMessage": "Select whether the organisation has a trading name",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the trading name?",
-      "shortName": "Trading name of organisation",
-      "includeIf": "${tradingName=0}",
-      "fields": [
-        {
-          "id": "tradNameEnter",
-          "type": "text",
-          "label": "What is the trading name?",
-          "shortName": "Trading name"
-        }
-      ]
-    },
-    {
       "title": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Unique Taxpayer Reference details",
       "includeIf": "${CompanyType=0 && companyRegUK=0}",
@@ -394,6 +377,7 @@
           "type": "choice",
           "label": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
           "shortName": "Unique Taxpayer Reference known",
+          "helpText": "This will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
           "errorMessage": "Select whether you know the organisation's Unique Taxpayer Reference",
           "choices": [
             "Yes",
@@ -427,6 +411,7 @@
           "type": "choice",
           "label": "Do you know the organisation's Self Assessment Tax Unique Taxpayer Reference?",
           "shortName": "Unique Taxpayer Reference known",
+          "helpText": "This is will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
           "choices": [
             "Yes",
             "No"
@@ -444,7 +429,7 @@
           "type": "text",
           "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
           "shortName": "Self Assessment Tax Unique Taxpayer Reference",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
           "mandatory": "false",
           "errorMessage": "What is the Unique Taxpayer Reference"
         }
