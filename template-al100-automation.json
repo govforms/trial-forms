@@ -88,7 +88,7 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "$(aggregatesLevyReg)",
+          "idNumber": "${user.enrolledIdentifier}",
           "regimeType": "AGL"
         }
       ]
@@ -140,7 +140,7 @@
           "id": "aggregatesLevyReg",
           "type": "text",
           "label": "Aggregates Levy registration number",
-          "value": "${eeitt.businessUser}",
+          "value": "${user.enrolledIdentifier}",
           "submitMode": "derived"
         },
         {
@@ -301,12 +301,13 @@
       "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}','periodFrom':'{{hmrcTaxPeriodFromDate returnPeriod}}','periodTo':'{{hmrcTaxPeriodToDate returnPeriod}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{getCurrentTimestamp}}'}"
     },
     {
-      "id": "TST123HMRCDMS",
+      "id": "HMRCDMS",
       "type": "hmrcDms",
-      "dmsFormId": "TST123",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "AL100",
       "customerId": "${auth.gg}",
       "classificationType": "BT-NRU-Environmental",
-      "businessArea": "FinanceOpsCorpT"
+      "businessArea": "BT"
     }
   ],
   "submitErrorUrl": "http://www.yahoo.co.uk",
