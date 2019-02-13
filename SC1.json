@@ -1,5 +1,4 @@
 {
-  "_id": "SC1",
   "formName": "SC1 register as an early years or childcare provider in England",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -725,45 +724,45 @@
       "title": "Who are the partners?",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_ac092c2c_cf26_4809_b82b_07594bbf697a",
+          "type": "info",
           "label": "",
           "infoText": "* Explain why we are asking this *",
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "partnerTitle",
+          "type": "text",
           "label": "Title",
           "shortName": "Title",
           "format": "text(0,50)",
           "displayWidth": "xs"
         },
         {
-          "type": "text",
           "id": "paFirNam",
+          "type": "text",
           "label": "First name(s)",
           "shortName": "First name",
           "format": "text(0,50)",
           "displayWidth": "m"
         },
         {
-          "type": "text",
           "id": "paLasNam",
+          "type": "text",
           "label": "Last name",
           "shortName": "Last name",
           "displayWidth": "m"
         },
         {
-          "type": "date",
           "id": "paDOB",
+          "type": "date",
           "label": "Date of birth",
           "shortName": "Date of birth",
           "helpText": "Enter the date of birth in the format dd/mm/yyyy"
         },
         {
-          "type": "text",
           "id": "paPos",
+          "type": "text",
           "label": "Position within the company",
           "shortName": "Position",
           "displayWidth": "m"
@@ -811,15 +810,15 @@
       "title": "Organisation sector",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_4524a98a_3903_4116_b493_a9a7c7a03a8f",
+          "type": "info",
           "label": "",
           "infoText": "* Explain why we are asking this *",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "orgSecChoi",
+          "type": "choice",
           "label": "",
           "choices": [
             "Local council",
@@ -835,15 +834,15 @@
       "title": "Organisation type",
       "fields": [
         {
+          "id": "generatedId_3f4b917a_8a10_45b1_8cb2_1ef2830a5284",
           "type": "info",
-          "id": "generatedId_18072786_8d64_472a_92a0_2bf04709095e",
           "label": "",
           "infoText": "* Explain why we are asking this *",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "orgTypChoi",
+          "type": "choice",
           "label": "",
           "choices": [
             "Company",
@@ -858,41 +857,41 @@
       "title": "What are the details of your organisation?",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
+          "type": "info",
           "label": "",
           "infoText": "* Explain why we are asking this *",
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "orgName2",
+          "type": "text",
           "label": "Name of the organisation"
         },
         {
-          "type": "date",
           "id": "orgBirthDate",
+          "type": "date",
           "label": "Date the organisation came into being",
           "shortName": "Organisation established date",
           "helpText": "For example 31/03/1999 "
         },
         {
-          "type": "text",
           "id": "regChar",
+          "type": "text",
           "label": "Registered charity number if applicable",
           "shortName": "Charity number",
           "helpText": "If you do not have a registered charity number leave blank"
         },
         {
-          "type": "text",
           "id": "regCoNum",
+          "type": "text",
           "label": "Registered company number if applicable",
           "shortName": "Company number",
           "helpText": "If you do not have a registered company number leave blank"
         },
         {
-          "type": "choice",
           "id": "orgSubCo",
+          "type": "choice",
           "label": "Is your organisation a subsidiary of a holding company?",
           "choices": [
             "Yes",
@@ -934,8 +933,756 @@
       ]
     },
     {
-      "title": "New page",
-      "fields": []
+      "title": "Is your organisation a subsidiary of a holding company?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "holCoCho",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of the holding company?",
+      "includeIf": "${holCoCho = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "hoCoNom",
+          "label": "Name of the holding company",
+          "shortName": "Name",
+          "format": "shortText"
+        },
+        {
+          "type": "address",
+          "id": "hoCoAdd",
+          "label": "Address of the holding company",
+          "shortName": "Address"
+        },
+        {
+          "type": "date",
+          "id": "hoCoDOB",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "type": "text",
+          "id": "hoCoEm",
+          "label": "Email address",
+          "shortName": "Email",
+          "format": "email"
+        },
+        {
+          "id": "regChar_copy_1",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNum_copy_1",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "type": "choice",
+          "id": "hoCoCho2",
+          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of your holding company (version 2)?",
+      "includeIf": "${holCoCho = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "hoCoNomVers2",
+          "label": "Name of the organisation",
+          "shortName": "Name",
+          "format": "shortText"
+        },
+        {
+          "type": "date",
+          "id": "hoCoDOBVers2",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "regCharVers2",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNumVers2",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "type": "choice",
+          "id": "hoCoCho2Vers2",
+          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your holding company's contact details (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "What are the details of the subsidiary?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "subNam",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "type": "address",
+          "id": "subAd",
+          "label": "Address of the subsidiary"
+        },
+        {
+          "type": "text",
+          "id": "hoCoEm_copy_1",
+          "label": "Email address",
+          "shortName": "Email",
+          "format": "email"
+        },
+        {
+          "type": "date",
+          "id": "hoCoDOB_copy_1",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "subOfRegNo",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "shortName": "URN",
+          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "What are the details of your holding company's subsidiary? (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_18072786_8d64_472a_92a0_2bf04709095e",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "subNam_copy_1",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "type": "date",
+          "id": "hoCoDOB_copy_2",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "subOfRegNo_copy_1",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "shortName": "URN",
+          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company's subsidiary's contact details (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "You have added 2 subsidiary company's details? (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_ab9aa48b_e013_429c_922f_a21d6978590f",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Who are the key staff of the proposed registered provider?",
+      "fields": [
+        {
+          "id": "generatedId_0cb71173_c8d3_4fe3_be19_1c04f0485998",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "partnerTitle_copy_1",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "paFirNam_copy_1",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paLasNam_copy_1",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paDOB_copy_1",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+        },
+        {
+          "id": "paPos_copy_1",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "indProvMan_copy_2",
+          "type": "choice",
+          "label": "Does this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "indProvKid_copy_2",
+          "type": "choice",
+          "label": "Does this person have contact with children and / or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_a43466ad_999c_4f33_b4e4_2fd9fc4bb4a5",
+          "type": "info",
+          "label": "",
+          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 2 key staff? (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_85dab849_64b1_4e7c_a4fa_405400c8082c",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Who is the responsible individual?",
+      "fields": [
+        {
+          "id": "generatedId_747e52ae_f52a_4298_a22e_9d2e252430ba",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "resIndTit",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "resIndFirNam",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndLasNam",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+        },
+        {
+          "id": "resIndPos",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "type": "choice",
+          "id": "resIndChoi",
+          "label": "Is this person disqualified?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "resIndMan",
+          "type": "choice",
+          "label": "Does this person have management responsibility for staff?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "resIndKid",
+          "type": "choice",
+          "label": "Will this person have significant contact with children?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_354d99f5_5a87_4c31_8332_7eceaaf06d06",
+          "type": "info",
+          "label": "",
+          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "tickResInd",
+          "label": "",
+          "helpText": "Tick the box if the responsible person has submitted a completed SC2 form",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "The responsible person has submitted a completed SC2 form."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the establishment or agency",
+      "fields": [
+        {
+          "type": "text",
+          "id": "esAgNam",
+          "label": "Establishment or agency name ",
+          "shortName": "Name"
+        },
+        {
+          "type": "text",
+          "id": "esAgCo",
+          "label": "Local council",
+          "shortName": "Council",
+          "helpText": "Enter the name of the local council where the premise is based, for example Newcastle council "
+        }
+      ]
+    },
+    {
+      "title": "Contact details and address for the establishment or agency",
+      "fields": [
+        {
+          "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "estAbAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "estAbTel",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "estAbEm",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Will you have sole use of the property?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "solUseProp",
+          "label": "",
+          "shortName": "Sole use of property",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will you regularly use any other premises in connection with the establishment?",
+      "fields": [
+        {
+          "id": "generatedId_292fbcce_281f_4a48_b086_28cc6756eb36",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "othPremReg",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the address for all your premises",
+      "fields": [
+        {
+          "id": "estAbAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 1 premises (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_5c8ee9b3_dce5_4ef0_ad17_4bc899c8677f",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Address of your second premises",
+      "fields": [
+        {
+          "id": "estAbAdd_copy_2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Describe any travel arrangements used between premises",
+      "fields": [
+        {
+          "type": "text",
+          "id": "travTex",
+          "label": "",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Describe the premises",
+      "fields": [
+        {
+          "type": "text",
+          "id": "premDesc",
+          "label": "",
+          "helpText": "For example, whether the premises are purpose built or converted, and the area they are located in",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "premRedChoi",
+          "label": "",
+          "shortName": "premises meets needs",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of building works needed",
+      "fields": [
+        {
+          "type": "text",
+          "id": "buildDesc",
+          "label": "Describe building work or conversions you need to meet the aims of the service",
+          "multiline": "true"
+        },
+        {
+          "type": "date",
+          "id": "rdyDate",
+          "label": "Date of when the premises will be ready",
+          "helpText": "Completion date For example, 31 03 1999"
+        }
+      ]
+    },
+    {
+      "title": "Do the premises require planning permission?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "planReqChoi",
+          "label": "",
+          "shortName": "Planning permission required",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
+          "label": "What evidence should I provide?",
+          "infoText": "You need to provide either:\n\n* copy of planning permission granted\n\n* certificate of lawfulness\n\n* copy of a planning application\n\n* evidence that planning permission is not required",
+          "infoType": "long"
+        },
+        {
+          "type": "choice",
+          "id": "planChoi",
+          "label": "",
+          "choices": [
+            "Yes I will upload a copy",
+            "Yes I will post a copy",
+            "No "
+          ]
+        },
+        {
+          "type": "info",
+          "id": "generatedId_9193fe15_1da8_4d5c_a8a3_6b11087d25cf",
+          "label": "",
+          "infoText": "You need to post the document(s) with a cover note that states details of your application (for example, name, address) to:\n\n\n\nApplications team\n\nOsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Upload your planning document",
+      "includeIf": "${planChoi = 0}",
+      "fields": [
+        {
+          "type": "file",
+          "id": "upPlan",
+          "label": "Upload your planning document here",
+          "shortName": "Planning upload",
+          "helpText": "We accept files up to 5mb  in size if formats like .jpg, .gif, .xml"
+        }
+      ]
+    },
+    {
+      "title": "Post your planning documents",
+      "includeIf": "${planChoi =1}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_36019c09_510a_4958_a531_e76f1d8c22db",
+          "label": "",
+          "infoText": "You need to post the document(s) with a cover note that states details of your application (for example, name, address) to:\n\n\n\nApplications team\n\nOsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "I haven't obtained the required planning permission",
+      "includeIf": "${planChoi = 2}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_0d8d3875_485a_4c21_b7ab_974d4b10b0ee",
+          "label": "",
+          "infoText": "Your application to register will be delayed until we have received the relevant document(s).",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "Does the building meet the access requirements of the Equality Act 2010?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "accessChoi",
+          "label": "",
+          "shortName": "Access requirements met",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Why do the premises not meet the access requirements?",
+      "includeIf": "${accessChoi = 1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "reqNotMet",
+          "label": "",
+          "shortName": "Why requirements are not met",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are the security arrangements of the premises?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "secArrDesc",
+          "label": "",
+          "shortName": "Security arrangements",
+          "helpText": "For example, how you will safeguard access to the information you hold? How will you restrict access from other buildings or other parts of the building, where appropriate? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about other site",
+      "fields": [
+        {
+          "type": "text",
+          "id": "siteName",
+          "label": "",
+          "shortName": "Other site name"
+        },
+        {
+          "type": "text",
+          "id": "otherSiteDesc",
+          "label": "Describe any travel arrangements between the sites",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -1010,5 +1757,6 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "SC1"
 }
