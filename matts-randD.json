@@ -1,5 +1,4 @@
 {
-  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme",
   "formName": "Send details to support an R&D tax relief claim for an SME",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -300,6 +299,28 @@
           "displayWidth": "xs",
           "validIf": "${projTot >= 1 && projTot<=10}",
           "errorMessage": "You must enter a number between 1 and 10"
+        }
+      ]
+    },
+    {
+      "title": "How many projects are you providing details for in your claim?",
+      "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
+      "fields": [
+        {
+          "id": "generatedId_44454d88_029f_4442_b4e7_8f1131c584ff",
+          "type": "info",
+          "label": "",
+          "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+          "infoType": "noformat"
+        },
+        {
+          "id": "projTot_copy_1",
+          "type": "text",
+          "label": "Number of projects",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${projTot >= 1 && projTot<=10}",
+          "errorMessage": "You can only provide a maximum of 10 project details. Enter 10 or less.  "
         }
       ]
     },
@@ -644,5 +665,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme"
 }
