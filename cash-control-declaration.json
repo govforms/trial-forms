@@ -1,0 +1,293 @@
+{
+  "_id": "cash-control-declaration",
+  "formName": "Cash Control Declaration",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "anonymous"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${passportNumber}",
+    "dmsFormId": "CCD"
+  },
+  "sections": [
+    {
+      "title": "About you",
+      "fields": [
+        {
+          "id": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "dateOfBirth",
+          "type": "date",
+          "label": "Date of birth",
+          "helpText": "For example, 21 03 1979"
+        },
+        {
+          "id": "passportNumber",
+          "type": "text",
+          "label": "Passport number",
+          "format": "text(0,20)"
+        },
+        {
+          "id": "nationality",
+          "type": "text",
+          "label": "Nationality"
+        },
+        {
+          "id": "placeOfBirth",
+          "type": "text",
+          "label": "Place of birth",
+          "helpText": "Including city and country"
+        },
+        {
+          "id": "occupation",
+          "type": "text",
+          "label": "Occupation"
+        }
+      ]
+    },
+    {
+      "title": "Your address",
+      "fields": [
+        {
+          "id": "yourAddress",
+          "type": "address",
+          "label": "Your address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are you entering or leaving the EU?",
+      "fields": [
+        {
+          "id": "enterExit",
+          "type": "choice",
+          "label": "Are you entering or leaving the EU?",
+          "choices": [
+            "Entering",
+            "Leaving"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "When are you entering the EU?",
+      "includeIf": "${enterExit=0}",
+      "fields": [
+        {
+          "id": "entryDate",
+          "type": "date",
+          "label": "When are you entering the EU?"
+        }
+      ]
+    },
+    {
+      "title": "When are you leaving the EU?",
+      "includeIf": "${enterExit=1}",
+      "fields": [
+        {
+          "id": "leaveDate",
+          "type": "date",
+          "label": "When are you leaving the EU?"
+        }
+      ]
+    },
+    {
+      "title": "Are you travelling by air or by sea?",
+      "fields": [
+        {
+          "id": "airSea",
+          "type": "choice",
+          "label": "Are you travelling by air or by sea?",
+          "choices": [
+            "Air",
+            "Sea"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Where will you start your journey?",
+      "includeIf": "${airSea=0}",
+      "fields": [
+        {
+          "id": "airportName",
+          "type": "text",
+          "label": "Name of airport"
+        },
+        {
+          "id": "countryName",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "Where will you end your journey?",
+      "includeIf": "${airSea=0}",
+      "fields": [
+        {
+          "id": "airportNameEnd",
+          "type": "text",
+          "label": "Name of airport"
+        },
+        {
+          "id": "countryNameEnd",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "Where will you start your journey?",
+      "includeIf": "${airSea=1}",
+      "fields": [
+        {
+          "id": "portName",
+          "type": "text",
+          "label": "Name of port"
+        },
+        {
+          "id": "portCountry",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "Where will you end your journey?",
+      "includeIf": "${airSea=1}",
+      "fields": [
+        {
+          "id": "portNameEnd",
+          "type": "text",
+          "label": "Name of port"
+        },
+        {
+          "id": "portCountryEnd",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "Did you travel via an intermediate airport?",
+      "includeIf": "${airSea=0}",
+      "fields": [
+        {
+          "id": "intermediateAirport",
+          "type": "choice",
+          "label": "Did you travel via an intermediate airport?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Did you travel via an intermediate port?",
+      "includeIf": "${airSea=1}",
+      "fields": [
+        {
+          "id": "intermediatePort",
+          "type": "choice",
+          "label": "Did you travel via an intermediate port?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many airports did you travel through?",
+      "includeIf": "${airSea=0 && intermediateAirport=0}",
+      "fields": [
+        {
+          "id": "howManyAirports",
+          "type": "text",
+          "label": "How many airports did you travel through?",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs",
+          "validIf": "${howManyAirports>0 && howManyAirports<=20}"
+        }
+      ]
+    },
+    {
+      "title": "Which intermediate airports did you travel through?",
+      "repeatsMin": "${howManyAirports}",
+      "repeatsMax": "${howManyAirports}",
+      "fields": [
+        {
+          "id": "intermediateAirportName",
+          "type": "text",
+          "label": "Name of airport"
+        },
+        {
+          "id": "intermediateCountryName",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
