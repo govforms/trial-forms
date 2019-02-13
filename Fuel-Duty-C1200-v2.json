@@ -1,0 +1,234 @@
+{
+  "_id": "Fuel-Duty-C1200-v2",
+  "formName": "Apply to defer payment of hydrocarbon oils duty",
+  "description": "C1200 form",
+  "developmentPhase": "beta",
+  "emailTemplateId": "al_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "FinanceOpsCorpT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${utrRepComp}",
+    "dmsFormId": "ALREG"
+  },
+  "sections": [
+    {
+      "title": "About this form",
+      "shortName": "About",
+      "fields": [
+        {
+          "id": "generatedId_375f7761_de35_47fd_958b_44438846a124",
+          "type": "info",
+          "label": "Info",
+          "infoText": "Use this form to make arrangements to defer hydrocarbon oils duty payments.\n\nYou must have a UK EORI number to complete this form and must be filled out by an authorised individual.\n\nThis form is designed to be filled in on screen. You must answer all the questions unless they are marked 'optional'. ",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Are you a hydrocarbon oils producer?",
+      "fields": [
+        {
+          "id": "oilProducer",
+          "type": "choice",
+          "label": "Are you a hydrocarbon oils producer?",
+          "choices": [
+            "Yes",
+            "No "
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of business are you?",
+      "fields": [
+        {
+          "id": "businessType",
+          "type": "choice",
+          "label": "What type of business are you?",
+          "choices": [
+            "Sole proprietor",
+            "Partnership",
+            "Limited company",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot use this service ",
+      "includeIf": "${oilProducer = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_3a551dfc_dee5_4aec_9864_f5ceca84c8ec",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are not a hydrocarbon oils producer please refer to the C1200 form to defer payment on duties, taxes and charges on certain goods removed from an excise warehouse. ",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What is your UK EORI number?",
+      "fields": [
+        {
+          "id": "eORINo",
+          "type": "text",
+          "label": "What is your UK EORI number?",
+          "shortName": "EORI number",
+          "helpText": "A UK Economic Operator Registration and Identification (EORI) number starts with ‘GB’ and is followed by up to 12 characters.",
+          "format": "text(14,14)"
+        }
+      ]
+    },
+    {
+      "title": "Sole proprietor details",
+      "includeIf": "${businessType = 0}",
+      "fields": [
+        {
+          "id": "SPn",
+          "type": "text",
+          "label": "Full Name"
+        },
+        {
+          "id": "tradStyle_copy_1",
+          "type": "text",
+          "label": "Trading style"
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${businessType = 1}",
+      "fields": [
+        {
+          "id": "tradStyle",
+          "type": "text",
+          "label": "Trading style"
+        }
+      ]
+    },
+    {
+      "title": "Limited company details",
+      "includeIf": "${businessType = 2}",
+      "fields": [
+        {
+          "id": "companyName",
+          "type": "text",
+          "label": "Company name"
+        },
+        {
+          "id": "tradStyle_copy_2",
+          "type": "text",
+          "label": "Trading style"
+        }
+      ]
+    },
+    {
+      "title": "Other details",
+      "includeIf": "${businessType = 3}",
+      "fields": [
+        {
+          "id": "trad style",
+          "type": "text",
+          "label": "Trading style"
+        }
+      ]
+    },
+    {
+      "title": "Correspondence details",
+      "includeIf": "${oilProducer = 0}",
+      "description": "I/We enclose the required Direct Debit instruction (form C1202), along with, if required, a Guarantee (form C12101HO) or SIVA2 and EPSS approval letter.",
+      "fields": [
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "Phone",
+          "type": "text",
+          "label": "Telephone number"
+        }
+      ]
+    },
+    {
+      "title": "Are the correspondence details different to the registered office?",
+      "shortName": "Registered office",
+      "fields": [
+        {
+          "id": "Reg office address",
+          "type": "choice",
+          "label": "Are the correspondence details different to the registered office?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Make your declaration and send the form",
+    "fields": [
+      {
+        "id": "generatedId_26b8a365_f6df_47ef_8457_35e0f1336a33",
+        "type": "info",
+        "label": "Declaration",
+        "infoText": "If this application is approved, it is agreed that I am/we are responsible for the due payment of amounts deferred on goods imported or removed from warehouse or freezone.\n\nI/We also agree to comply with the conditions of deferment required by the Commissioners of HM Revenue & Customs.\n\nThis application must be signed by the proprietor, or in the case of a partnership by a partner, or in the case of a limited or other incorporated company by a director or the secretary.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationFullName",
+        "type": "text",
+        "label": "Full name",
+        "errorMessage": "Enter full name"
+      },
+      {
+        "id": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "id": "choice",
+        "type": "choice",
+        "label": "",
+        "multivalue": "true",
+        "choices": [
+          "I declare that to the best of my knowledge and belief the information I have given on this form and any accompanying documents is complete and correct."
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "You must check the guidance for this service on GOV.UK to see whether you need to fill in and send any additional forms to complete your registration (for example if your business is a partnership you must also fill in and send form AL2) if you haven't already done so.\n\nHMRC will send you a letter to confirm your registration details and return dates so that you can prepare your first Aggregates Levy return. \n\nReturns will normally cover a 3 month period but if you would like to apply for non-standard periods, such as monthly returns, or periods that match your VAT return periods, you can contact the HMRC Excise team on enquiries.eeitts@hmrc.gsi.gov.uk\n\nIf you do not use a weighbridge you will also need to get in touch with the Excise team to agree an alternative method for weighing your aggregates.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
