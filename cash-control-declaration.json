@@ -163,7 +163,7 @@
         {
           "id": "startName",
           "type": "text",
-          "label": "Name of the airport, port, or station"
+          "label": "Name of airport, port, or station"
         },
         {
           "id": "countryName",
@@ -178,7 +178,7 @@
         {
           "id": "endName",
           "type": "text",
-          "label": "Name of the final airport, port, or station"
+          "label": "Name of final airport, port, or station"
         },
         {
           "id": "destinationCountry",
@@ -317,7 +317,7 @@
         {
           "type": "text",
           "id": "declarationPlaceName",
-          "label": "Name of the airport, port, or station"
+          "label": "Name of airport, port, or station"
         },
         {
           "type": "text",
@@ -327,18 +327,112 @@
       ]
     },
     {
-      "title": "What type of cash are you carrying?",
+      "title": "Cash details",
       "fields": [
         {
           "type": "choice",
           "id": "cashType",
           "label": "What type of cash are you carrying?",
+          "multivalue": "true",
           "choices": [
             "Currency notes",
             "Currency coins",
             "Travellers' cheques",
             "Bankers' drafts"
           ]
+        },
+        {
+          "type": "text",
+          "id": "currencyType",
+          "label": "Currency",
+          "helpText": "For example, Euros, GBP, USD"
+        },
+        {
+          "type": "text",
+          "id": "cashValue",
+          "label": "Total cash value"
+        }
+      ]
+    },
+    {
+      "title": "Does the money belong to you?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "moneyOwner",
+          "label": "Does the money belong to you?",
+          "helpText": "Select yes if you own more than 50% of the money",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Who owns the cash?",
+      "includeIf": "${moneyOwner=1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashOwnerName",
+          "label": "Full name"
+        }
+      ]
+    },
+    {
+      "title": "What is the cash owner's business?",
+      "includeIf": "${moneyOwner=1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashOwnerBusi ness",
+          "label": "What is the cash owner's business?"
+        }
+      ]
+    },
+    {
+      "title": "Cash owner address",
+      "fields": [
+        {
+          "type": "address",
+          "id": "cashOwnerAddressUK",
+          "label": "",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "What is the origin of the cash?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashOrigin",
+          "label": "What is the origin of the cash?",
+          "helpText": "For example, does it come from the sale of a property, or personal savings? Tell us where and when it was generated.",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Who is the cash intended for?",
+      "description": "If the cash will be shared, enter the name of the person likely to receive the largest amount",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashRecipientName",
+          "label": "Full name"
+        }
+      ]
+    },
+    {
+      "title": "How do they intend to use the money?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashIntent",
+          "label": "How do they intend to use the money?",
+          "multiline": "true"
         }
       ]
     }
