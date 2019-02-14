@@ -22,9 +22,9 @@
           "id": "evadedTaxUK",
           "type": "choice",
           "label": "Is some or all of the evaded tax owed in the UK?",
-          "shortName": "Is evaded tax owed in the UK",
+          "shortName": "Is some or all of the evaded tax owed in the UK",
           "format": "vertical",
-          "errorMessage": "Select whether the evaded tax is owed in the UK",
+          "errorMessage": "Select whether any of the evaded tax is owed in the UK",
           "choices": [
             "Yes",
             "No"
@@ -55,9 +55,10 @@
           "id": "authorised",
           "type": "choice",
           "label": "Are you authorised by the organisation to make this report on its behalf?",
-          "shortName": "Are you authorised",
+          "shortName": "Are you authorised by the organisation to make this report on its behalf",
           "helpText": "",
           "format": "vertical",
+          "errorMessage": "Select whether you are authorised",
           "choices": [
             "Yes",
             "No"
@@ -88,8 +89,9 @@
           "id": "CompanyType",
           "type": "choice",
           "label": "Which of these best describes the organisation you are reporting?",
-          "shortName": "Type of organisation",
+          "shortName": "Which of these best describes the organisation you are reporting",
           "helpText": "If you are unsure please choose company",
+          "errorMessage": "Select your organisation type",
           "choices": [
             "Company",
             "Limited liability partnership (LLP)",
@@ -106,10 +108,11 @@
           "id": "connectiontoBusiness",
           "type": "text",
           "label": "What is your connection to the organisation?",
-          "shortName": "Your connection",
+          "shortName": "What is your connection to the organisation",
           "helpText": " ",
           "mandatory": "true",
-          "displayWidth": "xl"
+          "displayWidth": "xl",
+          "errorMessage": "Enter your connection to the organisation"
         }
       ]
     },
@@ -122,7 +125,7 @@
           "id": "companyRegUK",
           "type": "choice",
           "label": "Is the organisation registered in the UK?",
-          "shortName": "Is organisation UK registered",
+          "shortName": "Is the organisation registered in the UK",
           "format": "vertical",
           "errorMessage": "Select whether the organisation is registered in the UK",
           "choices": [
@@ -134,15 +137,16 @@
     },
     {
       "title": "Is the organisation registered in the UK?",
-      "shortName": "Where the organisation is registered",
+      "shortName": "Where organisation is registered",
       "includeIf": "${CompanyType!=0}",
       "fields": [
         {
           "id": "partnershipRegUK",
           "type": "choice",
           "label": "Is the organisation registered in the UK?",
-          "shortName": "UK registered",
-          "format": "yesno"
+          "shortName": "Is the organisation registered in the UK",
+          "format": "yesno",
+          "errorMessage": "Select whether the organisation registered in the UK"
         }
       ]
     },
@@ -443,7 +447,7 @@
           "id": "identifySpecific",
           "type": "choice",
           "label": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
-          "shortName": "Identified taxpayers",
+          "shortName": "Have you been able to identify specific taxpayers involved in the evasion that has been facilitated",
           "helpText": "",
           "format": "vertical",
           "errorMessage": "Select whether you have identified the specific taxpayers involved",
@@ -467,7 +471,7 @@
           "id": "generatedId_827e9bb9_3f42_46ca_8fbb_495b23732706",
           "type": "info",
           "label": "",
-          "shortName": "Summary of how facilitation took place",
+          "shortName": "",
           "infoText": "Summarise how the tax evasion was facilitated.  \n\nInclude any details you have about:\n\n* who within the organisation facilitated the evasion\n* the capacity in which they were acting\n* how they facilitated the evasion\n* what tax was evaded\n* how it was discovered",
           "infoType": "noformat"
         },
@@ -482,11 +486,12 @@
           "id": "summariseHowTax",
           "type": "text",
           "label": "Summary of how the tax evasion was facilitated",
-          "shortName": "Summary of how tax evasion was facilitated",
+          "shortName": "Tell us how the criminal facilitation of tax evasion took place",
           "helpText": "Enter a maximum of 5000 characters including spaces",
           "format": "text(1,5000)",
           "mandatory": "true",
-          "multiline": "true"
+          "multiline": "true",
+          "errorMessage": "Summary of how tax evasion was facilitated must be entered"
         }
       ]
     },
@@ -498,7 +503,7 @@
           "id": "anyOtherInfo",
           "type": "text",
           "label": "Additional information about how the tax evasion was facilitated",
-          "shortName": "Additional information",
+          "shortName": "Additional information about how the tax evasion was facilitated",
           "helpText": "Enter a maximum of 4000 characters including spaces. \n\nIf there is nothing else you want to add, leave blank",
           "format": "text(1,4000)",
           "mandatory": "false",
@@ -514,7 +519,7 @@
           "id": "facilitationOngoing",
           "type": "choice",
           "label": "",
-          "shortName": "Facilitation ongoing",
+          "shortName": "Is the facilitation ongoing",
           "format": "vertical",
           "errorMessage": "Select whether the facilitation is ongoing",
           "choices": [
@@ -537,7 +542,8 @@
           "label": "Estimate the date when the facilitation ended",
           "shortName": "Estimated end date",
           "helpText": "For example, 01 04 2018",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Estimated end date must be entered in the correct format"
         }
       ]
     },
@@ -550,7 +556,7 @@
           "id": "selfReportedFailure",
           "type": "choice",
           "label": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion?",
-          "shortName": "First self-report made to HMRC",
+          "shortName": "Is this the first self-report the organisation has made to HMRC about a failure to prevent the facilitation of tax evasion",
           "errorMessage": "Select whether this is the organisation's first self report to HMRC",
           "choices": [
             "Yes",
@@ -612,7 +618,7 @@
           "id": "madeOtherReports",
           "type": "choice",
           "label": "",
-          "shortName": "Reports made to other agencies ",
+          "shortName": "Have you made any other reports about this incident to agencies or bodies other than HMRC",
           "helpText": "This might include reports to the police, Serious Fraud Office (SFO) the National Crime Agency (NCA), or Action Fraud.",
           "errorMessage": "Select whether you've made any other reports about this incident to agencies other than HMRC ",
           "choices": [
@@ -669,10 +675,11 @@
           "id": "estimateTotalValues",
           "type": "text",
           "label": "",
-          "shortName": "Estimate of total value",
+          "shortName": "Estimate the total value of tax evasion that has been facilitated",
           "helpText": "Leave blank if not know",
           "format": "sterling",
-          "mandatory": "false"
+          "mandatory": "false",
+          "errorMessage": "Estimate of total value must be entered"
         }
       ]
     },
@@ -684,7 +691,7 @@
           "id": "overseenByARegulator",
           "type": "choice",
           "label": "Is the organisation overseen by a regulator, supervisor or a licensing authority?",
-          "shortName": "Organisation overseen",
+          "shortName": "Is the organisation overseen by a regulator, supervisor or a licensing authority",
           "errorMessage": "Select whether the organisation is overseen by a regulator, supervisor or a licensing authority ",
           "choices": [
             "Yes",
@@ -735,7 +742,7 @@
           "id": "preventionProcYesNo",
           "type": "choice",
           "label": "",
-          "shortName": "Prevention procedures in place",
+          "shortName": "Does the organisation have procedures in place that were designed to prevent this incident",
           "format": "vertical",
           "errorMessage": "Select whether the organisation has prevention procedures in place",
           "choices": [
@@ -855,7 +862,7 @@
           "id": "gdprConsent",
           "type": "choice",
           "label": "",
-          "shortName": "Consent given",
+          "shortName": "Confirm that you understand and agree to the following: \n\n* the personal data collected from this report will be processed in accordance with data protection law, including the General Data Protection Regulation (GDPR) and the Data Protection Act 2018\n* HMRC will collect, use and share information submitted in this report in accordance with their  [Privacy Notice](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you)\n\n* if the information submitted leads to an investigation, HMRC may share my contact details with other relevant third parties, where necessary\n\n* HMRC may use evidence from this report in a prosecution or other court proceedings, where permitted by law",
           "mandatory": "true",
           "multivalue": "true",
           "errorMessage": "Select if you understand and agree to how HMRC will use your information",
