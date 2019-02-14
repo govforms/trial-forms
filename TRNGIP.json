@@ -1,0 +1,417 @@
+{
+  "_id": "TRNGIP",
+  "description": "",
+  "formName": "Register for corporation tax if you are a non-resident",
+  "dmsSubmission": {
+    "dmsFormId": "TST123",
+    "customerId": "${auth.gg}",
+    "classificationType": "BT-NRU-Environmental",
+    "businessArea": "FinanceOpsCorpT"
+  },
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "sections": [
+    {
+      "title": "Company name",
+      "fields": [
+        {
+          "id": "legalNameUKUK",
+          "type": "text",
+          "format": "text(0, 56)",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Company registration number or reference",
+      "fields": [
+        {
+          "id": "companyReg",
+          "type": "text",
+          "label": "",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Country of incorporation",
+      "fields": [
+        {
+          "id": "countryOfIncorporation",
+          "type": "text",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Date of incorporation",
+      "fields": [
+        {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Registered office address",
+      "fields": [
+        {
+          "id": "registeredOfficeAddress",
+          "type": "address",
+          "label": "",
+          "postcodeLookup": "no",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "HMRC Corporation Tax reference (Unique Taxpayer Reference)",
+      "fields": [
+        {
+          "id": "HMRCUniqueTaxpayerReference",
+          "type": "text",
+          "format": "utr",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'. [You can find a lost UTR number](https://www.gov.uk/find-lost-utr-number).",
+          "label": "",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Any other HMRC reference held for this entity",
+      "fields": [
+        {
+          "id": "otherHMRCReference",
+          "type": "text",
+          "label": "",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Date to which the company intends to prepare accounts",
+      "fields": [
+        {
+          "id": "dateWhichCompanyPreparesAccounts",
+          "type": "date",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Date you came within the charge to UK Corporation Tax",
+      "fields": [
+        {
+          "id": "dateCameWithinChargeUK",
+          "type": "date",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Country of tax residence",
+      "fields": [
+        {
+          "id": "countryOfTaxResidence",
+          "type": "text",
+          "label": "",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "The full name and home address of each of the directors of the company",
+      "fields": [
+        {
+          "id": "fullName1",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress1",
+          "type": "address",
+          "label": "Home address",
+          "postcodeLookup": "no",
+          "international": "true"
+        },
+        {
+          "id": "addAnotherDirector",
+          "type": "choice",
+          "label": "Do you want to add another director?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "The full name and home address of each of the directors of the company",
+      "includeIf": "${addAnotherDirector=0}",
+      "fields": [
+        {
+          "id": "fullName2",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress2",
+          "type": "address",
+          "label": "Home address",
+          "postcodeLookup": "no",
+          "international": "true"
+        },
+        {
+          "id": "addAnotherDirector1",
+          "type": "choice",
+          "label": "Do you want to add another director?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "The full name and home address of each of the directors of the company",
+      "includeIf": "${addAnotherDirector1=0}",
+      "fields": [
+        {
+          "id": "fullName3",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress3",
+          "type": "address",
+          "label": "Home address",
+          "postcodeLookup": "no",
+          "international": "true"
+        },
+        {
+          "id": "addAnotherDirector2",
+          "type": "choice",
+          "label": "Do you want to add another director?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "The full name and home address of each of the directors of the company",
+      "includeIf": "${addAnotherDirector2=0}",
+      "fields": [
+        {
+          "id": "fullName4",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress4",
+          "type": "address",
+          "label": "Home address",
+          "postcodeLookup": "no",
+          "international": "true"
+        },
+        {
+          "id": "addAnotherDirector3",
+          "type": "choice",
+          "label": "Do you want to add another director?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "The full name and home address of each of the directors of the company",
+      "includeIf": "${addAnotherDirector3=0}",
+      "fields": [
+        {
+          "id": "fullName5",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress5",
+          "type": "address",
+          "label": "Home address",
+          "postcodeLookup": "no",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Business contact details of a person within the company who can be contacted about this notification",
+      "fields": [
+        {
+          "id": "fullNameBusinessContact",
+          "type": "text",
+          "label": "Full name of contact",
+          "helpText": "First name, Middle name, Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "positionOrCapacity",
+          "type": "text",
+          "label": "Position or capacity",
+          "helpText": "e.g. director",
+          "mandatory": "true"
+        },
+        {
+          "id": "telephoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Landline or mobile",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAddressUser",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Is the company a member of a group?",
+      "fields": [
+        {
+          "id": "companyMemGroup",
+          "type": "choice",
+          "label": "",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Name of parent company",
+      "includeIf": "${companyMemGroup=0}",
+      "fields": [
+        {
+          "id": "nameOfParentCompany",
+          "type": "text",
+          "label": "",
+          "format": "text(0, 56)",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Address of parent company",
+      "includeIf": "${companyMemGroup=0}",
+      "fields": [
+        {
+          "id": "addressOfParentCompany",
+          "type": "address",
+          "label": "",
+          "postcodeLookup": "no",
+          "mandatory": "false",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Company registration number or reference of parent company",
+      "includeIf": "${companyMemGroup=0}",
+      "fields": [
+        {
+          "id": "parentCompanyRegNumber",
+          "type": "text",
+          "label": "",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Country of tax residence of parent company",
+      "includeIf": "${companyMemGroup=0}",
+      "fields": [
+        {
+          "id": "countryOfParentCompany",
+          "type": "text",
+          "label": "",
+          "format": "text",
+          "mandatory": "false"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "shortName": "Declaration",
+    "title": "Declaration",
+    "fields": [
+      {
+        "type": "info",
+        "id": "declarationTopInfo",
+        "label": "Declaration copy",
+        "infoText": "Declaration copy"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example: Director, Financial Controller, Secretary"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "declaration-email",
+            "type": "text",
+            "label": "Email address (Optional)",
+            "mandatory": "false",
+            "format": "email"
+          },
+          {
+            "id": "declaration-email-confirmation",
+            "type": "text",
+            "label": "Confirm email address (Optional)",
+            "mandatory": "false",
+            "format": "email"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "shortName": "Acknowledgement Page",
+    "title": "Acknowledgement Page",
+    "fields": [
+      {
+        "type": "info",
+        "id": "ackpageInfo",
+        "label": "SomeContent",
+        "infoText": "SomeContent"
+      }
+    ]
+  }
+}
