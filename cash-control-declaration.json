@@ -14,6 +14,28 @@
   },
   "sections": [
     {
+      "title": "Are you planning to carry €10,000 or more in cash into, or out of, the EU?",
+      "fields": [
+        {
+          "id": "eligibility",
+          "type": "choice",
+          "label": "Are you planning to carry €10,000 or more in cash into, or out of, the EU?",
+          "helpText": "Cash includes: notes and coinsbankers’ draftscheques of any kind (including travellers’ cheques) If you’re travelling as a family you need to declare cash over €10,000.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_85027177_f711_4814_8ab0_734ca4054e5a",
+          "type": "info",
+          "label": "cashWarning",
+          "infoText": "You must declare cash of €10,000 or more (or the equivalent in another currency) if you take it between the UK and any non-EU country.\n\nYou could face a penalty of up to £5,000 if you do not declare your cash or give incorrect information.",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
       "title": "About you",
       "fields": [
         {
@@ -231,7 +253,38 @@
           "label": "Name of airport"
         },
         {
-          "id": "intermediateCountryName",
+          "id": "intermediateAirportCountryName",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "How many ports did you travel through?",
+      "includeIf": "${airSea=1 && intermediatePort=0}",
+      "fields": [
+        {
+          "id": "howManyPorts",
+          "type": "text",
+          "label": "How many ports did you travel through?",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs",
+          "validIf": "${howManyPorts>0 && howManyPorts<=20}"
+        }
+      ]
+    },
+    {
+      "title": "Which intermediate ports did you travel through?",
+      "repeatsMin": "${howManyPorts}",
+      "repeatsMax": "${howManyPorts}",
+      "fields": [
+        {
+          "id": "intermediatePortName",
+          "type": "text",
+          "label": "Name of port"
+        },
+        {
+          "id": "intermediatePortCountryName",
           "type": "text",
           "label": "Name of country"
         }
