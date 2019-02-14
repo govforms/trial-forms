@@ -56,10 +56,15 @@
           "helpText": "For example, 21 03 1979"
         },
         {
-          "id": "passportNumber",
+          "id": "placeOfBirth",
           "type": "text",
-          "label": "Passport number",
-          "format": "text(0,20)"
+          "label": "Place of birth",
+          "helpText": "For example, London"
+        },
+        {
+          "id": "countryOfBirth",
+          "type": "text",
+          "label": "Country of birth"
         },
         {
           "id": "nationality",
@@ -67,15 +72,27 @@
           "label": "Nationality"
         },
         {
-          "id": "placeOfBirth",
-          "type": "text",
-          "label": "Place of birth",
-          "helpText": "Including city and country"
-        },
-        {
           "id": "occupation",
           "type": "text",
           "label": "Occupation"
+        }
+      ]
+    },
+    {
+      "title": "Passport details",
+      "fields": [
+        {
+          "id": "passportNumber",
+          "type": "text",
+          "label": "Passport number",
+          "helpText": "For example, 502135326",
+          "format": "text(0,20)"
+        },
+        {
+          "id": "passportExpiryDate",
+          "type": "date",
+          "label": "Expiry date",
+          "helpText": "For example, 31 3 1980"
         }
       ]
     },
@@ -142,33 +159,31 @@
     },
     {
       "title": "Where will you start your journey?",
-      "includeIf": "${airSea=0}",
       "fields": [
         {
-          "id": "airportName",
+          "id": "startName",
           "type": "text",
-          "label": "Name of airport"
+          "label": "Name of the airport, port, or station"
         },
         {
           "id": "countryName",
           "type": "text",
-          "label": "Name of country"
+          "label": "Country name"
         }
       ]
     },
     {
       "title": "Where will you end your journey?",
-      "includeIf": "${airSea=0}",
       "fields": [
         {
-          "id": "airportNameEnd",
+          "id": "endName",
           "type": "text",
-          "label": "Name of airport"
+          "label": "Name of the final airport, port, or station"
         },
         {
-          "id": "countryNameEnd",
+          "id": "destinationCountry",
           "type": "text",
-          "label": "Name of country"
+          "label": "Country name"
         }
       ]
     },
