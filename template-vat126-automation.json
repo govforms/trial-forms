@@ -1,34 +1,32 @@
 {
-  "GFC579Ready": "true",
-  "formCategory": "hmrcClaimForm",
+  "_id": "template-vat126-automation",
   "formName": "Claim a VAT refund as an organisation not registered for VAT",
   "description": "",
+  "formCategory": "hmrcClaimForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "vat_refund_claim_confirmation",
+  "authConfig": {
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "V1"
+  },
   "dmsSubmission": {
     "dmsFormId": "VAT126",
     "customerId": "${eeitt.userId}",
     "classificationType": "FinanceOpsCorpT-IndTax-VAT126",
     "businessArea": "FinanceOpsCorpT"
   },
-  "developmentPhase": "beta",
-  "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "V1"
-  },
-  "emailTemplateId": "vat_refund_claim_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
   "sections": [
     {
       "title": "About your organisation",
-      "description": "",
       "shortName": "Organisation details",
+      "description": "",
       "fields": [
         {
           "id": "VATCRN",
           "type": "text",
           "label": "Unique reference number",
-          "submitMode": "derived",
-          "value": "${eeitt.businessUser}"
+          "value": "${eeitt.businessUser}",
+          "submitMode": "derived"
         },
         {
           "id": "orgName",
@@ -41,6 +39,7 @@
           "id": "organisationType",
           "type": "choice",
           "label": "Select the type that best describes your organisation",
+          "shortName": "Organisation type",
           "choices": [
             "Local authority for example, a parish council",
             "Academy school or multi-academy trust",
@@ -52,8 +51,7 @@
             "",
             "",
             "This may include government departments, non-departmental public bodies, NHS bodies, local government bodies, the police and the fire and rescue services."
-          ],
-          "shortName": "Organisation type"
+          ]
         }
       ]
     },
@@ -99,16 +97,16 @@
           "id": "address",
           "type": "choice",
           "label": "Has your organisation's address changed from the last claim?",
+          "shortName": "Amend address",
           "format": "yesno",
-          "errorMessage": "Select yes or no for a change of address",
-          "shortName": "Amend address"
+          "errorMessage": "Select yes or no for a change of address"
         }
       ]
     },
     {
-      "includeIf": "${address=0}",
       "title": "Enter the organisation's address",
       "shortName": "New address",
+      "includeIf": "${address=0}",
       "fields": [
         {
           "id": "newAdd",
@@ -138,16 +136,16 @@
           "id": "bankChange",
           "type": "choice",
           "label": "Have you changed your organisation's bank details from your last claim?",
-          "format": "yesno",
           "shortName": "Change bank account details",
+          "format": "yesno",
           "errorMessage": "Select either yes or no for a change in bank details"
         }
       ]
     },
     {
-      "includeIf": "${bankChange=0}",
       "title": "Enter the new bank details",
       "shortName": "Bank details",
+      "includeIf": "${bankChange=0}",
       "fields": [
         {
           "id": "bankName",
@@ -191,15 +189,15 @@
     },
     {
       "title": "What is the start and end date for this claim?",
-      "description": "Your claim must be for at least one calendar month.",
       "shortName": "Claim dates",
+      "description": "Your claim must be for at least one calendar month.",
       "fields": [
         {
           "id": "startDate",
           "type": "date",
           "label": "Start date",
-          "format": "before ${endDate}",
           "helpText": "For example, 30 09 2018",
+          "format": "before ${endDate}",
           "errorMessage": "Enter the claim period start date in the correct format"
         },
         {
@@ -207,16 +205,16 @@
           "type": "date",
           "label": "End date",
           "shortName": "End date",
-          "format": "after ${startDate}",
           "helpText": "This must be the last day of the month. For example, 31 10 2018",
+          "format": "after ${startDate}",
           "errorMessage": "Enter the claim period end date in the correct format"
         }
       ]
     },
     {
       "title": "How would you like to provide evidence for your claim?",
-      "description": "You will need to provide details of each invoice for us to process your refund, if you have more than 5 invoices you will need to upload a document of the invoice details.",
       "shortName": "Submission type",
+      "description": "You will need to provide details of each invoice for us to process your refund, if you have more than 5 invoices you will need to upload a document of the invoice details.",
       "fields": [
         {
           "id": "manualUpload",
@@ -232,9 +230,9 @@
     },
     {
       "title": "Provide your invoice details",
-      "description": "Enter details of each invoice you are claiming for, if you have more than 5 invoices you'll need to upload a document of the invoice details.",
       "shortName": "Invoice details",
       "includeIf": "${manualUpload=0}",
+      "description": "Enter details of each invoice you are claiming for, if you have more than 5 invoices you'll need to upload a document of the invoice details.",
       "fields": [
         {
           "id": "invoiceGroup",
@@ -259,8 +257,8 @@
               "id": "descriptionOfGoodsOrServices",
               "type": "text",
               "label": "Provide a brief description of goods or services supplied",
-              "multiline": "yes",
-              "shortName": "Brief description of goods or services supplied"
+              "shortName": "Brief description of goods or services supplied",
+              "multiline": "yes"
             },
             {
               "id": "invoiceAddress",
@@ -279,16 +277,16 @@
       ]
     },
     {
-      "includeIf": "${manualUpload=1}",
       "title": "Provide your invoice details",
       "shortName": "Invoice details",
+      "includeIf": "${manualUpload=1}",
       "fields": [
         {
           "id": "invoiceInfo",
           "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "Provide details of the invoices to claim your VAT refund.\n\nUpload a single file, which must include:\n* date of invoices\n* supplier's VAT registration numbers\n* a brief descriptions of the goods or services supplied\n* the organisation receiving services\n* amount of VAT paid"
+          "infoText": "Provide details of the invoices to claim your VAT refund.\n\nUpload a single file, which must include:\n* date of invoices\n* supplier's VAT registration numbers\n* a brief descriptions of the goods or services supplied\n* the organisation receiving services\n* amount of VAT paid",
+          "infoType": "noformat"
         },
         {
           "id": "uploadInfo",
@@ -330,22 +328,22 @@
         "id": "email",
         "type": "text",
         "label": "Email address",
-        "format": "email",
-        "helpText": "We will send an email to this address to confirm we have received your claim."
+        "helpText": "We will send an email to this address to confirm we have received your claim.",
+        "format": "email"
       },
       {
         "id": "decInfoCheckTitle",
         "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "## Declaration"
+        "infoText": "## Declaration",
+        "infoType": "noformat"
       },
       {
         "id": "decInfoCheck",
         "type": "info",
         "label": "",
-        "infoType": "important",
-        "infoText": "By entering your full name above you confirm that your organisation:\n* is claiming a VAT refund on goods and services that are exempt business activities\n* does not make goods or provide services that are subject to VAT\n* is not registered for VAT, and if requested, you will produce tax invoices to prove this"
+        "infoText": "By entering your full name above you confirm that your organisation:\n* is claiming a VAT refund on goods and services that are exempt business activities\n* does not make goods or provide services that are subject to VAT\n* is not registered for VAT, and if requested, you will produce tax invoices to prove this",
+        "infoType": "important"
       }
     ]
   },
@@ -356,17 +354,19 @@
         "id": "ackPageInfoTop",
         "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim."
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim.",
+        "infoType": "noformat"
       },
       {
         "id": "ackPageInfoBottom",
         "type": "info",
-        "infoType": "noformat",
         "label": "",
-        "infoText": "We will pay any VAT refund due to the bank account you provided in your claim.\n\n[Contact the VAT Helpline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/vat-enquiries) if you need to make changes to your claim or speak to someone about your claim."
+        "infoText": "We will pay any VAT refund due to the bank account you provided in your claim.\n\n[Contact the VAT Helpline](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/vat-enquiries) if you need to make changes to your claim or speak to someone about your claim.",
+        "infoType": "noformat"
       }
     ]
   },
-  "_id": "template-vat126-automation"
+  "GFC579Ready": "true",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk"
 }
