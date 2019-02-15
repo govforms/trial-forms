@@ -1,6 +1,6 @@
 {
   "_id": "gambling-duties-gaming-duty-application-for-registration-gd56",
-  "formName": "Register your business for Gaming Duty",
+  "formName": "Register for Gaming Duty",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "title": "Are you an authorised individual?",
+      "title": "Has the business authorised you to register it for Gaming Duty?",
       "fields": [
         {
           "id": "roleSoleT",
@@ -42,6 +42,18 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot register the business for Gaming Duty",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_41c9290e_59f8_4538_b670_40dbe4ea7549",
+          "label": "",
+          "infoText": "This is because the business has not authorised you to register it for Gaming Duty.\n\nYou'll need to sign out, or save your progress and come back when you have been authorised.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -82,7 +94,7 @@
       ]
     },
     {
-      "title": "Enter the details of sole proprietorship",
+      "title": "Enter sole proprietorship details",
       "includeIf": "${legalStatus1 = 1}",
       "fields": [
         {
@@ -93,28 +105,28 @@
         {
           "id": "spTradingName",
           "type": "text",
-          "label": "Business' trading name (optional)"
+          "label": "Trading name (optional)"
         }
       ]
     },
     {
-      "title": "Enter the details of the partnership",
+      "title": "Enter partnership details",
       "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "pName",
           "type": "text",
-          "label": "Name of partnership"
+          "label": "Partnership name"
         },
         {
           "id": "pTradingName",
           "type": "text",
-          "label": "Partnership's trading name (optional)"
+          "label": "Trading name (optional)"
         }
       ]
     },
     {
-      "title": "Enter the company's details",
+      "title": "Enter company details",
       "includeIf": "${legalStatus1 = 0}",
       "fields": [
         {
@@ -130,13 +142,13 @@
       ]
     },
     {
-      "title": "Enter the unincorporated body's details",
+      "title": "Enter unincorporated body details",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "coNameUB",
           "type": "text",
-          "label": "Unincorporated body's name"
+          "label": "Unincorporated body name"
         },
         {
           "id": "tradingNameUB",
