@@ -1,0 +1,352 @@
+{
+  "_id": "template-gd94-automation",
+  "formName": "GD94 Gaming duty payment on account",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "GD"
+  },
+  "dmsSubmission": {
+    "dmsFormId": "GD94",
+    "customerId": "${eeitt.userId}",
+    "classificationType": "BT-NRU-Gaming",
+    "businessArea": "BT"
+  },
+  "sections": [
+    {
+      "title": "Your details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "gamingDutyReg",
+          "type": "text",
+          "label": "Gaming Duty registration number",
+          "value": "${eeitt.businessUser}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "accessCode",
+          "type": "text",
+          "label": "Access code",
+          "value": "${eeitt.agent}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "gamingdutyreferencenumber",
+          "type": "text",
+          "label": "Gaming duty reference number for your client",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "fields": [
+        {
+          "id": "yourFirstName",
+          "type": "text",
+          "label": "First name",
+          "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "yourLastName",
+          "type": "text",
+          "label": "Last name",
+          "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "yourtelephonenumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "errorMessage": "Enter a valid telephone number"
+        },
+        {
+          "id": "status",
+          "type": "text",
+          "label": "Status within the business",
+          "helpText": "For example, director, company secretary or agent",
+          "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "errorMessage": "Business name can only include letters, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "Accountingperiodstartdate",
+          "type": "date",
+          "label": "Accounting period start date",
+          "helpText": "The start date is on the letter sent out notifying you that the return is due, for example 01/04/2015",
+          "value": "2015-04-01",
+          "errorMessage": "Enter the return period start date using the correct format"
+        },
+        {
+          "id": "Accountingperiodenddate",
+          "type": "date",
+          "label": "Accounting period end date",
+          "helpText": "The end date is on the letter sent out notifying you that the return is due, for example 31/03/2016",
+          "value": "2016-03-31",
+          "errorMessage": "Enter the return period end date using the correct format"
+        }
+      ]
+    },
+    {
+      "title": "Payment on account of Gaming Duty at 15%",
+      "fields": [
+        {
+          "id": "firstmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "The first £1,211,750 is charged at 15%"
+        },
+        {
+          "id": "numberofpremises1",
+          "type": "text",
+          "label": "Number of premises paying duty at this rate",
+          "errorMessage": "Number of premises paying duty at this rate must only include whole numbers"
+        },
+        {
+          "id": "fifteenpercent",
+          "label": "Part of total gross gaming yield chargeable at this rate",
+          "format": "sterling",
+          "errorMessage": "Enter a valid part of total gross gaming yield chargeable at this rate"
+        },
+        {
+          "id": "amountpayable1",
+          "label": "Amount payable",
+          "format": "sterling",
+          "value": "${fifteenpercent * 0.15}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Payment on account of Gaming Duty at 20%",
+      "fields": [
+        {
+          "id": "secondmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "The next £835,250 is charged at 20%"
+        },
+        {
+          "id": "numberofpremises2",
+          "type": "text",
+          "label": "Number of premises paying duty at this rate",
+          "errorMessage": "Number of premises paying duty at this rate must only include whole numbers"
+        },
+        {
+          "id": "twentypercent",
+          "label": "Part of total gross gaming yield chargeable at this rate",
+          "format": "sterling",
+          "errorMessage": "Enter a valid part of total gross gaming yield chargeable at this rate"
+        },
+        {
+          "id": "amountpayable2",
+          "label": "Amount payable.",
+          "format": "sterling",
+          "value": "${twentypercent * 0.20}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Payment on account of Gaming Duty at 30%",
+      "fields": [
+        {
+          "id": "thirdmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "The next £1,462,750 is charged at 30%."
+        },
+        {
+          "id": "numberofpremises3",
+          "type": "text",
+          "label": "Number of premises paying duty at this rate",
+          "errorMessage": "Number of premises paying duty at this rate must only include whole numbers"
+        },
+        {
+          "id": "thirtypercent",
+          "label": "Part of total gross gaming yield chargeable at this rate.",
+          "format": "sterling",
+          "errorMessage": "Enter a valid part of total gross gaming yield chargeable at this rate"
+        },
+        {
+          "id": "amountpayable3",
+          "label": "Amount payable.",
+          "format": "sterling",
+          "value": "${thirtypercent * 0.30}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Payment on account of Gaming Duty at 40%",
+      "fields": [
+        {
+          "id": "fourthmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "The next £3,087,750 is charged at 40% "
+        },
+        {
+          "id": "numberofpremises4",
+          "type": "text",
+          "label": "Number of premises paying duty at this rate",
+          "errorMessage": "Number of premises paying duty at this rate must only include whole numbers"
+        },
+        {
+          "id": "fortypercent",
+          "label": "Part of total gross gaming yield chargeable at this rate",
+          "format": "sterling",
+          "errorMessage": "Enter a valid part of total gross gaming yield chargeable at this rate"
+        },
+        {
+          "id": "amountpayable4",
+          "label": "Amount payable.",
+          "format": "sterling",
+          "value": "${fortypercent * 0.40}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Payment on account of Gaming Duty at 50%",
+      "fields": [
+        {
+          "id": "fifthmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "The remainder is charged at 50%. If this band isn’t relevant, enter 0 in each box"
+        },
+        {
+          "id": "numberofpremises5",
+          "type": "text",
+          "label": "Number of premises paying duty at this rate",
+          "errorMessage": "Number of premises paying duty at this rate must only include whole numbers"
+        },
+        {
+          "id": "fiftypercent",
+          "label": "Part of total gross gaming yield chargeable at this rate",
+          "format": "sterling",
+          "errorMessage": "Enter a valid part of total gross gaming yield chargeable at this rate"
+        },
+        {
+          "id": "amountpayable5",
+          "label": "Amount payable.",
+          "format": "sterling",
+          "value": "${fiftypercent * 0.50}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Total payment on account of Gaming Duty",
+      "fields": [
+        {
+          "id": "totalgross",
+          "label": "Total gross gaming yield chargeable",
+          "format": "sterling",
+          "value": "${fiftypercent + fortypercent + thirtypercent + twentypercent + fifteenpercent}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "totalpayable",
+          "label": "Total amount payable",
+          "format": "sterling",
+          "value": "${amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5}",
+          "submitMode": "readonly"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "You can avoid financial penalties by making sure we get your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address (optional)",
+            "format": "email",
+            "mandatory": "false",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nOtherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your 15 digit registration number on any payment.\n\nSort code: 08-32-00\n\nAccount name: HMRC GACA"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4704025/Feedback-Survey-GD94-online-form) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
+  "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs"
+}
