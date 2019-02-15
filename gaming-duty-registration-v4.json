@@ -146,7 +146,7 @@
     },
     {
       "title": "Enter unincorporated body details",
-      "includeIf": "${legalStatus1 = 4}",
+      "includeIf": "${legalStatus1 = 3}",
       "fields": [
         {
           "id": "coNameUB",
@@ -258,7 +258,7 @@
     },
     {
       "title": "Enter the number of premises you want to register",
-      "includeIf": "${dutiableGamingTakingPlaceAtAddress = 1} ",
+      "includeIf": "${gd58Choice = 0 && dutiableGamingTakingPlaceAtAddress = 2}",
       "fields": [
         {
           "id": "newPremNumb_copy_1",
@@ -270,7 +270,7 @@
     },
     {
       "title": "Enter the details of premises $n",
-      "includeIf": "${gd58Choice = 0}",
+      "includeIf": "${gd58Choice = 0 && dutiableGamingTakingPlaceAtAddress = 2}",
       "repeatsMin": "${newPremNumb}",
       "repeatsMax": "${newPremNumb}",
       "fields": [
