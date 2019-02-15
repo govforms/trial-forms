@@ -47,7 +47,7 @@
     },
     {
       "title": "You cannot register the business for Gaming Duty",
-      "includeIf": "${roleSoleT = 0}",
+      "includeIf": "${roleSoleT = 1}",
       "continueIf": "false",
       "fields": [
         {
@@ -91,7 +91,8 @@
           "id": "Emailaddress",
           "type": "text",
           "label": "Email address ",
-          "helpText": "For example, name@example.com"
+          "helpText": "For example, name@example.com",
+          "format": "email"
         }
       ]
     },
@@ -219,7 +220,7 @@
     },
     {
       "title": "Enter the address where your business records are kept",
-      "includeIf": "${accountsAddressChoice = 2}",
+      "includeIf": "${accountsAddressChoice = 1}",
       "fields": [
         {
           "id": "recAccAdd",
@@ -230,6 +231,7 @@
     },
     {
       "title": "Do you want to register other premises for Gaming Duty? ",
+      "includeIf": "${dutiableGamingTakingPlaceAtAddress = 0}",
       "fields": [
         {
           "id": "gd58Choice",
@@ -256,7 +258,7 @@
     },
     {
       "title": "Enter the number of premises you want to register",
-      "includeIf": "${gd58Choice = 1}",
+      "includeIf": "${dutiableGamingTakingPlaceAtAddress = 1}",
       "fields": [
         {
           "id": "newPremNumb_copy_1",
