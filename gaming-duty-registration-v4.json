@@ -32,21 +32,6 @@
       ]
     },
     {
-      "title": "What is your role within the business?",
-      "fields": [
-        {
-          "id": "roleComp",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Director",
-            "Company secretary ",
-            "Authorised individual"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Are you an authorised individual?",
       "fields": [
         {
@@ -57,30 +42,6 @@
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "What is your role within the business?",
-      "fields": [
-        {
-          "id": "rolePart",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Partner",
-            "Authorised individual"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is your role within the business?",
-      "fields": [
-        {
-          "id": "roleUB",
-          "type": "text",
-          "label": ""
         }
       ]
     },
@@ -121,7 +82,7 @@
       ]
     },
     {
-      "title": "Enter sole proprietor's details",
+      "title": "Enter the details of sole proprietorship",
       "includeIf": "${legalStatus1 = 1}",
       "fields": [
         {
@@ -137,47 +98,29 @@
       ]
     },
     {
-      "title": "Enter the name of the partnership",
+      "title": "Enter the details of the partnership",
       "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "pName",
           "type": "text",
-          "label": ""
-        },
-        {
-          "id": "nameChoicePA",
-          "type": "choice",
-          "label": "Is the trading name different to the partnership's name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "label": "Name of partnership"
         },
         {
           "id": "pTradingName",
           "type": "text",
-          "label": "Trading name"
+          "label": "Partnership's trading name (optional)"
         }
       ]
     },
     {
-      "title": "Enter the company name",
+      "title": "Enter the company's details",
       "includeIf": "${legalStatus1 = 0}",
       "fields": [
         {
           "id": "coName",
           "type": "text",
-          "label": ""
-        },
-        {
-          "id": "nameChoiceLC",
-          "type": "choice",
-          "label": "Is your trading name different to the company name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "label": "Company name"
         },
         {
           "id": "tradingName",
@@ -187,22 +130,13 @@
       ]
     },
     {
-      "title": "Enter the unincorporated body's name",
+      "title": "Enter the unincorporated body's details",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "coNameUB",
           "type": "text",
-          "label": ""
-        },
-        {
-          "id": "nameChoiceUB",
-          "type": "choice",
-          "label": "Is the trading name different to the unincorporated body's name?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "label": "Unincorporated body's name"
         },
         {
           "id": "tradingNameUB",
@@ -224,7 +158,7 @@
       ]
     },
     {
-      "title": "When will the business start trading?",
+      "title": "What date will the business start trading?",
       "fields": [
         {
           "id": "startTradingDate_copy_1",
@@ -300,6 +234,18 @@
       "fields": [
         {
           "id": "newPremNumb",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of premises you want to register",
+      "includeIf": "${gd58Choice = 1}",
+      "fields": [
+        {
+          "id": "newPremNumb_copy_1",
           "type": "text",
           "label": "",
           "format": "positiveWholeNumber"
