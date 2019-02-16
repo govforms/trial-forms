@@ -208,7 +208,7 @@
           ]
         },
         {
-          "id": "dutiableGamingTakingPlaceAtAddress",
+          "id": "DutGam",
           "type": "choice",
           "label": "Will dutiable gaming take place at this address?",
           "choices": [
@@ -231,7 +231,7 @@
     },
     {
       "title": "Do you want to register other premises for Gaming Duty? ",
-      "includeIf": "${dutiableGamingTakingPlaceAtAddress = 0}",
+      "includeIf": "${DutGam = 0}",
       "fields": [
         {
           "id": "gd58Choice",
@@ -258,7 +258,7 @@
     },
     {
       "title": "Enter the number of premises you want to register",
-      "includeIf": "${gd58Choice = 0 && dutiableGamingTakingPlaceAtAddress = 2}",
+      "includeIf": "${DutGam = 1}",
       "fields": [
         {
           "id": "newPremNumb_copy_1",
@@ -270,7 +270,7 @@
     },
     {
       "title": "Enter the details of premises $n",
-      "includeIf": "${gd58Choice = 0 && dutiableGamingTakingPlaceAtAddress = 2}",
+      "includeIf": "${gd58Choice = 0}",
       "repeatsMin": "${newPremNumb}",
       "repeatsMax": "${newPremNumb}",
       "fields": [
@@ -281,6 +281,24 @@
         },
         {
           "id": "premAdd",
+          "type": "address",
+          "label": "Address "
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of premises $n",
+      "includeIf": "${DutGam = 1}",
+      "repeatsMin": "${newPremNumb}",
+      "repeatsMax": "${newPremNumb}",
+      "fields": [
+        {
+          "id": "premName_copy_1",
+          "type": "text",
+          "label": "Trading name used at the premises"
+        },
+        {
+          "id": "premAdd_copy_1",
           "type": "address",
           "label": "Address "
         }
