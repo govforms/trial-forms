@@ -208,7 +208,7 @@
           ]
         },
         {
-          "id": "DutGam",
+          "id": "dutGam",
           "type": "choice",
           "label": "Will dutiable gaming take place at this address?",
           "choices": [
@@ -231,7 +231,7 @@
     },
     {
       "title": "Do you want to register other premises for Gaming Duty? ",
-      "includeIf": "${DutGam = 0}",
+      "includeIf": "${dutGam = 0}",
       "fields": [
         {
           "id": "gd58Choice",
@@ -257,18 +257,6 @@
       ]
     },
     {
-      "title": "Enter the number of premises you want to register",
-      "includeIf": "${DutGam = 1}",
-      "fields": [
-        {
-          "id": "newPremNumb_copy_1",
-          "type": "text",
-          "label": "",
-          "format": "positiveWholeNumber"
-        }
-      ]
-    },
-    {
       "title": "Enter the details of premises $n",
       "includeIf": "${gd58Choice = 0}",
       "repeatsMin": "${newPremNumb}",
@@ -287,8 +275,20 @@
       ]
     },
     {
+      "title": "Enter the number of premises you want to register",
+      "includeIf": "${dutGam = 1}",
+      "fields": [
+        {
+          "id": "newPremNumb_copy_1",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
       "title": "Enter the details of premises $n",
-      "includeIf": "${DutGam = 1}",
+      "includeIf": "${dutGam = 1}",
       "repeatsMin": "${newPremNumb}",
       "repeatsMax": "${newPremNumb}",
       "fields": [
