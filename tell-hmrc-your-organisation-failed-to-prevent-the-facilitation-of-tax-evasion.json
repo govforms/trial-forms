@@ -193,7 +193,7 @@
           "helpText": "Enter the name as officially registered in the country of formation"
         },
         {
-          "id": "tradingNameUKNotUK_copy_1",
+          "id": "tradingNameUKNotUK",
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
@@ -229,7 +229,7 @@
       "description": "Provide details of the limited liability partnership as registered at Companies House.",
       "fields": [
         {
-          "id": "legalNameUKPartUK",
+          "id": "legalNameUKLLPPartUK",
           "type": "text",
           "label": "Partnership name",
           "helpText": "Enter the registered name"
@@ -243,14 +243,14 @@
           "mandatory": "false"
         },
         {
-          "id": "ukBaseAddressPartUK",
+          "id": "ukBaseAddressLLPPartUK",
           "type": "address",
           "label": "Address",
           "helpText": "Enter the partnership's address as it is registered ",
           "postcodeLookup": "no"
         },
         {
-          "id": "companyRegNumberPartUK",
+          "id": "companyRegNumberLLPPartUK",
           "type": "text",
           "label": "Partnership's registration number",
           "shortName": "Partnership's registration number",
@@ -264,25 +264,25 @@
       "description": "Provide details of the limited liability partnership.",
       "fields": [
         {
-          "id": "legalNameUKPartNotUK",
+          "id": "legalNameUKLLPPartNotUK",
           "type": "text",
           "label": "Partnership name",
           "helpText": "Enter the name as officially registered in the country of formation"
         },
         {
-          "id": "formedAddressLimited",
+          "id": "formedAddressLimitedLLP",
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
           "multiline": "true"
         },
         {
-          "id": "formedCountryLimited",
+          "id": "formedCountryLimitedLLP",
           "type": "text",
           "label": "Country where the partnership was formed"
         },
         {
-          "id": "companyRegNumberNotUKLimited",
+          "id": "companyRegNumberNotUKLimitedLLP",
           "type": "text",
           "label": "Partnership registration number (if applicable)",
           "shortName": "Partnership registration number",
@@ -330,20 +330,20 @@
           "helpText": "Enter the partnership's trading name "
         },
         {
-          "id": "formedAddressLimitedUpdated",
+          "id": "formedAddressPartNotUK",
           "type": "text",
           "label": "Address",
           "helpText": "Enter the full registered address in the country of formation",
           "multiline": "true"
         },
         {
-          "id": "formedCountryLimitedUpdated",
+          "id": "formedCountryPartNotUK",
           "type": "text",
           "label": "Country where partnership was formed",
           "shortName": "Country where partnership was formed"
         },
         {
-          "id": "companyRegNumberNotUKLimitedUpdated",
+          "id": "RegNumberNotUKPartNotUK",
           "type": "text",
           "label": "Partnership registration number (optional)",
           "shortName": "Partnership registration number",
@@ -469,7 +469,6 @@
           "shortName": "Tell us how the criminal facilitation of tax evasion took place",
           "helpText": "Enter a maximum of 5000 characters including spaces",
           "format": "text(1,5000)",
-          "mandatory": "true",
           "multiline": "true",
           "errorMessage": "A summary of how the tax evasion was facilitated must be entered"
         }
@@ -568,7 +567,7 @@
       "includeIf": "${selfReportedFailure=1 && haveReferenceNumber=0}",
       "fields": [
         {
-          "id": "summariseHowTaxingGroup",
+          "id": "enterReferenceNumber",
           "type": "group",
           "label": "",
           "shortName": "Previous submission references",
@@ -579,7 +578,7 @@
           "repeatAddAnotherText": "Add another submission reference",
           "fields": [
             {
-              "id": "summariseHowTaxing2",
+              "id": "enterReferenceNumber2",
               "type": "text",
               "label": " ",
               "format": "text(1,60)"
@@ -737,7 +736,7 @@
           "id": "partOfPrevention",
           "type": "choice",
           "label": "",
-          "shortName": "Prevention procedures used (selected from list)",
+          "shortName": "Prevention procedures used by organisation (selected from list)",
           "helpText": "Select one or more options",
           "multivalue": "yes",
           "choices": [
@@ -774,9 +773,9 @@
         {
           "id": "whyNotPrevention",
           "type": "text",
-          "label": "Summary of why no prevention procedures are in place",
+          "label": "Summary of why no prevention procedures are in place (optional)",
           "shortName": "Summary of why no procedures are in place",
-          "helpText": "These may be referred to as 'prevention procedures' or 'reasonable procedures'. Enter a maximum of 1000 characters including spaces",
+          "helpText": "These may be referred to as 'prevention procedures' or 'reasonable procedures'. Enter a maximum of 1000 characters including spaces. Leave blank if you do not know",
           "format": "text(1,1000)",
           "mandatory": "false",
           "multiline": "true"
