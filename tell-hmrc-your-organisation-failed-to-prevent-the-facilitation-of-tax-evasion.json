@@ -3,7 +3,17 @@
   "formName": "Tell HMRC your organisation failed to prevent the facilitation of tax evasion",
   "description": "",
   "formCategory": "hmrcReturnForm",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "emailTemplateId": "???",
+  "emailParameters": [
+    {
+      "value": "${firstNameBusiness}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "hmrc"
   },
@@ -56,7 +66,6 @@
           "type": "choice",
           "label": "Are you authorised by the organisation to make this report on its behalf?",
           "shortName": "Are you authorised by the organisation to make this report on its behalf",
-          "helpText": "",
           "format": "vertical",
           "errorMessage": "Select whether you are authorised to make this report",
           "choices": [
@@ -109,7 +118,6 @@
           "type": "text",
           "label": "What is your connection to the organisation?",
           "shortName": "What is your connection to the organisation",
-          "helpText": " ",
           "mandatory": "true",
           "displayWidth": "xl",
           "errorMessage": "Enter your connection to the organisation"
@@ -299,8 +307,7 @@
         {
           "id": "tradingNameUKPartOther",
           "type": "text",
-          "label": "Trading name ",
-          "helpText": ""
+          "label": "Trading name "
         },
         {
           "id": "ukBaseAddressPartOther",
@@ -497,7 +504,7 @@
         {
           "id": "facilitationOngoing",
           "type": "choice",
-          "label": "",
+          "label": "Is the facilitation ongoing?",
           "shortName": "Is the facilitation ongoing",
           "format": "vertical",
           "errorMessage": "Select whether the facilitation is ongoing",
@@ -551,7 +558,7 @@
         {
           "id": "haveReferenceNumber",
           "type": "choice",
-          "label": "",
+          "label": "Do you have the submission reference for any of the previous self-reports to HMRC?",
           "shortName": "Do you have the submission reference for any of the previous self-reports to HMRC",
           "errorMessage": "Select whether you have the submission reference for any of the previous self-reports to HMRC",
           "choices": [
@@ -595,7 +602,7 @@
         {
           "id": "madeOtherReports",
           "type": "choice",
-          "label": "",
+          "label": "Have you made any other reports about this incident to agencies or bodies other than HMRC? ",
           "shortName": "Have you made any other reports about this incident to agencies or bodies other than HMRC",
           "helpText": "This might include reports to the police, Serious Fraud Office (SFO), the National Crime Agency (NCA), or Action Fraud",
           "errorMessage": "Select whether you've made any other reports about this incident to agencies other than HMRC ",
@@ -656,7 +663,7 @@
           "helpText": "Leave blank if not know",
           "format": "sterling",
           "mandatory": "false",
-          "errorMessage": "Estimate of total value must be entered"
+          "errorMessage": "Enter the total value of tax evasion that has been facilitated"
         }
       ]
     },
@@ -716,7 +723,7 @@
         {
           "id": "preventionProcYesNo",
           "type": "choice",
-          "label": "",
+          "label": "Does the organisation have procedures in place that were designed to prevent this incident?",
           "shortName": "Does the organisation have procedures in place that were designed to prevent this incident",
           "helpText": "These may be referred to as 'prevention procedures' or 'reasonable procedures'",
           "format": "vertical",
@@ -817,11 +824,19 @@
           "label": "Work address where we can contact you",
           "shortName": "Work contact address",
           "international": "true"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be valid once this report is submitted)",
+          "value": "${firstNameBusiness}",
+          "submitMode": "derived",
+          "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Give consent to how HMRC will use your information\n",
+      "title": "Give consent to how HMRC will use your information",
       "fields": [
         {
           "id": "generatedId_336b132f_d675_4bb7_b4a0_3a5a19cd9707",
@@ -853,8 +868,9 @@
         "label": "",
         "multivalue": "true",
         "validIf": "${Tickbox=0}",
+        "errorMessage": "You can only submit this report if you understand and agree that you may commit a criminal offence if you give false information or include information that you don’t honestly believe to be true in this report",
         "choices": [
-          "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report.\n"
+          "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report."
         ]
       }
     ]
@@ -862,13 +878,6 @@
   "acknowledgementSection": {
     "title": "Acknowledgement Page",
     "fields": [
-      {
-        "id": "generatedId_bc01539f_a59b_43d1_9e93_1dac010ad488",
-        "type": "info",
-        "label": "",
-        "infoText": "Keep a note of your submission reference, HMRC will use this if we need to contact you in the future about this report. ",
-        "infoType": "noformat"
-      },
       {
         "id": "submissionInformation",
         "type": "info",
@@ -880,7 +889,7 @@
         "id": "submissionInformation2",
         "type": "info",
         "label": "",
-        "infoText": "This is also your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. We recommend that you keep a copy for your records. ",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. We recommend that you keep a copy for your records. You must also keep a note of the submission reference included on the pdf or printed report, HMRC will use this if we need to contact you in the future about this report.",
         "infoType": "important"
       }
     ]
