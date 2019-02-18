@@ -1,5 +1,4 @@
 {
-  "_id": "gambling-duties-gaming-duty-application-for-registration-gd56",
   "formName": "Register for Gaming Duty",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -279,7 +278,7 @@
       "includeIf": "${dutGam = 1}",
       "fields": [
         {
-          "id": "newPremNumb_copy_1",
+          "id": "newPremNumbReg",
           "type": "text",
           "label": "",
           "format": "positiveWholeNumber"
@@ -288,17 +287,17 @@
     },
     {
       "title": "Enter the details of premises $n",
-      "includeIf": "${gd58Choice = 0 || dutGam=1}",
-      "repeatsMin": "${newPremNumb}",
-      "repeatsMax": "${newPremNumb}",
+      "includeIf": "${dutGam=1}",
+      "repeatsMin": "${newPremNumbReg}",
+      "repeatsMax": "${newPremNumbReg}",
       "fields": [
         {
-          "id": "premName_copy_1",
+          "id": "premNameBus",
           "type": "text",
           "label": "Trading name used at the premises"
         },
         {
-          "id": "premAdd_copy_1",
+          "id": "premAddBus",
           "type": "address",
           "label": "Address "
         }
@@ -378,6 +377,8 @@
       }
     ]
   },
+  "GFC597Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "gambling-duties-gaming-duty-application-for-registration-gd56"
 }
