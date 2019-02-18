@@ -1,62 +1,161 @@
 {
-  "_id": "TRNGIP",
-  "description": "",
   "formName": "Register for corporation tax if you are a non-resident",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
   "dmsSubmission": {
     "dmsFormId": "TST123",
     "customerId": "${auth.gg}",
     "classificationType": "BT-NRU-Environmental",
     "businessArea": "FinanceOpsCorpT"
   },
-  "authConfig": {
-    "authModule": "hmrc"
-  },
-  "emailTemplateId": "eeitt_submission_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
   "sections": [
     {
-      "title": "Company name",
+      "title": "About you",
       "fields": [
         {
-          "id": "legalNameUKUK",
-          "type": "text",
-          "format": "text(0, 56)",
+          "id": "generatedId_ca7964b9_7243_4d51_8899_645c45cd2fb8",
+          "type": "info",
           "label": "",
+          "infoText": "Provide the contact details of someone authorised to discuss this form with HMRC. \n\nWe will contact this person if we have a question about this form.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullNameBusinessContact",
+          "type": "text",
+          "label": "Full name",
+          "helpText": "",
+          "mandatory": "true"
+        },
+        {
+          "id": "telephoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For UK numbers include the area code, for example 020 7946 0000",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAddressUser",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will use this email to contact you about this form",
+          "format": "email",
           "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Company registration number or reference",
+      "title": "What is your company name?",
       "fields": [
         {
-          "id": "companyReg",
+          "id": "fullCompanyName",
           "type": "text",
-          "label": "",
-          "mandatory": "false"
+          "label": "What is your company name?",
+          "helpText": "If the company name exceeds 56 characters or includes numbers, provide an abbreviated name for our records.",
+          "format": "text(0,56)"
         }
       ]
     },
     {
-      "title": "Country of incorporation",
+      "title": "Do you have a HMRC reference number for this company?",
       "fields": [
+        {
+          "id": "hMRCref",
+          "type": "choice",
+          "label": "",
+          "helpText": "This is a reference number HMRC has given your company...TBC",
+          "choices": [
+            "PAYE reference",
+            "Another HMRC reference",
+            "None"
+          ]
+        },
+        {
+          "id": "generatedId_bf62cf04_c047_4ab9_bcd1_9bf911cfa0d0",
+          "type": "info",
+          "label": "examples of HMRC reference numbers ",
+          "infoText": "• PAYE reference number \n\n• VAT\n\n• Non-Resident Capital Gains Tax\n\n• ATED-related Capital Gains Tax",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "What is your employer PAYE reference?",
+      "includeIf": "${hMRCref=0}",
+      "fields": [
+        {
+          "id": "pAYEref",
+          "type": "text",
+          "label": "What is your employer PAYE reference?",
+          "helpText": "This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60."
+        }
+      ]
+    },
+    {
+      "title": "Enter your HMRC reference numbers",
+      "includeIf": "${hMRCref=1}",
+      "fields": [
+        {
+          "id": "otherHMRCReference",
+          "type": "text",
+          "label": "",
+          "mandatory": "false",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter your company's incorporation details",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_7446a4a8_0ca5_477b_bbdc_58271784de83",
+          "label": "##Country of incorporation",
+          "infoText": "##Country of incorporation",
+          "infoType": "noformat"
+        },
         {
           "id": "countryOfIncorporation",
           "type": "text",
           "label": "",
           "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Date of incorporation",
-      "fields": [
+        },
+        {
+          "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
+          "type": "info",
+          "label": "What are accepted jurisdictions ",
+          "infoText": "List of countries:\n\nIf you need to find out which countries are accepted jurisdictions go to GOV.UK and search for... ",
+          "infoType": "long"
+        },
+        {
+          "id": "generatedId_4ba3d35b_b78e_4eee_bf6e_b38f471a37ff",
+          "type": "info",
+          "label": "",
+          "infoText": "##Date of incorporation",
+          "infoType": "noformat"
+        },
         {
           "id": "dateOfIncorporation",
           "type": "date",
           "label": "",
+          "helpText": "For example, 01 08 2007",
           "mandatory": "true"
+        },
+        {
+          "id": "generatedId_5a5aeb0f_d99e_4bd3_bc9d_17209adb60f1",
+          "type": "info",
+          "label": "Company reference number",
+          "infoText": "##Company reference number",
+          "infoType": "noformat"
+        },
+        {
+          "id": "companyReferenceNumber",
+          "type": "text",
+          "label": "",
+          "helpText": "This is the registration number of your company"
         }
       ]
     },
@@ -64,73 +163,35 @@
       "title": "Registered office address",
       "fields": [
         {
+          "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter your company's official registration address.",
+          "infoType": "noformat"
+        },
+        {
           "id": "registeredOfficeAddress",
           "type": "address",
           "label": "",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "HMRC Corporation Tax reference (Unique Taxpayer Reference)",
-      "fields": [
-        {
-          "id": "HMRCUniqueTaxpayerReference",
-          "type": "text",
-          "format": "utr",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'. [You can find a lost UTR number](https://www.gov.uk/find-lost-utr-number).",
-          "label": "",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Any other HMRC reference held for this entity",
-      "fields": [
-        {
-          "id": "otherHMRCReference",
-          "type": "text",
-          "label": "",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Date to which the company intends to prepare accounts",
-      "fields": [
-        {
-          "id": "dateWhichCompanyPreparesAccounts",
-          "type": "date",
-          "label": "",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Date you came within the charge to UK Corporation Tax",
-      "fields": [
-        {
-          "id": "dateCameWithinChargeUK",
-          "type": "date",
-          "label": "",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Country of tax residence",
+      "title": "Enter your country of tax residence",
       "fields": [
         {
           "id": "countryOfTaxResidence",
           "type": "text",
           "label": "",
+          "helpText": "This is the country where your company is legally established ",
           "mandatory": "true"
         }
       ]
     },
     {
-      "title": "The full name and home address of each of the directors of the company",
+      "title": "Company director details",
       "fields": [
         {
           "id": "fullName1",
@@ -142,8 +203,8 @@
           "id": "directorAddress1",
           "type": "address",
           "label": "Home address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         },
         {
           "id": "addAnotherDirector",
@@ -154,7 +215,7 @@
       ]
     },
     {
-      "title": "The full name and home address of each of the directors of the company",
+      "title": "Company director details ",
       "includeIf": "${addAnotherDirector=0}",
       "fields": [
         {
@@ -167,8 +228,8 @@
           "id": "directorAddress2",
           "type": "address",
           "label": "Home address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         },
         {
           "id": "addAnotherDirector1",
@@ -179,7 +240,7 @@
       ]
     },
     {
-      "title": "The full name and home address of each of the directors of the company",
+      "title": "Company director details ",
       "includeIf": "${addAnotherDirector1=0}",
       "fields": [
         {
@@ -192,8 +253,8 @@
           "id": "directorAddress3",
           "type": "address",
           "label": "Home address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         },
         {
           "id": "addAnotherDirector2",
@@ -204,7 +265,7 @@
       ]
     },
     {
-      "title": "The full name and home address of each of the directors of the company",
+      "title": "Company director details",
       "includeIf": "${addAnotherDirector2=0}",
       "fields": [
         {
@@ -217,8 +278,8 @@
           "id": "directorAddress4",
           "type": "address",
           "label": "Home address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         },
         {
           "id": "addAnotherDirector3",
@@ -229,7 +290,7 @@
       ]
     },
     {
-      "title": "The full name and home address of each of the directors of the company",
+      "title": "Company director details",
       "includeIf": "${addAnotherDirector3=0}",
       "fields": [
         {
@@ -242,47 +303,13 @@
           "id": "directorAddress5",
           "type": "address",
           "label": "Home address",
-          "postcodeLookup": "no",
-          "international": "true"
+          "international": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "Business contact details of a person within the company who can be contacted about this notification",
-      "fields": [
-        {
-          "id": "fullNameBusinessContact",
-          "type": "text",
-          "label": "Full name of contact",
-          "helpText": "First name, Middle name, Last name",
-          "mandatory": "true"
-        },
-        {
-          "id": "positionOrCapacity",
-          "type": "text",
-          "label": "Position or capacity",
-          "helpText": "e.g. director",
-          "mandatory": "true"
-        },
-        {
-          "id": "telephoneNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "Landline or mobile",
-          "format": "telephoneNumber",
-          "mandatory": "true"
-        },
-        {
-          "id": "emailAddressUser",
-          "type": "text",
-          "label": "Email address",
-          "format": "email",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Is the company a member of a group?",
+      "title": "Is your company a member of a group?",
       "fields": [
         {
           "id": "companyMemGroup",
@@ -293,125 +320,232 @@
       ]
     },
     {
-      "title": "Name of parent company",
+      "title": "Parent company details",
       "includeIf": "${companyMemGroup=0}",
       "fields": [
         {
-          "id": "nameOfParentCompany",
+          "id": "parentName",
           "type": "text",
-          "label": "",
+          "label": "Parent company name",
           "format": "text(0, 56)",
           "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Address of parent company",
-      "includeIf": "${companyMemGroup=0}",
-      "fields": [
+        },
+        {
+          "id": "countryOfParentCompany",
+          "type": "text",
+          "label": "Country of tax residence",
+          "format": "text",
+          "mandatory": "true"
+        },
         {
           "id": "addressOfParentCompany",
           "type": "address",
           "label": "",
-          "postcodeLookup": "no",
+          "international": "true",
           "mandatory": "false",
-          "international": "true"
+          "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "Company registration number or reference of parent company",
-      "includeIf": "${companyMemGroup=0}",
+      "title": "Does your parent company have a registration number?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "parentCompanyref",
+          "label": "",
+          "helpText": "This is the number used to identify your company and verify its legal existence",
+          "choices": [
+            "Yes",
+            "UK unique taxpayer reference",
+            "None"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the registration number of your parent company?",
+      "includeIf": "${companyMemGroup=0 && parentCompanyref=0}",
       "fields": [
         {
           "id": "parentCompanyRegNumber",
           "type": "text",
-          "label": "",
+          "label": "What is the registration number of your parent company?",
+          "helpText": "This is the number used to identify your company and verify its legal existence",
           "format": "text",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Country of tax residence of parent company",
-      "includeIf": "${companyMemGroup=0}",
+      "title": "What is the unique taxpayer reference (UTR) of your parent company? ",
       "fields": [
         {
-          "id": "countryOfParentCompany",
+          "id": "uKUTR",
           "type": "text",
           "label": "",
-          "format": "text",
-          "mandatory": "false"
+          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  "
+        }
+      ]
+    },
+    {
+      "title": "What is your company's type of business activity?",
+      "fields": [
+        {
+          "id": "natureOfbusiness",
+          "type": "text",
+          "label": "",
+          "helpText": "This is the type of business transaction which is subject to UK corporation tax"
+        },
+        {
+          "id": "generatedId_234147fd_8683_4f95_9a3b_caa88beeb778",
+          "type": "info",
+          "label": "Business activities chargeable for corporation tax ",
+          "infoText": "A company or organisation is considered to be active for Corporation Tax purposes when it is, for example: \n* Selling assets\n* Carrying on a business activity such as a trade or professional activity \n* Buying and selling goods with a view to making a profit\n* Providing services\n* Earning interest\n* Managing investments\n* Receiving any other income",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you want to tell HMRC about the disposal of a single property?",
+      "fields": [
+        {
+          "id": "disposalYesNo",
+          "type": "choice",
+          "label": "Do you want to tell HMRC about the disposal of a single property?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you disposed of the property",
+      "includeIf": "${disposalYesNo=0}",
+      "fields": [
+        {
+          "id": "generatedId_95db4abe_93c1_46de_a8dc_cb197ffd0be4",
+          "type": "info",
+          "label": "",
+          "infoText": "This is the date your property transferred out of your possession.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "dateCameWithinChargeUK",
+          "type": "date",
+          "label": "",
+          "helpText": "For example, 01 08 2007",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter the dates of your company's accounting period",
+      "includeIf": "${disposalYesNo=1}",
+      "fields": [
+        {
+          "id": "startWhichCompanyPreparesAccounts",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example, 31 3 2015"
+        },
+        {
+          "id": "dateWhichCompanyPreparesAccounts",
+          "type": "date",
+          "label": "End date",
+          "helpText": "For example, 31 3 2016",
+          "mandatory": "true"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_fe135349_57fe_4975_b043_361774e548dc",
+          "label": "##Enter the date by which you intend to submit the company accounts",
+          "infoText": "##Enter the date by which you intend to submit the company accounts",
+          "infoType": "noformat"
+        },
+        {
+          "type": "date",
+          "id": "submitAccounts",
+          "label": "",
+          "helpText": "For example, 31 3 2016"
         }
       ]
     }
   ],
   "declarationSection": {
+    "title": "Make your declaration and send the form",
     "shortName": "Declaration",
-    "title": "Declaration",
     "fields": [
       {
+        "id": "generatedId_5c2b8e67_0f30_43de_8843_dc084bcd388e",
         "type": "info",
-        "id": "declarationTopInfo",
-        "label": "Declaration copy",
-        "infoText": "Declaration copy"
+        "label": "",
+        "infoText": "You must enter the name of someone who is authorised to sign this declaration.",
+        "infoType": "noformat"
       },
       {
         "id": "declarationNameGroup",
         "type": "group",
-        "label": "Provide details below of who is signing the declaration",
+        "label": "",
         "fields": [
           {
             "id": "declaration-firstname",
             "type": "text",
-            "label": "First name"
+            "label": "Full name"
           },
           {
-            "id": "declaration-lastname",
+            "id": "positionInCompany",
             "type": "text",
-            "label": "Last name"
-          },
-          {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example: Director, Financial Controller, Secretary"
+            "label": "Position in company"
           }
         ]
       },
       {
         "id": "declarationEmailGroup",
         "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "label": "",
         "fields": [
           {
             "id": "declaration-email",
             "type": "text",
             "label": "Email address (Optional)",
-            "mandatory": "false",
-            "format": "email"
-          },
-          {
-            "id": "declaration-email-confirmation",
-            "type": "text",
-            "label": "Confirm email address (Optional)",
-            "mandatory": "false",
-            "format": "email"
+            "helpText": "We will send an email to this address to confirm the form has been submitted",
+            "format": "email",
+            "mandatory": "false"
           }
         ]
+      },
+      {
+        "id": "declarationTopInfo",
+        "type": "info",
+        "label": "Declaration copy",
+        "infoText": "By submitting this form you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationTopInfo_copy_1",
+        "type": "info",
+        "label": "Declaration copy",
+        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
       }
     ]
   },
   "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
     "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "type": "info",
         "id": "ackpageInfo",
+        "type": "info",
         "label": "SomeContent",
         "infoText": "SomeContent"
       }
     ]
-  }
+  },
+  "GFC579Ready": "true",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "_id": "TRNGIP"
 }
