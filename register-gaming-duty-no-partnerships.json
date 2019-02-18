@@ -25,7 +25,6 @@
           "choices": [
             "Limited company",
             "Sole proprietorship",
-            "Partnership",
             "Unincorporated body"
           ]
         }
@@ -113,22 +112,6 @@
       ]
     },
     {
-      "title": "Enter partnership details",
-      "includeIf": "${legalStatus1 = 2}",
-      "fields": [
-        {
-          "id": "pName",
-          "type": "text",
-          "label": "Partnership name"
-        },
-        {
-          "id": "pTradingName",
-          "type": "text",
-          "label": "Trading name (optional)"
-        }
-      ]
-    },
-    {
       "title": "Enter company details",
       "includeIf": "${legalStatus1 = 0}",
       "fields": [
@@ -146,7 +129,7 @@
     },
     {
       "title": "Enter unincorporated body details",
-      "includeIf": "${legalStatus1 = 3}",
+      "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "coNameUB",
@@ -301,46 +284,6 @@
           "id": "premAddBus",
           "type": "address",
           "label": "Address "
-        }
-      ]
-    },
-    {
-      "title": "How many partners are in the partnership?",
-      "includeIf": "${legalStatus1 = 2}",
-      "fields": [
-        {
-          "id": "numberPartners",
-          "type": "text",
-          "label": "",
-          "format": "positiveWholeNumber"
-        }
-      ]
-    },
-    {
-      "title": "Enter details of partner $n",
-      "repeatsMin": "${numberPartners}",
-      "repeatsMax": "${numberPartners}",
-      "fields": [
-        {
-          "id": "PartnerFirstName",
-          "type": "text",
-          "label": "First name"
-        },
-        {
-          "id": "PartnerLastName",
-          "type": "text",
-          "label": "Last name"
-        },
-        {
-          "id": "PartnerAddress",
-          "type": "address",
-          "label": "Address"
-        },
-        {
-          "id": "PartnerTel",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
         }
       ]
     }
