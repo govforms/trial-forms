@@ -20,7 +20,7 @@
           "id": "eligibilityEuros",
           "type": "choice",
           "label": "Are you, or your family, carrying more than 10,000 euros total in cash into or out of the EU?",
-          "helpText": "This includes notes and coins, bankers drafts, cheques and travellers cheques, and in any currency equivalent to 10,000 euros.",
+          "helpText": "This includes notes and coins, bankers drafts, cheques and travellers cheques, and in any currency equal to 10,000 euros.",
           "choices": [
             "Yes",
             "No"
@@ -333,7 +333,6 @@
           "id": "cashType",
           "type": "choice",
           "label": "What type of cash are you carrying?",
-          "multivalue": "true",
           "choices": [
             "Currency notes",
             "Currency coins",
@@ -345,7 +344,7 @@
           "id": "currencyType",
           "type": "text",
           "label": "Currency",
-          "helpText": "For example, Euros, GBP, USD"
+          "helpText": "For example, euros, GBP, USD"
         },
         {
           "id": "cashValue",
@@ -362,7 +361,7 @@
           "id": "moneyOwner",
           "type": "choice",
           "label": "Does the money belong to you?",
-          "helpText": "Select yes if you own more than 50% of the money",
+          "helpText": "If you own more than 50% of the money, select yes",
           "choices": [
             "Yes",
             "No"
@@ -373,6 +372,7 @@
     {
       "title": "Who owns the cash?",
       "includeIf": "${moneyOwner=1}",
+      "description": "Tell us who owns the largest share of the money",
       "fields": [
         {
           "id": "cashOwnerName",
@@ -382,13 +382,13 @@
       ]
     },
     {
-      "title": "What is the cash owner's business?",
+      "title": "What business does the main cash owner work in?",
       "includeIf": "${moneyOwner=1}",
       "fields": [
         {
           "id": "cashOwnerBusiness",
           "type": "text",
-          "label": "What is the cash owner's business?"
+          "label": "What business does the main cash owner work in?"
         }
       ]
     },
