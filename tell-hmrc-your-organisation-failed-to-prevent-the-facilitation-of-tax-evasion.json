@@ -381,15 +381,15 @@
           "type": "text",
           "label": "What is the Self Assessment Tax Unique Taxpayer Reference?",
           "shortName": "Self Assessment Tax Unique Taxpayer Reference",
-          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
-          "errorMessage": "What is the Unique Taxpayer Reference"
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’",
+          "errorMessage": "Enter the Unique Taxpayer Reference"
         }
       ]
     },
     {
       "title": "Do you know the organisation's Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Unique Taxpayer Reference details",
-      "includeIf": "${CompanyType=0 && companyRegUK=0 || CompanyType=1 && utrYesnoPart=0}",
+      "includeIf": "${CompanyType=0 && companyRegUK=0 || CompanyType=1 && utrYesnoPart=1}",
       "fields": [
         {
           "id": "utrYesno",
@@ -408,7 +408,7 @@
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Organisation's Unique Taxpayer Reference",
-      "includeIf": "${CompanyType=0 && companyRegUK=0 && utrYesno=0} ",
+      "includeIf": "${CompanyType=0 && companyRegUK=0 && utrYesno=0 || (CompanyType=1 && utrYesno=0)} ",
       "fields": [
         {
           "id": "companyUniqueTaxRefNumUK",
@@ -444,7 +444,7 @@
     },
     {
       "title": "Tell us how the criminal facilitation of tax evasion took place",
-      "shortName": "How facilitation of tax evasion took place",
+      "shortName": "How the facilitation of tax evasion took place",
       "description": "",
       "fields": [
         {
@@ -553,7 +553,7 @@
           "type": "choice",
           "label": "",
           "shortName": "Do you have the submission reference for any of the previous self-reports to HMRC",
-          "errorMessage": "Select whether you have the submission reference for previous self-reports to HMRC",
+          "errorMessage": "Select whether you have the submission reference for any of the previous self-reports to HMRC",
           "choices": [
             "Yes",
             "No"
@@ -581,6 +581,7 @@
               "id": "enterReferenceNumber2",
               "type": "text",
               "label": " ",
+              "shortName": "Submission reference",
               "format": "text(1,60)"
             }
           ]
@@ -616,7 +617,7 @@
           "id": "otherReportsGroup",
           "type": "group",
           "label": "",
-          "shortName": "Report details",
+          "shortName": "Details for each report you have made to agencies or bodies other than HMRC",
           "repeatsMin": 1,
           "repeatsMax": 99,
           "repeatLabel": "Report details $n",
@@ -650,7 +651,7 @@
         {
           "id": "estimateTotalValues",
           "type": "text",
-          "label": "",
+          "label": "Estimate the total value of tax evasion that has been facilitated",
           "shortName": "Estimate the total value of tax evasion that has been facilitated",
           "helpText": "Leave blank if not know",
           "format": "sterling",
@@ -679,14 +680,14 @@
     },
     {
       "title": "Enter the details for each regulator, supervisor or licensing authority ",
-      "shortName": "Details for each authority, supervisor or licensing auuthority",
+      "shortName": "Details for each regulator, supervisor or licensing authority",
       "includeIf": "${overseenByARegulator=0}",
       "fields": [
         {
           "id": "nameAuthorityGroup",
           "type": "group",
           "label": "",
-          "shortName": "Authority name",
+          "shortName": "Authority details",
           "repeatsMin": 1,
           "repeatsMax": 99,
           "repeatLabel": "Details of authority",
@@ -735,10 +736,11 @@
         {
           "id": "partOfPrevention",
           "type": "choice",
-          "label": "",
+          "label": "Which of the following are part of the procedures?",
           "shortName": "Prevention procedures used by organisation (selected from list)",
           "helpText": "Select one or more options",
           "multivalue": "yes",
+          "errorMessage": "Select one or more prevention procedures used by organisation",
           "choices": [
             "Risk assessment",
             "Proportionality of risk-based prevention procedures",
@@ -760,7 +762,7 @@
           "id": "preventprohelp",
           "type": "info",
           "label": "Where can I find out more about prevention procedures?",
-          "infoText": "More information about prevention procedures can be found in [this government guidance on GOV.UK](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/672231/Tackling-tax-evasion-corporate-offences.pdf) (right-click this link to open it in a new tab or window so that you can continue with your report)",
+          "infoText": "More information about prevention procedures can be found in [this government guidance on GOV.UK](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/672231/Tackling-tax-evasion-corporate-offences.pdf) (right-click this link to open it in a new tab or window)",
           "infoType": "long"
         }
       ]
