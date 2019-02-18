@@ -1,0 +1,384 @@
+{
+  "_id": "register-gaming-duty-no-partnerships",
+  "formName": "Register for Gaming Duty",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "GD56"
+  },
+  "sections": [
+    {
+      "title": "What type of business do you want to register?",
+      "fields": [
+        {
+          "id": "legalStatus1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business legal status",
+          "format": "vertical",
+          "choices": [
+            "Limited company",
+            "Sole proprietorship",
+            "Partnership",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has the business authorised you to register it for Gaming Duty?",
+      "fields": [
+        {
+          "id": "roleSoleT",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot register the business for Gaming Duty",
+      "includeIf": "${roleSoleT = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_41c9290e_59f8_4538_b670_40dbe4ea7549",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business has not authorised you to register it for Gaming Duty.\n\nYou'll need to sign out, or save your progress and come back when you have been authorised.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "id": "generatedId_6c6adffe_a0c9_485e_b54a_9579a2119bb4",
+          "type": "info",
+          "label": "contact",
+          "infoText": "We will use these details to contact you if we need to discuss this form.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "Telephonenumber",
+          "type": "text",
+          "label": "Telephone number ",
+          "helpText": ""
+        },
+        {
+          "id": "Emailaddress",
+          "type": "text",
+          "label": "Email address ",
+          "helpText": "For example, name@example.com",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Enter sole proprietorship details",
+      "includeIf": "${legalStatus1 = 1}",
+      "fields": [
+        {
+          "id": "spName",
+          "type": "text",
+          "label": "Sole proprietor's full name"
+        },
+        {
+          "id": "spTradingName",
+          "type": "text",
+          "label": "Trading name (optional)"
+        }
+      ]
+    },
+    {
+      "title": "Enter partnership details",
+      "includeIf": "${legalStatus1 = 2}",
+      "fields": [
+        {
+          "id": "pName",
+          "type": "text",
+          "label": "Partnership name"
+        },
+        {
+          "id": "pTradingName",
+          "type": "text",
+          "label": "Trading name (optional)"
+        }
+      ]
+    },
+    {
+      "title": "Enter company details",
+      "includeIf": "${legalStatus1 = 0}",
+      "fields": [
+        {
+          "id": "coName",
+          "type": "text",
+          "label": "Company name"
+        },
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "Trading name (optional)"
+        }
+      ]
+    },
+    {
+      "title": "Enter unincorporated body details",
+      "includeIf": "${legalStatus1 = 3}",
+      "fields": [
+        {
+          "id": "coNameUB",
+          "type": "text",
+          "label": "Unincorporated body name"
+        },
+        {
+          "id": "tradingNameUB",
+          "type": "text",
+          "label": "Trading name (optional)"
+        }
+      ]
+    },
+    {
+      "title": "Enter an estimate of the business' profits over the next 12 months",
+      "fields": [
+        {
+          "id": "estProf",
+          "type": "text",
+          "label": "",
+          "helpText": "'Profit' can also be called ‘gross gaming yield’",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "What date will the business start trading?",
+      "fields": [
+        {
+          "id": "startTradingDate_copy_1",
+          "type": "date",
+          "label": "",
+          "helpText": "For example, 12 11 2022"
+        }
+      ]
+    },
+    {
+      "title": "Enter the address of your principal place of business",
+      "fields": [
+        {
+          "id": "ppbAdd",
+          "type": "address",
+          "label": ""
+        },
+        {
+          "id": "ppbTel",
+          "type": "text",
+          "label": "Telephone number of business",
+          "helpText": "",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "accountsAddressChoice",
+          "type": "choice",
+          "label": "Are your business records stored at this address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "dutGam",
+          "type": "choice",
+          "label": "Will dutiable gaming take place at this address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the address where your business records are kept",
+      "includeIf": "${accountsAddressChoice = 1}",
+      "fields": [
+        {
+          "id": "recAccAdd",
+          "type": "address",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Do you want to register other premises for Gaming Duty? ",
+      "includeIf": "${dutGam = 0}",
+      "fields": [
+        {
+          "id": "gd58Choice",
+          "type": "choice",
+          "label": " ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of other premises you want to register",
+      "includeIf": "${gd58Choice = 0}",
+      "fields": [
+        {
+          "id": "newPremNumb",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of premises $n",
+      "includeIf": "${gd58Choice = 0 || dutGam=1}",
+      "repeatsMin": "${newPremNumb}",
+      "repeatsMax": "${newPremNumb}",
+      "fields": [
+        {
+          "id": "premName",
+          "type": "text",
+          "label": "Trading name used at the premises"
+        },
+        {
+          "id": "premAdd",
+          "type": "address",
+          "label": "Address "
+        }
+      ]
+    },
+    {
+      "title": "Enter the number of premises you want to register",
+      "includeIf": "${dutGam = 1}",
+      "fields": [
+        {
+          "id": "newPremNumbReg",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of premises $n",
+      "includeIf": "${dutGam=1}",
+      "repeatsMin": "${newPremNumbReg}",
+      "repeatsMax": "${newPremNumbReg}",
+      "fields": [
+        {
+          "id": "premNameBus",
+          "type": "text",
+          "label": "Trading name used at the premises"
+        },
+        {
+          "id": "premAddBus",
+          "type": "address",
+          "label": "Address "
+        }
+      ]
+    },
+    {
+      "title": "How many partners are in the partnership?",
+      "includeIf": "${legalStatus1 = 2}",
+      "fields": [
+        {
+          "id": "numberPartners",
+          "type": "text",
+          "label": "",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Enter details of partner $n",
+      "repeatsMin": "${numberPartners}",
+      "repeatsMax": "${numberPartners}",
+      "fields": [
+        {
+          "id": "PartnerFirstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "PartnerLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "PartnerAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "PartnerTel",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit form to register the business for Gaming Duty",
+    "shortName": "Submit form",
+    "fields": [
+      {
+        "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
+        "type": "info",
+        "label": "",
+        "infoText": "##Terms and conditions",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
+        "type": "info",
+        "label": "",
+        "infoText": "Before you submit this form, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "generatedId_17d4070a_efc2_44a4_90db_f6c40ad644e4",
+        "type": "info",
+        "label": "Get a copy of form",
+        "infoText": "If you want a copy of your form you'll need to print it or save it as a PDF before you leave this page.\n\nWe will contact you if we have a question. \n\n\n\n\n",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC597Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
