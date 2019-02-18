@@ -1,21 +1,48 @@
 {
+  "_id": "template-lt100-automation",
   "formName": "Send your Landfill Tax return online",
-  "formCategory": "hmrcReturnForm",
   "description": "Fill in your Landfill Tax return form online",
-  "dmsSubmission": {
-    "dmsFormId": "LT100",
-    "customerId": "${eeitt.userId}",
-    "classificationType": "BT-NRU-Environmental",
-    "businessArea": "FinanceOpsCorpT"
-  },
+  "formCategory": "hmrcReturnForm",
   "developmentPhase": "beta",
-  "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "LF"
-  },
   "emailTemplateId": "lt100_return_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "LF",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your Landfill Tax registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Landfill Tax",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
   "sections": [
     {
       "title": "Your details",
@@ -25,14 +52,70 @@
           "id": "accessCode",
           "type": "text",
           "label": "Access code",
-          "submitMode": "derived",
-          "value": "${eeitt.agent}"
+          "value": "${eeitt.agent}",
+          "submitMode": "derived"
         },
         {
-          "id": "landfillTaxRegnumber",
+          "id": "landfillTaxRegAgent",
           "type": "text",
           "label": "Landfill Tax registration number for your client",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        }
+      ]
+    },
+    {
+      "title": "What are your client's return dates for this period?",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "insetInfoBoxAgent",
+          "type": "info",
+          "label": "",
+          "infoText": "Your client's return dates are the last working day of the month after the end of the return period unless HMRC have agreed in writing to a non-standard accounting period.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "whereCanThisBeFoundAgent",
+          "type": "info",
+          "label": "Where can this be found?",
+          "infoText": "The return dates can be found on the notice to file letter we sent out telling your client when their return is due.",
+          "infoType": "long"
+        },
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${landfillTaxRegAgent}",
+          "regimeType": "LFT"
+        }
+      ]
+    },
+    {
+      "title": "What are your return dates for this period?",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "Your return dates are the last working day of the month after the end of the return period unless HMRC have agreed in writing to a non-standard accounting period.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "whereCanThisBeFound",
+          "type": "info",
+          "label": "Where can this be found?",
+          "infoText": "The return dates can be found on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "long"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${user.enrolledIdentifier}",
+          "regimeType": "LFT"
         }
       ]
     },
@@ -43,23 +126,23 @@
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "errorMessage": "Enter your first name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your first name"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "errorMessage": "Enter your last name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your last name"
         },
         {
           "id": "positionInTheCompanyBusiness",
           "type": "text",
           "label": "Job title",
           "shortName": "Job title",
-          "errorMessage": "Enter your job title",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your job title"
         }
       ]
     },
@@ -68,33 +151,33 @@
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "type": "info",
           "id": "businessInfoText1",
+          "type": "info",
           "label": " ",
-          "infoType": "noformat",
-          "infoText": "HMRC will only use your contact details to discuss this return."
+          "infoText": "HMRC will only use your contact details to discuss this return.",
+          "infoType": "noformat"
         },
         {
           "id": "landfillTaxReg",
           "type": "text",
           "label": "Landfill Tax registration number",
-          "submitMode": "derived",
-          "value": "${eeitt.businessUser}"
+          "value": "${eeitt.businessUser}",
+          "submitMode": "derived"
         },
         {
           "id": "businessName",
           "type": "text",
           "label": "Registered business name",
-          "errorMessage": "Enter your business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your business name"
         },
         {
           "id": "emailBusiness",
           "type": "text",
           "label": "Email address (optional)",
-          "errorMessage": "Enter a valid email address",
+          "format": "email",
           "mandatory": "false",
-          "format": "email"
+          "errorMessage": "Enter a valid email address"
         },
         {
           "id": "businessTelephone",
@@ -102,8 +185,8 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber",
-          "errorMessage": "Enter your telephone number",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your telephone number"
         }
       ]
     },
@@ -112,26 +195,26 @@
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
-          "type": "info",
           "id": "businessInfoText",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "HMRC will only use your contact details to discuss this return."
+          "infoText": "HMRC will only use your contact details to discuss this return.",
+          "infoType": "noformat"
         },
         {
           "id": "businessNameAgent",
           "type": "text",
           "label": "Registered business name",
-          "errorMessage": "Enter your registered business name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter your registered business name"
         },
         {
           "id": "emailAgent",
           "type": "text",
           "label": "Email address (optional)",
-          "errorMessage": "Enter a valid email address",
+          "format": "email",
           "mandatory": "false",
-          "format": "email"
+          "errorMessage": "Enter a valid email address"
         },
         {
           "id": "agentTelephone",
@@ -139,45 +222,8 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes.",
           "format": "telephoneNumber",
-          "errorMessage": "Enter your telephone number",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "What are your return dates for this period?",
-      "fields": [
-        {
-          "type": "info",
-          "id": "insetInfoBox",
-          "label": "",
-          "infoType": "noformat",
-          "infoText": "Your return dates are the last working day of the month after the end of the return period unless HMRC have agreed in writing to a non-standard accounting period."
-        },
-        {
-          "type": "info",
-          "id": "whereCanThisBeFound",
-          "label": "Where can this be found?",
-          "infoType": "long",
-          "infoText": "The return dates can be found on the notice to file letter we sent out telling you when your return is due."
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "For example, 01 01 2018",
-          "errorMessage": "Enter the start date using the correct format",
-          "format": "before ${endDate}",
-          "mandatory": "true"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "For example, 31 01 2018",
           "mandatory": "true",
-          "format": "before today +1",
-          "errorMessage": "Enter the end date using the correct format and it can’t be before the start date"
+          "errorMessage": "Enter your telephone number"
         }
       ]
     },
@@ -188,22 +234,22 @@
         {
           "id": "weightInfo",
           "type": "info",
+          "label": "",
           "infoText": "When HMRC have agreed in a scheme to exclude the weight of water, don't include it in the figures below.",
-          "infoType": "noformat",
-          "label": ""
+          "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "lineBreakOneWeightInfo",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "\n\nEnter 0 if you have no material."
+          "infoText": "\n\nEnter 0 if you have no material.",
+          "infoType": "noformat"
         },
         {
           "id": "standardRatematerial",
           "type": "text",
-          "shortName": "Standard rate",
           "label": "Tonnes of standard rate material",
+          "shortName": "Standard rate",
           "mandatory": "true",
           "errorMessage": "Enter the tonnes of standard rate material or enter 0 if you have no material"
         },
@@ -231,8 +277,8 @@
         {
           "id": "taxDueForThisPeriod",
           "type": "text",
-          "shortName": "Landfill Tax due",
           "label": "Tax due before deductions",
+          "shortName": "Landfill Tax due",
           "format": "sterling",
           "errorMessage": "Enter the tax due for this period"
         }
@@ -242,8 +288,8 @@
       "title": "Adjustments from previous returns",
       "fields": [
         {
-          "type": "choice",
           "id": "underOverChoice",
+          "type": "choice",
           "label": "Adjustments in this return",
           "helpText": "You can adjust this return if you have under or over-declared tax from a previous return",
           "format": "yesno",
@@ -253,25 +299,25 @@
     },
     {
       "title": "Under and over-declarations",
-      "description": "Enter the under and over-declarations amounts from your previous return or enter 0 if you don’t have a tax declaration in the relevant fields.",
       "includeIf": "${underOverChoice = 0}",
+      "description": "Enter the under and over-declarations amounts from your previous return or enter 0 if you don’t have a tax declaration in the relevant fields.",
       "fields": [
         {
           "id": "underDeclarationsFromPreviousPeriods",
           "type": "text",
           "label": "Under-declarations",
           "shortName": "Under-declarations",
-          "errorMessage": "Enter the under-declared amount from the previous return or enter 0 if you don't have anything to declare",
-          "format": "sterling"
+          "format": "sterling",
+          "errorMessage": "Enter the under-declared amount from the previous return or enter 0 if you don't have anything to declare"
         },
         {
           "id": "overDeclarationsFromPreviousPeriods",
           "type": "text",
           "label": "Over-declarations",
           "shortName": "Over-declarations",
-          "errorMessage": "Enter the over-declared amount from the previous return or enter 0 if you don't have anything to declare",
           "helpText": "You can include adjustments of up to £50,000 as long as it's not over 1% of the total sales on your VAT Return for the return period in which you're adjusting",
-          "format": "sterling"
+          "format": "sterling",
+          "errorMessage": "Enter the over-declared amount from the previous return or enter 0 if you don't have anything to declare"
         }
       ]
     },
@@ -283,33 +329,33 @@
           "id": "badDebtReliefClaimed",
           "type": "text",
           "label": "Total bad debt reliefs",
-          "errorMessage": "Enter any bad debt reliefs and tax credits to deduct from the total tax due or enter 0 if you have no deductions",
+          "format": "sterling",
           "mandatory": "true",
-          "format": "sterling"
+          "errorMessage": "Enter any bad debt reliefs and tax credits to deduct from the total tax due or enter 0 if you have no deductions"
         },
         {
           "id": "otherCredits",
           "type": "text",
           "label": "Total tax credits",
-          "mandatory": "true",
-          "errorMessage": "Enter the total tax credits amount or enter 0 if you don't have credits to deduct from the tax due in this period",
           "helpText": "",
-          "format": "sterling"
+          "format": "sterling",
+          "mandatory": "true",
+          "errorMessage": "Enter the total tax credits amount or enter 0 if you don't have credits to deduct from the tax due in this period"
         },
         {
-          "type": "info",
           "id": "whatCanIClaim",
+          "type": "info",
           "label": "What can I claim?",
-          "infoType": "long",
-          "infoText": "This is the total amount of tax credits from material removed to another landfill site, removed for recycling, incineration or re-use, and later re-used to restore a landfill site."
+          "infoText": "This is the total amount of tax credits from material removed to another landfill site, removed for recycling, incineration or re-use, and later re-used to restore a landfill site.",
+          "infoType": "long"
         },
         {
           "id": "totalTaxCred",
           "type": "text",
           "label": "Total tax credits and reliefs",
-          "value": "${badDebtReliefClaimed + otherCredits}",
           "shortName": "Total tax credits and reliefs",
           "format": "sterling",
+          "value": "${badDebtReliefClaimed + otherCredits}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -319,6 +365,20 @@
       "title": "Enter your environmental bodies contributions",
       "description": "List each environmental body contribution that you’re claiming as a tax credit. The sum of these contributions should be the same as the total credit claimed.",
       "fields": [
+        {
+          "id": "Box3Total",
+          "type": "text",
+          "label": "Box 3 Total",
+          "value": "${taxDueForThisPeriod + underDeclarationsFromPreviousPeriods}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "Box8TotalCredits",
+          "type": "text",
+          "label": "Box 8 Total Credits",
+          "value": "${overDeclarationsFromPreviousPeriods + badDebtReliefClaimed + otherCredits}",
+          "submitMode": "derived"
+        },
         {
           "id": "environmentalBodyGroup",
           "type": "group",
@@ -330,17 +390,17 @@
             {
               "id": "environmentalBodyNumber",
               "type": "text",
-              "errorMessage": "Enter a valid enrolment number",
               "label": "Enrolment number",
-              "mandatory": "false"
+              "mandatory": "false",
+              "errorMessage": "Enter a valid enrolment number"
             },
             {
               "id": "amountOfContribution",
               "type": "text",
               "label": "Contribution amount",
               "format": "sterling",
-              "errorMessage": "Enter the environmental body contribution amount",
-              "mandatory": "false"
+              "mandatory": "false",
+              "errorMessage": "Enter the environmental body contribution amount"
             }
           ]
         },
@@ -348,8 +408,8 @@
           "id": "totalEnvironmentalBodyCont",
           "type": "text",
           "label": "Total environmental bodies contributions",
-          "value": "${amountOfContribution.sum}",
           "format": "sterling",
+          "value": "${amountOfContribution.sum}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -357,14 +417,14 @@
           "id": "totalEnvironmentalBodyContAfterTax",
           "type": "text",
           "label": "Total environmental tax credits",
-          "value": "${amountOfContribution.sum*0.90}",
           "format": "sterling",
+          "value": "${amountOfContribution.sum*0.90}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "enviroBodiesInfo",
+          "type": "info",
           "label": "",
           "infoText": "This amount is 90% of your total contributions",
           "infoType": "noformat"
@@ -379,24 +439,24 @@
           "id": "taxWithoutDeductionUnderDec",
           "type": "text",
           "label": "Tax due before deductions",
-          "value": "${taxDueForThisPeriod}",
           "format": "sterling",
+          "value": "${taxDueForThisPeriod}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "lineBreakOneUnderDec",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "**** \n\n## Under and over-declarations"
+          "infoText": "**** \n\n## Under and over-declarations",
+          "infoType": "noformat"
         },
         {
           "id": "underDecTotal",
           "type": "text",
           "label": "Under-declarations",
-          "value": "${underDeclarationsFromPreviousPeriods}",
           "format": "sterling",
+          "value": "${underDeclarationsFromPreviousPeriods}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -404,8 +464,8 @@
           "id": "overDecTotal",
           "type": "text",
           "label": "Over-declarations",
-          "value": "${overDeclarationsFromPreviousPeriods}",
           "format": "sterling",
+          "value": "${overDeclarationsFromPreviousPeriods}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -413,24 +473,24 @@
           "id": "underOverTotal",
           "type": "text",
           "label": "Total amount",
-          "value": "${underDeclarationsFromPreviousPeriods - overDeclarationsFromPreviousPeriods}",
           "format": "sterling",
+          "value": "${underDeclarationsFromPreviousPeriods - overDeclarationsFromPreviousPeriods}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "lineBreakTwoUnderDec",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "**** \n\n## Total tax credits and reliefs"
+          "infoText": "**** \n\n## Total tax credits and reliefs",
+          "infoType": "noformat"
         },
         {
           "id": "badReliefsTotUnderOver",
           "type": "text",
           "label": "Bad reliefs",
-          "value": "${badDebtReliefClaimed}",
           "format": "sterling",
+          "value": "${badDebtReliefClaimed}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -438,8 +498,8 @@
           "id": "otherCreditsTotUnderOver",
           "type": "text",
           "label": "Tax credits",
-          "value": "${otherCredits}",
           "format": "sterling",
+          "value": "${otherCredits}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -447,8 +507,8 @@
           "id": "creditsFromContUnderOver",
           "type": "text",
           "label": "Environmental bodies credits",
-          "value": "${totalEnvironmentalBodyContAfterTax}",
           "format": "sterling",
+          "value": "${totalEnvironmentalBodyContAfterTax}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -456,24 +516,24 @@
           "id": "totalCreditsUnderOver",
           "type": "text",
           "label": "Total amount",
-          "value": "${otherCreditsTotUnderOver + creditsFromContUnderOver + badReliefsTotUnderOver}",
           "format": "sterling",
+          "value": "${otherCreditsTotUnderOver + creditsFromContUnderOver + badReliefsTotUnderOver}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "lineBreakThreeUnderDec",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "****"
+          "infoText": "****",
+          "infoType": "noformat"
         },
         {
           "id": "totaTaxDueFinalUnderOver",
           "type": "text",
           "label": "Total Landfill Tax due",
-          "value": "${taxWithoutDeductionUnderDec + underOverTotal - totalCreditsUnderOver}",
           "format": "sterling",
+          "value": "${taxWithoutDeductionUnderDec + underOverTotal - totalCreditsUnderOver}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -487,24 +547,24 @@
           "id": "taxWithoutDeduction",
           "type": "text",
           "label": "Tax due before deductions",
-          "value": "${taxDueForThisPeriod}",
           "format": "sterling",
+          "value": "${taxDueForThisPeriod}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "lineBreakOne",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "**** \n\n## Total tax credits and reliefs"
+          "infoText": "**** \n\n## Total tax credits and reliefs",
+          "infoType": "noformat"
         },
         {
           "id": "badReliefsTot",
           "type": "text",
           "label": "Bad reliefs",
-          "value": "${badDebtReliefClaimed}",
           "format": "sterling",
+          "value": "${badDebtReliefClaimed}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -512,8 +572,8 @@
           "id": "otherCreditsTot",
           "type": "text",
           "label": "Tax credits",
-          "value": "${otherCredits}",
           "format": "sterling",
+          "value": "${otherCredits}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -521,8 +581,8 @@
           "id": "creditsFromCont",
           "type": "text",
           "label": "Environmental bodies credits",
-          "value": "${totalEnvironmentalBodyContAfterTax}",
           "format": "sterling",
+          "value": "${totalEnvironmentalBodyContAfterTax}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -530,24 +590,24 @@
           "id": "totalCredits",
           "type": "text",
           "label": "Total amount",
-          "value": "${otherCreditsTot + creditsFromCont + badReliefsTot}",
           "format": "sterling",
+          "value": "${otherCreditsTot + creditsFromCont + badReliefsTot}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "type": "info",
           "id": "lineBreakTwo",
+          "type": "info",
           "label": "",
-          "infoType": "noformat",
-          "infoText": "****"
+          "infoText": "****",
+          "infoType": "noformat"
         },
         {
           "id": "totaTaxDueFinal",
           "type": "text",
           "label": "Total Landfill Tax due",
-          "value": "${taxWithoutDeduction - totalCredits}",
           "format": "sterling",
+          "value": "${taxWithoutDeduction - totalCredits}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -555,8 +615,8 @@
     }
   ],
   "declarationSection": {
-    "shortName": "Declaration",
     "title": "Confirm details and send your return",
+    "shortName": "Declaration",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -566,8 +626,8 @@
           {
             "id": "declaration-fullName",
             "type": "text",
-            "errorMessage": "Enter your full name",
-            "label": "Full name"
+            "label": "Full name",
+            "errorMessage": "Enter your full name"
           },
           {
             "id": "declaration-status",
@@ -582,22 +642,22 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received your return",
-        "errorMessage": "Enter your email address",
+        "format": "email",
         "mandatory": "true",
-        "format": "email"
+        "errorMessage": "Enter your email address"
       },
       {
-        "type": "info",
         "id": "decPageContent",
+        "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete."
+        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
       },
       {
-        "type": "info",
         "id": "decPageImportant",
-        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "type": "info",
         "label": "",
+        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
         "infoType": "important"
       }
     ]
@@ -607,23 +667,23 @@
     "fields": [
       {
         "id": "helpText8",
-        "label": "",
         "type": "info",
+        "label": "",
         "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form as you won’t be able to retrieve it later."
       },
       {
-        "type": "info",
         "id": "lineBreakOne",
+        "type": "info",
         "label": "",
-        "infoType": "noformat",
-        "infoText": "\n\n## Make a payment"
+        "infoText": "\n\n## Make a payment",
+        "infoType": "noformat"
       },
       {
-        "type": "info",
         "id": "ackpageInfo",
+        "type": "info",
         "label": "Information about paying Bingo Duty",
-        "infoType": "noformat",
-        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use Bacs, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\n \n\nAccount details: \n\nAccount name: HMRC Landfill Tax \n\nAccount number: 11963198\n\n Sort code: 08 32 00\n\n Payment reference: Include your 15 digit registration number"
+        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use Bacs, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\n \n\nAccount details: \n\nAccount name: HMRC Landfill Tax \n\nAccount number: 11963198\n\n Sort code: 08 32 00\n\n Payment reference: Include your 15 digit registration number",
+        "infoType": "noformat"
       },
       {
         "id": "ackpageSurvey",
@@ -634,5 +694,27 @@
       }
     ]
   },
-  "_id": "template-lt100-automation"
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/LFT/eeits/{{either null landfillTaxReg landfillTaxRegAgent}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}','periodFrom':'{{hmrcTaxPeriodFromDate returnPeriod}}','periodTo':'{{hmrcTaxPeriodToDate returnPeriod}}','returnsDetails':{'isrScenario':'Z048','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 landfillTaxReg landfillTaxRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_BOX1_TAX_DUE','paramValue':'{{taxDueForThisPeriod}}'},{'paramSequence':'01','paramName':'BOX2_UNDERDECLARATIONS','paramValue':'{{either null nderDeclarationsFromPreviousPeriods 0}}'},{'paramSequence':'01','paramName':'BOX3_TOTAL','paramValue':'{{Box3Total}}'},{'paramSequence':'01','paramName':'BOX4_OVERDECLARATIONS','paramValue':'{{either null overDeclarationsFromPreviousPeriods 0}}'},{'paramSequence':'01','paramName':'BOX5_TAX_CREDIT_CLAIMED','paramValue':'0'},{'paramSequence':'01','paramName':'BOX6_BAD_DEBT_RELIEF','paramValue':'{{badDebtReliefClaimed}}'},{'paramSequence':'01','paramName':'BOX7_OTHER_CREDITS','paramValue':'{{otherCredits}}'},{'paramSequence':'01','paramName':'BOX8_TOTAL_CREDITS','paramValue':'{{Box8TotalCredits}}'},{'paramSequence':'01','paramName':'BOX9_NET_TAX_DUE','paramValue':'{{either null totaTaxDueFinal totaTaxDueFinalUnderOver}}'},{'paramSequence':'01','paramName':'BOX10_STANDARD_RATE_WASTE','paramValue':'{{standardRatematerial}}'},{'paramSequence':'01','paramName':'BOX11_LOWER_RATE_WASTE','paramValue':'{{lowerRatematerial}}'},{'paramSequence':'01','paramName':'BOX12_EXEMPT_WASTE','paramValue':'{{exemptmaterial}}'},{{#each environmentalBodyNumber}}{'paramSequence':'{{@index}}','paramName':'ENV_BODY','paramValue':'{{.}}'},{{/each}}{{#each amountOfContribution}}{'paramSequence':'{{@index}}','paramName':'CONTRIBUTION','paramValue':'{{.}}'}{{/each}},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{CurrentTimestamp}}'}"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "LT100",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
 }
