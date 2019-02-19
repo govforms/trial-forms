@@ -1,5 +1,4 @@
 {
-  "_id": "cash-control-declaration",
   "formName": "Cash Control Declaration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -327,12 +326,28 @@
       ]
     },
     {
+      "title": "How many different currencies are you carrying?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "howManyCurrency",
+          "label": "How many different currencies are you carrying?",
+          "helpText": "Currencies can include: Euro's, GBP, USD",
+          "displayWidth": "xs",
+          "validIf": "${howManyCurrency>0 && howManyCurrency <=10}"
+        }
+      ]
+    },
+    {
       "title": "Cash details",
+      "repeatsMin": "${howManyCurrency}",
+      "repeatsMax": "${howManyCurrency}",
       "fields": [
         {
           "id": "cashType",
           "type": "choice",
           "label": "What type of cash are you carrying?",
+          "multivalue": "true",
           "choices": [
             "Currency notes",
             "Currency coins",
@@ -483,5 +498,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "cash-control-declaration"
 }
