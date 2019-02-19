@@ -41,10 +41,10 @@
       "continueIf": "false",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_a296d82f_c5e3_4348_9d8e_cbbcea29b5b1",
+          "type": "info",
           "label": "",
-          "infoText": "You do not need to make a cash declaration",
+          "infoText": "Place holder text",
           "infoType": "noformat"
         }
       ]
@@ -196,45 +196,12 @@
       ]
     },
     {
-      "title": "Where will you start your journey?",
-      "includeIf": "${airSea=1}",
-      "fields": [
-        {
-          "id": "portName",
-          "type": "text",
-          "label": "Name of port"
-        },
-        {
-          "id": "portCountry",
-          "type": "text",
-          "label": "Name of country"
-        }
-      ]
-    },
-    {
-      "title": "Where will you end your journey?",
-      "includeIf": "${airSea=1}",
-      "fields": [
-        {
-          "id": "portNameEnd",
-          "type": "text",
-          "label": "Name of port"
-        },
-        {
-          "id": "portCountryEnd",
-          "type": "text",
-          "label": "Name of country"
-        }
-      ]
-    },
-    {
-      "title": "Did you travel via an intermediate airport?",
-      "includeIf": "${airSea=0}",
+      "title": "Did you travel via an intermediate airport, port or station?",
       "fields": [
         {
           "id": "intermediateAirport",
           "type": "choice",
-          "label": "Did you travel via an intermediate airport?",
+          "label": "Did you travel via an intermediate airport, port or station?",
           "choices": [
             "Yes",
             "No"
@@ -243,28 +210,13 @@
       ]
     },
     {
-      "title": "Did you travel via an intermediate port?",
-      "includeIf": "${airSea=1}",
-      "fields": [
-        {
-          "id": "intermediatePort",
-          "type": "choice",
-          "label": "Did you travel via an intermediate port?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "How many airports did you travel through?",
-      "includeIf": "${airSea=0 && intermediateAirport=0}",
+      "title": "How many airports, ports or stations did you travel through?",
       "fields": [
         {
           "id": "howManyAirports",
           "type": "text",
-          "label": "How many airports did you travel through?",
+          "label": "How many airports, ports or stations did you travel through?",
+          "helpText": "These are the intermediate places you went between your start and end journey ",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
           "validIf": "${howManyAirports>0 && howManyAirports<=20}"
@@ -272,45 +224,14 @@
       ]
     },
     {
-      "title": "Which intermediate airports did you travel through?",
+      "title": "Which intermediate airports, ports or stations did you travel through?",
       "repeatsMin": "${howManyAirports}",
       "repeatsMax": "${howManyAirports}",
       "fields": [
         {
-          "id": "intermediateAirportName",
-          "type": "text",
-          "label": "Name of airport"
-        },
-        {
-          "id": "intermediateAirportCountryName",
-          "type": "text",
-          "label": "Name of country"
-        }
-      ]
-    },
-    {
-      "title": "How many ports did you travel through?",
-      "includeIf": "${airSea=1 && intermediatePort=0}",
-      "fields": [
-        {
-          "id": "howManyPorts",
-          "type": "text",
-          "label": "How many ports did you travel through?",
-          "format": "positiveWholeNumber",
-          "displayWidth": "xs",
-          "validIf": "${howManyPorts>0 && howManyPorts<=20}"
-        }
-      ]
-    },
-    {
-      "title": "Which intermediate ports did you travel through?",
-      "repeatsMin": "${howManyPorts}",
-      "repeatsMax": "${howManyPorts}",
-      "fields": [
-        {
           "id": "intermediatePortName",
           "type": "text",
-          "label": "Name of port"
+          "label": "Name of airport, port or station"
         },
         {
           "id": "intermediatePortCountryName",
@@ -341,29 +262,17 @@
           "id": "howManyCurrency",
           "type": "text",
           "label": "How many different currencies are you carrying?",
-          "helpText": "Currencies can include: Euro's, GBP, USD",
+          "helpText": "For example euros, GBP, USD",
           "displayWidth": "xs",
           "validIf": "${howManyCurrency>0 && howManyCurrency <=10}"
         }
       ]
     },
     {
-      "title": "Cash details",
+      "title": "Currency $n",
       "repeatsMin": "${howManyCurrency}",
       "repeatsMax": "${howManyCurrency}",
       "fields": [
-        {
-          "id": "cashType",
-          "type": "choice",
-          "label": "What type of cash are you carrying?",
-          "multivalue": "true",
-          "choices": [
-            "Currency notes",
-            "Currency coins",
-            "Travellers' cheques",
-            "Bankers' drafts"
-          ]
-        },
         {
           "id": "currencyType",
           "type": "text",
@@ -371,10 +280,32 @@
           "helpText": "For example, euros, GBP, USD"
         },
         {
-          "id": "cashValue",
+          "id": "noteTotal",
           "type": "text",
-          "label": "Total cash value",
-          "format": "positiveNumber(11, 2)"
+          "label": "Total amount in notes",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalCoins",
+          "type": "text",
+          "label": "Total amount in coins",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalTravellersCheque",
+          "type": "text",
+          "label": "Total amount in travellers cheques",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalBankersDraft",
+          "type": "text",
+          "label": "Total amount in bankers drafts",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
         }
       ]
     },
@@ -394,69 +325,80 @@
       ]
     },
     {
-      "title": "Who owns the cash?",
+      "title": "Details of main cash owner",
       "includeIf": "${moneyOwner=1}",
-      "description": "Tell us who owns the largest share of the money",
       "fields": [
         {
           "id": "cashOwnerName",
           "type": "text",
           "label": "Full name"
-        }
-      ]
-    },
-    {
-      "title": "What business does the main cash owner work in?",
-      "includeIf": "${moneyOwner=1}",
-      "fields": [
+        },
         {
           "id": "cashOwnerBusiness",
           "type": "text",
-          "label": "What business does the main cash owner work in?"
-        }
-      ]
-    },
-    {
-      "title": "Cash owner address",
-      "fields": [
+          "label": "Business or occupation"
+        },
         {
           "id": "cashOwnerAddressUK",
           "type": "address",
-          "label": "Cash owner addres",
+          "label": "Main cash owner address",
           "international": "true"
         }
       ]
     },
     {
-      "title": "What is the origin of the cash?",
+      "title": "Cash details",
+      "description": "Provide details of where the cash comes from",
       "fields": [
         {
           "id": "cashOrigin",
           "type": "text",
-          "label": "What is the origin of the cash?",
-          "helpText": "For example, does it come from the sale of a property, or personal savings? Tell us where and when it was generated.",
-          "multiline": "true"
+          "label": "Cash origin",
+          "helpText": "For example, sale of a property, personal savings or business takings"
+        },
+        {
+          "id": "countryGenerated",
+          "type": "text",
+          "label": "Country origin"
+        },
+        {
+          "id": "dateGenerated",
+          "type": "date",
+          "label": "Date",
+          "helpText": "This is for 'when the cash is generated'"
         }
       ]
     },
     {
-      "title": "Who are you giving the cash to?",
-      "description": "If the cash will be shared, enter the name of the person likely to receive the largest amount",
+      "title": "Person receiving the cash",
       "fields": [
         {
-          "id": "cashRecipientName",
+          "id": "receivingName",
           "type": "text",
-          "label": "Full name"
+          "label": "Full name",
+          "helpText": "If more than one person receiving the cash, enter the name of the person receiving the most"
+        },
+        {
+          "id": "receivingOccupation",
+          "type": "text",
+          "label": "Business or occupation"
+        },
+        {
+          "id": "receivingAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
         }
       ]
     },
     {
-      "title": "What will they use the cash for?",
+      "title": "What is the person receiving the cash going to use it for?",
       "fields": [
         {
           "id": "cashIntent",
           "type": "text",
-          "label": "What will they use the cash for?",
+          "label": "What is the person receiving the cash going to use it for?",
+          "helpText": "For example, buying a car",
           "multiline": "true"
         }
       ]
