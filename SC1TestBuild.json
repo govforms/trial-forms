@@ -662,6 +662,18 @@
           "label": "",
           "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
           "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice2a",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -691,7 +703,7 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "(IND) Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
         {
@@ -710,7 +722,7 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "(ORG) Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 0 && actsChoice2a = 0} ",
       "fields": [
         {
@@ -729,7 +741,7 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "(PAR) Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 2 && actsChoice3a = 0} ",
       "fields": [
         {
@@ -787,56 +799,183 @@
       ]
     },
     {
-      "title": "Tell us about the previous refused application or cancelled registration. ",
-      "includeIf": "${cancRefOk = 0}",
+      "title": "(IND) Have you ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 1}",
+      "fields": [
+        {
+          "id": "generatedId_7e6ddfc6_4bb0_4ee2_8e64_e71c261a52b5",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk1",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk2",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_5ecf7455_3323_4f86_9aed_e2a1a4b113e5",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk3",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(IND) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "includeIf": "${cancRefOk1 = 0}",
       "fields": [
         {
           "id": "generatedId_de632ebc_b2a5_418a_9be7_31ad9a49fc4b",
           "type": "info",
           "label": "",
-          "infoText": "* explain why we are asking for this detail *",
+          "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
           "infoType": "noformat"
         },
         {
-          "id": "orgName",
           "type": "text",
-          "label": "Organisation name",
-          "format": "text(0,250)",
-          "displayWidth": "m"
+          "id": "refResIND",
+          "label": ""
         },
         {
           "id": "ofRegRefCanc",
           "type": "text",
-          "label": "Ofsted registration number",
-          "helpText": "If you do not have it's Ofsted URN you can phone us on 0300 123 1231",
+          "label": "URN of refused establishment or agency",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
-        },
-        {
-          "id": "orgRegCancRef",
-          "type": "text",
-          "label": "Organisation ID",
-          "helpText": "For example, a Companies house registration number",
-          "format": "text(0,30)",
-          "displayWidth": "s"
-        },
-        {
-          "id": "generatedId_12746c73_24bc_47b8_a7ce_0046194da587",
-          "type": "info",
-          "label": "What details do I need to provide?",
-          "infoText": "You need to provide full details. For example:\n\n* details of the previous application or registration, including information about the type of service provided\n\n* the dates of application or registration\n\n* reasons why the application was refused or the registration was cancelled\n\n* whether this was by Ofsted or by another organisation\n\n* any other detail you think is relevant",
-          "infoType": "long"
-        },
-        {
-          "id": "refRegCancDetML",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
         }
       ]
     },
     {
-      "title": "About individuals who are part of the individual provider",
+      "title": "(ORG) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "includeIf": "${cancRefOk2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_9d406566_2851_491f_9f6b_783c143c2dd3",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "refResORG",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "coResNam1",
+          "label": "Company registered name (if you have one)",
+          "helpText": "This must be the same name as registered with Companies house, not a trading name."
+        },
+        {
+          "type": "text",
+          "id": "coResNUM",
+          "label": "Company certificate number (if you have one)",
+          "helpText": "This can be found on your certificate of incorporation document. "
+        },
+        {
+          "id": "ofRegRefCanc_copy_1",
+          "type": "text",
+          "label": "URN of refused establishment or agency",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,30)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "includeIf": "${cancRefOk3 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_f217b0ab_0833_4ff3_befc_cc7cb8de3d6b",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "refResORG_copy_1",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "coResNam2",
+          "label": "Company registered name (if you have one)",
+          "helpText": "This is the name you use to promote your business."
+        },
+        {
+          "id": "ofRegRefCanc_copy_2",
+          "type": "text",
+          "label": "URN of refused establishment or agency",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,30)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "(IND) How many people do you want to add to your proposed register provider?",
+      "includeIf": "${businessChoice2 = 1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "noIndPeoAdd",
+          "label": "(IND) How many people do you want to add to your proposed register provider?",
+          "format": "positiveNumber"
+        }
+      ]
+    },
+    {
+      "title": "(IND) Tell us about the people you want to add to your proposed registered provider",
+      "repeatsMin": "${noIndPeoAdd}",
+      "repeatsMax": "${noIndPeoAdd}",
       "fields": [
         {
           "id": "generatedId_bb3885c8_88bf_43ec_a65f_1c9767deea24",
@@ -906,19 +1045,114 @@
       ]
     },
     {
-      "title": "Placeholder List summary page",
+      "title": "(ORG) How many people do you want to add to your proposed register provider?",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
-          "id": "generatedId_f1b9f03c_8756_4391_9f1c_14f094f4a396",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
+          "type": "text",
+          "id": "noORGPeoAdd",
+          "label": "(ORG) How many people do you want to add to your proposed register provider?",
+          "format": "positiveNumber"
         }
       ]
     },
     {
-      "title": "Who are the partners?",
+      "title": "(ORG) Tell us about the people you want to add to your proposed registered provider",
+      "repeatsMin": "${noORGPeoAdd}",
+      "repeatsMax": "${noORGPeoAdd}",
+      "fields": [
+        {
+          "id": "generatedId_75449e31_e0d2_437d_af86_090bbd2ae8cb",
+          "type": "info",
+          "label": "",
+          "infoText": "** Explain why we're asking this info **  \n\nFor example, we need to know about each individual so we can check their eligibility to be an individual provider.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgProvTi",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,30)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "orgProvFiNa",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name"
+        },
+        {
+          "id": "orgProvLaNa",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name"
+        },
+        {
+          "id": "orgProvDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the following format, dd/mm/yyyy"
+        },
+        {
+          "id": "orgProvPos",
+          "type": "text",
+          "label": "Position",
+          "shortName": "Position"
+        },
+        {
+          "type": "choice",
+          "id": "orgDisq",
+          "label": " Is this person disqualified?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "orgProvMan",
+          "type": "choice",
+          "label": "Does this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "orgProvKid",
+          "type": "choice",
+          "label": "Does this person have contact with children and / or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_134d40bc_adc8_482b_a71b_aaa49a048c26",
+          "type": "info",
+          "label": "",
+          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) How many partners do you want to add to your proposed register provider?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "noPARPeoAdd",
+          "label": "(ORG) How many people do you want to add to your proposed register provider?",
+          "format": "positiveNumber"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Who are the partners?",
+      "repeatsMin": "${noPARPeoAdd}",
+      "repeatsMax": "${noPARPeoAdd}",
       "fields": [
         {
           "id": "generatedId_ac092c2c_cf26_4809_b82b_07594bbf697a",
@@ -992,14 +1226,131 @@
       ]
     },
     {
-      "title": "Placeholder List summary page",
+      "title": "(ORG) Who is the responsible individual?",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
-          "id": "generatedId_c59c5357_f79f_4d6c_9fd5_6034a44e08b1",
+          "id": "generatedId_747e52ae_f52a_4298_a22e_9d2e252430ba",
           "type": "info",
           "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "resIndTit",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "resIndFirNam",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndLasNam",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndPos",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "generatedId_354d99f5_5a87_4c31_8332_7eceaaf06d06",
+          "type": "info",
+          "label": "",
+          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Who is the responsible partner?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_7b3824ae_616b_4a8d_a0ba_924873c02d42",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "resIndTit_copy_1",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "resIndFirNam_copy_1",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndLasNam_copy_1",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndPos_copy_1",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndMan_copy_1",
+          "type": "choice",
+          "label": "Does this person have management responsibility for staff?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "resIndKid_copy_1",
+          "type": "choice",
+          "label": "Will this person have significant contact with children?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_7033001f_9d09_4301_a3a4_897c71c9af21",
+          "type": "info",
+          "label": "",
+          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "tickResInd_copy_1",
+          "type": "choice",
+          "label": "",
+          "helpText": "Tick the box if the responsible person has submitted a completed SC2 form",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "The responsible person has submitted a completed SC2 form."
+          ]
         }
       ]
     },
@@ -1028,30 +1379,78 @@
       ]
     },
     {
-      "title": "Organisation type",
+      "title": "(All) Will this person have management responsibility for staff?",
+      "description": "Looks like a duplicate that could be built into the responsible person pages",
       "fields": [
         {
-          "id": "generatedId_3f4b917a_8a10_45b1_8cb2_1ef2830a5284",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "orgTypChoi",
           "type": "choice",
-          "label": "",
+          "id": "respStaff",
+          "label": "(All) Will this person have management responsibility for staff?",
           "choices": [
-            "Company",
-            "Statutory body / school",
-            "Committee",
-            "Other organisation"
+            "Yes",
+            "No"
           ]
         }
       ]
     },
     {
-      "title": "What are the details of your organisation?",
+      "title": "(All) Will this person have contact with children and young people?",
+      "description": "Looks like a duplicate that could be built into the responsible person pages",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "respKidCon",
+          "label": "(All) Will this person have contact with children and young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG and PAR) Which sector does your organisation belong to?",
+      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
+      "fields": [
+        {
+          "id": "orgTypChoi",
+          "type": "choice",
+          "label": "(ORG and PAR) Which sector does your organisation belong to?",
+          "choices": [
+            "Local council",
+            "Health authority",
+            "Voluntary sector",
+            "Private sector"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) What is your type of organisation?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "orgType",
+          "label": "(ORG) What is your type of organisation?",
+          "choices": [
+            "Company",
+            "Statutory body / school",
+            "Committee",
+            "Other organisation"
+          ],
+          "optionHelpText": [
+            "",
+            "This includes a local council, a trust or school governing body",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your organisation",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
@@ -1063,14 +1462,15 @@
         {
           "id": "orgName2",
           "type": "text",
-          "label": "Name of the organisation"
+          "label": "Organisation name",
+          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
         },
         {
           "id": "orgBirthDate",
           "type": "date",
-          "label": "Date the organisation came into being",
-          "shortName": "Organisation established date",
-          "helpText": "For example 31/03/1999 "
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": " For example, 31 03 1980 "
         },
         {
           "id": "regChar",
@@ -1085,20 +1485,12 @@
           "label": "Registered company number if applicable",
           "shortName": "Company number",
           "helpText": "If you do not have a registered company number leave blank"
-        },
-        {
-          "id": "orgSubCo",
-          "type": "choice",
-          "label": "Is your organisation a subsidiary of a holding company?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
     {
-      "title": "Your organisations contact details",
+      "title": "(ORG) Your organisations contact details",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
@@ -1112,6 +1504,11 @@
           "type": "address",
           "label": "",
           "shortName": "Address"
+        },
+        {
+          "type": "text",
+          "id": "locAuth",
+          "label": "Local council"
         },
         {
           "id": "agEsTel_copy_1",
@@ -1130,12 +1527,13 @@
       ]
     },
     {
-      "title": "Is your organisation a subsidiary of a holding company?",
+      "title": "(ORG) Is your organisation a subsidiary of a holding company?",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "holCoCho",
           "type": "choice",
-          "label": "",
+          "label": "(ORG) Is your organisation a subsidiary of a holding company?",
           "choices": [
             "Yes",
             "No"
@@ -1144,34 +1542,23 @@
       ]
     },
     {
-      "title": "What are the details of the holding company?",
-      "includeIf": "${holCoCho = 0}",
+      "title": "(ORG) Tell us about your holding company",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
           "id": "hoCoNom",
           "type": "text",
-          "label": "Name of the holding company",
+          "label": "Holding company name",
           "shortName": "Name",
+          "helpText": "This is the name of the company running the establishment. For example, Social care limited.",
           "format": "shortText"
-        },
-        {
-          "id": "hoCoAdd",
-          "type": "address",
-          "label": "Address of the holding company",
-          "shortName": "Address"
         },
         {
           "id": "hoCoDOB",
           "type": "date",
-          "label": "Date the organisation came into being",
-          "helpText": "For example, 01/03/1999"
-        },
-        {
-          "id": "hoCoEm",
-          "type": "text",
-          "label": "Email address",
-          "shortName": "Email",
-          "format": "email"
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": "For example, 31 03 1980"
         },
         {
           "id": "regChar_copy_1",
@@ -1186,15 +1573,6 @@
           "label": "Registered company number if applicable",
           "shortName": "Company number",
           "helpText": "If you do not have a registered company number leave blank"
-        },
-        {
-          "id": "hoCoCho2",
-          "type": "choice",
-          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
@@ -1241,7 +1619,8 @@
       ]
     },
     {
-      "title": "Your holding company's contact details (version 2)",
+      "title": "(ORG) Your holding company's contact details (version 2)",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
@@ -1273,7 +1652,23 @@
       ]
     },
     {
-      "title": "What are the details of the subsidiary?",
+      "title": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "orgSubOft",
+          "label": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company's subsidiary",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "subNam",
@@ -1281,66 +1676,24 @@
           "label": "Name of the subsidiary"
         },
         {
-          "id": "subAd",
-          "type": "address",
-          "label": "Address of the subsidiary"
-        },
-        {
-          "id": "hoCoEm_copy_1",
-          "type": "text",
-          "label": "Email address",
-          "shortName": "Email",
-          "format": "email"
-        },
-        {
           "id": "hoCoDOB_copy_1",
           "type": "date",
-          "label": "Date the organisation came into being",
-          "helpText": "For example, 01/03/1999"
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
         },
         {
           "id": "subOfRegNo",
           "type": "text",
-          "label": "Ofsted registration number",
+          "label": "URN of subsidiary",
           "shortName": "URN",
-          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,20)"
         }
       ]
     },
     {
-      "title": "What are the details of your holding company's subsidiary? (version 2)",
-      "fields": [
-        {
-          "id": "generatedId_18072786_8d64_472a_92a0_2bf04709095e",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "subNam_copy_1",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_2",
-          "type": "date",
-          "label": "Date the organisation came into being",
-          "helpText": "For example, 01/03/1999"
-        },
-        {
-          "id": "subOfRegNo_copy_1",
-          "type": "text",
-          "label": "Ofsted registration number",
-          "shortName": "URN",
-          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "Your holding company's subsidiary's contact details (version 2)",
+      "title": "(ORG) Your holding company subsidiary's contact details",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
@@ -1368,203 +1721,145 @@
           "type": "text",
           "label": "Email ",
           "format": "email"
+        },
+        {
+          "type": "choice",
+          "id": "subAddOrg1",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "You have added 2 subsidiary company's details? (PLACEHOLDER)",
+      "title": "(ORG) Tell us about your holding company's subsidiary 2",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
-          "id": "generatedId_ab9aa48b_e013_429c_922f_a21d6978590f",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "Who are the key staff of the proposed registered provider?",
-      "fields": [
-        {
-          "id": "generatedId_0cb71173_c8d3_4fe3_be19_1c04f0485998",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "partnerTitle_copy_1",
+          "id": "subNam_copy_1",
           "type": "text",
-          "label": "Title",
-          "shortName": "Title",
-          "format": "text(0,50)",
-          "displayWidth": "xs"
+          "label": "Name of the subsidiary"
         },
         {
-          "id": "paFirNam_copy_1",
-          "type": "text",
-          "label": "First name(s)",
-          "shortName": "First name",
-          "format": "text(0,50)",
-          "displayWidth": "m"
-        },
-        {
-          "id": "paLasNam_copy_1",
-          "type": "text",
-          "label": "Last name",
-          "shortName": "Last name",
-          "displayWidth": "m"
-        },
-        {
-          "id": "paDOB_copy_1",
+          "id": "hoCoDOB_copy_2",
           "type": "date",
-          "label": "Date of birth",
-          "shortName": "Date of birth",
-          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
         },
         {
-          "id": "paPos_copy_1",
+          "id": "subOfRegNo_copy_1",
           "type": "text",
-          "label": "Position within the company",
-          "shortName": "Position",
-          "displayWidth": "m"
-        },
-        {
-          "id": "indProvMan_copy_2",
-          "type": "choice",
-          "label": "Does this person have management responsibility?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "indProvKid_copy_2",
-          "type": "choice",
-          "label": "Does this person have contact with children and / or young people?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_a43466ad_999c_4f33_b4e4_2fd9fc4bb4a5",
-          "type": "info",
-          "label": "",
-          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
-          "infoType": "important"
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
         }
       ]
     },
     {
-      "title": "You have added details for 2 key staff? (PLACEHOLDER)",
+      "title": "(ORG) Your holding company subsidiary's contact details 2",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
-          "id": "generatedId_85dab849_64b1_4e7c_a4fa_405400c8082c",
+          "id": "generatedId_12b23211_f331_4eb8_9177_04f8082157c7",
           "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "Who is the responsible individual?",
-      "fields": [
-        {
-          "id": "generatedId_747e52ae_f52a_4298_a22e_9d2e252430ba",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
           "infoType": "noformat"
         },
         {
-          "id": "resIndTit",
-          "type": "text",
-          "label": "Title",
-          "shortName": "Title",
-          "format": "text(0,50)",
-          "displayWidth": "xs"
+          "id": "hoCoAddVers3",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
         },
         {
-          "id": "resIndFirNam",
+          "id": "hoCoTelVers3",
           "type": "text",
-          "label": "First name(s)",
-          "shortName": "First name",
-          "format": "text(0,50)",
-          "displayWidth": "m"
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
         },
         {
-          "id": "resIndLasNam",
+          "id": "hoCoEmVers3",
           "type": "text",
-          "label": "Last name",
-          "shortName": "Last name",
-          "displayWidth": "m"
+          "label": "Email ",
+          "format": "email"
         },
         {
-          "id": "resIndDOB",
+          "type": "choice",
+          "id": "subAddOrg2",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company's subsidiary 3",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "subNam_copy_2",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_3",
           "type": "date",
-          "label": "Date of birth",
-          "shortName": "Date of birth",
-          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
         },
         {
-          "id": "resIndPos",
+          "id": "subOfRegNo_copy_2",
           "type": "text",
-          "label": "Position within the company",
-          "shortName": "Position",
-          "displayWidth": "m"
-        },
-        {
-          "id": "resIndChoi",
-          "type": "choice",
-          "label": "Is this person disqualified?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "resIndMan",
-          "type": "choice",
-          "label": "Does this person have management responsibility for staff?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "resIndKid",
-          "type": "choice",
-          "label": "Will this person have significant contact with children?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_354d99f5_5a87_4c31_8332_7eceaaf06d06",
-          "type": "info",
-          "label": "",
-          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "tickResInd",
-          "type": "choice",
-          "label": "",
-          "helpText": "Tick the box if the responsible person has submitted a completed SC2 form",
-          "mandatory": "false",
-          "multivalue": "true",
-          "choices": [
-            "The responsible person has submitted a completed SC2 form."
-          ]
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
         }
       ]
     },
     {
-      "title": "Tell us about the establishment or agency",
+      "title": "(ORG) Your holding company subsidiary's contact details 3",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_f25aa5a2_4ba7_4264_961f_118a71bc4e20",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers3_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers3_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers3_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(ALL) Tell us about the establishment or agency",
       "fields": [
         {
           "id": "esAgNam",
@@ -1582,13 +1877,13 @@
       ]
     },
     {
-      "title": "Contact details and address for the establishment or agency",
+      "title": "(ALL) Contact details and address for main site",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
           "type": "info",
           "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
+          "infoText": "This is your main office where you provide the social care service. If you run a residential holiday scheme, this is the office where you run your administration.\nWe may contact you using these details when checking your application.",
           "infoType": "noformat"
         },
         {
@@ -1614,6 +1909,21 @@
       ]
     },
     {
+      "title": "(ALL) Will you have sole use of the property?",
+      "fields": [
+        {
+          "id": "solUseProp",
+          "type": "choice",
+          "label": "(ALL) Will you have sole use of the property?",
+          "shortName": "Sole use of property",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "You have added details for 1 premises (PLACEHOLDER)",
       "fields": [
         {
@@ -1622,21 +1932,6 @@
           "label": "",
           "infoText": "Place holder page for list style summary ",
           "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "Will you have sole use of the property?",
-      "fields": [
-        {
-          "id": "solUseProp",
-          "type": "choice",
-          "label": "",
-          "shortName": "Sole use of property",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
