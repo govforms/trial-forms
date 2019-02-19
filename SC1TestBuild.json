@@ -1,5 +1,4 @@
 {
-  "_id": "SC1TestBuild",
   "formName": "Testing version for path builds, will be used to overwrite SC1 when we are happy.",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -14,40 +13,44 @@
   },
   "sections": [
     {
-      "title": "Signature Ignore",
+      "title": "Have you got evidence to show your organisation has the funds to operated the proposed agency or establishment?",
       "fields": [
         {
-          "id": "title",
-          "type": "text",
-          "label": "Title",
-          "format": "text(0,50)",
-          "displayWidth": "xs"
+          "type": "info",
+          "id": "generatedId_44fb61e2_4fcc_47b1_967e_c80ade178dd1",
+          "label": "",
+          "infoText": "Before you start this application to register a social care establishment or agency, you will need to upload evidence of your organisation's financial viability for us to consider your eligibility as a social care provider.",
+          "infoType": "noformat"
         },
         {
-          "id": "firstName",
-          "type": "text",
-          "label": "First name"
+          "type": "info",
+          "id": "generatedId_048ee8ad_f5f5_4bc3_a205_e651bd1c68fc",
+          "label": "",
+          "infoText": "You will need to upload these types of evidence:\n\n- financial reference from your bank\n-  business plan \n-  cash-flow forecast\n- company's last 2 annual reports (if you have them)\n- company's last 2 annual accounts (if you have them)",
+          "infoType": "noformat"
         },
         {
-          "id": "lastName",
-          "type": "text",
-          "label": "Last name"
-        },
-        {
-          "id": "legalStatus",
-          "type": "text",
-          "label": "Legal status"
-        },
-        {
-          "id": "signatureChoice",
           "type": "choice",
-          "label": "Choose the type of organisation you are applying on behalf of",
+          "id": "eviChoi",
+          "label": "",
           "choices": [
-            "Committee",
-            "Company",
-            "Partnership",
-            "Statutory body"
+            "Yes I have evidence",
+            "No I do not have evidence"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
+      "includeIf": "${eviChoi = 1}",
+      "continueIf": "true",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
+          "label": "",
+          "infoText": "",
+          "infoType": "noformat"
         }
       ]
     },
@@ -72,7 +75,7 @@
             "Partnership"
           ],
           "optionHelpText": [
-            "Including charities and limited companies ",
+            "Including charities, local authorities or councils and limited companies ",
             "These are individuals and groups of them who haven't registered their business with Companies House",
             "This includes limited partnerships and limited liability partnerships (LLP)"
           ]
@@ -86,7 +89,7 @@
         {
           "id": "couChoi",
           "type": "choice",
-          "label": "",
+          "label": "Are you a local council?",
           "choices": [
             "Yes",
             "No"
@@ -95,27 +98,26 @@
       ]
     },
     {
-      "title": "What type of agency or establishment are you applying to register?",
+      "title": "(All) What type of agency or establishment are you applying to register?",
       "fields": [
         {
           "id": "appType",
           "type": "choice",
-          "label": "",
+          "label": "(All) What type of agency or establishment are you applying to register?",
           "shortName": "Type of agency or establishment",
           "choices": [
-            "Adoption support agency",
+            "Children's home",
             "Independent fostering agency",
+            "Adoption support agency",
             "Voluntary adoption agency",
             "Residential holiday scheme for disabled children",
-            "Residential family centre",
-            "Children's home"
+            "Residential family centre"
           ]
         }
       ]
     },
     {
-      "title": "Are you applying to register a school as a children's home?",
-      "includeIf": "${appType = 5}",
+      "title": "(All?) Are you applying to register a school as a children's home?",
       "fields": [
         {
           "id": "generatedId_a56ffaee_1924_49fe_b694_cbfcb9fbac7b",
@@ -137,8 +139,7 @@
       ]
     },
     {
-      "title": "What is your Department for Education (DfE) number?",
-      "includeIf": "${edCHchoice = 0 && appType =5}",
+      "title": "(All?) What is your Department for Education (DfE) number?",
       "fields": [
         {
           "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
@@ -157,7 +158,7 @@
       ]
     },
     {
-      "title": "(MAJOR CHOICE) Do you plan to buy a children's social care establishment or agency?",
+      "title": "(All) Do you plan to buy a children's social care establishment or agency?",
       "fields": [
         {
           "id": "planCSCEstOrAg",
@@ -2928,6 +2929,8 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "SC1TestBuild"
 }
