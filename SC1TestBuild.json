@@ -1,0 +1,2933 @@
+{
+  "_id": "SC1TestBuild",
+  "formName": "Testing version for path builds, will be used to overwrite SC1 when we are happy.",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Signature Ignore",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "legalStatus",
+          "type": "text",
+          "label": "Legal status"
+        },
+        {
+          "id": "signatureChoice",
+          "type": "choice",
+          "label": "Choose the type of organisation you are applying on behalf of",
+          "choices": [
+            "Committee",
+            "Company",
+            "Partnership",
+            "Statutory body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of business or organisation do you want to register as? (KEY PAGE FOR PATH)",
+      "fields": [
+        {
+          "id": "generatedId_bc91dd83_114e_48dc_84f2_4e659156d623",
+          "type": "info",
+          "label": "bisInfo1",
+          "infoText": "We must know your business type to register all the authorised individuals, establishment or agency and branches that plan to provide a social care service ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessChoice2",
+          "type": "choice",
+          "label": "",
+          "shortName": "Type of business",
+          "choices": [
+            "Organisation",
+            "Individual",
+            "Partnership"
+          ],
+          "optionHelpText": [
+            "Including charities and limited companies ",
+            "These are individuals and groups of them who haven't registered their business with Companies House",
+            "This includes limited partnerships and limited liability partnerships (LLP)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you a local council?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "couChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of agency or establishment are you applying to register?",
+      "fields": [
+        {
+          "id": "appType",
+          "type": "choice",
+          "label": "",
+          "shortName": "Type of agency or establishment",
+          "choices": [
+            "Adoption support agency",
+            "Independent fostering agency",
+            "Voluntary adoption agency",
+            "Residential holiday scheme for disabled children",
+            "Residential family centre",
+            "Children's home"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you applying to register a school as a children's home?",
+      "includeIf": "${appType = 5}",
+      "fields": [
+        {
+          "id": "generatedId_a56ffaee_1924_49fe_b694_cbfcb9fbac7b",
+          "type": "info",
+          "label": "edCH",
+          "infoText": "This can be an existing or planned establishment that  you plan to provide boarding for more than 295 days per year.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "edCHchoice",
+          "type": "choice",
+          "label": "",
+          "shortName": "Register educational establishment as children's home",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your Department for Education (DfE) number?",
+      "includeIf": "${edCHchoice = 0 && appType =5}",
+      "fields": [
+        {
+          "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
+          "type": "info",
+          "label": "DfEInfo",
+          "infoText": "We need your DfE number to let the Department for Education know that you have applied to register as a children's home",
+          "infoType": "noformat"
+        },
+        {
+          "id": "DfENo",
+          "type": "text",
+          "label": "DfE number",
+          "helpText": "It's on your xxxx, It's x digits, for example 01/02/2015",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "(MAJOR CHOICE) Do you plan to buy a children's social care establishment or agency?",
+      "fields": [
+        {
+          "id": "planCSCEstOrAg",
+          "type": "choice",
+          "label": "",
+          "shortName": "Plan to buy",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Buying a children's social care establishment or agency",
+      "includeIf": "${planCSCEstOrAg = 0}",
+      "fields": [
+        {
+          "id": "ofRegQues",
+          "type": "choice",
+          "label": "Is it registered with Ofsted?",
+          "shortName": "Purchase is already Ofsted registered",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of establishment or agency you plan to buy",
+      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
+      "fields": [
+        {
+          "id": "agEstName",
+          "type": "text",
+          "label": "Name of agency or establishment",
+          "shortName": "Name",
+          "format": "text(0,150)"
+        },
+        {
+          "id": "ofReg",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "shortName": "URN",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Details of establishment or agency you plan to buy",
+      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
+      "fields": [
+        {
+          "id": "agEstName_copy_1",
+          "type": "text",
+          "label": "Name of agency or establishment",
+          "shortName": "Name",
+          "format": "text(0,150)"
+        }
+      ]
+    },
+    {
+      "title": "Address of establishment or agency you plan to buy",
+      "includeIf": "${planCSCEstOrAg = 0}",
+      "fields": [
+        {
+          "id": "generatedId_24529809_67bd_4c36_9831_dfadc8c694a8",
+          "type": "info",
+          "label": "",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "agEsAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "agEsTel",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agEsEm",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Have you applied to register a children's social care establishment or agency with Ofsted before?",
+      "fields": [
+        {
+          "id": "prevOfApp",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Previous application",
+      "includeIf": "${prevOfApp =0}",
+      "fields": [
+        {
+          "id": "prevAppPrior",
+          "type": "choice",
+          "label": "Was the application made before 30 September 2010?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of your previous application",
+      "includeIf": "${prevOfApp = 0 && (prevAppPrior = 0 || prevAppPrior =1)}",
+      "fields": [
+        {
+          "id": "generatedId_f97fc565_01ef_4ba8_ad68_e7a0b12776df",
+          "type": "info",
+          "label": "Ofsted registration number (URN) of establishment",
+          "infoText": "**Ofsted registration number (URN) of establishment**",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_d73809af_eded_4fab_a2c2_10b98d6418b5",
+          "type": "info",
+          "label": "",
+          "helpText": "",
+          "infoText": "It's on your ????, It's X digits, for example 01/02/2010",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prevAppDetsURN",
+          "type": "text",
+          "label": "",
+          "shortName": "Establishment URN",
+          "helpText": "If you do not have the Ofsted URN, you can phone us on 0300 123 1231",
+          "displayWidth": "s"
+        },
+        {
+          "id": "prevAppDetML",
+          "type": "text",
+          "label": "Provide as much detail as possible",
+          "helpText": "You should include details such as ....? up to ???? words",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are you and your organisation financially viable?\n",
+      "fields": [
+        {
+          "id": "generatedId_7613f3fb_56a3_4505_920f_cd924666f313",
+          "type": "info",
+          "label": "",
+          "infoText": "For example, do you have the finance available to achieve the aims and objectives of the statement of purpose?\n\nLocal authorities do not need to supply this information",
+          "infoType": "noformat"
+        },
+        {
+          "id": "finViaChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "My organisation and I are financially viable",
+      "includeIf": "${finViaChoi = 0}",
+      "fields": [
+        {
+          "id": "finViaYes",
+          "type": "text",
+          "label": "How can you prove your financial viability?",
+          "helpText": "You need to provide examples where appropriate",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "My organisation and I are not financially viable",
+      "includeIf": "${finViaChoi = 1}",
+      "fields": [
+        {
+          "id": "generatedId_097ef16f_6847_4ebd_91b4_ab0271ec9fde",
+          "type": "info",
+          "label": "Can you provide more detail?",
+          "infoText": "We are unlikely to accept your application to register if the establishment or agency has ceased to be financially viable, or is likely to cease to be so within the next six months.\n\nDo not include personal or financial information, like your national insurance number or credit card details.",
+          "infoType": "long"
+        },
+        {
+          "id": "finViaNo",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you or your organisation have financial or work interests in any other registered establishment or agency?",
+      "fields": [
+        {
+          "id": "generatedId_04c75fa6_11e9_4cf7_b8a2_cabe2d11af01",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking for this information *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "intsInOthOrgs",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of the provision?",
+      "fields": [
+        {
+          "id": "generatedId_1cc025df_f836_46db_af32_d384e591fa41",
+          "type": "info",
+          "label": "",
+          "infoText": "If there is more than one provision, you need to give separate details of each provision ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "provName",
+          "type": "text",
+          "label": "Agency or establishment name",
+          "format": "text(0,100)"
+        },
+        {
+          "id": "ofURNProv",
+          "type": "text",
+          "label": "Ofsted registration number (URN)",
+          "shortName": "URN",
+          "helpText": "It's on your ????, It's X digits, for example 01/02/2010. \nIf you do not have the URN, you can phone us on 0300 123 1231"
+        }
+      ]
+    },
+    {
+      "title": "Address and contact details of the provision",
+      "fields": [
+        {
+          "id": "generatedId_d4cb7643_f460_4706_a3d4_678ec53249a8",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "provAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "provTel",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "provEmail",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Placeholder List summary page",
+      "fields": [
+        {
+          "id": "generatedId_ff83c1a5_8664_4cef_9cd4_bd0d4d3fe01a",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "When will you open the establishment or agency?",
+      "fields": [
+        {
+          "id": "generatedId_15ddec07_3b04_4aa2_bafc_aebedf31730c",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking for this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "opendate",
+          "type": "date",
+          "label": "",
+          "shortName": "Opening date",
+          "helpText": "Enter the date in this format dd/mm/yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Has your organisation ever been registered or licensed for any service under any of the following acts?",
+      "includeIf": "${businessChoice2 = 1 || businessChoice2 = 0}",
+      "description": "Have you been a partner in or have you owned such a service?",
+      "fields": [
+        {
+          "id": "actsChoice1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Registered Homes Act 1984",
+            "Children Act 1989",
+            "Registered Homes (Amendment) Act 1991",
+            "Childcare Act 2006",
+            "Nurses Agency Act 1957",
+            "Care Standards Act 2000",
+            "Health and Social Care Act 2008"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your partnership ever been registered or licensed for any service under any of the following acts?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "actsChoice2",
+          "type": "choice",
+          "label": "",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Registered Homes Act 1984",
+            "Children Act 1989",
+            "Registered Homes (Amendment) Act 1991",
+            "Childcare Act 2006",
+            "Nurses Agency Act 1957",
+            "Care Standards Act 2000",
+            "Health and Social Care Act 2008"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${(actsChoice1 = 0 || actsChoice1 = 1) || (actsChoice1 = 2 || actsChoice1 =3) || (actsChoice1 = 4 || actsChoice1 = 5) || actsChoice1 =6} ",
+      "fields": [
+        {
+          "id": "generatedId_169efc1f_1143_4a97_a179_455948fb86b6",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "long"
+        },
+        {
+          "id": "prevRegDetsOrg",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${(actsChoice2 = 0 || actsChoice2 = 1) || (actsChoice2 = 2 || actsChoice2 =3) || (actsChoice2 = 4 || actsChoice2 = 5) || actsChoice2 =6} ",
+      "fields": [
+        {
+          "id": "generatedId_2ab4037f_0f61_43a7_82f3_8f6380583ac1",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "long"
+        },
+        {
+          "id": "prevRegDetsPart",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you (or has your organisation) ever had an application refused or a registration cancelled?",
+      "fields": [
+        {
+          "id": "generatedId_e9107240_480d_4dfd_9415_dfb9f61f7634",
+          "type": "info",
+          "label": "",
+          "infoText": "Only answer 'Yes' if this happened under any of the following acts:",
+          "infoType": "noformat"
+        },
+        {
+          "id": "refOrCancChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Refused or cancelled",
+          "helpText": "Tell us about any that apply",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Registered Homes Act 1984",
+            "Children Act 1989",
+            "Registered Homes (Amendment) Act 1991",
+            "Childcare Act 2006",
+            "Nurses Agency Act 1957",
+            "Care Standards Act 2000",
+            "Health and Social Care Act 2008"
+          ]
+        },
+        {
+          "id": "cancRefOk",
+          "type": "choice",
+          "label": "I have had an application refused or a registration cancelled",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the previous refused application or cancelled registration. ",
+      "includeIf": "${cancRefOk = 0}",
+      "fields": [
+        {
+          "id": "generatedId_de632ebc_b2a5_418a_9be7_31ad9a49fc4b",
+          "type": "info",
+          "label": "",
+          "infoText": "* explain why we are asking for this detail *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgName",
+          "type": "text",
+          "label": "Organisation name",
+          "format": "text(0,250)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "ofRegRefCanc",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "helpText": "If you do not have it's Ofsted URN you can phone us on 0300 123 1231",
+          "format": "text(0,30)",
+          "displayWidth": "s"
+        },
+        {
+          "id": "orgRegCancRef",
+          "type": "text",
+          "label": "Organisation ID",
+          "helpText": "For example, a Companies house registration number",
+          "format": "text(0,30)",
+          "displayWidth": "s"
+        },
+        {
+          "id": "generatedId_12746c73_24bc_47b8_a7ce_0046194da587",
+          "type": "info",
+          "label": "What details do I need to provide?",
+          "infoText": "You need to provide full details. For example:\n\n* details of the previous application or registration, including information about the type of service provided\n\n* the dates of application or registration\n\n* reasons why the application was refused or the registration was cancelled\n\n* whether this was by Ofsted or by another organisation\n\n* any other detail you think is relevant",
+          "infoType": "long"
+        },
+        {
+          "id": "refRegCancDetML",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "About individuals who are part of the individual provider",
+      "fields": [
+        {
+          "id": "generatedId_bb3885c8_88bf_43ec_a65f_1c9767deea24",
+          "type": "info",
+          "label": "",
+          "infoText": "** Explain why we're asking this info **  \n\nFor example, we need to know about each individual so we can check their eligibility to be an individual provider.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "indProvTi",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,30)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "indProvFiNam",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name"
+        },
+        {
+          "id": "indProvSur",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name"
+        },
+        {
+          "id": "indProvDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the following format, dd/mm/yyyy"
+        },
+        {
+          "id": "indProvPos",
+          "type": "text",
+          "label": "Position",
+          "shortName": "Position"
+        },
+        {
+          "id": "indProvMan",
+          "type": "choice",
+          "label": "Does this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "indProvKid",
+          "type": "choice",
+          "label": "Does this person have contact with children and / or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_9d7bf20e_593c_4950_ace8_80e0a709823a",
+          "type": "info",
+          "label": "",
+          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "Placeholder List summary page",
+      "fields": [
+        {
+          "id": "generatedId_f1b9f03c_8756_4391_9f1c_14f094f4a396",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Who are the partners?",
+      "fields": [
+        {
+          "id": "generatedId_ac092c2c_cf26_4809_b82b_07594bbf697a",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "partnerTitle",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "paFirNam",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paLasNam",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+        },
+        {
+          "id": "paPos",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "indProvMan_copy_1",
+          "type": "choice",
+          "label": "Does this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "indProvKid_copy_1",
+          "type": "choice",
+          "label": "Does this person have contact with children and / or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_6daecad5_0d63_428d_9e72_b0b6794ed91b",
+          "type": "info",
+          "label": "",
+          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "Placeholder List summary page",
+      "fields": [
+        {
+          "id": "generatedId_c59c5357_f79f_4d6c_9fd5_6034a44e08b1",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Organisation sector",
+      "fields": [
+        {
+          "id": "generatedId_4524a98a_3903_4116_b493_a9a7c7a03a8f",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgSecChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Local council",
+            "Health authority",
+            "Voluntary",
+            "Private",
+            "Limited liability partnership (LLP)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Organisation type",
+      "fields": [
+        {
+          "id": "generatedId_3f4b917a_8a10_45b1_8cb2_1ef2830a5284",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgTypChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Company",
+            "Statutory body / school",
+            "Committee",
+            "Other organisation"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of your organisation?",
+      "fields": [
+        {
+          "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgName2",
+          "type": "text",
+          "label": "Name of the organisation"
+        },
+        {
+          "id": "orgBirthDate",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "shortName": "Organisation established date",
+          "helpText": "For example 31/03/1999 "
+        },
+        {
+          "id": "regChar",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNum",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "id": "orgSubCo",
+          "type": "choice",
+          "label": "Is your organisation a subsidiary of a holding company?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your organisations contact details",
+      "fields": [
+        {
+          "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
+          "type": "info",
+          "label": "",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "agEsAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "agEsTel_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agEsEm_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Is your organisation a subsidiary of a holding company?",
+      "fields": [
+        {
+          "id": "holCoCho",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of the holding company?",
+      "includeIf": "${holCoCho = 0}",
+      "fields": [
+        {
+          "id": "hoCoNom",
+          "type": "text",
+          "label": "Name of the holding company",
+          "shortName": "Name",
+          "format": "shortText"
+        },
+        {
+          "id": "hoCoAdd",
+          "type": "address",
+          "label": "Address of the holding company",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoDOB",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "hoCoEm",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "Email",
+          "format": "email"
+        },
+        {
+          "id": "regChar_copy_1",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNum_copy_1",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "id": "hoCoCho2",
+          "type": "choice",
+          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What are the details of your holding company (version 2)?",
+      "includeIf": "${holCoCho = 0}",
+      "fields": [
+        {
+          "id": "hoCoNomVers2",
+          "type": "text",
+          "label": "Name of the organisation",
+          "shortName": "Name",
+          "format": "shortText"
+        },
+        {
+          "id": "hoCoDOBVers2",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "regCharVers2",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNumVers2",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "id": "hoCoCho2Vers2",
+          "type": "choice",
+          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your holding company's contact details (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "What are the details of the subsidiary?",
+      "fields": [
+        {
+          "id": "subNam",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "subAd",
+          "type": "address",
+          "label": "Address of the subsidiary"
+        },
+        {
+          "id": "hoCoEm_copy_1",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "Email",
+          "format": "email"
+        },
+        {
+          "id": "hoCoDOB_copy_1",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "subOfRegNo",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "shortName": "URN",
+          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "What are the details of your holding company's subsidiary? (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_18072786_8d64_472a_92a0_2bf04709095e",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "subNam_copy_1",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_2",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "subOfRegNo_copy_1",
+          "type": "text",
+          "label": "Ofsted registration number",
+          "shortName": "URN",
+          "helpText": "If you do not have its Ofsted URN, you can phone us on 0300 123 1231.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company's subsidiary's contact details (version 2)",
+      "fields": [
+        {
+          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "You have added 2 subsidiary company's details? (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_ab9aa48b_e013_429c_922f_a21d6978590f",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Who are the key staff of the proposed registered provider?",
+      "fields": [
+        {
+          "id": "generatedId_0cb71173_c8d3_4fe3_be19_1c04f0485998",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "partnerTitle_copy_1",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "paFirNam_copy_1",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paLasNam_copy_1",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "paDOB_copy_1",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+        },
+        {
+          "id": "paPos_copy_1",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "indProvMan_copy_2",
+          "type": "choice",
+          "label": "Does this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "indProvKid_copy_2",
+          "type": "choice",
+          "label": "Does this person have contact with children and / or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_a43466ad_999c_4f33_b4e4_2fd9fc4bb4a5",
+          "type": "info",
+          "label": "",
+          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 2 key staff? (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_85dab849_64b1_4e7c_a4fa_405400c8082c",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Who is the responsible individual?",
+      "fields": [
+        {
+          "id": "generatedId_747e52ae_f52a_4298_a22e_9d2e252430ba",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "resIndTit",
+          "type": "text",
+          "label": "Title",
+          "shortName": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "resIndFirNam",
+          "type": "text",
+          "label": "First name(s)",
+          "shortName": "First name",
+          "format": "text(0,50)",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndLasNam",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndDOB",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "Date of birth",
+          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+        },
+        {
+          "id": "resIndPos",
+          "type": "text",
+          "label": "Position within the company",
+          "shortName": "Position",
+          "displayWidth": "m"
+        },
+        {
+          "id": "resIndChoi",
+          "type": "choice",
+          "label": "Is this person disqualified?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "resIndMan",
+          "type": "choice",
+          "label": "Does this person have management responsibility for staff?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "resIndKid",
+          "type": "choice",
+          "label": "Will this person have significant contact with children?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_354d99f5_5a87_4c31_8332_7eceaaf06d06",
+          "type": "info",
+          "label": "",
+          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "tickResInd",
+          "type": "choice",
+          "label": "",
+          "helpText": "Tick the box if the responsible person has submitted a completed SC2 form",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "The responsible person has submitted a completed SC2 form."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the establishment or agency",
+      "fields": [
+        {
+          "id": "esAgNam",
+          "type": "text",
+          "label": "Establishment or agency name ",
+          "shortName": "Name"
+        },
+        {
+          "id": "esAgCo",
+          "type": "text",
+          "label": "Local council",
+          "shortName": "Council",
+          "helpText": "Enter the name of the local council where the premise is based, for example Newcastle council "
+        }
+      ]
+    },
+    {
+      "title": "Contact details and address for the establishment or agency",
+      "fields": [
+        {
+          "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "estAbAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "estAbTel",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "estAbEm",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Will you have sole use of the property?",
+      "fields": [
+        {
+          "id": "solUseProp",
+          "type": "choice",
+          "label": "",
+          "shortName": "Sole use of property",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will you regularly use any other premises in connection with the establishment?",
+      "fields": [
+        {
+          "id": "generatedId_292fbcce_281f_4a48_b086_28cc6756eb36",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othPremReg",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the address for all your premises",
+      "fields": [
+        {
+          "id": "estAbAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 1 premises (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_5c8ee9b3_dce5_4ef0_ad17_4bc899c8677f",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Address of your second premises",
+      "fields": [
+        {
+          "id": "estAbAdd_copy_2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Describe any travel arrangements used between premises",
+      "fields": [
+        {
+          "id": "travTex",
+          "type": "text",
+          "label": "",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Describe the premises",
+      "fields": [
+        {
+          "id": "premDesc",
+          "type": "text",
+          "label": "",
+          "helpText": "For example, whether the premises are purpose built or converted, and the area they are located in",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
+      "fields": [
+        {
+          "id": "premRedChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "premises meets needs",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of building works needed",
+      "fields": [
+        {
+          "id": "buildDesc",
+          "type": "text",
+          "label": "Describe building work or conversions you need to meet the aims of the service",
+          "multiline": "true"
+        },
+        {
+          "id": "rdyDate",
+          "type": "date",
+          "label": "Date of when the premises will be ready",
+          "helpText": "Completion date For example, 31 03 1999"
+        }
+      ]
+    },
+    {
+      "title": "Do the premises require planning permission?",
+      "fields": [
+        {
+          "id": "planReqChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Planning permission required",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
+      "fields": [
+        {
+          "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
+          "type": "info",
+          "label": "What evidence should I provide?",
+          "infoText": "You need to provide either:\n\n* copy of planning permission granted\n\n* certificate of lawfulness\n\n* copy of a planning application\n\n* evidence that planning permission is not required",
+          "infoType": "long"
+        },
+        {
+          "id": "planChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes I will upload a copy",
+            "Yes I will post a copy",
+            "No "
+          ]
+        },
+        {
+          "id": "generatedId_9193fe15_1da8_4d5c_a8a3_6b11087d25cf",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to post the document(s) with a cover note that states details of your application (for example, name, address) to:\n\n\n\nApplications team\n\nOsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Upload your planning document",
+      "includeIf": "${planChoi = 0}",
+      "fields": [
+        {
+          "id": "upPlan",
+          "type": "file",
+          "label": "Upload your planning document here",
+          "shortName": "Planning upload",
+          "helpText": "We accept files up to 5mb  in size if formats like .jpg, .gif, .xml"
+        }
+      ]
+    },
+    {
+      "title": "Post your planning documents",
+      "includeIf": "${planChoi =1}",
+      "fields": [
+        {
+          "id": "generatedId_36019c09_510a_4958_a531_e76f1d8c22db",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to post the document(s) with a cover note that states details of your application (for example, name, address) to:\n\n\n\nApplications team\n\nOsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "I haven't obtained the required planning permission",
+      "includeIf": "${planChoi = 2}",
+      "fields": [
+        {
+          "id": "generatedId_0d8d3875_485a_4c21_b7ab_974d4b10b0ee",
+          "type": "info",
+          "label": "",
+          "infoText": "Your application to register will be delayed until we have received the relevant document(s).",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "Does the building meet the access requirements of the Equality Act 2010?",
+      "fields": [
+        {
+          "id": "accessChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Access requirements met",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Why do the premises not meet the access requirements?",
+      "includeIf": "${accessChoi = 1}",
+      "fields": [
+        {
+          "id": "reqNotMet",
+          "type": "text",
+          "label": "",
+          "shortName": "Why requirements are not met",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are the security arrangements of the premises?",
+      "fields": [
+        {
+          "id": "secArrDesc",
+          "type": "text",
+          "label": "",
+          "shortName": "Security arrangements",
+          "helpText": "For example, how you will safeguard access to the information you hold? How will you restrict access from other buildings or other parts of the building, where appropriate? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about other site",
+      "fields": [
+        {
+          "id": "siteName",
+          "type": "text",
+          "label": "",
+          "shortName": "Other site name"
+        },
+        {
+          "id": "otherSiteDesc",
+          "type": "text",
+          "label": "Describe any travel arrangements between the sites",
+          "shortName": "Other site travel",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide contact details for this site",
+      "fields": [
+        {
+          "id": "generatedId_5acf673f_019a_4463_862e_604b57839f76",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othSitAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "othSitEm",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "You have added 2 details for 2 sites (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_b5bd1156_8b7d_4317_ad14_0c8b78d6918a",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about each site from which the residential holiday scheme for disabled children will operate",
+      "fields": [
+        {
+          "id": "holSitName",
+          "type": "text",
+          "label": "Site name"
+        },
+        {
+          "id": "holSiteDateOp",
+          "type": "text",
+          "label": "Dates of operation over the next 12 months ",
+          "shortName": "Dates of operation",
+          "helpText": "For example, from 31 1 2019 to 10 4 2019 inclusive. Use a new line for each period of operation.",
+          "multiline": "true"
+        },
+        {
+          "id": "holTransDet",
+          "type": "text",
+          "label": "Describe any travel arrangements used by the residential holiday scheme for disabled children",
+          "shortName": "Transport details",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
+      "fields": [
+        {
+          "id": "generatedId_5fa8e245_e782_4828_9200_5c3e29d5ed5b",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othSitAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "othSitEm_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 2 sites for the residential holiday scheme for disabled children (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_ae6f6b35_0f6d_448c_bed7_abc4bc0c2575",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 2 premises (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_4de6481d_0b67_4d25_9f2a_ac54eaddbf47",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "What staff posts are you recruiting to care for children and young people?",
+      "fields": [
+        {
+          "id": "stafPos",
+          "type": "text",
+          "label": "Position",
+          "shortName": "Position",
+          "format": "text(0,50)"
+        },
+        {
+          "id": "stafResp",
+          "type": "text",
+          "label": "Duties and responsibilities",
+          "shortName": "Duties",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        },
+        {
+          "id": "another",
+          "type": "choice",
+          "label": "Do you need to add another position?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about these posts",
+      "fields": [
+        {
+          "id": "noPos",
+          "type": "text",
+          "label": "Number of full-time posts",
+          "shortName": "Full-time posts",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "noPos_copy_1",
+          "type": "text",
+          "label": "Number of part-time posts",
+          "shortName": "Part-time posts",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "liveOn",
+          "type": "choice",
+          "label": "Will anyone be living on the premises?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of establishment is your children's home?",
+      "fields": [
+        {
+          "id": "typeChoice",
+          "type": "choice",
+          "label": "",
+          "shortName": "Type of home",
+          "choices": [
+            "Secure children's home",
+            "Refuge under section 51 of the Children Act 1989",
+            "Residential special school (accommodating any child for more than 295 days a year)",
+            "Boarding school (other than a special school) accommodating any child for more than 295 days a year",
+            "Children's home (not in any of the other types above)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many children's homes do you want to register?",
+      "fields": [
+        {
+          "id": "noHo",
+          "type": "text",
+          "label": "",
+          "shortName": "Number of homes",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Will the home be single sex occupancy?",
+      "fields": [
+        {
+          "id": "sexCho",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the maximum number of children in each category specified in the Care Standards Act in line with your statement of purpose?",
+      "fields": [
+        {
+          "id": "emo",
+          "type": "text",
+          "label": "Children with emotional or behavioural difficulties ",
+          "shortName": "Emotional or behavioural difficulties",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "phys",
+          "type": "text",
+          "label": "Children with physical disabilities ",
+          "shortName": "Physical disabilities",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "lear",
+          "type": "text",
+          "label": "Children with learning disabilities ",
+          "shortName": "Learning disabilities",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "ment",
+          "type": "text",
+          "label": "Children with mental disorders, not including learning disabilities ",
+          "shortName": "Mental disorders",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "drug",
+          "type": "text",
+          "label": "Children with present drug problems",
+          "shortName": "Drug problems",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "alch",
+          "type": "text",
+          "label": "Children with present alcohol problems",
+          "shortName": "Alcohol problems",
+          "format": "number(4,0)"
+        },
+        {
+          "id": "sens",
+          "type": "text",
+          "label": "Children with hearing or eyesight difficulties (sensory impairment)  ",
+          "shortName": "Sensory impairment",
+          "format": "number(4,0)"
+        }
+      ]
+    },
+    {
+      "title": " Are you going to provide care for adults (people aged 18 and over) as well as children?",
+      "fields": [
+        {
+          "id": "aduChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Adult care provided",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the age range you will accommodate?",
+      "shortName": "Age range accommodated",
+      "fields": [
+        {
+          "id": "startAge",
+          "type": "text",
+          "label": "From",
+          "shortName": "From",
+          "format": "number(3,0)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "startAge_copy_1",
+          "type": "text",
+          "label": "To",
+          "shortName": "To",
+          "format": "number(3,0)",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Will you select children by any criteria other than age or sex?",
+      "fields": [
+        {
+          "id": "chiSel",
+          "type": "choice",
+          "label": "",
+          "shortName": "Other selection criteria",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other than age or sex, how will you select children for your home?",
+      "fields": [
+        {
+          "id": "selDets",
+          "type": "text",
+          "label": "",
+          "shortName": "Selection details",
+          "helpText": "Include your criteria for selecting children such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What facilities and services will you provide?",
+      "fields": [
+        {
+          "id": "falServ",
+          "type": "text",
+          "label": "",
+          "shortName": "Facilities and services provided",
+          "helpText": "Include a list of services and facilities such as ....? Health screening etc  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your arrangements for protecting and promoting the health of children?",
+      "fields": [
+        {
+          "id": "arrPro",
+          "type": "text",
+          "label": "",
+          "shortName": "Health protection and promotion",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your fire precautions and emergency procedures?",
+      "fields": [
+        {
+          "id": "firePro",
+          "type": "text",
+          "label": "",
+          "shortName": "Fire and emergency procedures",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your arrangements for children to follow religious observance?",
+      "fields": [
+        {
+          "id": "relObs",
+          "type": "text",
+          "label": "",
+          "shortName": "Religious observance",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your arrangements for contact between a child and its parents, relatives and friends?",
+      "fields": [
+        {
+          "id": "conPar",
+          "type": "text",
+          "label": "",
+          "shortName": "Contact arrangements",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What steps have you taken to ensure that the home is appropriately and suitably located?",
+      "fields": [
+        {
+          "id": "locSuit",
+          "type": "text",
+          "label": "",
+          "shortName": "Located suitably",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your arrangements for children to raise questions and concerns about the home and your procedure for dealing with complaints?",
+      "fields": [
+        {
+          "id": "queCons",
+          "type": "text",
+          "label": "",
+          "shortName": "Questions and concerns procedures",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Describe your arrangements for the education of children",
+      "fields": [
+        {
+          "id": "eduArr",
+          "type": "text",
+          "label": "",
+          "shortName": "Education arrangements",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Describe your arrangements for reviewing placement plans",
+      "fields": [
+        {
+          "id": "placRev",
+          "type": "text",
+          "label": "",
+          "shortName": "Placement reviews",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
+      "fields": [
+        {
+          "id": "indyPers",
+          "type": "choice",
+          "label": "",
+          "shortName": "Independent person appointed",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
+      "fields": [
+        {
+          "id": "regChoiCQC",
+          "type": "choice",
+          "label": "",
+          "shortName": "Establishment CQC registered",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Further details of Care quality commission registration",
+      "fields": [
+        {
+          "id": "furDets",
+          "type": "text",
+          "label": "",
+          "shortName": "CQC further details",
+          "helpText": "You need to provide further details. For example, a registration number of application reference number if available.",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are you intending to provide a short-breaks service?",
+      "fields": [
+        {
+          "id": "shoBreProv",
+          "type": "choice",
+          "label": "",
+          "shortName": "Short breaks provided",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of service will you provide?",
+      "fields": [
+        {
+          "id": "fostChoi1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Service provided",
+          "choices": [
+            "an agency carrying out the functions of one or more local councils about placing children with foster parents",
+            "a voluntary organisation that places children with foster parents under section 59(1) of the Children Act 1989"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
+      "fields": [
+        {
+          "id": "refChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Provides refuge for children",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About your independent fostering agency",
+      "fields": [
+        {
+          "id": "fosPanSetUp",
+          "type": "choice",
+          "label": "Have you set up a fostering panel?",
+          "shortName": "Fostering panel set up",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "multiFosPan",
+          "type": "choice",
+          "label": "Will you set up more than one fostering panel?",
+          "shortName": "Multiple fostering panels",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "joiFosPan",
+          "type": "choice",
+          "label": "Will you share a joint fostering panel with another agency or two fostering services?",
+          "shortName": "Share joint fostering panel",
+          "choices": [
+            "First selectable choice",
+            "Second selectable choice"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "fields": [
+        {
+          "id": "chargeText",
+          "type": "text",
+          "label": "",
+          "shortName": "Range of charges for users",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "How many families will you accommodate at the residential family centre?",
+      "fields": [
+        {
+          "id": "noFams",
+          "type": "text",
+          "label": "",
+          "shortName": "Number of families accommodated",
+          "helpText": "This can be with one or two parents and one or more children",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "What is the total number of adults and children you will accommodate at the residential family centre?",
+      "fields": [
+        {
+          "id": "totAcco",
+          "type": "text",
+          "label": "",
+          "shortName": "Total of adults and children accommodated",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Will your establishment do any of the following?",
+      "fields": [
+        {
+          "id": "estQuery",
+          "type": "choice",
+          "label": "",
+          "shortName": "Establishment does",
+          "multivalue": "true",
+          "choices": [
+            "Take emergency admissions",
+            "Take direct referrals from a court",
+            "Act as a refuge",
+            "Care for adults (people over 18) who do not have their children with them",
+            "Regularly admit children accompanied by carers other than their parents",
+            "Provide a service other than that of the residential family centre"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of service will you provide?",
+      "fields": [
+        {
+          "id": "generatedId_eb70ff62_3f30_416d_94c6_ad556bff5c05",
+          "type": "info",
+          "label": "",
+          "infoText": "**What type of service will you provide?**",
+          "infoType": "noformat"
+        },
+        {
+          "id": "domAdoOnly",
+          "type": "choice",
+          "label": "",
+          "shortName": "Service provided",
+          "choices": [
+            "Domestic adoption only",
+            "Domestic adoption and adoption support services",
+            "Inter-country adoption only",
+            "Inter-country adoption and adoption support services",
+            "Domestic and inter-country adoption",
+            "Domestic and inter-country adoption and adoption support services"
+          ],
+          "optionHelpText": [
+            "This means .......",
+            "This means .......",
+            "This means .......",
+            "This means .......",
+            "This means .......",
+            "This means ......."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will the voluntary adoption agency have any branches?",
+      "fields": [
+        {
+          "id": "branchesChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Has branches",
+          "helpText": "You must complete a separate online application to apply to register each of your voluntary adoption agency branch.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the address and registration details for all your branches",
+      "fields": [
+        {
+          "id": "othSitAdd_copy_2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel_copy_2",
+          "type": "text",
+          "label": "Main branch Ofsted registration number",
+          "shortName": "Main branch Ofsted registration number",
+          "format": "shortText"
+        }
+      ]
+    },
+    {
+      "title": "You have added details for 1 branches (PLACEHOLDER)",
+      "fields": [
+        {
+          "id": "generatedId_a9986f03_a63b_4006_ba80_a92180398c3d",
+          "type": "info",
+          "label": "",
+          "infoText": "Place holder page for list style summary ",
+          "infoType": "banner"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the address and registration details of your second branch",
+      "fields": [
+        {
+          "id": "othSitAdd_copy_3",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel_copy_3",
+          "type": "text",
+          "label": "Main branch Ofsted registration number",
+          "shortName": "Main branch Ofsted registration number",
+          "format": "shortText"
+        }
+      ]
+    },
+    {
+      "title": "If your agency has more than one branch, will you have more than one adoption panel?",
+      "fields": [
+        {
+          "id": "moreThanOne",
+          "type": "choice",
+          "label": "",
+          "shortName": "More than one adoption panel",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have an adoption panel?",
+      "fields": [
+        {
+          "id": "adoPanChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will your agency provide birth records counselling?",
+      "fields": [
+        {
+          "id": "brcoun",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will your agency provide intermediary services?",
+      "fields": [
+        {
+          "id": "interServ",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "fields": [
+        {
+          "id": "chargeRange",
+          "type": "text",
+          "label": "",
+          "shortName": "Charges for users",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Who will your adoption support agency provide support to?",
+      "fields": [
+        {
+          "id": "userTypes",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Adults",
+            "Children",
+            "Both"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will your agency provide any of these services?",
+      "fields": [
+        {
+          "id": "servProvChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Services provided",
+          "helpText": "Tick all the services that your agency will provide.",
+          "multivalue": "true",
+          "choices": [
+            "Counselling relating to adoption",
+            "Advice and information about adoption",
+            "Birth records counselling",
+            "Intermediary services",
+            "Support, including mediation services, for contact between children who have been adopted, or who live with or have been matched with potential adopters, and their former families",
+            "Intermediary services for adults",
+            "Therapy services to help children with their adopted families, potential families or former families",
+            "Relationship support services to help sustain a relationship between the adoptive parents and the children",
+            "Mitigation support services where there is or could be a disruption in an adoption, or placement for adoptionSecond selectable choice",
+            "Support to adoption agencies in preparing and training parents who want to adopt"
+          ],
+          "optionHelpText": [
+            "This means...? For example?",
+            "This means...? For example?",
+            "This means...? For example?",
+            "This means...? For example?",
+            "This means...? For example?",
+            "Intermediary services: providing support to adults who have been adopted, and to their families, including helping them to find out about adoption and arrange contact if appropriate",
+            "This includes art or play therapy",
+            "This includes training parents so that they can meet the child's special needs",
+            "This includes mediation services and organising meetings to discuss disruptions",
+            "This means...? For example?"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "fields": [
+        {
+          "id": "adSupAgCharge",
+          "type": "text",
+          "label": "",
+          "shortName": "Charges for users",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What is the age range you will accommodate?",
+      "shortName": "Age range accommodated",
+      "fields": [
+        {
+          "id": "startAgeResHolDis",
+          "type": "text",
+          "label": "From",
+          "shortName": "From",
+          "format": "number(3,0)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "finAgeResHolDis",
+          "type": "text",
+          "label": "To",
+          "shortName": "To",
+          "format": "number(3,0)",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Will the holiday scheme be single sex occupancy?",
+      "fields": [
+        {
+          "id": "gendChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Single sex occupancy",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other than age or sex, will you select children by any criteria ?",
+      "fields": [
+        {
+          "id": "othSelChoi",
+          "type": "choice",
+          "label": "",
+          "shortName": "Other selection criteria",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How will you select children for your scheme other than by age or sex?",
+      "fields": [
+        {
+          "id": "othSelCritTex",
+          "type": "text",
+          "label": "",
+          "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What is your procedure for dealing with any children who may go missing from the holiday scheme?",
+      "fields": [
+        {
+          "id": "othSelCritTex_copy_1",
+          "type": "text",
+          "label": "",
+          "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What are your arrangements for children to raise questions and concerns about the holiday scheme?",
+      "fields": [
+        {
+          "id": "othSelCritTex_copy_2",
+          "type": "text",
+          "label": "",
+          "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "What is your procedure for dealing with concerns and complaints from children about your holiday scheme?",
+      "fields": [
+        {
+          "id": "othSelCritTex_copy_3",
+          "type": "text",
+          "label": "",
+          "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Who is the proposed registered manager of the establishment or agency?",
+      "fields": [
+        {
+          "id": "generatedId_d1d88c74_3e2d_46f5_bcc5_6f898a2cf7e3",
+          "type": "info",
+          "label": "",
+          "infoText": "The manager is the person who has day-to-day management of the establishment or agency.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "manTit",
+          "type": "text",
+          "label": "Title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "manFirNam",
+          "type": "text",
+          "label": "First name(s) in full",
+          "format": "text(0,100)"
+        },
+        {
+          "id": "manLasNam",
+          "type": "text",
+          "label": "Last name",
+          "format": "text(0,50)"
+        },
+        {
+          "id": "sugQues",
+          "type": "choice",
+          "label": "Suggested additional question",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_da107958_49e6_4523_9060_59e31e66d94b",
+          "type": "info",
+          "label": "",
+          "infoText": "If yes, add 'Who is the other person?' and repeat the name etc for the second person ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_2ec5e643_b7c3_49f4_9a7f_778b826ccbdb",
+          "type": "info",
+          "label": "",
+          "infoText": "You must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "manTick",
+          "type": "choice",
+          "label": "",
+          "shortName": "SC2 submitted by proposed manager",
+          "multivalue": "true",
+          "choices": [
+            "The proposed registered manager has submitted a completed SC2 form."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+      "fields": [
+        {
+          "id": "manWorking",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of all the establishment the manager is running or will run in the future",
+      "fields": [
+        {
+          "id": "manWrkDets",
+          "type": "text",
+          "label": "",
+          "shortName": "Establishments manager is running",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
+      "fields": [
+        {
+          "id": "manChkComp",
+          "type": "choice",
+          "label": "",
+          "shortName": "All required checks completed",
+          "helpText": "This means all checks specified in The Adoption Support Agencies (England) and Adoption Agencies (Miscellaneous Amendments) Regulations 2005 (Regulation 9) .",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Upload your procedures and policies",
+      "fields": [
+        {
+          "id": "generatedId_3dc358f9_65ab_4860_9174_a2ea579ccc92",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to upload the following procedures and policies as a single document, using headings to identify each policy within the single document:\n\n\n\n-Accident and missing resident procedure\n\n-Safeguarding policy\n\n-Children's guide\n\n-Prevention of bullying policy\n\n-Complaints procedure",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullUpload",
+          "type": "file",
+          "label": "",
+          "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
+        }
+      ]
+    },
+    {
+      "title": "Check details and send your application",
+      "fields": [
+        {
+          "id": "generatedId_c5c51b12_5451_443e_8703_a1512964797b",
+          "type": "info",
+          "label": "",
+          "infoText": "You must enter the details of someone who is authorised to sign this declaration.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "decFullName",
+          "type": "text",
+          "label": "Full Name"
+        },
+        {
+          "id": "decPos",
+          "type": "text",
+          "label": "Position in the company",
+          "helpText": "For example, director or company secretary"
+        },
+        {
+          "id": "generatedId_b53ffc7d_4c98_44e4_91d5_6f4acd8659f1",
+          "type": "info",
+          "label": "",
+          "infoText": "By submitting this form, you declare and agree that\n",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_2e9db599_e0b0_4d32_b630_81d02896e625",
+          "type": "info",
+          "label": "",
+          "infoText": "- the information that you have submitted is true to the best of your knowledge and complete\n\n- the details you provided in the service you are applying to register in this application form the conditions of your registration with Ofsted\n\n- to notify Ofsted of any changes to the information on this form which may affect my suitability to provide social care.\n\n- all the information you have given on this application form is true to the best of your knowledge and belief\n\n- you as an individual who is providing the service or your organisation has enough funds to fulfil your duties and obligations as a registered social care agency or establishment\n\n- every person who works, or is intended to work for the purposes of the establishment or agency who has regular contact with children or access to sensitive information about children, has an enhanced Disclosure and Barring Service certificate, where they are eligible for one",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ab560928_19f3_4f37_b82f_39342d8ada67",
+          "type": "info",
+          "label": "",
+          "infoText": "You may be prosecuted and your application refused if you deliberately give untrue or missing information.\n\nYour application is not complete until you have paid the application fee\n\nOfsted will carry out checks and using the information provided from the checks and this application form as explained above",
+          "infoType": "important"
+        },
+        {
+          "id": "decTick",
+          "type": "choice",
+          "label": "",
+          "multivalue": "true",
+          "choices": [
+            "I confirm the information given is true and correct."
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
