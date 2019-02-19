@@ -62,22 +62,34 @@
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_96e8991f_2bd7_4396_9df0_4e2875ac5581",
-          "type": "info",
-          "label": "What type of business am I?",
-          "infoText": "some stuff here",
-          "infoType": "long"
-        },
-        {
           "id": "businessChoice2",
           "type": "choice",
           "label": "",
           "shortName": "Type of business",
           "choices": [
+            "Organisation",
             "Individual",
-            "Organisation including limited companies and limited liability partnerships",
-            "Partnership",
-            "Local council"
+            "Partnership"
+          ],
+          "optionHelpText": [
+            "Including charities and limited companies ",
+            "These are individuals and groups of them who haven't registered their business with Companies House",
+            "This includes limited partnerships and limited liability partnerships (LLP)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you a local council?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "couChoi",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
           ]
         }
       ]
@@ -102,13 +114,14 @@
       ]
     },
     {
-      "title": "Are you applying to register an educational establishment as a children's home?",
+      "title": "Are you applying to register a school as a children's home?",
+      "includeIf": "${appType = 5}",
       "fields": [
         {
           "id": "generatedId_a56ffaee_1924_49fe_b694_cbfcb9fbac7b",
           "type": "info",
           "label": "edCH",
-          "infoText": "This can be an existing or planned establishment that (or where?MG) you plan to provide boarding for more than 295 days per year",
+          "infoText": "This can be an existing or planned establishment that  you plan to provide boarding for more than 295 days per year.",
           "infoType": "noformat"
         },
         {
@@ -125,7 +138,7 @@
     },
     {
       "title": "What is your Department for Education (DfE) number?",
-      "includeIf": "${edCHchoice = 0}",
+      "includeIf": "${edCHchoice = 0 && appType =5}",
       "fields": [
         {
           "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
@@ -144,7 +157,7 @@
       ]
     },
     {
-      "title": "Do you plan to buy a children's social care establishment or agency?",
+      "title": "(MAJOR CHOICE) Do you plan to buy a children's social care establishment or agency?",
       "fields": [
         {
           "id": "planCSCEstOrAg",
@@ -2211,8 +2224,8 @@
       "title": "What type of service will you provide?",
       "fields": [
         {
-          "type": "choice",
           "id": "fostChoi1",
+          "type": "choice",
           "label": "",
           "shortName": "Service provided",
           "choices": [
@@ -2226,8 +2239,8 @@
       "title": "Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
       "fields": [
         {
-          "type": "choice",
           "id": "refChoi",
+          "type": "choice",
           "label": "",
           "shortName": "Provides refuge for children",
           "choices": [
@@ -2241,8 +2254,8 @@
       "title": "About your independent fostering agency",
       "fields": [
         {
-          "type": "choice",
           "id": "fosPanSetUp",
+          "type": "choice",
           "label": "Have you set up a fostering panel?",
           "shortName": "Fostering panel set up",
           "choices": [
@@ -2251,8 +2264,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "multiFosPan",
+          "type": "choice",
           "label": "Will you set up more than one fostering panel?",
           "shortName": "Multiple fostering panels",
           "choices": [
@@ -2261,8 +2274,8 @@
           ]
         },
         {
-          "type": "choice",
           "id": "joiFosPan",
+          "type": "choice",
           "label": "Will you share a joint fostering panel with another agency or two fostering services?",
           "shortName": "Share joint fostering panel",
           "choices": [
@@ -2276,8 +2289,8 @@
       "title": "What will be the range of charges to the people using your establishment or agency?",
       "fields": [
         {
-          "type": "text",
           "id": "chargeText",
+          "type": "text",
           "label": "",
           "shortName": "Range of charges for users",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
@@ -2289,8 +2302,8 @@
       "title": "How many families will you accommodate at the residential family centre?",
       "fields": [
         {
-          "type": "text",
           "id": "noFams",
+          "type": "text",
           "label": "",
           "shortName": "Number of families accommodated",
           "helpText": "This can be with one or two parents and one or more children",
@@ -2303,8 +2316,8 @@
       "title": "What is the total number of adults and children you will accommodate at the residential family centre?",
       "fields": [
         {
-          "type": "text",
           "id": "totAcco",
+          "type": "text",
           "label": "",
           "shortName": "Total of adults and children accommodated",
           "format": "positiveWholeNumber",
@@ -2316,8 +2329,8 @@
       "title": "Will your establishment do any of the following?",
       "fields": [
         {
-          "type": "choice",
           "id": "estQuery",
+          "type": "choice",
           "label": "",
           "shortName": "Establishment does",
           "multivalue": "true",
@@ -2336,15 +2349,15 @@
       "title": "What type of service will you provide?",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_eb70ff62_3f30_416d_94c6_ad556bff5c05",
+          "type": "info",
           "label": "",
           "infoText": "**What type of service will you provide?**",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "domAdoOnly",
+          "type": "choice",
           "label": "",
           "shortName": "Service provided",
           "choices": [
@@ -2370,8 +2383,8 @@
       "title": "Will the voluntary adoption agency have any branches?",
       "fields": [
         {
-          "type": "choice",
           "id": "branchesChoi",
+          "type": "choice",
           "label": "",
           "shortName": "Has branches",
           "helpText": "You must complete a separate online application to apply to register each of your voluntary adoption agency branch.",
@@ -2434,8 +2447,8 @@
       "title": "If your agency has more than one branch, will you have more than one adoption panel?",
       "fields": [
         {
-          "type": "choice",
           "id": "moreThanOne",
+          "type": "choice",
           "label": "",
           "shortName": "More than one adoption panel",
           "choices": [
@@ -2449,8 +2462,8 @@
       "title": "Do you have an adoption panel?",
       "fields": [
         {
-          "type": "choice",
           "id": "adoPanChoi",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -2463,8 +2476,8 @@
       "title": "Will your agency provide birth records counselling?",
       "fields": [
         {
-          "type": "choice",
           "id": "brcoun",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -2477,8 +2490,8 @@
       "title": "Will your agency provide intermediary services?",
       "fields": [
         {
-          "type": "choice",
           "id": "interServ",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -2491,8 +2504,8 @@
       "title": "What will be the range of charges to the people using your establishment or agency?",
       "fields": [
         {
-          "type": "text",
           "id": "chargeRange",
+          "type": "text",
           "label": "",
           "shortName": "Charges for users",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
@@ -2504,8 +2517,8 @@
       "title": "Who will your adoption support agency provide support to?",
       "fields": [
         {
-          "type": "choice",
           "id": "userTypes",
+          "type": "choice",
           "label": "",
           "choices": [
             "Adults",
@@ -2519,8 +2532,8 @@
       "title": "Will your agency provide any of these services?",
       "fields": [
         {
-          "type": "choice",
           "id": "servProvChoi",
+          "type": "choice",
           "label": "",
           "shortName": "Services provided",
           "helpText": "Tick all the services that your agency will provide.",
@@ -2556,8 +2569,8 @@
       "title": "What will be the range of charges to the people using your establishment or agency?",
       "fields": [
         {
-          "type": "text",
           "id": "adSupAgCharge",
+          "type": "text",
           "label": "",
           "shortName": "Charges for users",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
@@ -2591,8 +2604,8 @@
       "title": "Will the holiday scheme be single sex occupancy?",
       "fields": [
         {
-          "type": "choice",
           "id": "gendChoi",
+          "type": "choice",
           "label": "",
           "shortName": "Single sex occupancy",
           "choices": [
@@ -2606,8 +2619,8 @@
       "title": "Other than age or sex, will you select children by any criteria ?",
       "fields": [
         {
-          "type": "choice",
           "id": "othSelChoi",
+          "type": "choice",
           "label": "",
           "shortName": "Other selection criteria",
           "choices": [
@@ -2621,8 +2634,8 @@
       "title": "How will you select children for your scheme other than by age or sex?",
       "fields": [
         {
-          "type": "text",
           "id": "othSelCritTex",
+          "type": "text",
           "label": "",
           "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2633,8 +2646,8 @@
       "title": "What is your procedure for dealing with any children who may go missing from the holiday scheme?",
       "fields": [
         {
-          "type": "text",
           "id": "othSelCritTex_copy_1",
+          "type": "text",
           "label": "",
           "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2645,8 +2658,8 @@
       "title": "What are your arrangements for children to raise questions and concerns about the holiday scheme?",
       "fields": [
         {
-          "type": "text",
           "id": "othSelCritTex_copy_2",
+          "type": "text",
           "label": "",
           "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2657,8 +2670,8 @@
       "title": "What is your procedure for dealing with concerns and complaints from children about your holiday scheme?",
       "fields": [
         {
-          "type": "text",
           "id": "othSelCritTex_copy_3",
+          "type": "text",
           "label": "",
           "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2669,34 +2682,34 @@
       "title": "Who is the proposed registered manager of the establishment or agency?",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_d1d88c74_3e2d_46f5_bcc5_6f898a2cf7e3",
+          "type": "info",
           "label": "",
           "infoText": "The manager is the person who has day-to-day management of the establishment or agency.",
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "manTit",
+          "type": "text",
           "label": "Title",
           "format": "text(0,50)",
           "displayWidth": "xs"
         },
         {
-          "type": "text",
           "id": "manFirNam",
+          "type": "text",
           "label": "First name(s) in full",
           "format": "text(0,100)"
         },
         {
-          "type": "text",
           "id": "manLasNam",
+          "type": "text",
           "label": "Last name",
           "format": "text(0,50)"
         },
         {
-          "type": "choice",
           "id": "sugQues",
+          "type": "choice",
           "label": "Suggested additional question",
           "choices": [
             "Yes",
@@ -2704,22 +2717,22 @@
           ]
         },
         {
-          "type": "info",
           "id": "generatedId_da107958_49e6_4523_9060_59e31e66d94b",
+          "type": "info",
           "label": "",
           "infoText": "If yes, add 'Who is the other person?' and repeat the name etc for the second person ",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_2ec5e643_b7c3_49f4_9a7f_778b826ccbdb",
+          "type": "info",
           "label": "",
           "infoText": "You must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "manTick",
+          "type": "choice",
           "label": "",
           "shortName": "SC2 submitted by proposed manager",
           "multivalue": "true",
@@ -2733,8 +2746,8 @@
       "title": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
       "fields": [
         {
-          "type": "choice",
           "id": "manWorking",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -2747,8 +2760,8 @@
       "title": "Provide details of all the establishment the manager is running or will run in the future",
       "fields": [
         {
-          "type": "text",
           "id": "manWrkDets",
+          "type": "text",
           "label": "",
           "shortName": "Establishments manager is running",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
@@ -2760,8 +2773,8 @@
       "title": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
       "fields": [
         {
-          "type": "choice",
           "id": "manChkComp",
+          "type": "choice",
           "label": "",
           "shortName": "All required checks completed",
           "helpText": "This means all checks specified in The Adoption Support Agencies (England) and Adoption Agencies (Miscellaneous Amendments) Regulations 2005 (Regulation 9) .",
@@ -2776,15 +2789,15 @@
       "title": "Upload your procedures and policies",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_3dc358f9_65ab_4860_9174_a2ea579ccc92",
+          "type": "info",
           "label": "",
           "infoText": "You need to upload the following procedures and policies as a single document, using headings to identify each policy within the single document:\n\n\n\n-Accident and missing resident procedure\n\n-Safeguarding policy\n\n-Children's guide\n\n-Prevention of bullying policy\n\n-Complaints procedure",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "fullUpload",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
         }
@@ -2794,47 +2807,47 @@
       "title": "Check details and send your application",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_c5c51b12_5451_443e_8703_a1512964797b",
+          "type": "info",
           "label": "",
           "infoText": "You must enter the details of someone who is authorised to sign this declaration.",
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "decFullName",
+          "type": "text",
           "label": "Full Name"
         },
         {
-          "type": "text",
           "id": "decPos",
+          "type": "text",
           "label": "Position in the company",
           "helpText": "For example, director or company secretary"
         },
         {
-          "type": "info",
           "id": "generatedId_b53ffc7d_4c98_44e4_91d5_6f4acd8659f1",
+          "type": "info",
           "label": "",
           "infoText": "By submitting this form, you declare and agree that\n",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_2e9db599_e0b0_4d32_b630_81d02896e625",
+          "type": "info",
           "label": "",
           "infoText": "- the information that you have submitted is true to the best of your knowledge and complete\n\n- the details you provided in the service you are applying to register in this application form the conditions of your registration with Ofsted\n\n- to notify Ofsted of any changes to the information on this form which may affect my suitability to provide social care.\n\n- all the information you have given on this application form is true to the best of your knowledge and belief\n\n- you as an individual who is providing the service or your organisation has enough funds to fulfil your duties and obligations as a registered social care agency or establishment\n\n- every person who works, or is intended to work for the purposes of the establishment or agency who has regular contact with children or access to sensitive information about children, has an enhanced Disclosure and Barring Service certificate, where they are eligible for one",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_ab560928_19f3_4f37_b82f_39342d8ada67",
+          "type": "info",
           "label": "",
           "infoText": "You may be prosecuted and your application refused if you deliberately give untrue or missing information.\n\nYour application is not complete until you have paid the application fee\n\nOfsted will carry out checks and using the information provided from the checks and this application form as explained above",
           "infoType": "important"
         },
         {
-          "type": "choice",
           "id": "decTick",
+          "type": "choice",
           "label": "",
           "multivalue": "true",
           "choices": [
