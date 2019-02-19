@@ -1,4 +1,5 @@
 {
+  "_id": "SC1TestBuild",
   "formName": "Testing version for path builds, will be used to overwrite SC1 when we are happy.",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -16,22 +17,22 @@
       "title": "Have you got evidence to show your organisation has the funds to operated the proposed agency or establishment?",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_44fb61e2_4fcc_47b1_967e_c80ade178dd1",
+          "type": "info",
           "label": "",
           "infoText": "Before you start this application to register a social care establishment or agency, you will need to upload evidence of your organisation's financial viability for us to consider your eligibility as a social care provider.",
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_048ee8ad_f5f5_4bc3_a205_e651bd1c68fc",
+          "type": "info",
           "label": "",
           "infoText": "You will need to upload these types of evidence:\n\n- financial reference from your bank\n-  business plan \n-  cash-flow forecast\n- company's last 2 annual reports (if you have them)\n- company's last 2 annual accounts (if you have them)",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "eviChoi",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes I have evidence",
@@ -46,8 +47,8 @@
       "continueIf": "true",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
+          "type": "info",
           "label": "",
           "infoText": "",
           "infoType": "noformat"
@@ -173,7 +174,7 @@
       ]
     },
     {
-      "title": "Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
+      "title": "(All) Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
@@ -189,7 +190,7 @@
       ]
     },
     {
-      "title": "Details of establishment or agency you plan to buy",
+      "title": "(All) Details of establishment or agency you plan to buy",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
@@ -209,7 +210,7 @@
       ]
     },
     {
-      "title": "Details of establishment or agency you plan to buy",
+      "title": "(All) Details of establishment or agency you plan to buy",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
@@ -222,8 +223,7 @@
       ]
     },
     {
-      "title": "Address of establishment or agency you plan to buy",
-      "includeIf": "${planCSCEstOrAg = 0}",
+      "title": "(All) Address of establishment or agency you plan to buy",
       "fields": [
         {
           "id": "generatedId_24529809_67bd_4c36_9831_dfadc8c694a8",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "title": "Have you applied to register a children's social care establishment or agency with Ofsted before?",
+      "title": "(All) Have you applied to register a children's social care establishment or agency with Ofsted before?",
       "fields": [
         {
           "id": "prevOfApp",
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "title": "Previous application",
+      "title": "(All) Previous application",
       "includeIf": "${prevOfApp =0}",
       "fields": [
         {
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "title": "Details of your previous application",
+      "title": "(All) Details of your previous application",
       "includeIf": "${prevOfApp = 0 && (prevAppPrior = 0 || prevAppPrior =1)}",
       "fields": [
         {
@@ -321,17 +321,42 @@
       ]
     },
     {
-      "title": "Are you and your organisation financially viable?\n",
+      "title": "(IND) Do you have the finance available to run your establishment or agency?",
       "fields": [
         {
           "id": "generatedId_7613f3fb_56a3_4505_920f_cd924666f313",
+          "type": "info",
+          "label": "",
+          "infoText": "We need to make sure that you will have continued access to funds to fulfil your duties and obligations as a registered social care provider.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "finViaInd",
+          "label": "Provide a summary of your cash-flow forecast, business plan and annual accounts that shows you can make a profit from your business. Do not include personal or financial information, like your National Insurance number or credit card details.",
+          "multiline": "true"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_7cda461a_19e3_46bc_9cd1_da170cd3f764",
+          "label": "",
+          "infoText": "We are unlikely to accept your application to register if the establishment or agency has ceased to be financially viable, or is likely to cease to be so within the next 6 months.",
+          "infoType": "standard"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Are you and your organisation financially viable?",
+      "fields": [
+        {
+          "id": "generatedId_7137e9ef_828d_4f7b_965f_a9431dc150bd",
           "type": "info",
           "label": "",
           "infoText": "For example, do you have the finance available to achieve the aims and objectives of the statement of purpose?\n\nLocal authorities do not need to supply this information",
           "infoType": "noformat"
         },
         {
-          "id": "finViaChoi",
+          "id": "finViaChoi2",
           "type": "choice",
           "label": "",
           "choices": [
@@ -342,34 +367,23 @@
       ]
     },
     {
-      "title": "My organisation and I are financially viable",
-      "includeIf": "${finViaChoi = 0}",
+      "title": "(PART) Are you and your organisation financially viable?",
       "fields": [
         {
-          "id": "finViaYes",
-          "type": "text",
-          "label": "How can you prove your financial viability?",
-          "helpText": "You need to provide examples where appropriate",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "My organisation and I are not financially viable",
-      "includeIf": "${finViaChoi = 1}",
-      "fields": [
-        {
-          "id": "generatedId_097ef16f_6847_4ebd_91b4_ab0271ec9fde",
+          "id": "generatedId_1daaf5e5_eb84_428e_a27a_a7f63753eff6",
           "type": "info",
-          "label": "Can you provide more detail?",
-          "infoText": "We are unlikely to accept your application to register if the establishment or agency has ceased to be financially viable, or is likely to cease to be so within the next six months.\n\nDo not include personal or financial information, like your national insurance number or credit card details.",
-          "infoType": "long"
+          "label": "",
+          "infoText": "For example, do you have the finance available to achieve the aims and objectives of the statement of purpose?\n\nLocal authorities do not need to supply this information",
+          "infoType": "noformat"
         },
         {
-          "id": "finViaNo",
-          "type": "text",
+          "id": "finViaChoi3",
+          "type": "choice",
           "label": "",
-          "multiline": "true"
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -2932,6 +2946,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "SC1TestBuild"
+  "submitSuccessUrl": "deprecated"
 }
