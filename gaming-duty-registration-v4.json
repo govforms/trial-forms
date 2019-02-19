@@ -20,7 +20,7 @@
           "id": "legalStatus1",
           "type": "choice",
           "label": "",
-          "shortName": "Business legal status",
+          "shortName": "",
           "format": "vertical",
           "choices": [
             "Limited company",
@@ -124,7 +124,8 @@
         {
           "id": "pTradingName",
           "type": "text",
-          "label": "Trading name (optional)"
+          "label": "Trading name (optional)",
+          "shortName": "Trading name"
         }
       ]
     },
@@ -318,6 +319,7 @@
     },
     {
       "title": "Enter details of partner $n",
+      "includeIf": "${legalStatus1 = 2}",
       "repeatsMin": "${numberPartners}",
       "repeatsMax": "${numberPartners}",
       "fields": [
