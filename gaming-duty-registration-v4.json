@@ -22,10 +22,10 @@
           "label": "",
           "shortName": "",
           "format": "vertical",
+          "errorMessage": "Select the type of business you want to register",
           "choices": [
             "Limited company",
             "Sole proprietorship",
-            "Partnership",
             "Unincorporated body"
           ]
         }
@@ -38,6 +38,7 @@
           "id": "roleSoleT",
           "type": "choice",
           "label": "",
+          "errorMessage": "Select if the business authorised you to register it for Gaming Duty",
           "choices": [
             "Yes",
             "No"
@@ -73,26 +74,30 @@
           "id": "firstName",
           "type": "text",
           "label": "First name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter first name"
         },
         {
           "id": "lastName",
           "type": "text",
           "label": "Last name",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter last name"
         },
         {
           "id": "Telephonenumber",
           "type": "text",
           "label": "Telephone number ",
-          "helpText": ""
+          "helpText": "",
+          "errorMessage": "Enter a telephone number in the correct format"
         },
         {
           "id": "Emailaddress",
           "type": "text",
           "label": "Email address ",
           "helpText": "For example, name@example.com",
-          "format": "email"
+          "format": "email",
+          "errorMessage": "Enter an email address in the correct format"
         }
       ]
     },
@@ -103,28 +108,12 @@
         {
           "id": "spName",
           "type": "text",
-          "label": "Sole proprietor's full name"
+          "label": "Sole proprietor's full name",
+          "mandatory": "true",
+          "errorMessage": "Enter sole proprietor's full name"
         },
         {
           "id": "spTradingName",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "shortName": "Trading name",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Enter partnership details",
-      "includeIf": "${legalStatus1 = 2}",
-      "fields": [
-        {
-          "id": "pName",
-          "type": "text",
-          "label": "Partnership name"
-        },
-        {
-          "id": "pTradingName",
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
@@ -139,7 +128,9 @@
         {
           "id": "coName",
           "type": "text",
-          "label": "Company name"
+          "label": "Company name",
+          "mandatory": "true",
+          "errorMessage": "Enter company name"
         },
         {
           "id": "tradingName",
@@ -152,18 +143,21 @@
     },
     {
       "title": "Enter unincorporated body details",
-      "includeIf": "${legalStatus1 = 3}",
+      "includeIf": "${legalStatus1 = 2}",
       "fields": [
         {
           "id": "coNameUB",
           "type": "text",
-          "label": "Unincorporated body name"
+          "label": "Unincorporated body name",
+          "mandatory": "true",
+          "errorMessage": "Enter unincorporated body name "
         },
         {
           "id": "tradingNameUB",
           "type": "text",
           "label": "Trading name (optional)",
-          "shortName": "Trading name"
+          "shortName": "Trading name",
+          "mandatory": "false"
         }
       ]
     },
@@ -175,7 +169,8 @@
           "type": "text",
           "label": "",
           "helpText": "'Profit' can also be called ‘gross gaming yield’",
-          "format": "sterling"
+          "format": "sterling",
+          "errorMessage": "Enter an amount of money"
         }
       ]
     },
@@ -186,7 +181,8 @@
           "id": "startTradingDate_copy_1",
           "type": "date",
           "label": "",
-          "helpText": "For example, 12 11 2022"
+          "helpText": "For example, 12 11 2022",
+          "errorMessage": "Enter the date will the business start trading\n in the correct format"
         }
       ]
     },
@@ -196,19 +192,22 @@
         {
           "id": "ppbAdd",
           "type": "address",
-          "label": ""
+          "label": "",
+          "errorMessage": "Enter building and street, and postcode in the correct format"
         },
         {
           "id": "ppbTel",
           "type": "text",
           "label": "Telephone number of business",
           "helpText": "",
-          "format": "telephoneNumber"
+          "format": "telephoneNumber",
+          "errorMessage": "Enter a telephone number in the correct format"
         },
         {
           "id": "accountsAddressChoice",
           "type": "choice",
           "label": "Are your business records stored at this address?",
+          "errorMessage": "Select if your business records stored at this address",
           "choices": [
             "Yes",
             "No"
@@ -218,6 +217,7 @@
           "id": "dutGam",
           "type": "choice",
           "label": "Will dutiable gaming take place at this address?",
+          "errorMessage": "Select if dutiable gaming will take place at this address",
           "choices": [
             "Yes",
             "No"
@@ -232,7 +232,8 @@
         {
           "id": "recAccAdd",
           "type": "address",
-          "label": ""
+          "label": "",
+          "errorMessage": "Enter building and street, and postcode in the correct format"
         }
       ]
     },
@@ -244,6 +245,7 @@
           "id": "gd58Choice",
           "type": "choice",
           "label": " ",
+          "errorMessage": "Select if you want to register other premises for Gaming Duty",
           "choices": [
             "Yes",
             "No"
@@ -259,7 +261,8 @@
           "id": "newPremNumb",
           "type": "text",
           "label": "",
-          "format": "positiveWholeNumber"
+          "format": "positiveWholeNumber",
+          "errorMessage": "Enter a number of premises that is 1 or more"
         }
       ]
     },
@@ -272,12 +275,14 @@
         {
           "id": "premName",
           "type": "text",
-          "label": "Trading name used at the premises"
+          "label": "Trading name used at the premises",
+          "errorMessage": "Enter the trading name used at the premises"
         },
         {
           "id": "premAdd",
           "type": "address",
-          "label": "Address "
+          "label": "Address ",
+          "errorMessage": "Enter building and street, and postcode in the correct format"
         }
       ]
     },
@@ -289,7 +294,8 @@
           "id": "newPremNumbReg",
           "type": "text",
           "label": "",
-          "format": "positiveWholeNumber"
+          "format": "positiveWholeNumber",
+          "errorMessage": "Enter a number of premises that is 1 or more"
         }
       ]
     },
@@ -302,53 +308,14 @@
         {
           "id": "premNameBus",
           "type": "text",
-          "label": "Trading name used at the premises"
+          "label": "Trading name used at the premises",
+          "errorMessage": "Enter the trading name used at the premises"
         },
         {
           "id": "premAddBus",
           "type": "address",
-          "label": "Address "
-        }
-      ]
-    },
-    {
-      "title": "How many partners are in the partnership?",
-      "includeIf": "${legalStatus1 = 2}",
-      "fields": [
-        {
-          "id": "numberPartners",
-          "type": "text",
-          "label": "",
-          "format": "positiveWholeNumber"
-        }
-      ]
-    },
-    {
-      "title": "Enter details of partner $n",
-      "includeIf": "${legalStatus1 = 2}",
-      "repeatsMin": "${numberPartners}",
-      "repeatsMax": "${numberPartners}",
-      "fields": [
-        {
-          "id": "PartnerFirstName",
-          "type": "text",
-          "label": "First name"
-        },
-        {
-          "id": "PartnerLastName",
-          "type": "text",
-          "label": "Last name"
-        },
-        {
-          "id": "PartnerAddress",
-          "type": "address",
-          "label": "Address"
-        },
-        {
-          "id": "PartnerTel",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
+          "label": "Address ",
+          "errorMessage": "Enter building and street, and postcode in the correct format"
         }
       ]
     }
