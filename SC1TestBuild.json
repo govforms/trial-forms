@@ -49,8 +49,8 @@
         {
           "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
           "type": "info",
-          "label": "",
-          "infoText": "",
+          "label": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
+          "infoText": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
           "infoType": "noformat"
         }
       ]
@@ -175,7 +175,6 @@
     },
     {
       "title": "(All) Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
-      "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "ofRegQues",
@@ -191,7 +190,6 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
-      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
           "id": "agEstName",
@@ -211,7 +209,6 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
-      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
           "id": "agEstName_copy_1",
@@ -271,7 +268,6 @@
     },
     {
       "title": "(All) Previous application",
-      "includeIf": "${prevOfApp =0}",
       "fields": [
         {
           "id": "prevAppPrior",
@@ -286,7 +282,6 @@
     },
     {
       "title": "(All) Details of your previous application",
-      "includeIf": "${prevOfApp = 0 && (prevAppPrior = 0 || prevAppPrior =1)}",
       "fields": [
         {
           "id": "generatedId_f97fc565_01ef_4ba8_ad68_e7a0b12776df",
@@ -299,7 +294,6 @@
           "id": "generatedId_d73809af_eded_4fab_a2c2_10b98d6418b5",
           "type": "info",
           "label": "",
-          "helpText": "",
           "infoText": "It's on your ????, It's X digits, for example 01/02/2010",
           "infoType": "noformat"
         },
@@ -322,6 +316,7 @@
     },
     {
       "title": "(IND) Do you have the finance available to run your establishment or agency?",
+      "includeIf": "${businessChoice2 = 1}",
       "fields": [
         {
           "id": "generatedId_7613f3fb_56a3_4505_920f_cd924666f313",
@@ -331,14 +326,14 @@
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "finViaInd",
+          "type": "text",
           "label": "Provide a summary of your cash-flow forecast, business plan and annual accounts that shows you can make a profit from your business. Do not include personal or financial information, like your National Insurance number or credit card details.",
           "multiline": "true"
         },
         {
-          "type": "info",
           "id": "generatedId_7cda461a_19e3_46bc_9cd1_da170cd3f764",
+          "type": "info",
           "label": "",
           "infoText": "We are unlikely to accept your application to register if the establishment or agency has ceased to be financially viable, or is likely to cease to be so within the next 6 months.",
           "infoType": "standard"
