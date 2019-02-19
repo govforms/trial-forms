@@ -834,12 +834,17 @@
           "label": "Work address where we can contact you",
           "shortName": "Work contact address",
           "international": "true"
-        },
+        }
+      ]
+    },
+    {
+      "title": "test",
+      "fields": [
         {
           "id": "formSubmissionRefHidden",
           "type": "text",
-          "label": "Report submission reference (this will only be valid once this report is submitted)",
-          "value": "${firstNameBusiness}",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${form.submissionReference}",
           "submitMode": "derived",
           "mandatory": "false"
         }
@@ -878,7 +883,7 @@
         "label": "",
         "multivalue": "true",
         "validIf": "${Tickbox=0}",
-        "errorMessage": "You can only submit this report if you understand and agree that you may commit a criminal offence if you give false information or include information that you don’t honestly believe to be true in this report",
+        "errorMessage": "You can only submit this report if you confirm that you understand and agree to this declaration. This can be confirmed by ticking the box. If you do not understand and agree to this declaration you cannot use this service",
         "choices": [
           "I understand and agree that I may commit a criminal offence if I give false information or include information that I don’t honestly believe to be true in this report."
         ]
@@ -899,8 +904,22 @@
         "id": "submissionInformation2",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. We recommend that you keep a copy for your records. You must also keep a note of the submission reference included on the pdf or printed report, HMRC will use this if we need to contact you in the future about this report.",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report, you can use the link above to do this. We recommend that you keep a copy for your records. ",
         "infoType": "important"
+      },
+      {
+        "type": "info",
+        "id": "generatedId_6a322449_1c9f_429a_983a_6ebe5760fe1d",
+        "label": "",
+        "infoText": "Print or save a pdf copy of your submitted report on this page. Only the version saved on this page will be the finalised report as shared with HMRC. Any previous print outs will not be the finalised version.",
+        "infoType": "noformat"
+      },
+      {
+        "type": "info",
+        "id": "generatedId_06da4f99_23d8_4b76_8b82_690c660d3088",
+        "label": "",
+        "infoText": "You must also keep a note of the submission reference included on the pdf or printed report, HMRC will use this if we need to contact you in the future about this report.",
+        "infoType": "noformat"
       }
     ]
   },
