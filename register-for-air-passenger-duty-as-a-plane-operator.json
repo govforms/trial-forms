@@ -1,0 +1,373 @@
+{
+  "_id": "register-for-air-passenger-duty-as-a-plane-operator",
+  "formName": "Register for Air Passenger duty",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Registration details",
+      "fields": [
+        {
+          "id": "busName",
+          "type": "text",
+          "label": "Name of business"
+        },
+        {
+          "id": "busAdd",
+          "type": "address",
+          "label": "Address of business",
+          "international": "true"
+        },
+        {
+          "id": "telNum",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Do you have an email address?",
+      "fields": [
+        {
+          "id": "emailChoice",
+          "type": "choice",
+          "label": "Do you have an email address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Email address",
+      "includeIf": "${emailChoice = 0}",
+      "fields": [
+        {
+          "id": "emailAdd",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Is your trading name different from your name of business?",
+      "fields": [
+        {
+          "id": "tradChoice",
+          "type": "choice",
+          "label": "Is your trading name different from your name of business?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trading name",
+      "includeIf": "${tradChoice = 0}",
+      "fields": [
+        {
+          "id": "tradName",
+          "type": "text",
+          "label": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Are you registered for VAT in the UK?",
+      "fields": [
+        {
+          "id": "vatChoice",
+          "type": "choice",
+          "label": "Are you registered for VAT in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "VAT registration number",
+      "fields": [
+        {
+          "id": "vatNo",
+          "type": "text",
+          "label": "VAT registration number",
+          "helpText": "Enter GB and then the 9 numerical digits of your VAT registration number",
+          "format": "ukVrn"
+        }
+      ]
+    },
+    {
+      "title": "What is the legal status of your business?",
+      "fields": [
+        {
+          "id": "legalchoice",
+          "type": "choice",
+          "label": "What is the legal status of your business?",
+          "choices": [
+            "Sole proprietor",
+            "Limited company",
+            "LLP",
+            "Unincorporated body",
+            "Partnership",
+            "Trust"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your business based in the UK?",
+      "fields": [
+        {
+          "id": "UKreg",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(conditional) Would you like to appoint an agent or representative?",
+      "fields": [
+        {
+          "id": "AppointAgent",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(conditional) Agent or representative details",
+      "fields": [
+        {
+          "id": "AgentType",
+          "type": "choice",
+          "label": "Type of agent",
+          "choices": [
+            "Administrative representative",
+            "Agent",
+            "Fiscal representative"
+          ]
+        },
+        {
+          "id": "agentName",
+          "type": "text",
+          "label": "Name of agent/ representative"
+        },
+        {
+          "id": "agentTrading",
+          "type": "text",
+          "label": "Trading name of agent/ representative"
+        },
+        {
+          "id": "agentAddress",
+          "type": "address",
+          "label": "Address of agent/ representative"
+        },
+        {
+          "id": "agentTel",
+          "type": "text",
+          "label": "Telephone number of agent/ representative",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agentEmail",
+          "type": "text",
+          "label": "Email address of agent/ representative",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Aircraft you operate",
+      "fields": [
+        {
+          "id": "bigPlanes",
+          "type": "choice",
+          "label": "Do you operate or intend to operate aircraft with an authorised weight of 10 tonnes or more?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "littlePlanes",
+          "type": "choice",
+          "label": "Do you operate or intend to operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Aircraft you operate",
+      "fields": [
+        {
+          "id": "bigSeats",
+          "type": "choice",
+          "label": "Do you operate or intend to operate aircraft that are authorised to seat 20 passengers or more?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "littleSeats",
+          "type": "choice",
+          "label": "Do you operate or intend to operate aircraft that are authorised to seat fewer than 20 passengers?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Estimate of chargeable passengers",
+      "fields": [
+        {
+          "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
+          "type": "info",
+          "label": "passNo",
+          "infoText": "Give an estimate of the number of chargeable passengers that you will carry in each band from a UK airport during the coming year",
+          "infoType": "noformat"
+        },
+        {
+          "id": "shortHaulPassengers",
+          "type": "text",
+          "label": "Band A (0-2000 miles)",
+          "format": "positiveNumber"
+        },
+        {
+          "id": "longHaulPassengers",
+          "type": "text",
+          "label": "Band B (over 2000 miles)",
+          "format": "positiveNumber"
+        }
+      ]
+    },
+    {
+      "title": "When did you first carry (or when do you expect to carry) chargeable passengers in a chargeable aircraft?",
+      "fields": [
+        {
+          "id": "firstCarry",
+          "type": "date",
+          "label": "When did you first carry (or when do you expect to carry) chargeable passengers in a chargeable aircraft?",
+          "helpText": "Enter date in the format DD/MM/YYYY"
+        }
+      ]
+    },
+    {
+      "title": "Do you operate or intend to operate direct long haul flights from Northern Ireland?",
+      "fields": [
+        {
+          "id": "NIChoice",
+          "type": "choice",
+          "label": "Do you operate direct long haul flights from Northern Ireland?",
+          "helpText": "See Notice 550 Air Passenger Duty",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "I declare that the information given on this form is true and complete"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
