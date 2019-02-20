@@ -190,6 +190,7 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
+      "includeIf": "${ofRegQues = 0}",
       "fields": [
         {
           "id": "agEstName",
@@ -209,6 +210,7 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
+      "includeIf": "${ofRegQues = 1}",
       "fields": [
         {
           "id": "agEstName_copy_1",
@@ -1894,8 +1896,8 @@
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
-          "type": "choice",
           "id": "agMultiSiteChoi",
+          "type": "choice",
           "label": "(AGENCY) Is the agency operated from more than one site?",
           "choices": [
             "Yes",
@@ -1915,28 +1917,28 @@
           "shortName": "Address"
         },
         {
-          "type": "text",
           "id": "agSiteTel",
+          "type": "text",
           "label": "Telephone number",
           "shortName": "Phone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "agSiteEm",
+          "type": "text",
           "label": "Email address",
           "shortName": "Email address",
           "format": "email"
         },
         {
-          "type": "text",
           "id": "agSiteText",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "multiline": "true"
         },
         {
-          "type": "choice",
           "id": "agSiteAddChoi1",
+          "type": "choice",
           "label": "Do you wish to add another site?",
           "choices": [
             "Yes",
@@ -1956,28 +1958,28 @@
           "shortName": "Address"
         },
         {
-          "type": "text",
           "id": "agSiteTel2",
+          "type": "text",
           "label": "Telephone number",
           "shortName": "Phone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "agSiteEm2",
+          "type": "text",
           "label": "Email address",
           "shortName": "Email address",
           "format": "email"
         },
         {
-          "type": "text",
           "id": "agSiteText2",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "multiline": "true"
         },
         {
-          "type": "choice",
           "id": "agSiteAddChoi2",
+          "type": "choice",
           "label": "Do you wish to add another site?",
           "choices": [
             "Yes",
@@ -1997,22 +1999,22 @@
           "shortName": "Address"
         },
         {
-          "type": "text",
           "id": "agSiteTel3",
+          "type": "text",
           "label": "Telephone number",
           "shortName": "Phone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "agSiteEm3",
+          "type": "text",
           "label": "Email address",
           "shortName": "Email address",
           "format": "email"
         },
         {
-          "type": "text",
           "id": "agSiteText3",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "multiline": "true"
         }
@@ -2071,8 +2073,8 @@
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "holSitFax",
+          "type": "text",
           "label": "Fax number",
           "format": "telephoneNumber"
         },
@@ -2083,8 +2085,8 @@
           "format": "email"
         },
         {
-          "type": "choice",
           "id": "holSiteAddChoi",
+          "type": "choice",
           "label": "Do you wish to add another site?",
           "choices": [
             "Yes",
@@ -2119,8 +2121,8 @@
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "holSitFax2",
+          "type": "text",
           "label": "Fax number",
           "format": "telephoneNumber"
         },
@@ -2131,8 +2133,8 @@
           "format": "email"
         },
         {
-          "type": "choice",
           "id": "holSiteAddChoi2",
+          "type": "choice",
           "label": "Do you wish to add another site?",
           "choices": [
             "Yes",
@@ -2167,8 +2169,8 @@
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "holSitFax3",
+          "type": "text",
           "label": "Fax number",
           "format": "telephoneNumber"
         },
@@ -2207,25 +2209,25 @@
       "includeIf": "${appType = 0 || appType = 5}",
       "fields": [
         {
-          "type": "address",
           "id": "homeSiteAddress",
+          "type": "address",
           "label": ""
         },
         {
-          "type": "text",
           "id": "homeSiteTel",
+          "type": "text",
           "label": "Telephone number"
         },
         {
-          "type": "text",
           "id": "homeSiteTransport",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         },
         {
-          "type": "choice",
           "id": "homeSiteAdd1",
+          "type": "choice",
           "label": "Do you want to add another site?",
           "choices": [
             "Yes",
@@ -2239,25 +2241,25 @@
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "homeSiteAddress2",
+          "type": "address",
           "label": ""
         },
         {
-          "type": "text",
           "id": "homeSiteTel2",
+          "type": "text",
           "label": "Telephone number"
         },
         {
-          "type": "text",
           "id": "homeSiteTransport2",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         },
         {
-          "type": "choice",
           "id": "homeSiteAdd2",
+          "type": "choice",
           "label": "Do you want to add another site?",
           "choices": [
             "Yes",
@@ -2271,18 +2273,18 @@
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
-          "type": "address",
           "id": "homeSiteAddress3",
+          "type": "address",
           "label": ""
         },
         {
-          "type": "text",
           "id": "homeSiteTel3",
+          "type": "text",
           "label": "Telephone number"
         },
         {
-          "type": "text",
           "id": "homeSiteTransport3",
+          "type": "text",
           "label": "Describe any travel arrangements between the sites",
           "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -3115,8 +3117,8 @@
           ]
         },
         {
-          "type": "info",
           "id": "generatedId_393beae8_aba7_4f6c_af07_d6a5b1361e1d",
+          "type": "info",
           "label": "Am I providing a service that is domestic or inter-country?",
           "infoText": "Some info to go here please\n* \n*\n*\n",
           "infoType": "long"
@@ -3158,8 +3160,8 @@
           "format": "shortText"
         },
         {
-          "type": "choice",
           "id": "volAdoMoreBranches1",
+          "type": "choice",
           "label": "Do you need to add another branch?",
           "choices": [
             "Yes",
@@ -3186,8 +3188,8 @@
           "format": "shortText"
         },
         {
-          "type": "choice",
           "id": "volAdoMoreBranches2",
+          "type": "choice",
           "label": "Do you need to add another branch?",
           "choices": [
             "Yes",
@@ -3220,8 +3222,8 @@
       "includeIf": "${appType = 3}",
       "fields": [
         {
-          "type": "choice",
           "id": "adoPanChoi",
+          "type": "choice",
           "label": "(VOL ADO) Do you have an adoption panel?",
           "choices": [
             "Yes",
@@ -3591,8 +3593,8 @@
           "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
         },
         {
-          "type": "info",
           "id": "generatedId_9db20803_f5e4_444a_beb8_0b896fc79f09",
+          "type": "info",
           "label": "",
           "infoText": "Upload your financial reference from your bank here",
           "infoType": "noformat"
@@ -3604,8 +3606,8 @@
           "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
         },
         {
-          "type": "info",
           "id": "generatedId_e8e19500_4d8a_47a5_8469_82551c7034a8",
+          "type": "info",
           "label": "uplInf3",
           "infoText": "Upload your business plan here",
           "infoType": "noformat"
@@ -3617,8 +3619,8 @@
           "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
         },
         {
-          "type": "info",
           "id": "generatedId_ca0ab4d0_2f15_4e96_b1de_ead8a3f91840",
+          "type": "info",
           "label": "uplInf4",
           "infoText": "Upload your cash-flow forecast here",
           "infoType": "noformat"
@@ -3705,8 +3707,8 @@
       {
         "id": "ackpageInfo",
         "type": "info",
-        "label": "Payment",
-        "infoText": ""
+        "label": "What happens next",
+        "infoText": "We have sent your application to the registration team.\n\nThe responsible and registered individuals, partners and managers need to complete an SC2 application form.\n\nThey will contact you either to confirm that your application register has been accepted and is ready to be considered, or to ask for more information.\n\nIf you need to contact us about your application, you can call our helpline on 0300 123 1231. We are open from 8am to 6pm (Monday to Friday).\n"
       }
     ]
   },
