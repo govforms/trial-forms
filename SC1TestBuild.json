@@ -1824,31 +1824,38 @@
       ]
     },
     {
-      "title": "(ALL) Tell us about the establishment or agency",
+      "title": "(ALL except HOL) Tell us about the establishment or agency",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "esAgNam",
           "type": "text",
           "label": "Establishment or agency name ",
           "shortName": "Name"
-        },
-        {
-          "id": "esAgCo",
-          "type": "text",
-          "label": "Local council",
-          "shortName": "Council",
-          "helpText": "Enter the name of the local council where the premise is based, for example Newcastle council "
         }
       ]
     },
     {
-      "title": "(ALL) Contact details and address for main site",
+      "title": "(HOL) What is the name of your holiday scheme?",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "id": "esAgNam_copy_1",
+          "type": "text",
+          "label": "Establishment or agency name ",
+          "shortName": "Name"
+        }
+      ]
+    },
+    {
+      "title": "(ALL except HOL) Contact details and address of main site",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
           "type": "info",
           "label": "provInfo",
-          "infoText": "This is your main office where you provide the social care service. \n\nIf you run a residential holiday scheme, this is the office where you run your administration.\n\nWe may contact you using these details when checking your application.",
+          "infoText": "This is your main office where you provide the social care service. \n\nWe may contact you using these details when checking your application.",
           "infoType": "noformat"
         },
         {
@@ -1867,6 +1874,39 @@
         },
         {
           "id": "estAbEm",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(HOL) Contact details and address of your administration office ",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "id": "generatedId_1adc3086_1410_4c56_a2f3_989bd7c7e267",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "This is the office where you run your administration.\n\nWe may contact you using these details when checking your application.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "estAbAdd2a",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "estAbTel2a",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "estAbEm2a",
           "type": "text",
           "label": "Email ",
           "format": "email"
