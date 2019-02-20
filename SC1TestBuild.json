@@ -119,6 +119,7 @@
     },
     {
       "title": "(All?) Are you applying to register a school as a children's home?",
+      "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "generatedId_a56ffaee_1924_49fe_b694_cbfcb9fbac7b",
@@ -141,6 +142,7 @@
     },
     {
       "title": "(All?) What is your Department for Education (DfE) number?",
+      "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
@@ -175,6 +177,7 @@
     },
     {
       "title": "(All) Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
+      "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "ofRegQues",
@@ -190,7 +193,7 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
-      "includeIf": "${ofRegQues = 0}",
+      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
           "id": "agEstName",
@@ -210,7 +213,7 @@
     },
     {
       "title": "(All) Details of establishment or agency you plan to buy",
-      "includeIf": "${ofRegQues = 1}",
+      "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
           "id": "agEstName_copy_1",
@@ -223,6 +226,7 @@
     },
     {
       "title": "(All) Address of establishment or agency you plan to buy",
+      "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "generatedId_24529809_67bd_4c36_9831_dfadc8c694a8",
@@ -270,6 +274,7 @@
     },
     {
       "title": "(All) Previous application",
+      "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
           "id": "prevAppPrior",
@@ -284,6 +289,7 @@
     },
     {
       "title": "(All) Details of your previous application",
+      "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
           "id": "generatedId_f97fc565_01ef_4ba8_ad68_e7a0b12776df",
@@ -312,7 +318,7 @@
           "type": "text",
           "label": "Provide as much detail as possible",
           "helpText": "You should include details such as ....? up to ???? words",
-          "multiline": "false"
+          "multiline": "true"
         }
       ]
     },
@@ -331,7 +337,7 @@
           "id": "finViaInd",
           "type": "text",
           "label": "Provide a summary of your cash-flow forecast, business plan and annual accounts that shows you can make a profit from your business. Do not include personal or financial information, like your National Insurance number or credit card details.",
-          "multiline": "false"
+          "multiline": "true"
         },
         {
           "id": "generatedId_7cda461a_19e3_46bc_9cd1_da170cd3f764",
@@ -357,7 +363,7 @@
           "id": "finViaOrg",
           "type": "text",
           "label": "Provide a summary of your cash-flow forecast, business plan and annual accounts that shows you can make a profit from your business. Do not include personal or financial information, like your National Insurance number or credit card details.",
-          "multiline": "false"
+          "multiline": "true"
         },
         {
           "id": "generatedId_55e337b6_2034_46be_b590_5977a56a24bc",
@@ -383,7 +389,7 @@
           "id": "finViaPart",
           "type": "text",
           "label": "Provide a summary of your cash-flow forecast, business plan and annual accounts that shows you can make a profit from your business. Do not include personal or financial information, like your National Insurance number or credit card details.",
-          "multiline": "false"
+          "multiline": "true"
         },
         {
           "id": "generatedId_9ee6d65b_5068_4be4_a0b3_3872b885c63d",
@@ -417,6 +423,7 @@
     },
     {
       "title": "(All) Tell us about the registered agency or establishment",
+      "includeIf": "${intsInOthOrgs =0}",
       "fields": [
         {
           "id": "generatedId_1cc025df_f836_46db_af32_d384e591fa41",
@@ -442,6 +449,7 @@
     },
     {
       "title": "(All) Address and contact details of the registered agency or establishment",
+      "includeIf": "${intsInOthOrgs =0}",
       "fields": [
         {
           "id": "generatedId_d4cb7643_f460_4706_a3d4_678ec53249a8",
@@ -483,7 +491,7 @@
     },
     {
       "title": "(All) Tell us about the second registered agency or establishment",
-      "includeIf": "${addAgOrEst = 0}",
+      "includeIf": "${intsInOthOrgs =0 && addAgOrEst = 0}",
       "fields": [
         {
           "id": "generatedId_4a85faa0_5bee_4583_8648_774aba252f8f",
@@ -509,7 +517,7 @@
     },
     {
       "title": "(All) Address and contact details of the registered agency or establishment (2)",
-      "includeIf": "${addAgOrEst = 0}",
+      "includeIf": "${intsInOthOrgs =0 && addAgOrEst = 0}",
       "fields": [
         {
           "id": "generatedId_0dcbb0a3_4abd_44af_9753_511a18c745e5",
@@ -551,7 +559,7 @@
     },
     {
       "title": "(All) Tell us about the third registered agency or establishment",
-      "includeIf": "${addAgOrEst2 = 0}",
+      "includeIf": "${intsInOthOrgs =0 && addAgOrEst2 = 0}",
       "fields": [
         {
           "id": "generatedId_5b52305a_ee92_42db_b485_2b711d90a268",
@@ -577,7 +585,7 @@
     },
     {
       "title": "(All) Address and contact details of the registered agency or establishment (3)",
-      "includeIf": "${addAgOrEst2 = 0}",
+      "includeIf": "${intsInOthOrgs =0 &&addAgOrEst2 = 0}",
       "fields": [
         {
           "id": "generatedId_4ebc9cfb_ad83_4d0d_8027_9d6a868aed41",
@@ -826,30 +834,6 @@
       ]
     },
     {
-      "title": "(ORG) Organisation sector",
-      "fields": [
-        {
-          "id": "generatedId_4524a98a_3903_4116_b493_a9a7c7a03a8f",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "orgSecChoi",
-          "type": "choice",
-          "label": "(ORG) Organisation sector",
-          "choices": [
-            "Local council",
-            "Health authority",
-            "Voluntary",
-            "Private",
-            "Limited liability partnership (LLP)"
-          ]
-        }
-      ]
-    },
-    {
       "title": "(ORG and PAR) Which sector does your organisation belong to?",
       "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
       "fields": [
@@ -1018,50 +1002,8 @@
       ]
     },
     {
-      "title": "(ORG) What are the details of your holding company (version 2)?",
-      "includeIf": "${holCoCho = 0}",
-      "fields": [
-        {
-          "id": "hoCoNomVers2",
-          "type": "text",
-          "label": "Name of the organisation",
-          "shortName": "Name",
-          "format": "shortText"
-        },
-        {
-          "id": "hoCoDOBVers2",
-          "type": "date",
-          "label": "Date the organisation came into being",
-          "helpText": "For example, 01/03/1999"
-        },
-        {
-          "id": "regCharVers2",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank"
-        },
-        {
-          "id": "regCoNumVers2",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank"
-        },
-        {
-          "id": "hoCoCho2Vers2",
-          "type": "choice",
-          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your holding company's contact details (version 2)",
-      "includeIf": "${businessChoice2 = 0}",
+      "title": "(ORG) Your holding company's contact details",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
@@ -1094,7 +1036,7 @@
     },
     {
       "title": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
-      "includeIf": "${businessChoice2 = 0}",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
           "id": "orgSubOft",
