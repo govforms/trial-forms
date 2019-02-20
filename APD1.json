@@ -1,8 +1,8 @@
 {
   "_id": "APD1",
-  "formName": "Register for Air Passenger duty",
+  "formName": "Register for Air Passenger Duty",
   "description": "",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "emailTemplateId": "apd_registration_confirmation",
   "authConfig": {
     "authModule": "hmrc"
   },
@@ -14,16 +14,17 @@
   },
   "sections": [
     {
-      "title": "What is the legal status of your business?",
+      "title": "What is your business type?",
+      "shortName": "What is your business type",
       "fields": [
         {
           "id": "legalchoice",
           "type": "choice",
-          "label": "What is the legal status of your business?",
+          "label": "",
           "choices": [
-            "Sole proprietor",
             "Limited company",
-            "LLP",
+            "Sole trader",
+            "Limited liability partnership (LLP)",
             "Unincorporated body",
             "Partnership",
             "Trust"
@@ -35,45 +36,54 @@
       "title": "About you",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_45c00d79_7668_4a54_9923_c49c440e55d7",
+          "type": "info",
           "label": "",
           "infoText": "HMRC will use these details if we need to discuss this registration. ",
           "infoType": "noformat"
         },
         {
-          "type": "text",
           "id": "fullname",
+          "type": "text",
           "label": "Full Name"
         },
         {
-          "type": "text",
           "id": "telNumber",
+          "type": "text",
           "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
           "format": "telephoneNumber"
         },
         {
+          "id": "email",
           "type": "text",
-          "id": "emailAddress",
-          "label": "Email Address",
+          "label": "Email address",
+          "helpText": "We'll use this to send you a confirmation email",
           "format": "email"
         },
         {
-          "type": "info",
           "id": "generatedId_eb6d6325_28a8_4a03_b8d5_b370895276a8",
+          "type": "info",
           "label": "",
           "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "role",
+          "type": "choice",
           "label": "Select the role relevant to you",
+          "helpText": "You must be one of the following to register on behalf of your business",
           "choices": [
             "Director",
             "Company secretary",
             "Partner",
-            "Authorised official"
+            "Authorised individual"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "",
+            "An authorised individual is someone within the business who is authorised by the business to register on their behalf."
           ]
         }
       ]
@@ -87,18 +97,20 @@
           "label": "Business name"
         },
         {
-          "type": "text",
           "id": "busTrading",
+          "type": "text",
           "label": "Trading name (optional)",
+          "helpText": "Enter the trading name if different from business name",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Is your business based in the UK?",
+      "title": "Is your main place of business in the UK?",
+      "shortName": "Is your main place of business in the UK",
       "fields": [
         {
-          "id": "UKreg",
+          "id": "basedInUk",
           "type": "choice",
           "label": "",
           "choices": [
@@ -109,37 +121,41 @@
       ]
     },
     {
-      "title": "Details for main place of business (UK)",
+      "title": "Details for main place of business",
+      "includeIf": "${basedInUk=0}",
       "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_42de4fc5_7188_4b6f_b8ae_f7822bbb14de",
+          "type": "info",
           "label": "",
           "infoText": "HMRC may use these to verify your business information with records we hold.",
           "infoType": "noformat"
         },
         {
-          "type": "address",
           "id": "busAddress",
-          "label": "Address"
+          "type": "address",
+          "label": "Address",
+          "international": "false"
         },
         {
-          "type": "text",
-          "id": "busEmail",
-          "label": "Email address (optional)",
-          "format": "email"
-        },
-        {
-          "type": "text",
           "id": "busTelephone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "choice",
+          "id": "busEmail",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
           "id": "contactChoice",
-          "label": "Do you want HMRC to also use these details for your Landfill Tax correspondence? ",
+          "type": "choice",
+          "label": "Do you want HMRC to also use these details for your Air Passenger Duty correspondence?",
+          "shortName": "Use as contact details",
           "choices": [
             "Yes",
             "No"
@@ -148,34 +164,110 @@
       ]
     },
     {
-      "title": "Preferred contact details (UK)",
+      "title": "Details for main place of business",
+      "includeIf": "${basedInUk=1}",
+      "description": "Provide details for the main place of business, where the day-to-day business activities are managed.",
       "fields": [
         {
+          "id": "generatedId_b8928ec7_938e_48e0_b6eb_866dd5a0f07e",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC may use these to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "InternationalAddress",
+          "type": "text",
+          "label": "Address",
+          "multiline": "true"
+        },
+        {
+          "id": "busTelephone_copy_12",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "busEmail_copy_12",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
+          "id": "UKCorrChoice",
+          "type": "choice",
+          "label": "Do you have a UK based address for your Air Passenger Duty correspondence?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "You must have a UK contact address for your Air Passenger Duty correspondence. More details will be provided about this after you submit this registration"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Correspondence address in the UK",
+      "includeIf": "${UKCorrChoice=0}",
+      "description": "HMRC will use these for your ongoing Air Passenger Duty correspondence.",
+      "fields": [
+        {
+          "id": "contactAddress_copy_1",
           "type": "address",
-          "id": "contactAddress",
           "label": "Address"
         },
         {
+          "id": "contactTel_copy_1",
           "type": "text",
-          "id": "contactEmail",
-          "label": "Email address (optional)",
-          "format": "email"
-        },
-        {
-          "type": "text",
-          "id": "contactTel",
           "label": "Telephone",
           "format": "telephoneNumber"
+        },
+        {
+          "id": "contactEmail_copy_1",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Preferred contact details",
+      "includeIf": "${contactChoice =1}",
+      "description": "HMRC will use these for your ongoing Air Passenger Duty correspondence.",
+      "fields": [
+        {
+          "id": "contactAddress",
+          "type": "address",
+          "label": "Address"
+        },
+        {
+          "id": "contactTel",
+          "type": "text",
+          "label": "Telephone",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "contactEmail",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false"
         }
       ]
     },
     {
       "title": "Are you registered for VAT in the UK?",
+      "shortName": "Are you registered for VAT in the UK",
       "fields": [
         {
           "id": "vatChoice",
           "type": "choice",
-          "label": "Are you registered for VAT in the UK?",
+          "label": "",
           "choices": [
             "Yes",
             "No"
@@ -189,106 +281,20 @@
         {
           "id": "vatNo",
           "type": "text",
-          "label": "VAT registration number",
-          "helpText": "Enter GB and then the 9 numerical digits of your VAT registration number",
-          "format": "ukVrn"
-        }
-      ]
-    },
-    {
-      "title": "Details for main place of business (International)",
-      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
-      "fields": [
-        {
-          "type": "info",
-          "id": "generatedId_79d489d2_9dfd_44f6_84c5_167062e59dfc",
           "label": "",
-          "infoText": "HMRC may use these to verify your business information with records we hold.",
-          "infoType": "noformat"
-        },
-        {
-          "type": "address",
-          "id": "busAddress_copy_1",
-          "label": "Address",
-          "international": "true"
-        },
-        {
-          "type": "text",
-          "id": "busEmail_copy_1",
-          "label": "Email address (optional)",
-          "format": "email"
-        },
-        {
-          "type": "text",
-          "id": "busTelephone_copy_1",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "(conditional) Would you like to appoint an agent or representative?",
-      "fields": [
-        {
-          "id": "AppointAgent",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(conditional) Agent or representative details",
-      "fields": [
-        {
-          "id": "AgentType",
-          "type": "choice",
-          "label": "Type of agent",
-          "choices": [
-            "Administrative representative",
-            "Agent",
-            "Fiscal representative"
-          ]
-        },
-        {
-          "id": "agentName",
-          "type": "text",
-          "label": "Name of agent/ representative"
-        },
-        {
-          "id": "agentTrading",
-          "type": "text",
-          "label": "Trading name of agent/ representative"
-        },
-        {
-          "id": "agentAddress",
-          "type": "address",
-          "label": "Address of agent/ representative"
-        },
-        {
-          "id": "agentTel",
-          "type": "text",
-          "label": "Telephone number of agent/ representative",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "agentEmail",
-          "type": "text",
-          "label": "Email address of agent/ representative",
-          "format": "email"
+          "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
+          "format": "text(9,11)"
         }
       ]
     },
     {
       "title": "Aircraft you operate",
+      "description": "Provide details about the aircraft you operate or intend to operate.",
       "fields": [
         {
           "id": "bigPlanes",
           "type": "choice",
-          "label": "Do you operate or intend to operate aircraft with an authorised weight of 10 tonnes or more?",
+          "label": "Do you operate aircraft with an authorised weight of 10 tonnes or more?",
           "choices": [
             "Yes",
             "No"
@@ -297,21 +303,16 @@
         {
           "id": "littlePlanes",
           "type": "choice",
-          "label": "Do you operate or intend to operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more?",
+          "label": "Do you operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more?",
           "choices": [
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "Aircraft you operate",
-      "fields": [
+        },
         {
           "id": "bigSeats",
           "type": "choice",
-          "label": "Do you operate or intend to operate aircraft that are authorised to seat 20 passengers or more?",
+          "label": "Do you operate aircraft that are authorised to seat 20 passengers or more?",
           "choices": [
             "Yes",
             "No"
@@ -320,7 +321,7 @@
         {
           "id": "littleSeats",
           "type": "choice",
-          "label": "Do you operate or intend to operate aircraft that are authorised to seat fewer than 20 passengers?",
+          "label": "Do you operate aircraft that are authorised to seat fewer than 20 passengers?",
           "choices": [
             "Yes",
             "No"
@@ -329,37 +330,73 @@
       ]
     },
     {
-      "title": "Estimate of chargeable passengers",
+      "title": "Estimated number of chargeable passengers",
       "fields": [
         {
           "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
           "type": "info",
           "label": "passNo",
-          "infoText": "Give an estimate of the number of chargeable passengers that you will carry in each band from a UK airport during the coming year",
+          "infoText": "Provide an estimate of the number of  passengers that you will carry in each band from a UK airport during the next 12 months. Do not include passengers who are exempt from Air Passenger Duty.",
           "infoType": "noformat"
         },
         {
           "id": "shortHaulPassengers",
           "type": "text",
           "label": "Band A (0-2000 miles)",
-          "format": "positiveNumber"
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveWholeNumber"
         },
         {
           "id": "longHaulPassengers",
           "type": "text",
           "label": "Band B (over 2000 miles)",
-          "format": "positiveNumber"
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "id": "generatedId_ebdb9325_e895_45aa_a63e_ee766a5031d1",
+          "type": "info",
+          "label": "Where can I find out more?",
+          "infoText": "To find out  more about destination bands and chargeable passengers, open a new window or tab and search for 'Rates for Air Passenger Duty' on GOV.UK",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "When did you first carry (or when do you expect to carry) chargeable passengers in a chargeable aircraft?",
+      "title": "Have you started carrying chargeable passengers?",
+      "fields": [
+        {
+          "id": "startedCarrying",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "When did you first carry the passengers in a chargeable aircraft?",
+      "includeIf": "${startedCarrying =0}",
       "fields": [
         {
           "id": "firstCarry",
           "type": "date",
-          "label": "When did you first carry (or when do you expect to carry) chargeable passengers in a chargeable aircraft?",
-          "helpText": "Enter date in the format DD/MM/YYYY"
+          "label": "",
+          "helpText": "For example 01 04 2018"
+        }
+      ]
+    },
+    {
+      "title": "When do you expect to start carrying the passengers in a chargeable aircraft?",
+      "includeIf": "${startedCarrying =1}",
+      "fields": [
+        {
+          "id": "firstCarry_copy_1",
+          "type": "date",
+          "label": "",
+          "helpText": "For example 01 04 2018"
         }
       ]
     },
@@ -369,11 +406,15 @@
         {
           "id": "NIChoice",
           "type": "choice",
-          "label": "Do you operate direct long haul flights from Northern Ireland?",
-          "helpText": "See Notice 550 Air Passenger Duty",
+          "label": "",
+          "helpText": "",
           "choices": [
             "Yes",
             "No"
+          ],
+          "optionHelpText": [
+            "You will need to contact HMRC to discuss this with us. Contact details will be provided once you have submitted this registration",
+            ""
           ]
         }
       ]
@@ -387,48 +428,8 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "I declare that the information given on this form is true and complete"
-      },
-      {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Provide details below of who is signing the declaration",
-        "fields": [
-          {
-            "id": "declaration-firstname",
-            "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-lastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
-          }
-        ]
-      },
-      {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true",
-            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
-          }
-        ]
+        "infoText": "By submitting this form you are confirming that all the information you’ve provided is correct and complete.",
+        "infoType": "important"
       }
     ]
   },
@@ -443,10 +444,11 @@
         "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
       },
       {
-        "id": "ackpageInfo",
+        "id": "generatedId_b6e33841_97e2_4166_b7ec_2f4a67d4605a",
         "type": "info",
-        "label": "Payment",
-        "infoText": ""
+        "label": "ackpageInfo",
+        "infoText": "HMRC will send you a letter to confirm your registration details and return dates so that you can prepare your first Air Passenger Duty return. \n\n\nIf you are a plane operator based outside the UK, you must appoint a UK based agent or representative. For details of how to do this, go to the [guidance page] for Air Passenger Duty on GOV.UK\n\nIf you operate direct long haul flights from Northern Ireland, you need to contact the Central Assurance Team on APDHelpdesk@hmrc.gov.uk",
+        "infoType": "noformat"
       }
     ]
   },
