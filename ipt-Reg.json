@@ -14,24 +14,75 @@
   },
   "sections": [
     {
-      "title": "Business details",
+      "title": "About you",
+      "shortName": "About you",
       "fields": [
         {
-          "id": "busName",
+          "id": "generatedId_34aa9b17_4d99_4022_98b3_450b509ca3c6",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "regContactName1",
           "type": "text",
           "label": "Full name"
         },
         {
-          "id": "generatedId_a87dfa6f-2683-464a-a53f-9cf02ee2bd08",
+          "id": "RegPhoneNumber1",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "Email",
+          "type": "text",
+          "label": "Email Address",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_8fc88a26_e5d5_48ff_9f96_29e3a01f6319",
           "type": "info",
           "label": "",
-          "infoText": "**Business address**",
+          "infoText": "##Your role within the business",
           "infoType": "noformat"
         },
         {
-          "id": "ukAdd",
+          "id": "roleInBusiness1",
           "type": "choice",
-          "label": "Is this address in the UK?",
+          "label": "Select the role relevant to you",
+          "helpText": "You must be one of the following to register on behalf of your business",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Authorised individual "
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your business name?",
+      "shortName": "Business name",
+      "fields": [
+        {
+          "id": "BusName",
+          "type": "text",
+          "label": "What is your business name?",
+          "shortName": "Name",
+          "helpText": "This is your limited company or sole trader name"
+        }
+      ]
+    },
+    {
+      "title": "Is your business name the same as your trading name?",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessSameAsTrading",
+          "type": "choice",
+          "label": "Is your business name the same as your trading name?",
+          "shortName": "Business details",
           "choices": [
             "Yes",
             "No"
@@ -40,48 +91,44 @@
       ]
     },
     {
-      "title": "UK business address",
-      "includeIf": "${ukAdd = 0}",
+      "title": "What is your trading name?",
+      "shortName": "Trading name",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "What is your trading name?"
+        }
+      ]
+    },
+    {
+      "title": "Business address details",
+      "shortName": "Business address",
+      "includeIf": "${businessSameAsTrading=0}",
       "fields": [
         {
           "id": "ukAddress",
           "type": "address",
-          "label": ""
+          "label": "",
+          "international": "true"
         },
         {
           "id": "ukTelNum",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Non-UK business address",
-      "includeIf": "${ukAdd = 1}",
-      "fields": [
-        {
-          "id": "nonUkAddress",
-          "type": "text",
-          "label": "",
-          "helpText": "Input the full address of your business including country",
-          "multiline": "true"
         },
         {
-          "id": "nonUKTelNum",
+          "id": "UKBusEmail",
           "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Business details",
-      "fields": [
+          "label": "Email address",
+          "format": "email"
+        },
         {
-          "id": "faxChoice",
+          "id": "contactChoice",
           "type": "choice",
-          "label": "Do you have a fax number?",
+          "label": "Are these the contact details you want HMRC to use if we need to discuss your Insurance Premium Tax information?",
+          "format": "horizontal",
           "choices": [
             "Yes",
             "No"
@@ -90,24 +137,43 @@
       ]
     },
     {
-      "title": "Fax number",
-      "includeIf": "${faxChoice = 0}",
+      "title": "Preferred contact details",
+      "includeIf": "${contactChoice=1}",
       "fields": [
         {
-          "id": "faxYes",
+          "id": "contactName",
           "type": "text",
-          "label": "Fax number",
+          "label": "Full name"
+        },
+        {
+          "id": "ukTelNum_copy_1",
+          "type": "text",
+          "label": "Telephone number",
           "format": "telephoneNumber"
+        },
+        {
+          "id": "UKBusEmail_copy_1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "ukAddress_copy_1",
+          "type": "address",
+          "label": "",
+          "international": "true"
         }
       ]
     },
     {
-      "title": "Do you have business establishments in the United Kingdom (UK)?",
+      "title": "Do you have business establishments in the United Kingdom?",
+      "shortName": "Uk establishments",
       "fields": [
         {
           "id": "ukBEChoice",
           "type": "choice",
           "label": "Do you have business establishments in the United Kingdom (UK)?",
+          "shortName": "Establishments",
           "choices": [
             "Yes",
             "No"
@@ -117,64 +183,19 @@
     },
     {
       "title": "Status of your business",
+      "shortName": "Business status",
       "fields": [
         {
           "id": "statusChoice",
           "type": "choice",
           "label": "What is the legal status of your business?",
+          "shortName": "Legal status",
           "helpText": "If you are a partnership, please remember to complete form IPT2 as well as this form",
           "choices": [
             "Sole proprietor",
             "Limited Company",
             "Partnership",
-            "Unincorporated body (other than partnership)",
-            "Lloyds syndicate"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Lloyd's syndicate details",
-      "fields": [
-        {
-          "id": "lloSyn1",
-          "type": "text",
-          "label": "Syndicate number"
-        },
-        {
-          "id": "lloCho1",
-          "type": "choice",
-          "label": "Are you electing that Lloyd's may act for you from the first of your accounting periods?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "lloCho2",
-          "type": "choice",
-          "label": "Are all your premiums processed through Lloyd's Policy Signing Office (LPSO)?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "lloCho3",
-          "type": "choice",
-          "label": "Are you involved in Mirror Syndicate activity?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "lloCho4",
-          "type": "choice",
-          "label": "Are you reinsured to close?",
-          "choices": [
-            "Yes",
-            "No"
+            "Unincorporated body (other than partnership)"
           ]
         }
       ]
@@ -186,7 +207,6 @@
           "id": "specAccChoi",
           "type": "choice",
           "label": "Will this form be used to notify us that you are going to use the special accounting scheme from the first of your accounting periods?",
-          "helpText": "Use of the scheme is mandatory for a Lloyd's syndicate wishing to elect Lloyd's to act on its behalf.",
           "choices": [
             "Yes",
             "No"
@@ -200,10 +220,10 @@
         {
           "id": "rOCho",
           "type": "choice",
-          "label": "Are you in run off?",
+          "label": "Are you in run off? (clarification)",
           "choices": [
             "Yes",
-            "Second selectable choiceNo"
+            "No"
           ]
         },
         {
@@ -214,22 +234,22 @@
           "choices": [
             "UK insurer",
             "Branch of non-UK insurer",
-            "Captive",
+            "Captive (business underwrites own risks)",
             "Representative office",
             "Taxable intermediary",
-            "Other"
+            "Other (not likely)"
           ]
         }
       ]
     },
     {
-      "title": "Business description \"other\"",
+      "title": "Provide details of your business",
       "includeIf": "${busDesCho = 5}",
       "fields": [
         {
           "id": "othText",
           "type": "text",
-          "label": "Specify the details of your business"
+          "label": ""
         }
       ]
     },
@@ -248,13 +268,34 @@
       ]
     },
     {
-      "title": "First taxable premium",
+      "title": "Enter the transfer of business details",
+      "fields": [
+        {
+          "id": "IPTRegPrev",
+          "type": "text",
+          "label": "insurance premium tax (IPT) registration number of previous owner",
+          "helpText": "This is 15 numbers used for all returns, payments and correspondence"
+        },
+        {
+          "id": "IPTRegTrans",
+          "type": "choice",
+          "label": "Do you wish to keep the insurance premium tax (IPT) number of the previous owner? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What date do you expect to receive your first taxable premium?",
+      "description": "",
       "fields": [
         {
           "id": "firTaxPremDate",
           "type": "date",
-          "label": "First taxable premium",
-          "helpText": "Give the date you expect to receive your first taxable premium"
+          "label": "",
+          "helpText": "For example, 12 11 2007 "
         }
       ]
     },
@@ -262,27 +303,27 @@
       "title": "Number of class of insurance businesses",
       "fields": [
         {
+          "id": "generatedId_10c591e5_a6e3_4139_af98_cb1208724a1b",
           "type": "info",
-          "id": "generatedId_10c591e5-a6e3-4139-af98-cb1208724a1b",
           "label": "",
-          "infoText": "How many different class of insurance businesses do you want to tell us about?",
+          "infoText": "How many different class of insurance businesses do you want to tell us about? (to also be included on guidance page)",
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_596e7613-7080-4e67-8bb5-cd7ffa1e754b",
+          "id": "generatedId_596e7613_7080_4e67_8bb5_cd7ffa1e754b",
           "type": "info",
           "label": "Different classes of insurance",
           "infoText": "**Number Description**\n\n1 Accident\n\n2 Sickness\n\n3 Land vehicles\n\n4 Railway rolling stock\n\n5 Aircraft\n\n6 Ships\n\n7 Goods in transit\n\n8 Fire and natural forces\n\n9 Damage to property\n\n10 Motor vehicle liability\n\n11 Aircraft liability\n\n12 Liability of ships\n\n13 General liability\n\n14 Credit\n\n15 Suretyship \n\n16 Miscellaneous financial loss\n\n17 Legal expenses\n\n18 Assistance\n\nInsurance classes - Contracts of long term insurance (Part II of Schedule 1 to the RAO)\n\n**Number Description**\n\nI      Life and annuity\n\nII     Marriage and birth\n\nIII    Linked long term\n\nIV   Permanent health\n\nV    Tontines\n\nVI   Capital redemption\n\nVII  Contracts\n\nVIII Pension fund management\n\nX    Collective insurance, social insurance",
           "infoType": "long"
         },
         {
-          "type": "text",
           "id": "noClasses",
+          "type": "text",
           "label": "",
           "format": "positiveNumber"
         },
         {
-          "id": "generatedId_d5a31b95-7b91-41a3-85be-70695d597f57",
+          "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
           "type": "info",
           "label": "",
           "infoText": "See Section 5 of the notice 'Insurance Premium Tax' which will help you to answer the question above.",
@@ -296,13 +337,13 @@
       "repeatsMax": "${noClasses}",
       "fields": [
         {
-          "type": "text",
           "id": "classInsBus",
+          "type": "text",
           "label": "What class of insurance business do you intend to provide?",
           "helpText": "Enter the number and description of the class of insurance business here"
         },
         {
-          "id": "generatedId_8bdba5f0-6f60-4740-b7ef-2c7f444a7390",
+          "id": "generatedId_8bdba5f0_6f60_4740_b7ef_2c7f444a7390",
           "type": "info",
           "label": "Different classes of insurance",
           "infoText": "**Number Description**\n\n1 Accident\n\n2 Sickness\n\n3 Land vehicles\n\n4 Railway rolling stock\n\n5 Aircraft\n\n6 Ships\n\n7 Goods in transit\n\n8 Fire and natural forces\n\n9 Damage to property\n\n10 Motor vehicle liability\n\n11 Aircraft liability\n\n12 Liability of ships\n\n13 General liability\n\n14 Credit\n\n15 Suretyship \n\n16 Miscellaneous financial loss\n\n17 Legal expenses\n\n18 Assistance\n\nInsurance classes - Contracts of long term insurance (Part II of Schedule 1 to the RAO)\n\n**Number Description**\n\nI      Life and annuity\n\nII     Marriage and birth\n\nIII    Linked long term\n\nIV   Permanent health\n\nV    Tontines\n\nVI   Capital redemption\n\nVII  Contracts\n\nVIII Pension fund management\n\nX    Collective insurance, social insurance",
@@ -311,13 +352,12 @@
       ]
     },
     {
-      "title": "Value of premiums income",
+      "title": "Enter your annual premiums income",
       "fields": [
         {
-          "type": "text",
           "id": "valPrems",
-          "label": "Enter the expected value of your taxable premium income for the 12 month period commencing from the date that you expect to receive your taxable premium",
-          "helpText": "If you do not have completely accurate figures, enter an estimate instead.",
+          "type": "text",
+          "label": "The (annual) 12 month period starts from the date of your expected taxable premium. If you do not have completely accurate figures, enter an estimate instead.",
           "format": "sterling"
         }
       ]
@@ -326,8 +366,8 @@
       "title": "VAT registration",
       "fields": [
         {
-          "type": "choice",
           "id": "vatRegUKChoice",
+          "type": "choice",
           "label": "Are you registered for VAT in the UK?",
           "choices": [
             "Yes",
@@ -337,44 +377,27 @@
       ]
     },
     {
-      "title": "VAT registration number",
+      "title": "What is your VAT registration number?",
       "includeIf": "${vatRegUKChoice = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "UKVATYes",
-          "label": "Enter your VAT registration number here",
-          "helpText": "Enter GB followed by the 9 numerical digits",
-          "format": "ukVrn"
-        }
-      ]
-    },
-    {
-      "title": "Preferred method of payment",
-      "fields": [
-        {
           "type": "text",
-          "id": "prefPayMeth",
-          "label": "Enter your preferred method of payment here",
-          "helpText": "You can find the different payment methods on the HM Revenue and Customs website enter ‘How to pay Insurance Premium Tax’ within the search facility"
+          "label": "",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "ukVrn"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
+    "title": "Make your declaration and send the form",
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decText",
-        "type": "info",
-        "label": "",
-        "infoText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed placerat est. Integer in porttitor enim. Etiam felis sapien, eleifend eget tellus vel, pulvinar ultrices elit. Fusce at neque sit amet nibh maximus tincidunt ac ut eros. Pellentesque leo dui, mattis pulvinar turpis eu, viverra dictum lacus. Cras egestas fringilla tincidunt. Morbi interdum fermentum felis vitae elementum. In venenatis euismod efficitur. Morbi posuere auctor imperdiet. Ut et lacus rhoncus, malesuada mi sollicitudin, sagittis tellus."
-      },
-      {
         "id": "declarationNameGroup",
         "type": "group",
-        "label": "Provide details below of who is signing the declaration",
+        "label": "Enter the details below of who is signing the declaration",
         "fields": [
           {
             "id": "declaration-firstname",
@@ -389,11 +412,16 @@
             "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
           },
           {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+            "id": "capacity",
+            "type": "choice",
+            "label": "Capacity",
+            "choices": [
+              "Authorised official",
+              "Company Secretary",
+              "Director",
+              "Sole proprietor",
+              "Partner"
+            ]
           }
         ]
       },
@@ -411,6 +439,13 @@
             "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
           }
         ]
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "I declare the information given on this form and contained in any accompanying documents is true and complete",
+        "infoType": "important"
       }
     ]
   },
@@ -432,6 +467,7 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
 }
