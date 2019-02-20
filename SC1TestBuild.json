@@ -14,7 +14,7 @@
   },
   "sections": [
     {
-      "title": "Have you got evidence to show your organisation has the funds to operated the proposed agency or establishment?",
+      "title": "Have you got evidence to show your organisation has the funds to operate the proposed agency or establishment?",
       "fields": [
         {
           "id": "generatedId_44fb61e2_4fcc_47b1_967e_c80ade178dd1",
@@ -33,7 +33,7 @@
         {
           "id": "eviChoi",
           "type": "choice",
-          "label": "a",
+          "label": "",
           "choices": [
             "Yes I have evidence",
             "No I do not have evidence"
@@ -652,57 +652,6 @@
       ]
     },
     {
-      "title": "(ORG) Have you ever been registered or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 0}",
-      "description": "",
-      "fields": [
-        {
-          "id": "generatedId_422fb1d7_64f3_462e_8003_2ae307972c91",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice2a",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "multivalue": "true",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 2}",
-      "fields": [
-        {
-          "id": "generatedId_4583e4a9_7f3f_4195_b71c_dff155434072",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice3a",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "multivalue": "true",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "(IND) Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
@@ -722,83 +671,6 @@
       ]
     },
     {
-      "title": "(ORG) Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 0 && actsChoice2a = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_2ab4037f_0f61_43a7_82f3_8f6380583ac1",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "long"
-        },
-        {
-          "id": "prevRegDetsPart",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "(PAR) Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 2 && actsChoice3a = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_94d3a6c6_1ff3_45d1_a7ac_a4cf81974695",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "long"
-        },
-        {
-          "id": "prevRegDetsPart_copy_1",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Have you (or has your organisation) ever had an application refused or a registration cancelled?",
-      "fields": [
-        {
-          "id": "generatedId_e9107240_480d_4dfd_9415_dfb9f61f7634",
-          "type": "info",
-          "label": "",
-          "infoText": "Only answer 'Yes' if this happened under any of the following acts:",
-          "infoType": "noformat"
-        },
-        {
-          "id": "refOrCancChoi",
-          "type": "choice",
-          "label": "",
-          "shortName": "Refused or cancelled",
-          "helpText": "Tell us about any that apply",
-          "mandatory": "false",
-          "multivalue": "true",
-          "choices": [
-            "Registered Homes Act 1984",
-            "Children Act 1989",
-            "Registered Homes (Amendment) Act 1991",
-            "Childcare Act 2006",
-            "Nurses Agency Act 1957",
-            "Care Standards Act 2000",
-            "Health and Social Care Act 2008"
-          ]
-        },
-        {
-          "id": "cancRefOk",
-          "type": "choice",
-          "label": "I have had an application refused or a registration cancelled",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "(IND) Have you ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
@@ -811,50 +683,6 @@
         },
         {
           "id": "cancRefOk1",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk2",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(PAR) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 2}",
-      "fields": [
-        {
-          "id": "generatedId_5ecf7455_3323_4f86_9aed_e2a1a4b113e5",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk3",
           "type": "choice",
           "label": "",
           "choices": [
@@ -887,6 +715,73 @@
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Have you ever been registered or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 0}",
+      "description": "",
+      "fields": [
+        {
+          "id": "generatedId_422fb1d7_64f3_462e_8003_2ae307972c91",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice2a",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 0 && actsChoice2a = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_2ab4037f_0f61_43a7_82f3_8f6380583ac1",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "long"
+        },
+        {
+          "id": "prevRegDetsPart",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk2",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -925,6 +820,546 @@
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Organisation sector",
+      "fields": [
+        {
+          "id": "generatedId_4524a98a_3903_4116_b493_a9a7c7a03a8f",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgSecChoi",
+          "type": "choice",
+          "label": "(ORG) Organisation sector",
+          "choices": [
+            "Local council",
+            "Health authority",
+            "Voluntary",
+            "Private",
+            "Limited liability partnership (LLP)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG and PAR) Which sector does your organisation belong to?",
+      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
+      "fields": [
+        {
+          "id": "orgTypChoi",
+          "type": "choice",
+          "label": "(ORG and PAR) Which sector does your organisation belong to?",
+          "choices": [
+            "Local council",
+            "Health authority",
+            "Voluntary sector",
+            "Private sector"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) What is your type of organisation?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "orgType",
+          "type": "choice",
+          "label": "(ORG) What is your type of organisation?",
+          "choices": [
+            "Company",
+            "Statutory body / school",
+            "Committee",
+            "Other organisation"
+          ],
+          "optionHelpText": [
+            "",
+            "This includes a local council, a trust or school governing body",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your organisation",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
+          "type": "info",
+          "label": "",
+          "infoText": "* Explain why we are asking this *",
+          "infoType": "noformat"
+        },
+        {
+          "id": "orgName2",
+          "type": "text",
+          "label": "Organisation name",
+          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
+        },
+        {
+          "id": "orgBirthDate",
+          "type": "date",
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": " For example, 31 03 1980 "
+        },
+        {
+          "id": "regChar",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNum",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Your organisations contact details",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
+          "type": "info",
+          "label": "",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "agEsAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "locAuth",
+          "type": "text",
+          "label": "Local council"
+        },
+        {
+          "id": "agEsTel_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agEsEm_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Is your organisation a subsidiary of a holding company?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "holCoCho",
+          "type": "choice",
+          "label": "(ORG) Is your organisation a subsidiary of a holding company?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "hoCoNom",
+          "type": "text",
+          "label": "Holding company name",
+          "shortName": "Name",
+          "helpText": "This is the name of the company running the establishment. For example, Social care limited.",
+          "format": "shortText"
+        },
+        {
+          "id": "hoCoDOB",
+          "type": "date",
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "regChar_copy_1",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNum_copy_1",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) What are the details of your holding company (version 2)?",
+      "includeIf": "${holCoCho = 0}",
+      "fields": [
+        {
+          "id": "hoCoNomVers2",
+          "type": "text",
+          "label": "Name of the organisation",
+          "shortName": "Name",
+          "format": "shortText"
+        },
+        {
+          "id": "hoCoDOBVers2",
+          "type": "date",
+          "label": "Date the organisation came into being",
+          "helpText": "For example, 01/03/1999"
+        },
+        {
+          "id": "regCharVers2",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank"
+        },
+        {
+          "id": "regCoNumVers2",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank"
+        },
+        {
+          "id": "hoCoCho2Vers2",
+          "type": "choice",
+          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Your holding company's contact details (version 2)",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "orgSubOft",
+          "type": "choice",
+          "label": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company's subsidiary",
+      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
+      "fields": [
+        {
+          "id": "subNam",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_1",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "subOfRegNo",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Your holding company subsidiary's contact details",
+      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "id": "subAddOrg1",
+          "type": "choice",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company's subsidiary 2",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
+      "fields": [
+        {
+          "id": "subNam_copy_1",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_2",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "subOfRegNo_copy_1",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Your holding company subsidiary's contact details 2",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_12b23211_f331_4eb8_9177_04f8082157c7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers3",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers3",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers3",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "id": "subAddOrg2",
+          "type": "choice",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Tell us about your holding company's subsidiary 3",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
+      "fields": [
+        {
+          "id": "subNam_copy_2",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_3",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "subOfRegNo_copy_2",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "(ORG) Your holding company subsidiary's contact details 3",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_f25aa5a2_4ba7_4264_961f_118a71bc4e20",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers3_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers3_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers3_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_4583e4a9_7f3f_4195_b71c_dff155434072",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice3a",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "multivalue": "true",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 2 && actsChoice3a = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_94d3a6c6_1ff3_45d1_a7ac_a4cf81974695",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "long"
+        },
+        {
+          "id": "prevRegDetsPart_copy_1",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "(PAR) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_5ecf7455_3323_4f86_9aed_e2a1a4b113e5",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk3",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -1355,31 +1790,8 @@
       ]
     },
     {
-      "title": "Organisation sector",
-      "fields": [
-        {
-          "id": "generatedId_4524a98a_3903_4116_b493_a9a7c7a03a8f",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "orgSecChoi",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Local council",
-            "Health authority",
-            "Voluntary",
-            "Private",
-            "Limited liability partnership (LLP)"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(All) Will this person have management responsibility for staff?",
+      "title": "(ORG or PART) Will this person have management responsibility for staff?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
       "description": "Looks like a duplicate that could be built into the responsible person pages",
       "fields": [
         {
@@ -1394,7 +1806,8 @@
       ]
     },
     {
-      "title": "(All) Will this person have contact with children and young people?",
+      "title": "(ORG or PART) Will this person have contact with children and young people?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
       "description": "Looks like a duplicate that could be built into the responsible person pages",
       "fields": [
         {
@@ -1409,457 +1822,8 @@
       ]
     },
     {
-      "title": "(ORG and PAR) Which sector does your organisation belong to?",
-      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
-      "fields": [
-        {
-          "id": "orgTypChoi",
-          "type": "choice",
-          "label": "(ORG and PAR) Which sector does your organisation belong to?",
-          "choices": [
-            "Local council",
-            "Health authority",
-            "Voluntary sector",
-            "Private sector"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) What is your type of organisation?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "orgType",
-          "type": "choice",
-          "label": "(ORG) What is your type of organisation?",
-          "choices": [
-            "Company",
-            "Statutory body / school",
-            "Committee",
-            "Other organisation"
-          ],
-          "optionHelpText": [
-            "",
-            "This includes a local council, a trust or school governing body",
-            "",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Tell us about your organisation",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "orgName2",
-          "type": "text",
-          "label": "Organisation name",
-          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
-        },
-        {
-          "id": "orgBirthDate",
-          "type": "date",
-          "label": "Trading start date",
-          "shortName": "Trading start date",
-          "helpText": " For example, 31 03 1980 "
-        },
-        {
-          "id": "regChar",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank"
-        },
-        {
-          "id": "regCoNum",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your organisations contact details",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
-          "type": "info",
-          "label": "",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "agEsAdd_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "locAuth",
-          "type": "text",
-          "label": "Local council"
-        },
-        {
-          "id": "agEsTel_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "agEsEm_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Is your organisation a subsidiary of a holding company?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "holCoCho",
-          "type": "choice",
-          "label": "(ORG) Is your organisation a subsidiary of a holding company?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Tell us about your holding company",
-      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "hoCoNom",
-          "type": "text",
-          "label": "Holding company name",
-          "shortName": "Name",
-          "helpText": "This is the name of the company running the establishment. For example, Social care limited.",
-          "format": "shortText"
-        },
-        {
-          "id": "hoCoDOB",
-          "type": "date",
-          "label": "Trading start date",
-          "shortName": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "regChar_copy_1",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank"
-        },
-        {
-          "id": "regCoNum_copy_1",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank"
-        }
-      ]
-    },
-    {
-      "title": "What are the details of your holding company (version 2)?",
-      "includeIf": "${holCoCho = 0}",
-      "fields": [
-        {
-          "id": "hoCoNomVers2",
-          "type": "text",
-          "label": "Name of the organisation",
-          "shortName": "Name",
-          "format": "shortText"
-        },
-        {
-          "id": "hoCoDOBVers2",
-          "type": "date",
-          "label": "Date the organisation came into being",
-          "helpText": "For example, 01/03/1999"
-        },
-        {
-          "id": "regCharVers2",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank"
-        },
-        {
-          "id": "regCoNumVers2",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank"
-        },
-        {
-          "id": "hoCoCho2Vers2",
-          "type": "choice",
-          "label": "Does the holding company have any other subsidiaries registered with Ofsted? ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your holding company's contact details (version 2)",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers2_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers2_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers2_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "orgSubOft",
-          "type": "choice",
-          "label": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Tell us about your holding company's subsidiary",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "subNam",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_1",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "subOfRegNo",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your holding company subsidiary's contact details",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers2",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers2",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers2",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        },
-        {
-          "id": "subAddOrg1",
-          "type": "choice",
-          "label": "Do you want to add another subsidiary?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Tell us about your holding company's subsidiary 2",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "subNam_copy_1",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_2",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "subOfRegNo_copy_1",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your holding company subsidiary's contact details 2",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_12b23211_f331_4eb8_9177_04f8082157c7",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers3",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers3",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers3",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        },
-        {
-          "id": "subAddOrg2",
-          "type": "choice",
-          "label": "Do you want to add another subsidiary?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Tell us about your holding company's subsidiary 3",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "subNam_copy_2",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_3",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "subOfRegNo_copy_2",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "(ORG) Your holding company subsidiary's contact details 3",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_f25aa5a2_4ba7_4264_961f_118a71bc4e20",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers3_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers3_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers3_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "(ALL) Tell us about the establishment or agency",
+      "title": "(NOT HOL) Tell us about the establishment or agency",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "esAgNam",
@@ -1877,7 +1841,8 @@
       ]
     },
     {
-      "title": "(ALL) Contact details and address for main site",
+      "title": "(NOT HOL) Contact details and address for main site",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
@@ -1909,12 +1874,13 @@
       ]
     },
     {
-      "title": "(ALL) Will you have sole use of the property?",
+      "title": "(NOT HOL) Will you have sole use of the property?",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "solUseProp",
           "type": "choice",
-          "label": "(ALL) Will you have sole use of the property?",
+          "label": "(NOT HOL) Will you have sole use of the property?",
           "shortName": "Sole use of property",
           "choices": [
             "Yes",
@@ -1924,31 +1890,13 @@
       ]
     },
     {
-      "title": "You have added details for 1 premises (PLACEHOLDER)",
+      "title": "(AGENCY) Is the agency operated from more than one site?",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
-          "id": "generatedId_5c8ee9b3_dce5_4ef0_ad17_4bc899c8677f",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "Will you regularly use any other premises in connection with the establishment?",
-      "fields": [
-        {
-          "id": "generatedId_292fbcce_281f_4a48_b086_28cc6756eb36",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
-        {
-          "id": "othPremReg",
           "type": "choice",
-          "label": "",
+          "id": "agMultiSiteChoi",
+          "label": "(AGENCY) Is the agency operated from more than one site?",
           "choices": [
             "Yes",
             "No"
@@ -1957,58 +1905,409 @@
       ]
     },
     {
-      "title": "Tell us about the address for all your premises",
+      "title": "(AGENCY) Tell us about your agency's other sites 1",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
           "id": "estAbAdd_copy_1",
           "type": "address",
           "label": "",
           "shortName": "Address"
+        },
+        {
+          "type": "text",
+          "id": "agSiteTel",
+          "label": "Telephone number",
+          "shortName": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "agSiteEm",
+          "label": "Email address",
+          "shortName": "Email address",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "agSiteText",
+          "label": "Describe any travel arrangements between the sites",
+          "multiline": "true"
+        },
+        {
+          "type": "choice",
+          "id": "agSiteAddChoi1",
+          "label": "Do you wish to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Address of your second premises",
+      "title": "(AGENCY) Tell us about your agency's other sites 2",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi1 = 0}",
       "fields": [
         {
-          "id": "estAbAdd_copy_2",
+          "id": "estAbAdd2",
           "type": "address",
           "label": "",
           "shortName": "Address"
+        },
+        {
+          "type": "text",
+          "id": "agSiteTel2",
+          "label": "Telephone number",
+          "shortName": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "agSiteEm2",
+          "label": "Email address",
+          "shortName": "Email address",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "agSiteText2",
+          "label": "Describe any travel arrangements between the sites",
+          "multiline": "true"
+        },
+        {
+          "type": "choice",
+          "id": "agSiteAddChoi2",
+          "label": "Do you wish to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Describe any travel arrangements used between premises",
+      "title": "(AGENCY) Tell us about your agency's other sites 3",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi2 = 0}",
       "fields": [
         {
-          "id": "travTex",
-          "type": "text",
+          "id": "estAbAdd3",
+          "type": "address",
           "label": "",
+          "shortName": "Address"
+        },
+        {
+          "type": "text",
+          "id": "agSiteTel3",
+          "label": "Telephone number",
+          "shortName": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "agSiteEm3",
+          "label": "Email address",
+          "shortName": "Email address",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "agSiteText3",
+          "label": "Describe any travel arrangements between the sites",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "(HOL) Tell us about each site from which the residential holiday scheme for disabled children will operate",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "id": "holSitName",
+          "type": "text",
+          "label": "Site name"
+        },
+        {
+          "id": "holSiteDateOp",
+          "type": "text",
+          "label": "Dates of operation over the next 12 months ",
+          "shortName": "Dates of operation",
+          "helpText": "For example, from 31 1 2019 to 10 4 2019 inclusive. Use a new line for each period of operation.",
+          "multiline": "true"
+        },
+        {
+          "id": "holTransDet",
+          "type": "text",
+          "label": "Describe any travel arrangements used by the residential holiday scheme for disabled children",
+          "shortName": "Transport details",
           "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "Describe the premises",
+      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "id": "generatedId_5fa8e245_e782_4828_9200_5c3e29d5ed5b",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othSitAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "holSitFax",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "othSitEm_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "type": "choice",
+          "id": "holSiteAddChoi",
+          "label": "Do you wish to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "includeIf": "${appType = 4 && holSiteAddChoi = 0}",
+      "fields": [
+        {
+          "id": "generatedId_6f70fb99_b304_46a4_99b5_cd14c84ee7e5",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othSitAdd2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel2",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "holSitFax2",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "othSitEm2",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "type": "choice",
+          "id": "holSiteAddChoi2",
+          "label": "Do you wish to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "includeIf": "${appType = 4 && holSiteAddChoi2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_cc1dbaa2_8ea8_4d9d_b881_9a49c238b879",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othSitAdd3",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "othSitTel3",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "holSitFax3",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "othSitEm3",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "(HOME) Will you regularly use any other premises in connection with the establishment?",
+      "includeIf": "${appType = 0 || appType = 5}",
+      "fields": [
+        {
+          "id": "generatedId_292fbcce_281f_4a48_b086_28cc6756eb36",
+          "type": "info",
+          "label": "",
+          "infoText": "We need to know all the premises you will use to help with our inspections.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "othPremReg",
+          "type": "choice",
+          "label": "(HOME) Will you regularly use any other premises in connection with the establishment?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(HOME) Tell us about your other premises of your establishment 1",
+      "includeIf": "${appType = 0 || appType = 5}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "homeSiteAddress",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTel",
+          "label": "Telephone number"
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTransport",
+          "label": "Describe any travel arrangements between the sites",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        },
+        {
+          "type": "choice",
+          "id": "homeSiteAdd1",
+          "label": "Do you want to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(HOME) Tell us about your other premises of your establishment 2",
+      "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "homeSiteAddress2",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTel2",
+          "label": "Telephone number"
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTransport2",
+          "label": "Describe any travel arrangements between the sites",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        },
+        {
+          "type": "choice",
+          "id": "homeSiteAdd2",
+          "label": "Do you want to add another site?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(HOME) Tell us about your other premises of your establishment 3",
+      "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
+      "fields": [
+        {
+          "type": "address",
+          "id": "homeSiteAddress3",
+          "label": ""
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTel3",
+          "label": "Telephone number"
+        },
+        {
+          "type": "text",
+          "id": "homeSiteTransport3",
+          "label": "Describe any travel arrangements between the sites",
+          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "(ALL) Describe the premises",
       "fields": [
         {
           "id": "premDesc",
           "type": "text",
-          "label": "",
+          "label": "(ALL) Describe the premises",
           "helpText": "For example, whether the premises are purpose built or converted, and the area they are located in",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
+      "title": "(ALL) Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
       "fields": [
         {
           "id": "premRedChoi",
           "type": "choice",
-          "label": "",
+          "label": "(ALL) Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
           "shortName": "premises meets needs",
           "choices": [
             "Yes",
@@ -2018,7 +2317,7 @@
       ]
     },
     {
-      "title": "Details of building works needed",
+      "title": "(ALL) Details of building works needed",
       "fields": [
         {
           "id": "buildDesc",
@@ -2035,12 +2334,13 @@
       ]
     },
     {
-      "title": "Do the premises require planning permission?",
+      "title": "(HOL) Do the premises require planning permission?",
+      "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "planReqChoi",
           "type": "choice",
-          "label": "",
+          "label": "(HOL) Do the premises require planning permission?",
           "shortName": "Planning permission required",
           "choices": [
             "Yes",
@@ -2050,7 +2350,24 @@
       ]
     },
     {
-      "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
+      "title": "(ALL except HOL) Do the premises require planning permission?",
+      "includeIf": "${appType != 4}",
+      "fields": [
+        {
+          "id": "planReqChoi2",
+          "type": "choice",
+          "label": "(ALL except HOL) Do the premises require planning permission?",
+          "shortName": "Planning permission required",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ALL except HOL) Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
+      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
@@ -2079,8 +2396,8 @@
       ]
     },
     {
-      "title": "Upload your planning document",
-      "includeIf": "${planChoi = 0}",
+      "title": "(ALL except HOL) Upload your planning document",
+      "includeIf": "${appType != 4 && planChoi = 0}",
       "fields": [
         {
           "id": "upPlan",
@@ -2092,8 +2409,8 @@
       ]
     },
     {
-      "title": "Post your planning documents",
-      "includeIf": "${planChoi =1}",
+      "title": "(ALL except HOL) Post your planning documents",
+      "includeIf": "${appType != 4 && planChoi = 1}",
       "fields": [
         {
           "id": "generatedId_36019c09_510a_4958_a531_e76f1d8c22db",
@@ -2105,8 +2422,8 @@
       ]
     },
     {
-      "title": "I haven't obtained the required planning permission",
-      "includeIf": "${planChoi = 2}",
+      "title": "(ALL except HOL) I haven't obtained the required planning permission",
+      "includeIf": "${appType != 4 && planChoi = 2}",
       "fields": [
         {
           "id": "generatedId_0d8d3875_485a_4c21_b7ab_974d4b10b0ee",
@@ -2118,12 +2435,12 @@
       ]
     },
     {
-      "title": "Does the building meet the access requirements of the Equality Act 2010?",
+      "title": "(ALL) Does the building meet the access requirements of the Equality Act 2010?",
       "fields": [
         {
           "id": "accessChoi",
           "type": "choice",
-          "label": "",
+          "label": "(ALL) Does the building meet the access requirements of the Equality Act 2010?",
           "shortName": "Access requirements met",
           "choices": [
             "Yes",
@@ -2133,25 +2450,25 @@
       ]
     },
     {
-      "title": "Why do the premises not meet the access requirements?",
+      "title": "(ALL) Why do the premises not meet the access requirements?",
       "includeIf": "${accessChoi = 1}",
       "fields": [
         {
           "id": "reqNotMet",
           "type": "text",
-          "label": "",
+          "label": "(ALL) Why do the premises not meet the access requirements?",
           "shortName": "Why requirements are not met",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "What are the security arrangements of the premises?",
+      "title": "(ALL) What are the security arrangements of the premises?",
       "fields": [
         {
           "id": "secArrDesc",
           "type": "text",
-          "label": "",
+          "label": "(ALL) What are the security arrangements of the premises?",
           "shortName": "Security arrangements",
           "helpText": "For example, how you will safeguard access to the information you hold? How will you restrict access from other buildings or other parts of the building, where appropriate? ",
           "multiline": "true"
@@ -2159,152 +2476,7 @@
       ]
     },
     {
-      "title": "Tell us about other site",
-      "fields": [
-        {
-          "id": "siteName",
-          "type": "text",
-          "label": "",
-          "shortName": "Other site name"
-        },
-        {
-          "id": "otherSiteDesc",
-          "type": "text",
-          "label": "Describe any travel arrangements between the sites",
-          "shortName": "Other site travel",
-          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Provide contact details for this site",
-      "fields": [
-        {
-          "id": "generatedId_5acf673f_019a_4463_862e_604b57839f76",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "othSitAdd",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "othSitTel",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "othSitEm",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "You have added 2 details for 2 sites (PLACEHOLDER)",
-      "fields": [
-        {
-          "id": "generatedId_b5bd1156_8b7d_4317_ad14_0c8b78d6918a",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "Tell us about each site from which the residential holiday scheme for disabled children will operate",
-      "fields": [
-        {
-          "id": "holSitName",
-          "type": "text",
-          "label": "Site name"
-        },
-        {
-          "id": "holSiteDateOp",
-          "type": "text",
-          "label": "Dates of operation over the next 12 months ",
-          "shortName": "Dates of operation",
-          "helpText": "For example, from 31 1 2019 to 10 4 2019 inclusive. Use a new line for each period of operation.",
-          "multiline": "true"
-        },
-        {
-          "id": "holTransDet",
-          "type": "text",
-          "label": "Describe any travel arrangements used by the residential holiday scheme for disabled children",
-          "shortName": "Transport details",
-          "helpText": "You should include travel arrangement details such as ....? For example?  Up to how many words? ",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
-      "fields": [
-        {
-          "id": "generatedId_5fa8e245_e782_4828_9200_5c3e29d5ed5b",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "othSitAdd_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "othSitTel_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "othSitEm_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "You have added details for 2 sites for the residential holiday scheme for disabled children (PLACEHOLDER)",
-      "fields": [
-        {
-          "id": "generatedId_ae6f6b35_0f6d_448c_bed7_abc4bc0c2575",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "You have added details for 2 premises (PLACEHOLDER)",
-      "fields": [
-        {
-          "id": "generatedId_4de6481d_0b67_4d25_9f2a_ac54eaddbf47",
-          "type": "info",
-          "label": "",
-          "infoText": "Place holder page for list style summary ",
-          "infoType": "banner"
-        }
-      ]
-    },
-    {
-      "title": "What staff posts are you recruiting to care for children and young people?",
+      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 1",
       "fields": [
         {
           "id": "stafPos",
@@ -2322,7 +2494,7 @@
           "multiline": "true"
         },
         {
-          "id": "another",
+          "id": "another1",
           "type": "choice",
           "label": "Do you need to add another position?",
           "choices": [
@@ -2333,7 +2505,58 @@
       ]
     },
     {
-      "title": "Tell us about these posts",
+      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 2",
+      "includeIf": "${another1 = 0}",
+      "fields": [
+        {
+          "id": "stafPos_copy_1",
+          "type": "text",
+          "label": "Position",
+          "shortName": "Position",
+          "format": "text(0,50)"
+        },
+        {
+          "id": "stafResp_copy_1",
+          "type": "text",
+          "label": "Duties and responsibilities",
+          "shortName": "Duties",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        },
+        {
+          "id": "another2",
+          "type": "choice",
+          "label": "Do you need to add another position?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 3",
+      "includeIf": "${another2 = 0}",
+      "fields": [
+        {
+          "id": "stafPos_copy_2",
+          "type": "text",
+          "label": "Position",
+          "shortName": "Position",
+          "format": "text(0,50)"
+        },
+        {
+          "id": "stafResp_copy_2",
+          "type": "text",
+          "label": "Duties and responsibilities",
+          "shortName": "Duties",
+          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "(ALL) Tell us about these posts",
       "fields": [
         {
           "id": "noPos",
@@ -3079,7 +3302,8 @@
       ]
     },
     {
-      "title": "Will the holiday scheme be single sex occupancy?",
+      "title": "(HOL) Will the holiday scheme be single sex occupancy?",
+      "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "gendChoi",
@@ -3121,7 +3345,8 @@
       ]
     },
     {
-      "title": "What is your procedure for dealing with any children who may go missing from the holiday scheme?",
+      "title": "(HOL) What is your procedure for dealing with any children who may go missing from the holiday scheme?",
+      "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "othSelCritTex_copy_1",
@@ -3133,7 +3358,8 @@
       ]
     },
     {
-      "title": "What are your arrangements for children to raise questions and concerns about the holiday scheme?",
+      "title": "(HOL) What are your arrangements for children to raise questions and concerns about the holiday scheme?",
+      "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "othSelCritTex_copy_2",
@@ -3145,7 +3371,8 @@
       ]
     },
     {
-      "title": "What is your procedure for dealing with concerns and complaints from children about your holiday scheme?",
+      "title": "(HOL) What is your procedure for dealing with concerns and complaints from children about your holiday scheme?",
+      "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "othSelCritTex_copy_3",
