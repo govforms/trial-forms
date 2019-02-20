@@ -15,6 +15,64 @@
   },
   "sections": [
     {
+      "title": "Test",
+      "continueLabel": "llama",
+      "fields": [
+        {
+          "id": "generatedId_1035b354_c741_4084_a187_08601214b769",
+          "type": "group",
+          "label": "Import declarations made in this accounting year",
+          "format": "horizontal",
+          "fields": [
+            {
+              "id": "",
+              "type": "text",
+              "label": "Estimated number"
+            },
+            {
+              "id": "",
+              "type": "text",
+              "label": "Estimated total value"
+            }
+          ]
+        },
+        {
+          "id": "test1",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "fileupload",
+          "type": "file",
+          "label": "Upload your file"
+        },
+        {
+          "id": "generatedId_784ba596_d3d8_4775_9aa2_0836be93b2b5",
+          "type": "info",
+          "label": "",
+          "infoText": "File formats",
+          "infoType": "standard"
+        }
+      ]
+    },
+    {
+      "title": "Llama page",
+      "fields": [
+        {
+          "id": "generatedId_06f8aeea_a4d2_42d6_b0eb_ba7450c28144",
+          "type": "info",
+          "label": "",
+          "infoText": "## Heading\n* bullet \n* bullet\n[I'm an inline-style link] (https://www.google.com)",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_6359cb99_47d8_493e_bfff_a0ba103b4277",
+          "type": "address",
+          "label": "address"
+        }
+      ]
+    },
+    {
       "title": "Preperation questions",
       "shortName": "Have you got all the information you need",
       "fields": [
@@ -31,6 +89,20 @@
           "label": "Which departments, including management, have you involved in the process to prepare your company for the AEO application? Have you involved customs or third parties in the process (consultants etc)?",
           "multiline": "yes",
           "errorMessage": "Who has been involved?"
+        }
+      ]
+    },
+    {
+      "title": "Wrong answer",
+      "includeIf": "${whoHelped='nathan'}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_fb5b500f_b0ac_4229_b678_421631780c75",
+          "type": "info",
+          "label": "",
+          "infoText": "Sorry",
+          "infoType": "noformat"
         }
       ]
     },
@@ -166,6 +238,12 @@
           "label": "Date of establishment",
           "helpText": "Enter the date you started trading, or in the case of a company, the date of your certificate of incorporation",
           "errorMessage": "Date of establishment can only include numbers in this format dd mm yyyy"
+        },
+        {
+          "id": "date2",
+          "type": "date",
+          "label": "test date",
+          "format": "after ${dateOfEstablishment} +28"
         },
         {
           "id": "customsAccountsAddressChoice",
