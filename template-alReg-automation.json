@@ -430,7 +430,7 @@
           "format": "sterling"
         },
         {
-          "id": "What is the rate of aggregates levy?",
+          "id": "rateOfAggregateLevy",
           "type": "info",
           "label": "Where can I find out the current rate of levy?",
           "infoText": "The current rate for Aggregates Levy can be found in section 1.7 of Excise Notice AGL1. ",
@@ -793,7 +793,7 @@
           "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
-              "id": "regNo1LtdCo",
+              "id": "regNo1Part",
               "type": "text",
               "label": "Registration number",
               "shortName": "Registration number of other business",
@@ -879,17 +879,18 @@
       "convertSingleQuotes": true,
       "uri": "/cross-regime/subscription/AGL/utr/1234567890",
       "method": "POST",
-      "payload": "{'registrationDetails':{'isrScenario':'ZAG2','commonDetails':{'legalEntity':{'organisationType':'7','dateOfApplication':'2019-02-07','taxStartDate':'2019-02-01'},'customerIdentificationNumber':{'custIDNumber':'1234567890','noIdentifier':'0',},'aboutBusiness':{'tradingName':'AggsRUs'},'businessContactDetails':{'addressNotInUK':'0','addressInputModeIndicator':'2','addressLine1':'1MainStreet','addressLine2':'Telford','postCode':'TF34ER','telephoneNumber':'01211213434'},'correspondenceAddressDifferent':'0','declarationStatus':'01','declarationAcceptedIndicator':'1'},'regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_NUMBER_OF_SITES','paramValue':'1'},{'paramSequence':'01','paramName':'A_OTHER_AG_BUSINESSES','paramValue':'0'},{'paramSequence':'01','paramName':'A_QEXTRACT','paramValue':'0'},{'paramSequence':'01','paramName':'A_SANDGRAVEL','paramValue':'0'},{'paramSequence':'01','paramName':'A_IMP_ABROAD','paramValue':'0'},{'paramSequence':'01','paramName':'A_MOB_CRUSHER','paramValue':'0'},{'paramSequence':'01','paramName':'A_EXEMPT_RELIEF','paramValue':'0'},{'paramSequence':'01','paramName':'A_ESTIMATE','paramValue':'1000.00'},{'paramSequence':'01','paramName':'A_TKOVER','paramValue':'0'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'siteDetails':{'isrScenario':'ZAG5','formData':[{'commonDetails':{'action':'1','siteAddress':{'tradingName':'{{AggsRUsShropshire}}','addressInputModeIndicator':'2','addressLine1':'1OtherStreet','addressLine2':'Wellington','postCode':'TF16RT','telephoneNumber':'07677877878'}},'regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_WB_USED_TO_WEIGHT','paramValue':'1'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]}]}}"
+      "payload": "{'registrationDetails': {'isrScenario': 'ZAG2','commonDetails': {'legalEntity': {'organisationType': '{{lookup null '('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '7'; ('4') => '5'; ('5') => '5'' 1 legalStatus}}','dateOfApplication': '{{currentDate}}','taxStartDate': '{{aggregatesDate-year}}-{{aggregatesDate-month}}-{{aggregatesDate-day}}'},'customerIdentificationNumber': {'custIDNumber': '1234567890'},'aboutBusiness': {'tradingName': '{{either5 busTradingname busTradingnameST busTradingnameEnter businessName titleSole}}'},'businessContactDetails': {'addressNotInUK': '0','addressInputModeIndicator': '2',{{toDesAddressWithoutPostcode \"businessAddress\"}},'postCode': '{{businessAddress-postcode}}','telephoneNumber': '{{phoneNumber}}','email': '{{email1}}'},'correspondenceAddressDifferent': '{{yesNoToEtmpChoice altAdd}}','correspondenceContactDetails': {'addressNotInUK': '0','addressInputModeIndicator': '2',{{toDesAddressWithoutPostcode \"address\"}}'postCode': '{{address-postcode}}','telephoneNumber': '{{altPhoneNumber}}','email': '{{altEmail}}'},'declarationStatus': '{{lookup null '('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'' 1 legalStatusDec}}'},'regimeSpecificDetails': [{'paramSequence': '01','paramName': 'A_NUMBER_OF_SITES','paramValue': '{{noOfSites}}'},{'paramSequence': '01','paramName': 'A_OTHER_AG_BUSINESSES','paramValue': '{{or3 otherBusinessLtdCompany otherBusiness otherBusinessPart}}'},{{#each regNo1}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{{#each regNo1LtdCo}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{{#each regNo1Part}}{'paramSequence': '@index','paramName': 'A_OTHR_AG_BUS_REG_NUM','paramValue': '{{.}}'},{{/each}}{'paramSequence': '01','paramName': 'A_QEXTRACT','paramValue': '{{quarryPercentage}}'},{'paramSequence': '01','paramName': 'A_SANDGRAVEL','paramValue': '{{SandgravelPercentage}}'},{'paramSequence': '01','paramName': 'A_IMP_ABROAD','paramValue': '{{importPercentage}}'},{'paramSequence': '01','paramName': 'A_MOB_CRUSHER','paramValue': '{{crusherPercentage}}'},{{#each otherName}}{'paramSequence': '@index','paramName': 'A_OTHER','paramValue': '{{.}}'},{{/each}}{{#each OtherPercentage}}{'paramSequence': '@index','paramName': 'A_OTHERS_PERC','paramValue': '{{.}}'},{{/each}}{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF','paramValue': '{{yesNoToEtmpChoice exemptChoice}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_STD','paramValue': '{{exemptLevy}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_LOWER','paramValue': '{{relievedLevy}}'},{'paramSequence': '01','paramName': 'A_EXEMPT_RELIEF_EX','paramValue': '{{exportLevy}}'},{'paramSequence': '01','paramName': 'A_ESTIMATE','paramValue': '{{aggregatesLevy}}'},{'paramSequence': '01','paramName': 'A_TKOVER','paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},{'paramSequence': '01','paramName': 'A_TKOVER_DATE','paramValue': '{{dateToEtmpDate transferDate}}'},{'paramSequence': '01','paramName': 'A_TKOVER_PRV_NAME','paramValue': '{{prevBusinessName}}'},{'paramSequence': '01','paramName': 'A_REG_PREVIOUS','paramValue': '{{prevRegNo}}'},{'paramSequence': '01','paramName': 'A_DATA_ORIGIN','paramValue': '1'}]},'siteDetails': {'isrScenario': 'ZAG5','formData': [{'commonDetails': {'action': '1','siteAddress': {'tradingName': '{{siteName}}','siteReferenceNumber': '{{gridref}}','addressInputModeIndicator': '2',{{toDesAddressWithoutPostcode \"siteAdd\"}}'postCode': '{{siteAdd-postcode}}','telephoneNumber': '{{sitePhone}}','email': '{{siteEmail}}'}},'regimeSpecificDetails': [{'paramSequence': '01','paramName': 'A_WB_USED_TO_WEIGHT','paramValue': '{{yesNoToEtmpChoice weighbridgeChoice}}'}]}]}}"
     },
     {
       "id": "HMRCDMS",
       "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
       "dmsFormId": "ALREG",
       "customerId": "${auth.gg}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     }
   ],
-  "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitErrorUrl": "",
+  "submitSuccessUrl": ""
 }
