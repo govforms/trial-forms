@@ -3,6 +3,12 @@
   "formName": "Cash Control Declaration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
+  "emailParameters": [
+    {
+      "value": "${declarationFullName}",
+      "emailTemplateVariable": "customerName"
+    }
+  ],
   "authConfig": {
     "authModule": "anonymous"
   },
@@ -14,13 +20,13 @@
   },
   "sections": [
     {
-      "title": "Are you, or your family, carrying more than 10,000 euros total in cash into or out of the EU?",
+      "title": "Are you, or your family, carrying more than £10,000 total in cash into or out of the UK?",
       "fields": [
         {
           "id": "eligibilityEuros",
           "type": "choice",
-          "label": "Are you, or your family, carrying more than 10,000 euros total in cash into or out of the EU?",
-          "helpText": "This includes notes and coins, bankers drafts, cheques and travellers cheques, and in any currency equal to 10,000 euros.",
+          "label": "Are you, or your family, carrying more than £10,000 total in cash into or out of the UK?",
+          "helpText": "This includes notes and coins, bankers drafts, cheques and travellers cheques, and in any currency equal to £10,000",
           "choices": [
             "Yes",
             "No"
@@ -44,7 +50,7 @@
           "id": "generatedId_a296d82f_c5e3_4348_9d8e_cbbcea29b5b1",
           "type": "info",
           "label": "",
-          "infoText": "Place holder text",
+          "infoText": "You told us that the cash you are carrying (including currency notes, travellers cheques and bank drafts) totals less than £10,000",
           "infoType": "noformat"
         }
       ]
@@ -116,12 +122,12 @@
       ]
     },
     {
-      "title": "Are you entering or leaving the EU?",
+      "title": "Are you entering or leaving the UK?",
       "fields": [
         {
           "id": "enterExit",
           "type": "choice",
-          "label": "Are you entering or leaving the EU?",
+          "label": "Are you entering or leaving the UK?",
           "choices": [
             "Entering",
             "Leaving"
@@ -130,37 +136,43 @@
       ]
     },
     {
-      "title": "When are you entering the EU?",
+      "title": "When are you entering the UK?",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
           "id": "entryDate",
           "type": "date",
-          "label": "When are you entering the EU?"
+          "label": "When are you entering the UK?"
         }
       ]
     },
     {
-      "title": "When are you leaving the EU?",
+      "title": "When are you leaving the UK?",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
           "id": "leaveDate",
           "type": "date",
-          "label": "When are you leaving the EU?"
+          "label": "When are you leaving the UK?"
         }
       ]
     },
     {
-      "title": "Are you travelling into the EU by air or by sea?",
+      "title": "Are you travelling into the UK by air or by sea?",
       "fields": [
         {
           "id": "airSea",
           "type": "choice",
-          "label": "Are you travelling into the EU by air or by sea?",
+          "label": "Are you travelling into the UK by air or by sea?",
           "choices": [
             "Air",
-            "Sea"
+            "Sea",
+            "Channel tunnel"
+          ],
+          "optionHelpText": [
+            "",
+            "This is via ferry ports, for example",
+            ""
           ]
         }
       ]
@@ -186,7 +198,7 @@
         {
           "id": "endName",
           "type": "text",
-          "label": "Name of final airport, port, or station"
+          "label": "Name of airport, port, or station"
         },
         {
           "id": "destinationCountry",
@@ -202,6 +214,7 @@
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Did you travel via another airport, port or station?",
+          "helpText": "If you stopped and transferred to another plane, boat or train, select yes ",
           "choices": [
             "Yes",
             "No"
@@ -210,13 +223,13 @@
       ]
     },
     {
-      "title": "How many other airports, ports or stations did you travel through?",
+      "title": "How many other airports, ports or stations did you travel via?",
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
           "id": "howManyAirports",
           "type": "text",
-          "label": "How many other airports, ports or stations did you travel through?",
+          "label": "How many other airports, ports or stations did you travel via?",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
           "validIf": "${howManyAirports>0 && howManyAirports<=20}"
@@ -224,7 +237,7 @@
       ]
     },
     {
-      "title": "Which airports, ports or stations did you travel through in between you start and end points?",
+      "title": "Which airports, ports or stations did you travel via in between your start and end points?",
       "repeatsMin": "${howManyAirports}",
       "repeatsMax": "${howManyAirports}",
       "fields": [
@@ -242,6 +255,7 @@
     },
     {
       "title": "Where did you make this declaration?",
+      "description": "This is the entry or exit point in the UK",
       "fields": [
         {
           "id": "declarationPlaceName",
@@ -282,14 +296,7 @@
         {
           "id": "noteTotal",
           "type": "text",
-          "label": "Total amount in notes",
-          "helpText": "Enter 0 if not applicable",
-          "format": "positiveNumber(9, 2)"
-        },
-        {
-          "id": "totalCoins",
-          "type": "text",
-          "label": "Total amount in coins",
+          "label": "Total amount in notes/coins",
           "helpText": "Enter 0 if not applicable",
           "format": "positiveNumber(9, 2)"
         },
@@ -310,13 +317,13 @@
       ]
     },
     {
-      "title": "Does the money belong to you?",
+      "title": "Does the cash belong to you?",
       "fields": [
         {
           "id": "moneyOwner",
           "type": "choice",
-          "label": "Does the money belong to you?",
-          "helpText": "If you own more than 50% of the money, select yes",
+          "label": "Does the cash belong to you?",
+          "helpText": "If you own more than 50% of the cash, select yes",
           "choices": [
             "Yes",
             "No"
@@ -360,17 +367,26 @@
           "id": "countryGenerated",
           "type": "text",
           "label": "Country origin"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Are you keeping the cash for your own use?",
+      "fields": [
         {
-          "id": "dateGenerated",
-          "type": "date",
-          "label": "Date",
-          "helpText": "This is for 'when the cash is generated'"
+          "id": "cashYours",
+          "type": "choice",
+          "label": "Are you keeping the cash for your own use?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
       "title": "Person receiving the cash",
+      "includeIf": "${cashYours=1}",
       "fields": [
         {
           "id": "receivingName",
@@ -392,12 +408,12 @@
       ]
     },
     {
-      "title": "What will the person receiving the cash use it for?",
+      "title": "What will the cash be used for?",
       "fields": [
         {
           "id": "cashIntent",
           "type": "text",
-          "label": "What will the person receiving the cash use it for?",
+          "label": "What will the cash be used for?",
           "helpText": "For example, buying a car, going on holiday or helping with living expenses",
           "multiline": "true"
         }
@@ -424,14 +440,15 @@
             "id": "declarationFullName",
             "type": "text",
             "label": "Full name"
+          },
+          {
+            "id": "declarationEmail",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "We will only us this to send a confirmation that we have received your application",
+            "format": "email"
           }
         ]
-      },
-      {
-        "id": "declarationEmail",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We will only us this to send a confirmation that we have received your application"
       }
     ]
   },
