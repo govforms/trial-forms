@@ -1,0 +1,592 @@
+{
+  "_id": "template-bd510-automation",
+  "formName": "Send your Bingo Duty return online",
+  "description": "Fill in your Bingo Duty return form online",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "bd510_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "always",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "BD",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your Bingo Duty registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Bingo Duty",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client’s reference number (also known as an access code)",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "BDreferencenumber",
+          "type": "text",
+          "label": "Client’s Bingo Duty registration number",
+          "mandatory": "true",
+          "errorMessage": "Enter client's Bingo Duty reference number"
+        },
+        {
+          "id": "insetInfoBoxAgent",
+          "type": "info",
+          "label": "",
+          "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        }
+      ]
+    },
+    {
+      "title": "Choose your client's Bingo Duty return dates",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "$(BDreferencenumber)",
+          "regimeType": "BD"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Bingo Duty return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "BDReg",
+          "type": "text",
+          "label": "Bingo Duty registration number: ",
+          "shortName": "Bingo Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${user.enrolledIdentifier}",
+          "regimeType": "BD"
+        }
+      ]
+    },
+    {
+      "title": "Your business details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Business name",
+          "mandatory": "true",
+          "errorMessage": "Business name can only include letters, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "businessTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter a valid telephone number"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "firstNameAgent",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true",
+          "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "lastNameAgent",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true",
+          "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "businessTelephoneAgent",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber",
+          "mandatory": "true",
+          "errorMessage": "Enter a valid telephone number"
+        },
+        {
+          "id": "businessNameAgent",
+          "type": "text",
+          "label": "Name of company",
+          "shortName": "Business name",
+          "mandatory": "true",
+          "errorMessage": "Business name can only include letters, numbers, spaces, hyphens and apostrophes"
+        },
+        {
+          "id": "positionInTheCompanyAgent",
+          "type": "text",
+          "label": "Your position in the company",
+          "helpText": "For example, director, company secretary, agent",
+          "mandatory": "true",
+          "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+        }
+      ]
+    },
+    {
+      "title": "Calculate your Bingo Duty",
+      "fields": [
+        {
+          "id": "amountDueAsPayments",
+          "type": "text",
+          "label": "Enter an amount due for playing bingo in the return period",
+          "shortName": "Total amount for playing bingo",
+          "helpText": "This is the total value of your receipts from bingo games including bingo cards, participation fees and all stakes.",
+          "format": "sterling",
+          "mandatory": "yes",
+          "errorMessage": "Enter the amount due as payments"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your expenses",
+      "fields": [
+        {
+          "id": "amountSpentWinning",
+          "type": "text",
+          "label": "How much did you spend on winnings in the return period?",
+          "shortName": "Amount spent on winnings",
+          "helpText": "This is the total value of all winnings from money prizes and vouchers that includes VAT.",
+          "format": "sterling",
+          "mandatory": "yes",
+          "errorMessage": "Enter the amount spent on winnings in the return period"
+        }
+      ]
+    },
+    {
+      "title": "Have you any losses from your last return",
+      "fields": [
+        {
+          "id": "yesNoLosses",
+          "type": "choice",
+          "label": "Do you have losses to carry forward from your previous return?",
+          "shortName": "Losses from last return",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you have losses from your previous return"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about any losses from your last return",
+      "includeIf": "${yesNoLosses=0}",
+      "fields": [
+        {
+          "id": "bingoLossesCarried",
+          "type": "text",
+          "label": "Enter any losses declared from your previous return ",
+          "shortName": "Losses declared from previous return",
+          "helpText": "Enter any losses you declared in the previous accounting period.",
+          "format": "sterling",
+          "mandatory": "yes",
+          "errorMessage": "Enter any losses declared from previous returns"
+        }
+      ]
+    },
+    {
+      "title": "Total expenses on bingo winnings and losses",
+      "includeIf": "${yesNoLosses=0}",
+      "fields": [
+        {
+          "id": "totalExpen",
+          "type": "text",
+          "label": "Total amount spent on bingo winnings and losses claimed in this return",
+          "shortName": "Expenses on bingo winnings",
+          "format": "sterling",
+          "value": "${amountSpentWinning + bingoLossesCarried}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Total expenses on bingo winnings and losses",
+      "includeIf": "${yesNoLosses=1}",
+      "fields": [
+        {
+          "id": "totalExpenNoLosses",
+          "type": "text",
+          "label": "Total amount spent on bingo winnings and losses claimed in this return",
+          "shortName": "Expenses on bingo winnings",
+          "format": "sterling",
+          "value": "${amountSpentWinning}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty profits in the return period",
+      "includeIf": "${yesNoLosses=0}",
+      "fields": [
+        {
+          "id": "bingoProfitsLosses",
+          "type": "text",
+          "label": "Your Bingo Duty profits",
+          "shortName": "Bingo Duty profits",
+          "format": "sterling",
+          "value": "${amountDueAsPayments - totalExpen}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "dutyDueBingoProfitsLosses",
+          "type": "text",
+          "label": "Duty due on your Bingo Duty profits",
+          "shortName": "Duty due on Bingo Duty profits",
+          "format": "sterling",
+          "value": "${bingoProfitsLosses*0.1}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty profits in the return period",
+      "includeIf": "${yesNoLosses=1}",
+      "fields": [
+        {
+          "id": "bingoProfitsNoLosses",
+          "type": "text",
+          "label": "Your Bingo Duty profits",
+          "shortName": "Bingo Duty profits",
+          "format": "sterling",
+          "value": "${amountDueAsPayments - totalExpenNoLosses}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "dutyDueBingoProfitsNoLosses",
+          "type": "text",
+          "label": "Duty due on your Bingo Duty profits",
+          "shortName": "Duty due on Bingo Duty profits",
+          "format": "sterling",
+          "value": "${bingoProfitsNoLosses*0.1}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Under-declarations from your previous return",
+      "fields": [
+        {
+          "id": "yesNoUnderDec",
+          "type": "choice",
+          "label": "Did you declare too little duty on your previous return?",
+          "shortName": "Under-declarations from previous return",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you have declared too little duty on your previous return"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your under-declarations",
+      "includeIf": "${yesNoUnderDec=0}",
+      "fields": [
+        {
+          "id": "bingoUnderDec",
+          "type": "text",
+          "label": "Enter the amount under-declared",
+          "shortName": "Under-declaration from previous return",
+          "format": "sterling",
+          "mandatory": "yes",
+          "errorMessage": "Enter the amount under-declared"
+        }
+      ]
+    },
+    {
+      "title": "Losses to carry forward to your next return",
+      "includeIf": "${yesNoLosses=0 && yesNoUnderDec=0 && bingoProfitsLosses-bingoUnderDec<0}",
+      "fields": [
+        {
+          "id": "totalAmountLossesUnderCarryForward",
+          "type": "text",
+          "label": "Losses to carry forward",
+          "format": "sterling",
+          "value": "${bingoProfitsLosses - bingoUnderDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty to pay in this return",
+      "includeIf": "${yesNoLosses=0 && yesNoUnderDec=0 && bingoProfitsLosses-bingoUnderDec>=0}",
+      "fields": [
+        {
+          "id": "totalAmountToPayLossesUnderDec",
+          "type": "text",
+          "label": "Bingo Duty to pay",
+          "format": "sterling",
+          "value": "${bingoProfitsLosses*0.10 + bingoUnderDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "basedOnDutyDueFour",
+          "type": "info",
+          "label": "",
+          "infoText": "This amount is based on the 10% Bingo Duty rate",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty to pay in this return",
+      "includeIf": "${yesNoLosses=0 && yesNoUnderDec=1 && bingoProfitsLosses<0}",
+      "fields": [
+        {
+          "id": "totalAmountLossesNoUnderCarryForward",
+          "type": "text",
+          "label": "Losses to carry forward",
+          "format": "sterling",
+          "value": "${bingoProfitsLosses}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty to pay in this return",
+      "includeIf": "${yesNoLosses=0 && yesNoUnderDec=1 && bingoProfitsLosses>=0}",
+      "fields": [
+        {
+          "id": "totalAmountLossesNoUnderDue",
+          "type": "text",
+          "label": "Bingo Duty to pay",
+          "format": "sterling",
+          "value": "${bingoProfitsLosses*0.10}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "basedOnDutyDueOne",
+          "type": "info",
+          "label": "",
+          "infoText": "This amount is based on the 10% Bingo Duty rate",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Losses to carry forward to your next return",
+      "includeIf": "${yesNoLosses=1 && yesNoUnderDec=1 && bingoProfitsNoLosses<0}",
+      "fields": [
+        {
+          "id": "totalAmountNoLossesNoUnderCarryForward",
+          "type": "text",
+          "label": "Your Bingo Duty to carry forward",
+          "format": "sterling",
+          "value": "${bingoProfitsNoLosses}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty to pay in this return",
+      "includeIf": "${yesNoLosses=1 && yesNoUnderDec=1 && bingoProfitsNoLosses>=0}",
+      "fields": [
+        {
+          "id": "totalAmountNoLossesNoUnderDutyDue",
+          "type": "text",
+          "label": "Bingo Duty to pay",
+          "format": "sterling",
+          "value": "${bingoProfitsNoLosses*0.10}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "basedOnDutyDueThree",
+          "type": "info",
+          "label": "",
+          "infoText": "This amount is based on the 10% Bingo Duty rate",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Bingo Duty to pay in this return",
+      "includeIf": "${yesNoLosses=1 && yesNoUnderDec=0 && bingoProfitsNoLosses-bingoUnderDec>=0}",
+      "fields": [
+        {
+          "id": "totalAmountNoLossesUnder",
+          "type": "text",
+          "label": "Bingo Duty to pay",
+          "format": "sterling",
+          "value": "${bingoProfitsNoLosses*0.1 + bingoUnderDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "basedOnDutyDueTwo",
+          "type": "info",
+          "label": "",
+          "infoText": "This amount is based on the 10% Bingo Duty rate",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Losses to carry forward to your next return",
+      "includeIf": "${yesNoLosses=1 && yesNoUnderDec=0 && bingoProfitsNoLosses-bingoUnderDec<0}",
+      "fields": [
+        {
+          "id": "totalAmountNoLossesUnderCarryForward",
+          "type": "text",
+          "label": "Your Bingo Duty to carry forward",
+          "format": "sterling",
+          "value": "${bingoProfitsNoLosses - bingoUnderDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your return",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declaration-fullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, a company director."
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received your return",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decPageContent",
+        "type": "info",
+        "label": "",
+        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decPageImportant",
+        "type": "info",
+        "label": "",
+        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form as you won’t be able to retrieve it later."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Information about paying Bingo Duty",
+        "infoText": "Pay your Bingo Duty. Send us a payment by bank transfer using these account details:\n\n Account name: HMRC GACA \n\nAccount number: 12000911\n\n Sort code: 08 32 00\n\n Reference for payment: state your Bingo Duty registration number\n\n If you’ve set up a direct debit to make a payment, you don’t need to do anything else. Your bank will pay us on the payment date.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4704021/Feedback-Survey-Bingo-Duty-online-form) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/BD/eeits/{{either null BDreg BDreferencenumber}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZBD1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null BDreg BDreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_BD_BOX1_PAYMENTS','paramValue':'{{amountDueAsPayments}}'},{'paramSequence':'01','paramName':'A_BD_BOX2_EXPENDITURE','paramValue':'{{amountSpentWinning}}'},{'paramSequence':'01','paramName':'A_BD_BOX3_LOSSCF','paramValue':'{{bingoLossesCarried}}'},{'paramSequence':'01','paramName':'A_BD_BOX4_TOTALEXP','paramValue':'{{either null totalExpen totalExpenNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX5_PROFITORLOSS','paramValue':'{{either null bingoProfitsLosses bingoProfitsNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX6_DUTY_DUE','paramValue':'{{either null bingoProfitsLosses bingoProfitsNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX7_UNDERDEC','paramValue':'{{bingoUnderDec}}'},{'paramSequence':'01','paramName':'A_BD_BOX8_TOTALDUE','paramValue':'{{either null totalAmountToPayLossesUnderDec totalAmountLossesNoUnderDue totalAmountNoLossesNoUnderDutyDue totalAmountNoLossesUnder 0}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "BD510",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
+}
