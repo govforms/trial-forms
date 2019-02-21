@@ -1,15 +1,21 @@
 {
-  "_id": "register-gaming-duty",
   "formName": "Register for Gaming Duty",
   "description": "",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "developmentPhase": "beta",
+  "emailTemplateId": "gd_application_confirmation",
+  "emailParameters": [
+    {
+      "value": "${fullName}",
+      "emailTemplateVariable": "customerName"
+    }
+  ],
   "authConfig": {
     "authModule": "hmrc"
   },
   "dmsSubmission": {
-    "businessArea": "For example: FinanceOpsCorpT",
-    "classificationType": "For example: BT-NRU-Environmental",
-    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Gaming",
+    "customerId": "${' '}",
     "dmsFormId": "GD56"
   },
   "sections": [
@@ -19,8 +25,7 @@
         {
           "id": "legalStatus1",
           "type": "choice",
-          "label": "",
-          "shortName": "",
+          "label": "What type of business do you want to register?",
           "format": "vertical",
           "errorMessage": "Select the type of business you want to register",
           "choices": [
@@ -37,7 +42,7 @@
         {
           "id": "roleSoleT",
           "type": "choice",
-          "label": "",
+          "label": "Has the business authorised you to register it for Gaming Duty?",
           "errorMessage": "Select if the business authorised you to register it for Gaming Duty",
           "choices": [
             "Yes",
@@ -71,28 +76,18 @@
           "infoType": "noformat"
         },
         {
-          "id": "firstName",
+          "id": "fullName",
           "type": "text",
-          "label": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter first name"
-        },
-        {
-          "id": "lastName",
-          "type": "text",
-          "label": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter last name"
+          "label": "Full name"
         },
         {
           "id": "Telephonenumber",
           "type": "text",
           "label": "Telephone number ",
-          "helpText": "",
           "errorMessage": "Enter a telephone number in the correct format"
         },
         {
-          "id": "Emailaddress",
+          "id": "email",
           "type": "text",
           "label": "Email address ",
           "helpText": "For example, name@example.com",
@@ -149,7 +144,6 @@
           "id": "coNameUB",
           "type": "text",
           "label": "Unincorporated body name",
-          "mandatory": "true",
           "errorMessage": "Enter unincorporated body name "
         },
         {
@@ -167,7 +161,7 @@
         {
           "id": "estProf",
           "type": "text",
-          "label": "",
+          "label": "Enter an estimate of the business' profits over the next 12 months",
           "helpText": "'Profit' can also be called ‘gross gaming yield’",
           "format": "sterling",
           "errorMessage": "Enter an amount of money"
@@ -180,26 +174,25 @@
         {
           "id": "startTradingDate_copy_1",
           "type": "date",
-          "label": "",
+          "label": "What date will the business start trading?",
           "helpText": "For example, 12 11 2022",
           "errorMessage": "Enter the date will the business start trading\n in the correct format"
         }
       ]
     },
     {
-      "title": "Enter the address of your principal place of business",
+      "title": "Principal place of business",
       "fields": [
         {
           "id": "ppbAdd",
           "type": "address",
-          "label": "",
+          "label": "Address",
           "errorMessage": "Enter building and street, and postcode in the correct format"
         },
         {
           "id": "ppbTel",
           "type": "text",
           "label": "Telephone number of business",
-          "helpText": "",
           "format": "telephoneNumber",
           "errorMessage": "Enter a telephone number in the correct format"
         },
@@ -232,19 +225,19 @@
         {
           "id": "recAccAdd",
           "type": "address",
-          "label": "",
+          "label": "Enter the address where your business records are kept",
           "errorMessage": "Enter building and street, and postcode in the correct format"
         }
       ]
     },
     {
-      "title": "Do you want to register other premises for Gaming Duty? ",
+      "title": "Do you want to register other premises for Gaming Duty?",
       "includeIf": "${dutGam = 0}",
       "fields": [
         {
           "id": "gd58Choice",
           "type": "choice",
-          "label": " ",
+          "label": "Do you want to register other premises for Gaming Duty?",
           "errorMessage": "Select if you want to register other premises for Gaming Duty",
           "choices": [
             "Yes",
@@ -260,7 +253,7 @@
         {
           "id": "newPremNumb",
           "type": "text",
-          "label": "",
+          "label": "Enter the number of other premises you want to register",
           "format": "positiveWholeNumber",
           "errorMessage": "Enter a number of premises that is 1 or more"
         }
@@ -293,7 +286,7 @@
         {
           "id": "newPremNumbReg",
           "type": "text",
-          "label": "",
+          "label": "Enter the number of premises you want to register",
           "format": "positiveWholeNumber",
           "errorMessage": "Enter a number of premises that is 1 or more"
         }
@@ -328,15 +321,15 @@
         "id": "generatedId_9621d591_1928_46a2_9f21_e4bef40b3992",
         "type": "info",
         "label": "",
-        "infoText": "##Terms and conditions",
+        "infoText": "##Declaration",
         "infoType": "noformat"
       },
       {
         "id": "generatedId_1d54a30c_5867_4bd0_86c9_d5b8fc6dc625",
         "type": "info",
         "label": "",
-        "infoText": "Before you submit this form, you must accept these terms and conditions. You accept that:\n\n- the information you have provided is true and complete \n\n- if you do not give true and complete information, HMRC may prosecute you",
-        "infoType": "noformat"
+        "infoText": "By submitting this form you are confirming that all the information you’ve provided is correct and complete.",
+        "infoType": "important"
       }
     ]
   },
@@ -353,7 +346,8 @@
       }
     ]
   },
-  "GFC597Ready": "true",
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "register-gaming-duty"
 }
