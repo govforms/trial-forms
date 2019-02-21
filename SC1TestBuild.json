@@ -14,13 +14,13 @@
   },
   "sections": [
     {
-      "title": "Have you got evidence to show your organisation has the funds to operate the proposed agency or establishment?",
+      "title": "Have you got evidence to show your organisation has the funds to operate the proposed establishment or agency?",
       "fields": [
         {
           "id": "generatedId_44fb61e2_4fcc_47b1_967e_c80ade178dd1",
           "type": "info",
           "label": "",
-          "infoText": "Before you start this application to register a social care establishment or agency, you will need to upload evidence of your organisation's financial viability for us to consider your eligibility as a social care provider.",
+          "infoText": "You will need to upload evidence of your organisation's finance to show it has enough funds to run and maintain the social care establishment or agency.",
           "infoType": "noformat"
         },
         {
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "title": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
+      "title": "You don't have the right documents to continue with this application",
       "includeIf": "${eviChoi = 1}",
       "continueIf": "true",
       "fields": [
@@ -50,19 +50,19 @@
           "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
           "type": "info",
           "label": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
-          "infoText": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
+          "infoText": "Ofsted will not be able to consider your application without these documents.",
           "infoType": "noformat"
         }
       ]
     },
     {
-      "title": "What type of business or organisation do you want to register as? (KEY PAGE FOR PATH)",
+      "title": "What type of business or organisation do you want to register as?",
       "fields": [
         {
           "id": "generatedId_bc91dd83_114e_48dc_84f2_4e659156d623",
           "type": "info",
           "label": "bisInfo1",
-          "infoText": "We must know your business type to register all the authorised individuals, establishment or agency and branches that plan to provide a social care service ",
+          "infoText": "We must know your business type to register all the authorised individuals, establishment or agency and branches that plan to provide a social care service.",
           "infoType": "noformat"
         },
         {
@@ -99,12 +99,12 @@
       ]
     },
     {
-      "title": "(All) What type of agency or establishment are you applying to register?",
+      "title": "What type of agency or establishment are you applying to register?",
       "fields": [
         {
           "id": "appType",
           "type": "choice",
-          "label": "(All) What type of agency or establishment are you applying to register?",
+          "label": "What type of agency or establishment are you applying to register?",
           "shortName": "Type of agency or establishment",
           "choices": [
             "Children's home",
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "title": "(All?) Are you applying to register a school as a children's home?",
+      "title": "Are you applying to register a school as a children's home?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
@@ -141,27 +141,27 @@
       ]
     },
     {
-      "title": "(All?) What is your Department for Education (DfE) number?",
+      "title": "What is your school's Department for Education (DfE) number?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
           "type": "info",
           "label": "DfEInfo",
-          "infoText": "We need your DfE number to let the Department for Education know that you have applied to register as a children's home",
+          "infoText": "We need your DfE number to let the Department for Education know that you have applied to register as a children's home.",
           "infoType": "noformat"
         },
         {
           "id": "DfENo",
           "type": "text",
           "label": "DfE number",
-          "helpText": "It's on your xxxx, It's x digits, for example 01/02/2015",
+          "helpText": "It's 7 digits in this format, 689/1234. If you cannot find your DfE number, use the [find and compare schools service](https://www.gov.uk/school-performance-tables) to find it.",
           "format": "text(0,20)"
         }
       ]
     },
     {
-      "title": "(All) Do you plan to buy a children's social care establishment or agency?",
+      "title": "Do you plan to buy a children's social care establishment or agency?",
       "fields": [
         {
           "id": "planCSCEstOrAg",
@@ -176,14 +176,14 @@
       ]
     },
     {
-      "title": "(All) Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
+      "title": "Is the existing children's establishment or agency you will buy registered with Ofsted?",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "ofRegQues",
           "type": "choice",
-          "label": "Is the existing children's establishment or agency you plan to buy registered with Ofsted?",
-          "shortName": "Purchase is already Ofsted registered",
+          "label": "",
+          "shortName": "Existing children's establishment or agency",
           "choices": [
             "Yes",
             "No"
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "title": "(All) Details of establishment or agency you plan to buy",
+      "title": "Details of establishment or agency you will buy",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
@@ -205,27 +205,28 @@
         {
           "id": "ofReg",
           "type": "text",
-          "label": "Ofsted registration number",
+          "label": "Ofsted registration number (URN)",
           "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,20)"
         }
       ]
     },
     {
-      "title": "(All) Details of establishment or agency you plan to buy",
+      "title": "Details of establishment or agency you plan to buy",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
           "id": "agEstName_copy_1",
           "type": "text",
           "label": "Name of agency or establishment",
-          "shortName": "Name",
+          "shortName": "Name of agency or establishment",
           "format": "text(0,150)"
         }
       ]
     },
     {
-      "title": "(All) Address of establishment or agency you plan to buy",
+      "title": "Address of establishment or agency you will buy",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
@@ -258,7 +259,7 @@
       ]
     },
     {
-      "title": "(All) Have you applied to register a children's social care establishment or agency with Ofsted before?",
+      "title": "Have you applied to register a children's social care establishment or agency with Ofsted before?",
       "fields": [
         {
           "id": "prevOfApp",
@@ -273,7 +274,7 @@
       ]
     },
     {
-      "title": "(All) Previous application",
+      "title": "Previous application",
       "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
@@ -288,7 +289,7 @@
       ]
     },
     {
-      "title": "(All) Details of your previous application",
+      "title": "Details of your previous application",
       "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
@@ -302,7 +303,7 @@
           "id": "generatedId_d73809af_eded_4fab_a2c2_10b98d6418b5",
           "type": "info",
           "label": "",
-          "infoText": "It's on your ????, It's X digits, for example 01/02/2010",
+          "infoText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "infoType": "noformat"
         },
         {
@@ -310,20 +311,20 @@
           "type": "text",
           "label": "",
           "shortName": "Establishment URN",
-          "helpText": "If you do not have the Ofsted URN, you can phone us on 0300 123 1231",
+          "helpText": "",
           "displayWidth": "s"
         },
         {
           "id": "prevAppDetML",
           "type": "text",
           "label": "Provide as much detail as possible",
-          "helpText": "You should include details such as ....? up to ???? words",
+          "helpText": "Include date of application, establishment or agency name and address",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "(IND) Do you have the finance available to run your establishment or agency?",
+      "title": "Do you have the finance available to run your establishment or agency?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
         {
@@ -362,7 +363,7 @@
       ]
     },
     {
-      "title": "(ORG) Does your organisation have the finance available to run your establishment or agency?",
+      "title": " Does your organisation have the finance available to run your establishment or agency?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -401,7 +402,7 @@
       ]
     },
     {
-      "title": "(PAR) Does your partnership have the finance available to run your establishment or agency?",
+      "title": " Does your partnership have the finance available to run your establishment or agency?",
       "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
@@ -440,12 +441,12 @@
       ]
     },
     {
-      "title": "(All) Do you or your organisation have financial or work interests in any other registered establishment or agency?",
+      "title": " Do you or your organisation have financial or work interests in any other registered establishment or agency?",
       "fields": [
         {
           "id": "generatedId_04c75fa6_11e9_4cf7_b8a2_cabe2d11af01",
           "type": "info",
-          "label": "(All) Do you or your organisation have financial or work interests in any other registered establishment or agency?",
+          "label": "Do you or your organisation have financial or work interests in any other registered establishment or agency?",
           "infoText": "We need to know this to check the details of the establishment or agency against records we hold.",
           "infoType": "noformat"
         },
@@ -461,7 +462,7 @@
       ]
     },
     {
-      "title": "(All) Tell us about the registered agency or establishment",
+      "title": "Tell us about the registered agency or establishment",
       "includeIf": "${intsInOthOrgs =0}",
       "fields": [
         {
@@ -487,7 +488,7 @@
       ]
     },
     {
-      "title": "(All) Address and contact details of the registered agency or establishment",
+      "title": "Address and contact details of the registered agency or establishment",
       "includeIf": "${intsInOthOrgs =0}",
       "fields": [
         {
@@ -529,7 +530,7 @@
       ]
     },
     {
-      "title": "(All) Tell us about the second registered agency or establishment",
+      "title": "Tell us about the second registered agency or establishment",
       "includeIf": "${intsInOthOrgs =0 && addAgOrEst = 0}",
       "fields": [
         {
@@ -555,7 +556,7 @@
       ]
     },
     {
-      "title": "(All) Address and contact details of the registered agency or establishment (2)",
+      "title": "Address and contact details of the registered agency or establishment (2)",
       "includeIf": "${intsInOthOrgs =0 && addAgOrEst = 0}",
       "fields": [
         {
@@ -597,7 +598,7 @@
       ]
     },
     {
-      "title": "(All) Tell us about the third registered agency or establishment",
+      "title": "Tell us about the third registered agency or establishment",
       "includeIf": "${intsInOthOrgs =0 && addAgOrEst2 = 0}",
       "fields": [
         {
@@ -623,7 +624,7 @@
       ]
     },
     {
-      "title": "(All) Address and contact details of the registered agency or establishment (3)",
+      "title": "Address and contact details of the registered agency or establishment (3)",
       "includeIf": "${intsInOthOrgs =0 &&addAgOrEst2 = 0}",
       "fields": [
         {
@@ -656,7 +657,7 @@
       ]
     },
     {
-      "title": "(All) When will you open the establishment or agency?",
+      "title": "When will you open the establishment or agency?",
       "fields": [
         {
           "id": "generatedId_15ddec07_3b04_4aa2_bafc_aebedf31730c",
@@ -675,7 +676,7 @@
       ]
     },
     {
-      "title": "(IND) Have you ever been registered or given a licence to run children and social care services under law?",
+      "title": "Have you ever been registered or given a licence to run children and social care services under law?",
       "includeIf": "${businessChoice2 = 1}",
       "description": "",
       "fields": [
@@ -701,7 +702,7 @@
       ]
     },
     {
-      "title": "(IND) Give us more details of the previous registrations",
+      "title": "Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
         {
@@ -720,7 +721,7 @@
       ]
     },
     {
-      "title": "(IND) Have you ever had an application refused or registration cancelled to provide children and social care services?",
+      "title": "Have you ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
         {
@@ -742,7 +743,7 @@
       ]
     },
     {
-      "title": "(IND) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
       "includeIf": "${cancRefOk1 = 0}",
       "fields": [
         {
@@ -751,11 +752,6 @@
           "label": "",
           "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
           "infoType": "noformat"
-        },
-        {
-          "id": "refResIND",
-          "type": "text",
-          "label": ""
         },
         {
           "id": "ofRegRefCanc",
@@ -768,7 +764,7 @@
       ]
     },
     {
-      "title": "(ORG) Have you ever been registered or given a licence to run children and social care services under law?",
+      "title": "Have you ever been registered or given a licence to run children and social care services under law?",
       "includeIf": "${businessChoice2 = 0}",
       "description": "",
       "fields": [
@@ -794,7 +790,7 @@
       ]
     },
     {
-      "title": "(ORG) Give us more details of the previous registrations",
+      "title": "Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 0 && actsChoice2a = 0} ",
       "fields": [
         {
@@ -813,7 +809,7 @@
       ]
     },
     {
-      "title": "(ORG) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -835,7 +831,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
       "includeIf": "${cancRefOk2 = 0}",
       "fields": [
         {
@@ -873,13 +869,13 @@
       ]
     },
     {
-      "title": "(ORG and PAR) Which sector does your organisation belong to?",
+      "title": "Which sector does your organisation belong to?",
       "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
       "fields": [
         {
           "id": "orgTypChoi",
           "type": "choice",
-          "label": "(ORG and PAR) Which sector does your organisation belong to?",
+          "label": "Which sector does your organisation belong to?",
           "choices": [
             "Local council",
             "Health authority",
@@ -890,7 +886,7 @@
       ]
     },
     {
-      "title": "(ORG) What is your type of organisation?",
+      "title": "What is your type of organisation?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -913,16 +909,9 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your organisation",
+      "title": "Tell us about your organisation",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
-        {
-          "id": "generatedId_3c44ae5a_f899_47bf_871d_b4574c4f70b8",
-          "type": "info",
-          "label": "",
-          "infoText": "* Explain why we are asking this *",
-          "infoType": "noformat"
-        },
         {
           "id": "orgName2",
           "type": "text",
@@ -953,7 +942,7 @@
       ]
     },
     {
-      "title": "(ORG) Your organisations contact details",
+      "title": "Your organisations contact details",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -991,13 +980,13 @@
       ]
     },
     {
-      "title": "(ORG) Is your organisation a subsidiary of a holding company?",
+      "title": "Is your organisation a subsidiary of a holding company?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "holCoCho",
           "type": "choice",
-          "label": "(ORG) Is your organisation a subsidiary of a holding company?",
+          "label": "Is your organisation a subsidiary of a holding company?",
           "choices": [
             "Yes",
             "No"
@@ -1006,7 +995,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your holding company",
+      "title": "Tell us about your holding company",
       "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
@@ -1041,7 +1030,7 @@
       ]
     },
     {
-      "title": "(ORG) Your holding company's contact details",
+      "title": "Your holding company's contact details",
       "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
@@ -1074,7 +1063,7 @@
       ]
     },
     {
-      "title": "(ORG) Does your holding company have subsidiaries registered with Ofsted?",
+      "title": "Does your holding company have subsidiaries registered with Ofsted?",
       "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
       "fields": [
         {
@@ -1089,7 +1078,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your holding company's subsidiary",
+      "title": "Tell us about your holding company's subsidiary",
       "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
       "fields": [
         {
@@ -1114,7 +1103,7 @@
       ]
     },
     {
-      "title": "(ORG) Your holding company subsidiary's contact details",
+      "title": "Your holding company subsidiary's contact details",
       "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
       "fields": [
         {
@@ -1156,7 +1145,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your holding company's subsidiary 2",
+      "title": "Tell us about your holding company's subsidiary 2",
       "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
       "fields": [
         {
@@ -1181,7 +1170,7 @@
       ]
     },
     {
-      "title": "(ORG) Your holding company subsidiary's contact details 2",
+      "title": "Your holding company subsidiary's contact details 2",
       "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
       "fields": [
         {
@@ -1223,7 +1212,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about your holding company's subsidiary 3",
+      "title": "Tell us about your holding company's subsidiary 3",
       "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
       "fields": [
         {
@@ -1248,7 +1237,7 @@
       ]
     },
     {
-      "title": "(ORG) Your holding company subsidiary's contact details 3",
+      "title": "Your holding company subsidiary's contact details 3",
       "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
       "fields": [
         {
@@ -1281,7 +1270,7 @@
       ]
     },
     {
-      "title": "(PAR) Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
+      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
       "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
@@ -1306,7 +1295,7 @@
       ]
     },
     {
-      "title": "(PAR) Give us more details of the previous registrations",
+      "title": "Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 2 && actsChoice3a = 0} ",
       "fields": [
         {
@@ -1325,7 +1314,7 @@
       ]
     },
     {
-      "title": "(PAR) Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
@@ -1347,7 +1336,7 @@
       ]
     },
     {
-      "title": "(PAR) Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
       "includeIf": "${cancRefOk3 = 0}",
       "fields": [
         {
@@ -1379,7 +1368,7 @@
       ]
     },
     {
-      "title": "(IND) How many people do you want to add to your proposed register provider?",
+      "title": "(How many people do you want to add to your proposed register provider?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
         {
@@ -1391,7 +1380,7 @@
       ]
     },
     {
-      "title": "(IND) Tell us about the people you want to add to your proposed registered provider",
+      "title": "Tell us about the people you want to add to your proposed registered provider",
       "repeatsMin": "${noIndPeoAdd}",
       "repeatsMax": "${noIndPeoAdd}",
       "fields": [
@@ -1463,7 +1452,7 @@
       ]
     },
     {
-      "title": "(ORG) How many people do you want to add to your proposed register provider?",
+      "title": "How many people do you want to add to your proposed register provider?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -1475,7 +1464,7 @@
       ]
     },
     {
-      "title": "(ORG) Tell us about the people you want to add to your proposed registered provider",
+      "title": "Tell us about the people you want to add to your proposed registered provider",
       "repeatsMin": "${noORGPeoAdd}",
       "repeatsMax": "${noORGPeoAdd}",
       "fields": [
@@ -1556,19 +1545,19 @@
       ]
     },
     {
-      "title": "(PAR) How many partners do you want to add to your proposed register provider?",
+      "title": "How many partners do you want to add to your proposed register provider?",
       "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
           "id": "noPARPeoAdd",
           "type": "text",
-          "label": "(ORG) How many people do you want to add to your proposed register provider?",
+          "label": "How many people do you want to add to your proposed register provider?",
           "format": "positiveNumber"
         }
       ]
     },
     {
-      "title": "(PAR) Who are the partners?",
+      "title": "Who are the partners?",
       "repeatsMin": "${noPARPeoAdd}",
       "repeatsMax": "${noPARPeoAdd}",
       "fields": [
@@ -1644,7 +1633,7 @@
       ]
     },
     {
-      "title": "(ORG) Who is the responsible individual?",
+      "title": "Who is the responsible individual?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
@@ -1694,7 +1683,7 @@
       ]
     },
     {
-      "title": "(PAR) Who is the responsible partner?",
+      "title": "Who is the responsible partner?",
       "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
@@ -1773,14 +1762,14 @@
       ]
     },
     {
-      "title": "(ORG or PART) Will this person have management responsibility for staff?",
+      "title": "Will this person have management responsibility for staff?",
       "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
       "description": "Looks like a duplicate that could be built into the responsible person pages",
       "fields": [
         {
           "id": "respStaff",
           "type": "choice",
-          "label": "(All) Will this person have management responsibility for staff?",
+          "label": "Will this person have management responsibility for staff?",
           "choices": [
             "Yes",
             "No"
@@ -1789,14 +1778,14 @@
       ]
     },
     {
-      "title": "(ORG or PART) Will this person have contact with children and young people?",
+      "title": "Will this person have contact with children and young people?",
       "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
       "description": "Looks like a duplicate that could be built into the responsible person pages",
       "fields": [
         {
           "id": "respKidCon",
           "type": "choice",
-          "label": "(All) Will this person have contact with children and young people?",
+          "label": "Will this person have contact with children and young people?",
           "choices": [
             "Yes",
             "No"
@@ -1805,7 +1794,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Tell us about the establishment or agency",
+      "title": "Tell us about the establishment or agency",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -1817,7 +1806,7 @@
       ]
     },
     {
-      "title": "(HOL) What is the name of your holiday scheme?",
+      "title": "What is the name of your holiday scheme?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -1829,7 +1818,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Contact details and address of main site",
+      "title": "Contact details and address of main site",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -1862,7 +1851,7 @@
       ]
     },
     {
-      "title": "(HOL) Contact details and address of your administration office ",
+      "title": "Contact details and address of your administration office ",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -1895,7 +1884,7 @@
       ]
     },
     {
-      "title": "(ALL) Will you have sole use of the property?",
+      "title": "Will you have sole use of the property?",
       "fields": [
         {
           "id": "solUseProp",
@@ -1910,7 +1899,7 @@
       ]
     },
     {
-      "title": "(AGENCY) Is the agency operated from more than one site?",
+      "title": "Is the agency operated from more than one site?",
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
@@ -1925,7 +1914,7 @@
       ]
     },
     {
-      "title": "(AGENCY) Tell us about your agency's other sites 1",
+      "title": "Tell us about your agency's other sites 1",
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
@@ -1966,7 +1955,7 @@
       ]
     },
     {
-      "title": "(AGENCY) Tell us about your agency's other sites 2",
+      "title": "Tell us about your agency's other sites 2",
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi1 = 0}",
       "fields": [
         {
@@ -2007,7 +1996,7 @@
       ]
     },
     {
-      "title": "(AGENCY) Tell us about your agency's other sites 3",
+      "title": "Tell us about your agency's other sites 3",
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi2 = 0}",
       "fields": [
         {
@@ -2039,7 +2028,7 @@
       ]
     },
     {
-      "title": "(HOL) Tell us about each site from which the residential holiday scheme for disabled children will operate",
+      "title": "Tell us about each site from which the residential holiday scheme for disabled children will operate",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -2066,7 +2055,7 @@
       ]
     },
     {
-      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -2114,7 +2103,7 @@
       ]
     },
     {
-      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
       "includeIf": "${appType = 4 && holSiteAddChoi = 0}",
       "fields": [
         {
@@ -2162,7 +2151,7 @@
       ]
     },
     {
-      "title": "(HOL) Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
       "includeIf": "${appType = 4 && holSiteAddChoi2 = 0}",
       "fields": [
         {
@@ -2201,7 +2190,7 @@
       ]
     },
     {
-      "title": "(HOME) Will you regularly use any other premises in connection with the establishment?",
+      "title": "Will you regularly use any other premises in connection with the establishment?",
       "includeIf": "${appType = 0 || appType = 5}",
       "fields": [
         {
@@ -2214,7 +2203,7 @@
         {
           "id": "othPremReg",
           "type": "choice",
-          "label": "(HOME) Will you regularly use any other premises in connection with the establishment?",
+          "label": "Will you regularly use any other premises in connection with the establishment?",
           "choices": [
             "Yes",
             "No"
@@ -2223,7 +2212,7 @@
       ]
     },
     {
-      "title": "(HOME) Tell us about your other premises of your establishment 1",
+      "title": "Tell us about your other premises of your establishment 1",
       "includeIf": "${appType = 0 || appType = 5}",
       "fields": [
         {
@@ -2255,7 +2244,7 @@
       ]
     },
     {
-      "title": "(HOME) Tell us about your other premises of your establishment 2",
+      "title": "Tell us about your other premises of your establishment 2",
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
@@ -2287,7 +2276,7 @@
       ]
     },
     {
-      "title": "(HOME) Tell us about your other premises of your establishment 3",
+      "title": "Tell us about your other premises of your establishment 3",
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
@@ -2310,7 +2299,7 @@
       ]
     },
     {
-      "title": "(ALL) Describe the premises",
+      "title": "Describe the premises",
       "fields": [
         {
           "id": "premDesc",
@@ -2322,7 +2311,7 @@
       ]
     },
     {
-      "title": "(ALL) Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
+      "title": "Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
       "fields": [
         {
           "id": "premRedChoi",
@@ -2337,7 +2326,7 @@
       ]
     },
     {
-      "title": "(ALL) Details of building works needed",
+      "title": "Details of building works needed",
       "fields": [
         {
           "id": "buildDesc",
@@ -2354,7 +2343,7 @@
       ]
     },
     {
-      "title": "(HOL) Do the premises require planning permission?",
+      "title": "Do the premises require planning permission?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -2370,7 +2359,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Do the premises require planning permission?",
+      "title": "Do the premises require planning permission?",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -2386,7 +2375,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
+      "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -2416,7 +2405,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Upload your planning document",
+      "title": "Upload your planning document",
       "includeIf": "${appType != 4 && planChoi = 0}",
       "fields": [
         {
@@ -2429,7 +2418,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) Post your planning documents",
+      "title": "Post your planning documents",
       "includeIf": "${appType != 4 && planChoi = 1}",
       "fields": [
         {
@@ -2442,7 +2431,7 @@
       ]
     },
     {
-      "title": "(ALL except HOL) I haven't obtained the required planning permission",
+      "title": "I haven't obtained the required planning permission",
       "includeIf": "${appType != 4 && planChoi = 2}",
       "fields": [
         {
@@ -2455,7 +2444,7 @@
       ]
     },
     {
-      "title": "(ALL) Does the building meet the access requirements of the Equality Act 2010?",
+      "title": "Does the building meet the access requirements of the Equality Act 2010?",
       "fields": [
         {
           "id": "accessChoi",
@@ -2470,7 +2459,7 @@
       ]
     },
     {
-      "title": "(ALL) Why do the premises not meet the access requirements?",
+      "title": "Why do the premises not meet the access requirements?",
       "includeIf": "${accessChoi = 1}",
       "fields": [
         {
@@ -2483,12 +2472,12 @@
       ]
     },
     {
-      "title": "(ALL) What are the security arrangements of the premises?",
+      "title": "What are the security arrangements of the premises?",
       "fields": [
         {
           "id": "secArrDesc",
           "type": "text",
-          "label": "(ALL) What are the security arrangements of the premises?",
+          "label": "What are the security arrangements of the premises?",
           "shortName": "Security arrangements",
           "helpText": "For example, how you will safeguard access to the information you hold? How will you restrict access from other buildings or other parts of the building, where appropriate? ",
           "multiline": "true"
@@ -2496,7 +2485,7 @@
       ]
     },
     {
-      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 1",
+      "title": "What staff posts are you recruiting to care for children and young people? 1",
       "fields": [
         {
           "id": "stafPos",
@@ -2525,7 +2514,7 @@
       ]
     },
     {
-      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 2",
+      "title": "What staff posts are you recruiting to care for children and young people? 2",
       "includeIf": "${another1 = 0}",
       "fields": [
         {
@@ -2555,7 +2544,7 @@
       ]
     },
     {
-      "title": "(ALL) What staff posts are you recruiting to care for children and young people? 3",
+      "title": "What staff posts are you recruiting to care for children and young people? 3",
       "includeIf": "${another2 = 0}",
       "fields": [
         {
@@ -2576,7 +2565,7 @@
       ]
     },
     {
-      "title": "(ALL) Tell us about these posts",
+      "title": "Tell us about these posts",
       "fields": [
         {
           "id": "noPos",
@@ -2604,7 +2593,7 @@
       ]
     },
     {
-      "title": "(HOME) What type of establishment is your children's home?",
+      "title": "What type of establishment is your children's home?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
@@ -2623,20 +2612,20 @@
       ]
     },
     {
-      "title": "(HOME) How many registered places do you need?",
+      "title": "How many registered places do you need?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "noHo",
           "type": "text",
-          "label": "(HOME) How many registered places do you need?",
+          "label": "How many registered places do you need?",
           "shortName": "Registered places",
           "format": "positiveWholeNumber"
         }
       ]
     },
     {
-      "title": "(HOME) Tell us about the maximum number of children you plan to have in each category specified in the Care Standards Act in line with your statement of purpose?",
+      "title": "Tell us about the maximum number of children you plan to have in each category specified in the Care Standards Act in line with your statement of purpose?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
@@ -2691,13 +2680,13 @@
       ]
     },
     {
-      "title": "(HOME) Will the home be single sex occupancy?",
+      "title": "Will the home be single sex occupancy?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "sexCho",
           "type": "choice",
-          "label": "(HOME) Will the home be single sex occupancy?",
+          "label": "Will the home be single sex occupancy?",
           "choices": [
             "Yes",
             "No"
@@ -2706,7 +2695,7 @@
       ]
     },
     {
-      "title": "(HOME) What is the age range you will accommodate?",
+      "title": "What is the age range you will accommodate?",
       "shortName": "Age range accommodated",
       "includeIf": "${appType = 0}",
       "fields": [
@@ -2729,13 +2718,13 @@
       ]
     },
     {
-      "title": "(HOME) What are your arrangements for children to raise questions and concerns about the home and your procedure for dealing with complaints?",
+      "title": "What are your arrangements for children to raise questions and concerns about the home and your procedure for dealing with complaints?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "queCons",
           "type": "text",
-          "label": "(HOME) What are your arrangements for children to raise questions and concerns about the home and your procedure for dealing with complaints?",
+          "label": "What are your arrangements for children to raise questions and concerns about the home and your procedure for dealing with complaints?",
           "shortName": "Questions and concerns procedures",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2743,13 +2732,13 @@
       ]
     },
     {
-      "title": "(HOME) Describe your arrangements for the education of children",
+      "title": "Describe your arrangements for the education of children",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "eduArr",
           "type": "text",
-          "label": "(HOME) Describe your arrangements for the education of children",
+          "label": "Describe your arrangements for the education of children",
           "shortName": "Education arrangements",
           "helpText": "You should include details of how you will ensure children will get the education they need. ",
           "multiline": "true"
@@ -2757,13 +2746,13 @@
       ]
     },
     {
-      "title": "(HOME) Describe your arrangements for reviewing placement plans",
+      "title": "Describe your arrangements for reviewing placement plans",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "placRev",
           "type": "text",
-          "label": "(HOME) Describe your arrangements for reviewing placement plans",
+          "label": "Describe your arrangements for reviewing placement plans",
           "shortName": "Placement reviews",
           "helpText": "You should include details on how and when you will review the plans",
           "multiline": "true"
@@ -2771,13 +2760,13 @@
       ]
     },
     {
-      "title": "(HOME) Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
+      "title": "Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "indyPers",
           "type": "choice",
-          "label": "(HOME) Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
+          "label": "Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
           "shortName": "Independent person appointed",
           "choices": [
             "Yes",
@@ -2787,13 +2776,13 @@
       ]
     },
     {
-      "title": "(HOME) Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
+      "title": "Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "regChoiCQC",
           "type": "choice",
-          "label": "(HOME) Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
+          "label": "Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
           "shortName": "Establishment CQC registered",
           "choices": [
             "Yes",
@@ -2803,13 +2792,13 @@
       ]
     },
     {
-      "title": "(HOME) Further details of Care quality commission registration",
+      "title": "Further details of Care quality commission registration",
       "includeIf": "${appType = 0 && regChoiCQC = 0} ",
       "fields": [
         {
           "id": "furDets",
           "type": "text",
-          "label": "(HOME) Further details of Care quality commission registration",
+          "label": "Further details of Care quality commission registration",
           "shortName": "CQC further details",
           "helpText": "Include a registration number if relevant, and tell us if you're already registered or if you are applying to register with the CQC",
           "multiline": "true"
@@ -2817,7 +2806,7 @@
       ]
     },
     {
-      "title": "(HOME) Are you intending to provide a short-breaks service?",
+      "title": " Are you intending to provide a short-breaks service?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
@@ -2833,13 +2822,13 @@
       ]
     },
     {
-      "title": "(HOME) What will be the range of charges to the people using your establishment or agency?",
+      "title": "What will be the range of charges to the people using your establishment or agency?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "chargeTextHome",
           "type": "text",
-          "label": "(HOME) What will be the range of charges to the people using your establishment or agency?",
+          "label": "What will be the range of charges to the people using your establishment or agency?",
           "shortName": "Range of charges for users",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2847,13 +2836,13 @@
       ]
     },
     {
-      "title": "(FOS) What type of service will you provide?",
+      "title": "What type of service will you provide?",
       "includeIf": "${appType = 1}",
       "fields": [
         {
           "id": "fostChoi1",
           "type": "choice",
-          "label": "(FOS) What type of service will you provide?",
+          "label": "What type of service will you provide?",
           "shortName": "Service provided",
           "choices": [
             "an agency carrying out the functions of one or more local councils about placing children with foster parents",
@@ -2863,7 +2852,7 @@
       ]
     },
     {
-      "title": "(FOS) Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
+      "title": "Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
       "includeIf": "${appType = 1}",
       "fields": [
         {
@@ -2879,7 +2868,7 @@
       ]
     },
     {
-      "title": "(FOS) About your independent fostering agency",
+      "title": "About your independent fostering agency",
       "includeIf": "${appType = 1}",
       "fields": [
         {
@@ -2915,7 +2904,7 @@
       ]
     },
     {
-      "title": "(FOS) What will be the range of charges to the people using your establishment or agency?",
+      "title": "What will be the range of charges to the people using your establishment or agency?",
       "includeIf": "${appType = 1}",
       "fields": [
         {
@@ -2929,7 +2918,7 @@
       ]
     },
     {
-      "title": "(RES FAM) How many families will you accommodate at the residential family centre?",
+      "title": "How many families will you accommodate at the residential family centre?",
       "includeIf": "${appType = 5}",
       "fields": [
         {
@@ -2944,13 +2933,13 @@
       ]
     },
     {
-      "title": "(RES FAM) Will your establishment do any of the following?",
+      "title": "Will your establishment do any of the following?",
       "includeIf": "${appType = 5}",
       "fields": [
         {
           "id": "estQuery",
           "type": "choice",
-          "label": "(RES FAM) Will your establishment do any of the following?",
+          "label": "Will your establishment do any of the following?",
           "shortName": "Establishment does",
           "multivalue": "true",
           "choices": [
@@ -2965,13 +2954,13 @@
       ]
     },
     {
-      "title": "(RES FAM) What will be the range of charges to the people using your establishment or agency?",
+      "title": "What will be the range of charges to the people using your establishment or agency?",
       "includeIf": "${appType = 5}",
       "fields": [
         {
           "id": "chargeTextResFam",
           "type": "text",
-          "label": "(RES FAM) What will be the range of charges to the people using your establishment or agency?",
+          "label": "What will be the range of charges to the people using your establishment or agency?",
           "shortName": "Range of charges for users",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -2979,13 +2968,13 @@
       ]
     },
     {
-      "title": "(VOL ADO) What type of service will you provide?",
+      "title": "What type of service will you provide?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
           "id": "domAdoOnly",
           "type": "choice",
-          "label": "(VOL ADO) What type of service will you provide?",
+          "label": "What type of service will you provide?",
           "shortName": "Service provided",
           "choices": [
             "Domestic adoption only",
@@ -3008,19 +2997,19 @@
           "id": "generatedId_393beae8_aba7_4f6c_af07_d6a5b1361e1d",
           "type": "info",
           "label": "Am I providing a service that is domestic or inter-country?",
-          "infoText": "Some info to go here please\n* \n*\n*\n",
+          "infoText": "Some info to go here please\n* \n*\n*",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "(VOL ADO) Will the voluntary adoption agency have any branches?",
+      "title": "Will the voluntary adoption agency have any branches?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
           "id": "branchesChoi",
           "type": "choice",
-          "label": "(VOL ADO) Will the voluntary adoption agency have any branches?",
+          "label": "Will the voluntary adoption agency have any branches?",
           "shortName": "Has branches",
           "helpText": "You must complete a separate online application to apply to register each of your voluntary adoption agency branch.",
           "choices": [
@@ -3031,7 +3020,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Tell us about the address and registration details for all your branches 1",
+      "title": "Tell us about the address and registration details for all your branches 1",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3059,7 +3048,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Tell us about the address and registration details for all your branches 2",
+      "title": "Tell us about the address and registration details for all your branches 2",
       "includeIf": "${appType = 3 && volAdoMoreBranches1 = 0}",
       "fields": [
         {
@@ -3087,7 +3076,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Tell us about the address and registration details for all your branches 3",
+      "title": "Tell us about the address and registration details for all your branches 3",
       "includeIf": "${appType = 3 && volAdoMoreBranches2 = 0}",
       "fields": [
         {
@@ -3106,7 +3095,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Do you have an adoption panel?",
+      "title": "Do you have an adoption panel?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3121,7 +3110,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) If your agency has more than one branch, will you have more than one adoption panel?",
+      "title": "If your agency has more than one branch, will you have more than one adoption panel?",
       "includeIf": "${appType = 3 && adoPanChoi = 0}",
       "fields": [
         {
@@ -3137,7 +3126,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Will your agency provide birth records counselling?",
+      "title": "Will your agency provide birth records counselling?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3152,7 +3141,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Will your agency provide intermediary services?",
+      "title": "Will your agency provide intermediary services?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3167,7 +3156,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) What will be the range of charges to the people using your establishment or agency?",
+      "title": "What will be the range of charges to the people using your establishment or agency?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3181,7 +3170,7 @@
       ]
     },
     {
-      "title": "(ASA) Who will your adoption support agency provide support to?",
+      "title": "Who will your adoption support agency provide support to?",
       "includeIf": "${appType = 2}",
       "fields": [
         {
@@ -3197,7 +3186,7 @@
       ]
     },
     {
-      "title": "(ASA) Will your agency provide any of these services?",
+      "title": "Will your agency provide any of these services?",
       "includeIf": "${appType = 2}",
       "fields": [
         {
@@ -3235,7 +3224,7 @@
       ]
     },
     {
-      "title": "(HOL) What is the age range you will accommodate?",
+      "title": "What is the age range you will accommodate?",
       "shortName": "Age range accommodated",
       "includeIf": "${appType = 4}",
       "fields": [
@@ -3258,7 +3247,7 @@
       ]
     },
     {
-      "title": "(HOL) What will be the range of charges to the people using your establishment or agency?",
+      "title": "What will be the range of charges to the people using your establishment or agency?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -3272,7 +3261,7 @@
       ]
     },
     {
-      "title": "(HOL) What are your arrangements for children to raise questions and concerns about the holiday scheme?",
+      "title": "What are your arrangements for children to raise questions and concerns about the holiday scheme?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -3285,7 +3274,7 @@
       ]
     },
     {
-      "title": "(ALL) Who is the proposed registered manager of the establishment or agency?",
+      "title": "Who is the proposed registered manager of the establishment or agency?",
       "fields": [
         {
           "id": "generatedId_d1d88c74_3e2d_46f5_bcc5_6f898a2cf7e3",
@@ -3349,7 +3338,7 @@
       ]
     },
     {
-      "title": "(ALL) Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+      "title": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
       "fields": [
         {
           "id": "manWorking",
@@ -3363,12 +3352,12 @@
       ]
     },
     {
-      "title": "(ALL) Provide details of all the establishment the manager is running or will run in the future",
+      "title": " Provide details of all the establishment the manager is running or will run in the future",
       "fields": [
         {
           "id": "manWrkDets",
           "type": "text",
-          "label": "(ALL) Provide details of all the establishment the manager is running or will run in the future",
+          "label": "Provide details of all the establishment the manager is running or will run in the future",
           "shortName": "Establishments manager is running",
           "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
@@ -3376,7 +3365,7 @@
       ]
     },
     {
-      "title": "(VOL ADO) Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
+      "title": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
@@ -3393,7 +3382,7 @@
       ]
     },
     {
-      "title": "(ALL) Upload your procedures and policies",
+      "title": "Upload your procedures and policies",
       "fields": [
         {
           "id": "generatedId_3dc358f9_65ab_4860_9174_a2ea579ccc92",
