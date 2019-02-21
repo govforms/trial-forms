@@ -44,26 +44,6 @@
   },
   "sections": [
     {
-      "title": "Confirm your registration number",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "fields": [
-        {
-          "id": "infoApd1",
-          "type": "info",
-          "label": "",
-          "infoText": "We are aware that there is an issue with slow loading on these pages.\n\nEnsure that each page has loaded before pressing save and continue.",
-          "infoType": "important"
-        },
-        {
-          "id": "APDreg",
-          "type": "text",
-          "label": "Air passenger duty (APD) registration number",
-          "value": "${eeitt.businessUser}",
-          "submitMode": "readonly"
-        }
-      ]
-    },
-    {
       "title": "Enter your client's details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
@@ -73,13 +53,6 @@
           "label": "",
           "infoText": "We are aware that there is an issue with slow loading on these pages.\n\nEnsure that each page has loaded before pressing save and continue.",
           "infoType": "important"
-        },
-        {
-          "id": "accessCode",
-          "type": "text",
-          "label": "Access code",
-          "value": "${eeitt.agent}",
-          "submitMode": "readonly"
         },
         {
           "id": "APDreferencenumber",
@@ -125,6 +98,15 @@
           "label": "",
           "infoText": "We are aware that there is an issue with slow loading on these pages.\n\nEnsure that each page has loaded before pressing save and continue.",
           "infoType": "important"
+        },
+        {
+          "id": "APDReg",
+          "type": "text",
+          "label": "Air Passenger Duty registration number: ",
+          "shortName": "Air Passenger Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         },
         {
           "id": "businessName",
@@ -640,7 +622,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/APD/eeits/{{either null APDreg APDreferencenumber}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}','periodFrom':'{{hmrcTaxPeriodFromDate returnPeriod}}','periodTo':'{{hmrcTaxPeriodToDate returnPeriod}}','returnsDetails':{'isrScenario':'ZAP1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null APDreg APDreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'APD_BOX_NUM','paramValue':'1'},{'paramSequence':'01','paramName':'APD_BAND_TYPE','paramValue':'01'},{'paramSequence':'01','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'01','paramName':'APD_BAND_PASSENGER','paramValue':'{{lowerAPassengerNumber}}'},{'paramSequence':'01','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable1}}'},{'paramSequence':'01','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'02','paramName':'APD_BOX_NUM','paramValue':'2'},{'paramSequence':'02','paramName':'APD_BAND_TYPE','paramValue':'01'},{'paramSequence':'02','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'02','paramName':'APD_BAND_PASSENGER','paramValue':'{{lowerBPassengerNumber}}'},{'paramSequence':'02','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable4}}'},{'paramSequence':'02','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'03','paramName':'APD_BOX_NUM','paramValue':'3'},{'paramSequence':'03','paramName':'APD_BAND_TYPE','paramValue':'02'},{'paramSequence':'03','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'03','paramName':'APD_BAND_PASSENGER','paramValue':'{{standardAPassengerNumber}}'},{'paramSequence':'03','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable2}}'},{'paramSequence':'03','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'04','paramName':'APD_BOX_NUM','paramValue':'4'},{'paramSequence':'04','paramName':'APD_BAND_TYPE','paramValue':'02'},{'paramSequence':'04','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'04','paramName':'APD_BAND_PASSENGER','paramValue':'{{standardBPassengerNumber}}'},{'paramSequence':'04','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable5}}'},{'paramSequence':'04','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'05','paramName':'APD_BOX_NUM','paramValue':'5'},{'paramSequence':'05','paramName':'APD_BAND_TYPE','paramValue':'03'},{'paramSequence':'05','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'05','paramName':'APD_BAND_PASSENGER','paramValue':'{{higherAPassengerNumber}}'},{'paramSequence':'05','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable3}}'},{'paramSequence':'05','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'06','paramName':'APD_BOX_NUM','paramValue':'6'},{'paramSequence':'06','paramName':'APD_BAND_TYPE','paramValue':'03'},{'paramSequence':'06','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'06','paramName':'APD_BAND_PASSENGER','paramValue':'{{higherBPassengerNumber}}'},{'paramSequence':'06','paramName':'APD_BAND_AMOUNT','paramValue':'{{amountpayable6}}'},{'paramSequence':'06','paramName':'APD_BAND_GROUP','paramValue':''},{'paramSequence':'01','paramName':'APD_TOTAL_AMOUNT','paramValue':'{{totalAmountOfDuty}}'},{'paramSequence':'01','paramName':'APD_EXEMPT_PASSENGERS','paramValue':'{{exempt}}'},{'paramSequence':'01','paramName':'APD_PASSENGERS_FLOWN','paramValue':'{{totalPassengers}}'},{'paramSequence':'01','paramName':'APD_UNDER_DECLARATION','paramValue':'{{underDec}}'},{'paramSequence':'01','paramName':'APD_OVER_DECLARATION','paramValue':'{{overDec}}'},{'paramSequence':'01','paramName':'APD_TOTAL_DUE','paramValue':'{{totalpayable}}'},{'paramSequence':'01','paramName':'APD_SPECIAL_ACCOUNTING','paramValue':'{{yesNoToEtmpChoice accountingRadio}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{CurrentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAP1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null APDreg APDreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'APD_BOX_NUM','paramValue':'1'},{'paramSequence':'01','paramName':'APD_BAND_TYPE','paramValue':'01'},{'paramSequence':'01','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'01','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null lowerAPassengerNumber 0}}'},{'paramSequence':'01','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable1 0}}'},{'paramSequence':'01','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'02','paramName':'APD_BOX_NUM','paramValue':'2'},{'paramSequence':'02','paramName':'APD_BAND_TYPE','paramValue':'01'},{'paramSequence':'02','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'02','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null lowerBPassengerNumber 0}}'},{'paramSequence':'02','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable4 0}}'},{'paramSequence':'02','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'03','paramName':'APD_BOX_NUM','paramValue':'3'},{'paramSequence':'03','paramName':'APD_BAND_TYPE','paramValue':'02'},{'paramSequence':'03','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'03','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null standardAPassengerNumber 0}}'},{'paramSequence':'03','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable2 0}}'},{'paramSequence':'03','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'04','paramName':'APD_BOX_NUM','paramValue':'4'},{'paramSequence':'04','paramName':'APD_BAND_TYPE','paramValue':'02'},{'paramSequence':'04','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'04','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null standardBPassengerNumber 0}}'},{'paramSequence':'04','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable5 0}}'},{'paramSequence':'04','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'05','paramName':'APD_BOX_NUM','paramValue':'5'},{'paramSequence':'05','paramName':'APD_BAND_TYPE','paramValue':'03'},{'paramSequence':'05','paramName':'APD_BAND_RATECATEGORY','paramValue':'A'},{'paramSequence':'05','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null higherAPassengerNumber 0}}'},{'paramSequence':'05','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable3 0}}'},{'paramSequence':'05','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'06','paramName':'APD_BOX_NUM','paramValue':'6'},{'paramSequence':'06','paramName':'APD_BAND_TYPE','paramValue':'03'},{'paramSequence':'06','paramName':'APD_BAND_RATECATEGORY','paramValue':'B'},{'paramSequence':'06','paramName':'APD_BAND_PASSENGER','paramValue':'{{either null higherBPassengerNumber 0}}'},{'paramSequence':'06','paramName':'APD_BAND_AMOUNT','paramValue':'{{either null amountpayable6 0}}'},{'paramSequence':'06','paramName':'APD_BAND_GROUP','paramValue':' '},{'paramSequence':'01','paramName':'APD_TOTAL_AMOUNT','paramValue':'{{totalAmountOfDuty}}'},{'paramSequence':'01','paramName':'APD_EXEMPT_PASSENGERS','paramValue':'{{exempt}}'},{'paramSequence':'01','paramName':'APD_PASSENGERS_FLOWN','paramValue':'{{totalPassengers}}'},{'paramSequence':'01','paramName':'APD_UNDER_DECLARATION','paramValue':'{{underDec}}'},{'paramSequence':'01','paramName':'APD_OVER_DECLARATION','paramValue':'{{overDec}}'},{'paramSequence':'01','paramName':'APD_TOTAL_DUE','paramValue':'{{totalpayable}}'},{'paramSequence':'01','paramName':'APD_SPECIAL_ACCOUNTING','paramValue':'{{yesNoToEtmpChoice accountingRadio}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
