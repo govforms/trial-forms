@@ -1,5 +1,4 @@
 {
-  "_id": "template-ipt100-automation",
   "formName": "Insurance Premium Tax return",
   "description": "Fill in your insurance premium tax return form online",
   "developmentPhase": "beta",
@@ -480,7 +479,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/IPT/eeits/{{either null IPTreg IPTreferencenumber}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZIP1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null IPTreg IPTreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_IPT_BOX1_STDRATE','paramValue':'{{standardRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX2_HIGHERRATE','paramValue':'{{higherRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX3_STDUNDERDEC','paramValue':'{{either null underDecOfStandardRate 0}}'},{'paramSequence':'01','paramName':'A_IPT_BOX4_HIGHUNDERDEC','paramValue':'{{either null underDecOfHigherRate 0}}'},{'paramSequence':'01','paramName':'A_IPT_BOX5_TOTALTAX','paramValue':'{{totalIPTAndUnderDecs}}'},{'paramSequence':'01','paramName':'A_IPT_BOX6_STDOVERDEC','paramValue':'{{either null overDecOfStandardRate 0}}'},{'paramSequence':'01','paramName':'A_IPT_BOX7_HIGHOVERDEC','paramValue':'{{either null overDecOfHigherRate 0}}'},{'paramSequence':'01','paramName':'A_IPT_BOX8_OVERDECTOTAL','paramValue':'{{either null overDecTotal 0}}'},{'paramSequence':'01','paramName':'A_IPT_BOX9_NETTAXDUE','paramValue':'{{eiher null netTaxPayment netTaxRefund}}'},{'paramSequence':'01','paramName':'A_IPT_BOX10_PREMIUM','paramValue':'{{either null netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2}}'},'paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZIP1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null IPTreg IPTreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_IPT_BOX1_STDRATE','paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX2_HIGHERRATE','paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX3_STDUNDERDEC','paramValue':'{{stripCommas (either underDecOfStandardRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX4_HIGHUNDERDEC','paramValue':'{{stripCommas (either underDecOfHigherRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX5_TOTALTAX','paramValue':'{{stripCommas totalIPTAndUnderDecs}}'},{'paramSequence':'01','paramName':'A_IPT_BOX6_STDOVERDEC','paramValue':'{{stripCommas (either overDecOfStandardRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX7_HIGHOVERDEC','paramValue':'{{stripCommas (either overDecOfHigherRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX8_OVERDECTOTAL','paramValue':'{{stripCommas (either overDecTotal 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX9_NETTAXDUE','paramValue':'{{stripCommas (either netTaxPayment netTaxRefund)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX10_PREMIUM','paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},'paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
@@ -493,5 +492,6 @@
     }
   ],
   "submitSuccessUrl": "",
-  "submitErrorUrl": ""
+  "submitErrorUrl": "",
+  "_id": "template-ipt100-automation"
 }
