@@ -45,16 +45,9 @@
   },
   "sections": [
     {
-      "title": "Enter your client's reference number (also known as an access code)",
+      "title": "Enter your client's reference number",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
-        {
-          "id": "accessCode",
-          "type": "text",
-          "label": "Access code",
-          "value": "${eeitt.agent}",
-          "submitMode": "derived"
-        },
         {
           "id": "aggregatesLevyRegAgent",
           "type": "text",
@@ -81,8 +74,23 @@
     {
       "title": "Choose your Aggregates Levy return dates",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
-      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
       "fields": [
+        {
+          "id": "aggregatesLevyReg",
+          "type": "text",
+          "label": "Aggregates Levy registration number: ",
+          "shortName": "Aggregates Levy registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
         {
           "id": "returnPeriod",
           "type": "hmrcTaxPeriod",
@@ -136,13 +144,6 @@
       "title": "About you",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
-        {
-          "id": "aggregatesLevyReg",
-          "type": "text",
-          "label": "Aggregates Levy registration number",
-          "value": "${user.enrolledIdentifier}",
-          "submitMode": "derived"
-        },
         {
           "id": "yourInfo",
           "type": "info",
@@ -298,7 +299,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/AGL/eeits/{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}','periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}','periodTo':'{{hmrcTaxPeriodTo returnPeriod}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{CurrentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
