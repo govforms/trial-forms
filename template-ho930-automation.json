@@ -1,0 +1,495 @@
+{
+  "formName": "Biofuels and other fuel substitutes",
+  "description": "",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "eeitt_ho930_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "BF",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your Biofuels registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Biofuels",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client's reference number",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "ho930RegAgent",
+          "type": "text",
+          "label": "Client's Biofuels reference number",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        }
+      ]
+    },
+    {
+      "title": "Choose your client's Biofuels return dates",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "$(biofuelsRegAgent)",
+          "regimeType": "BF"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Biofuels return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "ho930Reg",
+          "type": "text",
+          "label": "Biofuels registration number: ",
+          "shortName": "Biofuels registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${user.enrolledIdentifier}",
+          "regimeType": "BFP"
+        }
+      ]
+    },
+    {
+      "title": "Enter your business details",
+      "shortName": "Your business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "errorMessage": "Enter the business name"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber",
+          "errorMessage": "Enter a valid phone number"
+        },
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Registered business address",
+          "international": "yes",
+          "errorMessage": "Enter the registered business address"
+        }
+      ]
+    },
+    {
+      "title": "Do you have duty to pay in this return period?",
+      "shortName": "Do you have duty to pay?",
+      "fields": [
+        {
+          "id": "dutyToPayChoice",
+          "type": "choice",
+          "label": "Do you have duty to pay in this return period?",
+          "shortName": "Duty to pay",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Enter how much duty you owe",
+      "shortName": "Duty details",
+      "includeIf": "${dutyToPayChoice=0}",
+      "description": "Select the biofuel, substitute or additive you need to pay duty on.",
+      "fields": [
+        {
+          "id": "taxType33589Group",
+          "type": "group",
+          "label": "Tax type 33589 - Biodiesel",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33589Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33589DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33571Group",
+          "type": "group",
+          "label": "Tax type 33571 - Biodiesel for non road use",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33571Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33571DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33595Group",
+          "type": "group",
+          "label": "Tax type 33595 - Bioethanol",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33595Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33595DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33541Group",
+          "type": "group",
+          "label": "Tax type 33541 - Heavy oil (diesel engine)",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33541Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33541DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33522Group",
+          "type": "group",
+          "label": "Tax type 33522 - Unleaded petrol (petrol engine)",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33522Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33522DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33520Group",
+          "type": "group",
+          "label": "Tax type 33520 - Leaded petrol (petrol engine)",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33520Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33520DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33511Group",
+          "type": "group",
+          "label": "Tax type 33511 - Aviation spirit (aircraft piston engine)",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33511Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33511DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxType33597Group",
+          "type": "group",
+          "label": "Tax type 33597 - Aquamethanol",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType33597Quantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(11, 2, 'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType33597DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false",
+              "errorMessage": "Amount of excise duty due must only include whole numbers."
+            }
+          ]
+        },
+        {
+          "id": "taxCodeOtherGroup",
+          "type": "group",
+          "label": "Add other tax types",
+          "helpText": "If the tax type you want to pay duty for is not in the list, you can [look up tax types](https://www.gov.uk/government/publications/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances) and add it.",
+          "repeatsMax": 5,
+          "repeatAddAnotherText": "Add other tax type",
+          "presentationHint": "summariseGroupAsGrid",
+          "fields": [
+            {
+              "id": "taxCodeOtherGroupCode",
+              "type": "text",
+              "label": "Tax type",
+              "mandatory": "false",
+              "errorMessage": "Please enter a valid tax type."
+            },
+            {
+              "id": "taxCodeOtherGroupQuantity",
+              "type": "text",
+              "label": "Quantity in litres of biofuel, substitute or additive",
+              "format": "number(12,2,'litres')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxCodeOtherGroupAmountDutyDue",
+              "type": "text",
+              "label": "Amount of duty due",
+              "format": "sterling",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "totalDue",
+          "type": "text",
+          "label": "Total payable",
+          "format": "sterling",
+          "value": "${taxType33511DutyDue + taxType33520DutyDue + taxType33522DutyDue + taxType33541DutyDue + taxType33595DutyDue + taxType33571DutyDue + taxType33589DutyDue + taxType33597DutyDue + taxCodeOtherGroupAmountDutyDue.sum}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Enter contact person's details",
+      "shortName": "Contact person",
+      "description": "This is the person we will contact if we need to discuss your return.",
+      "fields": [
+        {
+          "id": "contactName",
+          "type": "text",
+          "label": "Full name",
+          "errorMessage": "Enter a full name"
+        },
+        {
+          "id": "contactEmailAddress",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "errorMessage": "Enter a valid email address"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit your return",
+    "shortName": "Submit your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Approver's details",
+        "helpText": "Tell us who is approving this return. This person may be different from the contact person or it may be the same person for both.",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationJobTitle",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "Example: Finance Director",
+            "errorMessage": "Enter a job title"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoText": "By submitting the return, you confirm that the details provided are true and complete.",
+            "infoType": "noformat"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "If you owe duty",
+        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number on any payment.\n\nSort code: 20-05-17\n\nAccount number: 40204374\n\nAccount name: HMRC General BT Receipts",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageWarning",
+        "type": "info",
+        "label": "",
+        "infoText": "Make sure you pay the duty owed or you may face a penalty.",
+        "infoType": "important"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "If you need to contact us about your return",
+        "infoText": "## If you need to contact us about your return  \n\nCall 0300 200 3700 or email [morc.exciseenquiries@hmrc.gsi.gov.uk](morc.exciseenquiries@hmrc.gsi.gov.uk), quoting your registration number.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/BFP/eeits/{{either ho930Reg ho930RegAgent}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}', 'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}', 'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}', 'returnsDetails':{'isrScenario':'ZBF1', 'regimeSpecificDetails':[{'paramSequence':'01', 'paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either ho930Reg ho930RegAgent}}'}, {'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_BFP_BIODIESEL_QTY','paramValue':'{{taxType33589Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_BIODIESEL_AMNT','paramValue':'{{taxType33589DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_BIO_NONROAD_QTY','paramValue':'{{taxType33571Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_BIO_NONROAD_AMNT','paramValue':'{{taxType33571DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_BIOETHANOL_QTY','paramValue':'{{taxType33595Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_BIOETHANOL_AMNT','paramValue':'{{taxType33595DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_HEAVY_OIL_QTY','paramValue':'{{taxType33541Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_HEAVY_OIL_AMNT','paramValue':'{{taxType33541DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_UNLEADED_QTY','paramValue':'{{taxType33522Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_UNLEADED_AMNT','paramValue':'{{taxType33522DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_LEADED_QTY','paramValue':'{{taxType33520Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_LEADED_AMNT','paramValue':'{{taxType33520DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_AVIATION_QTY','paramValue':'{{taxType33511Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_AVIATION_AMNT','paramValue':'{{taxType33511DutyDue}}'), {'paramSequence':'01','paramName':'A_BFP_AQUAMETH_QTY','paramValue':'{{taxType33597Quantity}}'), {'paramSequence':'01','paramName':'A_BFP_AQUAMETH_AMNT','paramValue':'{{taxType33597DutyDue}}'), {{#taxCodeOtherGroupCode.[0]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_1_DESC','paramValue':'{{.}}'}, {{/taxCodeOtherGroupCode.[0]}} {{#taxCodeOtherGroupQuantity.[0]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_1_QTY','paramValue':'{{.}}'), {{/taxCodeOtherGroupQuantity.[0]}} {{#taxCodeOtherGroupAmountDutyDue.[0]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_1_AMNT','paramValue':'{{.}}'), {{/taxCodeOtherGroupAmountDutyDue.[0]}} {{#taxCodeOtherGroupCode.[1]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_2_DESC','paramValue':'{{.}}'}, {{/taxCodeOtherGroupCode.[1]}} {{#taxCodeOtherGroupQuantity.[1]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_2_QTY','paramValue':'{{.}}'), {{/taxCodeOtherGroupQuantity.[1]}} {{#taxCodeOtherGroupAmountDutyDue.[1]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_2_AMNT','paramValue':'{{.}}'), {{/taxCodeOtherGroupAmountDutyDue.[1]}} {{#taxCodeOtherGroupCode.[2]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_3_DESC','paramValue':'{{.}}'}, {{/taxCodeOtherGroupCode.[2]}} {{#taxCodeOtherGroupQuantity.[2]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_3_QTY','paramValue':'{{.}}'), {{/taxCodeOtherGroupQuantity.[2]}} {{#taxCodeOtherGroupAmountDutyDue.[2]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_3_AMNT','paramValue':'{{.}}'), {{/taxCodeOtherGroupAmountDutyDue.[2]}} {{#taxCodeOtherGroupCode.[3]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_4_DESC','paramValue':'{{.}}'}, {{/taxCodeOtherGroupCode.[3]}} {{#taxCodeOtherGroupQuantity.[3]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_4_QTY','paramValue':'{{.}}'), {{/taxCodeOtherGroupQuantity.[3]}} {{#taxCodeOtherGroupAmountDutyDue.[3]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_4_AMNT','paramValue':'{{.}}'), {{/taxCodeOtherGroupAmountDutyDue.[3]}} {{#taxCodeOtherGroupCode.[4]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_5_DESC','paramValue':'{{.}}'}, {{/taxCodeOtherGroupCode.[4]}} {{#taxCodeOtherGroupQuantity.[4]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_5_QTY','paramValue':'{{.}}'), {{/taxCodeOtherGroupQuantity.[4]}} {{#taxCodeOtherGroupAmountDutyDue.[4]}} {'paramSequence':'01','paramName':'A_BFP_OTHER_5_AMNT','paramValue':'{{.}}'), {{/taxCodeOtherGroupAmountDutyDue.[4]}} {'paramSequence':'01','paramName':'A_BFP_DUTY_DUE_TOTAL','paramValue':'{{totalDue}}'), {'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]}, 'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "HO930",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Priority",
+      "businessArea": "BFP"
+    }
+  ],
+  "GFC579Ready": "true",
+  "submitSuccessUrl": "",
+  "submitErrorUrl": "",
+  "_id": "template-ho930-automation"
+}
