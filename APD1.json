@@ -58,7 +58,7 @@
           "id": "email",
           "type": "text",
           "label": "Email address",
-          "helpText": "We'll use this to send you a confirmation email",
+          "helpText": "We'll also use this to send you a confirmation email",
           "format": "email"
         },
         {
@@ -72,6 +72,7 @@
           "id": "role",
           "type": "choice",
           "label": "Select the role relevant to you",
+          "shortName": "Role within business",
           "helpText": "You must be one of the following to register on behalf of your business",
           "choices": [
             "Director",
@@ -100,13 +101,14 @@
           "id": "busTrading",
           "type": "text",
           "label": "Trading name (optional)",
+          "shortName": "Trading name",
           "helpText": "Enter the trading name if different from business name",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Is your main place of business in the UK?",
+      "title": "Is your principal place of business in the UK?",
       "shortName": "Is your main place of business in the UK",
       "fields": [
         {
@@ -121,9 +123,9 @@
       ]
     },
     {
-      "title": "Details for main place of business",
+      "title": "Details for principal place of business",
       "includeIf": "${basedInUk=0}",
-      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
+      "description": "",
       "fields": [
         {
           "id": "generatedId_42de4fc5_7188_4b6f_b8ae_f7822bbb14de",
@@ -135,26 +137,26 @@
         {
           "id": "busAddress",
           "type": "address",
-          "label": "Address",
+          "label": "Business address",
           "international": "false"
         },
         {
           "id": "busTelephone",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Business telephone number",
           "format": "telephoneNumber"
         },
         {
           "id": "busEmail",
           "type": "text",
-          "label": "Email address (optional)",
+          "label": "Business email address (optional)",
           "format": "email",
           "mandatory": "false"
         },
         {
           "id": "contactChoice",
           "type": "choice",
-          "label": "Do you want HMRC to also use these details for your Air Passenger Duty correspondence?",
+          "label": "Do you want HMRC to also use these details for your ongoing Air Passenger Duty correspondence?",
           "shortName": "Use as contact details",
           "choices": [
             "Yes",
@@ -164,9 +166,9 @@
       ]
     },
     {
-      "title": "Details for main place of business",
+      "title": "Details for principal place of business",
       "includeIf": "${basedInUk=1}",
-      "description": "Provide details for the main place of business, where the day-to-day business activities are managed.",
+      "description": "",
       "fields": [
         {
           "id": "generatedId_b8928ec7_938e_48e0_b6eb_866dd5a0f07e",
@@ -178,14 +180,14 @@
         {
           "id": "busTelephone_copy_12",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Business telephone number",
           "helpText": "Include the country code",
           "format": "telephoneNumber"
         },
         {
           "id": "busEmail_copy_12",
           "type": "text",
-          "label": "Email address (optional)",
+          "label": "Business email address (optional)",
           "format": "email",
           "mandatory": "false"
         },
@@ -195,30 +197,30 @@
           "label": "Business address",
           "fields": [
             {
-              "type": "text",
               "id": "addressOne",
+              "type": "text",
               "label": "Address 1"
             },
             {
-              "type": "text",
               "id": "addressTwo",
+              "type": "text",
               "label": "Address 2"
             },
             {
-              "type": "text",
               "id": "addressThree",
+              "type": "text",
               "label": "Address 3 (optional)",
               "mandatory": "false"
             },
             {
-              "type": "text",
               "id": "addressFour",
+              "type": "text",
               "label": "Address 4 (optional)",
               "mandatory": "false"
             },
             {
-              "type": "text",
               "id": "addresscountry",
+              "type": "text",
               "label": "Country"
             }
           ]
@@ -320,18 +322,41 @@
       "description": "Provide details about the aircraft you operate or intend to operate.",
       "fields": [
         {
-          "id": "bigPlanes",
+          "id": "generatedId_5e637f02_836d_4311_b696_370697f8c5c0",
+          "type": "info",
+          "label": "",
+          "infoText": "##Authorised weight of aircraft",
+          "infoType": "noformat"
+        },
+        {
+          "id": "littlePlanes",
           "type": "choice",
-          "label": "Do you operate aircraft with an authorised weight of 10 tonnes or more?",
+          "label": "Do you operate aircraft that weigh 5.7 tonnes or more, but less than 10 tonnes?",
           "choices": [
             "Yes",
             "No"
           ]
         },
         {
-          "id": "littlePlanes",
+          "id": "bigPlanes",
           "type": "choice",
-          "label": "Do you operate aircraft with an authorised weight of less than 10 tonnes but 5.7 tonnes or more?",
+          "label": "Do you operate aircraft that weigh 10 tonnes or more?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_43db74c1_2a9d_4f14_8975_ecba79759be7",
+          "type": "info",
+          "label": "",
+          "infoText": "## Authorised passenger numbers",
+          "infoType": "noformat"
+        },
+        {
+          "id": "littleSeats",
+          "type": "choice",
+          "label": "Do you operate aircraft authorised to seat fewer than 20 passengers?",
           "choices": [
             "Yes",
             "No"
@@ -340,131 +365,11 @@
         {
           "id": "bigSeats",
           "type": "choice",
-          "label": "Do you operate aircraft that are authorised to seat 20 passengers or more?",
+          "label": "Do you operate aircraft authorised to seat 20 passengers or more?",
           "choices": [
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "littleSeats",
-          "type": "choice",
-          "label": "Do you operate aircraft that are authorised to seat fewer than 20 passengers?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Estimated number of chargeable passengers",
-      "fields": [
-        {
-          "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
-          "type": "info",
-          "label": "passNo",
-          "infoText": "Provide an estimate of the number of  passengers that you will carry in each band from a UK airport during the next 12 months. Do not include passengers who are exempt from Air Passenger Duty.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "shortHaulPassengers",
-          "type": "text",
-          "label": "Band A (0-2000 miles)",
-          "helpText": "Enter 0 if not applicable",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "id": "longHaulPassengers",
-          "type": "text",
-          "label": "Band B (over 2000 miles)",
-          "helpText": "Enter 0 if not applicable",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "id": "generatedId_ebdb9325_e895_45aa_a63e_ee766a5031d1",
-          "type": "info",
-          "label": "Where can I find out more?",
-          "infoText": "To find out  more about destination bands and chargeable passengers, open a new window or tab and search for 'Rates for Air Passenger Duty' on GOV.UK",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "(Draft version 2) Estimated number of chargeable passengers",
-      "fields": [
-        {
-          "id": "generatedId_89d4bb60_2fd7_405b_879f_e212ff7d0d76",
-          "type": "info",
-          "label": "passNo",
-          "infoText": "Provide an estimate of the number of chargeable passengers that you will carry in each destination band from a UK airport during the next 12 months.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "shortHaulPassengers_copy_1",
-          "type": "text",
-          "label": "Chargeable passengers in band A",
-          "helpText": "Enter an estimate for the next 12 months. Enter 0 if not applicable",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "id": "longHaulPassengers_copy_1",
-          "type": "text",
-          "label": "Chargeable passengers in band B",
-          "helpText": "Enter an estimate for the next 12 months. Enter 0 if not applicable.",
-          "format": "positiveWholeNumber"
-        },
-        {
-          "type": "info",
-          "id": "generatedId_13a70eb3_c7b5_4eb6_a8ce_f58213152185",
-          "label": "What are destination bands A and B?",
-          "infoText": "Band A is where the distance from London to the destination country’s capital city is between 0 to 2,000 miles.\n\nBand B is where the distance from London to the destination country’s capital city is over 2,000 miles.\n\nTo find out  more about destination bands and see a list of destinations that fall into each band, open a new window or tab and search for 'Rates for Air Passenger Duty' on GOV.UK.",
-          "infoType": "long"
-        },
-        {
-          "id": "generatedId_84ba9078_2068_4871_a7f7_ca0e3a078de6",
-          "type": "info",
-          "label": "Where can I find out more about which passengers are chargeable?",
-          "infoText": "To find out  more about passengers that are chargeable or exempt from Air Passenger Duty, open a new window or tab and search for 'Exemptions from Air Passenger Duty' on GOV.UK",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Have you started carrying chargeable passengers?",
-      "fields": [
-        {
-          "id": "startedCarrying",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "When did you first carry the passengers in a chargeable aircraft?",
-      "includeIf": "${startedCarrying =0}",
-      "fields": [
-        {
-          "id": "firstCarry",
-          "type": "date",
-          "label": "",
-          "helpText": "For example 01 04 2018"
-        }
-      ]
-    },
-    {
-      "title": "When do you expect to start carrying the passengers in a chargeable aircraft?",
-      "includeIf": "${startedCarrying =1}",
-      "fields": [
-        {
-          "id": "firstCarry_copy_1",
-          "type": "date",
-          "label": "",
-          "helpText": "For example 01 04 2018"
         }
       ]
     },
@@ -486,6 +391,85 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Have you started carrying chargeable passengers in chargeable aircraft?",
+      "fields": [
+        {
+          "id": "startedCarrying",
+          "type": "choice",
+          "label": "",
+          "helpText": "Chargeable passengers and aircraft are those subject to Air Passenger Duty",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "generatedId_84ba9078_2068_4871_a7f7_ca0e3a078de6",
+          "type": "info",
+          "label": "Where can I find out more about which passengers and aircraft are chargeable?",
+          "infoText": "To find out more about passengers and aircraft that are chargeable or exempt from Air Passenger Duty: \n\n* open a new window or tab\n* go to GOV.UK\n* search for 'Exemptions from Air Passenger Duty'",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "When did you first carry chargeable passengers in a chargeable aircraft?",
+      "includeIf": "${startedCarrying =0}",
+      "fields": [
+        {
+          "id": "firstCarry",
+          "type": "date",
+          "label": "",
+          "helpText": "For example 01 04 2018"
+        }
+      ]
+    },
+    {
+      "title": "When do you expect to start carrying chargeable passengers in a chargeable aircraft?",
+      "includeIf": "${startedCarrying =1}",
+      "fields": [
+        {
+          "id": "firstCarry_copy_1",
+          "type": "date",
+          "label": "",
+          "helpText": "For example 01 04 2018"
+        }
+      ]
+    },
+    {
+      "title": "Estimated number of chargeable passengers by band",
+      "fields": [
+        {
+          "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
+          "type": "info",
+          "label": "passNo",
+          "infoText": "Provide an estimate of the number of  passengers that you will carry in each destination band from a UK airport during the next 12 months. \n\n\nDo not include passengers who are exempt from Air Passenger Duty.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "shortHaulPassengers",
+          "type": "text",
+          "label": "Band A (0 to 2000 miles)",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "id": "longHaulPassengers",
+          "type": "text",
+          "label": "Band B (over 2000 miles)",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveWholeNumber"
+        },
+        {
+          "id": "generatedId_13a70eb3_c7b5_4eb6_a8ce_f58213152185",
+          "type": "info",
+          "label": "Where can I find out more about destination bands A and B?",
+          "infoText": "To find out  more about destination bands and see a list of destinations that fall into each band:\n* open a new window or tab\n\n* go to GOV.UK\n\n* search for 'Rates for Air Passenger Duty' on GOV.UK.",
+          "infoType": "long"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -496,7 +480,7 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this form you are confirming that all the information you’ve provided is correct and complete.",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you.",
         "infoType": "important"
       }
     ]
