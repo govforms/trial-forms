@@ -1807,22 +1807,6 @@
       ]
     },
     {
-      "title": "Will this person have management responsibility for staff?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
-      "description": "Looks like a duplicate that could be built into the responsible person pages",
-      "fields": [
-        {
-          "id": "respStaff",
-          "type": "choice",
-          "label": "Will this person have management responsibility for staff?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Contact details and address of main site",
       "includeIf": "${appType != 4}",
       "fields": [
@@ -1896,6 +1880,22 @@
           "type": "choice",
           "label": "Will you have sole use of the premises?",
           "shortName": "Sole use of property",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will this person have management responsibility for staff?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
+      "description": "Looks like a duplicate that could be built into the responsible person pages",
+      "fields": [
+        {
+          "id": "respStaff",
+          "type": "choice",
+          "label": "Will this person have management responsibility for staff?",
           "choices": [
             "Yes",
             "No"
@@ -2207,7 +2207,7 @@
         {
           "id": "othPremReg",
           "type": "choice",
-          "label": "Will you regularly use any other premises in connection with the establishment?",
+          "label": "",
           "choices": [
             "Yes",
             "No"
@@ -2479,7 +2479,7 @@
       ]
     },
     {
-      "title": "What staff posts are you recruiting to care for children and young people? 1",
+      "title": "What staff posts are you recruiting to care for children and young people? ",
       "fields": [
         {
           "id": "stafPos",
@@ -2507,7 +2507,7 @@
       ]
     },
     {
-      "title": "What staff posts are you recruiting to care for children and young people? 2",
+      "title": "What staff posts are you recruiting to care for children and young people? ",
       "includeIf": "${another1 = 0}",
       "fields": [
         {
@@ -2536,7 +2536,7 @@
       ]
     },
     {
-      "title": "What staff posts are you recruiting to care for children and young people? 3",
+      "title": "What staff posts are you recruiting to care for children and young people? ",
       "includeIf": "${another2 = 0}",
       "fields": [
         {
@@ -3226,12 +3226,14 @@
           "id": "othSelCritTex_copy_2",
           "type": "text",
           "label": "",
+          "shortName": "arrangements for child questions and concerns",
           "multiline": "true"
         }
       ]
     },
     {
       "title": "Who is the proposed registered manager of the establishment or agency?",
+      "shortName": "Proposed manager",
       "fields": [
         {
           "id": "generatedId_d1d88c74_3e2d_46f5_bcc5_6f898a2cf7e3",
@@ -3280,11 +3282,13 @@
     },
     {
       "title": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+      "shortName": "Manager already runs an establishment, agency or business",
       "fields": [
         {
           "id": "manWorking",
           "type": "choice",
           "label": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+          "shortName": "Manager already running an establishment",
           "choices": [
             "Yes",
             "No"
@@ -3293,12 +3297,13 @@
       ]
     },
     {
-      "title": " Provide details of all the establishment the manager is running or will run in the future",
+      "title": " Provide details of the establishment the manager is running or will run in the future",
+      "includeIf": "${manWorking =0}",
       "fields": [
         {
           "id": "manWrkDets",
           "type": "text",
-          "label": "Provide details of all the establishment the manager is running or will run in the future",
+          "label": "Provide details of the establishment the manager is running or will run in the future",
           "shortName": "Establishments manager is running",
           "multiline": "true"
         }
