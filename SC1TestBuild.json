@@ -677,6 +677,56 @@
       ]
     },
     {
+      "title": "Has your organisation ever owned, been registered or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 0}",
+      "description": "",
+      "fields": [
+        {
+          "id": "generatedId_8831af74_4005_495a_bef8_ba179e5006a4",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice1_copy_1",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 2}",
+      "description": "",
+      "fields": [
+        {
+          "id": "generatedId_083907b2_e91a_4c91_8f4c_23b03b741cc2",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice1_copy_2",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
@@ -684,11 +734,49 @@
           "id": "generatedId_169efc1f_1143_4a97_a179_455948fb86b6",
           "type": "info",
           "label": "What details should I include?",
-          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "long"
+          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "noformat"
         },
         {
           "id": "prevRegDetsOrg",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 0 && actsChoice1 = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_c21d99eb_b778_498a_8178_7c45344029b8",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prevRegDetsOrg_copy_1",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 2 && actsChoice1 = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_d44cfb62_95a9_465b_8cea_f6a59adcdaee",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prevRegDetsOrg_copy_2",
           "type": "text",
           "label": "",
           "multiline": "true"
@@ -708,6 +796,50 @@
         },
         {
           "id": "cancRefOk1",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk2",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has your partnership ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_108b7626_1296_40d8_9a9b_ac7affe095a5",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk3a",
           "type": "choice",
           "label": "",
           "choices": [
@@ -749,72 +881,6 @@
       ]
     },
     {
-      "title": "Have you ever been registered or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 0}",
-      "description": "",
-      "fields": [
-        {
-          "id": "generatedId_422fb1d7_64f3_462e_8003_2ae307972c91",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice2a",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 0 && actsChoice2a = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_2ab4037f_0f61_43a7_82f3_8f6380583ac1",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "long"
-        },
-        {
-          "id": "prevRegDetsPart",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk2",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
       "includeIf": "${cancRefOk2 = 0}",
       "fields": [
@@ -844,6 +910,44 @@
         },
         {
           "id": "ofRegRefCanc_copy_1",
+          "type": "text",
+          "label": "URN of refused establishment or agency",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,30)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "includeIf": "${cancRefOk3a = 0}",
+      "fields": [
+        {
+          "id": "generatedId_cf1862b7_1d77_488d_ae67_4debe8066b7b",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
+          "infoType": "noformat"
+        },
+        {
+          "id": "refResORG2",
+          "type": "text",
+          "label": ""
+        },
+        {
+          "id": "coResNam2a",
+          "type": "text",
+          "label": "Company registered name (if you have one)",
+          "helpText": "This must be the same name as registered with Companies house, not a trading name."
+        },
+        {
+          "id": "coResNUM2a",
+          "type": "text",
+          "label": "Company certificate number (if you have one)",
+          "helpText": "This can be found on your certificate of incorporation document. "
+        },
+        {
+          "id": "ofRegRefCanc2a",
           "type": "text",
           "label": "URN of refused establishment or agency",
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
@@ -907,21 +1011,25 @@
           "type": "date",
           "label": "Trading start date",
           "shortName": "Trading start date",
-          "helpText": " For example, 31 03 1980 "
+          "helpText": " For example, 31 03 2018"
         },
         {
           "id": "regChar",
           "type": "text",
           "label": "Registered charity number if applicable",
           "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank"
+          "helpText": "If you do not have a registered charity number leave blank",
+          "mandatory": "false",
+          "displayWidth": "m"
         },
         {
           "id": "regCoNum",
           "type": "text",
           "label": "Registered company number if applicable",
           "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank"
+          "helpText": "If you do not have a registered company number leave blank",
+          "mandatory": "false",
+          "displayWidth": "m"
         }
       ]
     },
@@ -1074,14 +1182,14 @@
           "id": "hoCoDOB_copy_1",
           "type": "date",
           "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
+          "helpText": "For example, 31 03 2018"
         },
         {
           "id": "subOfRegNo",
           "type": "text",
           "label": "URN of subsidiary",
           "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "helpText": "It's on correspondence letters from Ofsted. \n\nFor registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  \n\nFrom 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,20)"
         }
       ]
@@ -1270,7 +1378,6 @@
           "label": "",
           "shortName": "Previous registrations",
           "mandatory": "false",
-          "multivalue": "true",
           "choices": [
             "Yes",
             "No"
@@ -1868,12 +1975,12 @@
       ]
     },
     {
-      "title": "Will you have sole use of the property?",
+      "title": "Will you have sole use of the premises?",
       "fields": [
         {
           "id": "solUseProp",
           "type": "choice",
-          "label": "Will you have sole use of the property?",
+          "label": "Will you have sole use of the premises?",
           "shortName": "Sole use of property",
           "choices": [
             "Yes",
@@ -2701,34 +2808,6 @@
       ]
     },
     {
-      "title": "Describe your arrangements for the education of children",
-      "includeIf": "${appType = 0}",
-      "fields": [
-        {
-          "id": "eduArr",
-          "type": "text",
-          "label": "Describe your arrangements for the education of children",
-          "shortName": "Education arrangements",
-          "helpText": "You should include details of how you will ensure children will get the education they need. ",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Describe your arrangements for reviewing placement plans",
-      "includeIf": "${appType = 0}",
-      "fields": [
-        {
-          "id": "placRev",
-          "type": "text",
-          "label": "Describe your arrangements for reviewing placement plans",
-          "shortName": "Placement reviews",
-          "helpText": "You should include details on how and when you will review the plans",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
       "title": "Have you appointed an independent person who meets the criteria of regulation 43 of The Children's Homes (England) Regulations 2015?",
       "includeIf": "${appType = 0}",
       "fields": [
@@ -2998,8 +3077,8 @@
         {
           "id": "VolAdoMainOfsted",
           "type": "text",
-          "label": "Main branch Ofsted registration number",
-          "shortName": "Main branch Ofsted registration number",
+          "label": "Main branch URN number",
+          "shortName": "Main branch URN number",
           "format": "shortText"
         },
         {
@@ -3026,8 +3105,8 @@
         {
           "id": "VolAdoSecondOfsted",
           "type": "text",
-          "label": "Second branch Ofsted registration number",
-          "shortName": "Second branch Ofsted registration number",
+          "label": "Second branch URN number",
+          "shortName": "Second branch URN number",
           "format": "shortText"
         },
         {
@@ -3067,7 +3146,7 @@
         {
           "id": "adoPanChoi",
           "type": "choice",
-          "label": "(VOL ADO) Do you have an adoption panel?",
+          "label": "Do you have an adoption panel?",
           "choices": [
             "Yes",
             "No"
@@ -3077,12 +3156,12 @@
     },
     {
       "title": "If your agency has more than one branch, will you have more than one adoption panel?",
-      "includeIf": "${appType = 3 && adoPanChoi = 0}",
+      "includeIf": "${(appType = 3 && adoPanChoi = 0) && volAdoMoreBranches1 = 0}",
       "fields": [
         {
           "id": "moreThanOne",
           "type": "choice",
-          "label": "(VOL ADO) If your agency has more than one branch, will you have more than one adoption panel?",
+          "label": "If your agency has more than one branch, will you have more than one adoption panel?",
           "shortName": "More than one adoption panel",
           "choices": [
             "Yes",
@@ -3098,7 +3177,7 @@
         {
           "id": "brcoun",
           "type": "choice",
-          "label": "(VOL ADO) Will your agency provide birth records counselling?",
+          "label": "Will your agency provide birth records counselling?",
           "choices": [
             "Yes",
             "No"
@@ -3113,7 +3192,7 @@
         {
           "id": "interServ",
           "type": "choice",
-          "label": "(VOL ADO) Will your agency provide intermediary services?",
+          "label": "Will your agency provide intermediary services?",
           "choices": [
             "Yes",
             "No"
@@ -3128,9 +3207,8 @@
         {
           "id": "chargeRange",
           "type": "text",
-          "label": "(VOL ADO) What will be the range of charges to the people using your establishment or agency?",
+          "label": "What will be the range of charges to the people using your establishment or agency?",
           "shortName": "Charges for users",
-          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         }
       ]
@@ -3142,7 +3220,7 @@
         {
           "id": "userTypes",
           "type": "choice",
-          "label": "(ASA) Who will your adoption support agency provide support to?",
+          "label": "Who will your adoption support agency provide support to?",
           "choices": [
             "Adults",
             "Children",
@@ -3158,7 +3236,7 @@
         {
           "id": "servProvChoi",
           "type": "choice",
-          "label": "(ASA) Will your agency provide any of these services?",
+          "label": "Will your agency provide any of these services?",
           "shortName": "Services provided",
           "helpText": "Tick all the services that your agency will provide.",
           "multivalue": "true",
@@ -3234,7 +3312,6 @@
           "id": "othSelCritTex_copy_2",
           "type": "text",
           "label": "",
-          "helpText": "You should include details of your criteria such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         }
       ]
@@ -3269,26 +3346,10 @@
           "format": "text(0,50)"
         },
         {
-          "id": "sugQues",
-          "type": "choice",
-          "label": "Suggested additional question",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_da107958_49e6_4523_9060_59e31e66d94b",
-          "type": "info",
-          "label": "",
-          "infoText": "If yes, add 'Who is the other person?' and repeat the name etc for the second person ",
-          "infoType": "noformat"
-        },
-        {
           "id": "generatedId_2ec5e643_b7c3_49f4_9a7f_778b826ccbdb",
           "type": "info",
           "label": "",
-          "infoText": "You must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
+          "infoText": "The manager must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
           "infoType": "noformat"
         },
         {
@@ -3309,7 +3370,7 @@
         {
           "id": "manWorking",
           "type": "choice",
-          "label": "(ALL) Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+          "label": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
           "choices": [
             "Yes",
             "No"
@@ -3325,7 +3386,6 @@
           "type": "text",
           "label": "Provide details of all the establishment the manager is running or will run in the future",
           "shortName": "Establishments manager is running",
-          "helpText": "You should include details such as ....? For example?  Up to how many words? ",
           "multiline": "true"
         }
       ]
@@ -3337,7 +3397,7 @@
         {
           "id": "manChkComp",
           "type": "choice",
-          "label": "(VOL ADO) Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
+          "label": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
           "shortName": "All required checks completed",
           "helpText": "This means all checks specified in The Adoption Support Agencies (England) and Adoption Agencies (Miscellaneous Amendments) Regulations 2005 (Regulation 9) .",
           "choices": [
@@ -3440,7 +3500,7 @@
         "id": "ackpageInfo",
         "type": "info",
         "label": "What happens next",
-        "infoText": "We have sent your application to the registration team.\n\nThe responsible and registered individuals, partners and managers need to complete an SC2 application form.\n\nThey will contact you either to confirm that your application register has been accepted and is ready to be considered, or to ask for more information.\n\nIf you need to contact us about your application, you can call our helpline on 0300 123 1231. We are open from 8am to 6pm (Monday to Friday).\n"
+        "infoText": "We have sent your application to the registration team.\n\nThe responsible and registered individuals, partners and managers need to complete an SC2 application form.\n\nThey will contact you either to confirm that your application register has been accepted and is ready to be considered, or to ask for more information.\n\nIf you need to contact us about your application, you can call our helpline on 0300 123 1231. We are open from 8am to 6pm (Monday to Friday)."
       }
     ]
   },
