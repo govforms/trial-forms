@@ -142,7 +142,7 @@
     },
     {
       "title": "What is your school's Department for Education (DfE) number?",
-      "includeIf": "${appType = 0}",
+      "includeIf": "${appType = 0 && edCHchoice = 0}",
       "fields": [
         {
           "id": "generatedId_0c4f41c5_e48c_4576_80c7_34fb5d7df701",
@@ -677,56 +677,6 @@
       ]
     },
     {
-      "title": "Has your organisation ever owned, been registered or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 0}",
-      "description": "",
-      "fields": [
-        {
-          "id": "generatedId_8831af74_4005_495a_bef8_ba179e5006a4",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice1_copy_1",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 2}",
-      "description": "",
-      "fields": [
-        {
-          "id": "generatedId_083907b2_e91a_4c91_8f4c_23b03b741cc2",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice1_copy_2",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Give us more details of the previous registrations",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
@@ -746,44 +696,6 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 0 && actsChoice1 = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_c21d99eb_b778_498a_8178_7c45344029b8",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "noformat"
-        },
-        {
-          "id": "prevRegDetsOrg_copy_1",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 2 && actsChoice1 = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_d44cfb62_95a9_465b_8cea_f6a59adcdaee",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "noformat"
-        },
-        {
-          "id": "prevRegDetsOrg_copy_2",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
       "title": "Have you ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
@@ -796,50 +708,6 @@
         },
         {
           "id": "cancRefOk1",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk2",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Has your partnership ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 2}",
-      "fields": [
-        {
-          "id": "generatedId_108b7626_1296_40d8_9a9b_ac7affe095a5",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk3a",
           "type": "choice",
           "label": "",
           "choices": [
@@ -881,6 +749,72 @@
       ]
     },
     {
+      "title": "Has your organisation ever owned, been registered or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 0}",
+      "description": "",
+      "fields": [
+        {
+          "id": "generatedId_8831af74_4005_495a_bef8_ba179e5006a4",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice2",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 0 && actsChoice2 = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_c21d99eb_b778_498a_8178_7c45344029b8",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prevRegDetsOrg_copy_1",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b9ce2b94_ed7d_4269_b72c_951fb7c70faa",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk2",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
       "includeIf": "${cancRefOk2 = 0}",
       "fields": [
@@ -915,6 +849,72 @@
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
+      "includeIf": "${businessChoice2 = 2}",
+      "description": "",
+      "fields": [
+        {
+          "id": "generatedId_083907b2_e91a_4c91_8f4c_23b03b741cc2",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "actsChoice3",
+          "type": "choice",
+          "label": "",
+          "shortName": "Previous registrations",
+          "mandatory": "false",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give us more details of the previous registrations",
+      "includeIf": "${businessChoice2 = 2 && actsChoice3 = 0} ",
+      "fields": [
+        {
+          "id": "generatedId_d44cfb62_95a9_465b_8cea_f6a59adcdaee",
+          "type": "info",
+          "label": "What details should I include?",
+          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prevRegDetsOrg_copy_2",
+          "type": "text",
+          "label": "",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Has your partnership ever had an application refused or registration cancelled to provide children and social care services?",
+      "includeIf": "${businessChoice2 = 2}",
+      "fields": [
+        {
+          "id": "generatedId_108b7626_1296_40d8_9a9b_ac7affe095a5",
+          "type": "info",
+          "label": "",
+          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
+          "infoType": "noformat"
+        },
+        {
+          "id": "cancRefOk3a",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -1362,103 +1362,6 @@
       ]
     },
     {
-      "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 2}",
-      "fields": [
-        {
-          "id": "generatedId_4583e4a9_7f3f_4195_b71c_dff155434072",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if you have provided any of these services before:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "actsChoice3a",
-          "type": "choice",
-          "label": "",
-          "shortName": "Previous registrations",
-          "mandatory": "false",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 2 && actsChoice3a = 0} ",
-      "fields": [
-        {
-          "id": "generatedId_94d3a6c6_1ff3_45d1_a7ac_a4cf81974695",
-          "type": "info",
-          "label": "What details should I include?",
-          "infoText": "* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
-          "infoType": "long"
-        },
-        {
-          "id": "prevRegDetsPart_copy_1",
-          "type": "text",
-          "label": "",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 2}",
-      "fields": [
-        {
-          "id": "generatedId_5ecf7455_3323_4f86_9aed_e2a1a4b113e5",
-          "type": "info",
-          "label": "",
-          "infoText": "We want to know if your previous application to provide any of these services have been refused or registration cancelled to check your eligibility to be a social care provider:\n\n- residential care home\n- children's homes\n- childcare, childminding or daycare services\n- nurses' agencies\n- children's social care services\n- health and adult social care services",
-          "infoType": "noformat"
-        },
-        {
-          "id": "cancRefOk3",
-          "type": "choice",
-          "label": "",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
-      "includeIf": "${cancRefOk3 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_f217b0ab_0833_4ff3_befc_cc7cb8de3d6b",
-          "type": "info",
-          "label": "",
-          "infoText": "Provide details of the previous application including:\n\n- information about the type of service provided\n- dates of application or registration\n- reasons why the application was refused or the registration cancelled\n- whether this was by Ofsted or another organisation\n- any other detail you think is relevant",
-          "infoType": "noformat"
-        },
-        {
-          "id": "refResORG_copy_1",
-          "type": "text",
-          "label": ""
-        },
-        {
-          "id": "coResNam2",
-          "type": "text",
-          "label": "Company registered name (if you have one)",
-          "helpText": "This is the name you use to promote your business."
-        },
-        {
-          "id": "ofRegRefCanc_copy_2",
-          "type": "text",
-          "label": "URN of refused establishment or agency",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,30)",
-          "displayWidth": "s"
-        }
-      ]
-    },
-    {
       "title": "How many people do you want to add to your proposed register provider?",
       "includeIf": "${businessChoice2 = 1}",
       "fields": [
@@ -1815,24 +1718,6 @@
           "displayWidth": "m"
         },
         {
-          "id": "resIndMan_copy_1",
-          "type": "choice",
-          "label": "Does this person have management responsibility for staff?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "resIndKid_copy_1",
-          "type": "choice",
-          "label": "Will this person have significant contact with children?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
           "id": "generatedId_7033001f_9d09_4301_a3a4_897c71c9af21",
           "type": "info",
           "label": "",
@@ -1853,14 +1738,13 @@
       ]
     },
     {
-      "title": "Will this person have management responsibility for staff?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
-      "description": "Looks like a duplicate that could be built into the responsible person pages",
+      "title": "Is this person disqualified?",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
-          "id": "respStaff",
+          "id": "respKidCon",
           "type": "choice",
-          "label": "Will this person have management responsibility for staff?",
+          "label": "Is this person disqualified?",
           "choices": [
             "Yes",
             "No"
@@ -1869,14 +1753,28 @@
       ]
     },
     {
-      "title": "Will this person have contact with children and young people?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
-      "description": "Looks like a duplicate that could be built into the responsible person pages",
+      "title": "Does this person have management responsibility for staff?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
       "fields": [
         {
-          "id": "respKidCon",
+          "id": "staffMan",
           "type": "choice",
-          "label": "Will this person have contact with children and young people?",
+          "label": "Does this person have management responsibility for staff?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will this person have significant contact with children?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
+      "fields": [
+        {
+          "id": "kidCon",
+          "type": "choice",
+          "label": "Will this person have significant contact with children?",
           "choices": [
             "Yes",
             "No"
@@ -1905,6 +1803,22 @@
           "type": "text",
           "label": "Establishment or agency name ",
           "shortName": "Name"
+        }
+      ]
+    },
+    {
+      "title": "Will this person have management responsibility for staff?",
+      "includeIf": "${businessChoice2 = 0 || businessChoice2 = 2}",
+      "description": "Looks like a duplicate that could be built into the responsible person pages",
+      "fields": [
+        {
+          "id": "respStaff",
+          "type": "choice",
+          "label": "Will this person have management responsibility for staff?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
