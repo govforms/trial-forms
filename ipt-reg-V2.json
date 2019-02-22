@@ -1,0 +1,495 @@
+{
+  "_id": "ipt-reg-V2",
+  "formName": "ipt1-registration",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "IPT1"
+  },
+  "sections": [
+    {
+      "title": "What is your business type?",
+      "shortName": "Business type",
+      "fields": [
+        {
+          "id": "statusChoice",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business status",
+          "choices": [
+            "Limited company",
+            "Sole proprietor",
+            "Partnership"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "If you are a partnership you must complete the IPT2 paper form as well as this online form."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "shortName": "About you",
+      "fields": [
+        {
+          "id": "generatedId_34aa9b17_4d99_4022_98b3_450b509ca3c6",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "regContactName1",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "RegPhoneNumber1",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "Email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We'll use this to send you a confirmation email",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_8fc88a26_e5d5_48ff_9f96_29e3a01f6319",
+          "type": "info",
+          "label": "",
+          "infoText": "##Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "id": "roleInBusiness1",
+          "type": "choice",
+          "label": "Select the role relevant to you",
+          "shortName": "Position in company",
+          "helpText": "You must be one of the following to register on behalf of your business",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Authorised individual "
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "shortName": "About you",
+      "includeIf": "${statusChoice=2}",
+      "fields": [
+        {
+          "id": "generatedId_e92777a1_cf16_4d21_abea_236006682f20",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_4b97d386_b96e_4e0d_b375_c906603560eb",
+          "type": "info",
+          "label": "iPT2form",
+          "infoText": "To register as a partnership you must also complete form IPT 2, Partnership Details. You can do this by calling the VAT Helpline on Telephone: 0300 200 3700. (clarify)",
+          "infoType": "standard"
+        },
+        {
+          "id": "regContactName1_copy_1",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "RegPhoneNumber1_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "Email_copy_1",
+          "type": "text",
+          "label": "Email Address",
+          "helpText": "We'll use this to send you a confirmation email",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_0185d574_6e1d_4062_960c_d30b2b4be288",
+          "type": "info",
+          "label": "",
+          "infoText": "##Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "id": "roleInBusiness1_copy_1",
+          "type": "choice",
+          "label": "Select the role relevant to you",
+          "shortName": "Position in company",
+          "helpText": "You must be one of the following to register on behalf of your business",
+          "choices": [
+            "Partner",
+            "Company secretary",
+            "Authorised individual "
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your business",
+      "shortName": "Business name",
+      "fields": [
+        {
+          "id": "BusName",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Name"
+        },
+        {
+          "id": "tradName",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "helpText": "Enter your trading name if different from your business name"
+        }
+      ]
+    },
+    {
+      "title": "Details for main place of business",
+      "shortName": "Business address",
+      "fields": [
+        {
+          "id": "generatedId_c751cfac_92fd_46fc_bdf1_d4168d7f258f",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details of the main place of business, where the day-to-day business activities are managed.\n\nHMRC may use these to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "ukAddress",
+          "type": "address",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "id": "ukTelNum",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "UKBusEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "contactChoice",
+          "type": "choice",
+          "label": "Are these the contact details you want HMRC to use if we need to discuss your Insurance Premium Tax information?",
+          "format": "horizontal",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Preferred contact details",
+      "includeIf": "${contactChoice=1}",
+      "fields": [
+        {
+          "id": "generatedId_f408c1f6_b0e9_408a_8bbb_5c8b472e697d",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these for your ongoing Insurance Premium Tax correspondence.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "ukAddress_copy_1",
+          "type": "address",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "id": "UKBusEmail_copy_1",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email"
+        },
+        {
+          "id": "ukTelNum_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Is your business registered for VAT in the UK?",
+      "fields": [
+        {
+          "id": "vatRegUKChoice",
+          "type": "choice",
+          "label": "Is your business registered for VAT in the UK?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your VAT registration number?",
+      "includeIf": "${vatRegUKChoice = 0}",
+      "fields": [
+        {
+          "id": "UKVATYes",
+          "type": "text",
+          "label": "",
+          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
+          "format": "ukVrn"
+        }
+      ]
+    },
+    {
+      "title": "Do you have business establishments in the UK?",
+      "shortName": "UK establishments",
+      "fields": [
+        {
+          "id": "ukBEChoice",
+          "type": "choice",
+          "label": "(clarify)",
+          "shortName": "Establishments",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "If you wish to appoint an agent to act on your behalf they cannot use this service and must fill out the paper form."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Select your business's accounting scheme",
+      "fields": [
+        {
+          "id": "specAccChoi",
+          "type": "choice",
+          "label": "Tell HMRC which scheme you are going to use from the first of your accounting periods.",
+          "choices": [
+            "Cash Accounting Scheme",
+            "Special Accounting Scheme"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your business in run off?",
+      "fields": [
+        {
+          "id": "rOCho",
+          "type": "choice",
+          "label": "Is your business in run off?",
+          "helpText": "A business that is in run off is no longer writing any new insurance policies but is liable for all outstanding claims",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of insurance provider are you?",
+      "fields": [
+        {
+          "id": "busDesCho",
+          "type": "choice",
+          "label": "Business description",
+          "helpText": "Select the option that best describes your business",
+          "choices": [
+            "UK insurer",
+            "Branch of non-UK insurer",
+            "Captive",
+            "Representative office",
+            "Taxable intermediary",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe your type of insurance business",
+      "includeIf": "${busDesCho = 5}",
+      "fields": [
+        {
+          "id": "othText",
+          "type": "text",
+          "label": "Business type"
+        }
+      ]
+    },
+    {
+      "title": "Are you applying to register for IPT because a business has been transferred to you as a going concern?",
+      "fields": [
+        {
+          "id": "goConCho",
+          "type": "choice",
+          "label": "Are you applying to register for IPT because a business has been transferred to you as a going concern?",
+          "helpText": "A business is a going concern is if it is not at risk of bankruptcy or liquidation, if your business will continue to operate you must select yes",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the business transfer",
+      "includeIf": "${goConCho=0}",
+      "fields": [
+        {
+          "id": "IPTRegPrev",
+          "type": "text",
+          "label": "Insurance Premium Tax registration number of previous owner",
+          "helpText": "This is 15 numbers used for all returns, payments and correspondence"
+        },
+        {
+          "id": "IPTRegTrans",
+          "type": "choice",
+          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What date do you expect to receive your first taxable premium?",
+      "description": "",
+      "fields": [
+        {
+          "id": "firTaxPremDate",
+          "type": "date",
+          "label": "",
+          "helpText": "For example, 12 11 2007 "
+        }
+      ]
+    },
+    {
+      "title": "Enter an estimate of taxable premium income you expect to receive in the first 12 months",
+      "fields": [
+        {
+          "id": "valPrems",
+          "type": "text",
+          "label": "The 12 month period starts from the date of your expected taxable premium. If you do not have completely accurate figures, enter an estimate instead.",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Which classes of insurance do you provide?",
+      "fields": [
+        {
+          "id": "classChoice",
+          "type": "choice",
+          "label": "Classes of insurance (list alphabetically?)",
+          "helpText": "Select all that you provide.",
+          "multivalue": "true",
+          "choices": [
+            "Accident",
+            "Sickness",
+            "Land vehicles",
+            "Railway rolling stock",
+            "Aircraft",
+            "Ships",
+            "Goods in transit",
+            "Fire and natural forces",
+            "Damage to property",
+            "Motor vehicle liability",
+            "Aircraft liability",
+            "Liability of ships",
+            "General liability",
+            "Credit",
+            "Suretyship",
+            "Miscellaneous financial loss",
+            "Legal expenses",
+            "Assistance"
+          ]
+        },
+        {
+          "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
+          "type": "info",
+          "label": "More information on insurance classes",
+          "infoType": "long",
+          "infoText": "To find out more about insurance that is chargeable for Insurance Premium Tax, open a new window and search for Section 5 of the Insurance Premium Tax notice on GOV.UK.  "
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Make your declaration and send the form",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "test",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete.",
+        "infoType": "important"
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We'll use this to send you a confirmation email",
+        "format": "email",
+        "mandatory": "true",
+        "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "generatedId_b8942844_8388_4256_9dbd_bfe6a16fc97a",
+        "type": "info",
+        "label": "",
+        "infoText": "HMRC have sent you a confirmation email. We will not contact you again unless we require further information.\n\nThis is your last opportunity to print or save a pdf copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_209ddae9_3efd_481f_98b4_0c8b44664c87",
+        "type": "info",
+        "label": "",
+        "infoText": "##Registering as a partnership",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_eb9d08e3_bd6c_4bab_b466_f25f794f071f",
+        "type": "info",
+        "label": "",
+        "infoText": "To register as a partnership you must also complete form IPT 2, Partnership Details. You can do this by calling the VAT Helpline on Telephone: 0300 200 3700. (clarify)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
