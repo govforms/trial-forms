@@ -1,0 +1,386 @@
+{
+  "formName": "Register as a bingo promoter",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "ex250_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${UTR}",
+    "dmsFormId": "EX250"
+  },
+  "sections": [
+    {
+      "title": "Contact details",
+      "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
+      "fields": [
+        {
+          "id": "firstNameBusiness",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastNameBusiness",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "emailAgent",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country and area codes",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "Which of these best describes the promoter?",
+      "shortName": "Promoter details",
+      "fields": [
+        {
+          "id": "promoterType",
+          "type": "choice",
+          "label": "",
+          "shortName": "Type of promoter",
+          "errorMessage": "Select the type that best describes the promoter",
+          "choices": [
+            "Limited company",
+            "Sole trader",
+            "Partnership",
+            "Limited liability partnership (LLP)",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "UTR",
+          "type": "text",
+          "label": "Your Unique Taxpayer Reference",
+          "shortName": "Unique Taxpayer Reference",
+          "format": "utr",
+          "helpText": "This is a 10 digit number, like 0123456789. You can find this on your tax return or statement of accounts."
+        }
+      ]
+    },
+    {
+      "title": "Do you trade under a different name?",
+      "shortName": "Different trading name",
+      "fields": [
+        {
+          "id": "differentTradingName",
+          "type": "choice",
+          "label": "",
+          "shortName": "Trade under a different name",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you trade under a different name"
+        }
+      ]
+    },
+    {
+      "title": "What is your business trading name?",
+      "shortName": "Business trading name",
+      "includeIf": "${differentTradingName=0 && !promoterType=4}",
+      "fields": [
+        {
+          "id": "businessTradingName",
+          "type": "text",
+          "label": "",
+          "shortName": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "What is your unincorporated body trading name?",
+      "shortName": "Unincorporated body trading name",
+      "includeIf": "${differentTradingName=0 && promoterType=4}",
+      "fields": [
+        {
+          "id": "unincorpTradingName",
+          "type": "text",
+          "label": "",
+          "shortName": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "Is your business registered for VAT?",
+      "includeIf": "${!promoterType=4}",
+      "fields": [
+        {
+          "id": "areYouVATRegistered",
+          "type": "choice",
+          "label": "",
+          "shortName": "VAT registered",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if the business is VAT registered"
+        }
+      ]
+    },
+    {
+      "title": "Is your unincorporated body VAT registered?",
+      "includeIf": "${promoterType=4}",
+      "fields": [
+        {
+          "id": "areYouVATRegisteredUn",
+          "type": "choice",
+          "label": "",
+          "shortName": "VAT registered",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if the unincorporated body is VAT registered"
+        }
+      ]
+    },
+    {
+      "title": "What is the VAT registration number?",
+      "includeIf": "${areYouVATRegistered=0 || areYouVATRegisteredUn=0}",
+      "fields": [
+        {
+          "id": "VATRegsiteredNumber",
+          "type": "text",
+          "label": "",
+          "helpText": "This is 9 numbers with ‘GB’ at the start, for example GB123456789.",
+          "shortName": "VAT registration number",
+          "format": "ukVrn"
+        }
+      ]
+    },
+    {
+      "title": "How many trading addresses do you have?",
+      "shortName": "Trading addresses",
+      "fields": [
+        {
+          "id": "noOfTradingAddress",
+          "type": "text",
+          "label": "",
+          "helpText": "By law, the promoter must provide all the addresses they plan to trade from, you must provide at least 1 address.",
+          "shortName": "Number of addresses",
+          "format": "positiveNumber(3, 0)",
+          "displayWidth": "xs",
+          "validIf": "${noOfTradingAddress >0 && noOfTradingAddress <300}"
+        }
+      ]
+    },
+    {
+      "title": "Trading address $n",
+      "repeatsMax": "${noOfTradingAddress}",
+      "repeatsMin": "${noOfTradingAddress}",
+      "fields": [
+        {
+          "id": "tradingAddresses",
+          "type": "address",
+          "label": "",
+          "shortName": "Trading address"
+        }
+      ]
+    },
+    {
+      "title": "Is your business licensed to promote bingo events?",
+      "includeIf": "${!promoterType=4}",
+      "fields": [
+        {
+          "id": "canRunBingo",
+          "type": "choice",
+          "label": "",
+          "shortName": "Licensed to promote",
+          "helpText": "All promoters must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you are licensed to promote bingo events"
+        }
+      ]
+    },
+    {
+      "title": "Is your unincorporated body licensed to promote bingo events?",
+      "includeIf": "${promoterType=4}",
+      "fields": [
+        {
+          "id": "canRunBingoUn",
+          "type": "choice",
+          "label": "",
+          "shortName": "Licensed to promote",
+          "helpText": "All promoters must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you are licensed to promote bingo events"
+        }
+      ]
+    },
+    {
+      "title": "Have you already started trading?",
+      "fields": [
+        {
+          "id": "haveStartedTrading",
+          "type": "choice",
+          "label": "",
+          "shortName": "Already started trading",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if you have started trading"
+        }
+      ]
+    },
+    {
+      "title": "Enter the trading date",
+      "includeIf": "${haveStartedTrading=0}",
+      "fields": [
+        {
+          "id": "tradingDate",
+          "type": "date",
+          "label": "",
+          "shortName": "Trading date",
+          "helpText": "For example, 01 01 2017"
+        }
+      ]
+    },
+    {
+      "title": "When will you start to trade?",
+      "includeIf": "${haveStartedTrading=1}",
+      "fields": [
+        {
+          "id": "tradingDateNotStarted",
+          "type": "date",
+          "label": "",
+          "shortName": "Future trading date",
+          "helpText": "For example, 01 01 2020"
+        }
+      ]
+    },
+    {
+      "title": "What is your business estimated profit for the next 12 months?",
+      "shortName": "Profit estimation",
+      "includeIf": "${!promoterType=4}",
+      "fields": [
+        {
+          "id": "estimatedProfitBus",
+          "type": "text",
+          "label": "",
+          "shortName": "Estimated profit",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "What is your unincorporated body estimated profit for the next 12 months?",
+      "includeIf": "${promoterType=4}",
+      "fields": [
+        {
+          "id": "estimatedProfitUnincorporated",
+          "type": "text",
+          "label": "",
+          "shortName": "Estimated profit",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Does your business only trade at certain times of the year?",
+      "shortName": "Does your business trade at certain times of the year?",
+      "includeIf": "${!promoterType=4}",
+      "fields": [
+        {
+          "id": "businessSeasonTrading",
+          "type": "choice",
+          "label": "",
+          "shortName": "Trade at certain times",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if your business only trade at certain times of the year"
+        }
+      ]
+    },
+    {
+      "title": "Does your unincorporated body only trade at certain times of the year?",
+      "includeIf": "${promoterType=4}",
+      "fields": [
+        {
+          "id": "areSeasonalTrader",
+          "type": "choice",
+          "label": "",
+          "shortName": "Trade at certain times",
+          "format": "yesno",
+          "errorMessage": "Select yes or no if your unincorporated body only trade at certain times of the year"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your registration details",
+    "fields": [
+      {
+        "id": "authorisedText",
+        "type": "info",
+        "label": "",
+        "infoText": "You must be authorised to act on behalf of the company to submit this registration. For example, a director or a company secretary (if you have one)",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Position in company"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm the application has been submitted",
+        "format": "email"
+      },
+      {
+        "id": "decPageContent",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this application, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decPageImportant",
+        "type": "info",
+        "label": "",
+        "infoText": "You can avoid a financial penalty by applying for registration at the correct time. \n\nYou have the right to appeal if we impose such a penalty.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "next",
+        "type": "info",
+        "label": "",
+        "infoText": "HMRC will send you a letter to confirm your registration details and return date so you can prepare to submit your first Bingo Duty return.\n\nYou must contact your local authority to get a license to promote bingo events on all of your premises, even if you have started trading.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "",
+  "submitSuccessUrl": "",
+  "_id": "template-ex250-automation"
+}
