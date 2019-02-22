@@ -297,15 +297,35 @@
       ]
     },
     {
+      "title": "Are you carrying more than 5 different currencies",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "fiveCurrenciesChoice",
+          "label": "Are you carrying more than 5 different currencies",
+          "helpText": "For more than 5 currencies you will need to enter the 5 largest amounts of different currencies and upload a document containing the remaining",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "On the next 5 pages you will be asked to enter the 5 largest amounts of different currencies and then upload a document containing the remaining",
+            ""
+          ]
+        }
+      ]
+    },
+    {
       "title": "How many different currencies are you carrying?",
+      "includeIf": "${fiveCurrenciesChoice=1}",
       "fields": [
         {
           "id": "howManyCurrency",
           "type": "text",
           "label": "How many different currencies are you carrying?",
-          "helpText": "For example euros, GBP, USD",
+          "helpText": "Only a maximum of 5 can be entered. For example euros, GBP, USD",
           "displayWidth": "xs",
-          "validIf": "${howManyCurrency>0 && howManyCurrency <=10}"
+          "validIf": "${howManyCurrency>0 && howManyCurrency <=5}"
         }
       ]
     },
@@ -344,13 +364,67 @@
       ]
     },
     {
+      "title": "Main currency $n",
+      "includeIf": "${fiveCurrenciesChoice=0}",
+      "description": "Enter details of the 5 main currencies on this and the following pages",
+      "repeatsMin": "${5}",
+      "repeatsMax": "${5}",
+      "fields": [
+        {
+          "id": "currencyTypeMoreThanFive",
+          "type": "text",
+          "label": "Currency",
+          "helpText": "For example, euros, GBP, USD"
+        },
+        {
+          "id": "noteTotalMoreThanFive",
+          "type": "text",
+          "label": "Total amount in notes/coins",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalTravellersMoreThanFive",
+          "type": "text",
+          "label": "Total amount in travellers cheques",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalBankersMoreThanFive",
+          "type": "text",
+          "label": "Total amount in bankers drafts",
+          "helpText": "Enter 0 if not applicable",
+          "format": "positiveNumber(9, 2)"
+        }
+      ]
+    },
+    {
+      "title": "Upload details of the remaining currencies",
+      "includeIf": "${fiveCurrenciesChoice=0}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
+          "label": "",
+          "infoText": "The document should include all of the currencies you are carrying including:\n* Name of currency\n* Total amount in notes/coins\n* Total amount in travellers cheques\n* Total amount in bankers drafts\n\nWe accept insert file and format type here.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "currencyUpload",
+          "label": "Upload document"
+        }
+      ]
+    },
+    {
       "title": "Does the cash belong to you?",
       "fields": [
         {
           "id": "moneyOwner",
           "type": "choice",
           "label": "Does the cash belong to you?",
-          "helpText": "If you own the largest part, select yes",
+          "helpText": "If you own the largest amount, select yes",
           "choices": [
             "Yes",
             "No"
@@ -453,6 +527,7 @@
           "id": "decChoice",
           "type": "choice",
           "label": "",
+          "shortName": "Signed",
           "multivalue": "true",
           "choices": [
             "I declare that all the details entered are correct and complete to the best of my knowledge and belief "
@@ -468,7 +543,8 @@
           "type": "text",
           "label": "Email address",
           "helpText": "We will only use this to send a confirmation that we have received your application. This will include your submission reference number, which you need to save.",
-          "format": "email"
+          "format": "email",
+          "mandatory": "false"
         }
       ]
     }
