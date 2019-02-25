@@ -300,30 +300,29 @@
       "title": "Are you carrying more than 5 different currencies?",
       "fields": [
         {
-          "type": "choice",
           "id": "fiveCurrenciesChoice",
+          "type": "choice",
           "label": "Are you carrying more than 5 different currencies?",
-          "helpText": "For more than 5 currencies you will need to enter the 5 largest amounts of different currencies and upload a document containing the remaining",
           "choices": [
             "Yes",
             "No"
           ],
           "optionHelpText": [
-            "On the next 5 pages you will be asked to enter the 5 largest amounts of different currencies and then upload a document containing the remaining",
+            "On the next 5 pages you need to enter the 5 largest amounts of currency, then upload a document detailing all of your currencies",
             ""
           ]
         }
       ]
     },
     {
-      "title": "How many different currencies are you carrying?",
+      "title": "How many currencies are you carrying?",
       "includeIf": "${fiveCurrenciesChoice=1}",
       "fields": [
         {
           "id": "howManyCurrency",
           "type": "text",
-          "label": "How many different currencies are you carrying?",
-          "helpText": "Only a maximum of 5 can be entered. For example euros, GBP, USD",
+          "label": "How many currencies are you carrying?",
+          "helpText": "Enter a number between 1 and 5",
           "displayWidth": "xs",
           "validIf": "${howManyCurrency>0 && howManyCurrency <=5}"
         }
@@ -331,6 +330,7 @@
     },
     {
       "title": "Currency $n",
+      "description": "Enter details about one currency only, and do not convert into GBP",
       "repeatsMin": "${howManyCurrency}",
       "repeatsMax": "${howManyCurrency}",
       "fields": [
@@ -338,27 +338,27 @@
           "id": "currencyType",
           "type": "text",
           "label": "Currency",
-          "helpText": "For example, euros, GBP, USD"
+          "helpText": "For example: euros, GBP, USD"
         },
         {
           "id": "noteTotal",
           "type": "text",
           "label": "Total amount in notes/coins",
-          "helpText": "Enter 0 if not applicable",
+          "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
         {
           "id": "totalTravellersCheque",
           "type": "text",
           "label": "Total amount in travellers cheques",
-          "helpText": "Enter 0 if not applicable",
+          "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
         {
           "id": "totalBankersDraft",
           "type": "text",
           "label": "Total amount in bankers drafts",
-          "helpText": "Enter 0 if not applicable",
+          "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         }
       ]
@@ -404,16 +404,61 @@
       "includeIf": "${fiveCurrenciesChoice=0}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
+          "type": "info",
           "label": "",
           "infoText": "The document should include all of the currencies you are carrying including:\n* Name of currency\n* Total amount in notes/coins\n* Total amount in travellers cheques\n* Total amount in bankers drafts\n\nWe accept insert file and format type here.",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "currencyUpload",
+          "type": "file",
           "label": "Upload document"
+        }
+      ]
+    },
+    {
+      "title": "[mockup] Which currencies are you carrying?",
+      "fields": [
+        {
+          "id": "currencyChoice",
+          "type": "choice",
+          "label": "[mockup] Which currencies are you carrying?",
+          "multivalue": "true",
+          "choices": [
+            "GBP",
+            "euros",
+            "USD",
+            "Yen",
+            "Yuan",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "[mockup] USD",
+      "fields": [
+        {
+          "id": "noteTotal_copy_1",
+          "type": "text",
+          "label": "Total amount in notes/coins",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalTravellersCheque_copy_1",
+          "type": "text",
+          "label": "Total amount in travellers cheques",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalBankersDraft_copy_1",
+          "type": "text",
+          "label": "Total amount in bankers drafts",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
         }
       ]
     },
