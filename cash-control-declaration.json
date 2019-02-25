@@ -20,48 +20,12 @@
   },
   "sections": [
     {
-      "title": "Are you, or your family, carrying more than £10,000 total in cash into or out of the UK?",
-      "fields": [
-        {
-          "id": "eligibilityEuros",
-          "type": "choice",
-          "label": "Are you, or your family, carrying more than £10,000 total in cash into or out of the UK?",
-          "helpText": "This includes notes and coins, bankers drafts, cheques and travellers cheques, and in any currency equal to £10,000",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_85027177_f711_4814_8ab0_734ca4054e5a",
-          "type": "info",
-          "label": "cashWarning",
-          "infoText": "You could face a penalty of up to £5,000 if you do not declare your cash or give incorrect information.",
-          "infoType": "important"
-        }
-      ]
-    },
-    {
-      "title": "You do not need to make a cash declaration",
-      "includeIf": "${eligibilityEuros=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_a296d82f_c5e3_4348_9d8e_cbbcea29b5b1",
-          "type": "info",
-          "label": "",
-          "infoText": "You told us that the cash you are carrying (including currency notes, travellers cheques and bankers drafts) totals less than £10,000",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
       "title": "About you",
       "fields": [
         {
           "id": "firstName",
           "type": "text",
-          "label": "Full name"
+          "label": "First name"
         },
         {
           "id": "lastName",
@@ -366,7 +330,7 @@
     {
       "title": "Main currency $n",
       "includeIf": "${fiveCurrenciesChoice=0}",
-      "description": "Enter details of 1 of your main currencies",
+      "description": "Enter details about one currency only, and do not convert into GBP",
       "repeatsMin": "${5}",
       "repeatsMax": "${5}",
       "fields": [
@@ -407,58 +371,13 @@
           "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
           "type": "info",
           "label": "",
-          "infoText": "Enter details about all the currencies you are carrying, including:\n* Name of currency\n* Total amount in notes/coins\n* Total amount in travellers cheques\n* Total amount in bankers drafts\n\nWe accept insert file and format type here.",
+          "infoText": "Enter a document with all the currencies you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total travellers cheques amount in this currency\n* total bankers drafts amount in this currency\n\nWe accept insert file and format type here.",
           "infoType": "noformat"
         },
         {
           "id": "currencyUpload",
           "type": "file",
           "label": "Upload document"
-        }
-      ]
-    },
-    {
-      "title": "[mockup] Which currencies are you carrying?",
-      "fields": [
-        {
-          "id": "currencyChoice",
-          "type": "choice",
-          "label": "[mockup] Which currencies are you carrying?",
-          "multivalue": "true",
-          "choices": [
-            "GBP",
-            "euros",
-            "USD",
-            "Yen",
-            "Yuan",
-            "Other"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "[mockup] USD",
-      "fields": [
-        {
-          "id": "noteTotal_copy_1",
-          "type": "text",
-          "label": "Total amount in notes/coins",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
-        },
-        {
-          "id": "totalTravellersCheque_copy_1",
-          "type": "text",
-          "label": "Total amount in travellers cheques",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
-        },
-        {
-          "id": "totalBankersDraft_copy_1",
-          "type": "text",
-          "label": "Total amount in bankers drafts",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
         }
       ]
     },
