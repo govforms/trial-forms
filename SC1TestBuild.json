@@ -1,5 +1,4 @@
 {
-  "_id": "SC1TestBuild",
   "formName": "Register as a children’s social care provider",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -1920,7 +1919,7 @@
     },
     {
       "title": "Tell us about your agency's other sites 1",
-      "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agMultiSiteChoi = 0}",
       "fields": [
         {
           "id": "estAbAdd_copy_1",
@@ -1961,7 +1960,7 @@
     },
     {
       "title": "Tell us about your agency's other sites 2",
-      "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi1 = 0}",
+      "includeIf": "${(appType = 1 || appType = 2) || appType = 3 && (agMultiSiteChoi = 0 && agSiteAddChoi1 = 0)}",
       "fields": [
         {
           "id": "estAbAdd2",
@@ -2002,7 +2001,7 @@
     },
     {
       "title": "Tell us about your agency's other sites 3",
-      "includeIf": "${appType = 1 || (appType = 2 || appType = 3) && agSiteAddChoi2 = 0}",
+      "includeIf": "${(appType = 1 || appType = 2) || appType = 3 && (agMultiSiteChoi = 0 && agSiteAddChoi2 = 0)}",
       "fields": [
         {
           "id": "estAbAdd3",
@@ -3236,7 +3235,7 @@
       "shortName": "Proposed manager",
       "fields": [
         {
-          "id": "generatedId_d1d88c74_3e2d_46f5_bcc5_6f898a2cf7e3",
+          "id": "manInfo1",
           "type": "info",
           "label": "",
           "infoText": "The manager is the person who has day-to-day management of the establishment or agency.",
@@ -3262,7 +3261,7 @@
           "format": "text(0,50)"
         },
         {
-          "id": "generatedId_2ec5e643_b7c3_49f4_9a7f_778b826ccbdb",
+          "id": "manInfo2",
           "type": "info",
           "label": "",
           "infoText": "The manager must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
@@ -3425,5 +3424,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "SC1TestBuild"
 }
