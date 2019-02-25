@@ -1,5 +1,4 @@
 {
-  "_id": "APD1",
   "formName": "Register for Air Passenger Duty",
   "description": "",
   "emailTemplateId": "apd_registration_confirmation",
@@ -39,13 +38,14 @@
           "id": "generatedId_45c00d79_7668_4a54_9923_c49c440e55d7",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration. ",
+          "infoText": "HMRC will use these details if we need to discuss this registration.",
           "infoType": "noformat"
         },
         {
           "id": "fullname",
           "type": "text",
-          "label": "Full name"
+          "label": "Full name",
+          "helpText": ""
         },
         {
           "id": "telNumber",
@@ -103,7 +103,7 @@
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
-          "helpText": "Enter the trading name if different from business name",
+          "helpText": "Enter the trading name if different from the business name",
           "mandatory": "false"
         }
       ]
@@ -151,10 +151,9 @@
         {
           "id": "busEmail",
           "type": "text",
-          "label": "Business email address (optional)",
+          "label": "Business email address",
           "shortName": "Business email address",
-          "format": "email",
-          "mandatory": "false"
+          "format": "email"
         },
         {
           "id": "contactChoice",
@@ -227,7 +226,13 @@
               "label": "Country"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "Do you also have a UK based representative to manage your ongoing Air Passenger Duty correspondence?",
+      "includeIf": "${basedInUk=1}",
+      "fields": [
         {
           "id": "UKCorrChoice",
           "type": "choice",
@@ -508,6 +513,8 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "APD1"
 }
