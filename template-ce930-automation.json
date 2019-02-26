@@ -1,0 +1,357 @@
+{
+  "_id": "template-ce930-automation",
+  "formName": "Gas for use as road fuel",
+  "description": "Fill in your gas for use as road fuel return form online",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "eeitt_ce930_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "GR",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your Biofuels registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Biofuels",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client's reference number",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "ce930RegAgent",
+          "type": "text",
+          "label": "Client's Gas for use as road fuel reference number",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        }
+      ]
+    },
+    {
+      "title": "Choose your client's Gas for use as road fuel return dates",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "$(biofuelsRegAgent)",
+          "regimeType": "ZGRF"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Gas for use as road fuel return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "ce930Reg",
+          "type": "text",
+          "label": "Gas for use as road fuel registration number: ",
+          "shortName": "Gas for use as road fuel registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${user.enrolledIdentifier}",
+          "regimeType": "ZGRF"
+        }
+      ]
+    },
+    {
+      "title": "Enter your business details",
+      "shortName": "Your business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Registered business address",
+          "format": "text, (0, 27)",
+          "international": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you have duty to pay in this return period?",
+      "shortName": "Whether you have duty to pay",
+      "fields": [
+        {
+          "id": "dutydue",
+          "type": "choice",
+          "label": "Do you have duty to pay in this return period?",
+          "shortName": "Duty to pay in this period",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Enter how much duty you owe",
+      "includeIf": "${dutydue=0}",
+      "description": "Select the gas you need to pay duty on.",
+      "fields": [
+        {
+          "id": "fuelType591",
+          "type": "group",
+          "label": "Tax type 591 - natural gas",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType591Quantity",
+              "type": "text",
+              "label": "Quantity of gas in kilograms (kg) sent out, set aside or used as road fuel",
+              "format": "number(11, 2, 'kg')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType591DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "fuelType592",
+          "type": "group",
+          "label": "Tax type 592 - other gas",
+          "presentationHint": "summariseGroupAsGrid, collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "taxType592Quantity",
+              "type": "text",
+              "label": "Quantity of gas in kilograms (kg) sent out, set aside or used as road fuel",
+              "format": "number(11, 2, 'kg')",
+              "mandatory": "false"
+            },
+            {
+              "id": "taxType592DutyDue",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "taxCodeOtherGroup",
+          "type": "group",
+          "label": "Add other tax types",
+          "helpText": "If the tax type you want to pay duty for is not in the list, you can [look up tax types](https://www.gov.uk/government/publications/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances/uk-trade-tariff-excise-duties-reliefs-drawbacks-and-allowances) and add it.",
+          "repeatsMax": 5,
+          "repeatAddAnotherText": "Add other tax type",
+          "presentationHint": "summariseGroupAsGrid",
+          "fields": [
+            {
+              "id": "taxCodeOtherGroupCode",
+              "type": "text",
+              "label": "Tax type",
+              "mandatory": "no",
+              "errorMessage": "Please enter a valid tax type."
+            },
+            {
+              "id": "taxCodeOtherGroupQuantity",
+              "type": "text",
+              "label": "Quantity of gas in kilograms (kg) sent out, set aside or used as road fuel",
+              "format": "number(12,2,'kg')",
+              "mandatory": "no"
+            },
+            {
+              "id": "taxCodeOtherGroupAmount",
+              "type": "text",
+              "label": "Amount of excise duty due",
+              "format": "sterling",
+              "mandatory": "no"
+            }
+          ]
+        },
+        {
+          "id": "totalDue",
+          "type": "text",
+          "label": "Total payable",
+          "format": "sterling",
+          "value": "${taxType592DutyDue + taxType591DutyDue + taxCodeOtherGroupAmount.sum}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Enter your contact person's details",
+      "shortName": "Contact person",
+      "description": "This is the person we will contact if we need to discuss your return.",
+      "fields": [
+        {
+          "id": "contactName",
+          "type": "text",
+          "label": "Full name",
+          "errorMessage": "Enter a full name"
+        },
+        {
+          "id": "contactEmailAddress",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "errorMessage": "Enter a valid email address"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit your return",
+    "shortName": "Submit your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Approver's details",
+        "fields": [
+          {
+            "id": "approverText",
+            "type": "info",
+            "label": "",
+            "infoText": "Tell us who is approving the return. This person may be different from the contact person or it may be the same person for both."
+          },
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationJobTitle",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "Example: Finance Director",
+            "errorMessage": "Enter a job title"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoText": "By submitting the return, you confirm that the details provided are true and complete.  \n\nIf any of these details change, you must tell us within 7 days.",
+            "infoType": "noformat"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "If you owe duty",
+        "infoText": "## If you owe duty  \n\nIf you have a Direct Debit set up for this tax, you don't need to do anything. Your payment will be collected automatically.  \n\nOtherwise, paying electronically is an easy and secure way to pay. Use the details below and make sure you include your registration number on any payment.\n\nSort code: 20-05-17\n\nAccount number: 40204374\n\nAccount name: HMRC General BT Receipts",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageWarning",
+        "type": "info",
+        "label": "",
+        "infoText": "Make sure you pay the duty owed or you may face a penalty.",
+        "infoType": "important"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "If you need to contact us about your return",
+        "infoText": "## If you need to contact us about your return  \n\nCall 0300 200 3700 or email [morc.exciseenquiries@hmrc.gsi.gov.uk](morc.exciseenquiries@hmrc.gsi.gov.uk), quoting your registration number.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/ZGRF/eeits/{{either ce930Reg ce930RegAgent}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}', 'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}', 'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}', 'returnsDetails':{'isrScenario':'ZGR1', 'regimeSpecificDetails':[{'paramSequence':'01', 'paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either ce930Reg ce930RegAgent}}'}, {'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_GRF_SITE_RETURN','paramValue':'Dummy Site 1'}, {{#taxType591Quantity.[0]}} {'paramSequence':'01','paramName':'A_GRF_TYPE_591_QTY','paramValue':'{{stripCommas .}}'}, {{/taxType591Quantity.[0]}} {{#taxType592Quantity.[0]}} {'paramSequence':'01','paramName':'A_GRF_TYPE_592_QTY','paramValue':'{{stripCommas .}}'}, {{/taxType592Quantity.[0]}} {{#taxType591DutyDue.[0]}} {'paramSequence':'01','paramName':'A_GRF_TYPE_591_DUE','paramValue':'{{stripCommas .}}'}, {{/taxType591DutyDue.[0]}} {{#taxType592DutyDue.[0]}} {'paramSequence':'01','paramName':'A_GRF_TYPE_592_DUE','paramValue':'{{stripCommas .}}'}, {{/taxType592DutyDue.[0]}} {'paramSequence':'01','paramName':'A_GRF_EXCISE_DUTY_SITE','paramValue':'{{stripCommas totalDue}}'}, {'paramSequence':'01','paramName':'A_GRF_DUTY_DUE_TOTAL','paramValue':'{{stripCommas totalDue}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]}, 'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "CE930",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Priority",
+      "businessArea": "GRF"
+    }
+  ],
+  "GFC579Ready": "true",
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
+}
