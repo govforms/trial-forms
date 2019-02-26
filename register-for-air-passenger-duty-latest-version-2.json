@@ -20,7 +20,7 @@
         {
           "id": "businessType",
           "type": "choice",
-          "label": "",
+          "label": "What is your business type?",
           "choices": [
             "Limited company",
             "Sole trader",
@@ -115,7 +115,7 @@
         {
           "id": "basedInUk",
           "type": "choice",
-          "label": "",
+          "label": "Is your principal place of business in the UK?",
           "shortName": "Is business UK based",
           "choices": [
             "Yes",
@@ -251,6 +251,12 @@
       "includeIf": "${UKCorrChoice=0}",
       "description": "Provide the contact details for your UK based representative. HMRC will use these for your ongoing Air Passenger Duty correspondence.",
       "fields": [
+        {
+          "type": "text",
+          "id": "contactName",
+          "label": "Full name of representative (optional)",
+          "mandatory": "true"
+        },
         {
           "id": "contactAddressUKRep",
           "type": "address",
