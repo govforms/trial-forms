@@ -1,5 +1,4 @@
 {
-  "_id": "template-al100-automation",
   "formName": "Send your Aggregates Levy return online",
   "description": "Fill in your aggregates levy return form online",
   "formCategory": "hmrcReturnForm",
@@ -51,20 +50,20 @@
         {
           "id": "aggregatesLevyRegAgent",
           "type": "text",
-          "label": "Client's aggregates levy reference number",
+          "label": "Client's Aggregates Levy reference number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
         }
       ]
     },
     {
-      "title": "Choose your client's Aggregates Levy return dates",
+      "title": "Select your client's Aggregates Levy return dates",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
       "fields": [
         {
           "id": "returnPeriodAgent",
           "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
+          "label": "",
           "idType": "eeits",
           "idNumber": "$(aggregatesLevyRegAgent)",
           "regimeType": "AGL"
@@ -94,7 +93,7 @@
         {
           "id": "returnPeriod",
           "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
+          "label": "",
           "idType": "eeits",
           "idNumber": "${user.enrolledIdentifier}",
           "regimeType": "AGL"
@@ -305,6 +304,7 @@
       "id": "HMRCDMS",
       "type": "hmrcDms",
       "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "failOnError": true,
       "dmsFormId": "AL100",
       "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
@@ -312,5 +312,6 @@
     }
   ],
   "submitErrorUrl": "",
-  "submitSuccessUrl": ""
+  "submitSuccessUrl": "",
+  "_id": "template-al100-automation"
 }
