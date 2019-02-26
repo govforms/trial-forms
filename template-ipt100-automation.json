@@ -414,17 +414,17 @@
         "label": "",
         "fields": [
           {
-            "id": "declaration-firstname",
+            "id": "declarationfirstname",
             "type": "text",
             "label": "First name"
           },
           {
-            "id": "declaration-lastname",
+            "id": "declarationlastname",
             "type": "text",
             "label": "Last name"
           },
           {
-            "id": "declaration-status",
+            "id": "declarationstatus",
             "type": "text",
             "label": "Status",
             "helpText": "For example, Director, Financial Controller, Secretary"
@@ -478,9 +478,9 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/IPT/eeits/{{either null IPTreg IPTreferencenumber}}",
+      "uri": "cross-regime/return/IPT/eeits/{{either IPTReg IPTreferencenumber}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZIP1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null IPTreg IPTreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_IPT_BOX1_STDRATE','paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX2_HIGHERRATE','paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_IPT_BOX3_STDUNDERDEC','paramValue':'{{stripCommas (either underDecOfStandardRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX4_HIGHUNDERDEC','paramValue':'{{stripCommas (either underDecOfHigherRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX5_TOTALTAX','paramValue':'{{stripCommas totalIPTAndUnderDecs}}'},{'paramSequence':'01','paramName':'A_IPT_BOX6_STDOVERDEC','paramValue':'{{stripCommas (either overDecOfStandardRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX7_HIGHOVERDEC','paramValue':'{{stripCommas (either overDecOfHigherRate 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX8_OVERDECTOTAL','paramValue':'{{stripCommas (either overDecTotal 0)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX9_NETTAXDUE','paramValue':'{{stripCommas (either netTaxPayment netTaxRefund)}}'},{'paramSequence':'01','paramName':'A_IPT_BOX10_PREMIUM','paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},'paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}', 'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}', 'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}', 'returnsDetails':{'isrScenario':'ZIP1','regimeSpecificDetails':[ {'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either IPTReg IPTreferencenumber}}'}, {'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_IPT_BOX1_STDRATE','paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'}, {'paramSequence':'01','paramName':'A_IPT_BOX2_HIGHERRATE','paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'}, {{#underDecOfStandardRate.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX3_STDUNDERDEC','paramValue':'{{stripCommas (either . 0)}}'},{{/underDecOfStandardRate.[0]}} {{#underDecOfHigherRate.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX4_HIGHUNDERDEC','paramValue':'{{stripCommas (either . 0)}}'},{{/underDecOfHigherRate.[0]}} {{#totalIPTAndUnderDecs.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX5_TOTALTAX','paramValue':'{{stripCommas .}}'},{{/totalIPTAndUnderDecs.[0]}} {{#overDecOfStandardRate.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX6_STDOVERDEC','paramValue':'{{stripCommas (either . 0)}}'},{{/overDecOfStandardRate.[0]}} {{#overDecOfHigherRate.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX7_HIGHOVERDEC','paramValue':'{{stripCommas (either . 0)}}'},{{/overDecOfHigherRate.[0]}} {{#overDecTotal.[0]}}{'paramSequence':'01','paramName':'A_IPT_BOX8_OVERDECTOTAL','paramValue':'{{stripCommas (either . 0)}}'},{{/overDecTotal.[0]}} {'paramSequence':'01','paramName':'A_IPT_BOX9_NETTAXDUE','paramValue':'{{stripCommas (either netTaxPayment netTaxRefund)}}'}, {'paramSequence':'01','paramName':'A_IPT_BOX10_PREMIUM','paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'}, {'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
