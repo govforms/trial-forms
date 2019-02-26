@@ -505,12 +505,12 @@
         "label": "",
         "fields": [
           {
-            "id": "declaration-fullName",
+            "id": "declarationFullName",
             "type": "text",
             "label": "Full name"
           },
           {
-            "id": "declaration-status",
+            "id": "declarationStatus",
             "type": "text",
             "label": "Job title",
             "helpText": "For example, a company director."
@@ -573,9 +573,9 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/BD/eeits/{{either null BDreg BDreferencenumber}}",
+      "uri": "cross-regime/return/BD/eeits/{{either BDreg BDreferencenumber}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZBD1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either null BDreg BDreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_BD_BOX1_PAYMENTS','paramValue':'{{amountDueAsPayments}}'},{'paramSequence':'01','paramName':'A_BD_BOX2_EXPENDITURE','paramValue':'{{amountSpentWinning}}'},{'paramSequence':'01','paramName':'A_BD_BOX3_LOSSCF','paramValue':'{{bingoLossesCarried}}'},{'paramSequence':'01','paramName':'A_BD_BOX4_TOTALEXP','paramValue':'{{either null totalExpen totalExpenNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX5_PROFITORLOSS','paramValue':'{{either null bingoProfitsLosses bingoProfitsNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX6_DUTY_DUE','paramValue':'{{either null bingoProfitsLosses bingoProfitsNoLosses}}'},{'paramSequence':'01','paramName':'A_BD_BOX7_UNDERDEC','paramValue':'{{bingoUnderDec}}'},{'paramSequence':'01','paramName':'A_BD_BOX8_TOTALDUE','paramValue':'{{either null totalAmountToPayLossesUnderDec totalAmountLossesNoUnderDue totalAmountNoLossesNoUnderDutyDue totalAmountNoLossesUnder 0}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZBD1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either BDreg BDreferencenumber}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'}, {'paramSequence':'01','paramName':'A_BD_BOX1_PAYMENTS','paramValue':'{{stripCommas amountDueAsPayments}}'},{'paramSequence':'01','paramName':'A_BD_BOX2_EXPENDITURE','paramValue':'{{stripCommas amountSpentWinning}}'},{'paramSequence':'01','paramName':'A_BD_BOX3_LOSSCF','paramValue':'{{stripCommas bingoLossesCarried}}'},{'paramSequence':'01','paramName':'A_BD_BOX4_TOTALEXP','paramValue':'{{stripCommas (either totalExpen totalExpenNoLosses)}}'},{'paramSequence':'01','paramName':'A_BD_BOX5_PROFITORLOSS','paramValue':'{{stripCommas (either bingoProfitsLosses bingoProfitsNoLosses)}}'},{'paramSequence':'01','paramName':'A_BD_BOX6_DUTY_DUE','paramValue':'{{stripCommas (either dutyDueBingoProfitsLosses dutyDueBingoProfitsNoLosses)}}'},{'paramSequence':'01','paramName':'A_BD_BOX7_UNDERDEC','paramValue':'{{stripCommas bingoUnderDec}}'},{'paramSequence':'01','paramName':'A_BD_BOX8_TOTALDUE','paramValue':'{{stripCommas (either totalAmountToPayLossesUnderDec totalAmountLossesNoUnderDue totalAmountNoLossesNoUnderDutyDue totalAmountNoLossesUnder 0)}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
