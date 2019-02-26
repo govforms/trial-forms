@@ -1,4 +1,5 @@
 {
+  "_id": "template-al100-automation",
   "formName": "Send your Aggregates Levy return online",
   "description": "Fill in your aggregates levy return form online",
   "formCategory": "hmrcReturnForm",
@@ -296,9 +297,9 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/AGL/eeits/{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}",
+      "uri": "cross-regime/return/AGL/eeits/{{either aggregatesLevyReg aggregatesLevyRegAgent}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey null returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom null returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo null returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either2 aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{stripCommas levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{stripCommas TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{stripCommas TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{stripCommas levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{stripCommas TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{stripCommas TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "HMRCDMS",
@@ -311,6 +312,5 @@
     }
   ],
   "submitErrorUrl": "",
-  "submitSuccessUrl": "",
-  "_id": "template-al100-automation"
+  "submitSuccessUrl": ""
 }
