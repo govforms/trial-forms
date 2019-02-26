@@ -20,7 +20,7 @@
         {
           "id": "businessType",
           "type": "choice",
-          "label": "What is your business type",
+          "label": "What is your business type?",
           "shortName": "Business type",
           "choices": [
             "Limited company",
@@ -111,7 +111,7 @@
     },
     {
       "title": "Is your principal place of business in the UK?",
-      "shortName": "Principal place of business location",
+      "shortName": "Location of principal place of business",
       "fields": [
         {
           "id": "basedInUk",
@@ -178,6 +178,7 @@
           "id": "generatedId_b8928ec7_938e_48e0_b6eb_866dd5a0f07e",
           "type": "info",
           "label": "",
+          "shortName": "Telephone number",
           "infoText": "HMRC may use these to verify your business information with records we hold.",
           "infoType": "noformat"
         },
@@ -185,6 +186,7 @@
           "id": "busTelephoneInt",
           "type": "text",
           "label": "Business telephone number",
+          "shortName": "Telephone number",
           "helpText": "Include the country code",
           "format": "telephoneNumber"
         },
@@ -192,33 +194,39 @@
           "id": "busEmailInt",
           "type": "text",
           "label": "Business email address",
+          "shortName": "Email address",
           "format": "email"
         },
         {
           "id": "addressInt",
           "type": "group",
           "label": "Business address",
+          "shortName": "Business address",
           "fields": [
             {
               "id": "addressOneInt",
               "type": "text",
-              "label": "Address 1"
+              "label": "Address 1",
+              "shortName": "Address line 1"
             },
             {
               "id": "addressTwoInt",
               "type": "text",
-              "label": "Address 2"
+              "label": "Address 2",
+              "shortName": "Address line 2"
             },
             {
               "id": "addressThreeInt",
               "type": "text",
               "label": "Address 3 (optional)",
+              "shortName": "Address line 3",
               "mandatory": "false"
             },
             {
               "id": "addressFourInt",
               "type": "text",
               "label": "Address 4 (optional)",
+              "shortName": "Address line 4",
               "mandatory": "false"
             },
             {
@@ -232,13 +240,14 @@
     },
     {
       "title": "Do you have a UK based representative for your ongoing Air Passenger Duty correspondence?",
+      "shortName": "Representative in the UK",
       "includeIf": "${basedInUk=1}",
       "fields": [
         {
           "id": "UKCorrChoice",
           "type": "choice",
           "label": "Do you have a UK based representative for your ongoing Air Passenger Duty correspondence?",
-          "shortName": "Do you have a UK representative",
+          "shortName": "UK based representative",
           "errorMessage": "Select whether you have a UK based representative",
           "choices": [
             "Yes",
@@ -260,6 +269,7 @@
           "id": "contactNameRep",
           "type": "text",
           "label": "Full name of contact (optional)",
+          "shortName": "Contact name",
           "mandatory": "false"
         },
         {
@@ -425,7 +435,7 @@
     },
     {
       "title": "Have you started carrying chargeable passengers in chargeable aircraft?",
-      "shortName": "Have you started carrying chargeable passengers in chargeable aircraft",
+      "shortName": "Carrying chargeable passengers in chargeable aircraft",
       "fields": [
         {
           "id": "startedCarrying",
@@ -478,6 +488,7 @@
     },
     {
       "title": "Estimated number of chargeable passengers by band",
+      "shortName": "Estimate of chargeable passengers by band",
       "fields": [
         {
           "id": "generatedId_756285d05c784d0d80bd7f83feee27a2",
@@ -508,6 +519,19 @@
           "label": "Where can I find out more about destination bands A and B?",
           "infoText": "To find out more about destination bands and see a list of destinations that fall into each band follow the steps below.\n\n1. Open a new window or tab.\n2. Go to GOV.UK.\n3. Search for 'Rates for Air Passenger Duty' on GOV.UK.",
           "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Estimate your Air Passenger Duty for the next 12 months",
+      "shortName": "Estimate of Air Passenger Duty for next 12 months",
+      "fields": [
+        {
+          "type": "text",
+          "id": "estimateAPD",
+          "label": "Estimate your Air Passenger Duty for the next 12 months",
+          "shortName": "Estimate of Air Passenger Duty",
+          "format": "sterling"
         }
       ]
     }
