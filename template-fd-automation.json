@@ -71,7 +71,6 @@
     {
       "title": "Enter the name of your business ",
       "shortName": "Business details",
-      "includeIf": "${(legalStatus=1 || legalStatus=2) || legalStatus=3}",
       "fields": [
         {
           "id": "businessName",
@@ -109,13 +108,13 @@
         {
           "type": "text",
           "id": "businessPhone",
-          "label": "",
+          "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
           "type": "text",
           "id": "businessEmail1",
-          "label": "",
+          "label": "Email address",
           "format": "email"
         },
         {
@@ -131,6 +130,7 @@
     },
     {
       "title": "Correspondence details",
+      "includeIf": "${corresChoice = 0}",
       "fields": [
         {
           "id": "youInfo1a",
@@ -166,6 +166,7 @@
           "type": "choice",
           "id": "tradStyChoi",
           "label": "Do you have a trading style?",
+          "mandatory": "false",
           "choices": [
             "Yes",
             "No"
@@ -194,7 +195,8 @@
           "label": "Tell us your Economic Operator Registration and Identification (EORI) number",
           "shortName": "EORI",
           "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
-          "format": "EORI"
+          "format": "EORI",
+          "mandatory": "false"
         },
         {
           "id": "mSCountryCodes",
@@ -204,11 +206,169 @@
           "infoType": "long"
         }
       ]
+    },
+    {
+      "title": "Do you have a Guarantor?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "gauraChoi",
+          "label": "Do you have a Guarantor?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Guarantor's details",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "guaraName",
+          "label": "Name of guarantor",
+          "format": "text(0,40)"
+        },
+        {
+          "type": "text",
+          "id": "guaraRef",
+          "label": "Guarantor's reference",
+          "format": "text(0,30)"
+        },
+        {
+          "type": "address",
+          "id": "guaraAdd",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "type": "text",
+          "id": "guaraPhone",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "guaraEmail",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "No guarantor?",
+      "includeIf": "${gauraChoi = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_996e0e96_a00a_4df4_8186_aa0976a04744",
+          "label": "",
+          "infoText": "You must have a guarantor to proceed",
+          "infoType": "important"
+        }
+      ]
+    },
+    {
+      "title": "Liability of guarantee",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "guaraAmount",
+          "label": "Guarantee amount",
+          "format": "sterling"
+        },
+        {
+          "type": "date",
+          "id": "guaraStart",
+          "label": "Commencement date of guarantee",
+          "helpText": "Enter the start date of your guarantee in the format dd/mm/yyyy"
+        }
+      ]
+    },
+    {
+      "title": "Is this guarantee executed in Scotland?",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "scotChoice",
+          "label": "Is this guarantee executed in Scotland?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "New page",
+      "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "witName",
+          "label": "Witness name in full",
+          "format": "text(0,40)"
+        },
+        {
+          "type": "text",
+          "id": "witRole",
+          "label": "Occupation",
+          "format": "text(0,40)"
+        },
+        {
+          "type": "address",
+          "id": "witAdd",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "type": "text",
+          "id": "witPhone",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "witMob",
+          "label": "Mobile number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "witEmail",
+          "label": "Email",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "witFax",
+          "label": "Fax number",
+          "format": "telephoneNumber"
+        }
+      ]
     }
   ],
   "declarationSection": {
     "title": "Declaration",
     "fields": [
+      {
+        "type": "choice",
+        "id": "statusChoice",
+        "label": "",
+        "choices": [
+          "Authorised Official",
+          "Company Secretary",
+          "Director",
+          "Partner",
+          "Sole Proprietor",
+          "Trustee"
+        ]
+      },
       {
         "id": "decInfoCheck",
         "type": "info",
