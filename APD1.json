@@ -7,10 +7,10 @@
     "authModule": "hmrc"
   },
   "dmsSubmission": {
-    "businessArea": "For example: FinanceOpsCorpT",
-    "classificationType": "For example: BT-NRU-Environmental",
-    "customerId": "${fieldIdOfCustomerIdentifier}",
-    "dmsFormId": "CHANGEME"
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${' '}",
+    "dmsFormId": "APDREG"
   },
   "sections": [
     {
@@ -335,6 +335,7 @@
     {
       "title": "Enter the VAT registration number",
       "shortName": "VAT registration number details",
+      "includeIf": "${vatChoice=0}",
       "fields": [
         {
           "id": "vatNo",
@@ -467,7 +468,8 @@
           "type": "date",
           "label": "When did you first carry chargeable passengers in a chargeable aircraft?",
           "shortName": "Date",
-          "helpText": "For example 01 01 2019"
+          "helpText": "For example 01 01 2019",
+          "format": "before today +1"
         }
       ]
     },
@@ -481,7 +483,8 @@
           "type": "date",
           "label": "When do you expect to start carrying chargeable passengers in a chargeable aircraft?",
           "shortName": "Date",
-          "helpText": "For example 01 03 2019"
+          "helpText": "For example 01 03 2019",
+          "format": "after today -1"
         }
       ]
     },
