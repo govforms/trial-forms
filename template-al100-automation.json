@@ -1,50 +1,17 @@
 {
+  "_id": "template-al100-automation",
   "formName": "Send your Aggregates Levy return online",
   "description": "Fill in your aggregates levy return form online",
   "formCategory": "hmrcReturnForm",
   "developmentPhase": "beta",
   "emailTemplateId": "al100_return_confirmation",
   "authConfig": {
-    "authModule": "hmrc",
-    "agentAccess": "requireMTDAgentEnrolment",
-    "enrolmentCheck": "forNonAgents",
-    "serviceId": "HMRC-OBTDS-ORG",
-    "regimeId": "AL",
-    "enrolmentSection": {
-      "title": "Register for Enrolment",
-      "fields": [
-        {
-          "id": "etmpRegistrationNumber",
-          "type": "text",
-          "label": "Enter your Aggregate Levy registration number",
-          "format": "text(15, 15)"
-        },
-        {
-          "id": "businessPostcode",
-          "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Aggregates Levy",
-          "format": "text(5, 8)",
-          "mandatory": "true"
-        }
-      ],
-      "identifiers": [
-        {
-          "value": "${etmpRegistrationNumber}",
-          "key": "EtmpRegistrationNumber"
-        }
-      ],
-      "verifiers": [
-        {
-          "value": "${businessPostcode}",
-          "key": "BusinessPostcode"
-        }
-      ]
-    }
+    "authModule": "legacyEEITTAuth",
+    "regimeId": "AL"
   },
   "sections": [
     {
-      "title": "Enter your client's reference number",
+      "title": "Enter your client's reference number and return dates",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
@@ -52,21 +19,22 @@
           "type": "text",
           "label": "Client's Aggregates Levy reference number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        }
-      ]
-    },
-    {
-      "title": "Select your client's Aggregates Levy return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
-      "fields": [
+        },
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "",
-          "idType": "eeits",
-          "idNumber": "$(aggregatesLevyRegAgent)",
-          "regimeType": "AGL"
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
@@ -79,7 +47,7 @@
           "type": "text",
           "label": "Aggregates Levy registration number: ",
           "shortName": "Aggregates Levy registration number",
-          "value": "${user.enrolledIdentifier}",
+          "value": "${eeitt.businessUser}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -95,7 +63,7 @@
           "type": "hmrcTaxPeriod",
           "label": "",
           "idType": "eeits",
-          "idNumber": "${user.enrolledIdentifier}",
+          "idNumber": "${eeitt.businessUser}",
           "regimeType": "AGL"
         }
       ]
@@ -293,12 +261,23 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/AGL/eeits/{{either aggregatesLevyReg aggregatesLevyRegAgent}}",
       "method": "POST",
       "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{stripCommas levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{stripCommas TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{stripCommas TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "HMRCDMSAGENT",
+      "type": "hmrcDms",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "failOnError": true,
+      "dmsFormId": "AL100",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
     },
     {
       "id": "HMRCDMS",
@@ -312,6 +291,5 @@
     }
   ],
   "submitErrorUrl": "",
-  "submitSuccessUrl": "",
-  "_id": "template-al100-automation"
+  "submitSuccessUrl": ""
 }
