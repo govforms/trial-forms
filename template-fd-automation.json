@@ -1,4 +1,5 @@
 {
+  "_id": "template-fd-automation",
   "formName": "Register for Fuel Duty",
   "description": "",
   "developmentPhase": "beta",
@@ -41,15 +42,15 @@
       "title": "Date of application",
       "fields": [
         {
-          "type": "date",
           "id": "appliDate",
+          "type": "date",
           "label": "Date of application",
           "helpText": "Enter the date you are making this application on in the format dd/mm/yyyy"
         }
       ]
     },
     {
-      "title": "What is the date of your first expected taxable landfill disposal?",
+      "title": "What is the date you first expect to be liable for fuel duty?",
       "shortName": "Details of first fuel duty liability",
       "fields": [
         {
@@ -58,13 +59,6 @@
           "label": "What is the date you first expect to be liable for fuel duty?",
           "shortName": "Date",
           "helpText": "For example 21 04 2018"
-        },
-        {
-          "id": "infoDate",
-          "type": "info",
-          "label": "Where can I find out more about what a taxable disposal is?",
-          "infoText": "To find out more about what a taxable landfill disposal is, open a new tab or window, go to GOV.UK and search for, 'Excise Notice LFT1: a general guide to Landfill Tax' .",
-          "infoType": "long"
         }
       ]
     },
@@ -100,26 +94,26 @@
           "infoType": "noformat"
         },
         {
-          "type": "address",
           "id": "busiAdd1",
+          "type": "address",
           "label": "Business address",
           "international": "true"
         },
         {
-          "type": "text",
           "id": "businessPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "businessEmail1",
+          "type": "text",
           "label": "Email address",
           "format": "email"
         },
         {
-          "type": "choice",
           "id": "corresChoice",
+          "type": "choice",
           "label": "Is the correspondence address different to the address provided above?",
           "choices": [
             "Yes",
@@ -140,21 +134,21 @@
           "infoType": "noformat"
         },
         {
-          "type": "address",
           "id": "corresAddy",
+          "type": "address",
           "label": "",
           "international": "true"
         },
         {
-          "type": "text",
           "id": "corresPhone",
-          "label": "",
+          "type": "text",
+          "label": "telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "corresEmail",
-          "label": "",
+          "type": "text",
+          "label": "Email address",
           "format": "email"
         }
       ]
@@ -163,8 +157,8 @@
       "title": "Do you have a trading style?",
       "fields": [
         {
-          "type": "choice",
           "id": "tradStyChoi",
+          "type": "choice",
           "label": "Do you have a trading style?",
           "mandatory": "false",
           "choices": [
@@ -179,8 +173,8 @@
       "includeIf": "${tradStyChoi = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "tradStyDesc",
+          "type": "text",
           "label": "Trading style",
           "format": "text(0,40)"
         }
@@ -211,8 +205,8 @@
       "title": "Do you have a Guarantor?",
       "fields": [
         {
-          "type": "choice",
           "id": "gauraChoi",
+          "type": "choice",
           "label": "Do you have a Guarantor?",
           "choices": [
             "Yes",
@@ -226,34 +220,40 @@
       "includeIf": "${gauraChoi = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "guaraName",
+          "type": "text",
           "label": "Name of guarantor",
           "format": "text(0,40)"
         },
         {
-          "type": "text",
           "id": "guaraRef",
+          "type": "text",
           "label": "Guarantor's reference",
           "format": "text(0,30)"
         },
         {
-          "type": "address",
           "id": "guaraAdd",
+          "type": "address",
           "label": "",
           "international": "true"
         },
         {
-          "type": "text",
           "id": "guaraPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "guaraEmail",
+          "type": "text",
           "label": "Email address",
           "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "guaraFax",
+          "label": "Fax number",
+          "format": "telephoneNumber"
         }
       ]
     },
@@ -263,8 +263,8 @@
       "continueIf": "false",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_996e0e96_a00a_4df4_8186_aa0976a04744",
+          "type": "info",
           "label": "",
           "infoText": "You must have a guarantor to proceed",
           "infoType": "important"
@@ -276,14 +276,14 @@
       "includeIf": "${gauraChoi = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "guaraAmount",
+          "type": "text",
           "label": "Guarantee amount",
           "format": "sterling"
         },
         {
-          "type": "date",
           "id": "guaraStart",
+          "type": "date",
           "label": "Commencement date of guarantee",
           "helpText": "Enter the start date of your guarantee in the format dd/mm/yyyy"
         }
@@ -294,8 +294,8 @@
       "includeIf": "${gauraChoi = 0}",
       "fields": [
         {
-          "type": "choice",
           "id": "scotChoice",
+          "type": "choice",
           "label": "Is this guarantee executed in Scotland?",
           "choices": [
             "Yes",
@@ -309,44 +309,44 @@
       "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "witName",
+          "type": "text",
           "label": "Witness name in full",
           "format": "text(0,40)"
         },
         {
-          "type": "text",
           "id": "witRole",
+          "type": "text",
           "label": "Occupation",
           "format": "text(0,40)"
         },
         {
-          "type": "address",
           "id": "witAdd",
+          "type": "address",
           "label": "Address",
           "international": "true"
         },
         {
-          "type": "text",
           "id": "witPhone",
+          "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "witMob",
+          "type": "text",
           "label": "Mobile number",
           "format": "telephoneNumber"
         },
         {
-          "type": "text",
           "id": "witEmail",
+          "type": "text",
           "label": "Email",
           "format": "email"
         },
         {
-          "type": "text",
           "id": "witFax",
+          "type": "text",
           "label": "Fax number",
           "format": "telephoneNumber"
         }
@@ -357,9 +357,22 @@
     "title": "Declaration",
     "fields": [
       {
-        "type": "choice",
-        "id": "statusChoice",
+        "id": "decInfoCheck",
+        "type": "info",
         "label": "",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
+        "infoType": "important"
+      },
+      {
+        "type": "text",
+        "id": "authName",
+        "label": "Name of the person authorising this form",
+        "format": "text(0,40)"
+      },
+      {
+        "id": "statusChoice",
+        "type": "choice",
+        "label": "Select the status in the company of the person authorising this form",
         "choices": [
           "Authorised Official",
           "Company Secretary",
@@ -368,13 +381,6 @@
           "Sole Proprietor",
           "Trustee"
         ]
-      },
-      {
-        "id": "decInfoCheck",
-        "type": "info",
-        "label": "",
-        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
-        "infoType": "important"
       },
       {
         "id": "email",
@@ -434,6 +440,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "template-fd-automation"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
