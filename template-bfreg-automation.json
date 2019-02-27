@@ -1,0 +1,458 @@
+{
+  "_id": "template-bfreg-automation",
+  "formName": "Register for Biofuels and other fuel substitutes",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "lt_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${''}",
+    "dmsFormId": "LTREG"
+  },
+  "sections": [
+    {
+      "title": "What is your business type?",
+      "shortName": "Type of business",
+      "fields": [
+        {
+          "id": "legalStatus",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business type",
+          "choices": [
+            "Sole Proprietor",
+            "Limited company",
+            "Limited liability partnership (LLP)",
+            "Partnership"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the date you first expect to be liable for duty on Biofuels and other fuel substitutes?",
+      "shortName": "Details of first fuel duty liability",
+      "fields": [
+        {
+          "id": "taxableDisposalDate",
+          "type": "date",
+          "label": "What is the date you first expect to be liable for duty on Biofuels and other fuel substitutes?",
+          "shortName": "Date",
+          "helpText": "For example 21 04 2018"
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your business ",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Business name",
+          "helpText": ""
+        },
+        {
+          "id": "businessTradingName",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "shortName": "Trading name",
+          "helpText": "Enter your trading name, if different from your business name ",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "About the business",
+      "fields": [
+        {
+          "id": "youInfo1b",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration unless you provide alternate correspondence details. ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "busiAdd1",
+          "type": "address",
+          "label": "Business address",
+          "international": "true"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEmail1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "corresChoice",
+          "type": "choice",
+          "label": "Is the correspondence address different to the address provided above?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Correspondence details",
+      "includeIf": "${corresChoice = 0}",
+      "fields": [
+        {
+          "id": "youInfo1a",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will use these details if we need to discuss this registration. ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "corresAddy",
+          "type": "address",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "id": "corresPhone",
+          "type": "text",
+          "label": "telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "corresEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Biofuels and other Fuel substitutes details",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "authChoi",
+          "label": "Has authority been given under the seal of the corporate body for the applicant to make this application on it's behalf?",
+          "helpText": "\"I'm assuming this translates as do you have permission to make this application?\"",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are there any other Biofuels and Fuel substitute businesses you are, or have been, involved in within the last 24 months?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "bfChoiOther",
+          "label": "Are there any other Biofuels and Fuel substitute businesses you are, or have been, involved in within the last 24 months?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many other Biofuel or fuel substitute businesses do you want to tell us about?",
+      "includeIf": "${bfChoiOther = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "numOtherBusi",
+          "label": "How many other Biofuel or fuel substitute businesses do you want to tell us about? "
+        }
+      ]
+    },
+    {
+      "title": "Other Biofuel or fuel substitute business $n",
+      "repeatsMin": "${numOtherBusi}",
+      "repeatsMax": "${numOtherBusi}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "bfpTaxRegNo",
+          "label": "BFP Tax registration number"
+        }
+      ]
+    },
+    {
+      "title": "Estimated litres of fuel you expect to produce each year",
+      "description": "This is the total production across all sites",
+      "fields": [
+        {
+          "type": "text",
+          "id": "estProd",
+          "label": "Estimated litres of fuel you expect to produce each year",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Estimated tax for the next 12 months",
+      "fields": [
+        {
+          "type": "text",
+          "id": "estTax",
+          "label": "Estimated tax for the next 12 months",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Return periods",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_ac2516a3_84c9_4b6a_90c3_3d81f8d7af6a",
+          "label": "What are the possible return periods?",
+          "infoText": "There are four types of return periods.\n\nThese are:\n\n* Quarterly - last day of January, April, July and October\n\n\n* Quarterly - last day of February, May, August and November\n\n\n* Quarterly - last day of March, June, September and December\n\n\n* Monthly",
+          "infoType": "long"
+        },
+        {
+          "type": "choice",
+          "id": "retPer",
+          "label": "Select the periodicity of your return",
+          "choices": [
+            "Quarterly -  End of January",
+            "Quarterly -  End of February",
+            "Quarterly -  End of March",
+            "Monthly"
+          ],
+          "optionHelpText": [
+            "Period ends last day of January, April, July and October",
+            "Period ends last day of February, May, August and November",
+            "Period ends last day of March, June, September and December",
+            "Period ends last day of each month"
+          ]
+        },
+        {
+          "type": "date",
+          "id": "obliDate",
+          "label": "Tax obligation start date",
+          "helpText": "Enter your tax obligation start date in the format dd/mm/yyyy"
+        }
+      ]
+    },
+    {
+      "title": "How many sites do you want to tell us about?",
+      "fields": [
+        {
+          "type": "text",
+          "id": "howManySites",
+          "label": "How many sites do you want to tell us about?",
+          "format": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Site $n",
+      "repeatsMin": "${howManySites}",
+      "repeatsMax": "${howManySites}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "siteTradName",
+          "label": "Trading name of site",
+          "format": "text(0,160)"
+        },
+        {
+          "type": "text",
+          "id": "siteRef",
+          "label": "Site reference / Site licence or permit number",
+          "format": "text(0,20)"
+        },
+        {
+          "type": "address",
+          "id": "siteAdd",
+          "label": "Site Address",
+          "shortName": "Address",
+          "international": "true"
+        },
+        {
+          "type": "text",
+          "id": "siteTelephoneNumber",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "type": "text",
+          "id": "siteEmailAddress",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "type": "text",
+          "id": "siteNature",
+          "label": "Nature of the business conducted on the site",
+          "format": "text(0,255)",
+          "multiline": "true"
+        },
+        {
+          "type": "text",
+          "id": "siteProdOut",
+          "label": "What monthly quantities do you expect to produce/use?",
+          "helpText": "Enter the number of Litres produced and/or used",
+          "format": "number(10,0)"
+        },
+        {
+          "type": "choice",
+          "id": "siteReasonChoi",
+          "label": "For what purpose do you intend to produce Biofuels/ fuel substitutes",
+          "choices": [
+            "Use in own vehicle(s)",
+            "To sell",
+            "Other"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "otherSiteWhy",
+          "label": "If you have answered other in the question above, enter the purpose of your Biofuel production here",
+          "helpText": "You only need to enter details here if you answered other in the previous question",
+          "format": "text(0,255)",
+          "multiline": "true"
+        },
+        {
+          "type": "choice",
+          "id": "setAsideReason",
+          "label": "For what use do you intend to set aside your produced biofuels/ fuel substitutes?",
+          "helpText": "If you do not intend to set aside any of your production select other and enter N/A in answer to the next question",
+          "choices": [
+            "For road use",
+            "For non road use",
+            "Other"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "otherSetAsideWhy",
+          "label": "If you have answered other in the question above and intend to set aside biofuels or other fuel substitute production, enter the details here ",
+          "helpText": "If you answered other because you do not intend to set aside any of your production enter N/A here",
+          "format": "text(0,255)",
+          "multiline": "true"
+        },
+        {
+          "type": "text",
+          "id": "siteDistMark",
+          "label": "Distinguishing mark",
+          "format": "text(0,255)",
+          "multiline": "true"
+        },
+        {
+          "type": "text",
+          "id": "siteIntendedUse",
+          "label": "Intended use of premises, rooms, places, vessels, utensils or other plants in relation to this application",
+          "format": "text(0,255)",
+          "multiline": "true"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
+        "infoType": "important"
+      },
+      {
+        "id": "authName",
+        "type": "text",
+        "label": "Name of the person authorising this form",
+        "format": "text(0,40)"
+      },
+      {
+        "id": "statusChoice",
+        "type": "choice",
+        "label": "Select the status in the company of the person authorising this form",
+        "choices": [
+          "Authorised Official",
+          "Company Secretary",
+          "Director",
+          "Partner",
+          "Sole Proprietor",
+          "Trustee"
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We’ll use this to send you a confirmation email ",
+        "format": "email"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
+        "infoType": "important"
+      },
+      {
+        "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
+        "type": "info",
+        "label": "",
+        "infoText": "You must check [the guidance for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
+        "infoType": "standard"
+      },
+      {
+        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
+        "type": "info",
+        "label": "",
+        "infoText": "##Providing further details",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_7c97b037_036a_45a0_9ad3_ebbea72206db",
+        "type": "info",
+        "label": "",
+        "infoText": "You will need to contact HMRC if you do not use a weighbridge at one or more of your sites (to agree an alternative method for weighing materials).\n\nIf you have registered any sites without environmental permits you must also contact us when the permits have been granted (or if they are refused). \n\n[Contact details](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/landfill-tax) for Landfill Tax enquiries are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_df25aac9_61b3_4b5c_b1e7_c401014681f4",
+        "type": "info",
+        "label": "",
+        "infoText": "##Registering as a partnership",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
+        "type": "info",
+        "label": "",
+        "infoText": "If your business is a partnership you must also complete form LT2 to complete your registration. You can access this from [the guidance page for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
