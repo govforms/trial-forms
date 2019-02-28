@@ -14,24 +14,6 @@
   },
   "sections": [
     {
-      "title": "What is your business type?",
-      "shortName": "Your business type",
-      "fields": [
-        {
-          "id": "statusChoice",
-          "type": "choice",
-          "label": "What is your business type?",
-          "shortName": "Business type",
-          "choices": [
-            "Limited company",
-            "Sole proprietor",
-            "Partnership",
-            "Unincorporated body"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Enter the details of the person filling in this form",
       "shortName": "About you",
       "fields": [
@@ -83,6 +65,24 @@
       ]
     },
     {
+      "title": "What is your business type?",
+      "shortName": "Your business type",
+      "fields": [
+        {
+          "id": "statusChoice",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business type",
+          "choices": [
+            "Limited company",
+            "Sole proprietor",
+            "Partnership",
+            "Unincorporated body"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Enter the name of your business",
       "shortName": "Name of business",
       "fields": [
@@ -99,6 +99,41 @@
           "shortName": "Trading name",
           "helpText": "Enter your trading name if different from your business name",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Business description",
+      "shortName": "Business description",
+      "fields": [
+        {
+          "id": "busDesCho",
+          "type": "choice",
+          "label": "Business description",
+          "shortName": "Description",
+          "helpText": "Select the option that best describes your business",
+          "choices": [
+            "UK insurer",
+            "Branch of non-UK insurer",
+            "Captive",
+            "Representative office",
+            "Taxable intermediary",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe your type of insurance business",
+      "shortName": "Insurance business type",
+      "includeIf": "${busDesCho = 5}",
+      "fields": [
+        {
+          "id": "othText",
+          "type": "text",
+          "label": "Describe your type of insurance business",
+          "shortName": "Type",
+          "helpText": "Enter the type of business you want to register for Insurance Premium Tax"
         }
       ]
     },
@@ -145,7 +180,7 @@
           "id": "contactChoice",
           "type": "choice",
           "label": "Are these the details you want HMRC to use for your Insurance Premium Tax correspondence?",
-          "shortName": "Preferred contact address",
+          "shortName": "Correspondence address",
           "format": "horizontal",
           "choices": [
             "Yes",
@@ -213,7 +248,7 @@
           "label": "What is your VAT registration number?",
           "shortName": "VAT",
           "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
-          "format": "ukVrn"
+          "format": "text(9,11)"
         }
       ]
     },
@@ -235,6 +270,48 @@
       ]
     },
     {
+      "title": "Which classes of insurance do you provide?",
+      "shortName": "Insurance classes",
+      "fields": [
+        {
+          "id": "classChoice",
+          "type": "choice",
+          "label": "Which classes of insurance do you provide?",
+          "shortName": "",
+          "helpText": "Select all that you provide.",
+          "multivalue": "true",
+          "choices": [
+            "Accident",
+            "Aircraft",
+            "Aircraft liability",
+            "Assistance",
+            "Credit",
+            "Damage to property",
+            "Fire and natural forces",
+            "General liability",
+            "Goods in transit",
+            "Land vehicles",
+            "Legal expenses",
+            "Liability of ships",
+            "Miscellaneous financial loss",
+            "Motor vehicle liability",
+            "Railway rolling stock",
+            "Ships",
+            "Sickness",
+            "Suretyship",
+            "Long term insurance"
+          ]
+        },
+        {
+          "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
+          "type": "info",
+          "label": "More about insurance classes",
+          "infoText": "To find out more about which insurance classes are liable for Insurance Premium Tax, open a new window and go to Section 5 of Notice IPT1: Insurance Premium Tax on GOV.UK.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
       "title": "Is your business in run off?",
       "shortName": "Business status",
       "fields": [
@@ -244,100 +321,6 @@
           "label": "Is your business in run off?",
           "shortName": "In run off",
           "helpText": "A business that is in run off is no longer writing new insurance policies but is liable for outstanding claims",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What type of business are you?",
-      "shortName": "Insurance business type",
-      "fields": [
-        {
-          "id": "busDesCho",
-          "type": "choice",
-          "label": "What type of business are you?",
-          "shortName": "Type",
-          "helpText": "Select the option that best describes your business",
-          "choices": [
-            "UK insurer",
-            "Branch of non-UK insurer",
-            "Captive",
-            "Representative office",
-            "Taxable intermediary",
-            "Other"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Describe your type of insurance business",
-      "shortName": "Insurance business type",
-      "includeIf": "${busDesCho = 5}",
-      "fields": [
-        {
-          "id": "othText",
-          "type": "text",
-          "label": "Describe your type of insurance business",
-          "shortName": "Type",
-          "helpText": "Enter the type of business you want to register for Insurance Premium Tax"
-        }
-      ]
-    },
-    {
-      "title": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-      "shortName": "Transferring a business as a going concern",
-      "fields": [
-        {
-          "id": "goConCho",
-          "type": "choice",
-          "label": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-          "shortName": "",
-          "helpText": "You are taking over a registered business as a going concern if you are taking over the business without causing any significant break in trading and the business will continue to receive taxable premiums after the transfer date",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the details of the business transfer",
-      "shortName": "Business transfer details",
-      "includeIf": "${goConCho=0}",
-      "fields": [
-        {
-          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
-          "type": "info",
-          "label": "transferExplanation",
-          "infoText": "Enter the details of the business that has been transferred to you.",
-          "infoType": "noformat"
-        },
-        {
-          "type": "text",
-          "id": "previousBusinessName",
-          "label": "Business name"
-        },
-        {
-          "id": "transferDate",
-          "type": "date",
-          "label": "Date of transfer",
-          "helpText": "For example, 21 08 2018"
-        },
-        {
-          "id": "IPTRegPrev",
-          "type": "text",
-          "label": "Insurance Premium Tax registration number of the previous owner",
-          "shortName": "Previous IPT number",
-          "helpText": "This is 15 numbers used for all returns, payments and correspondence"
-        },
-        {
-          "id": "IPTRegTrans",
-          "type": "choice",
-          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
-          "shortName": "IPT registration number",
           "choices": [
             "Yes",
             "No"
@@ -373,44 +356,61 @@
       ]
     },
     {
-      "title": "Which classes of insurance do you provide?",
-      "shortName": "Insurance classes",
+      "title": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
+      "shortName": "Transferring a business as a going concern",
       "fields": [
         {
-          "id": "classChoice",
+          "id": "goConCho",
           "type": "choice",
-          "label": "Which classes of insurance do you provide?",
-          "shortName": "Insurance classes",
-          "helpText": "Select all that you provide.",
-          "multivalue": "true",
+          "label": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
+          "shortName": "",
+          "helpText": "You are taking over a registered business as a going concern if (1) you are taking over the business without causing any significant break in trading and (2) the business will continue to receive taxable premiums after the transfer date",
           "choices": [
-            "Accident",
-            "Aircraft",
-            "Aircraft liability",
-            "Assistance",
-            "Credit",
-            "Damage to property",
-            "Fire and natural forces",
-            "General liability",
-            "Goods in transit",
-            "Land vehicles",
-            "Legal expenses",
-            "Liability of ships",
-            "Miscellaneous financial loss",
-            "Motor vehicle liability",
-            "Railway rolling stock",
-            "Ships",
-            "Sickness",
-            "Suretyship",
-            "Long term insurance"
+            "Yes",
+            "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the business transfer",
+      "shortName": "Business transfer details",
+      "includeIf": "${goConCho=0}",
+      "fields": [
+        {
+          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
+          "type": "info",
+          "label": "transferExplanation",
+          "infoText": "Enter the details of the business that has been transferred to you.",
+          "infoType": "noformat"
         },
         {
-          "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
-          "type": "info",
-          "label": "More about insurance classes",
-          "infoText": "To find out more about which insurance classes are liable for Insurance Premium Tax, open a new window and go to Section 5 of Notice IPT1: Insurance Premium Tax on GOV.UK.",
-          "infoType": "long"
+          "id": "previousBusinessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "transferDate",
+          "type": "date",
+          "label": "Date of transfer",
+          "helpText": "For example, 21 08 2018"
+        },
+        {
+          "id": "IPTRegPrev",
+          "type": "text",
+          "label": "Insurance Premium Tax registration number of the previous owner",
+          "shortName": "Previous IPT number",
+          "helpText": "This is 15 numbers used for all returns, payments and correspondence"
+        },
+        {
+          "id": "IPTRegTrans",
+          "type": "choice",
+          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
+          "shortName": "IPT registration number",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     }
