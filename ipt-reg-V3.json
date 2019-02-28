@@ -83,65 +83,6 @@
       ]
     },
     {
-      "title": "About you",
-      "shortName": "About you",
-      "includeIf": "${false}",
-      "fields": [
-        {
-          "id": "generatedId_e92777a1_cf16_4d21_abea_236006682f20",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "generatedId_4b97d386_b96e_4e0d_b375_c906603560eb",
-          "type": "info",
-          "label": "iPT2form",
-          "infoText": "To register as a partnership you must also complete form IPT 2, Partnership Details. You can do this by calling the VAT Helpline on Telephone: 0300 200 3700. (clarify)",
-          "infoType": "standard"
-        },
-        {
-          "id": "regContactName1_copy_1",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "RegPhoneNumber1_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "For international numbers include the country code",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "Email_copy_1",
-          "type": "text",
-          "label": "Email Address",
-          "helpText": "We'll use this to send you a confirmation email",
-          "format": "email"
-        },
-        {
-          "id": "generatedId_0185d574_6e1d_4062_960c_d30b2b4be288",
-          "type": "info",
-          "label": "",
-          "infoText": "##Your role within the business",
-          "infoType": "noformat"
-        },
-        {
-          "id": "roleInBusiness1_copy_1",
-          "type": "choice",
-          "label": "Select the role relevant to you",
-          "shortName": "Position in company",
-          "helpText": "You must be one of the following to register on behalf of your business",
-          "choices": [
-            "Partner",
-            "Company secretary",
-            "Authorised individual "
-          ]
-        }
-      ]
-    },
-    {
       "title": "Enter the name of your business",
       "shortName": "Name of business",
       "fields": [
@@ -162,69 +103,8 @@
       ]
     },
     {
-      "title": "Do you have a business premises in the UK?",
-      "shortName": "UK business premises",
-      "fields": [
-        {
-          "id": "ukBEChoice",
-          "type": "choice",
-          "label": "Do you have a business premises in the UK?",
-          "shortName": "UK premises",
-          "helpText": "This is the address we will use to contact you about your Insurance Premium Tax (?)",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "UK business address",
-      "includeIf": "${ukBEChoice=0}",
-      "fields": [
-        {
-          "id": "generatedId_de692dd8_9a51_404c_995b_befa8e8c2830",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC will use these to contact you about your Insurance Premium Tax affairs. (or can they choose a different correspondence address?)\n\nWe may use these to verify your business information with records we hold. (?)",
-          "infoType": "noformat"
-        },
-        {
-          "id": "ukAddress_copy_2",
-          "type": "address",
-          "label": "UK address",
-          "shortName": "UK address"
-        },
-        {
-          "id": "UKBusEmail_copy_2",
-          "type": "text",
-          "label": "Email address (optional)",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "ukTelNum_copy_2",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "addressSameAsMainAdress",
-          "type": "choice",
-          "label": "Is this your company's main place of business?",
-          "shortName": "Main business address",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Details for main place of business",
       "shortName": "Main business address",
-      "includeIf": "${addressSameAsMainAdress=1 || ukBEChoice=1}",
       "fields": [
         {
           "id": "generatedId_c751cfac_92fd_46fc_bdf1_d4168d7f258f",
@@ -250,7 +130,7 @@
         {
           "id": "UKBusEmail",
           "type": "text",
-          "label": "Business email address (optional)",
+          "label": "Business email address",
           "shortName": "Email address",
           "format": "email"
         },
@@ -264,7 +144,7 @@
         {
           "id": "contactChoice",
           "type": "choice",
-          "label": "Are these the contact details you want HMRC to use if we need to discuss your Insurance Premium Tax information?",
+          "label": "Are these the details you want HMRC to use for your Insurance Premium Tax correspondence?",
           "shortName": "Preferred contact address",
           "format": "horizontal",
           "choices": [
@@ -275,13 +155,13 @@
       ]
     },
     {
-      "title": "Preferred contact details",
+      "title": "Preferred correspondence details",
       "includeIf": "${contactChoice=1}",
       "fields": [
         {
           "id": "generatedId_f408c1f6_b0e9_408a_8bbb_5c8b472e697d",
           "type": "info",
-          "label": "",
+          "label": "HMRC will use these for your ongoing Insurance Premium Tax correspondence.",
           "infoText": "HMRC will use these for your ongoing Insurance Premium Tax correspondence.",
           "infoType": "noformat"
         },
@@ -294,7 +174,7 @@
         {
           "id": "UKBusEmail_copy_1",
           "type": "text",
-          "label": "Email address (optional)",
+          "label": "Email address",
           "shortName": "Email",
           "format": "email"
         },
@@ -302,6 +182,7 @@
           "id": "ukTelNum_copy_1",
           "type": "text",
           "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
           "format": "telephoneNumber"
         }
       ]
@@ -329,7 +210,7 @@
         {
           "id": "UKVATYes",
           "type": "text",
-          "label": "",
+          "label": "What is your VAT registration number?",
           "shortName": "VAT",
           "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
           "format": "ukVrn"
@@ -361,7 +242,8 @@
           "id": "rOCho",
           "type": "choice",
           "label": "Is your business in run off?",
-          "helpText": "A business that is in run off is no longer writing any new insurance policies but is liable for outstanding claims",
+          "shortName": "In run off",
+          "helpText": "A business that is in run off is no longer writing new insurance policies but is liable for outstanding claims",
           "choices": [
             "Yes",
             "No"
@@ -377,7 +259,7 @@
           "id": "busDesCho",
           "type": "choice",
           "label": "What type of business are you?",
-          "shortName": "Business type",
+          "shortName": "Type",
           "helpText": "Select the option that best describes your business",
           "choices": [
             "UK insurer",
@@ -399,21 +281,21 @@
           "id": "othText",
           "type": "text",
           "label": "Describe your type of insurance business",
-          "shortName": "Business type",
+          "shortName": "Type",
           "helpText": "Enter the type of business you want to register for Insurance Premium Tax"
         }
       ]
     },
     {
       "title": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-      "shortName": "Business as  a going concern",
+      "shortName": "Transferring a business as a going concern",
       "fields": [
         {
           "id": "goConCho",
           "type": "choice",
           "label": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-          "shortName": "Going concern",
-          "helpText": "A business is a going concern is if it is financially stable and not at risk of bankruptcy or liquidation",
+          "shortName": "",
+          "helpText": "You are taking over a registered business as a going concern if you are taking over the business without causing any significant break in trading and the business will continue to receive taxable premiums after the transfer date",
           "choices": [
             "Yes",
             "No"
@@ -434,6 +316,11 @@
           "infoType": "noformat"
         },
         {
+          "type": "text",
+          "id": "previousBusinessName",
+          "label": "Business name"
+        },
+        {
           "id": "transferDate",
           "type": "date",
           "label": "Date of transfer",
@@ -450,7 +337,7 @@
           "id": "IPTRegTrans",
           "type": "choice",
           "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
-          "shortName": "",
+          "shortName": "IPT registration number",
           "choices": [
             "Yes",
             "No"
@@ -473,13 +360,13 @@
     },
     {
       "title": "How much taxable premium income do you expect to receive in the first 12 months?",
-      "shortName": "First year premium income ",
+      "shortName": "Premium income estimate",
       "fields": [
         {
           "id": "valPrems",
           "type": "text",
           "label": "How much taxable premium income do you expect to receive in the first 12 months?",
-          "shortName": "Income ",
+          "shortName": "Estimated income",
           "helpText": "The 12 month period starts from the date of your expected taxable premium. If you do not know enter an estimate instead.",
           "format": "sterling"
         }
@@ -493,6 +380,7 @@
           "id": "classChoice",
           "type": "choice",
           "label": "Which classes of insurance do you provide?",
+          "shortName": "Insurance classes",
           "helpText": "Select all that you provide.",
           "multivalue": "true",
           "choices": [
@@ -514,14 +402,14 @@
             "Ships",
             "Sickness",
             "Suretyship",
-            "*Long term insurance* (do we need this?)"
+            "Long term insurance"
           ]
         },
         {
           "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
           "type": "info",
           "label": "More about insurance classes",
-          "infoText": "To find out more about which insurance classes are liable for Insurance Premium Tax, open a new window and search for Section 5.1.1 of the Insurance Premium Tax notice on GOV.UK. (is this correct? Section 5 is Exemptions?)  ",
+          "infoText": "To find out more about which insurance classes are liable for Insurance Premium Tax, open a new window and go to Section 5 of Notice IPT1: Insurance Premium Tax on GOV.UK.",
           "infoType": "long"
         }
       ]
