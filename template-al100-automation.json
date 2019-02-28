@@ -11,19 +11,19 @@
   },
   "sections": [
     {
-      "title": "Enter your client's reference number and return dates",
+      "title": "Enter your client's Aggregates Levy details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
           "id": "aggregatesLevyRegAgent",
           "type": "text",
-          "label": "Client's Aggregates Levy reference number",
+          "label": "Registration number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
         },
         {
           "id": "startDate",
           "type": "date",
-          "label": "Start date",
+          "label": "Return start date",
           "helpText": "For example, 01 03 2018.",
           "format": "before ${endDate}",
           "mandatory": "true"
@@ -31,7 +31,7 @@
         {
           "id": "endDate",
           "type": "date",
-          "label": "End date",
+          "label": "Return end date",
           "helpText": "For example, 31 05 2018.",
           "format": "before today +1",
           "mandatory": "true"
@@ -39,13 +39,13 @@
       ]
     },
     {
-      "title": "You're completing an Aggregates Levy return for the following registration",
+      "title": "You are completing an Aggregates Levy return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
           "id": "aggregatesLevyReg",
           "type": "text",
-          "label": "Aggregates Levy registration number: ",
+          "label": "",
           "shortName": "Aggregates Levy registration number",
           "value": "${eeitt.businessUser}",
           "submitMode": "readonly",
@@ -61,7 +61,7 @@
           "id": "returnPeriodInfo",
           "type": "info",
           "label": "",
-          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoText": "You can find these on the letter we sent you telling you when your return is due.",
           "infoType": "noformat"
         },
         {
