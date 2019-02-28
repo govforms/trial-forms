@@ -39,7 +39,7 @@
       ]
     },
     {
-      "title": "Choose your Aggregates Levy return dates",
+      "title": "You're completing an Aggregates Levy return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
@@ -50,7 +50,13 @@
           "value": "${eeitt.businessUser}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Select your Aggregates Levy return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
         {
           "id": "returnPeriodInfo",
           "type": "info",
@@ -63,7 +69,7 @@
           "type": "hmrcTaxPeriod",
           "label": "",
           "idType": "eeits",
-          "idNumber": "${eeitt.businessUser}",
+          "idNumber": "${aggregatesLevyReg}",
           "regimeType": "AGL"
         }
       ]
@@ -124,7 +130,7 @@
           "label": "Full name"
         },
         {
-          "id": "RegPhoneNumber",
+          "id": "regPhoneNumber",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
@@ -181,7 +187,7 @@
           "mandatory": "true"
         },
         {
-          "id": "TonnesOfRelievedAggregateThisPeriod",
+          "id": "tonnesOfRelievedAggregateThisPeriod",
           "type": "text",
           "label": "Relieved aggregate in tonnes",
           "shortName": "Relieved",
@@ -190,7 +196,7 @@
           "mandatory": "true"
         },
         {
-          "id": "TonnesOfExemptAggregateThisPeriod",
+          "id": "tonnesOfExemptAggregateThisPeriod",
           "type": "text",
           "label": "Exempt aggregate in tonnes",
           "shortName": "Exempt",
@@ -205,12 +211,12 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "declaration-firstname",
+        "id": "declaration_firstname",
         "type": "text",
         "label": "Full Name"
       },
       {
-        "id": "declaration-status",
+        "id": "declaration_status",
         "type": "text",
         "label": "Job title",
         "helpText": "For example, a company director."
@@ -261,32 +267,34 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
-      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "includeIf": "{{#if aggregatesLevyReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/AGL/eeits/{{either aggregatesLevyReg aggregatesLevyRegAgent}}",
+      "uri": "cross-regime/return/AGL/eeits/{{aggregatesLevyReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}','periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}','periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}','returnsDetails':{'isrScenario':'ZAG1','regimeSpecificDetails':[{'paramSequence':'01','paramName':'A_REGISTRATION_NUMBER','paramValue':'{{either aggregatesLevyReg aggregatesLevyRegAgent}}'},{'paramSequence':'01','paramName':'A_RET_TYPE','paramValue':'1'},{'paramSequence':'01','paramName':'A_AGL_LEVY_DUE','paramValue':'{{stripCommas levyDueForThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_TAXABLE_TON','paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_RELIEVED_TON','paramValue':'{{stripCommas TonnesOfRelievedAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_AGL_EXEMPT_TON','paramValue':'{{stripCommas TonnesOfExemptAggregateThisPeriod}}'},{'paramSequence':'01','paramName':'A_DATA_ORIGIN','paramValue':'1'}]},'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZAG1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{aggregatesLevyReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_AGL_LEVY_DUE',                          'paramValue':'{{stripCommas levyDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_TAXABLE_TON',                          'paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_RELIEVED_TON',                          'paramValue':'{{stripCommas tonnesOfRelievedAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_EXEMPT_TON',                          'paramValue':'{{stripCommas tonnesOfExemptAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
-      "id": "HMRCDMSAGENT",
+      "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "${user.affinityGroup = 'agent'}",
+      "includeIf": "{{lookup ^('true' *) => 'true'; (* 'agent') => 'true'; (* *) => 'false'^ (isNotSuccessCode eeittReturnApi.status) (either aggregatesLevyReg 'agent')}}",
       "failOnError": true,
+      "convertSingleQuotes": true,
       "dmsFormId": "AL100",
       "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
-      "id": "HMRCDMS",
+      "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
+      "convertSingleQuotes": true,
       "dmsFormId": "AL100",
       "customerId": "${' '}",
-      "classificationType": "BT-NRU-Environmental",
+      "classificationType": "BT-NRU-Other",
       "businessArea": "BT"
     }
   ],
