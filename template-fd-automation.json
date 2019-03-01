@@ -7,13 +7,25 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${''}",
-    "dmsFormId": "LTREG"
-  },
   "sections": [
+    {
+      "title": "Details of business to register",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
+          "shortName": "Unique Taxpayer Reference"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Business Address Postcode",
+          "shortName": "Postcode"
+        }
+      ]
+    },
     {
       "title": "What is your business type?",
       "shortName": "Type of business",
@@ -35,17 +47,6 @@
             "",
             ""
           ]
-        }
-      ]
-    },
-    {
-      "title": "Date of application",
-      "fields": [
-        {
-          "id": "appliDate",
-          "type": "date",
-          "label": "Date of application",
-          "helpText": "Enter the date you are making this application on in the format dd/mm/yyyy"
         }
       ]
     },
@@ -422,7 +423,28 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/AGL/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZAG2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '7'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{aggregatesDate-year}}-{{aggregatesDate-month}}-{{aggregatesDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       'aboutBusiness':                         {                         'tradingName': '{{either busTradingname busTradingnameST busTradingnameEnter businessName titleSole}}'                         },                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAddress\"}},                           'postCode': '{{businessAddress-postcode}}',                           'telephoneNumber': '{{phoneNumber}}',                           'email': '{{email1}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice altAdd}}',                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"address\"}},                         'postCode': '{{address-postcode}}',                         'telephoneNumber': '{{altPhoneNumber}}',                         'email': '{{altEmail}}'                         },                       'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas legalStatusDec)}}'},                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_NUMBER_OF_SITES',                          'paramValue': '{{noOfSites}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_OTHER_AG_BUSINESSES',                          'paramValue': '{{lookup ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart '1'))}}'                         },                         {{#each regNo1}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_AG_BUS_REG_NUM',                          'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each regNo1LtdCo}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_AG_BUS_REG_NUM',                          'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each regNo1Part}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_AG_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_QEXTRACT',                          'paramValue': '{{quarryPercentage}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_SANDGRAVEL',                          'paramValue': '{{SandgravelPercentage}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_IMP_ABROAD',                          'paramValue': '{{importPercentage}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_MOB_CRUSHER',                          'paramValue': '{{crusherPercentage}}'},                         {{#each otherName}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHER',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each OtherPercentage}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHERS_PERC',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_EXEMPT_RELIEF',                          'paramValue': '{{yesNoToEtmpChoice exemptChoice}}'},                         {{#exemptLevy}}                         {'paramSequence': '01',                          'paramName': 'A_EXEMPT_RELIEF_STD',                          'paramValue': '{{exemptLevy}}'},                         {{/exemptLevy}}                         {{#relievedLevy}}                         {'paramSequence': '01',                          'paramName': 'A_EXEMPT_RELIEF_LOWER',                          'paramValue': '{{relievedLevy}}'},                         {{/relievedLevy}}                         {{#exportLevy}}                         {'paramSequence': '01',                          'paramName': 'A_EXEMPT_RELIEF_EX',                          'paramValue': '{{exportLevy}}'},                         {{/exportLevy}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{aggregatesLevy}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'                         },                         {{#transferDate}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{dateToEtmpDate transferDate}}'},                         {{/transferDate}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{prevBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{prevRegNo}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'                         }                         ]                       },                   }"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "ALREG",
+      "customerId": "${auth.gg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    }
+  ],
   "GFC579Ready": "true",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitErrorUrl": "",
+  "submitSuccessUrl": ""
 }
