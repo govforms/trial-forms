@@ -49,6 +49,13 @@
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
+          "id": "agentReferenceNumber",
+          "type": "text",
+          "label": "Agent reference number",
+          "value": "${eeitt.agent}",
+          "submitMode": "derived"
+        },
+        {
           "id": "gamingdutyreferencenumber",
           "type": "text",
           "label": "Client's Gaming Duty reference number",
@@ -71,8 +78,23 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "${landfillTaxRegAgent}",
+          "idNumber": "${gamingdutyreferencenumber}",
           "regimeType": "GD"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Gaming Duty return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "GDreg",
+          "type": "text",
+          "label": "",
+          "shortName": "Gaming Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -80,15 +102,6 @@
       "title": "Choose your Gaming Duty return dates",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
-        {
-          "id": "GDreg",
-          "type": "text",
-          "label": "Gaming Duty registration number: ",
-          "shortName": "Gaming Duty registration number",
-          "value": "${user.enrolledIdentifier}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
         {
           "id": "returnPeriodInfo",
           "type": "info",
@@ -101,7 +114,7 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "${user.enrolledIdentifier}",
+          "idNumber": "${GDreg}",
           "regimeType": "GD"
         }
       ]
@@ -521,13 +534,13 @@
         "label": "",
         "fields": [
           {
-            "id": "declaration-fullName",
+            "id": "declarationFullName",
             "type": "text",
             "label": "Full name",
             "errorMessage": "Enter your full name"
           },
           {
-            "id": "declaration-status",
+            "id": "declarationStatus",
             "type": "text",
             "label": "Job title",
             "errorMessage": "Enter your job title"
