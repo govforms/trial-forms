@@ -1,4 +1,5 @@
 {
+  "_id": "template-ex250-automation",
   "formName": "Register as a bingo promoter",
   "description": "",
   "developmentPhase": "beta",
@@ -75,8 +76,8 @@
           "type": "text",
           "label": "Your Unique Taxpayer Reference",
           "shortName": "Unique Taxpayer Reference",
-          "format": "utr",
-          "helpText": "This is a 10 digit number, like 0123456789. You can find this on your tax return or statement of accounts."
+          "helpText": "This is a 10 digit number, like 0123456789. You can find this on your tax return or statement of accounts.",
+          "format": "utr"
         }
       ]
     },
@@ -156,8 +157,8 @@
           "id": "VATRegsiteredNumber",
           "type": "text",
           "label": "",
-          "helpText": "This is 9 numbers with ‘GB’ at the start, for example GB123456789.",
           "shortName": "VAT registration number",
+          "helpText": "This is 9 numbers with ‘GB’ at the start, for example GB123456789.",
           "format": "ukVrn"
         }
       ]
@@ -170,8 +171,8 @@
           "id": "noOfTradingAddress",
           "type": "text",
           "label": "",
-          "helpText": "By law, the promoter must provide all the addresses they plan to trade from, you must provide at least 1 address.",
           "shortName": "Number of addresses",
+          "helpText": "By law, the promoter must provide all the addresses they plan to trade from, you must provide at least 1 address.",
           "format": "positiveNumber(3, 0)",
           "displayWidth": "xs",
           "validIf": "${noOfTradingAddress >0 && noOfTradingAddress <300}"
@@ -180,8 +181,8 @@
     },
     {
       "title": "Trading address $n",
-      "repeatsMax": "${noOfTradingAddress}",
       "repeatsMin": "${noOfTradingAddress}",
+      "repeatsMax": "${noOfTradingAddress}",
       "fields": [
         {
           "id": "tradingAddresses",
@@ -381,6 +382,5 @@
     ]
   },
   "submitErrorUrl": "",
-  "submitSuccessUrl": "",
-  "_id": "template-ex250-automation"
+  "submitSuccessUrl": ""
 }
