@@ -137,20 +137,13 @@
       ]
     },
     {
-      "title": "Main business details",
-      "shortName": "Main business address",
+      "title": "Business address details",
+      "shortName": "Business address",
       "fields": [
-        {
-          "id": "generatedId_c751cfac_92fd_46fc_bdf1_d4168d7f258f",
-          "type": "info",
-          "label": "",
-          "infoText": "This may be the registered office address or the shell... ",
-          "infoType": "noformat"
-        },
         {
           "id": "ukAddress",
           "type": "address",
-          "label": "",
+          "label": "Address",
           "international": "true"
         },
         {
@@ -239,6 +232,7 @@
     },
     {
       "title": "What is your VAT registration number?",
+      "shortName": "VAT registration number",
       "includeIf": "${vatRegUKChoice = 0}",
       "fields": [
         {
@@ -252,18 +246,97 @@
       ]
     },
     {
-      "title": "Select your business's accounting scheme",
+      "title": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
+      "shortName": "Business transfer details",
+      "fields": [
+        {
+          "id": "goConCho",
+          "type": "choice",
+          "label": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
+          "shortName": "Transferring a business as a going concern",
+          "helpText": "A going concern is when the transferred business will continue to receive taxable premiums after the transfer date, without any significant break in trading",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the business transfer",
+      "shortName": "Business transfer details",
+      "includeIf": "${goConCho=0}",
+      "fields": [
+        {
+          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
+          "type": "info",
+          "label": "transferExplanation",
+          "infoText": "Enter the details of the business that has been transferred to you.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "previousBusinessName",
+          "type": "text",
+          "label": "Business name",
+          "helpText": "Enter the name of the business being transferred",
+          "format": "text(0,40)"
+        },
+        {
+          "id": "transferDate",
+          "type": "date",
+          "label": "Date of transfer",
+          "shortName": "Date",
+          "helpText": "For example, 21 08 2018"
+        },
+        {
+          "id": "IPTRegPrev",
+          "type": "text",
+          "label": "Insurance Premium Tax registration number of the previous owner",
+          "shortName": "Previous IPT number",
+          "helpText": "This is 11 numbers with 4 letters at the start, for example XIPT12345678911. It is used for all returns, payments and correspondence."
+        },
+        {
+          "id": "IPTRegTrans",
+          "type": "choice",
+          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
+          "shortName": "I want to keep the previous IPT number",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Select your business accounting scheme",
       "shortName": "Accounting scheme",
       "fields": [
         {
           "id": "specAccChoi",
           "type": "choice",
-          "label": "Select your business's accounting scheme",
+          "label": "Select your business accounting scheme",
           "shortName": "Scheme",
           "helpText": "Tell HMRC which scheme you are going to use from the first of your accounting periods",
           "choices": [
             "Cash Accounting Scheme",
             "Special Accounting Scheme"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your business in run off?",
+      "shortName": "Business status",
+      "fields": [
+        {
+          "id": "rOCho",
+          "type": "choice",
+          "label": "Is your business in run off?",
+          "shortName": "In run off",
+          "helpText": "A business that is in run off is no longer writing new insurance policies but is liable for outstanding claims",
+          "choices": [
+            "Yes",
+            "No"
           ]
         }
       ]
@@ -311,23 +384,6 @@
       ]
     },
     {
-      "title": "Is your business in run off?",
-      "shortName": "Business status",
-      "fields": [
-        {
-          "id": "rOCho",
-          "type": "choice",
-          "label": "Is your business in run off?",
-          "shortName": "In run off",
-          "helpText": "A business that is in run off is no longer writing new insurance policies but is liable for outstanding claims",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "What date do you expect to receive your first taxable premium?",
       "shortName": "First premium income",
       "fields": [
@@ -342,76 +398,15 @@
     },
     {
       "title": "How much taxable premium income do you expect to receive in the first 12 months?",
-      "shortName": "Premium income estimate",
+      "shortName": "Expected premium income",
       "fields": [
         {
           "id": "valPrems",
           "type": "text",
           "label": "How much taxable premium income do you expect to receive in the first 12 months?",
-          "shortName": "Estimated 12 months income",
+          "shortName": "Income estimate",
           "helpText": "The 12 month period starts from the date of your expected taxable premium. If you do not know enter an estimate instead.",
           "format": "sterling"
-        }
-      ]
-    },
-    {
-      "title": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-      "shortName": "Transferring a business as a going concern",
-      "fields": [
-        {
-          "id": "goConCho",
-          "type": "choice",
-          "label": "Are you applying to register for Insurance Premium Tax because a business has been transferred to you as a going concern?",
-          "shortName": "",
-          "helpText": "A going concern is when the transferred business will continue to receive taxable premiums after the transfer date, without any significant break in trading",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the details of the business transfer",
-      "shortName": "Business transfer details",
-      "includeIf": "${goConCho=0}",
-      "fields": [
-        {
-          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
-          "type": "info",
-          "label": "transferExplanation",
-          "infoText": "Enter the details of the business that has been transferred to you.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "previousBusinessName",
-          "type": "text",
-          "label": "Business name",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "transferDate",
-          "type": "date",
-          "label": "Date of transfer",
-          "shortName": "Date",
-          "helpText": "For example, 21 08 2018"
-        },
-        {
-          "id": "IPTRegPrev",
-          "type": "text",
-          "label": "Insurance Premium Tax registration number of the previous owner",
-          "shortName": "Previous IPT number",
-          "helpText": "This is 15 digits made up of 4 letters and 11 numbers, for example XIPT12345678911. It is used for all returns, payments and correspondence."
-        },
-        {
-          "id": "IPTRegTrans",
-          "type": "choice",
-          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
-          "shortName": "I want to keep the previous IPT number",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     }
