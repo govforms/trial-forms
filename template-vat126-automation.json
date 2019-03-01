@@ -6,14 +6,42 @@
   "developmentPhase": "beta",
   "emailTemplateId": "vat_refund_claim_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "V1"
-  },
-  "dmsSubmission": {
-    "dmsFormId": "VAT126",
-    "customerId": "${eeitt.userId}",
-    "classificationType": "FinanceOpsCorpT-IndTax-VAT126",
-    "businessArea": "FinanceOpsCorpT"
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "always",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "V1",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your VAT Refund registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for VAT Refunds",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
   },
   "sections": [
     {
@@ -258,13 +286,15 @@
               "type": "text",
               "label": "Provide a brief description of goods or services supplied",
               "shortName": "Brief description of goods or services supplied",
+              "format": "text(1,60)",
               "multiline": "yes"
             },
             {
               "id": "invoiceAddress",
               "type": "text",
               "label": "Organisation receiving goods or services on the invoice",
-              "shortName": "Organisation receiving goods or services"
+              "shortName": "Organisation receiving goods or services",
+              "format": "text(1,35)"
             },
             {
               "id": "amountOfVatPaid",
@@ -306,6 +336,15 @@
       "title": "Claim a VAT refund",
       "shortName": "VAT refund",
       "fields": [
+        {
+          "id": "totalAmountOfVatPaid",
+          "type": "text",
+          "label": "Total payable",
+          "format": "sterling",
+          "value": "${amountOfVatPaid.sum}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
         {
           "id": "claimTotal",
           "type": "text",
@@ -366,7 +405,40 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{lookup ^('1') => 'true'; (*) => 'false';^ (stripCommas address)}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/ZVTR/eeits/{{VATCRN}}",
+      "method": "POST",
+      "payload": "{'returnsDetails':{                     'isrScenario':'ZVTR',                     'regimeSpecificDetails':[                       {'paramSequence':'01',                        'paramName':'A_REGISTRATION_NUMBER',                        'paramValue':'{{VATCRN}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_FIRST_CLAIM',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BANK_DET_CHANGE',                        'paramValue':'{{yesNoToEtmpChoice bankChange}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_FROM_SELECT',                        'paramValue':'{{startDate-year}}-{{startDate-month}}-{{startDate-day}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_TO_SELECT',                        'paramValue':'{{endDate-year}}-{{endDate-month}}-{{endDate-day}}'},                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_SEQ_ID',                        'paramValue':'{{toEtmpParamSequence @index}}'},                       {{/each}}                       {{#each dateOfInvoice}}                       {'paramSequence':'{{@index}}',                        'paramName':'A_VTR_INV_DATE_TBL',                        'paramValue':'{{dateOfInvoice-year}}-{{dateOfInvoice-month}}-{{dateOfInvoice-day}}'},                       {{/each}}                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_SUPP_VAT_NUM_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each descriptionOfGoodsOrServices}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_DESC_GOOD_SUPP_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each invoiceAddress}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_PERS_INVOICE_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each amountOfVatPaid}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_PAID_SUB_TBL',                        'paramValue':'{{stripCommas .}}'},                       {{/each}}                       {'paramSequence':'01',                        'paramName':'A_VTR_TOTAL_VAT_PAID',                        'paramValue':'{{stripCommas totalAmountOfVatPaid}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_CLAIM_AMOUNT',                        'paramValue':'{{stripCommas claimTotal}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BUSINESS_ACTIVITIES',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_DATA_ORIGIN',                        'paramValue':'1'}]},                     'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{or (lookup ^('0') => 'true'; (*) => 'false';^ (stripCommas address)) (isNotSuccessCode eeittReturnApi.status)}}",
+      "convertSingleQuotes": true,
+      "dmsFormId": "VAT126",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "convertSingleQuotes": true,
+      "dmsFormId": "VAT126",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Other",
+      "businessArea": "BT"
+    }
+  ],
   "GFC579Ready": "true",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk"
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
 }
