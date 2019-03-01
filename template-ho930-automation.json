@@ -57,17 +57,17 @@
       ]
     },
     {
-      "title": "Choose your client's Biofuels return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "title": "You are completing a Biofuels return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "$(biofuelsRegAgent)",
-          "regimeType": "ZBFP"
+          "id": "ho930Reg",
+          "type": "text",
+          "label": "",
+          "shortName": "Biofuels registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -75,15 +75,6 @@
       "title": "Choose your Biofuels return dates",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
-        {
-          "id": "ho930Reg",
-          "type": "text",
-          "label": "Biofuels registration number: ",
-          "shortName": "Biofuels registration number",
-          "value": "${user.enrolledIdentifier}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
         {
           "id": "returnPeriodInfo",
           "type": "info",
@@ -96,7 +87,7 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "${user.enrolledIdentifier}",
+          "idNumber": "${ho930Reg}",
           "regimeType": "ZBFP"
         }
       ]
