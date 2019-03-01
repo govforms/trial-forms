@@ -115,7 +115,6 @@
           "type": "text",
           "label": "What is your company name?",
           "shortName": "Company name",
-          "helpText": "Your company name can only include can only include letters, numbers, spaces, hyphens, ampersands and apostrophes",
           "format": "shortText"
         }
       ]
@@ -156,7 +155,7 @@
           "id": "hMRCref",
           "type": "choice",
           "label": "",
-          "helpText": "If you have registered for an HMRC service your company will have a reference number. For example this could be your non-resident Capital Gains Tax or Annual Tax on Enveloped Dwellings reference",
+          "helpText": "If you have registered for an HMRC service your company will have a reference number. For example this could be your non-resident Capital Gains Tax or Annual Tax on Enveloped Dwellings reference.",
           "choices": [
             "Yes",
             "No"
@@ -235,7 +234,7 @@
           "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
           "type": "info",
           "label": "",
-          "infoText": "This is the official registration address listed on your country's public register. It is where official communication will be sent, for example letters from (HMRC?) your government or tax authority. \n\nHMRC will use this to send official correspondence to your company. ",
+          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from (HMRC?), your government or tax authority.\n\n(HMRC will send official correspondence to this address?)  ",
           "infoType": "noformat"
         },
         {
@@ -612,14 +611,20 @@
       ]
     },
     {
-      "title": "Enter the business details",
+      "title": "Enter the business address",
       "includeIf": "${takenOverAnotherBusiness=0}",
       "fields": [
         {
+          "type": "info",
+          "id": "generatedId_52cbe649_3a01_4834_8ba9_5a928cd5ea7a",
+          "label": "",
+          "infoText": "This is the address of the business that has been transferred to you.",
+          "infoType": "noformat"
+        },
+        {
           "id": "previousBusinessName",
           "type": "text",
-          "label": "Business Name",
-          "helpText": "Enter the original business name it had at incorporation "
+          "label": "Business Name"
         },
         {
           "id": "PreviousBusAddress",
@@ -636,7 +641,7 @@
           "id": "previousOwnerName",
           "type": "text",
           "label": "Full name",
-          "helpText": "This is personal name of the owner (?)"
+          "helpText": "This is name of the owner (?)"
         },
         {
           "id": "previousOwnerAddress",
@@ -651,13 +656,6 @@
     "title": "Make your declaration and send the form",
     "shortName": "Declaration",
     "fields": [
-      {
-        "id": "generatedId_5c2b8e67_0f30_43de_8843_dc084bcd388e",
-        "type": "info",
-        "label": "",
-        "infoText": "You must enter the name of someone who is authorised to sign this declaration.",
-        "infoType": "noformat"
-      },
       {
         "id": "declarationTopInfo",
         "type": "info",
@@ -682,8 +680,15 @@
         "id": "generatedId_9c92a167_a56d_4bdb_8060_d1986cb35ff1",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report.\n\nWe will not contact you again unless we require further information.\n\nWe will use the information you have provided to set up a record for the company and send you a Unique taxpayer Reference. \n\nWhen you receive your Unique Taxpayer Reference, you need to go online and subscribe to the Government Gateway and Corporation Tax Online return service.",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted report.\n\nWe will use the information you have provided to set up a record for the company and send you a Corporation Tax Unique taxpayer Reference. \n\nWhen you receive this reference you will also receive a CT41G Form which will include more information about what you need to do next. \n\nOnce you have your CT41G you must go online and subscribe to the Government Gateway and Corporation Tax online return service: (File your accounts and Company Tax Return?) ",
         "infoType": "noformat"
+      },
+      {
+        "type": "info",
+        "id": "generatedId_73f9a08a_a345_4d2d_a8b7_cd0e4cfc38db",
+        "label": "",
+        "infoText": "You will only be able to file your return once you have registered for the Company Tax Return online service.",
+        "infoType": "standard"
       }
     ]
   },
