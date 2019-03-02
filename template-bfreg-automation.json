@@ -1,4 +1,5 @@
 {
+  "_id": "template-bfreg-automation",
   "formName": "Register for Biofuels and other fuel substitutes",
   "description": "",
   "developmentPhase": "beta",
@@ -477,17 +478,29 @@
       "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBF2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '1'; ('1') => '7'; ('2') => '2'; ('3') => '3'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAdd\"}},                           'postCode': '{{businessAdd-postcode}}',                           'telephoneNumber': '{{businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#corresAdd-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"corresAdd\"}},                         'postCode': '{{corresAdd-postcode}}',                         'telephoneNumber': '{{corresPhone}}',                         'email': '{{corresEmail}}'                         },                       {{/corresAdd-postcode}}                       'declarationStatus': '{{lookup ^('0') => '01'; ('1') => '02'; ('2') => '03'; ('3') => '04'; ('4') => '05'^ (stripCommas statusChoice)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{lookup ^('0') => 'MA'; ('1') => 'MB'; ('2') => 'MC'; ('3') => 'MM'^ (stripCommas retPer)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{obliDate-year}}{{obliDate-month}}{{obliDate-day}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEAL',                           'paramValue': '{{yesNoToEtmpChoice authChoi}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_BFP_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice bfChoiOther}}'                         },                         {{#each bfpTaxRegNo}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_BFP_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_BIO_ESTIMATE',                           'paramValue': '{{stripCommas estProd}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZBF5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_NAT_BUS',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_MON_QNT_PROD',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP_OTHER',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_SET_ASIDE',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_ASIDE_OTHER',                               'paramValue': 'N/A'                             }                           ]                         },                       ]                     }                   }"
     },
     {
-      "id": "HMRCDMS",
+      "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
-      "dmsFormId": "FDREG",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
       "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
+      "customerId": "${' '}",
+      "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "template-bfreg-automation"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
