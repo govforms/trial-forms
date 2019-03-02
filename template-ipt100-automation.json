@@ -490,13 +490,25 @@
       "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{either IPTReg IPTreferencenumber}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {{#underDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfStandardRate.[0]}}                         {{#underDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfHigherRate.[0]}}                         {{#totalIPTAndUnderDecs.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas .}}'},                         {{/totalIPTAndUnderDecs.[0]}}                         {{#overDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfStandardRate.[0]}}                         {{#overDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfHigherRate.[0]}}                         {{#overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX9_NETTAXDUE',                          'paramValue':'{{stripCommas (either netTaxPayable netTaxRefund)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
     },
     {
-      "id": "HMRCDMS",
+      "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
       "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
+      "convertSingleQuotes": true,
       "dmsFormId": "IPT100",
       "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${' '}",
+      "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
