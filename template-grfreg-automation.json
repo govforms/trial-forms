@@ -1,5 +1,4 @@
 {
-  "_id": "template-grfreg-automation",
   "formName": "Register for Gas as a road fuel",
   "description": "",
   "developmentPhase": "beta",
@@ -7,13 +6,25 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${''}",
-    "dmsFormId": "LTREG"
-  },
   "sections": [
+    {
+      "title": "Details of business to register",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
+          "shortName": "Unique Taxpayer Reference"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Business Address Postcode",
+          "shortName": "Postcode"
+        }
+      ]
+    },
     {
       "title": "What is your business type?",
       "shortName": "Type of business",
@@ -83,7 +94,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "busiAdd1",
+          "id": "businessAdd",
           "type": "address",
           "label": "Business address",
           "international": "true"
@@ -95,7 +106,7 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "businessEmail1",
+          "id": "businessEmail",
           "type": "text",
           "label": "Email address",
           "format": "email"
@@ -123,7 +134,7 @@
           "infoType": "noformat"
         },
         {
-          "id": "corresAddy",
+          "id": "corresAdd",
           "type": "address",
           "label": "",
           "international": "true"
@@ -410,8 +421,7 @@
           "Company Secretary",
           "Director",
           "Partner",
-          "Sole Proprietor",
-          "Trustee"
+          "Sole Proprietor"
         ]
       },
       {
@@ -470,7 +480,29 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/ZGRF/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZGR2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '1'; ('1') => '7'; ('2') => '2'; ('3') => '3'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAdd\"}},                           'postCode': '{{businessAdd-postcode}}',                           'telephoneNumber': '{{businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#corresAdd-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"corresAdd\"}},                         'postCode': '{{corresAdd-postcode}}',                         'telephoneNumber': '{{corresPhone}}',                         'email': '{{corresEmail}}'                         },                       {{/corresAdd-postcode}}                       'declarationStatus': '{{lookup ^('0') => '01'; ('1') => '02'; ('2') => '03'; ('3') => '04'; ('4') => '05'^ (stripCommas statusChoice)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{lookup ^('0') => 'MA'; ('1') => 'MB'; ('2') => 'MC'; ('3') => 'MM'^ (stripCommas statusChoice)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{obliDate-year}}{{obliDate-month}}{{obliDate-day}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_GFU_NOTIF',                           'paramValue': '{{lookup ^('0') => '1'; ('1') => '2'; ('2') => '3'^ (stripCommas authChoi)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_GFU_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice bfChoiOther}}'                         },                         {{#each grfTaxRegNo}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZGR5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_HANDL',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_TANK',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_SUPP_PLACE',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_PROD_SUPP',                               'paramValue': '2'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_VEH_OPER',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_ADAP_FUEL',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_CUST_EXCISE_NOTIF',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_QNT_DET',                               'paramValue': 'N/A'                             }                           ]                         },                       ]                     }                   }"
+    },
+    {
+      "id": "HMRCDMS",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "dmsFormId": "FDREG",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    }
+  ],
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "_id": "template-grfreg-automation"
 }
