@@ -1,4 +1,5 @@
 {
+  "_id": "template-apd-reg-automation",
   "formName": "Register for Air Passenger Duty",
   "description": "",
   "developmentPhase": "beta",
@@ -605,17 +606,29 @@
       "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZAP2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '5'; ('4') => '3'; ('5') => '6'^ (stripCommas businessType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#firstCarryPast}}                         'taxStartDate': '{{firstCarryPast-year}}-{{firstCarryPast-month}}-{{firstCarryPast-day}}'                         },                         {{/firstCarryPast}}                         {{#firstCarryFuture}}                         'taxStartDate': '{{firstCarryFuture-year}}-{{firstCarryFuture-month}}-{{firstCarryFuture-day}}'                         },                         {{/firstCarryFuture}}                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#busTrading}}                       'aboutBusiness':                         {                         'tradingName': '{{busTrading}}'                         },                       {{/busTrading}}                       'businessContactDetails':                         {                           {{#busAddress-postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"busAddress\"}},                           'postCode': '{{busAddress-postcode}}',                           'telephoneNumber': '{{busPhone}}',                           'email': '{{busEmail}}'                           {{/busAddress-postcode}}                           {{#addresscountryInt}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{addressOneInt}}',                           'addressLine2': '{{addressTwoInt}}',                           'addressLine3': '{{addressThreeInt}}',                           'addressLine4': '{{addressFourInt}}',                           'nonUKCountry': '{{addresscountryInt}}',                           'telephoneNumber': '{{busPhoneInt}}',                           'email': '{{busEmailInt}}'                           {{/addresscountryInt}}                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#contactAddressRep-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"contactAddressRep\"}},                           'postCode': '{{contactAddressRep-postcode}}',                           'telephoneNumber': '{{contactTelRep}}',                           'email': '{{contactEmailRep}}'                         },                       {{/contactAddressRep-postcode}}                       {{#contactAddressPref-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"contactAddressPref\"}},                           'postCode': '{{contactAddressPref-postcode}}',                           'telephoneNumber': '{{contactTelPref}}',                           'email': '{{contactEmailPref}}'                         },                       {{/contactAddressPref-postcode}}                       'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '04'; ('3') => '01'^ (stripCommas role)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_BUS_ESTABLISH',                           'paramValue': '{{lookup ^('0') => '1'; ('1') => '0'; (*) => '1'^ (stripCommas (either UKCorrChoice 'UK'))}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEASONAL_TRADER',                           'paramValue': '0'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigPlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_BLW',                           'paramValue': '{{yesNoToEtmpChoice littlePlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_LESS',                           'paramValue': '{{yesNoToEtmpChoice littleSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_A',                           'paramValue': '{{stripCommas shortHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_B',                           'paramValue': '{{stripCommas longHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DIRECT_FLT',                           'paramValue': '{{yesNoToEtmpChoice NIChoice}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estimateAPD}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                   }                 }"
     },
     {
-      "id": "HMRCDMS",
+      "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
-      "dmsFormId": "FDREG",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APDREG",
       "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APDREG",
+      "customerId": "${' '}",
+      "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "template-apd-reg-automation"
+  "submitSuccessUrl": "deprecated"
 }
