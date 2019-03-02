@@ -6,8 +6,42 @@
   "developmentPhase": "beta",
   "emailTemplateId": "al100_return_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "AL"
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "AL",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your Landfill Tax registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for Landfill Tax",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
   },
   "sections": [
     {
@@ -54,7 +88,7 @@
           "type": "text",
           "label": "",
           "shortName": "Aggregates Levy registration number",
-          "value": "${eeitt.businessUser}",
+          "value": "${user.enrolledIdentifier}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -301,7 +335,7 @@
       "convertSingleQuotes": true,
       "dmsFormId": "AL100",
       "customerId": "${' '}",
-      "classificationType": "BT-NRU-Other",
+      "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
