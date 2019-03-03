@@ -7,13 +7,27 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${UTR}",
-    "dmsFormId": "EX250"
-  },
   "sections": [
+    {
+      "title": "Details of business to register",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
+          "shortName": "Unique Taxpayer Reference",
+          "format": "utr"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Business Address Postcode",
+          "shortName": "Postcode",
+          "format": "text(5,8)"
+        }
+      ]
+    },
     {
       "title": "Contact details",
       "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
@@ -60,24 +74,6 @@
             "Limited liability partnership (LLP)",
             "Unincorporated body"
           ]
-        }
-      ]
-    },
-    {
-      "title": "Business details",
-      "fields": [
-        {
-          "id": "businessName",
-          "type": "text",
-          "label": "Business name"
-        },
-        {
-          "id": "UTR",
-          "type": "text",
-          "label": "Your Unique Taxpayer Reference",
-          "shortName": "Unique Taxpayer Reference",
-          "helpText": "This is a 10 digit number, like 0123456789. You can find this on your tax return or statement of accounts.",
-          "format": "utr"
         }
       ]
     },
@@ -340,8 +336,17 @@
           },
           {
             "id": "declarationStatus",
-            "type": "text",
-            "label": "Position in company"
+            "type": "choice",
+            "label": "Select the status relevant to you",
+            "shortName": "Your status",
+            "helpText": "For limited companies, a director or company secretary must complete this declaration",
+            "choices": [
+              "Director",
+              "Company secretary",
+              "Sole trader",
+              "Partner",
+              "Authorised official"
+            ]
           }
         ]
       },
@@ -381,6 +386,40 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/BD/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBD2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '2'; ('4') => '5'^ (stripCommas promoterType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#tradingDateNotStarted-year}}                         'taxStartDate': '{{tradingDateNotStarted-year}}-{{tradingDateNotStarted-month}}-{{tradingDateNotStarted-day}}'                         {{/tradingDateNotStarted-year}}                         {{#tradingDate-year}}                         'taxStartDate': '{{tradingDate-year}}-{{tradingDate-month}}-{{tradingDate-day}}'                         {{/tradingDate-year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#unincorpTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{unincorpTradingName}}'                         },                       {{/unincorpTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcodeFromArray \"tradingAddresses\" 0}},                           'postCode': '{{tradingAddresses-postcode.[0]}}',                           'telephoneNumber': '{{agentTelephone}}',                           {{#businessEmail}}                           'email': '{{emailAgent}}'                           {{/businessEmail}}                         },                       'correspondenceAddressDifferent': '0',                         'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^                                             (stripCommas declarationStatus)}}'},                       'regimeSpecificDetails': [                         {{#transferDate}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice (either canRunBingo canRunBingoUn)}}'},                         {{/transferDate}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice (either businessSeasonTrading areSeasonalTrader)}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas (either estimatedProfitBus estimatedProfitUnincorporated)}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'premiseDetails':                      {                       'isrScenario': 'Z062',                       'formData': [                         {{#each tradingAddresses-postcode}}                         {                           'commonDetails': {                             'action': '1',                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_SEQUENCE',                               'paramValue': '{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TRADE_NAME',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_REFERENCE',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_NON_UK',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_1',                               'paramValue': '{{elementAt tradingAddresses-street1 @index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_2',                               'paramValue': '{{elementAt tradingAddresses-street2 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_3',                               'paramValue': '{{elementAt tradingAddresses-street3 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_4',                               'paramValue': '{{elementAt tradingAddresses-street4 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_POST_CODE',                               'paramValue': '{{elementAt tradingAddresses-postcode @index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TELEPHONE_NUM',                               'paramValue': '{{agentTelephone}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_BODY_TYPE',                               'paramValue': 'ZBD2'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "EX250",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "EX250",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
   "submitErrorUrl": "",
   "submitSuccessUrl": ""
 }
