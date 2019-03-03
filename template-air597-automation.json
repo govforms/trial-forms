@@ -1,0 +1,961 @@
+{
+  "formName": "Claim Alcoholic Ingredients Relief online",
+  "description": "",
+  "formCategory": "hmrcClaimForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "air597_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "always",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "AR",
+    "enrolmentSection": {
+      "title": "Register for Enrolment",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Enter your VAT Refund registration number",
+          "format": "text(15, 15)"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the postcode of your primary place of business",
+          "infoText": "This is the postcode you gave to HMRC when you registered for VAT Refunds",
+          "format": "text(5, 8)",
+          "mandatory": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Provide your business and contact details",
+      "shortName": "Business details",
+      "description": "Enter the details of someone who we can contact if we need to discuss your claim.",
+      "fields": [
+        {
+          "id": "AIRCRN",
+          "type": "text",
+          "label": "Customer reference number",
+          "value": "${eeitt.businessUser}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Company name",
+          "format": "text"
+        },
+        {
+          "id": "tradingName",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "format": "text",
+          "mandatory": "false"
+        },
+        {
+          "id": "name",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "phoneNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "emailPhone",
+          "type": "choice",
+          "label": "How would you like to be contacted?",
+          "shortName": "Contact method",
+          "multivalue": "yes",
+          "errorMessage": "Select if you would like to be contacted by email or phone",
+          "choices": [
+            "Email",
+            "Phone"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the address where the alcoholic ingredients are used",
+      "shortName": "Address alcohol used",
+      "fields": [
+        {
+          "id": "addAlcohol",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Has the registered business address changed from the last claim?",
+      "shortName": "Business address",
+      "fields": [
+        {
+          "id": "address",
+          "type": "choice",
+          "label": "",
+          "shortName": "Add new address",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for a change of business address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the new business address",
+      "shortName": "New business address",
+      "includeIf": "${address=0}",
+      "fields": [
+        {
+          "id": "newAdd",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
+      "title": "Enter bank details",
+      "shortName": "Bank details",
+      "fields": [
+        {
+          "id": "bankName",
+          "type": "text",
+          "label": "Bank or building society name",
+          "format": "text"
+        },
+        {
+          "id": "accountNumber",
+          "type": "text",
+          "label": "Account number",
+          "format": "ukBankAccountNumber"
+        },
+        {
+          "id": "sortCode",
+          "type": "text",
+          "label": "Sort code",
+          "format": "ukSortCode"
+        },
+        {
+          "id": "rollNumber",
+          "type": "text",
+          "label": "Building society roll number (if you have one)",
+          "shortName": "Roll number",
+          "helpText": "Enter the roll number as shown on your card or on statements from your building society",
+          "format": "text",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Has your business stopped trading?",
+      "shortName": "Business trading status",
+      "fields": [
+        {
+          "id": "ceasedTrading",
+          "type": "choice",
+          "label": "",
+          "shortName": "Stopped trading",
+          "format": "yesno",
+          "multivalue": "yes",
+          "errorMessage": "Select either yes or no to tell us whether your business has stopped trading"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date that your business stopped trading",
+      "shortName": "Date trading stopped",
+      "includeIf": "${ceasedTrading = 0}",
+      "fields": [
+        {
+          "id": "dateCeased",
+          "type": "date",
+          "label": "",
+          "shortName": "Date",
+          "helpText": "For example, 31 03 2019"
+        }
+      ]
+    },
+    {
+      "title": "Enter the start and end dates for this claim",
+      "shortName": "Claim dates",
+      "description": "Your claim must cover a period of at least three calendar months unless you have stopped trading.",
+      "fields": [
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Start date",
+          "helpText": "For example, 01 04 2018",
+          "format": "before ${endDate}"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "End date",
+          "shortName": "End date",
+          "helpText": "For example, 01 07 2018",
+          "format": "after ${startDate}"
+        }
+      ]
+    },
+    {
+      "title": "How would you like to provide final product details?",
+      "shortName": "Providing product details",
+      "description": "You will need to provide details of each different final product you are claiming for.\n A final product is an eligible article made or prepared using alcoholic ingredients. For example, rum and raisin ice cream.",
+      "fields": [
+        {
+          "id": "infoUploadOptions",
+          "type": "info",
+          "label": "",
+          "infoText": "If you have more than 10 different final products you’ll need to upload a document of the details."
+        },
+        {
+          "id": "manualOrUpload",
+          "type": "choice",
+          "label": "",
+          "shortName": "Enter or upload details",
+          "errorMessage": "You must select to either enter or upload product details",
+          "choices": [
+            "Enter the details",
+            "Upload the details"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide the final product details",
+      "shortName": "Final product details",
+      "includeIf": "${manualOrUpload=1}",
+      "description": "Provide details of each different final product you are claiming for",
+      "fields": [
+        {
+          "id": "noFormatInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "Upload a single file. This must include:  \n* a description of each final product \n* quantity in kilograms of each final product",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadInvoiceTwo",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Uploaded file"
+        },
+        {
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "We accept spreadsheets and documents in formats like PDF and JPEG (12MB maximum)"
+        }
+      ]
+    },
+    {
+      "title": "Enter the total quantity of all final products",
+      "shortName": "Final product total",
+      "includeIf": "${manualOrUpload=1}",
+      "description": "",
+      "fields": [
+        {
+          "id": "quantityKGTotal",
+          "type": "text",
+          "label": "Total quantity in kilograms",
+          "format": "positiveNumber(11, 2, 'kg')"
+        }
+      ]
+    },
+    {
+      "title": "Provide the final product details",
+      "shortName": "Final product details",
+      "includeIf": "${manualOrUpload=0}",
+      "description": "Enter details for each different final product you are claiming for.\n Include a brief description. For example, steak and ale pie.",
+      "fields": [
+        {
+          "id": "bevArtGroup",
+          "type": "group",
+          "label": "",
+          "repeatsMax": 10,
+          "repeatLabel": "Final product $n",
+          "repeatAddAnotherText": "Add details for a different final product",
+          "fields": [
+            {
+              "id": "quantityKG",
+              "type": "text",
+              "label": "Quantity in kilograms",
+              "format": "positiveNumber(11, 2, 'kg')"
+            },
+            {
+              "id": "descriptionOfAlcohol",
+              "type": "text",
+              "label": "Description of final product",
+              "shortName": "Brief description"
+            }
+          ]
+        },
+        {
+          "id": "quantityKGTotalCalc",
+          "type": "text",
+          "label": "Total final product quantity is",
+          "shortName": "Total quantity",
+          "format": "positiveNumber(11, 2, 'kg')",
+          "value": "${quantityKG.sum}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Tell us which alcoholic ingredients you have used",
+      "shortName": "Alcohol used",
+      "fields": [
+        {
+          "id": "radioButtonSpirits",
+          "type": "choice",
+          "label": "Have you used spirits?",
+          "shortName": "Spirits",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for using spirits"
+        },
+        {
+          "id": "radioButtonBeer",
+          "type": "choice",
+          "label": "Have you used beer?",
+          "shortName": "Beer",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for using beer"
+        },
+        {
+          "id": "radioButtonWine",
+          "type": "choice",
+          "label": "Have you used wine or made-wine?",
+          "shortName": "Wine",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for using wine or made-wine"
+        },
+        {
+          "id": "radioButtonCider",
+          "type": "choice",
+          "label": "Have you used cider or perry?",
+          "shortName": "Cider or perry",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for using cider or perry"
+        }
+      ]
+    },
+    {
+      "title": "Spirits",
+      "includeIf": "${radioButtonSpirits=0}",
+      "fields": [
+        {
+          "id": "quantityLitresSpirits",
+          "type": "text",
+          "label": "Quantity used in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidSpirits",
+          "type": "text",
+          "label": "Amount of duty paid",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Beer",
+      "includeIf": "${radioButtonBeer=0}",
+      "fields": [
+        {
+          "id": "quantityLitresBeer",
+          "type": "text",
+          "label": "Quantity used in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidBeer",
+          "type": "text",
+          "label": "Amount of duty paid",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Wine or made-wine (including fortified wine)",
+      "shortName": "Wine",
+      "includeIf": "${radioButtonWine=0}",
+      "fields": [
+        {
+          "id": "quantityLitresWine",
+          "type": "text",
+          "label": "Quantity used in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidWine",
+          "type": "text",
+          "label": "Amount of duty paid",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Cider and perry",
+      "includeIf": "${radioButtonCider=0}",
+      "fields": [
+        {
+          "id": "quantityLitresCider",
+          "type": "text",
+          "label": "Quantity used in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidCider",
+          "type": "text",
+          "label": "Amount of duty paid",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Adjustments from previous claims",
+      "shortName": "Adjustments",
+      "fields": [
+        {
+          "id": "overDeclarations",
+          "type": "choice",
+          "label": "Do you have any over-declarations?",
+          "shortName": "Over-declarations",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for over-declarations"
+        },
+        {
+          "id": "underDeclarations",
+          "type": "choice",
+          "label": "Do you have any under-declarations?",
+          "shortName": "Under-declarations",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for under-declarations"
+        }
+      ]
+    },
+    {
+      "title": "Total Alcoholic Ingredients Relief claimed",
+      "shortName": "Alcoholic Ingredients Relief",
+      "includeIf": "${overDeclarations=1 && underDeclarations=1}",
+      "fields": [
+        {
+          "id": "totalPeriod",
+          "type": "text",
+          "label": "Total amount of relief claimed for all alcoholic ingredients is",
+          "shortName": "Total relief claimed",
+          "format": "sterling",
+          "value": "${dutyPaidSpirits + dutyPaidBeer + dutyPaidWine + dutyPaidCider}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Tell us which alcoholic ingredients you over-declared for in previous claims",
+      "shortName": "Over-declarations",
+      "includeIf": "${overDeclarations=0}",
+      "fields": [
+        {
+          "id": "overSpirits",
+          "type": "choice",
+          "label": "Did you over-declare for spirits?",
+          "shortName": "Spirits",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for over-declared spirits"
+        },
+        {
+          "id": "overBeer",
+          "type": "choice",
+          "label": "Did you over-declare for beer?",
+          "shortName": "Beer",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for over-declared beer"
+        },
+        {
+          "id": "overWine",
+          "type": "choice",
+          "label": "Did you over-declare for wine or made-wine?",
+          "shortName": "Wine",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for over-declared wine"
+        },
+        {
+          "id": "overCider",
+          "type": "choice",
+          "label": "Did you over-declare for cider and perry?",
+          "shortName": "Cider and perry",
+          "format": "yesno",
+          "errorMessage": "Select yes or no for over-declared cider and perry"
+        }
+      ]
+    },
+    {
+      "title": "Over-declarations for spirits",
+      "shortName": "Over-declared spirits",
+      "includeIf": "${overDeclarations=0 && overSpirits=0}",
+      "fields": [
+        {
+          "id": "quantityOverDecSpirit",
+          "type": "text",
+          "label": "Quantity over-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidSpiritsOver",
+          "type": "text",
+          "label": "Amount of duty over-declared",
+          "shortName": "Duty over-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Over-declarations for beer",
+      "shortName": "Over-declared beer",
+      "includeIf": "${overDeclarations=0 && overBeer=0}",
+      "fields": [
+        {
+          "id": "quantityOverDecBeer",
+          "type": "text",
+          "label": "Quantity over-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidBeerOver",
+          "type": "text",
+          "label": "Amount of duty over-declared",
+          "shortName": "Duty over-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Over-declarations for wine or made-wine (including fortified wine)",
+      "shortName": "Over-declared wine",
+      "includeIf": "${overDeclarations=0 && overWine=0}",
+      "fields": [
+        {
+          "id": "quantityOverDecWine",
+          "type": "text",
+          "label": "Quantity over-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidWineOver",
+          "type": "text",
+          "label": "Amount of duty over-declared",
+          "shortName": "Duty over-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Over-declarations for cider and perry",
+      "shortName": "Over-declared cider and perry",
+      "includeIf": "${overDeclarations=0 && overCider=0}",
+      "fields": [
+        {
+          "id": "quantityOverDecCider",
+          "type": "text",
+          "label": "Quantity over-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidCiderOver",
+          "type": "text",
+          "label": "Amount of duty over-declared",
+          "shortName": "Duty over-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Total Alcoholic Ingredients Relief claimed",
+      "shortName": "Alcoholic Ingredients Relief",
+      "includeIf": "${overDeclarations=0 && underDeclarations=1}",
+      "fields": [
+        {
+          "id": "totalPeriodOver",
+          "type": "text",
+          "label": "Total claimed for current period is",
+          "shortName": "Claim for this period",
+          "format": "sterling",
+          "value": "${dutyPaidSpirits + dutyPaidBeer + dutyPaidWine + dutyPaidCider}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalPeriodOverDec",
+          "type": "text",
+          "label": "Total over-declaration from previous periods is",
+          "shortName": "Total over-declared",
+          "format": "sterling",
+          "value": "${dutyPaidSpiritsOver + dutyPaidBeerOver + dutyPaidWineOver + dutyPaidCiderOver}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalOverAndCurrent",
+          "type": "text",
+          "label": "Total relief claimed is",
+          "shortName": "Total relief claimed",
+          "format": "sterling",
+          "value": "${totalPeriodOver - totalPeriodOverDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Tell us which alcoholic ingredients you under-declared for in previous claims",
+      "shortName": "Under-declarations",
+      "includeIf": "${underDeclarations=0}",
+      "fields": [
+        {
+          "id": "underSpirits",
+          "type": "choice",
+          "label": "Did you under-declare for spirits?",
+          "shortName": "Spirits",
+          "format": "yesno",
+          "errorMessage": "Select either yes or no for under-declared spirits"
+        },
+        {
+          "id": "underBeer",
+          "type": "choice",
+          "label": "Did you under-declare for beer?",
+          "shortName": "Beer",
+          "format": "yesno",
+          "errorMessage": "Select either yes or not for under-declared beer"
+        },
+        {
+          "id": "underWine",
+          "type": "choice",
+          "label": "Did you under-declare for wine or made-wine?",
+          "shortName": "Wine",
+          "format": "yesno",
+          "errorMessage": "Select either yes or no for under-declared wine"
+        },
+        {
+          "id": "underCider",
+          "type": "choice",
+          "label": "Did you under-declare for cider or perry?",
+          "shortName": "Cider and perry",
+          "format": "yesno",
+          "errorMessage": "Select either yes or no for under-declared cider or perry"
+        }
+      ]
+    },
+    {
+      "title": "Under-declarations for spirits",
+      "shortName": "Under-declared spirits",
+      "includeIf": "${underDeclarations=0 && underSpirits=0}",
+      "fields": [
+        {
+          "id": "quantityUnderDecSpirit",
+          "type": "text",
+          "label": "Quantity under-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidSpiritsUnder",
+          "type": "text",
+          "label": "Amount of duty under-declared",
+          "shortName": "Duty under-declared",
+          "format": "sterling",
+          "errorMessage": "Enter the amount of duty under-declared"
+        }
+      ]
+    },
+    {
+      "title": "Under-declarations for beer",
+      "shortName": "Under-declared beer",
+      "includeIf": "${underDeclarations=0 && underBeer=0}",
+      "fields": [
+        {
+          "id": "quantityUnderDecBeer",
+          "type": "text",
+          "label": "Quantity under-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidBeerUnder",
+          "type": "text",
+          "label": "Amount of duty under-declared",
+          "shortName": "Duty under-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Under-declarations for wine and made-wine (including fortified wine)",
+      "shortName": "Under-declared wine",
+      "includeIf": "${underDeclarations=0 && underWine=0}",
+      "fields": [
+        {
+          "id": "quantityUnderDecWine",
+          "type": "text",
+          "label": "Quantity under-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidWineUnder",
+          "type": "text",
+          "label": "Amount of duty under-declared",
+          "shortName": "Duty under-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Under-declarations for cider and perry",
+      "shortName": "Under-declared cider and perry",
+      "includeIf": "${underDeclarations=0 && underCider=0}",
+      "fields": [
+        {
+          "id": "quantityUnderDecCider",
+          "type": "text",
+          "label": "Quantity under-declared in litres",
+          "shortName": "Quantity in litres",
+          "format": "positiveNumber(11, 2, 'litres')"
+        },
+        {
+          "id": "dutyPaidCiderUnder",
+          "type": "text",
+          "label": "Amount of duty under-declared",
+          "shortName": "Duty under-declared",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Total Alcoholic Ingredients Relief claimed",
+      "shortName": "Alcoholic Ingredients Relief",
+      "includeIf": "${underDeclarations=0 && overDeclarations=1}",
+      "fields": [
+        {
+          "id": "totalPeriodUnder",
+          "type": "text",
+          "label": "Total claimed for current period is",
+          "shortName": "Claim for this period",
+          "format": "sterling",
+          "value": "${dutyPaidSpirits + dutyPaidBeer + dutyPaidWine + dutyPaidCider}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalPeriodUnderDec",
+          "type": "text",
+          "label": "Total under-declaration from previous periods is",
+          "shortName": "Total under-declared",
+          "format": "sterling",
+          "value": "${dutyPaidSpiritsUnder + dutyPaidBeerUnder + dutyPaidWineUnder + dutyPaidCiderUnder}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalUnderAndCurrent",
+          "type": "text",
+          "label": "Total relief claimed is",
+          "shortName": "Total relief claimed",
+          "format": "sterling",
+          "value": "${totalPeriodUnder + totalPeriodUnderDec}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Total Alcoholic Ingredients Relief claimed",
+      "shortName": "Alcoholic Ingredients Relief",
+      "includeIf": "${overDeclarations=0 && underDeclarations=0}",
+      "fields": [
+        {
+          "id": "totalPeriodOverUnder",
+          "type": "text",
+          "label": "Total claimed for current period is",
+          "shortName": "Claim for this period",
+          "format": "sterling",
+          "value": "${dutyPaidSpirits + dutyPaidBeer + dutyPaidWine + dutyPaidCider}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalPeriodOverDecFinal",
+          "type": "text",
+          "label": "Total over-declaration from previous periods is",
+          "shortName": "Total over-declared",
+          "format": "sterling",
+          "value": "${dutyPaidSpiritsOver + dutyPaidBeerOver + dutyPaidWineOver + dutyPaidCiderOver}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalPeriodUnderDecFinal",
+          "type": "text",
+          "label": "Total under-declaration from previous periods is",
+          "shortName": "Total under-declared",
+          "format": "sterling",
+          "value": "${dutyPaidSpiritsUnder + dutyPaidBeerUnder + dutyPaidWineUnder + dutyPaidCiderUnder}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "totalPeriodUnderOverDec",
+          "type": "text",
+          "label": "Total relief claimed is",
+          "shortName": "Total relief claimed",
+          "format": "sterling",
+          "value": "${totalPeriodOverUnder - totalPeriodOverDecFinal + totalPeriodUnderDecFinal}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Provide your claim details",
+      "description": "Provide a worksheet or spreadsheet to show how you’ve calculated your claim amount.",
+      "fields": [
+        {
+          "id": "infoUploadSecond",
+          "type": "info",
+          "label": "",
+          "infoText": "Upload a single file. This must include: \n* all the information listed in Section 5.5 of Excise Notice 41: Alcoholic Ingredients Relief\n* further details of any over-claims or under-claims from previous periods that you have included in this claim, broken down by final product",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadDetailsSupportClaim",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Uploaded file"
+        },
+        {
+          "id": "insetInfoBoxSecond",
+          "type": "info",
+          "label": "",
+          "infoText": "We accept spreadsheets and documents in formats like PDF and JPEG (12MB maximum)"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "declarationFullName",
+        "type": "text",
+        "label": "Full name",
+        "errorMessage": "Enter full name"
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we have received your claim.",
+        "format": "email"
+      },
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By entering your full name above you confirm that:\n* the information given on this form and in any accompanying documents is true and complete\n* I have read, understood and complied with the conditions in Excise Notice 41: Alcoholic Ingredients Relief\n* I have evidence that I have paid the duty for which this claim is made, as per section 3.1 of Excise Notice 41\n* an eligible article for which this claim has been made has been produced as per section 4(2) of the Finance Act 1995\n* no other claim for Alcoholic Ingredients Relief has been or will be made relating to this duty as per section 4(3)(e) of the Finance Act",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your form has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted claim.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "We will pay any Alcoholic Ingredients Relief refund due to the bank account you provided in your claim. \n\nContact the Excise Helpline on 0300 200 3700 if you need help with your claim or need to make any changes to it.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4669732/Feedback-Survey-AIR) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{lookup ^('1') => 'true'; (*) => 'false';^ (stripCommas address)}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/ZAIR/eeits/{{AIRCRN}}",
+      "method": "POST",
+      "payload": "{'returnsDetails':                     {                       'isrScenario':'ZAI1',                       'regimeSpecificDetails':[                         {                          'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{AIRCRN}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CLAIM_PURP',                          'paramValue':'1'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CLAIM_TIME_PER',                          'paramValue':'1'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BANK_DET_CHANGE',                          'paramValue':'{{yesNoToEtmpChoice address}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_PERIOD_FROM_SELECT',                          'paramValue':'{{startDate-year}}{{startDate-month}}{{startDate-day}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_PERIOD_TO_SELECT',                          'paramValue':'{{endDate-year}}{{endDate-month}}{{endDate-day}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BANK_SLCT',                          'paramValue':' '                         },                         {{#each descriptionOfAlcohol}}                         {                          'paramSequence':'@index',                          'paramName':'A_AIR_BEV_ART_PREP',                          'paramValue':'{{.}}'                         },                         {{/each}}                         {{#each qualityKG}}                         {                          'paramSequence':'@index',                          'paramName':'A_AIR_BEV_ART_QUANT',                          'paramValue':'{{stripCommas .}}'                         },                         {{/each}}                         {{#quantityLitresSpirits}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_SPIRIT_QUANT',                          'paramValue':'{{stripCommas quantityLitresSpirits}}'                         },                         {{/quantityLitresSpirits}}                         {{#quantityLitresBeer}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BEER_QUANT',                          'paramValue':'{{stripCommas quantityLitresBeer}}'                         },                         {{/quantityLitresBeer}}                         {{#quantityLitresWine}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_WINE_QUANT',                          'paramValue':'{{stripCommas quantityLitresWine}}'                         },                         {{/quantityLitresWine}}                         {{#quantityLitresCider}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CIDER_QUANT',                          'paramValue':'{{stripCommas quantityLitresCider}}'                         },                         {{/quantityLitresCider}}                         {{#dutyPaidSpirits}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_SPIRIT_CUR_DUTY',                          'paramValue':'{{stripCommas dutyPaidSpirits}}'                         },                         {{/dutyPaidSpirits}}                         {{#dutyPaidBeer}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BEER_CURR_DUTY',                          'paramValue':'{{stripCommas dutyPaidBeer}}'                         },                         {{/dutyPaidBeer}}                         {{#dutyPaidWine}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_WINE_CURR_DUTY',                          'paramValue':'{{stripCommas dutyPaidWine}}'                         },                         {{/dutyPaidWine}}                         {{#dutyPaidCider}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CIDER_CURR_DUTY',                          'paramValue':'{{stripCommas dutyPaidCider}}'                         },                         {{/dutyPaidCider}}                         {{#dutyPaidSpiritsUnder}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_SPIRIT_UNDR_DUTY',                          'paramValue':'{{stripCommas dutyPaidSpiritsUnder}}'                         },                         {{/dutyPaidSpiritsUnder}}                         {{#dutyPaidBeerUnder}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BEER_UNDR_DUTY',                          'paramValue':'{{stripCommas dutyPaidBeerUnder}}'                         },                         {{/dutyPaidBeerUnder}}                         {{#dutyPaidWineUnder}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_WINE_UNDR_DUTY',                          'paramValue':'{{stripCommas dutyPaidWineUnder}}'                         },                         {{/dutyPaidWineUnder}}                         {{#dutyPaidCiderUnder}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CIDER_UNDR_DUTY',                          'paramValue':'{{stripCommas dutyPaidCiderUnder}}'                         },                         {{/dutyPaidCiderUnder}}                         {{#dutyPaidSpiritsOver}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_SPIRIT_OVER_DUTY',                          'paramValue':'{{stripCommas dutyPaidSpiritsOver}}'                         },                         {{/dutyPaidSpiritsOver}}                         {{#dutyPaidBeerOver}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_BEER_OVER_DUTY',                          'paramValue':'{{stripCommas dutyPaidBeerOver}}'                         },                         {{/dutyPaidBeerOver}}                         {{#dutyPaidWineOver}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_WINE_OVER_DUTY',                          'paramValue':'{{stripCommas dutyPaidWineOver}}'                         },                         {{/dutyPaidWineOver}}                         {{#dutyPaidCiderOver}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_CIDER_OVER_DUTY',                          'paramValue':'{{stripCommas dutyPaidCiderOver}}'                         },                         {{/dutyPaidCiderOver}}                         {                          'paramSequence':'01',                          'paramName':'A_AIR_TOTAL_DUTY_PAID',                          'paramValue':'{{stripCommas (either totalPeriodUnder totalPeriodOverUnder)}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_TOTAL_UNDER_CLAIM',                          'paramValue':'{{stripCommas (either totalPeriodUnderDec totalPeriodUnderDecFinal)}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_TOTAL_OVER_CLAIM',                          'paramValue':'{{stripCommas totalPeriodOverDecFinal}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_AIR_NET_CLAIM',                          'paramValue':'{{stripCommas (either totalUnderAndCurrent totalPeriodUnderOverDec)}}'                         },                         {                          'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'                         }                       ]                     },                     'receivedAt':'{{currentTimestamp}}'                   }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{or (lookup ^('0') => 'true'; (*) => 'false';^ (stripCommas address)) (isNotSuccessCode eeittReturnApi.status)}}",
+      "convertSingleQuotes": true,
+      "dmsFormId": "AIR517",
+      "customerId": "${' '}",
+      "classificationType": "BT-NRU-Repayments",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "convertSingleQuotes": true,
+      "dmsFormId": "AIR517",
+      "customerId": "${' '}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": "",
+  "_id": "template-air597-automation"
+}
