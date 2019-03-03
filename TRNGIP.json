@@ -197,23 +197,30 @@
       "title": "Enter your company's incorporation details",
       "fields": [
         {
-          "id": "dateOfIncorporation",
-          "type": "date",
-          "label": "Date of incorporation",
-          "helpText": "For example, 01 08 2007"
-        },
-        {
           "id": "countryOfIncorporation",
           "type": "text",
           "label": "Enter the country of incorporation ",
           "helpText": "This is where the company was formed"
         },
         {
+          "type": "info",
+          "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
+          "label": "You must use accepted geographical names to complete our forms. If you do not, we might reject your filing.",
+          "infoText": "You must use accepted geographical names to complete our forms. If you do not, we might reject your filing.",
+          "infoType": "standard"
+        },
+        {
           "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
           "type": "info",
-          "label": "Guidance for geographical names",
-          "infoText": "UNationalities and countries for company filings. You must use these lists to complete our forms. If you don’t, we might reject your filing. ",
+          "label": "Guidance on geographical names",
+          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document on 'Geographical Names'. \nUse the list of countries and territories when doing your company filings. You must use these lists to complete our forms. If you do not, we might reject your filing. ",
           "infoType": "long"
+        },
+        {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "Date of incorporation",
+          "helpText": "For example, 01 08 2007"
         },
         {
           "id": "countryOfTax",
@@ -248,7 +255,7 @@
           "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
           "type": "info",
           "label": "",
-          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from (HMRC?), your government or tax authority.\n\n(HMRC will send official correspondence to this address?)  ",
+          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoType": "noformat"
         },
         {
@@ -475,7 +482,7 @@
           "id": "generatedId_540d0d3a_24fc_4985_b884_d8532c4951d5",
           "type": "info",
           "label": "UK business activities chargeable to UK Corporation Tax",
-          "infoText": "• Selling assets\n\n• Carrying on a business activity such as a trade or professional activity\n\n• Buying and selling goods with a view to making a profit\n\n• Providing services\n\n• Earning interest\n\n• Managing investments\n\n• Receiving any other income",
+          "infoText": "You must tell HMRC if you are:\n\n• selling assets\n\n• carrying on a business activity such as a trade or professional activity\n\n• buying and selling goods with a view to making a profit\n\n• providing services\n\n• earning interest\n\n• managing investments\n\n• receiving any other income",
           "infoType": "long"
         }
       ]
@@ -495,7 +502,7 @@
           "id": "dateCameWithinChargeUK",
           "type": "date",
           "label": "",
-          "helpText": "For example, 01 08 2007",
+          "helpText": "For example, 01 08 2018",
           "mandatory": "true"
         }
       ]
@@ -617,6 +624,7 @@
           "id": "takenOverAnotherBusiness",
           "type": "choice",
           "label": "Has your company taken over another UK business?",
+          "helpText": "(help text)",
           "choices": [
             "Yes",
             "No"
@@ -625,7 +633,7 @@
       ]
     },
     {
-      "title": "Enter the business address",
+      "title": "Enter the business name and address",
       "includeIf": "${takenOverAnotherBusiness=0}",
       "fields": [
         {
