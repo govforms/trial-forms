@@ -148,13 +148,13 @@
       ]
     },
     {
-      "title": "Does your company have an HMRC reference number?",
+      "title": "Does your company have another HMRC reference number?",
       "includeIf": "${referenceChoice=1}",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does your company have an HMRC reference number?",
+          "label": "Does your company have another HMRC reference number?",
           "helpText": "We will use this to identify your company. Your company will have a reference number if it has been registered for an HMRC service. ",
           "choices": [
             "Yes",
@@ -179,6 +179,7 @@
     },
     {
       "title": "Provide your HMRC reference details ",
+      "includeIf": "${hMRCref=0}",
       "fields": [
         {
           "id": "hMRCrefName",
@@ -203,8 +204,8 @@
           "helpText": "This is where the company was formed"
         },
         {
-          "type": "info",
           "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
+          "type": "info",
           "label": "You must use accepted geographical names to complete our forms. If you do not, we might reject your filing.",
           "infoText": "You must use accepted geographical names to complete our forms. If you do not, we might reject your filing.",
           "infoType": "standard"
@@ -213,7 +214,7 @@
           "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
           "type": "info",
           "label": "Guidance on geographical names",
-          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document on 'Geographical Names'. \nUse the list of countries and territories when doing your company filings. You must use these lists to complete our forms. If you do not, we might reject your filing. ",
+          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document 'Geographical names'. \nUse the list of countries and territories when doing your company filings.",
           "infoType": "long"
         },
         {
@@ -227,6 +228,7 @@
           "type": "choice",
           "label": "Is this the country of tax residence?",
           "shortName": "Tax residence",
+          "helpText": "(help text)",
           "format": "horizontal",
           "choices": [
             "Yes",
@@ -245,6 +247,32 @@
           "label": "What is your country of tax residence?",
           "helpText": "Enter the country where the company currently pays tax",
           "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a company reference number?",
+      "fields": [
+        {
+          "id": "cRnYesNo",
+          "type": "choice",
+          "label": "Do you have a company reference number?",
+          "helpText": "This is the number given to your company when it was formed. This may also be referred to as a registration number.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the company reference number of your business?",
+      "fields": [
+        {
+          "id": "cRnRef",
+          "type": "text",
+          "label": "What is the company reference number of your business?",
+          "helpText": "This information will help us to confirm who you are"
         }
       ]
     },
@@ -306,10 +334,18 @@
           ]
         },
         {
+          "id": "generatedId_1ba52d4c_0247_44e6_bedc_ad483c9e56d0",
+          "type": "info",
+          "label": "##Contacting you in the UK",
+          "infoText": "##Contacting you in the UK",
+          "infoType": "noformat"
+        },
+        {
           "id": "contactDetails",
           "type": "choice",
-          "label": "Do you have a UK address you would like to use for your Corporation Tax correspondence?",
+          "label": "Do you want to use a UK address for your Corporation Tax correspondence?",
           "shortName": "Correspondence details",
+          "helpText": "You can only do this is you are trading in the UK",
           "choices": [
             "Yes",
             "No"
@@ -467,73 +503,6 @@
       ]
     },
     {
-      "title": "What activity do you want to report to HMRC?",
-      "fields": [
-        {
-          "id": "disposalYesNo",
-          "type": "choice",
-          "label": "What activity do you want to report to HMRC?",
-          "choices": [
-            "1 property disposal ",
-            "More than 1 disposal or other business activities"
-          ]
-        },
-        {
-          "id": "generatedId_540d0d3a_24fc_4985_b884_d8532c4951d5",
-          "type": "info",
-          "label": "UK business activities chargeable to UK Corporation Tax",
-          "infoText": "You must tell HMRC if you are:\n\n• selling assets\n\n• carrying on a business activity such as a trade or professional activity\n\n• buying and selling goods with a view to making a profit\n\n• providing services\n\n• earning interest\n\n• managing investments\n\n• receiving any other income",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Enter the date you came within charge to UK Corporation Tax",
-      "includeIf": "${disposalYesNo=0}",
-      "fields": [
-        {
-          "id": "generatedId_95db4abe_93c1_46de_a8dc_cb197ffd0be4",
-          "type": "info",
-          "label": "This is the date the property transferred out of your company's possession",
-          "infoText": "This is the date the property transferred out of your company's possession",
-          "infoType": "noformat"
-        },
-        {
-          "id": "dateCameWithinChargeUK",
-          "type": "date",
-          "label": "",
-          "helpText": "For example, 01 08 2018",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Enter the period chargeable to UK Corporation Tax",
-      "includeIf": "${disposalYesNo=1}",
-      "fields": [
-        {
-          "id": "generatedId_fe135349_57fe_4975_b043_361774e548dc",
-          "type": "info",
-          "label": "This is the period in which your company plans to conduct business chargeable for UK Corporation Tax.",
-          "infoText": "This is the period in which your company is chargeable for UK Corporation Tax.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "startWhichCompanyPreparesAccounts",
-          "type": "date",
-          "label": "Date you came within charge to UK Corporation Tax",
-          "helpText": "For example, 31 3 2018"
-        },
-        {
-          "id": "dateWhichCompanyPreparesAccounts",
-          "type": "date",
-          "label": "Date you will prepare your next accounts",
-          "helpText": "For example, 31 8 2019",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
       "title": "Is your company a member of a group?",
       "fields": [
         {
@@ -611,9 +580,76 @@
           "id": "parentCompanyRegNumber",
           "type": "text",
           "label": "What is the registration number of your parent company?",
-          "helpText": "We will use this to identify the company",
+          "helpText": "This information will help us to confirm the identity of the company",
           "format": "text",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "What UK business activity do you want to tell HMRC about?",
+      "fields": [
+        {
+          "id": "disposalYesNo",
+          "type": "choice",
+          "label": "What UK business activity do you want to tell HMRC about?",
+          "choices": [
+            "1 property disposal ",
+            "More than 1 disposal or other business activities"
+          ]
+        },
+        {
+          "id": "generatedId_540d0d3a_24fc_4985_b884_d8532c4951d5",
+          "type": "info",
+          "label": "UK business activities chargeable to UK Corporation Tax",
+          "infoText": "You must tell HMRC if you are:\n\n• selling assets\n\n• carrying on a business activity such as a trade or professional activity\n\n• buying and selling goods with a view to making a profit\n\n• providing services\n\n• earning interest\n\n• managing investments\n\n• receiving any other income",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you came within charge to UK Corporation Tax",
+      "includeIf": "${disposalYesNo=0}",
+      "fields": [
+        {
+          "id": "generatedId_95db4abe_93c1_46de_a8dc_cb197ffd0be4",
+          "type": "info",
+          "label": "This is the date the property transferred out of your company's possession",
+          "infoText": "This is the date the property transferred out of your company's possession",
+          "infoType": "noformat"
+        },
+        {
+          "id": "dateCameWithinChargeUK",
+          "type": "date",
+          "label": "",
+          "helpText": "For example, 01 08 2018",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Enter the period chargeable to UK Corporation Tax",
+      "includeIf": "${disposalYesNo=1}",
+      "fields": [
+        {
+          "id": "generatedId_fe135349_57fe_4975_b043_361774e548dc",
+          "type": "info",
+          "label": "This is the period in which your company plans to conduct business chargeable for UK Corporation Tax.",
+          "infoText": "This is the period in which your company is chargeable for UK Corporation Tax.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "startWhichCompanyPreparesAccounts",
+          "type": "date",
+          "label": "Date you came within charge to UK Corporation Tax",
+          "helpText": "For example, 31 3 2018"
+        },
+        {
+          "id": "dateWhichCompanyPreparesAccounts",
+          "type": "date",
+          "label": "Date you will prepare your next accounts",
+          "helpText": "For example, 31 8 2019",
+          "mandatory": "true"
         }
       ]
     },
@@ -640,7 +676,7 @@
           "id": "generatedId_52cbe649_3a01_4834_8ba9_5a928cd5ea7a",
           "type": "info",
           "label": "",
-          "infoText": "This is the address of the business that has been transferred to you.",
+          "infoText": "These are the details of the business that has been transferred to you.",
           "infoType": "noformat"
         },
         {
@@ -662,8 +698,7 @@
         {
           "id": "previousOwnerName",
           "type": "text",
-          "label": "Full name",
-          "helpText": "This is name of the owner (?)"
+          "label": "Full name"
         },
         {
           "id": "previousOwnerAddress",
