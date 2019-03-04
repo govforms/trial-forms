@@ -15,16 +15,16 @@
   },
   "sections": [
     {
-      "title": "What is your business type?",
+      "title": "What type of business do you want to register?",
       "shortName": "Type of business",
       "fields": [
         {
           "id": "legalStatus",
           "type": "choice",
-          "label": "What is your business type?",
+          "label": "What type of business do you want to register?",
           "shortName": "Business type",
           "choices": [
-            "Sole Proprietor",
+            "Sole proprietorship",
             "Limited company",
             "Limited liability partnership (LLP)",
             "Partnership"
@@ -39,26 +39,149 @@
       ]
     },
     {
-      "title": "Date of application",
+      "title": "Do you have a Guarantor?",
       "fields": [
         {
-          "id": "appliDate",
-          "type": "date",
-          "label": "Date of application",
-          "helpText": "Enter the date you are making this application on in the format dd/mm/yyyy"
+          "id": "gauraChoi",
+          "type": "choice",
+          "label": "Do you have a Guarantor?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "What is the date you first expect to be liable for fuel duty?",
-      "shortName": "Details of first fuel duty liability",
+      "title": "Your Guarantor must send their details to HMRC",
       "fields": [
         {
-          "id": "taxableDisposalDate",
+          "type": "info",
+          "id": "generatedId_2cb047c7_ddfc_4152_9ab3_1def63b8c7e8",
+          "label": "",
+          "infoText": "To register for Fuel Duty you must complete and submit this form. \n\nYour Guarantor must also complete the Guarantee deferment of payment to HMRC (C1201) form (opens in a new window) and send it to HMRC.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "You cannot compete this form",
+      "includeIf": "${gauraChoi = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_996e0e96_a00a_4df4_8186_aa0976a04744",
+          "type": "info",
+          "label": "",
+          "infoText": "You must have a Guarantor to complete this form and register for Fuel Duty.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Guarantor's details",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "id": "guaraName",
+          "type": "text",
+          "label": "Name of guarantor",
+          "format": "text(0,40)"
+        },
+        {
+          "id": "guaraRef",
+          "type": "text",
+          "label": "Guarantor's reference",
+          "format": "text(0,30)"
+        },
+        {
+          "id": "guaraAdd",
+          "type": "address",
+          "label": "",
+          "international": "true"
+        },
+        {
+          "id": "guaraPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "guaraEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Liability of guarantee",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "id": "guaraAmount",
+          "type": "text",
+          "label": "Guarantee amount",
+          "format": "sterling"
+        },
+        {
+          "id": "guaraStart",
           "type": "date",
-          "label": "What is the date you first expect to be liable for fuel duty?",
-          "shortName": "Date",
-          "helpText": "For example 21 04 2018"
+          "label": "Enter the guarantee start date",
+          "helpText": "For example, 21 03 2019"
+        }
+      ]
+    },
+    {
+      "title": "Is this guarantee executed in Scotland?",
+      "includeIf": "${gauraChoi = 0}",
+      "fields": [
+        {
+          "id": "scotChoice",
+          "type": "choice",
+          "label": "Is this guarantee executed in Scotland?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Witness details",
+      "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
+      "fields": [
+        {
+          "id": "witName",
+          "type": "text",
+          "label": "Witness name in full",
+          "format": "text(0,40)"
+        },
+        {
+          "id": "witRole",
+          "type": "text",
+          "label": "Occupation",
+          "format": "text(0,40)"
+        },
+        {
+          "id": "witAdd",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "id": "witPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "witEmail",
+          "type": "text",
+          "label": "Email",
+          "format": "email",
+          "mandatory": "false"
         }
       ]
     },
@@ -123,6 +246,40 @@
       ]
     },
     {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "This is 2 letters and then 15 numbers. The 2 letters must be your country code. For example 'GB'",
+          "format": "EORI",
+          "mandatory": "false"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find your EORI country code",
+          "infoType": "long",
+          "infoText": "Code and Country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you expect your business to start owing fuel duty",
+      "shortName": "Details of first fuel duty liability",
+      "fields": [
+        {
+          "id": "taxableDisposalDate",
+          "type": "date",
+          "label": "",
+          "shortName": "Date",
+          "helpText": "For example, 21 03 2019"
+        }
+      ]
+    },
+    {
       "title": "Correspondence details",
       "includeIf": "${corresChoice = 0}",
       "fields": [
@@ -177,162 +334,6 @@
           "type": "text",
           "label": "Trading style",
           "format": "text(0,40)"
-        }
-      ]
-    },
-    {
-      "title": "Tell us your Economic Operator Registration and Identification (EORI) number",
-      "fields": [
-        {
-          "id": "eORI",
-          "type": "text",
-          "label": "Tell us your Economic Operator Registration and Identification (EORI) number",
-          "shortName": "EORI",
-          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
-          "format": "EORI",
-          "mandatory": "false"
-        },
-        {
-          "id": "mSCountryCodes",
-          "type": "info",
-          "label": "EU Member states country codes",
-          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Do you have a Guarantor?",
-      "fields": [
-        {
-          "id": "gauraChoi",
-          "type": "choice",
-          "label": "Do you have a Guarantor?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Guarantor's details",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "guaraName",
-          "type": "text",
-          "label": "Name of guarantor",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "guaraRef",
-          "type": "text",
-          "label": "Guarantor's reference",
-          "format": "text(0,30)"
-        },
-        {
-          "id": "guaraAdd",
-          "type": "address",
-          "label": "",
-          "international": "true"
-        },
-        {
-          "id": "guaraPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "guaraEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "No guarantor?",
-      "includeIf": "${gauraChoi = 1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_996e0e96_a00a_4df4_8186_aa0976a04744",
-          "type": "info",
-          "label": "",
-          "infoText": "You must have a guarantor to proceed",
-          "infoType": "important"
-        }
-      ]
-    },
-    {
-      "title": "Liability of guarantee",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "guaraAmount",
-          "type": "text",
-          "label": "Guarantee amount",
-          "format": "sterling"
-        },
-        {
-          "id": "guaraStart",
-          "type": "date",
-          "label": "Commencement date of guarantee",
-          "helpText": "Enter the start date of your guarantee in the format dd/mm/yyyy"
-        }
-      ]
-    },
-    {
-      "title": "Is this guarantee executed in Scotland?",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "scotChoice",
-          "type": "choice",
-          "label": "Is this guarantee executed in Scotland?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Witness details",
-      "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
-      "fields": [
-        {
-          "id": "witName",
-          "type": "text",
-          "label": "Witness name in full",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "witRole",
-          "type": "text",
-          "label": "Occupation",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "witAdd",
-          "type": "address",
-          "label": "Address",
-          "international": "true"
-        },
-        {
-          "id": "witPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "witEmail",
-          "type": "text",
-          "label": "Email",
-          "format": "email",
-          "mandatory": "false"
         }
       ]
     }
@@ -424,5 +425,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "infoText": ""
 }
