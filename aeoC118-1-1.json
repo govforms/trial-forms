@@ -14,16 +14,16 @@
   },
   "sections": [
     {
-      "title": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
       "shortName": "EORI number",
       "fields": [
         {
           "id": "eORI",
           "type": "text",
-          "label": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
           "shortName": "EORI",
           "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
-          "format": "EORI"
+          "format": "text(9,17)"
         },
         {
           "id": "whyInfo",
@@ -42,22 +42,15 @@
       ]
     },
     {
-      "title": "Have you got all the information you need?",
-      "shortName": "Preparation questions",
+      "title": "Who have you involved in your application to prepare for AEO?",
+      "shortName": "Departments",
       "fields": [
-        {
-          "id": "insetInfoBox1",
-          "type": "info",
-          "label": "",
-          "infoText": "Ref 0.1. Please read the [European Commission’s Authorised Economic Operator (AEO) Guidelines](https://ec.europa.eu/taxation_customs/sites/taxation/files/resources/documents/customs/policy_issues/customs_security/aeo_guidelines_en.pdf) before applying for AEO.\n\n You will need to press back in your browser to get back to this form",
-          "infoType": "noformat"
-        },
         {
           "id": "whoHelped",
           "type": "text",
-          "label": "Which departments, including management, have you involved in the process to prepare your company for the AEO application?",
+          "label": "Who have you involved in your application to prepare for AEO?",
           "shortName": "0.2: Departments involved in preparing for AEO application",
-          "helpText": "Ref 0.2. Have you involved customs or third parties in the process (consultants etc)?",
+          "helpText": "Ref 0.2. Include internal departments or management and tell us if you have involved customs, consultants or third parties.",
           "multiline": "yes"
         }
       ]
@@ -71,9 +64,12 @@
           "type": "choice",
           "label": "Is your company part of a group?",
           "shortName": "1.1.1: Is your company part of a group?",
-          "helpText": "Ref 1.1.1. Select yes if your company is part of a group",
-          "format": "yesno",
-          "errorMessage": "Select whether your company is part of a group"
+          "helpText": "Ref 1.1.1",
+          "errorMessage": "Select whether your company is part of a group",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -96,8 +92,11 @@
           "label": "Do any other entities in the group already have an AEO authorisation?",
           "shortName": "1.1.1a: Do any other entities in the group already have an AEO authorisation?",
           "helpText": "Ref 1.1.1a",
-          "format": "yesno",
-          "errorMessage": "Select whether any other entities in the group already have an AEO authorisation"
+          "errorMessage": "Select whether any other entities in the group already have an AEO authorisation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "groupQuestion2",
@@ -105,36 +104,42 @@
           "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
           "shortName": "1.1.1b Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
           "helpText": "Ref 1.1.1b",
-          "format": "yesno",
-          "errorMessage": "Select whether any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority"
+          "errorMessage": "Select whether any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (e.g incorporation or sale of a business unit)?",
+      "title": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
       "shortName": "Established for less than 3 years",
       "fields": [
         {
           "id": "lessThan3Years",
           "type": "choice",
-          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (e.g incorporation or sale of a business unit)?",
-          "shortName": "1.1.1: Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (e.g incorporation or sale of a business unit)?",
-          "helpText": "Ref 1.1.1",
-          "format": "yesno",
-          "errorMessage": "Select whether the company has been established for less than 3 years due to an internal reorganisation of a previously existing company"
+          "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
+          "shortName": "1.1.1: Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
+          "helpText": "Ref 1.1.1. For example, incorporation or sale of a business unit.",
+          "errorMessage": "Select whether the business has been established for less than 3 years due to an internal reorganisation of a previously existing business",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Internal reorganisation details",
+      "title": "Provide details of the reorganisation of your business",
       "shortName": "Established for less than 3 years",
       "includeIf": "${lessThan3Years = 0}",
       "fields": [
         {
           "id": "reorganisationDetails",
           "type": "text",
-          "label": "Provide details of the reorganisation of your company",
-          "shortName": "1.1.1: Provide details of the reorganisation of your company",
+          "label": "Provide details of the reorganisation of your business",
+          "shortName": "1.1.1: Provide details of the reorganisation of your business",
           "helpText": "Ref 1.1.1",
           "multiline": "yes"
         }
@@ -219,15 +224,15 @@
         {
           "id": "uKNatCO1a",
           "type": "text",
-          "label": "Owner, main shareholder or director full name",
+          "label": "Full name",
           "shortName": "1.1.2bcde: Owner, main shareholder or director full name",
-          "helpText": "Ref 1.1.2bcde. Input the full name of this person"
+          "helpText": "Ref 1.1.2bcde"
         },
         {
           "id": "uKNatCO1b",
           "type": "text",
-          "label": "Owner or main shareholder national insurance (NI) number",
-          "shortName": "1.1.2: Owner or main shareholder national insurance (NI) number",
+          "label": "National insurance number",
+          "shortName": "1.1.2: Owner or main shareholder national insurance number",
           "helpText": "Ref 1.1.2. For example, AA124424H",
           "format": "text(9,9)"
         },
@@ -236,8 +241,10 @@
           "type": "text",
           "label": "Percentage of shares held",
           "shortName": "1.1.1a: Percentage of shares held",
-          "helpText": "Ref 1.1.2a. Input the percentage of share held by this person, if they are not a shareholder leave blank",
-          "mandatory": "false"
+          "helpText": "Ref 1.1.2a. If they are not a shareholder leave blank",
+          "format": "positiveWholeNumber",
+          "mandatory": "false",
+          "displayWidth": "xs"
         },
         {
           "id": "roleChoiceUK",
@@ -258,7 +265,7 @@
       ]
     },
     {
-      "title": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
+      "title": "How many non UK-nationals are involved in the ownership, direction or management of your business?",
       "shortName": "Number non-UK nationals involved",
       "fields": [
         {
@@ -291,22 +298,22 @@
           "type": "text",
           "label": "Full name",
           "shortName": "1.1.2bcde. Full name",
-          "helpText": "Ref 1.1.2bcde. Input the full name of this person"
+          "helpText": "Ref 1.1.2bcde"
         },
         {
-          "id": "nonUKNatCO1b",
-          "type": "text",
+          "id": "resAddress",
+          "type": "address",
           "label": "Residential address",
           "shortName": "1.1.12: Residential address",
-          "helpText": "Ref 1.1.2. Input this persons full residential address including country here",
-          "multiline": "yes"
+          "helpText": "Ref 1.1.2",
+          "international": "true"
         },
         {
           "id": "nonUKNatCO1c",
           "type": "date",
           "label": "Date of birth",
           "shortName": "1.1.12: Date of birth",
-          "helpText": "Ref 1.1.2. Input this persons date of birth",
+          "helpText": "Ref 1.1.2",
           "format": "before today +1"
         },
         {
@@ -314,9 +321,10 @@
           "type": "text",
           "label": "Percentage of shares held",
           "shortName": "1.1.2a: Percentage of shares held",
-          "helpText": "Ref 1.1.2a. Input the percentage of shares held by this person, if not applicable leave blank",
-          "format": "positiveNumber(3, 0)",
-          "mandatory": "false"
+          "helpText": "Ref 1.1.2a. If not applicable leave blank",
+          "format": "positiveWholeNumber",
+          "mandatory": "false",
+          "displayWidth": "xs"
         },
         {
           "id": "roleChoiceNonUK",
@@ -337,17 +345,17 @@
       ]
     },
     {
-      "title": "Is the person responsible for customs matters a UK national?",
+      "title": "Is the person responsible for customs matters for your business a UK national?",
       "shortName": "Person responsible for customs matters (1.1.3)",
       "fields": [
         {
           "id": "prcs1",
           "type": "choice",
-          "label": "Is the person responsible for customs matters a UK national?",
+          "label": "Is the person responsible for customs matters for your business a UK national?",
           "shortName": "1.1.3: Is the person responsible for customs matters a UK national?",
           "helpText": "Ref 1.1.3",
           "format": "yesno",
-          "errorMessage": "Select whether the person responsible for customs matters is a UK national"
+          "errorMessage": "Select whether the person responsible for customs matters for your business is a UK national"
         }
       ]
     },
@@ -359,14 +367,14 @@
         {
           "id": "prcs1a",
           "type": "text",
-          "label": "Full name of person responsible for customs matters",
-          "shortName": "1.1.3: Full name of person responsible for customs matters",
-          "helpText": "Ref 1.1.3. Input the full name of the person responsible for customs matters"
+          "label": "Full name",
+          "shortName": "1.1.3: Full name",
+          "helpText": "Ref 1.1.3"
         },
         {
           "id": "prcs1b",
           "type": "text",
-          "label": "Person responsible for customs matters (NI) number",
+          "label": "National insurance number",
           "shortName": "1.1.3: Person responsible for customs matters (NI) number",
           "helpText": "Ref 1.1.3: For example, AA124424H",
           "format": "text(9,9)"
@@ -381,24 +389,24 @@
         {
           "id": "prcs2a",
           "type": "text",
-          "label": "Full name of person responsible for customs matters",
-          "shortName": "1.1.3: Full name of person responsible for customs matters",
-          "helpText": "Ref 1.1.3. Input the full name of person responsible for customs matters"
+          "label": "Full name",
+          "shortName": "1.1.3: Full name",
+          "helpText": "Ref 1.1.3"
         },
         {
-          "id": "prcs2b",
-          "type": "text",
+          "type": "address",
+          "id": "customAddress",
           "label": "Address",
           "shortName": "1.1.3: Address",
-          "helpText": "Ref 1.1.3. Input the address of the person responsible for customs matters",
-          "multiline": "yes"
+          "helpText": "Ref 1.1.3",
+          "international": "true"
         },
         {
           "id": "prcs3c",
           "type": "date",
           "label": "Date of birth",
           "shortName": "1.1.3: Date of birth",
-          "helpText": "Ref 1.1.3. Input the date of birth of the person responsible for customs matters",
+          "helpText": "Ref 1.1.3",
           "format": "before today +1"
         }
       ]
@@ -419,8 +427,8 @@
       ]
     },
     {
-      "title": "Locations involved in customs activities $n",
-      "shortName": "Locations involved in customs activities $n",
+      "title": "Location involved in customs activities $n",
+      "shortName": "Location involved in customs activities $n",
       "includeIf": "${coLocNum >= 1}",
       "repeatsMin": "${coLocNum}",
       "repeatsMax": "${coLocNum}",
@@ -430,7 +438,7 @@
           "type": "text",
           "label": "Name of location",
           "shortName": "1.1.5: Name of location",
-          "helpText": "Ref 1.1.5. Input the name of a location"
+          "helpText": "Ref 1.1.5"
         },
         {
           "id": "companyLocations1",
@@ -438,15 +446,14 @@
           "label": "Company location address",
           "shortName": "1.1.5a: Company location address",
           "helpText": "Ref 1.1.5a",
-          "international": "true",
-          "postcodeLookup": "no"
+          "international": "true"
         },
         {
           "id": "companyLocationsPhone",
           "type": "text",
           "label": "Telephone number",
           "shortName": "1.1.5: Telephone number",
-          "helpText": "Ref 1.1.5. Input this locations point of contact telephone number here",
+          "helpText": "Ref 1.1.5",
           "format": "telephoneNumber"
         },
         {
@@ -454,37 +461,37 @@
           "type": "text",
           "label": "Email address",
           "shortName": "1.1.5: Email address",
-          "helpText": "Ref 1.1.5. Input this locations point of contact email address here",
+          "helpText": "Ref 1.1.5",
           "format": "email"
         },
         {
           "id": "companyLocationsDescription",
           "type": "text",
-          "label": "Provide a brief description of the business conducted here:\n\n Indicate approximate number of employees in each department at this location",
+          "label": "Provide a brief description of the business conducted here",
           "shortName": "1.1.5a: Business conduct and employees",
-          "helpText": "Ref 1.1.5a",
+          "helpText": "Ref 1.1.5a. Indicate approximate number of employees in each department at this location",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "How many sites do you have where third parties execute outsourced activities for your company?",
+      "title": "How many sites do you have where third parties execute outsourced activities for your  business?",
       "shortName": "Third party locations involved",
       "fields": [
         {
           "id": "tPLiCA1",
           "type": "text",
-          "label": "How many sites do you have where third parties execute outsourced activities for your company?",
-          "shortName": "1.1.5b: How many sites do you have where third parties execute outsourced activities for your company?",
-          "helpText": "Ref 1.1.5b",
-          "displayWidth": "xs"
+          "label": "How many sites do you have where third parties execute outsourced activities for your  business?",
+          "shortName": "1.1.5b: How many sites do you have where third parties execute outsourced activities for your business?",
+          "helpText": "Ref 1.1.5b. You can enter a maximum of 20",
+          "displayWidth": "xs",
+          "validIf": "${tPLiCA1 > 0 || tPLiCA1 <=20}"
         }
       ]
     },
     {
-      "title": "Third party locations involved in customs activities ",
-      "shortName": "Third party locations involved",
-      "includeIf": "${tPLiCA1 >= 1}",
+      "title": "Third party location involved in customs activities $n ",
+      "shortName": "Third party location involved $n",
       "repeatsMin": "${tPLiCA1}",
       "repeatsMax": "${tPLiCA1}",
       "fields": [
@@ -493,7 +500,7 @@
           "type": "text",
           "label": "Name of location",
           "shortName": "1.1.5b: Name of location",
-          "helpText": "Ref 1.1.5b. Input the name of a location"
+          "helpText": "Ref 1.1.5b"
         },
         {
           "id": "agentLocations1",
@@ -501,15 +508,14 @@
           "label": "Third party location address",
           "shortName": "1.1.5b: Third party location address",
           "helpText": "Ref 1.1.5b",
-          "international": "yes",
-          "postcodeLookup": "no"
+          "international": "yes"
         },
         {
           "id": "agentLocationsPhone",
           "type": "text",
           "label": "Telephone number",
           "shortName": "1.1.5b: Telephone number ",
-          "helpText": "Ref 1.1.5b. Input this locations point of contact telephone number here",
+          "helpText": "Ref 1.1.5b",
           "format": "telephoneNumber"
         },
         {
@@ -517,7 +523,7 @@
           "type": "text",
           "label": "Email address",
           "shortName": "1.1.5b: Email address",
-          "helpText": "Ref 1.1.5b. Input this locations point of contact email address here",
+          "helpText": "Ref 1.1.5b",
           "format": "email"
         },
         {
@@ -539,36 +545,39 @@
           "type": "choice",
           "label": "Do you buy from/sell to businesses with which you are associated?",
           "shortName": "1.1.6: Do you buy from/sell to businesses with which you are associated?",
-          "helpText": "Ref 1.1.6",
-          "format": "yesno",
-          "errorMessage": "Select whether you buy from/sell to business with which you are associated"
+          "helpText": "Ref 1.1.6. Need helptext",
+          "errorMessage": "Select whether you buy from/sell to business with which you are associated",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Internal organisation",
+      "title": "Describe the internal organisational structure of your business",
       "shortName": "Organisational structure ",
       "fields": [
         {
           "id": "organisationalDescription",
           "type": "text",
-          "label": "Describe the internal organisational structure of your company and the tasks/responsibilities of each department",
-          "shortName": "1.1.7: Describe the internal organisational structure of your company and the tasks/responsibilities of each department",
-          "helpText": "Ref 1.1.7",
+          "label": "Describe the internal organisational structure of your business",
+          "shortName": "1.1.7: Describe the internal organisational structure of your business",
+          "helpText": "Ref 1.1.7. Include the tasks or responsibilities of each department",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Senior management",
+      "title": "Give the names of senior management of the business and describe briefly the stand in rules",
       "shortName": "Senior management ",
       "fields": [
         {
           "id": "seniorManagement",
           "type": "text",
-          "label": "Give the names of senior management (directors, heads of departments, head of accounting, head of customs department) of the company and briefly the stand in rules",
-          "shortName": "1.1.8: Give the names of senior management (directors, heads of departments, head of accounting, head of customs department) of the company and briefly the stand in rules",
-          "helpText": "Ref 1.1.8",
+          "label": "Give the names of senior management of the business and briefly the stand in rules",
+          "shortName": "1.1.8: Give the names of senior management of the business and describe briefly the stand in rules",
+          "helpText": "Ref 1.1.8. For example, directors, heads of departments, head of accounting, head of customs department.",
           "multiline": "yes"
         }
       ]
