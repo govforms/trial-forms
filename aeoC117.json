@@ -426,68 +426,34 @@
       ]
     },
     {
-      "title": "Full correspondence address",
+      "title": "Is your correspondence address the same as any previously mentioned address?",
       "shortName": "Full correspondence address",
       "fields": [
         {
           "id": "fCAC",
           "type": "choice",
-          "label": "Is the full correspondence address of the applicant company the same as any previously mentioned address?",
+          "label": "Is your correspondence address the same as any previously mentioned address?",
           "shortName": "Full correspondence address is same as",
           "format": "vertical",
-          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
-            "No -it is another address"
+            "No, it is a different address"
           ]
         }
       ]
     },
     {
-      "title": "Full correspondence address",
-      "shortName": "Full correspondence address",
+      "title": "Your correspondence address",
+      "shortName": "Correspondence address",
       "includeIf": "${fCAC = 3}",
-      "fields": [
-        {
-          "id": "fCCA",
-          "type": "choice",
-          "label": "Is the full correspondence address in the UK?",
-          "shortName": "Full correspondence address is in the UK",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Full correspondence address",
-      "shortName": "Full correspondence address",
-      "includeIf": "${fCAC = 3 && fCCA = 0}",
       "fields": [
         {
           "id": "fCAD0",
           "type": "address",
-          "label": "Full UK correspondence address",
-          "international": "no",
-          "mandatory": "true",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Full correspondence address",
-      "shortName": "Full correspondence address",
-      "includeIf": "${fCAC = 3 && fCCA = 1}",
-      "fields": [
-        {
-          "id": "fCAd1",
-          "type": "text",
-          "label": "Full correspondence address",
-          "shortName": "International address for full correspondence",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Input the full correspondence address, including country"
+          "label": "Your correspondence address",
+          "international": "true"
         }
       ]
     },
@@ -536,17 +502,9 @@
       ]
     },
     {
-      "title": "Member state(s) where customs related activities are carried out",
+      "title": "Provide details for each EU member state that you have a site in",
       "shortName": "Member states",
       "fields": [
-        {
-          "id": "memberStatesInfo",
-          "type": "info",
-          "label": "Member state(s) where customs related activities are carried out.",
-          "infoText": " Provide details for each member state that you have a site in.\n\n This includes :\n\n The ISO alpha-2 country code, contact name, telephone number and address \n\n Do not tell us about about countries that you import from or export to if you do not have a site there",
-          "infoType": "noformat",
-          "mandatory": "true"
-        },
         {
           "id": "mSInfo1",
           "type": "info",
@@ -557,140 +515,120 @@
         {
           "id": "memberStatesText",
           "type": "text",
+          "label": "You should include: country code, contact name, telephone number and address ",
+          "multiline": "yes"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_4696c86d_a3ca_438d_936e_4bf8d0c89593",
           "label": "",
-          "multiline": "yes",
-          "errorMessage": "Enter the details for each member state"
+          "infoText": "Do not tell us about about countries that you import from or export to if you do not have a site there",
+          "infoType": "noformat"
         }
       ]
     },
     {
       "title": "Border crossing information",
       "shortName": "Border crossing information",
+      "description": "Enter the names or reference numbers of valid EU airports, ports or customs offices you regularly use to import, export or transit goods (up to a maximum of 5).",
       "fields": [
         {
           "id": "borderCrossingText1",
           "type": "text",
-          "label": "Border crossing information",
+          "label": "Border crossing 1",
           "shortName": "Border crossing",
-          "helpText": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods.(maximum of 5)",
-          "mandatory": "true",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+          "mandatory": "true"
         },
         {
           "id": "borderCrossingText2",
           "type": "text",
-          "label": "",
-          "shortName": "Border crossing",
-          "helpText": "",
-          "mandatory": "false",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+          "label": "Border crossing 2",
+          "mandatory": "false"
         },
         {
           "id": "borderCrossingText3",
           "type": "text",
-          "label": "",
+          "label": "Border crossing 3",
           "shortName": "Border crossing",
-          "helpText": "",
-          "mandatory": "false",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+          "mandatory": "false"
         },
         {
           "id": "borderCrossingText4",
           "type": "text",
-          "label": "",
-          "shortName": "Border crossing",
-          "helpText": "",
-          "mandatory": "false",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+          "label": "Border crossing 4",
+          "mandatory": "false"
         },
         {
           "id": "borderCrossingText5",
           "type": "text",
-          "label": "",
-          "shortName": "Border crossing",
-          "helpText": "",
-          "mandatory": "false",
-          "errorMessage": "Enter the names or reference number(s) of valid EU (air)ports or customs offices you regularly use to import, export or transit goods."
+          "label": "Border crossing 5",
+          "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Granted simplifications or facilitations",
+      "title": "Have any simplifications or facilitations already been granted?",
       "shortName": "Granted simplifications",
       "fields": [
-        {
-          "id": "grantedSimpInfo1",
-          "type": "info",
-          "label": "Simplifications or facilitations already granted and/or safety certificates issued on the basis of international conventions",
-          "infoText": "Of an international standard of the International Organisation for Standardisation \n\n or a European standard of a European Standardisation bodies \n\n or AEO-equivalent certificates issued in third countries",
-          "infoType": "long"
-        },
         {
           "id": "gC",
           "type": "choice",
           "label": "Have any simplifications or facilitations already been granted?",
           "format": "yesno",
           "mandatory": "true"
+        },
+        {
+          "id": "grantedSimpInfo1",
+          "type": "info",
+          "label": "Examples of simplifications and facilitations",
+          "infoText": "These can be safety certificates issued on the basis of international conventions:\n\n* of an international standard of the international organisation for standardisation \n\n* or a European standard of a European standardisation bodies \n\n* or AEO-equivalent certificates issued in third countries",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Granted simplifications or facilitations detail",
-      "shortName": "Simplifications detail",
+      "title": "Provide details of the main simplification or facilitation granted",
       "includeIf": "${gC = 0}",
       "fields": [
         {
           "id": "simplificationType",
           "type": "text",
-          "label": "Type of simplification",
-          "shortName": "Simplification type",
-          "helpText": "Enter the type of simplification",
-          "mandatory": "true",
-          "errorMessage": "Enter details of the type of simplification already granted"
+          "label": "Type of simplification or facilitation"
         },
         {
           "id": "simplificationCode",
           "type": "text",
           "label": "Code for the relevant customs procedure",
-          "shortName": "Simplification type",
-          "helpText": "As used in the second or third subdivision of box 1 of the Single Administrative district",
-          "mandatory": "true",
-          "errorMessage": "Enter the code for the relevant customs procedure"
+          "helpText": "As used in the second or third subdivision of box 1 in the Single Administrative Document (SAD)"
         },
         {
           "id": "authoNumber",
           "type": "text",
-          "label": "Authorisation number",
-          "shortName": "authorisation number",
-          "helpText": "Enter the authorisation number",
-          "mandatory": "true",
-          "errorMessage": "Enter the authorisation number"
+          "label": "Authorisation number"
         },
         {
           "id": "certificateNumber",
           "type": "text",
           "label": "Number of certificate for facilities already granted",
           "shortName": "Certificate number",
-          "helpText": "Enter the certificate number",
-          "mandatory": "true",
-          "errorMessage": "Enter the number of the certificate already granted"
+          "displayWidth": "xs"
         }
       ]
     },
     {
-      "title": "Holder of one or more certificates",
+      "title": "Do you hold one or more certificates mentioned in article 28 of Commission implementing Regulation (EU) 2015/2447?",
       "shortName": "Certificate holder",
       "fields": [
         {
           "id": "holderChoice1",
           "type": "choice",
-          "label": "Do you hold one or more certificates mentioned in article 28 of Commission implementing Regulation (EU) 2015/2447",
+          "label": "Do you hold one or more certificates mentioned in article 28 of Commission implementing Regulation (EU) 2015/2447?",
           "format": "yesno"
         }
       ]
     },
     {
-      "title": "Holder of one or more certificates",
+      "title": "Enter the type and number of the certificates",
       "shortName": "Certificate details",
       "includeIf": "${holderChoice1 = 0}",
       "fields": [
@@ -698,8 +636,7 @@
           "id": "borderCrossingText",
           "type": "text",
           "label": "Enter the type and number of the certificates",
-          "multiline": "yes",
-          "errorMessage": "Enter the type and number of the certificates"
+          "multiline": "yes"
         }
       ]
     },
@@ -708,18 +645,13 @@
       "shortName": "Information consent",
       "fields": [
         {
-          "id": "infoConsentInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "I hereby give my consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security",
-          "infoType": "noformat"
-        },
-        {
           "id": "consentChoice1",
           "type": "choice",
-          "label": "",
-          "format": "yesno",
-          "mandatory": "true"
+          "label": "I hereby give my consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -731,27 +663,22 @@
         {
           "id": "emailConsent",
           "type": "text",
-          "label": "Email address",
+          "label": "Email address (if you have one)",
           "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          "mandatory": "false"
         },
         {
           "id": "transliteratedNameConsent",
           "type": "text",
           "label": "Transliterated name of country",
           "shortName": "Transliterated name",
-          "helpText": "Enter the transliterated name of your country, for example Rossiya for Russia",
-          "errorMessage": "Enter the transliterated name of your country, for example Rossiya"
+          "helpText": "For example Rossiya for Russia"
         },
         {
+          "type": "address",
           "id": "consentAddress",
-          "type": "text",
-          "label": "Full Address for consent",
-          "shortName": "text",
-          "helpText": "Input your full address including street number, postal code and city",
-          "mandatory": "true",
-          "multiline": "yes"
+          "label": "Full address for consent",
+          "international": "true"
         }
       ]
     },
@@ -769,12 +696,9 @@
         {
           "id": "businessActivitiesText",
           "type": "text",
-          "label": "",
+          "label": "Business activities",
           "shortName": "Business activities",
-          "helpText": "",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Enter the name and number of your business activities"
+          "multiline": "yes"
         }
       ]
     },
