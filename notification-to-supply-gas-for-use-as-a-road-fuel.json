@@ -19,13 +19,13 @@
       "shortName": "Type of business",
       "fields": [
         {
-          "id": "legalStatus",
+          "id": "businessType",
           "type": "choice",
           "label": "What is your business type?",
           "shortName": "Business type",
           "choices": [
-            "Sole trader",
             "Limited company",
+            "Sole trader",
             "Limited liability partnership (LLP)",
             "Partnership"
           ],
@@ -40,7 +40,7 @@
     },
     {
       "title": "About you",
-      "description": "HMRC will use these details if we need to discuss this registration.",
+      "description": "This is the person we will contact about this registration if we have any questions.",
       "fields": [
         {
           "id": "contactName",
@@ -58,7 +58,7 @@
           "id": "email",
           "type": "text",
           "label": "Email address",
-          "helpText": "HMRC will also use this to send you a confirmation email",
+          "helpText": "We will also use this to send you a confirmation email",
           "format": "email"
         },
         {
@@ -72,6 +72,7 @@
           "id": "roleChoice",
           "type": "choice",
           "label": "Select the role relevant to you",
+          "shortName": "Role within business",
           "choices": [
             "director",
             "company secretary",
@@ -108,17 +109,18 @@
       ]
     },
     {
-      "title": "Principal place of business",
+      "title": "Principal place of business details",
+      "shortName": "Principal place of business",
       "fields": [
         {
-          "id": "youInfo1b",
+          "id": "princPlaceBus",
           "type": "info",
           "label": "",
-          "infoText": "HMRC may use these to verify your business information with records we hold.",
+          "infoText": "This is where the main day-to-day business activities are managed. \n\nWe may use these details to verify your business information with records we hold.",
           "infoType": "noformat"
         },
         {
-          "id": "busiAdd1",
+          "id": "businessAddress",
           "type": "address",
           "label": "Business address",
           "international": "true"
@@ -130,7 +132,7 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "businessEmail1",
+          "id": "businessEmail",
           "type": "text",
           "label": "Business email address",
           "format": "email"
@@ -138,7 +140,8 @@
         {
           "id": "corresChoice",
           "type": "choice",
-          "label": "Would you like to  also use these details as your correspondence details?",
+          "label": "Do you also want to use these details for you ongoing gas for road fuel use correspondence?",
+          "shortName": "Use details for correspondence",
           "choices": [
             "Yes",
             "No"
@@ -151,26 +154,31 @@
       "includeIf": "${corresChoice = 0}",
       "fields": [
         {
-          "id": "youInfo1a",
+          "id": "prefContactDetails",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use these details for your ongoing correspondence and returns.",
+          "infoText": "These are the details we will use for your ongoing gas for road fuel use correspondence.",
           "infoType": "noformat"
         },
         {
-          "id": "corresAddy",
+          "id": "prefContactName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "prefContactAdd",
           "type": "address",
           "label": "",
           "international": "true"
         },
         {
-          "id": "corresPhone",
+          "id": "prefPhone",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
-          "id": "corresEmail",
+          "id": "prefEmail",
           "type": "text",
           "label": "Email address",
           "format": "email"
@@ -178,12 +186,15 @@
       ]
     },
     {
-      "title": "What do you intend to do with the gas for use as road fuel?",
+      "title": "What will you do with the gas?",
+      "shortName": "What you plan to do with the gas ",
       "fields": [
         {
           "id": "sendSetSupplyChoice",
           "type": "choice",
-          "label": "What do you intend to do with the gas for use as road fuel?",
+          "label": "What will you do with the gas?",
+          "shortName": "Intention for gas",
+          "helpText": "In this form, gas refers to gas for use as a road fuel. Gas is 'sent out' when it is sent out from your premises for use as road fuel.\n\nIt is 'set aside' when it is decided that it will be used as a motor fuel. It is 'supplied' when it is used as fuel for a road vehicle.",
           "choices": [
             "send it out",
             "set it aside",
@@ -193,36 +204,47 @@
       ]
     },
     {
-      "title": "What date do you expect to become liable for duty on gas for use as road fuel?",
-      "shortName": "Details of first fuel duty liability",
+      "title": "Enter the date you expect your business to start owing duty for the gas",
+      "shortName": "Date of first fuel duty liability",
       "fields": [
         {
-          "id": "taxableDisposalDate",
+          "id": "taxLiabilityDate",
           "type": "date",
-          "label": "What date do you expect to become liable for duty on gas for use as road fuel?",
+          "label": "",
           "shortName": "Date",
-          "helpText": "This will be the date you first set out, set aside or supply the gas. For example 21 04 2019"
+          "helpText": "This will be the date you first send out, set aside or supply gas for use as road fuel. For example 21 04 2019"
         }
       ]
     },
     {
-      "title": "Estimate the duty you expect to pay for gas for use as road fuel in the next 12 months?",
+      "title": "Estimate the duty you expect to owe for the gas for the next 12 months",
+      "shortName": "Estimate of excise duty due for the next 12 months",
       "fields": [
         {
           "id": "estTax",
           "type": "text",
-          "label": "Estimate the duty you expect to pay for gas for use as road fuel in the next 12 months?",
+          "label": "Estimate the duty you expect to owe for the gas for the next 12 months",
+          "shortName": "Estimated amount",
           "format": "sterling"
+        },
+        {
+          "id": "moreInfoCalculateTax",
+          "type": "info",
+          "label": "Where can I find out more about how to calculate duty?",
+          "infoText": "To find out more, follow the steps below.\n\n1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'Excise Notice 76: excise duty on gas for use as fuel in road vehicles'.",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Do you want to receive your returns quarterly or monthly?",
+      "title": "Do you want to receive returns for the gas quarterly or monthly?",
+      "shortName": "Return periods",
       "fields": [
         {
           "id": "quartOrMonthReturns",
           "type": "choice",
-          "label": "Do you want to receive your returns quarterly or monthly?",
+          "label": "Do you want to receive returns for the gas quarterly or monthly?",
+          "shortName": "Quarterly or monthly",
           "choices": [
             "quarterly",
             "monthly"
@@ -231,13 +253,15 @@
       ]
     },
     {
-      "title": "Select the dates for your quarterly returns",
+      "title": "Select dates for your quarterly returns",
+      "shortName": "Dates for quarterly returns",
       "fields": [
         {
-          "id": "retPer",
+          "id": "returnPeriod",
           "type": "choice",
-          "label": "Select the dates for your quarterly returns",
-          "helpText": "Quarterly periods end on the last day of the months listed below",
+          "label": "Select dates for your quarterly returns",
+          "shortName": "Selected dates",
+          "helpText": "Each quarterly period is 3 calendar months long and ends on the last day of the months listed below",
           "choices": [
             "January, April, July and October",
             "February, May, August and November",
@@ -247,13 +271,15 @@
       ]
     },
     {
-      "title": "Have you been involved with any other gas for use as road fuel businesses in the last 2 years?",
+      "title": "Have you been involved in any other gas for road fuel use businesses in the last 2 years?",
+      "shortName": "Have you been involved in any other gas for road use businesses",
       "fields": [
         {
-          "id": "bfChoiOther",
+          "id": "otherBusinessChoiceST",
           "type": "choice",
-          "label": "Have you been involved with any other gas for use as road fuel businesses in the last 2 years?",
-          "helpText": "Select whether you (the sole trader) has been involved in any other gas for use a road fuel businesses in the last 2 years",
+          "label": "Have you been involved in any other gas for road fuel use businesses in the last 2 years?",
+          "shortName": "Involved in other businesses",
+          "helpText": "Select whether you (the sole trader) have been involved in any other gas for road fuel use business in the last 2 years",
           "choices": [
             "Yes",
             "No"
@@ -262,12 +288,14 @@
       ]
     },
     {
-      "title": "Have any of the directors in your business been involved with other gas for use as road fuel businesses in the last 2 years?",
+      "title": "Have any of the directors in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
+      "shortName": "Have business directors been involved in other gas for road use businesses",
       "fields": [
         {
-          "id": "bfChoiOtherDirectors",
+          "id": "otherBusinessChoiceDirectors",
           "type": "choice",
-          "label": "Have any of the directors in your business been involved with other gas for use as road fuel businesses in the last 2 years?",
+          "label": "Have any of the directors in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
+          "shortName": "Involved in other businesses",
           "choices": [
             "Yes",
             "No"
@@ -276,12 +304,14 @@
       ]
     },
     {
-      "title": "Have any of the partners in your business been involved with other gas for use as road fuel businesses in the last 2 years?",
+      "title": "Have any of the partners in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
+      "shortName": "Have business partners been involved in other gas for road use businesses",
       "fields": [
         {
-          "id": "bfChoiOtherPartners",
+          "id": "otherBusinessChoicePartners",
           "type": "choice",
-          "label": "Have any of the partners in your business been involved with other gas for use as road fuel businesses in the last 2 years?",
+          "label": "Have any of the partners in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
+          "shortName": "Involved in other businesses",
           "choices": [
             "Yes",
             "No"
@@ -290,59 +320,71 @@
       ]
     },
     {
-      "title": "Enter the registration number for each business they have been involved in",
-      "description": "Enter the gas for use as road fuel registration number for each gas for use as road fuel business your business directors have been involved in.",
+      "title": "Enter the gas for road fuel use registration number of each business the directors have been involved in",
+      "shortName": "Registration number of each other business",
       "fields": [
         {
-          "id": "otherBusinessRegNumber",
+          "id": "RegNumbersOtherBusinesses",
           "type": "group",
-          "label": "Other business's registration numbers",
-          "shortName": "Other business's registration numbers",
-          "repeatsMax": "20",
+          "label": "Registration numbers of other businesses",
+          "shortName": "Registration numbers",
+          "repeatsMax": 20,
           "repeatLabel": "Business $n",
-          "repeatAddAnotherText": "Other business's registration number",
+          "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
               "id": "regNumberOtherBus",
               "type": "text",
-              "label": "Gas for use as road fuel registration number",
-              "shortName": "Registration number of other business"
+              "label": "Registration number",
+              "shortName": "Business $n"
             }
           ]
         }
       ]
     },
     {
-      "title": "How many other gas for use as road fuel businesses have they been involved in?",
-      "includeIf": "${bfChoiOther = 0}",
+      "title": "Enter the gas for road fuel use registration number of each business the partners have been involved in",
+      "shortName": "Registration number of each other business ",
       "fields": [
         {
-          "id": "numOtherBusi",
-          "type": "text",
-          "label": "How many other gas for use as road fuel businesses have they been involved in?"
+          "id": "RegNumbersOtherBusinessesPartners",
+          "type": "group",
+          "label": "Registration numbers of other businesses",
+          "shortName": "Registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus_copy_1",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Business $n"
+            }
+          ]
         }
       ]
     },
     {
-      "title": "How many other gas for use as road fuel businesses have you been involved in?",
-      "includeIf": "${bfChoiOther = 0}",
+      "title": "Enter the gas for road fuel use registration number of each business you have been involved in",
+      "shortName": "Registration number of each other business ",
       "fields": [
         {
-          "id": "numOtherBusi_copy_1",
-          "type": "text",
-          "label": "How many other gas for use as road fuel businesses have you been involved in?"
-        }
-      ]
-    },
-    {
-      "title": "Enter the registration number for the gas for road fuel business $n",
-      "repeatsMin": "${numOtherBusi}",
-      "repeatsMax": "${numOtherBusi}",
-      "fields": [
-        {
-          "id": "grfTaxRegNo",
-          "type": "text",
-          "label": "GRF Tax registration number"
+          "id": "RegNumbersOtherBusinessesDirectors",
+          "type": "group",
+          "label": "Registration numbers of other businesses",
+          "shortName": "Registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus_copy_2",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Business $n"
+            }
+          ]
         }
       ]
     }
