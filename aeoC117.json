@@ -21,7 +21,7 @@
           "id": "elChk",
           "type": "info",
           "label": "",
-          "infoText": "Answer the following four questions to check if you are eligible to apply for AEO status",
+          "infoText": "Answer the following three questions to check if you are eligible to apply for AEO status:",
           "infoType": "noformat"
         },
         {
@@ -39,13 +39,6 @@
           "errorMessage": "Select whether the business is establised in the territory of an European Union member state"
         },
         {
-          "id": "internationalCustomsTrade",
-          "type": "choice",
-          "label": "Is the business actively involved in customs operations and international trade?",
-          "format": "yesno",
-          "errorMessage": "Select whether the business activity is actively involved in customs operations and international trade"
-        },
-        {
           "id": "choiceEORI",
           "type": "choice",
           "label": "Does the economic entity applying have an Economic Operator Registration and Identification (EORI) number?",
@@ -56,7 +49,7 @@
     },
     {
       "title": "Eligibility checker passed",
-      "includeIf": "${(legalEntity = 0 && estabilishedEU=0) && (internationalCustomsTrade=0 && choiceEORI=0)}",
+      "includeIf": "${(legalEntity = 0 && estabilishedEU=0) && choiceEORI=0}",
       "fields": [
         {
           "id": "elPass",
@@ -69,7 +62,7 @@
     },
     {
       "title": "Eligibility checker failed",
-      "includeIf": "${(legalEntity=1 || estabilishedEU=1) || (internationalCustomsTrade=1 || choiceEORI= 1)}",
+      "includeIf": "${(legalEntity=1 || estabilishedEU=1) || choiceEORI= 1}",
       "continueIf": "false",
       "fields": [
         {
@@ -78,48 +71,6 @@
           "label": "",
           "infoText": "You must not continue with the rest of your application until you can answer yes to all four questions on the previous page.",
           "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Communicating with HMRC using email",
-      "shortName": "Email communications",
-      "fields": [
-        {
-          "id": "emailInfo1",
-          "type": "info",
-          "label": "",
-          "infoText": "We need your consent before using email to communicate",
-          "infoType": "noformat"
-        },
-        {
-          "id": "emailInfo2",
-          "type": "info",
-          "label": "Read about the risks of using email",
-          "infoText": "HMRC takes the security of personal information very seriously.\n\nThe main risks of using email that concern HMRC are as follows.\n\nConfidentiality/privacy - there is a risk that email sent over the internet may be intercepted.\n\nConfirming your identity - it is crucial that we only communicate with established business contacts at their correct email addresses.\n\nThere is no guarantee that an email received over an insecure network, like the internet, has not been altered during transit.\n\nWe will desensitise information wherever possible, for example by only quoting part of any unique reference numbers.",
-          "infoType": "long"
-        },
-        {
-          "id": "emCons1",
-          "type": "choice",
-          "label": "By clicking yes you confirm that you have a clear understanding and acceptance of the risks associated with email, and that you are content for us to send information concerning your business details.",
-          "shortName": "Confirm consent to use email communication",
-          "format": "yesno",
-          "errorMessage": "Select whether you confirm that you accept the risks of email and are content with HMRC sending information over email"
-        },
-        {
-          "id": "email1",
-          "type": "text",
-          "label": "Email address",
-          "helpText": "This must be the designated contact's email address",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "nameOfEmailContact",
-          "type": "text",
-          "label": "Full name of email contact",
-          "helpText": "This must be the full name of the designated email contact"
         }
       ]
     },
@@ -137,40 +88,18 @@
           "id": "companyURL",
           "type": "text",
           "label": "Company website"
-        },
-        {
-          "id": "addressChoice",
-          "type": "choice",
-          "label": "Is the address where this business is registered in the UK?",
-          "format": "yesno",
-          "errorMessage": "Select whether the address where this business is registered is in the UK"
         }
       ]
     },
     {
-      "title": "Full registered UK address of the business",
-      "includeIf": "${addressChoice = 0}",
+      "title": "What is your registered business address?",
       "fields": [
         {
           "id": "agentOfficeAddressRefTrue1",
           "type": "address",
-          "label": "Full registered UK address of the business",
-          "shortName": "UK business address",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Full registered address of the business",
-      "includeIf": "${addressChoice = 1}",
-      "fields": [
-        {
-          "id": "OfficeAddressRefTrue2",
-          "type": "text",
-          "label": "Full registered address of the business",
-          "shortName": "Non-UK business address",
-          "helpText": "Input the full registered address for your business including country",
-          "multiline": "yes"
+          "label": "What is your registered business address?",
+          "shortName": "Registered business address",
+          "international": "true"
         }
       ]
     },
@@ -188,44 +117,16 @@
       ]
     },
     {
-      "title": "Is the address of your primary place of business within the UK?",
-      "shortName": "Primary place of business",
+      "title": "Primary place of business address",
       "includeIf": "${addressChoice2 = 1}",
-      "fields": [
-        {
-          "id": "addressChoice3",
-          "type": "choice",
-          "label": "Is the address of your primary place of business within the UK?",
-          "shortName": "Primary place of business in UK",
-          "format": "yesno",
-          "errorMessage": "Select whether your primary place of business is within the UK "
-        }
-      ]
-    },
-    {
-      "title": "Primary place of business UK address",
-      "includeIf": "${addressChoice2 = 1 && addressChoice3 = 0}",
       "fields": [
         {
           "id": "uKPPOB",
           "type": "address",
-          "label": "Primary place of business UK address",
-          "shortName": "UK primary place of business",
-          "helpText": "Full address where the main activities of the business are carried out"
-        }
-      ]
-    },
-    {
-      "title": "Primary place of business",
-      "includeIf": "${addressChoice2 = 1 && addressChoice3 = 1}",
-      "fields": [
-        {
-          "id": "intPPOB",
-          "type": "text",
-          "label": "Enter your international address",
-          "shortName": "International primary place of business",
-          "helpText": "Full address where the main activities of the business are carried out including country",
-          "multiline": "yes"
+          "label": "Primary place of business address",
+          "shortName": "Primary place of business",
+          "helpText": "Full address where the main activities of the business are carried out",
+          "international": "true"
         }
       ]
     },
@@ -247,16 +148,16 @@
       ]
     },
     {
-      "title": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
       "shortName": "EORI number",
       "fields": [
         {
           "id": "eORI",
           "type": "text",
-          "label": "Trader identification number also known as your Economic Operator Registration and Identification (EORI) number",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
           "shortName": "EORI",
           "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
-          "format": "EORI"
+          "format": "text(9,17)"
         },
         {
           "id": "mSCountryCodes",
@@ -268,13 +169,13 @@
       ]
     },
     {
-      "title": "What is your business legal status?",
+      "title": "What is the legal status of your business?",
       "shortName": "Business legal status",
       "fields": [
         {
           "id": "legalStatus1",
           "type": "choice",
-          "label": "What is your business legal status?",
+          "label": "What is the legal status of your business?",
           "shortName": "Business legal status",
           "errorMessage": "Select your business legal status",
           "choices": [
@@ -288,20 +189,20 @@
       ]
     },
     {
-      "title": "Describe your business status",
+      "title": "Describe the legal status of your business",
       "shortName": "Legal status other",
       "includeIf": "${legalStatus1 = 4}",
       "fields": [
         {
           "id": "businessLegalStatusOther",
           "type": "text",
-          "label": "Describe your business status"
+          "label": "Describe the legal status of your business"
         }
       ]
     },
     {
-      "title": "Company details",
-      "shortName": "Company details",
+      "title": "Business details",
+      "shortName": "Business details",
       "fields": [
         {
           "id": "dateOfEstablishment",
@@ -313,73 +214,43 @@
         {
           "id": "cAAC",
           "type": "choice",
-          "label": "Is the address where the main accounts for customs puposes are kept the same as any previously mentioned address?",
+          "label": "Is the address where the main accounts for customs purposes are kept the same as any previously mentioned address?",
           "shortName": "Customs accounts address is the same as",
           "errorMessage": "Select the address where the main accounts for customs purposes are kept",
           "choices": [
             "Registered business address",
             "Primary place of business",
-            "No -it is another address"
+            "No, it is a different address"
           ]
         }
       ]
     },
     {
-      "title": "Is the address where the main accounts for customs puposes are kept, in the UK?",
+      "title": "What is the address where the main accounts for customs purposes are kept?",
       "shortName": "Customs accounts address",
       "includeIf": "${cAAC = 2}",
       "fields": [
         {
-          "id": "cACC",
-          "type": "choice",
-          "label": "Is the address where the main accounts for customs puposes are kept, in the UK?",
-          "format": "yesno",
-          "errorMessage": "Select whether the address where main accounts for customs purpose is in the UK"
-        }
-      ]
-    },
-    {
-      "title": "UK address where the main accounts for customs puposes are kept",
-      "shortName": "Customs accounts address",
-      "includeIf": "${cAAC = 2 && cACC = 0}",
-      "fields": [
-        {
           "id": "officeAddressRefTrue3",
           "type": "address",
-          "label": "UK address where the main accounts for customs puposes are kept",
-          "shortName": "UK address"
+          "label": "What is the address where the main accounts for customs purposes are kept?",
+          "shortName": "Address for main accounts",
+          "international": "true"
         }
       ]
     },
     {
-      "title": "Customs accounts address",
-      "shortName": "Customs accounts address",
-      "includeIf": "${cAAC = 2 && cACC = 1}",
-      "fields": [
-        {
-          "id": "OfficeAddressRefTrue4",
-          "type": "text",
-          "label": "Address where the main accounts for customs puposes are kept",
-          "shortName": "Non-UK customs accounts address",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Input the full address where the main accounts for customs puposes are kept, including country"
-        }
-      ]
-    },
-    {
-      "title": "VAT registration number(s)",
-      "shortName": "VAT registration number(s)",
+      "title": "What is your VAT registration number?",
+      "shortName": "VAT registration number",
       "fields": [
         {
           "id": "vatRegNum",
           "type": "text",
-          "label": "VAT registration number(s)",
-          "shortName": "VAT number(s)",
-          "helpText": "Input GB and then the 9 numerical digits of your VAT registration number(s)",
-          "format": "ukVrn",
-          "mandatory": "true",
-          "errorMessage": "Enter the VAT registration number(s) of your company"
+          "label": "What is your VAT registration number?",
+          "shortName": "VAT number",
+          "helpText": "Your VAT Registration Number is a 9 digit number supplied when you registered for VAT. For example, 123456789.",
+          "format": "text(9,11)",
+          "errorMessage": "Enter the VAT registration number of your company"
         }
       ]
     },
@@ -393,9 +264,7 @@
           "label": "Legal registration number",
           "shortName": "Legal number",
           "helpText": "Your legal registration number is 8 alpha and/or numerical digits",
-          "format": "text(8,8)",
-          "mandatory": "true",
-          "errorMessage": "Enter the legal registration number of your company"
+          "format": "text(8,8)"
         }
       ]
     },
@@ -407,18 +276,13 @@
           "id": "applicantName",
           "type": "text",
           "label": "Name of the person responsible for customs matters",
-          "shortName": "Responsible persons name",
-          "helpText": "Input name here",
-          "mandatory": "true",
-          "errorMessage": "Responsible persons name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          "shortName": "Responsible persons name"
         },
         {
           "id": "emailContacta",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "mandatory": "true",
-          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          "format": "email"
         },
         {
           "id": "rPC",
@@ -426,154 +290,116 @@
           "label": "Is the address of this person the same as any previously mentioned address?",
           "shortName": "Person responsible for customs matters address is same as",
           "format": "vertical",
-          "mandatory": "true",
           "choices": [
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
-            "No -it is another address"
+            "No, it is a different address"
           ]
         }
       ]
     },
     {
-      "title": "Person responsible for customs matters",
+      "title": "Address for the person responsible for customs matters",
       "shortName": "Responsible person address",
       "includeIf": "${rPC = 3}",
       "fields": [
         {
-          "id": "rPCA",
-          "type": "choice",
-          "label": "Is the responsible persons address in the UK?",
-          "shortName": "Responsible person address in the UK",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Person responsible for customs matters",
-      "shortName": "Responsible person address",
-      "includeIf": "${rPC = 3 && rPCA = 0}",
-      "fields": [
-        {
           "id": "officeAddressRefTrue5",
           "type": "address",
-          "label": "UK address for the person responsible for customs matters",
-          "shortName": "UK address for the person responsible for customs matters",
-          "international": "no",
-          "mandatory": "true",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Person responsible for customs matters",
-      "shortName": "Responsible person address",
-      "includeIf": "${rPC = 3 && rPCA = 1}",
-      "fields": [
-        {
-          "id": "OfficeAddressRefTrue6",
-          "type": "text",
           "label": "Address for the person responsible for customs matters",
-          "shortName": "International address for the person responsible for customs matters",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Input the full address for the person responsible for customs matters, including country"
+          "shortName": "Address for the person responsible for customs matters",
+          "international": "true"
         }
       ]
     },
     {
       "title": "Designated contact",
       "shortName": "Designated contact",
+      "description": "This is the point of contact for HMRC about the application.",
       "fields": [
-        {
-          "id": "designatedInfo",
-          "type": "info",
-          "label": "Designated contact within the company.\n\n To be the point of contact for HMRC about the application",
-          "infoText": "",
-          "infoType": "noformat"
-        },
         {
           "id": "contactName",
           "type": "text",
-          "label": "Name of the designated contact",
-          "shortName": "Designated contact name",
-          "helpText": "Input name here",
-          "mandatory": "true",
-          "errorMessage": "Designated contact name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          "label": "Full name"
         },
         {
           "id": "companyPosition",
           "type": "text",
           "label": "Position held in the company",
-          "shortName": "Company position",
-          "helpText": "Enter the designated contacts position in the company",
-          "mandatory": "true",
-          "errorMessage": "Enter your position in the company"
+          "shortName": "Company position"
         },
         {
           "id": "contactNumber",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "Input contact telephone number here",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter a valid telephone number"
+          "format": "telephoneNumber"
         },
         {
           "id": "emailContact",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "mandatory": "true",
-          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          "format": "email"
         }
       ]
     },
     {
-      "title": "Person in charge",
+      "title": "Your consent to use email",
+      "fields": [
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "Email is not 100% secure, as it is sent over the internet.\n\nThis means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emCons1",
+          "type": "choice",
+          "label": "Do you agree to let us contact you by email about your application?",
+          "shortName": "Confirm email consent",
+          "errorMessage": "Select whether you consent to being contacted using your email address",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "If we need to contact you about your application, we will use the telephone number you have provided"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Person exercising management control",
       "shortName": "Person in charge",
       "fields": [
         {
           "id": "personInChargeName",
           "type": "text",
-          "label": "Person in charge of the applicant company or exercising control of its management",
-          "shortName": "Name of person in charge",
-          "helpText": "Input name here",
-          "mandatory": "true",
-          "errorMessage": "Name of person in charge can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          "label": "Full name"
         },
         {
           "id": "companyPosition2",
           "type": "text",
-          "label": "Position held in the company",
-          "shortName": "Company position",
-          "helpText": "Enter the person in charges position in the company",
-          "mandatory": "true",
-          "errorMessage": "Enter the person in charges position in the company"
+          "label": "Position held"
         },
         {
           "id": "persInChargeDOB",
           "type": "date",
-          "label": "Date of birth",
-          "helpText": "Enter the date of birth",
-          "mandatory": "true",
-          "errorMessage": "Date of birth can only include numbers in this format dd mm yyyy"
+          "label": "Date of birth"
         },
         {
           "id": "persinChargeNino",
           "type": "text",
-          "label": "National insurance number",
+          "label": "National insurance number (if you have one)",
           "shortName": "NI number",
-          "helpText": "Enter the person in charges national insurance number",
-          "mandatory": "true",
-          "errorMessage": "National insurance numbers must be input the format letter, letter, six numbers, letter for example AB123456C"
+          "mandatory": "false"
         },
         {
           "id": "pICAC",
           "type": "choice",
-          "label": "Is the address of the person in charge of the applicant company the same as any previously mentioned address?",
+          "label": "Is the address of the person in charge the same as any previously mentioned address?",
           "shortName": "Person in charge of company address is same as",
           "format": "vertical",
           "mandatory": "true",
@@ -581,7 +407,7 @@
             "Registered business address",
             "Primary place of business",
             "Address where main accounts for customs purposes are kept",
-            "No -it is another address"
+            "No, it is a different address"
           ]
         }
       ]
@@ -592,43 +418,10 @@
       "includeIf": "${pICAC = 3}",
       "fields": [
         {
-          "id": "pICCA",
-          "type": "choice",
-          "label": "Is the address of the person in charge in the UK?",
-          "shortName": "Person in charge address in the UK",
-          "format": "yesno",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Address of person in charge",
-      "shortName": "Person in charge address",
-      "includeIf": "${pICAC = 3 && pICCA = 0}",
-      "fields": [
-        {
           "id": "pICAD0",
           "type": "address",
-          "label": "Full UK correspondence address for person in charge",
-          "international": "no",
-          "mandatory": "true",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Address of person in charge",
-      "shortName": "Person in charge address",
-      "includeIf": "${pICAC = 3 && pICCA = 1}",
-      "fields": [
-        {
-          "id": "pICAd1",
-          "type": "text",
-          "label": "Address for the person in charge",
-          "shortName": "International address for the person in charge",
-          "mandatory": "true",
-          "multiline": "yes",
-          "errorMessage": "Input the full address for the person in charge, including country"
+          "label": "Address of person in charge",
+          "international": "true"
         }
       ]
     },
