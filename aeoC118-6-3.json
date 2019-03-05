@@ -200,8 +200,7 @@
       ]
     },
     {
-      "title": "Logistical processes",
-      "shortName": "Logistical processes",
+      "title": "Security and safety - transport",
       "fields": [
         {
           "id": "logistics1",
@@ -228,7 +227,7 @@
     },
     {
       "title": "Do you take other measures for outsourced transport activities to meet security standards?",
-      "shortName": "Logistical processes",
+      "shortName": "Outsourced transport",
       "fields": [
         {
           "id": "logistics4",
@@ -339,16 +338,16 @@
       ]
     },
     {
-      "title": "Does your company deal with specific types of goods requiring specific security measures (eg air cargo/air mail)?",
+      "title": "Does your business deal with goods that require specific security measures?",
       "shortName": "Specific goods and specific security measures",
       "fields": [
         {
           "id": "logistics12",
           "type": "choice",
-          "label": "Does your company deal with specific types of goods requiring specific security measures (eg air cargo/air mail)?",
+          "label": "Does your business deal with goods that require specific security measures?",
           "shortName": "6.6.3c: Specific types of goods requiring specific security measures",
-          "helpText": "Ref 6.6.3c",
-          "errorMessage": "Select whether your company deals with specific types of goods requiring specific security measures",
+          "helpText": "Ref 6.6.3c. For example, air cargo or air mail",
+          "errorMessage": "Select whether your business deals with goods that require specific security measures",
           "choices": [
             "Yes",
             "No"
@@ -357,15 +356,15 @@
       ]
     },
     {
-      "title": "Logistical processes - incoming goods",
-      "shortName": "Incoming goods",
+      "title": "Describe the goods and the security measures you take",
+      "shortName": "Specific measures",
       "includeIf": "${logistics12 = 0}",
       "fields": [
         {
           "id": "logistics13",
           "type": "text",
-          "label": "What routines/measures are in place for dealing with specific types of goods with specific security measures?",
-          "shortName": "6.6.3d: Specific goods routines/measures",
+          "label": "Describe the goods and the security measures you take",
+          "shortName": "6.6.3d: Goods and measures",
           "helpText": "Ref 6.6.3d",
           "multiline": "yes"
         }
@@ -381,13 +380,16 @@
           "label": "Are the incoming goods marked?",
           "shortName": "6.6.4a: Incoming goods marked",
           "helpText": "Ref 6.6.4a",
-          "format": "yesno",
-          "errorMessage": "Select whether the incoming goods are marked"
+          "errorMessage": "Select whether the incoming goods are marked",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Logistical processes - incoming goods",
+      "title": "How are the goods marked?",
       "shortName": "Incoming goods",
       "includeIf": "${logistics14 = 0}",
       "fields": [
@@ -414,19 +416,19 @@
           "multiline": "yes"
         },
         {
-          "id": "logistics16",
+          "id": "logistics17",
           "type": "text",
-          "label": "Briefly describe how and when incoming goods are checked against the accompanying documents and entered in your records",
-          "shortName": "6.6.6ab: Incoming goods checked against the accompanying documents",
-          "helpText": "Ref 6.6.6ab",
+          "label": "Briefly describe who checks the incoming goods and which goods are checked",
+          "shortName": "6.6.6c: Incoming goods checked by who and which goods",
+          "helpText": "Ref 6.6.6c. Enter n/a if not applicable",
           "multiline": "yes"
         },
         {
-          "id": "logistics17",
+          "id": "logistics16",
           "type": "text",
-          "label": "Briefly describe, by whom and what incoming goods are checked against the accompanying documents and entered in your records",
-          "shortName": "6.6.6c: Incoming goods checked by whom and what they are checked against",
-          "helpText": "Ref 6.6.6c",
+          "label": "Briefly describe how and when these incoming goods are checked against the accompanying documents and entered in your records",
+          "shortName": "6.6.6ab: Incoming goods checked against the accompanying documents",
+          "helpText": "Ref 6.6.6ab. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -441,8 +443,12 @@
           "label": "Are the sections responsible for the purchase of goods, the receipt of goods and general administration clearly separated?",
           "shortName": "6.6.7a: Sections responsible clearly separated",
           "helpText": "Ref 6.6.7a",
-          "format": "yesno",
-          "errorMessage": "Select whether the sections responsible for the purchase of goods, the receipts of goods and general administration are clearly separated"
+          "errorMessage": "Select whether the sections responsible for the purchase of goods, the receipts of goods and general administration are clearly separated",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
         },
         {
           "id": "logistics19",
@@ -450,36 +456,39 @@
           "label": "Do integrated internal control mechanisms exist between the sections?",
           "shortName": "6.6.7b: Integrated internal control systems exist",
           "helpText": "Ref 6.6.7b",
-          "format": "yesno",
-          "errorMessage": "Select whether the integrated internal control mechanisms exist between the sections"
+          "errorMessage": "Select whether the integrated internal control mechanisms exist between the sections",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
         }
       ]
     },
     {
-      "title": "Incoming goods - control mechanisms",
+      "title": "Describe how your internal control mechanisms work",
       "shortName": "Control mechanisms",
       "fields": [
         {
           "id": "logistics20",
           "type": "text",
-          "label": "How are the integrated internal control mechanisms executed?",
-          "shortName": "6.6.7c: How integrated internal control mechanisms are executed",
+          "label": "Describe how your internal control mechanisms work",
+          "shortName": "6.6.7c: Describe how your internal control mechanisms work",
           "helpText": "Ref 6.6.7c",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Storage of goods",
+      "title": "Where have you set aside areas for the storage of goods?",
       "shortName": "Storage of goods",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
       "fields": [
         {
           "id": "storage1",
           "type": "text",
-          "label": "Describe at which locations you have set aside areas for the storage of goods",
+          "label": "Where have you set aside areas for the storage of goods?",
           "shortName": "6.7.1: Locations with set aside areas for the storage of goods",
-          "helpText": "Ref 6.7.1",
+          "helpText": "Ref 6.7.1. Include location",
           "multiline": "yes"
         }
       ]
@@ -491,8 +500,8 @@
         {
           "id": "storage2",
           "type": "text",
-          "label": "Briefly describe the routine for allocating a storage position for incoming goods",
-          "shortName": "6.7.2a: Routine for allocating a storage position for incoming goods",
+          "label": "How do you allocate a storage position for incoming goods?",
+          "shortName": "6.7.2a: How do you allocate a storage position for incoming goods?",
           "helpText": "Ref 6.7.2a",
           "multiline": "yes"
         },
@@ -502,13 +511,16 @@
           "label": "Do you have outdoor storage locations?",
           "shortName": "6.7.2b: Outdoor storage locations",
           "helpText": "Ref 6.7.2b",
-          "format": "yesno",
-          "errorMessage": "Select whether you have outdoor storage locations"
+          "errorMessage": "Select whether you have outdoor storage locations",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Storage of goods",
+      "title": "Briefly describe the outdoor storage locations",
       "shortName": "Storage of goods",
       "includeIf": "${storage3 = 0}",
       "fields": [
@@ -532,12 +544,16 @@
           "label": "Do you have documented stocktaking and procedures for dealing with irregularities?",
           "shortName": "6.7.3a: Documented stocktaking and procedures for dealing with irregularities",
           "helpText": "Ref 6.7.3a",
-          "format": "yesno"
+          "errorMessage": "Select whether your have documented stocktaking and procedures for dealing with irregularities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Stocktaking details",
+      "title": "Briefly describe your arrangements for stocktaking and procedures for dealing with irregularities",
       "shortName": "Stocktaking details",
       "includeIf": "${storage5 = 0}",
       "fields": [
@@ -571,17 +587,17 @@
         {
           "id": "storage8",
           "type": "text",
-          "label": "Describe the criteria for any separate storage, for example, hazardous goods, high-value goods, chemicals, weapons, air cargo/air mail",
+          "label": "Describe the criteria for any separate storage",
           "shortName": "6.7.4b: Criteria for separate storage",
-          "helpText": "Ref 6.7.4b",
+          "helpText": "Ref 6.7.4b.  For example, hazardous goods, high-value goods, chemicals, weapons, air cargo or air mail. Enter n/a if not applicable.",
           "multiline": "yes"
         },
         {
           "id": "storage9",
           "type": "text",
-          "label": "Describe how you make sure that the goods are immediately recorded in the logistical accounts/stock records",
+          "label": "Describe how you make sure that these goods are immediately recorded in the logistical accounts or stock records",
           "shortName": "6.7.4c: How goods are immediately recorded",
-          "helpText": "Ref 6.7.4c",
+          "helpText": "Ref 6.7.4c. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -595,7 +611,7 @@
           "type": "text",
           "label": "Briefly describe how goods are protected against unauthorised access to the warehousing premises",
           "shortName": "6.7.5a: Protected against unauthorised access",
-          "helpText": "Ref 6.7.5a",
+          "helpText": "Ref 6.7.5a. Enter n/a if not applicable",
           "multiline": "yes"
         },
         {
@@ -603,7 +619,7 @@
           "type": "text",
           "label": "Briefly describe how compliance with these procedures is checked",
           "shortName": "6.7.5b: Compliance with procedures is checked",
-          "helpText": "Ref 6.7.5b",
+          "helpText": "Ref 6.7.5b. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -617,20 +633,23 @@
           "type": "choice",
           "label": "Is storage of goods outsourced to a third party?",
           "shortName": "6.7.6: Outsourced storage of goods",
-          "format": "yesno"
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Storage of goods - outsourcing",
+      "title": "Describe briefly how and where the outsourced goods are stored and your control measures",
       "shortName": "Outsourced storage",
       "includeIf": "${storage12= 0}",
       "fields": [
         {
           "id": "storage13",
           "type": "text",
-          "label": "As your storage of goods is outsourced to a third party please describe briefly how and where the goods are stored and your control measures you use to supervise the handling of goods.",
-          "shortName": "6.7.6: Describe how and where goods are stored and supervisory control measures",
+          "label": "Describe briefly how and where the outsourced goods are stored and your control measures",
+          "shortName": "6.7.6: Describe how and where goods are stored and control measures",
           "helpText": "Ref 6.7.6",
           "multiline": "yes"
         }
@@ -639,12 +658,11 @@
     {
       "title": "Production of goods",
       "shortName": "Production of goods",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
       "fields": [
         {
           "id": "prod1",
           "type": "text",
-          "label": "Briefly describe what locations/areas are designated for the production of goods",
+          "label": "Briefly describe what locations and areas are designated for the production of goods",
           "shortName": "6.8.1a: Locations/areas designated for the production of goods",
           "helpText": "Ref 6.8.1a",
           "multiline": "yes"
@@ -652,18 +670,21 @@
         {
           "id": "prod2",
           "type": "choice",
-          "label": "Is production carried out by an external partner (for example, job processing, drop shipment)?",
+          "label": "Is production carried out by an external partner?",
           "shortName": "6.8.1b: Production carried out by an external partner ",
-          "helpText": "Ref 6.8.1b",
-          "format": "yesno",
-          "errorMessage": "Select whether production is carried out by an external partner"
+          "helpText": "Ref 6.8.1b. For example, job processing, drop shipment",
+          "errorMessage": "Select whether production is carried out by an external partner",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "prod3",
           "type": "text",
-          "label": "Briefly describe how the integrity of the goods is ensured (for example, contractual agreements)",
+          "label": "Briefly describe how the integrity of the goods is ensured",
           "shortName": "6.8.1c: How the integrity of the goods is ensured",
-          "helpText": "Ref 6.8.1c",
+          "helpText": "Ref 6.8.1c. For example, contractual agreements",
           "multiline": "yes"
         }
       ]
@@ -678,21 +699,24 @@
           "label": "Are there any security measures protecting goods against unauthorised access to the production zone?",
           "shortName": "6.8.2a: Security measures against unauthorised access to production zone",
           "helpText": "Ref 6.8.2a",
-          "format": "yesno",
-          "errorMessage": "Select whether there are any security measures protecting goods against unauthorised access to the production zone"
+          "errorMessage": "Select whether there are any security measures protecting goods against unauthorised access to the production zone",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Production of goods - security matters",
+      "title": "Briefly describe how you protect goods against unauthorised access to the production zone",
       "shortName": "Security matters",
       "includeIf": "${prod4 = 0}",
       "fields": [
         {
           "id": "prod5",
           "type": "text",
-          "label": "Briefly describe how compliance with these security measures protecting goods against unauthorised access to the production zone are checked",
-          "shortName": "6.8.2b: How compliance with these procedures is checked",
+          "label": "Briefly describe how you protect goods against unauthorised access to the production zone",
+          "shortName": "6.8.2b: How you protect goods against unauthorised access to the production zone",
           "helpText": "Ref 6.8.2b",
           "multiline": "yes"
         }
@@ -700,7 +724,7 @@
     },
     {
       "title": "Production of goods - security matters",
-      "shortName": "Security matters",
+      "shortName": "Packing products",
       "fields": [
         {
           "id": "prodn6",
@@ -716,15 +740,18 @@
           "label": "Do the procedures for packing products exist in written form?",
           "shortName": "6.8.3: Procedures for packing products exist in written form",
           "helpText": "Ref 6.8.3",
-          "format": "yesno",
-          "errorMessage": "Select whether procedures for packing products exist in written form"
+          "errorMessage": "Select whether procedures for packing products exist in written form",
+          "choices": [
+            "Yes",
+            "no"
+          ]
         },
         {
           "id": "prod8",
           "type": "text",
-          "label": "If final packaging is outsorced to a third party, briefly describe how the integrity of the goods is guaranteed. If not outsourced enter N/A",
+          "label": "If final packaging is outsourced to a third party, briefly describe how the integrity of the goods is guaranteed",
           "shortName": "6.8.4: Procedures for packing products",
-          "helpText": "Ref 6.8.4",
+          "helpText": "Ref 6.8.4. Enter n/a if not outsourced",
           "multiline": "yes"
         }
       ]
@@ -732,14 +759,13 @@
     {
       "title": "Loading of goods",
       "shortName": "Loading of goods",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
       "fields": [
         {
           "id": "loading1",
           "type": "text",
-          "label": "Briefly describe how loading of goods is managed in your company (for example, allocation of responsibilities, checks on goods, and means of transport, recording of results, provision of information, and so on)?",
+          "label": "Briefly describe how loading of goods is managed in your business",
           "shortName": "6.9.1a: How goods loading is managed",
-          "helpText": "Ref 6.9.1a",
+          "helpText": "Ref 6.9.1a. For example, allocation of responsibilities, checks on goods, means of transport, recording of results or provision of information",
           "multiline": "yes"
         },
         {
@@ -748,14 +774,17 @@
           "label": "Are there any written instructions on how the process should be organised?",
           "shortName": "6.9.1b: Written instructions on how the process should be organised",
           "helpText": "Ref 6.9.1b",
-          "format": "yesno",
-          "errorMessage": "Select whether there are any written instructions on how the process should be organised"
+          "errorMessage": "Select whether there are any written instructions on how the process should be organised",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
       "title": "Are outgoing goods or vehicles sealed?",
-      "shortName": "Loading of goods",
+      "shortName": "Outgoing goods or vehicles",
       "fields": [
         {
           "id": "loading3",
@@ -763,22 +792,25 @@
           "label": "Are outgoing goods or vehicles sealed?",
           "shortName": "6.9.2a: Outgoing goods or vehicles sealed",
           "helpText": "Ref 6.9.2a",
-          "format": "yesno",
-          "errorMessage": "Select whether outgoing goods or vehicles are sealed"
+          "errorMessage": "Select whether outgoing goods or vehicles are sealed",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Loading of goods",
-      "shortName": "Loading of goods",
+      "title": "How are outgoing goods or vehicles sealed?",
+      "shortName": "Sealed outgoing goods or vehicles",
       "includeIf": "${loading3 = 0}",
       "fields": [
         {
           "id": "loading4",
           "type": "text",
-          "label": "How are outgoing goods or vehicles sealed, by whom and what sort of seals do you use?",
+          "label": "How are outgoing goods or vehicles sealed?",
           "shortName": "6.9.2b: Seals used",
-          "helpText": "Ref 6.9.2b",
+          "helpText": "Ref 6.9.2b. Include who does this and what seals they use",
           "multiline": "yes"
         }
       ]
@@ -793,20 +825,23 @@
           "label": "Are any seal numbers mentioned in the documents accompanying the goods?",
           "shortName": "6.9.2c: Outgoing goods or vehicles sealed",
           "helpText": "Ref 6.9.2c",
-          "format": "yesno",
-          "errorMessage": "Select whether there are any seal numbers mentioned accompanying the goods"
+          "errorMessage": "Select whether there are any seal numbers mentioned accompanying the goods",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Loading of goods - seal numbers",
-      "shortName": "Seal numbers",
+      "title": "How do you keep a record of your seal numbers?",
+      "shortName": "Record of seal numbers",
       "includeIf": "${loading5 = 0}",
       "fields": [
         {
           "id": "loading6",
           "type": "text",
-          "label": "How do you keep a record of your seals?",
+          "label": "How do you keep a record of your seal numbers?",
           "shortName": "6.9.2d: How you keep a record of your seals",
           "helpText": "Ref 6.9.2d",
           "multiline": "yes"
@@ -814,8 +849,7 @@
       ]
     },
     {
-      "title": "Loading of goods",
-      "shortName": "Loading of goods",
+      "title": "Loading of goods - security",
       "fields": [
         {
           "id": "loading7",
@@ -836,50 +870,52 @@
       ]
     },
     {
-      "title": "Are the outgoing goods checked for completeness (for example, counted, weighed)?",
-      "shortName": "Loading of goods",
+      "title": "Are the outgoing goods checked for completeness?",
+      "shortName": "Outgoing goods",
       "fields": [
         {
           "id": "loading9",
           "type": "choice",
-          "label": "Are the outgoing goods checked for completeness (for example, counted, weighed)?",
+          "label": "Are the outgoing goods checked for completeness?",
           "shortName": "6.9.5a: Outgoing goods checked",
-          "helpText": "Ref 6.9.5a",
-          "format": "yesno"
+          "helpText": "Ref 6.9.5a. For example, counting or weighing",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Loading of goods",
-      "shortName": "Loading of goods",
+      "title": "Describe how the outgoing goods are checked for completeness, and who does this",
+      "shortName": "Loading of outgoing goods",
       "includeIf": "${loading9 = 0}",
       "fields": [
         {
           "id": "loading10",
           "type": "text",
-          "label": "How and by whom are the outgoing goods checked for completeness?",
-          "shortName": "6.9.5b: How and by whom outgoing goods are checked",
+          "label": "Describe how the outgoing goods are checked for completeness, and who does this",
+          "shortName": "6.9.5b: Who and how are outgoing goods checked",
           "helpText": "Ref 6.9.5b",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Loading of goods",
-      "shortName": "Loading of goods",
+      "title": "Loading of departing goods",
       "fields": [
         {
           "id": "loading11",
           "type": "text",
-          "label": "Briefly describe how, when and by whom departing goods are checked against orders and loading lists and recorded out of the stock records",
+          "label": "Briefly describe how and when departing goods are checked, and who does this",
           "shortName": "6.9.6abc: How departing goods are checked",
-          "helpText": "Ref 6.9.6abc",
+          "helpText": "Ref 6.9.6abc. Include checks against orders, loading lists and stock records",
           "multiline": "yes"
         },
         {
           "id": "loading14",
           "type": "text",
-          "label": "Briefly describe what control mechanisms you have in place for detecting irregularities concerning the loading of goods",
+          "label": "Briefly describe what control mechanisms you have in place for detecting irregularities in the loading of goods",
           "shortName": "6.9.7: Control mechanisms in place for detecting irregularities",
           "helpText": "Ref 6.9.7",
           "multiline": "yes"
