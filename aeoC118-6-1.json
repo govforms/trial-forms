@@ -42,15 +42,22 @@
       ]
     },
     {
-      "title": "Provide the name and the position of the person competent for safety and security related questions",
+      "title": "Competent person for safety and security related questions",
       "shortName": "Security and safety requirements",
       "description": "Guidance for this section can be found at (Article 39 (e) UCC, Article 28 UCC IA, AEO Guidelines Part 2, Section V)",
       "fields": [
         {
           "id": "secSaf1",
           "type": "text",
-          "label": "Provide the name and the position of the person competent for safety and security related questions",
+          "label": "Full name",
           "shortName": "6.1.1: Competent person for safety and security matters ",
+          "helpText": "Ref 6.1.1"
+        },
+        {
+          "type": "text",
+          "id": "positionSafety",
+          "label": "Position in business",
+          "shortName": "6.1.1: Position in business",
           "helpText": "Ref 6.1.1"
         }
       ]
@@ -87,15 +94,15 @@
       ]
     },
     {
-      "title": "Security risks",
+      "title": "Briefly describe what security risks you have identified in relation to the AEO security criteria",
       "shortName": "Security risks",
       "fields": [
         {
           "id": "secSaf5",
           "type": "text",
-          "label": "Briefly describe what security risks (within the company or in your business dealings with customers, suppliers and external service providers) you have identified in relation to the AEO security criteria",
+          "label": "Briefly describe what security risks you have identified in relation to the AEO security criteria",
           "shortName": "6.1.3: Details of security risks",
-          "helpText": "Ref 6.1.3",
+          "helpText": "Ref 6.1.3. This could be physical, human, IT or economic security risks. This could be within the company or in your business dealings with customers, suppliers and external service providers. ",
           "multiline": "yes"
         }
       ]
@@ -107,7 +114,7 @@
         {
           "id": "secSaf6",
           "type": "text",
-          "label": "Briefly describe how security measures are implemented and coordinated in your company?",
+          "label": "Briefly describe how security measures are implemented and coordinated in your company",
           "shortName": "6.1.4a: How security measures are implemented and coordinated",
           "helpText": "Ref 6.1.4a",
           "multiline": "yes"
@@ -148,23 +155,23 @@
         {
           "id": "secSaf8",
           "type": "text",
-          "label": "Do you have any security instructions? How are they communicated to your staff and people visiting your company premises? ",
+          "label": "If you have any security instructions, how are they communicated to your staff and people visiting your company premises?",
           "shortName": "6.1.6a: Security instructions and their communication",
-          "helpText": "Ref 6.1.6a",
+          "helpText": "Ref 6.1.6a. Enter n/a if not applicable",
           "multiline": "yes"
         },
         {
           "id": "secSaf9",
           "type": "text",
-          "label": "How are they documented (manual, work guidelines, information sheet, and so on)?",
+          "label": "How are they documented?",
           "shortName": "Ref 6.1.6b: Security instructions documentation",
-          "helpText": "Ref 6.1.6b",
+          "helpText": "Ref 6.1.6b.  For example,  manual, work guidelines or information sheets. Enter n/a if not applicable.",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Have you had any security incidents?",
+      "title": "Security incidents",
       "shortName": "Security incidents",
       "fields": [
         {
@@ -173,13 +180,28 @@
           "label": "Have you had any security incidents?",
           "shortName": "6.1.7a: Security incidents have occurred",
           "helpText": "Ref 6.1.7a",
-          "format": "yesno",
-          "errorMessage": "Select whether you have had any security incidents"
+          "errorMessage": "Select whether you have had any security incidents",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "secSaf12a",
+          "type": "choice",
+          "label": "Do you keep records of security incidents and the measures taken?",
+          "shortName": "6.1.7b: Records of security incidents and measures taken kept",
+          "helpText": "Ref 6.1.7b",
+          "errorMessage": "Select whether you keep records of security incidents and measures taken",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Previous security incidents",
+      "title": "Give a brief description of the incidents and what measures you have introduced to prevent them from reoccurring",
       "shortName": "Previous security incidents",
       "includeIf": "${secSaf10=0}",
       "fields": [
@@ -194,44 +216,32 @@
       ]
     },
     {
-      "title": "Do you keep records of security incidents and the measures taken?",
-      "shortName": "Security incidents records",
-      "fields": [
-        {
-          "id": "secSaf12a",
-          "type": "choice",
-          "label": "Do you keep records of security incidents and the measures taken?",
-          "shortName": "6.1.7b: Records of security incidents and measures taken kept",
-          "helpText": "Ref 6.1.7b",
-          "format": "yesno",
-          "errorMessage": "Select whether you keep records of security incidents and measures taken"
-        }
-      ]
-    },
-    {
-      "title": "Have you already been certified/authorised/approved by another public agency or authority for (transport, civil aviation, etc) security purposes?",
+      "title": "Have you already been certified, authorised or approved by another public agency or authority for security purposes?",
       "shortName": "Security previously certified",
       "fields": [
         {
           "id": "secSaf12b",
           "type": "choice",
-          "label": "Have you already been certified/authorised/approved by another public agency or authority for (transport, civil aviation, etc) security purposes? ",
-          "shortName": "6.1.8a:  Already certified/authorised/approved by another public agency for security purposes.",
-          "helpText": "Ref 6.1.8a",
-          "format": "yesno",
-          "errorMessage": "Select whether you have already been certified/authorised/approved by another public agency or authority for security purposes"
+          "label": "Have you already been certified, authorised or approved by another public agency or authority for security purposes?",
+          "shortName": "6.1.8a:  Already certified, authorised or approved by another public agency for security purposes",
+          "helpText": "Ref 6.1.8a. A public agency could be a transport authority or a civil aviation authority",
+          "errorMessage": "Select whether you have already been certified/authorised/approved by another public agency or authority for security purposes",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Previous security purposes certification/authorisation/approval",
+      "title": "Give details of the premises or sites, which are covered by the relevant security purposes certificate, authorisation or approval",
       "shortName": "Previous certification/authorisation/approval",
       "includeIf": "${secSaf12b = 0}",
       "fields": [
         {
           "id": "secSaf13",
           "type": "text",
-          "label": "Give details of the premises/sites, which are covered by the relevant security purposes certificate/authorisation/approval",
+          "label": "Give details of the premises or sites, which are covered by the relevant security purposes certificate, authorisation or approval",
           "shortName": "6.1.8a: Details of premises covered",
           "helpText": "Ref 6.1.8a",
           "multiline": "yes"
