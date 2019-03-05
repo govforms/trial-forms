@@ -1,4 +1,5 @@
 {
+  "_id": "register-for-insurance-premium-tax",
   "formName": "Apply to register for Insurance Premium Tax",
   "description": "",
   "emailTemplateId": "ipt100_registration_confirmation",
@@ -94,7 +95,8 @@
           "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
           "value": "${form.submissionReference}",
           "submitMode": "derived",
-          "mandatory": "false"
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
         }
       ]
     },
@@ -128,6 +130,7 @@
           "label": "Business description",
           "shortName": "Description",
           "helpText": "Select the option that best describes your business",
+          "errorMessage": "Business description must be selected",
           "choices": [
             "UK insurer",
             "Branch of non-UK insurer",
@@ -164,19 +167,19 @@
           "international": "true"
         },
         {
+          "id": "UKBusEmail",
+          "type": "text",
+          "label": "Business email address",
+          "shortName": "Email address",
+          "format": "email"
+        },
+        {
           "id": "ukTelNum",
           "type": "text",
           "label": "Business telephone number",
           "shortName": "Telephone number",
           "helpText": "For international numbers include the country code",
           "format": "telephoneNumber"
-        },
-        {
-          "id": "UKBusEmail",
-          "type": "text",
-          "label": "Business email address",
-          "shortName": "Email address",
-          "format": "email"
         },
         {
           "id": "generatedId_c57f0ccc_50b6_4243_80c0_d809353cdd35",
@@ -191,6 +194,7 @@
           "label": "Are these the details you want HMRC to use for your Insurance Premium Tax correspondence?",
           "shortName": "Correspondence address",
           "format": "horizontal",
+          "errorMessage": "Select whether you want HMRC to use these as your correspondence details",
           "choices": [
             "Yes",
             "No"
@@ -257,7 +261,7 @@
           "id": "UKVATYes",
           "type": "text",
           "label": "What is your VAT registration number?",
-          "shortName": "VAT",
+          "shortName": "VAT number",
           "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate.",
           "format": "text(9,11)"
         }
@@ -305,13 +309,6 @@
       "includeIf": "${goConCho=0}",
       "fields": [
         {
-          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
-          "type": "info",
-          "label": "transferExplanation",
-          "infoText": "Enter the details of the business transfer",
-          "infoType": "noformat"
-        },
-        {
           "id": "previousBusinessName",
           "type": "text",
           "label": "Business name",
@@ -324,20 +321,28 @@
           "label": "Date of transfer",
           "shortName": "Date",
           "helpText": "For example, 21 08 2018"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Enter the Insurance Premium Tax registration number of the previous business",
+      "shortName": "Previous IPT number",
+      "includeIf": "${goConCho=0}",
+      "fields": [
         {
-          "id": "IPTRegPrev",
+          "id": "IPTRegPrev_copy_1",
           "type": "text",
-          "label": "Insurance Premium Tax registration number of the previous owner",
-          "shortName": "Previous IPT number",
+          "label": "Registration number of the previous owner",
+          "shortName": "IPT number",
           "helpText": "This is 11 numbers with 4 letters at the start, for example XIPT12345678911. It is used for all returns, payments and correspondence.",
           "format": "text(15,15)"
         },
         {
-          "id": "IPTRegTrans",
+          "id": "iPtOfPreviousOwner",
           "type": "choice",
-          "label": "Do you wish to keep the Insurance Premium Tax number of the previous owner? ",
-          "shortName": "I want to keep the previous IPT number",
+          "label": "Do you wish to keep the Insurance Premium Tax number of the previous business? ",
+          "shortName": "I want to keep this IPT number",
+          "errorMessage": "Select whether you want to keep the IPT number",
           "choices": [
             "Yes",
             "No"
@@ -387,13 +392,13 @@
             "Land vehicles",
             "Legal expenses",
             "Liability of ships",
+            "Long term insurance",
             "Miscellaneous financial loss",
             "Motor vehicle liability",
             "Railway rolling stock",
             "Ships",
             "Sickness",
-            "Suretyship",
-            "Long term insurance"
+            "Suretyship"
           ]
         },
         {
@@ -461,6 +466,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "register-for-insurance-premium-tax"
+  "submitSuccessUrl": "deprecated"
 }
