@@ -234,14 +234,14 @@
       ]
     },
     {
-      "title": "Give details of the premises or sites, which are covered by the relevant security purposes certificate, authorisation or approval",
+      "title": "Give details of the premises or sites covered by the relevant security purposes certificate, authorisation or approval",
       "shortName": "Previous certification/authorisation/approval",
       "includeIf": "${secSaf12b = 0}",
       "fields": [
         {
           "id": "secSaf13",
           "type": "text",
-          "label": "Give details of the premises or sites, which are covered by the relevant security purposes certificate, authorisation or approval",
+          "label": "Give details of the premises or sites covered by the relevant security purposes certificate, authorisation or approval",
           "shortName": "6.1.8a: Details of premises covered",
           "helpText": "Ref 6.1.8a",
           "multiline": "yes"
@@ -249,43 +249,46 @@
       ]
     },
     {
-      "title": "Security standards adhered to",
+      "title": "Provide a list of any independently accredited standards, licences or authorisations that you adhere to and specify what controls or audits these standards are subject to",
       "shortName": "Security standards adhered to",
       "fields": [
         {
           "id": "secSaf14",
           "type": "text",
-          "label": "Provide a list of any independently accredited standards/licences/authorisations that you adhere to and specify what control/audits these standards are subject to",
+          "label": "Provide a list of any independently accredited standards, licences or authorisations that you adhere to and specify what controls or audits these standards are subject to",
           "shortName": "6.1.8b: Details of independently accredited standards",
-          "helpText": "Ref 6.1.8b",
+          "helpText": "Ref 6.1.8b. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Have you planned to apply or have you already applied for any other certification/authorisation/approval for security purposes (e.g regulated agent, known consignor, etc)",
+      "title": "Have you planned to apply or have you already applied for any other certification, authorisation or approval for security purposes?",
       "shortName": "Applied for other certificate/authorisation/approval",
       "fields": [
         {
           "id": "secSaf15",
           "type": "choice",
-          "label": "Have you planned to apply or have you already applied for any other certification/authorisation/approval for security purposes (eg regulated agent, known consignor, etc)",
+          "label": "Have you planned to apply or have you already applied for any other certification, authorisation or approval for security purposes?",
           "shortName": "6.1.8c: Previous application for any other certification for security purposes.",
-          "helpText": "Ref 6.1.8c",
-          "format": "yesno",
-          "errorMessage": "Select whether you have planned to apply or already applied to any other certification/authorisation/approval for security purposes"
+          "helpText": "Ref 6.1.8c. For example, regulated agent or known consignor",
+          "errorMessage": "Select whether you have planned to apply or already applied to any other certification, authorisation or approval for security purposes",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Previous  applications for certification/authorisation/approval",
-      "shortName": "Previous applications for certification/authorisation/approval",
+      "title": "Provide details of previous security purposes applications",
+      "shortName": "Previous applications",
       "includeIf": "${secSaf15 = 0}",
       "fields": [
         {
           "id": "secSaf16",
           "type": "text",
-          "label": "Provide details of previous applications",
+          "label": "Provide details of previous security purposes applications",
           "shortName": "6.1.8c: Details of previous applications",
           "helpText": "Ref 6.1.8c",
           "multiline": "yes"
@@ -293,37 +296,36 @@
       ]
     },
     {
-      "title": "Particular security and safety requirements",
+      "title": "Are there particular security and safety requirements for the goods you are importing or exporting?",
       "shortName": "Particular security and safety requirements",
       "fields": [
         {
           "id": "secSaf17",
           "type": "text",
-          "label": "Are there particular security and safety requirements for the goods you are importing/exporting?",
+          "label": "Are there particular security and safety requirements for the goods you are importing or exporting?",
           "shortName": "6.1.9: Details of particular security and safety requirements",
-          "helpText": "Ref 6.1.9",
+          "helpText": "Ref 6.1.9. For example, safety requirements for hazardous goods. Enter n/a if not applicable.",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Security company",
+      "title": "Security company details",
       "shortName": "Security company",
       "fields": [
         {
           "id": "secSaf18",
           "type": "text",
-          "label": "Do you use the services of a security company? If so, which company do you use? ",
+          "label": "If you use a security company, tell us their name",
           "shortName": "6.1.10a: Security company used and who",
-          "helpText": "Ref 6.1.10a",
-          "multiline": "yes"
+          "helpText": "Ref 6.1.10a. Enter n/a if not applicable"
         },
         {
           "id": "secSaf19",
           "type": "text",
-          "label": "Has this company made a threat assessment of your company? If so, describe briefly what security risks they have identified in relation to the AEO security criteria",
+          "label": "If the security company made a threat assessment of your business, describe briefly what security risks they have identified in relation to the AEO security criteria",
           "shortName": "6.1.10b: Security company threat assessment",
-          "helpText": "Ref 6.1.10b",
+          "helpText": "Ref 6.1.10b. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -335,22 +337,26 @@
         {
           "id": "secSaf20",
           "type": "choice",
-          "label": "6.1.11: Do your customers or insurance company impose any safety and security requirements on you?",
-          "shortName": "Imposed safety and security requirements",
+          "label": "Do your customers or insurance company impose any safety and security requirements on you?",
+          "shortName": "6.1.11: Imposed safety and security requirements",
           "helpText": "Ref 6.1.11",
-          "format": "yesno"
+          "errorMessage": "Select whether your customers or insurance company impose any safety and security requirements on you",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Imposed safety and security requirements",
+      "title": "Provide details of the imposed safety and security requirements",
       "shortName": "Imposed safety and security requirements",
       "includeIf": "${secSaf20 = 0}",
       "fields": [
         {
           "id": "secSaf21",
           "type": "text",
-          "label": "Provide details of the requirements imposed",
+          "label": "Provide details of the imposed safety and security requirements",
           "shortName": "6.1.11: Imposed requirements",
           "helpText": "Ref 6.1.11",
           "multiline": "yes"
