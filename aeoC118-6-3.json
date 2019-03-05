@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-6-part-3",
   "formName": "C118 section 6 part 3 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section6_part3_application_confirmation",
@@ -41,52 +42,54 @@
       ]
     },
     {
-      "title": "Is access to cargo units subject to rules/restrictions?",
+      "title": "Is access to cargo units subject to rules or restrictions?",
       "shortName": "Cargo units",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
       "fields": [
         {
           "id": "cargo1",
           "type": "choice",
-          "label": "Is access to cargo units subject to rules/restrictions?",
+          "label": "Is access to cargo units subject to rules or restrictions?",
           "shortName": "6.4.1: Access to cargo units subject to rules/restrictions",
-          "helpText": "Ref 6.4.1",
-          "format": "yesno",
-          "errorMessage": "Select whether there is access to cargo units subject to rules/restrictions"
+          "helpText": "Ref 6.4.1. For example, monitoring of cargo units. For more information see AEO Guidelines Part 2 Section V, Subsection 4",
+          "errorMessage": "Select whether there is access to cargo units subject to rules/restrictions",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Cargo units (as containers, swap bodies, transport boxes)",
-      "shortName": "Cargo units",
+      "title": "How are the access restrictions for cargo units enforced?",
+      "shortName": "Access restrictions enforced",
       "includeIf": "${cargo1 = 0}",
       "fields": [
         {
           "id": "cargo2",
           "type": "text",
-          "label": "How are the access restrictions enforced?",
+          "label": "How are the access restrictions for cargo units enforced?",
           "shortName": "6.4.1: Details of enforcement of access restrictions",
-          "helpText": "Ref 6.4.1",
+          "helpText": "Ref 6.4.1. For example, containers, swap bodies or transport boxes",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Cargo units (as containers, swap bodies, transport boxes)",
+      "title": "Briefly describe what measures are in place to prevent unauthorised access to and tampering with cargo units",
       "shortName": "Cargo units",
       "fields": [
         {
           "id": "cargo3",
           "type": "text",
-          "label": "Briefly describe what measures are in place to prevent unauthorised access to and tampering with cargo units (particularly in open storage areas, for example, constant supervision, training staff and making them aware of risks, seals, instructions on procedures to follow in the case of unauthorised entry)",
+          "label": "Briefly describe what measures are in place to prevent unauthorised access to and tampering with cargo units",
           "shortName": "6.4.2: Measures to prevent unauthorised access to cargo units",
-          "helpText": "Ref 6.4.2",
+          "helpText": "Ref 6.4.2. For example, constant supervision, training staff and making them aware of risks, seals, instructions on procedures to follow in the case of unauthorised entry",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Cargo units (as containers, swap bodies, transport boxes)",
+      "title": "Do you use seals to prevent unauthorised tampering with goods?",
       "shortName": "Cargo units",
       "fields": [
         {
@@ -95,12 +98,15 @@
           "label": "Do you use seals to prevent unauthorised tampering with goods?",
           "shortName": "6.4.3a: Seals used to prevent unauthorised tampering",
           "helpText": "Ref 6.4.3a",
-          "format": "yesno"
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Cargo units (as containers, swap bodies, transport boxes)",
+      "title": "Cargo unit - seals",
       "shortName": "Cargo units",
       "includeIf": "${cargo4 = 0}",
       "fields": [
@@ -114,14 +120,14 @@
         {
           "id": "cargo5a1",
           "type": "text",
-          "label": "Do these seals satisfy any specific standards (for example, ISO)?",
+          "label": "Which specific seals do these satisfy?",
           "shortName": "6.4.3c: Seals specific standards",
-          "helpText": "Ref 6.4.3c"
+          "helpText": "Ref 6.4.3c. For example, ISO. Enter n/a if not applicable."
         }
       ]
     },
     {
-      "title": "Cargo units (as containers, swap bodies, transport boxes)",
+      "title": "How do you make sure that goods are not tampered with if seals are not used? ",
       "shortName": "Cargo units",
       "includeIf": "${cargo4 = 1}",
       "fields": [
@@ -136,36 +142,36 @@
       ]
     },
     {
-      "title": "Cargo units inspection",
+      "title": "What control measures do you use for checking cargo units?",
       "shortName": "Cargo units inspection",
       "fields": [
         {
           "id": "cargo6",
           "type": "text",
-          "label": "What control measures do you use for checking cargo units (for example, 7-point inspection process: front wall, left side, right side, floor, covering/roof, inside/outside of doors, outside/undercarriage)?",
+          "label": "What control measures do you use for checking cargo units?",
           "shortName": "6.4.4: Control measures for checking cargo units",
-          "helpText": "Ref 6.4.4",
+          "helpText": "Ref 6.4.4. For example, 7-point inspection process: front wall, left side, right side, floor, covering or roof, inside or outside of doors, outside or undercarriage",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Cargo units",
+      "title": "Cargo units maintenance",
       "shortName": "Cargo units",
       "fields": [
         {
           "id": "cargo7",
           "type": "text",
-          "label": "Who is the owner/operator of the cargo units?",
+          "label": "Who is the owner or operator of the cargo units?",
           "shortName": "6.4.5a: Owner/operator of the cargo units",
-          "helpText": "Ref 6.4.5a"
+          "helpText": "Ref 6.4.5a. For example, this could be your own business or another"
         },
         {
           "id": "cargo8",
           "type": "text",
-          "label": "Who maintains/repairs the cargo units?",
+          "label": "Who maintains or repairs the cargo units?",
           "shortName": "6.4.5b: Cargo units maintenance",
-          "helpText": "Ref 6.4.5b"
+          "helpText": "Ref 6.4.5b. For example, this could be your own business or another"
         },
         {
           "id": "cargo9",
@@ -173,8 +179,11 @@
           "label": "Are there regular maintenance plans?",
           "shortName": "6.4.5c: Regular maintenance plans in place",
           "helpText": "Ref 6.4.5c",
-          "format": "yesno",
-          "errorMessage": "Select whether there are regular maintenance plans"
+          "errorMessage": "Select whether there are regular maintenance plans",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "cargo10",
@@ -182,73 +191,76 @@
           "label": "Are external maintenance works checked?",
           "shortName": "6.4.5d: External maintenance works checked",
           "helpText": "Ref 6.4.5d",
-          "format": "yesno",
-          "errorMessage": "Select whether there are external maintenance works checked"
+          "errorMessage": "Select whether there are external maintenance works checked",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
       "title": "Logistical processes",
       "shortName": "Logistical processes",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
       "fields": [
         {
           "id": "logistics1",
           "type": "text",
-          "label": "Which means of transport are normally used by your company?",
+          "label": "Which means of transport are normally used by your business?",
           "shortName": "6.5.1a: Means of transport used",
           "helpText": "Ref 6.5.1a"
         },
         {
           "id": "logistics3a",
           "type": "text",
-          "label": "Does your company carry out all its own transport, or does it also use external service providers (for example, freight forwarders/carriers)?",
+          "label": "If your business uses external transport providers, tell us what they are",
           "shortName": "6.5.1b: Own or external transport",
-          "helpText": "Ref 6.5.1b"
+          "helpText": "Ref 6.5.1b. For example, freight forwarders or carriers. Enter n/a if you use your own transport."
         },
         {
           "id": "logistics3b",
           "type": "text",
-          "label": "How do you establish whether the freight forwarder/carrier meets the required security standards (for example, by means of a security certificate, declarations or agreements)?",
+          "label": "How do you establish whether the freight forwarder or carrier meets the required security standards?",
           "shortName": "6.5.1c: Establish meets required standards",
-          "helpText": "Ref 6.5.1c"
+          "helpText": "Ref 6.5.1c. For example, by means of a security certificate, declarations or agreements"
         }
       ]
     },
     {
-      "title": "Do you take other measures for outsourced transport activities with a view to meeting security standards?",
+      "title": "Do you take other measures for outsourced transport activities to meet security standards?",
       "shortName": "Logistical processes",
       "fields": [
         {
           "id": "logistics4",
           "type": "choice",
-          "label": "Do you take other measures for outsourced transport activities with a view to meeting security standards?",
+          "label": "Do you take other measures for outsourced transport activities to meet security standards?",
           "shortName": "6.5.1d: Other measures for outsourced transport activities undertaken",
           "helpText": "Ref 6.5.1d",
-          "format": "yesno",
-          "errorMessage": "Select whether you take other measures for outsourced transport activities with a view to meeting security standards"
+          "errorMessage": "Select whether you take other measures for outsourced transport activities to meet security standards",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Logistical processes",
+      "title": "Describe how the outsourced transport activities help meet security standards",
       "shortName": "Logistical processes",
       "includeIf": "${logistics4 = 0}",
       "fields": [
         {
           "id": "logistics5",
           "type": "text",
-          "label": "Outline the nature and scope of your measures in this respect",
-          "shortName": "6.5.1e: Nature and scope of your measures",
+          "label": "Describe how the outsourced transport activities help meet security standards",
+          "shortName": "6.5.1e: Describe how the outsourced transport activities help meet security standards",
           "helpText": "Ref 6.5.1e",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Logistical processes",
-      "shortName": "Logistical processes",
-      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 4)",
+      "title": "Security and safety - incoming goods",
       "fields": [
         {
           "id": "logistics6",
@@ -269,8 +281,7 @@
       ]
     },
     {
-      "title": "Logistical processes",
-      "shortName": "Logistical processes",
+      "title": "Security and safety - employees",
       "fields": [
         {
           "id": "logistics8",
@@ -278,8 +289,11 @@
           "label": "Are your employees informed about security arrangements with suppliers?",
           "shortName": "6.6.2a: Employees informed about suppliers security arrangements",
           "helpText": "Ref 6.6.2a",
-          "format": "yesno",
-          "errorMessage": "Select whether your employees are informed about security arrangements with suppliers"
+          "errorMessage": "Select whether your employees are informed about security arrangements with suppliers",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "logistics9",
@@ -292,30 +306,33 @@
       ]
     },
     {
-      "title": "Are incoming goods sealed, if appropriate?",
+      "title": "Are incoming goods sealed?",
       "shortName": "Incoming goods",
       "fields": [
         {
           "id": "logistics10",
           "type": "choice",
-          "label": "Are incoming goods sealed, if appropriate?",
-          "shortName": "6.6.3b: Employees informed about suppliers security arrangements",
+          "label": "Are incoming goods sealed?",
+          "shortName": "6.6.3b: Incoming goods sealed",
           "helpText": "Ref 6.6.3b",
-          "format": "yesno",
-          "errorMessage": "Select whether incoming goods are sealed"
+          "errorMessage": "Select whether incoming goods are sealed",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Logistical processes - incoming goods",
-      "shortName": "Incoming goods",
+      "title": "Briefly describe the checks on seals of incoming goods",
+      "shortName": "Incoming goods- seals",
       "includeIf": "${logistics10 = 0}",
       "fields": [
         {
           "id": "logistics11",
           "type": "text",
-          "label": "Briefly describe how checks on the integrity of the seals on incoming goods are conducted",
-          "shortName": "6.6.3a: Incoming seals integrity checks",
+          "label": "Briefly describe the checks on seals of incoming goods",
+          "shortName": "6.6.3a: Incoming seals checks",
           "helpText": "Ref 6.6.3a",
           "multiline": "yes"
         }
@@ -331,8 +348,11 @@
           "label": "Does your company deal with specific types of goods requiring specific security measures (eg air cargo/air mail)?",
           "shortName": "6.6.3c: Specific types of goods requiring specific security measures",
           "helpText": "Ref 6.6.3c",
-          "format": "yesno",
-          "errorMessage": "Select whether your company deals with specific types of goods requiring specific security measures"
+          "errorMessage": "Select whether your company deals with specific types of goods requiring specific security measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -955,6 +975,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-6-part-3"
+  "submitSuccessUrl": "deprecated"
 }
