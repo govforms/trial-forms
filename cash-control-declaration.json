@@ -451,9 +451,10 @@
       "includeIf": "${cashYours=0}",
       "fields": [
         {
-          "type": "choice",
           "id": "cashIndividual",
+          "type": "choice",
           "label": "Who will receive the cash? ",
+          "helpText": "If the cash will be split, enter who will receive the largest amount",
           "choices": [
             "An individual",
             "A business"
@@ -463,7 +464,7 @@
     },
     {
       "title": "Person receiving the cash",
-      "includeIf": "${cashYours=0}",
+      "includeIf": "${cashIndividual=0}",
       "description": "If the cash will be split, enter the person who will receive the largest amount.",
       "fields": [
         {
@@ -486,8 +487,8 @@
     },
     {
       "title": "Business receiving the cash",
-      "includeIf": "${cashYours=1}",
-      "description": "If the cash will be split, enter the business who will receive the largest amount.",
+      "includeIf": "${cashIndividual=1}",
+      "description": "If the cash will be split, enter the business which will receive the largest amount.",
       "fields": [
         {
           "id": "receivingBusiness",
