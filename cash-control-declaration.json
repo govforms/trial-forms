@@ -447,22 +447,60 @@
       ]
     },
     {
-      "title": "Intended recipient",
+      "title": "Who will receive the cash? ",
       "includeIf": "${cashYours=0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "cashIndividual",
+          "label": "Who will receive the cash? ",
+          "choices": [
+            "An individual",
+            "A business"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Person receiving the cash",
+      "includeIf": "${cashYours=0}",
+      "description": "If the cash will be split, enter the person who will receive the largest amount.",
       "fields": [
         {
           "id": "receivingName",
           "type": "text",
-          "label": "Full name",
-          "helpText": "If the cash will be split, enter the person or business who will receive the largest amount"
+          "label": "Full name"
         },
         {
           "id": "receivingOccupation",
           "type": "text",
-          "label": "Occupation or business"
+          "label": "Occupation"
         },
         {
           "id": "receivingAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Business receiving the cash",
+      "includeIf": "${cashYours=1}",
+      "description": "If the cash will be split, enter the business who will receive the largest amount.",
+      "fields": [
+        {
+          "id": "receivingBusiness",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "receivingIndustry",
+          "type": "text",
+          "label": "Industry"
+        },
+        {
+          "id": "receivingAddress_copy_1",
           "type": "address",
           "label": "Address",
           "international": "true"
