@@ -40,6 +40,7 @@
     },
     {
       "title": "Enter the details of the person filling in this form",
+      "shortName": "Details of the person filling in this form",
       "description": "HMRC will use these details if we need to discuss this registration.",
       "fields": [
         {
@@ -76,10 +77,12 @@
           "choices": [
             "director",
             "company secretary",
+            "sole trader",
             "partner",
             "authorised individual"
           ],
           "optionHelpText": [
+            "",
             "",
             "",
             "",
@@ -110,13 +113,13 @@
     },
     {
       "title": "Principal place of business details",
-      "shortName": "Principal place of business",
+      "shortName": "Principal place of business details",
       "fields": [
         {
           "id": "princPlaceBus",
           "type": "info",
           "label": "",
-          "infoText": "Provide details for the main place of business,  where the main day-to-day business activities are managed. \n\nWe may use these details to verify your business information with records we hold.",
+          "infoText": "Provide details for the main place of business,  where the day-to-day business activities are managed. \n\nHMRC may use these details to verify your business information with records we hold.",
           "infoType": "noformat"
         },
         {
@@ -140,7 +143,7 @@
         {
           "id": "corresChoice",
           "type": "choice",
-          "label": "Do you also want to use these details for you ongoing gas for road fuel use correspondence?",
+          "label": "Do you also want to use these details for you ongoing correspondence and returns for this service?",
           "shortName": "Use details for correspondence",
           "choices": [
             "Yes",
@@ -150,14 +153,14 @@
       ]
     },
     {
-      "title": "Preferred contact details",
+      "title": "Preferred correspondence details",
       "includeIf": "${corresChoice = 0}",
       "fields": [
         {
           "id": "prefContactDetails",
           "type": "info",
           "label": "",
-          "infoText": "These are the details we will use for your ongoing gas for road fuel use correspondence.",
+          "infoText": "These are the details we will use for your ongoing gas for road fuel use\ncorrespondence and returns.",
           "infoType": "noformat"
         },
         {
@@ -193,8 +196,7 @@
           "id": "sendSetSupplyChoice",
           "type": "choice",
           "label": "What are you planning to do with the gas?",
-          "shortName": "Intention for gas",
-          "helpText": "In this form, gas refers to gas for use as a road fuel.",
+          "shortName": "Intention for the gas",
           "choices": [
             "send it out",
             "set it aside",
@@ -202,22 +204,29 @@
           ]
         },
         {
+          "id": "generatedId_1b42f639_b825_46a8_b83a_ff42a3b43e52",
           "type": "info",
+          "label": "",
+          "infoText": "In this form, 'gas' or 'the gas' refers to gas for use as a road fuel.",
+          "infoType": "standard"
+        },
+        {
           "id": "generatedId_e3653143_9a41_468e_908b_5cf124238f80",
-          "label": "What do 'send out', 'set aside' and 'supply' mean?",
+          "type": "info",
+          "label": "What does 'send out', 'set aside' and 'supply' mean?",
           "infoText": "Gas is:\n* 'sent out' when it is sent out from your premises for use as road fuel\n* 'set aside' when it is decided that it will be used as a motor fuel\n* 'supplied' when it is used as fuel for a road vehicle",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Enter the date you expect your business to start owing duty",
+      "title": "Enter the date you expect your business to start owing duty for the gas",
       "shortName": "Date you expect to start owing duty for the gas",
       "fields": [
         {
           "id": "taxLiabilityDate",
           "type": "date",
-          "label": "",
+          "label": "Enter the date you expect your business to start owing duty for the gas",
           "shortName": "Date",
           "helpText": "Duty is due from the date you first send out, set aside or supply gas for use as road fuel. For example 21 04 2019"
         }
@@ -225,7 +234,7 @@
     },
     {
       "title": "Estimate the duty you expect your business to owe for the gas for the next 12 months",
-      "shortName": "Estimate of excise duty due for the next 12 months",
+      "shortName": "Estimate of duty due for the next 12 months",
       "fields": [
         {
           "id": "estTax",
@@ -244,31 +253,31 @@
       ]
     },
     {
-      "title": "How often would you like to receive your returns?",
-      "shortName": "Return periods",
+      "title": "What period would you like each of your returns to cover?",
+      "shortName": "Preferred return period",
       "fields": [
         {
           "id": "quartOrMonthReturns",
           "type": "choice",
-          "label": "How often would you like to receive your returns?",
-          "shortName": "Quarterly or monthly",
+          "label": "What period would you like each of your returns to cover?",
+          "shortName": "Selected return period",
           "choices": [
-            "quarterly",
-            "monthly"
+            "1 calendar month",
+            "3 calendar months"
           ]
         }
       ]
     },
     {
-      "title": "Select the dates for your quarterly returns",
-      "shortName": "Dates for your quarterly returns",
+      "title": "Select the dates for your returns",
+      "shortName": "Dates for your returns",
       "fields": [
         {
           "id": "returnPeriod",
           "type": "choice",
-          "label": "Select the dates for your quarterly returns",
+          "label": "Select the dates for your returns",
           "shortName": "Selected dates",
-          "helpText": "Each quarterly period is 3 calendar months. Periods end on the last day of the months listed below",
+          "helpText": "Three monthly return periods end on the last day of the months listed below",
           "choices": [
             "January, April, July and October",
             "February, May, August and November",
@@ -279,13 +288,13 @@
     },
     {
       "title": "Have you as the sole trader been involved in any other gas for road fuel use businesses in the last 2 years?",
-      "shortName": "Have you been involved in any other gas for road use businesses",
+      "shortName": "Involved in other gas for road fuel use businesses",
       "fields": [
         {
           "id": "otherBusinessChoiceST",
           "type": "choice",
           "label": "Have you as the sole trader been involved in any other gas for road fuel use businesses in the last 2 years?",
-          "shortName": "Involved in other businesses",
+          "shortName": "Sole trader involved in other businesses",
           "helpText": "",
           "choices": [
             "Yes",
@@ -296,7 +305,7 @@
     },
     {
       "title": "Have any of the directors in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
-      "shortName": "Involvement in any other gas for road use businesses",
+      "shortName": "Involved in other gas for road fuel use businesses",
       "fields": [
         {
           "id": "otherBusinessChoiceDirectors",
@@ -312,13 +321,13 @@
     },
     {
       "title": "Have any of the partners in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
-      "shortName": "Have business partners been involved in other gas for road use businesses",
+      "shortName": "Involved in other gas for road fuel use businesses",
       "fields": [
         {
           "id": "otherBusinessChoicePartners",
           "type": "choice",
           "label": "Have any of the partners in your business been involved in any other gas for road fuel use businesses in the last 2 years?",
-          "shortName": "Involved in other businesses",
+          "shortName": "Partners involved in other businesses",
           "choices": [
             "Yes",
             "No"
@@ -356,7 +365,7 @@
         {
           "id": "RegNumbersOtherBusinessesPartners",
           "type": "group",
-          "label": "Registration numbers of other businesses",
+          "label": "",
           "shortName": "Registration numbers",
           "repeatsMax": 20,
           "repeatLabel": "Business $n",
@@ -373,13 +382,13 @@
       ]
     },
     {
-      "title": "Enter the gas for road fuel use registration number of each business you have been involved in",
+      "title": "Enter the gas for road fuel use registration number of each business you the sole trader has been involved in",
       "shortName": "Registration number of each other business ",
       "fields": [
         {
           "id": "RegNumbersOtherBusinessesDirectors",
           "type": "group",
-          "label": "Registration numbers of other businesses",
+          "label": "",
           "shortName": "Registration numbers",
           "repeatsMax": 20,
           "repeatLabel": "Business $n",
@@ -405,32 +414,6 @@
         "label": "",
         "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
         "infoType": "important"
-      },
-      {
-        "id": "authName",
-        "type": "text",
-        "label": "Name of the person authorising this form",
-        "format": "text(0,40)"
-      },
-      {
-        "id": "statusChoice",
-        "type": "choice",
-        "label": "Select the status in the company of the person authorising this form",
-        "choices": [
-          "Authorised Official",
-          "Company Secretary",
-          "Director",
-          "Partner",
-          "Sole Proprietor",
-          "Trustee"
-        ]
-      },
-      {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We’ll use this to send you a confirmation email ",
-        "format": "email"
       }
     ]
   },
@@ -445,14 +428,21 @@
         "infoType": "important"
       },
       {
-        "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
+        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
         "type": "info",
         "label": "",
-        "infoText": "You must check [the guidance for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
-        "infoType": "standard"
+        "infoText": "##Complete your registration",
+        "infoType": "noformat"
       },
       {
-        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
+        "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
+        "type": "info",
+        "label": "",
+        "infoText": "To complete this resgitration you must provide HMRC with your premises details using form..... You can access this from the guidance page for this service on GOV.UK.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_3cf34960_7308_4ae8_8b10_f66595618aa4",
         "type": "info",
         "label": "",
         "infoText": "##Providing further details",
@@ -462,21 +452,7 @@
         "id": "generatedId_7c97b037_036a_45a0_9ad3_ebbea72206db",
         "type": "info",
         "label": "",
-        "infoText": "You will need to contact HMRC if you do not use a weighbridge at one or more of your sites (to agree an alternative method for weighing materials).\n\nIf you have registered any sites without environmental permits you must also contact us when the permits have been granted (or if they are refused). \n\n[Contact details](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/landfill-tax) for Landfill Tax enquiries are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk",
-        "infoType": "noformat"
-      },
-      {
-        "id": "generatedId_df25aac9_61b3_4b5c_b1e7_c401014681f4",
-        "type": "info",
-        "label": "",
-        "infoText": "##Registering as a partnership",
-        "infoType": "noformat"
-      },
-      {
-        "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
-        "type": "info",
-        "label": "",
-        "infoText": "If your business is a partnership you must also complete form LT2 to complete your registration. You can access this from [the guidance page for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK.",
+        "infoText": "You will need to contact HMRC if you....\nContact details for gas for this service are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk",
         "infoType": "noformat"
       }
     ]
