@@ -1,8 +1,17 @@
 {
-  "_id": "register-for-insurance-premium-tax",
   "formName": "Apply to register for Insurance Premium Tax",
   "description": "",
   "emailTemplateId": "ipt100_registration_confirmation",
+  "emailParameters": [
+    {
+      "value": "${regContactName1}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "hmrc"
   },
@@ -54,7 +63,7 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "Email",
+          "id": "email",
           "type": "text",
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email",
@@ -78,6 +87,14 @@
             "Company secretary",
             "Authorised individual "
           ]
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false"
         }
       ]
     },
@@ -444,5 +461,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "register-for-insurance-premium-tax"
 }
