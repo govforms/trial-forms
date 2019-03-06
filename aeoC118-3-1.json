@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-3-part-1",
   "formName": "C118 section 3 part 1 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section3_part1_application_confirmation",
@@ -41,29 +42,24 @@
       ]
     },
     {
-      "title": "Accounting and logistical system",
+      "title": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
       "shortName": "Accounting and logistical system",
-      "description": "Guidance for this section can be found at (Article 39 (b) UCC, Article 25 UCC IA; AEO Guidelines Part 2, Section II)",
       "fields": [
-        {
-          "id": "lineBreakAudit1",
-          "type": "info",
-          "label": "",
-          "infoText": "****",
-          "infoType": "noformat"
-        },
         {
           "id": "aT1",
           "type": "choice",
           "label": "Does your accounting (logistic) system facilitate a full audit trail of your customs activities or tax relevant movement of goods or accounting entries?",
           "shortName": "3.1.1: Audit trail",
           "helpText": "Ref 3.1.1",
-          "format": "yesno"
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Accounting and logistical system",
+      "title": "Provide details of the essential features of this audit trail",
       "shortName": "Description of other audit trail",
       "includeIf": "${aT1 = 0}",
       "fields": [
@@ -193,22 +189,25 @@
           "label": "Are your logistical systems capable of distinguishing between Union and non-Union goods and indicating their location?",
           "shortName": "3.2.2: Distinguishing capabilities",
           "helpText": "Ref 3.2.2",
-          "format": "yesno",
-          "errorMessage": "Select whether your logistical systems are capable of distinguishing between Union and no-Union goods and indicating their location"
+          "errorMessage": "Select whether your logistical systems are capable of distinguishing between Union and no-Union goods and indicating their location",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Accounting and logistical computer systems",
+      "title": "Provide details of your systems distinguishing capabilities, but if you do not deal with non-Union goods",
       "shortName": "Logistical systems capabilities",
       "includeIf": "${capabilities1 = 0}",
       "fields": [
         {
           "id": "capabilities2",
           "type": "text",
-          "label": "Provide details of your systems distinguishing capabilities, but if you do not deal with non-Union goods, please indicate N/A. ",
+          "label": "Provide details of your systems distinguishing capabilities, but if you do not deal with non-Union goods",
           "shortName": "3.2.2: Distinguishing capabilities details",
-          "helpText": "Ref 3.2.2",
+          "helpText": "Ref 3.2.2. Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -230,22 +229,25 @@
           "label": "Have computer applications been outsourced?",
           "shortName": "3.2.3b: Computers outsourced",
           "helpText": "Ref 3.2.3b",
-          "format": "yesno",
-          "errorMessage": "Select whether your computer applications have been outsourced"
+          "errorMessage": "Select whether your computer applications have been outsourced",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Accounting and logistical computer systems",
+      "title": "Provide details of company or companies where the applications are outsourced and how do you manage access controls for the outsourced applications?",
       "shortName": "Outsourcing location details",
       "includeIf": "${outSourced1 = 0}",
       "fields": [
         {
           "id": "outSourced2",
           "type": "text",
-          "label": "provide details (name address, VAT no.) of company or companies where the applications are outsourced and how do you manage access controls for the outsourced applications?",
+          "label": "Provide details of company or companies where the applications are outsourced and how do you manage access controls for the outsourced applications?",
           "shortName": "3.2.3b: Outsourcing details",
-          "helpText": "Ref 3.2.3b",
+          "helpText": "Ref 3.2.3b. Include name, address and VAT number",
           "multiline": "yes"
         }
       ]
@@ -260,13 +262,16 @@
           "label": "Do you have in-house guidelines for the internal control system in the accounts department, buying department, sales department, customs department, production, material and merchandise management and logistics?",
           "shortName": "3.3.1 Guidelines for internal control systems ",
           "helpText": "Ref 3.3.1",
-          "format": "yesno",
-          "errorMessage": "Select whether you have in-house guidelines for the internal control system in the accounts department, buying department, sales department, customs department, production, material and merchandise management and logistics"
+          "errorMessage": "Select whether you have in-house guidelines for the internal control system in the accounts department, buying department, sales department, customs department, production, material and merchandise management and logistics",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Internal control system in-house guidelines",
+      "title": "Describe your in-house guidelines briefly and how they are updated. For example, actions like job instructions, employee training, instructions for checking faults and mechanism for proofreading",
       "shortName": "In-house guidelines",
       "includeIf": "${internalControlSystem1 = 0}",
       "fields": [
@@ -290,8 +295,11 @@
           "label": "Have your internal control processes been subject to any internal/external audit?",
           "shortName": "3.3.2: Subject to internal/external audit",
           "helpText": "Ref 3.3.2",
-          "format": "yesno",
-          "errorMessage": "Select whether your internal control processes have been subjected to any internal/external audit"
+          "errorMessage": "Select whether your internal control processes have been subjected to any internal/external audit",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "internalControlSystem4",
@@ -299,8 +307,11 @@
           "label": "Does this include audit of your customs routines?",
           "shortName": "3.3.2: Customs routines audit",
           "helpText": "Ref 3.3.2",
-          "format": "yesno",
-          "errorMessage": "Select whether this includes audit of your customs routines"
+          "errorMessage": "Select whether this includes audit of your customs routines",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -325,15 +336,15 @@
       ]
     },
     {
-      "title": "Internal control system",
+      "title": "Briefly describe the procedures for checking your computer files",
       "shortName": "Internal control system",
       "fields": [
         {
           "id": "internalControlSystem5",
           "type": "text",
-          "label": "Briefly describe the procedures for checking your computer files (standing data or master files).",
+          "label": "Briefly describe the procedures for checking your computer files",
           "shortName": "3.3.3a: Procedures for checking computer files",
-          "helpText": "Ref 3.3.3a",
+          "helpText": "Ref 3.3.3a. For example, standing data or master files",
           "multiline": "yes"
         }
       ]
@@ -376,7 +387,7 @@
       ]
     },
     {
-      "title": "Flow of goods",
+      "title": "Briefly describe the registration procedure (physically and in the records) for the flow of goods starting from their arrival, the storage up to manufacture and shipment. Who keeps records and where are they kept?",
       "shortName": "Flow of goods",
       "fields": [
         {
@@ -390,15 +401,15 @@
       ]
     },
     {
-      "title": "Flow of goods",
+      "title": "Briefly describe the procedures in place for checking stock levels, including the frequency of those checks and how are discrepancies handled",
       "shortName": "Flow of goods",
       "fields": [
         {
           "id": "flowOfGoods2",
           "type": "text",
-          "label": "Briefly describe the procedures in place for checking stock levels, including the frequency of those checks and how are discrepancies handled, for example, stocktaking and inventory?",
+          "label": "Briefly describe the procedures in place for checking stock levels, including the frequency of those checks and how are discrepancies handled",
           "shortName": "3.4.2: Describe the procedures in place for checking stock levels",
-          "helpText": "Ref 3.4.2",
+          "helpText": "Ref 3.4.2. For example, stocktaking and inventory",
           "multiline": "yes"
         }
       ]
@@ -492,6 +503,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-3-part-1"
+  "submitSuccessUrl": "deprecated"
 }
