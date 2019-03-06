@@ -49,17 +49,17 @@
         {
           "id": "partnerSecReq1",
           "type": "text",
-          "label": "Briefly describe how your company verifies the identity of trade partners in order to secure the supply chain (information search before accepting orders or placing orders)",
+          "label": "Briefly describe how your company verifies the identity of trade partners in order to secure the supply chain",
           "shortName": "6.10.1: How your company verifies the identity of trade partners",
-          "helpText": "Ref 6.10.1",
+          "helpText": "Ref 6.10.1. For example, information search before accepting orders or placing orders",
           "multiline": "yes"
         },
         {
           "id": "partnerSecReq2",
           "type": "text",
-          "label": "Briefly describe what measures you have taken to confirm that your business partners ensure the security of their part of the international supply chain (for example, security declarations, contractual requirements, trade partners with own AEO status)",
+          "label": "Briefly describe what measures you have taken to confirm that your business partners ensure the security of their part of the international supply chain",
           "shortName": "6.10.2a: Measures taken to confirm that your business partners ensure the security of their part of the international supply chain",
-          "helpText": "Ref 6.10.2a",
+          "helpText": "Ref 6.10.2a. For example, security declarations, contractual requirements, trade partners with own AEO status",
           "multiline": "yes"
         },
         {
@@ -82,35 +82,37 @@
           "label": "Over the last year, have you detected any breaches of the security agreements you have with partners?",
           "shortName": "6.10.3a: Partner breach detected",
           "helpText": "Ref 6.10.3a",
-          "format": "yesno",
-          "errorMessage": "Select whether over the last year, you have detected any breaches of the security agreements you have with partners "
+          "errorMessage": "Select whether over the last year, you have detected any breaches of the security agreements you have with partners ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Partner security breaches detected",
+      "title": "Briefly describe what measures you have taken since your partner's security breach was detected",
       "shortName": "Partner security breaches detected",
       "includeIf": "${partnerSecReq4 = 0}",
       "fields": [
         {
           "id": "partnerSecReq5",
           "type": "text",
-          "label": "Briefly describe what measures have you taken since the security breach was detected",
-          "shortName": "6.10.3b: Measures taken since the security breach was detected",
+          "label": "Briefly describe what measures you have taken since your partner's security breach was detected",
+          "shortName": "6.10.3b: Measures taken",
           "helpText": "Ref 6.10.3b",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Personnel security",
-      "shortName": "Personnel security",
+      "title": "Employment policy and security",
       "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 6)",
       "fields": [
         {
           "id": "persSec1",
           "type": "text",
-          "label": "Briefly describe how your employment policy deals with security and safety requirements?",
+          "label": "Briefly describe how your employment policy deals with security and safety requirements",
           "shortName": "6.11.1a: Employment policy security and safety",
           "helpText": "Ref 6.11.1a",
           "multiline": "yes"
@@ -125,7 +127,7 @@
       ]
     },
     {
-      "title": "Personnel security",
+      "title": "Personnel security procedures",
       "shortName": "Personnel security",
       "fields": [
         {
@@ -134,8 +136,11 @@
           "label": "Are the security procedures recorded in writing?",
           "shortName": "6.11.1c: Security procedures recorded in writing",
           "helpText": "Ref 6.11.1c",
-          "format": "yesno",
-          "errorMessage": "Select whether there are security procedures recorded in writing"
+          "errorMessage": "Select whether there are security procedures recorded in writing",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "persSec4",
@@ -152,26 +157,19 @@
       "shortName": "Staffing checks",
       "fields": [
         {
-          "id": "persSecInfo1",
-          "type": "info",
-          "label": "",
-          "infoText": "To what extent are the following types of employees subject to security checks: (for example police checks to confirm he/she has no criminal record)?",
-          "infoType": "noformat"
-        },
-        {
           "id": "persSec5",
           "type": "text",
-          "label": "New employees who will be working in security-sensitive fields",
+          "label": "To what extent are new employees who will be working in security-sensitive fields subject to security checks?",
           "shortName": "6.11.2a: New employees working in security-sensitive fields",
-          "helpText": "Ref 6.11.2a",
+          "helpText": "Ref 6.11.2a. For example, police checks to confirm he or she has no criminal record",
           "multiline": "yes"
         },
         {
           "id": "persSec6",
           "type": "text",
-          "label": "Existing employees who are to be transferred into security-sensitive fields",
+          "label": "To what extent are existing employees who are to be transferred into security-sensitive fields subject to security checks?",
           "shortName": "6.11.2b: Existing employees transferring into security-sensitive fields",
-          "helpText": "Ref 6.11.2b",
+          "helpText": "Ref 6.11.2b. For example, police checks to confirm he or she has no criminal record",
           "multiline": "yes"
         },
         {
@@ -194,14 +192,17 @@
           "label": "Is security and safety training provided for employees?",
           "shortName": "6.11.3a: Security and safety training provided for employees",
           "helpText": "Ref 6.11.3a",
-          "format": "yesno",
-          "errorMessage": "Select whether there is an security and safety training provided for employees"
+          "errorMessage": "Select whether there is an security and safety training provided for employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Personnel security - staffing checks",
-      "shortName": "Staffing checks",
+      "title": "Staff training",
+      "shortName": "Staff training",
       "includeIf": "${persSec8 = 0}",
       "fields": [
         {
@@ -212,15 +213,6 @@
           "helpText": "Ref 6.11.3b"
         },
         {
-          "id": "persSec10",
-          "type": "choice",
-          "label": "Do you have yearly refresher training?",
-          "shortName": "6.11.3c: Training refreshed yearly",
-          "helpText": "Ref 6.11.3c",
-          "format": "yesno",
-          "errorMessage": "Select whether you have yearly refresher training"
-        },
-        {
           "id": "persSec11",
           "type": "text",
           "label": "Is this training internal or provided by an external supplier?",
@@ -228,18 +220,33 @@
           "helpText": "Ref 6.11.3d"
         },
         {
+          "id": "persSec10",
+          "type": "choice",
+          "label": "Do you have yearly refresher training?",
+          "shortName": "6.11.3c: Training refreshed yearly",
+          "helpText": "Ref 6.11.3c",
+          "errorMessage": "Select whether you have yearly refresher training",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
           "id": "persSec12",
           "type": "choice",
           "label": "Are there written records on this training?",
           "shortName": "6.11.3e: Written records of training",
           "helpText": "Ref 6.11.3e",
-          "format": "yesno",
-          "errorMessage": "Select whether there are written records on this training"
+          "errorMessage": "Select whether there are written records on this training",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Personnel security - temporary staffing",
+      "title": "Temporary staffing",
       "shortName": "Temporary staffing",
       "fields": [
         {
@@ -247,7 +254,7 @@
           "type": "text",
           "label": "Specify the areas where temporary employees are used",
           "shortName": "6.11.4a: Areas where temporary employees are used",
-          "helpText": "Ref 6.11.4a",
+          "helpText": "Ref 6.11.4a. Enter n/a if not applicable",
           "multiline": "yes"
         },
         {
@@ -256,14 +263,17 @@
           "label": "Are these employees checked regularly according to security standards?",
           "shortName": "6.11.4b: Employees regularly checked",
           "helpText": "Ref 6.11.4b",
-          "format": "yesno",
-          "errorMessage": "Select whether these employees are checked regularly according to security standards"
+          "errorMessage": "Select whether these employees are checked regularly according to security standards",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
         }
       ]
     },
     {
-      "title": "Personnel security - temporary staffing",
-      "shortName": "Temporary staffing",
+      "title": "Security checks - temporary staffing",
       "includeIf": "${persSec14 = 0}",
       "fields": [
         {
@@ -280,8 +290,11 @@
           "label": "Are there also security instructions for these employees?",
           "shortName": "6.11.4d: Security instructions for temporary employees",
           "helpText": "Ref 6.11.4d",
-          "format": "yesno",
-          "errorMessage": "Select whether there are security instructions for these employees"
+          "errorMessage": "Select whether there are security instructions for these employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -296,28 +309,34 @@
           "label": "Are there security instructions for temporary employees?",
           "shortName": "6.11.4d: Security instructions for temporary employees",
           "helpText": "Ref 6.11.4d",
-          "format": "yesno",
-          "errorMessage": "Select whether there are security instructions for temporary employees"
+          "errorMessage": "Select whether there are security instructions for temporary employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Do you use any 'external services' under contract, such as transportation, security guards, cleaning, supplies, maintenance, and so on?",
+      "title": "Do you use any external services under contract?",
       "shortName": "6.12.1a External services",
       "fields": [
         {
           "id": "exServ1",
           "type": "choice",
-          "label": "Do you use any 'external services' under contract, such as transportation, security guards, cleaning, supplies, maintenance, and so on?",
+          "label": "Do you use any external services under contract?",
           "shortName": "6.12.1a: Any external services used",
-          "helpText": "Ref 6.12.1a. Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 7)",
-          "format": "yesno",
-          "errorMessage": "Select whether you use any 'external services under contract'"
+          "helpText": "Ref 6.12.1a. For example, transportation, security guards, cleaning, maintenance or supplies",
+          "errorMessage": "Select whether you use any 'external services under contract'",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Personnel security - external services",
+      "title": "External services",
       "shortName": "External services",
       "includeIf": "${exServ1 = 0}",
       "fields": [
@@ -335,13 +354,16 @@
           "label": "Are there written agreements with the external service providers containing security requirements?",
           "shortName": "6.12.1c: Written agreements containing security requirements",
           "helpText": "Ref 6.12.1c",
-          "format": "yesno",
-          "errorMessage": "Select whether there are any written agreements with the external service providers containing security requirements"
+          "errorMessage": "Select whether there are any written agreements with the external service providers containing security requirements",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Personnel security - external services",
+      "title": "Briefly describe how compliance with the procedures included in these agreements is checked",
       "shortName": "External services",
       "includeIf": "${exServ3a = 0}",
       "fields": [
