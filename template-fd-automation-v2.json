@@ -39,12 +39,12 @@
       ]
     },
     {
-      "title": "Do you have a Guarantor?",
+      "title": "Has the business authorised you to register it for Fuel Duty?",
       "fields": [
         {
-          "id": "gauraChoi",
+          "id": "authFD",
           "type": "choice",
-          "label": "Do you have a Guarantor?",
+          "label": "",
           "choices": [
             "Yes",
             "No"
@@ -53,13 +53,39 @@
       ]
     },
     {
-      "title": "Your Guarantor must send their details to HMRC",
+      "title": "You cannot register the business for Fuel Duty",
       "fields": [
         {
           "type": "info",
+          "id": "generatedId_865a52ef_3eb4_4f2a_9853_1891ab9c040b",
+          "label": "cannotReg",
+          "infoText": "This is because the business has not authorised you to register it for Fuel Duty.\n\nYou'll need to sign out, or save your progress and come back when you have been authorised.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a guarantor?",
+      "fields": [
+        {
+          "id": "gauraChoi",
+          "type": "choice",
+          "label": "Do you have a guarantor?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your guarantor must send their details to HMRC",
+      "fields": [
+        {
           "id": "generatedId_2cb047c7_ddfc_4152_9ab3_1def63b8c7e8",
+          "type": "info",
           "label": "",
-          "infoText": "To register for Fuel Duty you must complete and submit this form. \n\nYour Guarantor must also complete the Guarantee deferment of payment to HMRC (C1201) form (opens in a new window) and send it to HMRC.",
+          "infoText": "To register for Fuel Duty you must complete and submit this form. \n\nYour guarantor must also complete the VAT: deferment schedule - Simplified Import VAT Accounting reduced security (SIVA2) form (opens in a new window) and send it to HMRC.",
           "infoType": "noformat"
         }
       ]
@@ -73,63 +99,8 @@
           "id": "generatedId_996e0e96_a00a_4df4_8186_aa0976a04744",
           "type": "info",
           "label": "",
-          "infoText": "You must have a Guarantor to complete this form and register for Fuel Duty.",
+          "infoText": "You must have a guarantor to complete this form and register for Fuel Duty.",
           "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Guarantor's details",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "guaraName",
-          "type": "text",
-          "label": "Name of guarantor",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "guaraRef",
-          "type": "text",
-          "label": "Guarantor's reference",
-          "format": "text(0,30)"
-        },
-        {
-          "id": "guaraAdd",
-          "type": "address",
-          "label": "",
-          "international": "true"
-        },
-        {
-          "id": "guaraPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "guaraEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Liability of guarantee",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "guaraAmount",
-          "type": "text",
-          "label": "Guarantee amount",
-          "format": "sterling"
-        },
-        {
-          "id": "guaraStart",
-          "type": "date",
-          "label": "Enter the guarantee start date",
-          "helpText": "For example, 21 03 2019"
         }
       ]
     },
@@ -149,13 +120,13 @@
       ]
     },
     {
-      "title": "Witness details",
+      "title": "Enter the details of the person witnessing this application",
       "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
       "fields": [
         {
           "id": "witName",
           "type": "text",
-          "label": "Witness name in full",
+          "label": "Full name",
           "format": "text(0,40)"
         },
         {
@@ -179,20 +150,48 @@
         {
           "id": "witEmail",
           "type": "text",
-          "label": "Email",
+          "label": "Email address",
           "format": "email",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "Enter the name of your business ",
+      "title": "Enter your details",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_5167b032_6bd7_4cde_b9f7_caf28b9328b7",
+          "label": "contDet",
+          "infoText": "We will use these details to contact you if we need to discuss this form.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "text",
+          "id": "fullName",
+          "label": "Full name"
+        },
+        {
+          "type": "text",
+          "id": "telNum",
+          "label": "Telephone number"
+        },
+        {
+          "type": "text",
+          "id": "eAd",
+          "label": "Email address",
+          "helpText": "For example, name@example.com"
+        }
+      ]
+    },
+    {
+      "title": "Enter business name",
       "shortName": "Business details",
       "fields": [
         {
           "id": "businessName",
           "type": "text",
-          "label": "Business name",
+          "label": "",
           "shortName": "Business name",
           "helpText": ""
         },
@@ -201,19 +200,19 @@
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
-          "helpText": "Enter your trading name, if different from your business name ",
+          "helpText": "Enter the trading name if different from your business name",
           "mandatory": "false"
         }
       ]
     },
     {
-      "title": "About the business",
+      "title": "Enter business address and contact details",
       "fields": [
         {
           "id": "youInfo1b",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration unless you provide alternate correspondence details. ",
+          "infoText": "We will only use these details if we need to discuss this form with you unless you provide another correspondence details.",
           "infoType": "noformat"
         },
         {
@@ -246,13 +245,13 @@
       ]
     },
     {
-      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "title": "Enter the business' Economic Operator Registration and Identification (EORI) number",
       "fields": [
         {
           "id": "eORI",
           "type": "text",
-          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
-          "shortName": "EORI",
+          "label": "Enter the business' Economic Operator Registration and Identification (EORI) number",
+          "shortName": "EORI number",
           "helpText": "This is 2 letters and then 15 numbers. The 2 letters must be your country code. For example 'GB'",
           "format": "EORI",
           "mandatory": "false"
@@ -260,14 +259,14 @@
         {
           "id": "mSCountryCodes",
           "type": "info",
-          "label": "Find your EORI country code",
-          "infoType": "long",
-          "infoText": "Code and Country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB"
+          "label": "Find an EORI country code",
+          "infoText": "Code and Country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB",
+          "infoType": "long"
         }
       ]
     },
     {
-      "title": "Enter the date you expect your business to start owing fuel duty",
+      "title": "Enter the date you expect the business to start owing fuel duty",
       "shortName": "Details of first fuel duty liability",
       "fields": [
         {
@@ -287,7 +286,7 @@
           "id": "youInfo1a",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration. ",
+          "infoText": "We will use these details if we need to contact you to discuss this form.",
           "infoType": "noformat"
         },
         {
@@ -299,7 +298,7 @@
         {
           "id": "corresPhone",
           "type": "text",
-          "label": "telephone number",
+          "label": "Telephone number",
           "format": "telephoneNumber"
         },
         {
@@ -326,53 +325,34 @@
       ]
     },
     {
-      "title": "Trading style",
+      "title": "What is your trading style?",
       "includeIf": "${tradStyChoi = 0}",
       "fields": [
         {
           "id": "tradStyDesc",
           "type": "text",
-          "label": "Trading style",
+          "label": "What is your trading style?",
           "format": "text(0,40)"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Declaration",
+    "title": "Submit form to register the business for Fuel Duty",
     "fields": [
+      {
+        "id": "generatedId_fbda0632_23c1_40e0_b68d_42135635b0a4",
+        "type": "info",
+        "label": "Dec",
+        "infoText": "##Declaration",
+        "infoType": "noformat"
+      },
       {
         "id": "decInfoCheck",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
+        "infoText": "By submitting this form you are confirming that all the information you’ve provided is correct and complete.",
         "infoType": "important"
-      },
-      {
-        "id": "authName",
-        "type": "text",
-        "label": "Name of the person authorising this form",
-        "format": "text(0,40)"
-      },
-      {
-        "id": "statusChoice",
-        "type": "choice",
-        "label": "Select the status in the company of the person authorising this form",
-        "choices": [
-          "Authorised Official",
-          "Company Secretary",
-          "Director",
-          "Partner",
-          "Sole Proprietor",
-          "Trustee"
-        ]
-      },
-      {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We’ll use this to send you a confirmation email ",
-        "format": "email"
       }
     ]
   },
