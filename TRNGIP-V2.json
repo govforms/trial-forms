@@ -34,7 +34,7 @@
           "id": "telephoneNumber",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "For UK numbers include the area code, for example 020 7946 0000",
+          "helpText": "For international numbers include the country code",
           "format": "telephoneNumber",
           "mandatory": "true"
         },
@@ -50,11 +50,11 @@
           "id": "positionInCompany",
           "type": "choice",
           "label": "Select the role relevant to you",
-          "helpText": "You must be one of the following to register on behalf of your business",
+          "helpText": "You must be one of the following to register on behalf of the business",
           "choices": [
             "Director",
-            "Authorised individual",
-            "Company secretary"
+            "Company secretary",
+            "Authorised individual"
           ]
         }
       ]
@@ -378,100 +378,6 @@
       ]
     },
     {
-      "title": "Company director details ",
-      "includeIf": "${false}",
-      "fields": [
-        {
-          "id": "fullName2",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true"
-        },
-        {
-          "id": "directorAddress2",
-          "type": "address",
-          "label": "Home address",
-          "international": "true",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "addAnotherDirector1",
-          "type": "choice",
-          "label": "Do you want to add another director?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Company director details ",
-      "includeIf": "${addAnotherDirector1=0}",
-      "fields": [
-        {
-          "id": "fullName3",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true"
-        },
-        {
-          "id": "directorAddress3",
-          "type": "address",
-          "label": "Home address",
-          "international": "true",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "addAnotherDirector2",
-          "type": "choice",
-          "label": "Do you want to add another director?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Company director details",
-      "includeIf": "${addAnotherDirector2=0}",
-      "fields": [
-        {
-          "id": "fullName4",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true"
-        },
-        {
-          "id": "directorAddress4",
-          "type": "address",
-          "label": "Home address",
-          "international": "true",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "addAnotherDirector3",
-          "type": "choice",
-          "label": "Do you want to add another director?",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Company director details",
-      "includeIf": "${addAnotherDirector3=0}",
-      "fields": [
-        {
-          "id": "fullName5",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true"
-        },
-        {
-          "id": "directorAddress5",
-          "type": "address",
-          "label": "Home address",
-          "international": "true",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
       "title": "Is your company a member of a group?",
       "shortName": "Group details",
       "fields": [
@@ -643,15 +549,28 @@
       "title": "Has your company taken over another UK business?",
       "fields": [
         {
-          "id": "takenOverAnotherBusiness",
+          "id": "takenOverAnotherBusinessYesNo",
           "type": "choice",
           "label": "Has your company taken over another UK business?",
-          "helpText": "Select one option.",
           "choices": [
-            "Limited company",
-            "Sole proprietor",
-            "Partnership",
-            "None"
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Select which type of UK business your company has taken over",
+      "includeIf": "${takenOverAnotherBusinessYesNo=0}",
+      "fields": [
+        {
+          "id": "takenOverAnotherBusiness",
+          "type": "choice",
+          "label": "Select which type of UK business your company has taken over",
+          "choices": [
+            "A limited company",
+            "A sole trader",
+            "A partnership"
           ]
         }
       ]
@@ -664,19 +583,19 @@
           "id": "generatedId_52cbe649_3a01_4834_8ba9_5a928cd5ea7a",
           "type": "info",
           "label": "",
-          "infoText": "These are the details of the business that has been transferred to you.",
+          "infoText": "These are the details of the company which has transferred its business to you.",
           "infoType": "noformat"
         },
         {
           "id": "previousBusinessName",
           "type": "text",
-          "label": "Business name"
+          "label": "Company name"
         },
         {
           "id": "previousBusinessName_copy_1",
           "type": "text",
           "label": "Trading name",
-          "helpText": "Enter the trading name if different from the business name"
+          "helpText": "Enter the trading name if different from the company name"
         },
         {
           "id": "PreviousBusAddress",
@@ -687,12 +606,13 @@
     },
     {
       "title": "Enter the details of the previous owner",
-      "includeIf": "${takenOverAnotherBusiness=0}",
+      "includeIf": "${takenOverAnotherBusiness=1}",
       "fields": [
         {
           "id": "previousOwnerName",
           "type": "text",
-          "label": "Full name"
+          "label": "Full name",
+          "helpText": "This is the name of the sole trader"
         },
         {
           "id": "tradingName",
@@ -703,8 +623,59 @@
         {
           "id": "previousOwnerAddress",
           "type": "address",
-          "label": "Previous owner's address",
-          "international": "true"
+          "label": "Previous owner's address"
+        }
+      ]
+    },
+    {
+      "title": "Partnership details",
+      "includeIf": "${takenOverAnotherBusiness=2}",
+      "fields": [
+        {
+          "id": "generatedId_eff11397_e4a2_4e7b_9718_c39565aa0a49",
+          "type": "info",
+          "label": "These are the details of the partnership which has transferred its business to you.",
+          "infoText": "These are the details of the partnership which has transferred its business to you.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "partnershipName",
+          "type": "text",
+          "label": "Partnership name (?)"
+        },
+        {
+          "id": "partnershipName_copy_1",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "id": "PreviousPartnerAddress",
+          "type": "address",
+          "label": "Business address"
+        }
+      ]
+    },
+    {
+      "title": "Partner details",
+      "includeIf": "${takenOverAnotherBusiness=2}",
+      "fields": [
+        {
+          "id": "generatedId_cc5fb91a_febe_4e5a_a388_0816feea7d44",
+          "type": "info",
+          "label": "Enter the details of the principle or nominated partner.",
+          "infoText": "Enter the details of the principle or nominated partner.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "partnerName_copy_1",
+          "type": "text",
+          "label": "Partner name",
+          "helpText": "This is one of the previous owners of the business"
+        },
+        {
+          "id": "PreviousPartnerAddress_copy_1",
+          "type": "address",
+          "label": "Partner's address"
         }
       ]
     }
