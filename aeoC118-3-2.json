@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-3-part-2",
   "formName": "C118 section 3 part 2 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section3_part2_application_confirmation",
@@ -41,30 +42,34 @@
       ]
     },
     {
-      "title": "Do you have documented procedures for verifying the accuracy of customs declarations, including those submitted on your behalf, for example, by a customs agent or a freight forwarder?",
+      "title": "Do you have documented procedures for verifying the accuracy of customs declarations?",
       "shortName": "Customs routines",
       "fields": [
         {
           "id": "cR1",
           "type": "choice",
-          "label": "Do you have documented procedures for verifying the accuracy of customs declarations, including those submitted on your behalf, for example, by a customs agent or a freight forwarder?",
+          "label": "Do you have documented procedures for verifying the accuracy of customs declarations?",
           "shortName": "3.5.1: Procedures for verifying accuracy of customs declarations",
-          "helpText": "Ref 3.5.1",
-          "format": "yesno",
-          "errorMessage": "Select whether you have documented procedures for verifying the accuracy of customs declarations including those submitted on your behalf"
+          "helpText": "Ref 3.5.1 This includes declarations submitted on your behalf, for example, by a customs agent or a freight forwarder",
+          "format": "vertical",
+          "errorMessage": "Select whether you have documented procedures for verifying the accuracy of customs declarations including those submitted on your behalf",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Customs routines",
-      "shortName": "Customs routines",
+      "title": "Briefly describe the procedures for verifying accuracy of customs declarations",
+      "shortName": "Procedures for verifying accuracy",
       "includeIf": "${cR1 = 0}",
       "fields": [
         {
           "id": "cR2",
           "type": "text",
           "label": "Briefly describe the procedures for verifying accuracy of customs declarations",
-          "shortName": "3.5.1: Describe the procedures for verifying accuracy of customs declarations",
+          "shortName": "3.5.1: Procedures for verifying accuracy",
           "helpText": "Ref 3.5.1",
           "multiline": "yes"
         }
@@ -81,20 +86,24 @@
           "label": "Do you verify the accuracy of customs declarations?",
           "shortName": "3.5.1: Customs declarations accuracy verified",
           "helpText": "Ref 3.5.1",
-          "format": "yesno",
-          "errorMessage": "Select whether you verify the accuracy of customs declarations"
+          "format": "vertical",
+          "errorMessage": "Select whether you verify the accuracy of customs declarations",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Customs routines",
-      "shortName": "Customs routines",
+      "title": "How do you verify the accuracy of customs declarations?",
+      "shortName": "How you verify the accuracy of customs declarations",
       "includeIf": "${cR1 = 1 && cR3 = 0}",
       "fields": [
         {
           "id": "cR4",
           "type": "text",
-          "label": "In what way do you verify the accuracy of customs declarations?",
+          "label": "How do you verify the accuracy of customs declarations?",
           "shortName": "3.5.1: Describe how you verify customs declarations accuracy",
           "helpText": "Ref 3.5.1",
           "multiline": "yes"
@@ -102,68 +111,84 @@
       ]
     },
     {
-      "title": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities (for example, suspicion of theft, burglary or smuggling in connection with customs-related goods)?",
+      "title": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities?",
       "shortName": "Customs routines notification guidelines",
       "fields": [
         {
           "id": "cR5",
           "type": "choice",
-          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities (for example, suspicion of theft, burglary or smuggling in connection with customs-related goods)?",
+          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities?",
           "shortName": "3.5.2a: Company has guidelines on the notification of irregularities",
-          "helpText": "Ref 3.5.2a",
-          "format": "yesno",
-          "errorMessage": "Select whether your company has instructions or guidelines on the notification of irregularities to the competent authorities"
+          "helpText": "Ref 3.5.2a  For example, suspicion of theft, burglary or smuggling in connection with customs-related goods",
+          "format": "vertical",
+          "errorMessage": "Select whether your company has instructions or guidelines on the notification of irregularities to the competent authorities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Are these instructions documented, for example, work instructions, manuals, other guidance documents?",
+      "title": "Are these instructions for notifying irregularities documented?",
       "shortName": "Customs routines notification guidelines",
       "includeIf": "${cR5 = 0}",
       "fields": [
         {
           "id": "cR6",
           "type": "choice",
-          "label": "Are these instructions documented, for example, work instructions, manuals, other guidance documents?",
+          "label": "Are these instructions for notifying irregularities documented?",
           "shortName": "3.5.2a: Guidelines on the notification of irregularities are documented",
-          "helpText": "Ref 3.5.2a",
-          "format": "yesno",
-          "errorMessage": "Select whether these instructions are documented"
+          "helpText": "Ref 3.5.2a For example, work instructions, manuals, other guidance documents",
+          "format": "vertical",
+          "errorMessage": "Select whether these instructions are documented",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Over the last year, have you detected any irregularities (or presumed irregularities) and notified them to the competent authorities?",
+      "title": "Over the last year, have you detected any irregularities and notified them to the competent authorities?",
       "shortName": "Customs routines irregularities detected",
       "fields": [
         {
           "id": "cR7",
           "type": "choice",
-          "label": "Over the last year, have you detected any irregularities (or presumed irregularities) and notified them to the competent authorities?",
+          "label": "Over the last year, have you detected any irregularities and notified them to the competent authorities?",
           "shortName": "3.5.2b: Detected irregularities have been reported",
-          "helpText": "Ref 3.5.2b",
-          "format": "yesno",
-          "errorMessage": "Select whether over the last you have detected any irregularities and notified them to the competent authorities"
+          "helpText": "Ref 3.5.2b This includes any presumed irregularities you may have detected ",
+          "format": "vertical",
+          "errorMessage": "Select whether over the last you have detected any irregularities and notified them to the competent authorities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Do you trade in goods that are subject to economic trade licences, for example, textiles, agricultural goods?",
+      "title": "Do you trade in goods that are subject to economic trade licences?",
       "shortName": "Goods that are subject to economic trade licences",
       "fields": [
         {
           "id": "cR8",
           "type": "choice",
-          "label": "Do you trade in goods that are subject to economic trade licences, for example, textiles, agricultural goods?",
+          "label": "Do you trade in goods that are subject to economic trade licences?",
           "shortName": "3.5.3: Trade in goods subject to economic trade licences",
-          "helpText": "Ref 3.5.3",
-          "format": "yesno",
-          "errorMessage": "Select whether you trade in goods that are subject to economic trade licenses"
+          "helpText": "Ref 3.5.3 For example, textiles or agricultural goods",
+          "format": "vertical",
+          "errorMessage": "Select whether you trade in goods that are subject to economic trade licenses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Goods that are subject to economic trade licences",
+      "title": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
       "shortName": "Goods that are subject to economic trade licences",
       "includeIf": "${cR8 = 0}",
       "fields": [
@@ -172,7 +197,7 @@
           "type": "text",
           "label": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
           "shortName": "3.5.3: Describe your procedures for administering the licences",
-          "helpText": "Ref 3.5.3",
+          "helpText": "Ref  3.5.3 ",
           "multiline": "yes"
         }
       ]
@@ -187,8 +212,12 @@
           "label": "Are you dealing with goods subject to import and export licenses connected to prohibitions and restrictions?",
           "shortName": "3.5.4a: Trade in goods subject to prohibitions and restrictions",
           "helpText": "Ref 3.5.4a",
-          "format": "yesno",
-          "errorMessage": "Select whether you are dealing with goods subject to impot and export licenses connected to prohibitions and restrictions"
+          "format": "vertical",
+          "errorMessage": "Select whether you are dealing with goods subject to impot and export licenses connected to prohibitions and restrictions",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "cR11",
@@ -196,22 +225,26 @@
           "label": "Are you dealing with goods subject to other import and export licenses?",
           "shortName": "3.5.4b: Trade in goods subject to other import and export licenses",
           "helpText": "Ref 3.5.4b",
-          "format": "yesno",
-          "errorMessage": "Select whether you are dealing with goods subject to other import and export licesnses"
+          "format": "vertical",
+          "errorMessage": "Select whether you are dealing with goods subject to other import and export licesnses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Goods that are subject to other import and export licenses",
-      "shortName": "Goods that are subject to other import and export licenses",
+      "title": "Specify the type of goods and any procedures in place for handling those other licenses",
+      "shortName": "Specific goods subject to other import and export licenses",
       "includeIf": "${cR11 = 0}",
       "fields": [
         {
           "id": "cR12",
           "type": "text",
-          "label": "Specify the type of goods and any procedures in place for the handling of those licenses?",
+          "label": "Specify the type of goods and any procedures in place for handling those other licenses",
           "shortName": "3.5.4b: Specify type of goods and procedures",
-          "helpText": "Ref 3.5.4b",
+          "helpText": "Ref 3.5.4b Do not include goods or procedures connected to prohibitions and restrictions",
           "multiline": "yes"
         }
       ]
@@ -226,8 +259,12 @@
           "label": "Are you dealing with goods falling under the Dual Use Regulation (Council Regulation No 428/2009/EC)?",
           "shortName": "3.5.5: Dealing with goods falling under the Dual Use Regulation",
           "helpText": "Ref 3.5.5",
-          "format": "yesno",
-          "errorMessage": "Select whether you are dealing with goods falling under the Dual Use Regulation"
+          "format": "vertical",
+          "errorMessage": "Select whether you are dealing with goods falling under the Dual Use Regulation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -242,13 +279,17 @@
           "label": "Have you implemented an Internal Compliance Programme (ICP)?",
           "shortName": "3.5.5: Internal Compliance Programme (ICP) implemented",
           "helpText": "Ref 3.5.5",
-          "format": "yesno",
-          "errorMessage": "Select whether you have implemented an Internal Compliance Programme"
+          "format": "vertical",
+          "errorMessage": "Select whether you have implemented an Internal Compliance Programme",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "ICP details",
+      "title": "How is your ICP updated?",
       "shortName": "ICP details",
       "includeIf": "${cR14 = 0}",
       "fields": [
@@ -598,6 +639,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-3-part-2"
+  "submitSuccessUrl": "deprecated"
 }
