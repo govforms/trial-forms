@@ -1,0 +1,206 @@
+{
+  "_id": "merchandise-in-baggage-payment",
+  "formName": "Payment for merchandise in baggage",
+  "description": "",
+  "emailTemplateId": "",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Did you take the goods into the UK or out of the UK?",
+      "fields": [
+        {
+          "id": "importExportChoice",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "The goods were taken into the UK (imported)",
+            "The goods were taken out of the UK (exported)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Places of departure and arrival",
+      "includeIf": "${importExportChoice=0}",
+      "fields": [
+        {
+          "id": "countryOfOrigin",
+          "type": "text",
+          "label": "Country of origin",
+          "helpText": "Enter the name of the country you departed from"
+        },
+        {
+          "id": "ukPortOfEntry",
+          "type": "text",
+          "label": "Port of entry",
+          "helpText": "Enter the name of the UK airport or UK port you arrived at"
+        },
+        {
+          "id": "dateOfArrival",
+          "type": "date",
+          "label": "Date you entered the UK",
+          "format": "before today +1",
+          "errorMessage": "You have entered a date in the future"
+        }
+      ]
+    },
+    {
+      "title": "Place of departure",
+      "includeIf": "${importExportChoice=1}",
+      "fields": [
+        {
+          "id": "ukPortOfExit",
+          "type": "text",
+          "label": "UK port of exit",
+          "helpText": "Enter the name of the UK airport or UK port you departed from"
+        },
+        {
+          "id": "dateOfDeparture",
+          "type": "date",
+          "label": "Date you departed from the UK"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "fields": [
+        {
+          "id": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "address",
+          "type": "address",
+          "label": "Your address"
+        },
+        {
+          "id": "eori",
+          "type": "text",
+          "label": "Your EORI number",
+          "helpText": "If you have an EORI number, enter it here.  Otherwise leave blank.",
+          "format": "EORI",
+          "mandatory": "false"
+        },
+        {
+          "id": "vehicleRegNum",
+          "type": "text",
+          "label": "Vehicle registration number",
+          "helpText": "If you entered or left the UK in a vehicle, enter the vehicle registration number here.  Otherwise leave blank."
+        }
+      ]
+    },
+    {
+      "title": "Details of the goods you imported",
+      "includeIf": "${importExportChoice = 0}",
+      "fields": [
+        {
+          "id": "importGoodsDescription",
+          "type": "text",
+          "label": "Description of the goods imported",
+          "multiline": "true"
+        },
+        {
+          "id": "importInvoiceNumber",
+          "type": "text",
+          "label": "Invoice number",
+          "helpText": "Enter an invoice number for the goods you imported here if known.  Otherwise leave blank. "
+        },
+        {
+          "id": "importPurchasePrice",
+          "type": "text",
+          "label": "Total purchase price of the goods",
+          "helpText": "This must be below £900",
+          "format": "sterling",
+          "validIf": "${importPurchasePrice > 0 && importPurchasePrice < 900}",
+          "errorMessage": "Total purchase price must be less than £900"
+        },
+        {
+          "id": "importCustomsDuty",
+          "type": "text",
+          "label": "Customs duty",
+          "format": "sterling"
+        },
+        {
+          "id": "importVAT",
+          "type": "text",
+          "label": "Import VAT",
+          "format": "sterling"
+        },
+        {
+          "id": "importAmountPayable",
+          "type": "text",
+          "label": "Amount Payable",
+          "format": "sterling",
+          "value": "${importCustomsDuty + importVAT}",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Details of the goods you exported",
+      "includeIf": "${importExportChoice = 1}",
+      "fields": [
+        {
+          "id": "exportGoodsDescription",
+          "type": "text",
+          "label": "Description of the goods exported",
+          "multiline": "true"
+        },
+        {
+          "id": "exportInvoiceNumber",
+          "type": "text",
+          "label": "Invoice number",
+          "helpText": "Enter an invoice number for the goods you exported here if known.  Otherwise leave blank. "
+        },
+        {
+          "id": "importPurchasePrice_copy_1",
+          "type": "text",
+          "label": "Total purchase price of the goods",
+          "helpText": "This must be below £900",
+          "format": "sterling",
+          "validIf": "${exportPurchasePrice > 0 && exportPurchasePrice < 900}"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Go to payment provider to make payment",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Progress to payment..."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
