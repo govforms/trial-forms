@@ -107,6 +107,63 @@
       ]
     },
     {
+      "title": "Have you recently set up a new company?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "newCoChoi",
+          "type": "choice",
+          "label": "Have you recently set up a new company?",
+          "helpText": "You are a new company if you have not submitted your company's accounts yet.",
+          "format": "vertical",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Which sector does your organisation belong to?",
+      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
+      "fields": [
+        {
+          "id": "orgTypChoi",
+          "type": "choice",
+          "label": "Which sector does your organisation belong to?",
+          "choices": [
+            "Local council",
+            "Health authority",
+            "Voluntary sector",
+            "Private sector"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your type of organisation?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "orgType",
+          "type": "choice",
+          "label": "What is your type of organisation?",
+          "choices": [
+            "Company",
+            "Statutory body / school",
+            "Committee",
+            "Other organisation"
+          ],
+          "optionHelpText": [
+            "",
+            "This includes a local council, a trust or school governing body",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    {
       "title": "What type of agency or establishment are you applying to register?",
       "fields": [
         {
@@ -768,6 +825,63 @@
       ]
     },
     {
+      "title": "Upload your financial reference from your bank",
+      "includeIf": "${couChoi != 0}",
+      "fields": [
+        {
+          "id": "generatedId_b863f3e5_7b6a_40f7_8450_0845138381a6",
+          "type": "info",
+          "label": "",
+          "infoText": "We'll need a financial reference from your bank to show you have the funds to run the social care establishment or agency you want to register with us.  ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "finRefUpl",
+          "type": "file",
+          "label": "Upload your financial reference from your bank",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your business plan",
+      "includeIf": "${couChoi != 0}",
+      "fields": [
+        {
+          "id": "generatedId_7f5db5a6_ad42_4111_9627_d54f6903f5dc",
+          "type": "info",
+          "label": "",
+          "infoText": "We need to see your business plan to assess your long-term plan to run and maintain the social care establishment or agency you want to register with us.  ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "busPlaUpl",
+          "type": "file",
+          "label": "Upload your business plan",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your cash-flow forecast",
+      "includeIf": "${couChoi != 0}",
+      "fields": [
+        {
+          "id": "generatedId_1a46157a_411f_479e_9613_9b5d39722953",
+          "type": "info",
+          "label": "",
+          "infoText": "We need to see your cash-flow forecast to assess your long-term plan to run and maintain the social care establishment or agency you want to register with us.  ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "casFloForUpl",
+          "type": "file",
+          "label": "Upload your cash-flow forecast",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
       "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
@@ -928,46 +1042,6 @@
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
-        }
-      ]
-    },
-    {
-      "title": "Which sector does your organisation belong to?",
-      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
-      "fields": [
-        {
-          "id": "orgTypChoi",
-          "type": "choice",
-          "label": "Which sector does your organisation belong to?",
-          "choices": [
-            "Local council",
-            "Health authority",
-            "Voluntary sector",
-            "Private sector"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is your type of organisation?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "orgType",
-          "type": "choice",
-          "label": "What is your type of organisation?",
-          "choices": [
-            "Company",
-            "Statutory body / school",
-            "Committee",
-            "Other organisation"
-          ],
-          "optionHelpText": [
-            "",
-            "This includes a local council, a trust or school governing body",
-            "",
-            ""
-          ]
         }
       ]
     },
