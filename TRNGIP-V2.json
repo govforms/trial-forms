@@ -104,7 +104,7 @@
       ]
     },
     {
-      "title": "What is your company name?",
+      "title": "What is your current company name?",
       "shortName": "Company details",
       "includeIf": "${uTRChoice=0}",
       "fields": [
@@ -120,7 +120,7 @@
           "type": "text",
           "label": "Company name",
           "shortName": "Company name",
-          "helpText": "If this name has changed since you last registered enter the new company name",
+          "helpText": "This is your current company name (?)",
           "format": "shortText"
         }
       ]
@@ -157,15 +157,15 @@
       ]
     },
     {
-      "title": "Does your company have another HMRC reference number?",
+      "title": "Do you have any HMRC company reference numbers?",
       "shortName": "HMRC reference number",
       "includeIf": "${referenceChoice=1}",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does your company have another HMRC reference number?",
-          "helpText": "We will use this to identify your company. Your company will have a reference number if it has been registered for an HMRC service. ",
+          "label": "Do you have any HMRC company reference numbers?",
+          "helpText": "Your company will have a reference number if it has been registered for an HMRC service. You only need to provide one.",
           "choices": [
             "Yes",
             "No"
@@ -182,7 +182,7 @@
           "id": "generatedId_14a833e8_12d0_4b3d_afb4_2d342278396f",
           "type": "info",
           "label": "Examples of HMRC reference numbers",
-          "infoText": "So we can identify your company, provide us with one of the following reference numbers:\n\n• an Non-resident Capital Gains Tax reference\n\n• an Annual Tax on Enveloped Dwellings\n\n• an VAT registration number \n\n• any other tax-related HMRC reference",
+          "infoText": "So we can identify your company, provide us with one of the following reference numbers:\n(make radio buttons)\n• an Non-resident Capital Gains Tax reference\n\n• an Annual Tax on Enveloped Dwellings\n\n• an VAT registration number \n\n• any other tax-related HMRC reference",
           "infoType": "long"
         }
       ]
@@ -211,7 +211,7 @@
         {
           "id": "countryOfIncorporation",
           "type": "text",
-          "label": "Enter the country of incorporation",
+          "label": "Country of incorporation",
           "shortName": "Country of incorporation",
           "helpText": "This is where the company was formed"
         },
@@ -230,22 +230,22 @@
           "infoType": "long"
         },
         {
-          "id": "dateOfIncorporation",
-          "type": "date",
-          "label": "Date of incorporation",
-          "helpText": "For example, 01 08 2007"
-        },
-        {
           "id": "countryOfTax",
           "type": "choice",
           "label": "Is this the country of tax residence?",
           "shortName": "Tax residence",
           "helpText": "(help text)",
-          "format": "horizontal",
+          "format": "vertical",
           "choices": [
             "Yes",
             "No"
           ]
+        },
+        {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "Date of incorporation",
+          "helpText": "For example, 01 08 2007"
         }
       ]
     },
@@ -348,7 +348,7 @@
           "id": "businessTelephone",
           "type": "text",
           "label": "Telephone number (optional)",
-          "helpText": "Include the country code for international numbers"
+          "helpText": "Include the country code"
         },
         {
           "id": "businessEmail",
@@ -386,6 +386,7 @@
           "type": "choice",
           "label": "Is your company a member of a group?",
           "shortName": "Group member",
+          "helpText": "(help text)",
           "format": "yesno"
         }
       ]
