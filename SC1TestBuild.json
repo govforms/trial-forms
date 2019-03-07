@@ -882,6 +882,44 @@
       ]
     },
     {
+      "title": "Upload your company's annual accounts",
+      "includeIf": "${couChoi != 0 || newCoChoi != 0}",
+      "fields": [
+        {
+          "id": "generatedId_7af6481a_3f6e_4c2b_833c_2ee3f2830cd8",
+          "type": "info",
+          "label": "",
+          "infoText": "We will need your last two company accounts.\n\nIf you are a new company that has filed last year's account, upload that.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "anAcUpl1",
+          "type": "file",
+          "label": "Upload your company's annual accounts",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your company's last annual reports",
+      "includeIf": "${couChoi != 0 || newCoChoi != 0}",
+      "fields": [
+        {
+          "id": "generatedId_7470500e_f9cf_443b_8940_386e7eafe52b",
+          "type": "info",
+          "label": "",
+          "infoText": "We will need your last two company reports.\n\nIf you are a new company that has filed last year's report, upload that.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "anRep",
+          "type": "file",
+          "label": "Upload your company's last annual reports",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
       "title": "Has your organisation ever had an application refused or registration cancelled to provide children and social care services?",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
@@ -3305,6 +3343,334 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents for your children's home to upload?",
+      "includeIf": "${appType =0}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_9698ec37_be05_4de5_a548_2a0957973a6f",
+          "label": "",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register a children's home:\n\n- Statement of purpose (*all*)\n- Equalities policy (*all*)\n- Copy of certificate of insurance or written confirmation that insurance will be provided (*all*)\n- Children's guide (*All except for holiday schemes*)\n- Missing Child policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Safeguarding policy (*all*)\n- Behaviour management policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Prevention of bullying policy (*All except for Adoption support agency and Voluntary Agency*)\n- Complaints procedure (*All*)\n- Location assessment (*Childrens home only*)",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "chilHomDocsavailable",
+          "label": "",
+          "format": "vertical",
+          "choices": [
+            "Yes, I have these documents",
+            "No, I do not have these documents"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents for your residential family centre to upload?",
+      "includeIf": "${appType =5}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_b8ba616c_c838_43ca_aae2_6b750fd6bbbc",
+          "label": "",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register a *residential family centre*:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Accident and missing resident procedure\n- Safeguarding policy\n- Prevention of bullying policy\n- Complaints procedure",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "resFamPolDocAvai",
+          "label": "",
+          "choices": [
+            "Yes, I have these documents",
+            "No, I do not have these documents"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents for your agency to upload?",
+      "includeIf": "${appType =3 || appType = 2}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_2a3fe497_af37_419f_9ead_b12e264bd309",
+          "label": "",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register a voluntary support agency or voluntary adoption agency :\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Safeguarding policy\n- Complaints procedure",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "agPolDocAvai",
+          "label": "",
+          "choices": [
+            "Yes, I have these documents",
+            "No, I do not have these documents"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents for your fostering agency to upload?",
+      "includeIf": "${appType =1}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_07faf4b7_cae4_4640_b80c_be91f87bae94",
+          "label": "",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register an independent fostering agency:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Missing Child policy\n- Safeguarding policy\n- Behaviour management policy\n- Prevention of bullying policy\n- Complaints procedure",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "adoAgPolDocAvai",
+          "label": "",
+          "choices": [
+            "Yes, I have these documents",
+            "No, I do not have these documents"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents for your holiday scheme to upload?",
+      "includeIf": "${appType =4}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_f285deda_6cc1_4b06_b099_2e6e3f4d88cd",
+          "label": "",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register a residential holiday scheme for disabled children:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Missing Child policy\n- Safeguarding policy\n- Behaviour management policy\n- Prevention of bullying policy\n- Complaints procedure",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "holSchPolDocAvai",
+          "label": "",
+          "choices": [
+            "Yes, I have these documents",
+            "No, I do not have these documents"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's missing child policy",
+      "includeIf": "${appType = 0 || (appType =1 || appType = 4)}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_3ee3481f_cc9b_43ef_929c_168fdb26edca",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "misChiUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your children's home location assessment",
+      "includeIf": "${appType = 0}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_a1b2e429_a97f_4d4b_8f7c_e68f9fecab1a",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "chiHomLocAssUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's complaints procedure",
+      "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_966745e7_cdbe_4d25_8f74_499663782a38",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "estAgCompProcUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your agency's or establishment's prevention of bullying policy",
+      "includeIf": "${(appType = 0 || appType = 1) || (appType = 4 || appType = 5)}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_4636a2b0_1853_415f_89cc_3bb1a5ef3aae",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "bulPolUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your agency's or establishment's behaviour management policy",
+      "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_63b25c27_4d72_4025_a1aa_7460367756cc",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "behManUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's safeguarding policy",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_47c4625f_1ee7_4930_8a66_6e269db78fc0",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "safeGuardUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your agency's or establishment's statement of purpose",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_ba976944_75b7_474f_a566_b09872715d17",
+          "label": "",
+          "infoText": "Your statement should describe what you do, where you do it and who you do it for.\n\nIt can include:\n\n- aims and objectives.\n- services you provide.\n- needs your service meets.\n- your contact details\n- your service's legal entity\n- places where services are provided",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "purpStatUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's children guide",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_25a5c79d_7e75_462e_8799_faea2f00e756",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "chiGuiUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's copy of certificate of insurance",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_49d196ae_0560_4ff9_b4a7_6bcaf8fdacf7",
+          "label": "",
+          "infoText": "By law, all social care providers must have business insurance for their establishment or agency.\n\nIf you are in the process of getting insurance, upload a written statement confirming?????",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "insCertUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your establishment's or agency's equalities policy",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_d1ac38ef_c3d4_44ae_82c7_ba664772abe5",
+          "label": "",
+          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "equaPolUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "Upload your family centre's accident and missing resident procedure",
+      "includeIf": "${appType = 5}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_b9d8cec0_db8c_4a13_a9ef_e93ebb89ef40",
+          "label": "",
+          "infoText": "We need to know your plan for when a resident is injured in an accident or goes missing at your residential family centre.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "file",
+          "id": "famCenMisPerUpl",
+          "label": "",
+          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+        }
+      ]
+    },
+    {
+      "title": "You don't have the right documents to continue with this application",
+      "includeIf": "${holSchPolDocAvai = 1 || (chilHomDocsavailable = 1 || resFamPolDocAvai = 1) || (agPolDocAvai = 1 || adoAgPolDocAvai = 1)}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_30a4f1fa_d495_46c6_8f88_eee46a9697de",
+          "label": "",
+          "infoText": "By law, you must provide the documents for us to consider your application.\n\nWe will reject your application without these documents if you submit it without them.\n\nYou can continue with this application if you plan to come back later to upload the documents.",
+          "infoType": "important"
         }
       ]
     },
