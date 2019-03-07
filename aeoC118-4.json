@@ -1,4 +1,5 @@
 {
+  "_id": "C118-apply-for-authorised-economic-operator-section-4",
   "formName": "C118 section 4 apply for Authorised Economic Operator",
   "description": "",
   "emailTemplateId": "c118_section4_application_confirmation",
@@ -49,98 +50,124 @@
           "id": "finSolv1",
           "type": "choice",
           "label": "Have any bankruptcy or insolvency proceedings been initiated in respect of your company's assets in the last 3 years?",
-          "shortName": "4.1: Bankruptcy or insolvency proceedings initiated in the last 3 years)",
+          "shortName": "4.1: Bankruptcy or insolvency proceedings initiated in the last 3 years",
           "helpText": "Ref 4.1",
-          "format": "yesno",
-          "errorMessage": "Select whether any bankruptcy or insolvency proceedings have been initiated in respect of your company's assets in the last 3 years"
+          "format": "vertical",
+          "errorMessage": "Select whether any bankruptcy or insolvency proceedings have been initiated in respect of your company's assets in the last 3 years",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Financial solvency - Bankruptcy or insolvency proceedings initiated in the last 3 years",
+      "title": "Provide details of the bankruptcy or insolvency proceedings that were initiated in the last 3 years",
       "shortName": "Financial solvency -Bankruptcy or insolvency proceedings initiated",
       "includeIf": "${finSolv1 = 0}",
       "fields": [
         {
           "id": "finSolv2",
           "type": "text",
-          "label": "Provide details of the bankruptcy or insolvancy proceedings that have been initiated in the last 3 years",
-          "shortName": "4.1: Bankruptcy or insolvancy proceedings details",
+          "label": "Provide details of the bankruptcy or insolvency proceedings that were initiated in the last 3 years",
+          "shortName": "4.1: Bankruptcy or insolvency proceedings details",
           "helpText": "Ref 4.1",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Has your company had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years?",
+      "title": "Over the last 3 years, has your business had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments?",
       "shortName": "Financial solvency - financial standing ",
       "fields": [
         {
           "id": "finSolv3",
           "type": "choice",
-          "label": "Has your company had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years?",
+          "label": "Over the last 3 years, has your business had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments?",
           "shortName": "4.2: Consistently good financial standing",
           "helpText": "Ref 4.2",
-          "format": "yesno",
-          "errorMessage": "Select whether your company has had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years"
+          "format": "vertical",
+          "errorMessage": "Select whether your company has had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Financial solvency -  not consistently good financial standing",
+      "title": "Provide full details of your financial standing and why it has not been sufficient to meet financial commitments over the last 3 years",
       "shortName": "Not consistently good financial standing",
       "includeIf": "${finSolv3 = 1}",
       "fields": [
         {
           "id": "finSolv4",
           "type": "text",
-          "label": "Provide full details of your financial standing and why it does not meet the consisitently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments, over the last 3 years",
+          "label": "Provide full details of your financial standing and why it has not been sufficient to meet financial commitments over the last 3 years",
           "shortName": "4.2: Full details of your financial standing",
-          "helpText": "Ref 4.2",
+          "helpText": "Ref 4.2 This means the consisitently good financial standing required within the meaning of Article 26 of the UCC IA ",
           "multiline": "yes"
         }
       ]
     },
     {
-      "title": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
+      "title": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing company?",
       "shortName": "Established for less than 3 years",
       "fields": [
         {
           "id": "lessThan3Years",
           "type": "choice",
-          "label": "Has the company been established for less than 3 years due to an internal reorganisation of a previously existing company (eg incorporation or sale of a business unit)?",
+          "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing company?",
           "shortName": "4.3: Company established less than 3 years",
-          "helpText": "Ref 4.3",
-          "format": "yesno",
-          "errorMessage": "Select whether the company has been established for less than 3 years due to an internal reorganisation of a previously existing company"
+          "helpText": "Ref 4.3 For example, incorporation or sale of a business unit",
+          "format": "vertical",
+          "errorMessage": "Select whether the business has been established for less than 3 years due to an internal reorganisation of a previously existing company",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Financial solvency - newly established company",
+      "title": "Financial solvency - Newly established company",
       "shortName": "Financial solvency - newly established company ",
       "includeIf": "${lessThan3Years = 0}",
       "fields": [
         {
-          "id": "finSolvUploadInfo2",
           "type": "info",
+          "id": "generatedId_a4c5fe6e_52fe_4610_8ddf_0ad8b32b1263",
           "label": "",
-          "infoText": "If you are a newly established business, provide all records and information in relation to your financial status. For example, latest cash flow, balance sheet and profit and loss forecasts approved by the directors/partners/sole proprietor.\n\n We accept documents in formats like pdf and jpeg (5mb maximum).",
+          "infoText": "Provide the following records and information about your financial status:\n\n* latest cash flow\n\n* balance sheet\n\n* profit and loss forecasts \n\nThese must be approved by the directors, partners or sole proprietor.\n\nWe accept documents in formats like PDF and JPEG (5MB maximum per file).",
           "infoType": "noformat"
         },
         {
           "id": "uploadAdd3a",
           "type": "file",
-          "label": "Upload your latest cash flow",
+          "label": "Upload your latest cash flow\n\n",
           "shortName": "4.3: Uploaded cash flow",
-          "helpText": "Ref 4.3"
+          "helpText": "Ref 4.3 "
         },
         {
-          "id": "uploadAdd4",
+          "type": "info",
+          "id": "generatedId_f7b4e0ff_45b3_4b43_8412_8e5c0d418c22",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd5c",
           "type": "file",
           "label": "Upload your latest balance sheet",
           "shortName": "4.3: Uploaded balance sheet",
           "helpText": "Ref 4.3"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_111be541_dc0a_467f_802b_8615070eb63d",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
         },
         {
           "id": "uploadAdd5",
@@ -148,6 +175,13 @@
           "label": "Upload your latest profit and loss forecasts",
           "shortName": "4.3: Uploaded profit and loss forecasts",
           "helpText": "Ref 4.3"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_41cb7f09_0027_4a57_b326_802d8d1b2f43",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
         }
       ]
     },
@@ -160,14 +194,18 @@
           "type": "choice",
           "label": "Is there anything you are aware of that could impact on your financial solvency in the foreseeable future?",
           "shortName": "4.4: Aware of anything that could impact future financial solvency",
-          "helpText": "Ref 4.4",
-          "format": "yesno",
-          "errorMessage": "Select whether there is anything you are aware of that could impact on your financial solvency in the foreseeable future"
+          "helpText": "Ref 4.4 ",
+          "format": "vertical",
+          "errorMessage": "Select whether there is anything you are aware of that could impact on your financial solvency in the foreseeable future",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Impacted financial solvency",
+      "title": "Give details of anything that you are aware of that may impact future financial solvency",
       "shortName": "Impacted financial solvency",
       "includeIf": "${finSolv5 = 0}",
       "fields": [
@@ -191,20 +229,24 @@
           "label": "Do you have a Duty Deferment Account? ",
           "shortName": "4.5: Duty Deferment Account",
           "helpText": "Ref 4.5",
-          "format": "yesno",
-          "errorMessage": "Select whether you have a Duty Deferment Account"
+          "format": "vertical",
+          "errorMessage": "Select whether you have a Duty Deferment Account",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Enter your deferment approval number (DAN)",
+      "title": "Enter your Deferment Approval Number (DAN)",
       "shortName": "Deferment Approval Number (DAN)",
       "includeIf": "${finSolv7 = 0}",
       "fields": [
         {
           "id": "finSolv8",
           "type": "text",
-          "label": "Enter your deferment approval number (DAN)",
+          "label": "Enter your Deferment Approval Number (DAN)",
           "shortName": "4.5: D A N",
           "helpText": "Ref 4.5"
         }
@@ -299,6 +341,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C118-apply-for-authorised-economic-operator-section-4"
+  "submitSuccessUrl": "deprecated"
 }
