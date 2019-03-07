@@ -304,7 +304,7 @@
       ]
     },
     {
-      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "title": "Briefly describe your procedures for back-up, recovery, fallback, archiving and retrieval of your business records",
       "shortName": "Back-up procedures",
       "fields": [
         {
@@ -318,13 +318,13 @@
       ]
     },
     {
-      "title": "Procedures for back-up, recovery, fallback and archiving",
+      "title": "How long is data saved in the production system and how long is this data archived?",
       "shortName": "Storage time",
       "fields": [
         {
           "id": "backUp2",
           "type": "text",
-          "label": "How long is the data saved in the production system and how long is this data archived?",
+          "label": "How long is data saved in the production system and how long is this data archived?",
           "shortName": "3.6.2: Data saved and archived",
           "helpText": "Ref 3.6.2",
           "multiline": "yes"
@@ -332,17 +332,21 @@
       ]
     },
     {
-      "title": "Does the company have a contingency plan for system disruption/failure?",
+      "title": "Does the business have a contingency plan for  IT system disruption or failure?",
       "shortName": "System disruption/failure",
       "fields": [
         {
           "id": "backUp3",
           "type": "choice",
-          "label": "Does the company have a contingency plan for system disruption/failure?",
+          "label": "Does the business have a contingency plan for  IT system disruption or failure?",
           "shortName": "3.6.3: Contingency plan",
           "helpText": "Ref 3.6.3",
-          "format": "yesno",
-          "errorMessage": "Select whether the company has a contingency plan for system disruption/failure"
+          "format": "vertical",
+          "errorMessage": "Select whether the company has a contingency plan for system disruption/failure",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -353,9 +357,9 @@
         {
           "id": "csProtect1",
           "type": "text",
-          "label": "Briefly describe the actions you have taken in order to protect your computer system from unauthorised intrusion, for example, firewall, antivirus programme, password protection?",
+          "label": "Briefly describe the actions you have taken in order to protect your computer system from unauthorised intrusion",
           "shortName": "3.7.1a: Actions taken to protect computer system",
-          "helpText": "Ref 3.7.1a",
+          "helpText": "Ref 3.7.1a For example, firewall, antivirus programme, password protection",
           "multiline": "yes"
         },
         {
@@ -363,7 +367,7 @@
           "type": "text",
           "label": "Has any intrusion testing been carried out, what were the results and were any corrective measures taken?",
           "shortName": "3.7.1b: Intrusion testing",
-          "helpText": "Ref 3.7.1b",
+          "helpText": "Ref 3.7.1b Enter n/a if not applicable ",
           "multiline": "yes"
         },
         {
@@ -372,8 +376,12 @@
           "label": "Have you experienced any IT security incidents in the last year?",
           "shortName": "3.7.1c: IT security incidents",
           "helpText": "Ref 3.7.1c",
-          "format": "yesno",
-          "errorMessage": "Select whether you have experienced any IT security incidents in the last year"
+          "format": "vertical",
+          "errorMessage": "Select whether you have experienced any IT security incidents in the last year",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -408,15 +416,19 @@
           "label": "Do you have guidelines or internal instructions for IT security for your personnel?",
           "shortName": "3.7.2c: IT security guidelines",
           "helpText": "Ref 3.7.2c",
-          "format": "yesno",
-          "errorMessage": "Select whether you have guidelines or internal instructions for IT security for your personnel"
+          "format": "vertical",
+          "errorMessage": "Select whether you have guidelines or internal instructions for IT security for your personnel",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "csProtect7",
           "type": "text",
-          "label": "How do you monitor that IT security measures are followed inside your company?",
+          "label": "How do you monitor that IT security measures are followed inside your business?",
           "shortName": "3.7.2d: Monitoring IT security measures are followed",
-          "helpText": "Ref 3.7.2d",
+          "helpText": "Ref 3.7.2d Enter n/a if not applicable",
           "multiline": "yes"
         }
       ]
@@ -428,9 +440,10 @@
         {
           "id": "csProtect8",
           "type": "text",
-          "label": "Where is your main server located?",
+          "label": "Where is your main server located ?",
           "shortName": "3.7.3a: Main server location`",
-          "helpText": "Ref 3.7.3a"
+          "helpText": "Ref 3.7.3a Explain where in the building it is located",
+          "multiline": "true"
         },
         {
           "id": "csProtect9",
@@ -450,9 +463,9 @@
         {
           "id": "docSec1",
           "type": "text",
-          "label": "Briefly describe what actions have been taken in order to protect information/documents from unauthorised access, abuse, intended destruction and loss (for example, constricted access rights, creation of electronic backup, clear-desk policy)",
+          "label": "Briefly describe what actions have been taken in order to protect information and documents from unauthorised access, abuse, intended destruction and loss ",
           "shortName": "3.8.1: Actions to protect documents",
-          "helpText": "Ref 3.8.1",
+          "helpText": "Ref 3.8.1 For example, constricted access rights, creation of electronic backup, clear-desk policy ",
           "multiline": "yes"
         },
         {
@@ -461,20 +474,24 @@
           "label": "Have there been any cases of unauthorised access to documents in the last year?",
           "shortName": "3.8.2: Unauthorised access to documents",
           "helpText": "Ref 3.8.2",
-          "format": "yesno",
-          "errorMessage": "Select whether there have been any cases of unauthorised access to documents in the last year"
+          "format": "vertical",
+          "errorMessage": "Select whether there have been any cases of unauthorised access to documents in the last year",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Documentation security - incident of unauthorised access occurred",
+      "title": "What measures have been taken to prevent unauthorised access to documents from happening again?",
       "shortName": "Incident of unauthorised access occurred ",
       "includeIf": "${docSec2 = 0}",
       "fields": [
         {
           "id": "docSec3",
           "type": "text",
-          "label": "What measures have been taken to prevent this from happening again?",
+          "label": "What measures have been taken to prevent unauthorised access to documents from happening again?",
           "shortName": "3.8.2: Measures taken to prevent re-occurrence of unauthorised access to documents",
           "helpText": "Ref 3.8.2",
           "multiline": "yes"
@@ -482,8 +499,8 @@
       ]
     },
     {
-      "title": "Documentation security - employees",
-      "shortName": "Documentation security - employees",
+      "title": "Documentation security - Employees",
+      "shortName": "Documentation security - Employees",
       "fields": [
         {
           "id": "docSec4",
@@ -507,44 +524,52 @@
           "label": "Are changes to this data comprehensively documented?",
           "shortName": "3.8.3b: Data changes comprehensively documented",
           "helpText": "Ref 3.8.3b",
-          "format": "yesno",
-          "errorMessage": "Select whether changes to this data are comprehensively documented"
+          "format": "vertical",
+          "errorMessage": "Select whether changes to this data are comprehensively documented",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Documentation security - trade partners",
-      "shortName": "Documentation security - trade partners",
+      "title": "Documentation security - Trade partners",
+      "shortName": "Documentation security - Trade partners",
       "fields": [
         {
           "id": "docSec7",
           "type": "text",
-          "label": "Briefly describe what requirements regarding security and safety you require from your trade partners and other contact persons in order to avoid abuse of information, for example, endangering of the supply chain through unauthorised transfer of shipping details",
+          "label": "Briefly describe what security and safety requirements  you need from your trade partners and other contact persons in order to avoid abuse of information",
           "shortName": "3.8.4a: Security requirements from trade partners",
-          "helpText": "Ref 3.8.4a",
+          "helpText": "Ref 3.8.4a For example, endangering of the supply chain through unauthorised transfer of shipping details",
           "multiline": "yes"
         },
         {
           "id": "docSec8",
           "type": "choice",
-          "label": "Are security declarations/agreements in place with your trade partners?",
-          "shortName": "3.8.4b: Security declarations/agreements in place",
+          "label": "Are security declarations or agreements in place with your trade partners?",
+          "shortName": "3.8.4b: Security declarations or agreements in place",
           "helpText": "Ref 3.8.4b",
-          "format": "yesno",
-          "errorMessage": "Select whether security declarations/agreements are in place with your trade partners"
+          "format": "vertical",
+          "errorMessage": "Select whether security declarations or agreements are in place with your trade partners",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Trade partners - security declarations/agreements not in place",
-      "shortName": "security declarations/agreements not in place",
+      "title": "How do you ensure the safety and security of information or goods with trade partners?",
+      "shortName": "security declarations or agreements not in place",
       "includeIf": "${docSec8 = 1}",
       "fields": [
         {
           "id": "docSec9",
           "type": "text",
-          "label": "How do you ensure the safety and security of information and/or goods?",
-          "shortName": "3.8.4b: How safety and security of information and/or goods is ensured",
+          "label": "How do you ensure the safety and security of information or goods with trade partners?",
+          "shortName": "3.8.4b: How safety and security of information or goods is ensured",
           "helpText": "Ref 3.8.4b",
           "multiline": "yes"
         }
