@@ -1,5 +1,4 @@
 {
-  "_id": "template-ipt-reg-automated",
   "formName": "Apply to register for Insurance Premium Tax",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -10,6 +9,15 @@
     {
       "title": "Details of business to register",
       "shortName": "Business details",
+      "validators": {
+        "errorMessage": "The UTR could not be found or the postcode did not match.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "IPT",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
       "fields": [
         {
           "id": "businessUtr",
@@ -24,6 +32,28 @@
           "label": "Business Address Postcode",
           "shortName": "Postcode",
           "format": "text(5,8)"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Insurance Premium Tax registration for the following business",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business Name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -462,7 +492,18 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/subscription/IPT/utr/{{businessUtr}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZIP2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '5'^ (stripCommas statusChoice)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{firTaxPremDate-year}}-{{firTaxPremDate-month}}-{{firTaxPremDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#tradName}}                       'aboutBusiness':                         {                         'tradingName': '{{tradName}}'                         },                       {{/tradName}}                       'businessContactDetails':                         {                           {{#ukAddress-postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"ukAddress\"}},                           'postCode': '{{ukAddress-postcode}}',                           {{/ukAddress-postcode}}                           {{#ukAddress-country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{ukAddress-line1}}',                           'addressLine2': '{{either ukAddress-line2 ' '}}',                           'addressLine3': '{{ukAddress-line3}}',                           'addressLine4': '{{ukAddress-line4}}',                           'nonUKCountry': '{{ukAddress-country}}',                           {{/ukAddress-country}}                           'telephoneNumber': '{{ukTelNum}}',                           'email': '{{UKBusEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice contactChoice}}',                       {{#ukAddress_copy_1-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"ukAddress\"}},                           'postCode': '{{ukAddress-postcode}}',                           'telephoneNumber': '{{ukTelNum_copy_1}}',                           'email': '{{ukTelNum_copy_1}}'                         },                       {{/ukAddress_copy_1-postcode}}                       {{#ukAddress_copy_1-country}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{ukAddress_copy_1-line1}}',                           'addressLine2': '{{either ukAddress_copy_1-line2 ' '}}',                           'addressLine3': '{{ukAddress_copy_1-line3}}',                           'addressLine4': '{{ukAddress_copy_1-line4}}',                           'nonUKCountry': '{{ukAddress_copy_1-country}}',                           'telephoneNumber': '{{ukTelNum_copy_1}}',                           'email': '{{UKBusEmail_copy_1}}'                         },                         {{/ukAddress_copy_1-country}}                         'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '01'^ (stripCommas roleInBusiness1)}}',                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_RUNOFF',                          'paramValue': '{{yesNoToEtmpChoice rOCho}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_BUSINESS_TYPE',                          'paramValue': '{{lookup ^('0') => '1'; ('1') => '2'; ('2') => '3'; ('3') => '4'; ('4') => '5'; ('5') => '6'^ (stripCommas busDesCho)}}'                         },                         {{#othText}}                         {'paramSequence': '01',                          'paramName': 'A_OTHER_BT',                          'paramValue': '{{othText}}'                         },                         {{/othText}}                         {'paramSequence': '01',                          'paramName': 'A_PYMET',                          'paramValue': 'None'                         },                         {'paramSequence': '01',                          'paramName': 'A_SPEC_ACC',                          'paramValue': '{{stripCommas specAccChoi}}'                         },                         {{#each classChoice}}                         {'paramSequence': '{{@index}}',                          'paramName': 'A_INS_CLASS1',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas valPrems}}'},                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice goConCho}}'},                         {{#transferDate}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{dateToEtmpDate transferDate}}'},                         {{/transferDate}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{previousBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{IPTRegPrev}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                   }                 }"
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZIP2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '5'^ (stripCommas statusChoice)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{firTaxPremDate-year}}-{{firTaxPremDate-month}}-{{firTaxPremDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#tradName}}                       'aboutBusiness':                         {                         'tradingName': '{{tradName}}'                         },                       {{/tradName}}                       'businessContactDetails':                         {                           {{#ukAddress-postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"ukAddress\"}},                           'postCode': '{{ukAddress-postcode}}',                           {{/ukAddress-postcode}}                           {{#ukAddress-country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{ukAddress-line1}}',                           'addressLine2': '{{either ukAddress-line2 ' '}}',                           'addressLine3': '{{ukAddress-line3}}',                           'addressLine4': '{{ukAddress-line4}}',                           'nonUKCountry': '{{ukAddress-country}}',                           {{/ukAddress-country}}                           'telephoneNumber': '{{ukTelNum}}',                           'email': '{{UKBusEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice contactChoice}}',                       {{#ukAddress_copy_1-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"ukAddress\"}},                           'postCode': '{{ukAddress-postcode}}',                           'telephoneNumber': '{{ukTelNum_copy_1}}',                           'email': '{{UKBusEmail_copy_1}}'                         },                       {{/ukAddress_copy_1-postcode}}                       {{#ukAddress_copy_1-country}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{ukAddress_copy_1-line1}}',                           'addressLine2': '{{either ukAddress_copy_1-line2 ' '}}',                           'addressLine3': '{{ukAddress_copy_1-line3}}',                           'addressLine4': '{{ukAddress_copy_1-line4}}',                           'nonUKCountry': '{{ukAddress_copy_1-country}}',                           'telephoneNumber': '{{ukTelNum_copy_1}}',                           'email': '{{UKBusEmail_copy_1}}'                         },                         {{/ukAddress_copy_1-country}}                         'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '01'^ (stripCommas roleInBusiness1)}}',                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_RUNOFF',                          'paramValue': '{{yesNoToEtmpChoice rOCho}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_BUSINESS_TYPE',                          'paramValue': '{{lookup ^('0') => '1'; ('1') => '2'; ('2') => '3'; ('3') => '4'; ('4') => '5'; ('5') => '6'^ (stripCommas busDesCho)}}'                         },                         {{#othText}}                         {'paramSequence': '01',                          'paramName': 'A_OTHER_BT',                          'paramValue': '{{othText}}'                         },                         {{/othText}}                         {'paramSequence': '01',                          'paramName': 'A_PYMET',                          'paramValue': 'None'                         },                         {'paramSequence': '01',                          'paramName': 'A_SPEC_ACC',                          'paramValue': '{{stripCommas specAccChoi}}'                         },                         {{#each classChoice}}                         {'paramSequence': '{{@index}}',                          'paramName': 'A_INS_CLASS1',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas valPrems}}'},                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice goConCho}}'},                         {{#transferDate}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{toEtmpDate 'transferDate'}}'},                         {{/transferDate}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{previousBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{IPTRegPrev}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                   }                 }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/submissions/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -489,5 +530,6 @@
   ],
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "template-ipt-reg-automated"
 }
