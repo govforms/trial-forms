@@ -1,0 +1,288 @@
+{
+  "_id": "Corporate-Interests-Restriction-Revocation",
+  "formName": "Revoke a reporting company",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "cir_revocation_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "dmsFormId": "cirRev",
+    "customerId": "${utrRepComp}",
+    "classificationType": "BT-CTS-CIR",
+    "businessArea": "BT"
+  },
+  "sections": [
+    {
+      "title": "Revocation of a group reporting company for corporate interest restriction",
+      "fields": [
+        {
+          "id": "agent",
+          "type": "choice",
+          "label": "Are you an agent acting on behalf of the company making the revocation?",
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "title": "Enter the agent's details",
+      "includeIf": "${agent=0}",
+      "fields": [
+        {
+          "id": "agentName",
+          "type": "text",
+          "label": "Name of agent",
+          "helpText": "Name of firm"
+        }
+      ]
+    },
+    {
+      "title": "Enter the reporting company's details",
+      "fields": [
+        {
+          "id": "reportingCompany",
+          "type": "text",
+          "label": "Reporting company name",
+          "format": "text",
+          "mandatory": "yes"
+        },
+        {
+          "id": "oRN",
+          "type": "text",
+          "label": "Tax reference - tax office",
+          "helpText": "This is the first three digits of the tax reference number before the space (for example, 123 1234567890)",
+          "format": "text(3,3)",
+          "mandatory": "yes"
+        },
+        {
+          "id": "utrRepComp",
+          "type": "text",
+          "label": "Tax reference - unique taxpayer reference",
+          "helpText": "This is the last 10 digits of the tax reference number after the space (for example, 123 1234567890)",
+          "format": "text(10,10)",
+          "mandatory": "yes"
+        },
+        {
+          "id": "compRef",
+          "type": "text",
+          "label": "Company Registration Number",
+          "helpText": "Enter the 8 character unique reference (this may include numbers and letters)",
+          "format": "text(8,8)"
+        },
+        {
+          "id": "reportingIdentity",
+          "type": "choice",
+          "label": "Is the reporting company (or their authorised agent) submitting this revocation form?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Identity of company making revocation",
+      "includeIf": "${reportingIdentity=1}",
+      "fields": [
+        {
+          "id": "compName",
+          "type": "text",
+          "label": "Company name"
+        },
+        {
+          "id": "jurisId",
+          "type": "text",
+          "label": "Jurisdiction of incorporation",
+          "helpText": "This is optional",
+          "mandatory": "no"
+        },
+        {
+          "id": "compUTR",
+          "type": "text",
+          "label": "Taxpayer reference - tax office",
+          "helpText": "For companies tax resident in the UK, the first 3 digits of a tax reference number before the space (for example, 123 1234567890)",
+          "format": "text(3,3)",
+          "mandatory": "no"
+        },
+        {
+          "id": "tenDigCom",
+          "type": "text",
+          "label": "Taxpayer reference - unique taxpayer reference",
+          "helpText": "For companies tax resident in the UK, the last 10 digits of the tax reference number after the space (for example, 123 1234567890)",
+          "format": "text(10,10)",
+          "mandatory": "no"
+        },
+        {
+          "id": "idCRN",
+          "type": "text",
+          "label": "Company Registration Number",
+          "helpText": "For companies tax resident in the UK, enter the 8 character unique reference (this may include numbers and letters)",
+          "format": "text(8,8)",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Enter the ultimate parent company's details",
+      "fields": [
+        {
+          "id": "ultPName",
+          "type": "text",
+          "label": "Ultimate parent company name",
+          "mandatory": "yes"
+        },
+        {
+          "id": "juris",
+          "type": "text",
+          "label": "Jurisdiction of incorporation",
+          "helpText": "This is optional",
+          "mandatory": "no"
+        },
+        {
+          "id": "uPrn",
+          "type": "text",
+          "label": "Tax reference - tax office",
+          "helpText": "For companies tax resident in the UK, this is the first 3 digits of the tax reference number before the space (for example, 123 1234567890), only if available",
+          "format": "text(3,3)",
+          "mandatory": "no"
+        },
+        {
+          "id": "UtrNoP",
+          "type": "text",
+          "label": "Tax reference - unique taxpayer reference",
+          "helpText": "For companies tax resident in the UK, this is the last 10 digits of the tax reference number after the space (for example, 123 1234567890), only if available.",
+          "format": "text(10,10)",
+          "mandatory": "no"
+        },
+        {
+          "id": "upComRegNo",
+          "type": "text",
+          "label": "Local Company Registration Number",
+          "helpText": "Registration number in jurisdiction of incorporation, only if available",
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Period of account",
+      "fields": [
+        {
+          "id": "accPeriodStartDate",
+          "type": "date",
+          "label": "Start date of worldwide group period of account",
+          "helpText": "For example, 04 01 2017"
+        },
+        {
+          "id": "accPeriodEndDate",
+          "type": "date",
+          "label": "End date of worldwide group period of account",
+          "helpText": "For example, 31 12 2018",
+          "format": "after ${accPeriodStartDate}"
+        }
+      ]
+    },
+    {
+      "title": "Eligible companies who have authorised the notice",
+      "fields": [
+        {
+          "id": "upload",
+          "type": "file",
+          "label": "Upload interest restriction revocation"
+        },
+        {
+          "id": "uploadText",
+          "type": "info",
+          "label": "",
+          "infoText": "Accepted format is PDF"
+        },
+        {
+          "id": "eligible",
+          "type": "choice",
+          "label": "The listed companies constitute at least 50% of the eligible companies",
+          "mandatory": "yes",
+          "choices": [
+            "As the reporting company, I confirm this is true",
+            "As the agent, I confirm that the statement is true according to the information provided by the client"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit the revocation",
+    "shortName": "Sign and submit your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Submitters details",
+        "fields": [
+          {
+            "id": "approverText",
+            "type": "info",
+            "label": "",
+            "infoText": "Tell us who is submitting the revocation."
+          },
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name",
+            "helpText": "If an agent, firm name"
+          },
+          {
+            "id": "declarationJobTitle",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "Example: Finance Director"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoText": "I confirm that the information I have given on this revocation of a reporting company and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this revocation, can lead to both the company and me being prosecuted.",
+            "infoType": "noformat"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoBottom",
+        "type": "info",
+        "label": "",
+        "infoText": "",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4669744/Feedback-Survey-CIR) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk"
+}
