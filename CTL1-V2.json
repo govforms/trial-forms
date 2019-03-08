@@ -1,0 +1,3153 @@
+{
+  "_id": "CTL1-V2",
+  "formName": "Provide details about your contractor loans",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CL1"
+  },
+  "sections": [
+    {
+      "title": "Which details do you have?",
+      "fields": [
+        {
+          "id": "rI1",
+          "type": "info",
+          "label": "",
+          "infoText": "",
+          "infoType": "noformat"
+        },
+        {
+          "id": "utrAvailable",
+          "type": "choice",
+          "label": "Which details do you have?",
+          "helpText": "Select all that apply.",
+          "multivalue": "false",
+          "choices": [
+            "Unique Taxpayer Reference ",
+            "National Insurance number",
+            "No National Insurance number or Unique Taxpayer Reference "
+          ]
+        },
+        {
+          "id": "rI2",
+          "type": "info",
+          "label": "What is a Unique Taxpayer Reference ",
+          "infoText": "* This is a 10-digit number that you will have recieved when you registered for self assessment or set up a limited company.\n\n* Your Unique Taxpayer Reference is on previous tax returns and other documents from HMRC, for example, notices to file a return or payment reminders.",
+          "infoType": "long"
+        },
+        {
+          "id": "rI4",
+          "type": "info",
+          "label": "What is a National Insurance number ",
+          "infoText": "* It’s made up of letters and numbers and never changes.\n\n* It's in the format 2 letters, six numbers, one letter.\n\n* You can find your National Insurance number  on your payslip, on your P60 and on letters about your tax, pension or benefits.\n\n* It is also in the National Insurance section of your HMRC personal tax account.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "What is your National Insurance number?",
+      "shortName": "National insurance number",
+      "includeIf": "${utrAvailable = 0}",
+      "fields": [
+        {
+          "id": "nINO",
+          "type": "text",
+          "label": "What is your National Insurance number?",
+          "shortName": "National insurance number",
+          "helpText": "It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C’.",
+          "format": "text",
+          "mandatory": "false",
+          "errorMessage": "enter your national insurance number, this must be in the format: two letters, six numbers, one letter"
+        }
+      ]
+    },
+    {
+      "title": "What is your Self Assessment Unique Taxpayer Reference?",
+      "shortName": "Your Unique Taxpayer Reference (UTR)",
+      "includeIf": "${utrAvailable = 0}",
+      "fields": [
+        {
+          "id": "uTR",
+          "type": "text",
+          "label": "What is your Self Assessment Unique Taxpayer Reference?",
+          "shortName": "UTR",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and letters about self-assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
+          "format": "number(10,0)",
+          "mandatory": "false",
+          "errorMessage": "enter your UTR, this must be 10 numbers"
+        }
+      ]
+    },
+    {
+      "title": "You cannot use this service",
+      "includeIf": "${utrAvailable = 2}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_00bdcb3b_1ea9_43a8_a819_e1d86be6ed5b",
+          "type": "info",
+          "label": "",
+          "infoText": "You must enter a Unique Taxpayer Reference or a National Insurance number to use this service.",
+          "infoType": "important"
+        },
+        {
+          "id": "generatedId_38357c0b_3020_4370_8a16_b80721f2c377",
+          "type": "info",
+          "label": "",
+          "infoText": "###Where to find your National Insurance number",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_2a936301_a7e1_491f_8333_629eb44948be",
+          "type": "info",
+          "label": "Where to find your National Insurance number",
+          "infoText": "You can find your National Insurance number  on your payslip, on your P60 and on letters about your tax, pension or benefits. It is also in the National Insurance section of your HMRC personal tax account.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_3041fa6c_44e1_4a46_896b_9ffd695e57a1",
+          "type": "info",
+          "label": "If you cannot find your National Insurance number",
+          "infoText": "Go to [Find a lost National Insurance number](https://www.gov.uk/lost-national-insurance-number) on the gov.uk website.",
+          "infoType": "long"
+        },
+        {
+          "id": "generatedId_32c7df12_04bf_48f4_8eef_458c47ed9b11",
+          "type": "info",
+          "label": "",
+          "infoText": "###Where to find your Unique Taxpayer Reference",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_e87e4728_b1f0_4024_8b0a_c45331360945",
+          "type": "info",
+          "label": "Where to find your Unique Taxpayer Reference",
+          "infoText": "This is a 10-digit number, for example 1234567890. You will have received this number when you registered for self assessment or set up a limited company.\nIt will be on tax returns and other letters about self assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ab3f5707_7993_48e0_9d90_1ffbb542ddb9",
+          "type": "info",
+          "label": "If you cannot find your Unique Taxpayer Reference",
+          "infoText": "[Visit the Self Assessment enquiries page to request your Unique Taxpayer Reference](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/self-assessment) if you cannot find any documents from HMRC.\n\nIf you have a limited company you can [request your Corporation Tax UTR online](https://www.tax.service.gov.uk/ask-for-copy-of-your-corporation-tax-utr). HMRC will send it to the business address that is registered with Companies House.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "What is your full name?",
+      "shortName": "About you",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Enter your title",
+          "shortName": "title",
+          "format": "text(0,50)",
+          "mandatory": "true",
+          "displayWidth": "xs",
+          "errorMessage": "enter your title, for example, Dr, Mr, Mrs etc."
+        },
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name",
+          "shortName": "First name",
+          "mandatory": "true",
+          "errorMessage": "enter your first name"
+        },
+        {
+          "id": "middleName",
+          "type": "text",
+          "label": "Middle name",
+          "shortName": "Middle name",
+          "mandatory": "false",
+          "errorMessage": "enter your middle name or names"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name",
+          "mandatory": "true",
+          "errorMessage": "enter your last name"
+        }
+      ]
+    },
+    {
+      "title": "What is your address?",
+      "shortName": "Address",
+      "fields": [
+        {
+          "id": "ukAddress",
+          "type": "address",
+          "label": "",
+          "shortName": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "contactNumberUK",
+          "type": "text",
+          "label": "Your telephone number",
+          "helpText": "Enter your telephone number here",
+          "format": "telephoneNumber",
+          "mandatory": "false",
+          "errorMessage": "Enter a valid telephone number"
+        }
+      ]
+    },
+    {
+      "title": "Communicate with HMRC by email",
+      "shortName": "Email communications",
+      "fields": [
+        {
+          "id": "emailInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "We need your consent before using email to communicate. By supplying your email address you consent to the use of email communication.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emailInfo3",
+          "type": "info",
+          "label": "",
+          "infoText": "If you leave this section blank you are opting out of communicating with HMRC by email.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address (optional)",
+          "format": "email",
+          "mandatory": "false",
+          "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+        },
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "Read the HMRC privacy policy",
+          "infoText": "Read the [HMRC Privacy policy](https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you) here \n\n You will need to press back in your browser to get back to this form",
+          "infoType": "long",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Do you have an agent who will be representing you for this settlement?",
+      "shortName": "About agent",
+      "fields": [
+        {
+          "id": "agentChoice",
+          "type": "choice",
+          "label": "Do you have an agent who will be representing you for this settlement?",
+          "mandatory": "true",
+          "choices": [
+            "Yes I have an agent representing me for this settlement",
+            "No I do not have an agent"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your agent's details",
+      "shortName": "Agent details",
+      "includeIf": "${agentChoice = 0}",
+      "fields": [
+        {
+          "id": "agentTitle",
+          "type": "text",
+          "label": "Title",
+          "shortName": "title",
+          "format": "text(0,50)",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "agentFirstName",
+          "type": "text",
+          "label": "First name",
+          "shortName": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "agentLastName",
+          "type": "text",
+          "label": "Last name",
+          "shortName": "Last name"
+        },
+        {
+          "id": "organisationName",
+          "type": "text",
+          "label": "Agent organisation name",
+          "shortName": "Organisation name",
+          "errorMessage": "enter the name of the organisation your agent works for"
+        },
+        {
+          "id": "agentCode",
+          "type": "text",
+          "label": "Enter your agent's code",
+          "helpText": "For example: for self assessment the agent code is SA followed by 8 numerical digits",
+          "mandatory": "false"
+        },
+        {
+          "id": "agentUkAddress",
+          "type": "address",
+          "label": "Enter your agent's address",
+          "shortName": "Agents UK address",
+          "international": "true",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "fields": [
+        {
+          "id": "schemeName1",
+          "type": "text",
+          "label": "Scheme name (optional)",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo1",
+          "type": "text",
+          "label": "Scheme reference number (optional)",
+          "format": "positiveWholeNumber",
+          "mandatory": "false",
+          "errorMessage": "You must enter 25 characters"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 1 number of years",
+      "fields": [
+        {
+          "id": "yearNo",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo >=1 && yearNo<21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo >=1}",
+      "repeatsMin": "${yearNo}",
+      "repeatsMax": "${yearNo}",
+      "fields": [
+        {
+          "id": "generatedId_e556ff53_91ab_4aba_bb30_e1e7f0be0256",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_5389dbee_9415_4ee3_a106_873e02369641",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice1",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?\n",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "fields": [
+        {
+          "id": "scheme2",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme2 = 0}",
+      "fields": [
+        {
+          "id": "schemeName2",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo2",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 2 number of years",
+      "includeIf": "${scheme2 = 0}",
+      "fields": [
+        {
+          "id": "yearNo2",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo2 >=1 && yearNo2 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo2 >=1}",
+      "repeatsMin": "${yearNo2}",
+      "repeatsMax": "${yearNo2}",
+      "fields": [
+        {
+          "id": "generatedId_ca2f36d3_574f_48ca_a28e_3f785905c5dc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_f4a65353_2401_40c3_a7f3_10853687e0f4",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_1",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_1",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_1",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice2",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme2 = 0}",
+      "fields": [
+        {
+          "id": "scheme3",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme3 = 0}",
+      "fields": [
+        {
+          "id": "schemeName3",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo3",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 3 number of years",
+      "includeIf": "${scheme3 = 0}",
+      "fields": [
+        {
+          "id": "yearNo3",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo3 >=1 && yearNo3 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo3 >=1}",
+      "repeatsMin": "${yearNo3}",
+      "repeatsMax": "${yearNo3}",
+      "fields": [
+        {
+          "id": "generatedId_cd2163c5_7371_4b6f_a34b_ce7d962cc287",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_1f417597_7473_4064_8e1b_c78e55802ec8",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_2",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_2",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_2",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo3",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice3",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme3 = 0}",
+      "fields": [
+        {
+          "id": "scheme4",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme4 = 0}",
+      "fields": [
+        {
+          "id": "schemeName4",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo4",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 4 number of years",
+      "includeIf": "${scheme4 = 0}",
+      "fields": [
+        {
+          "id": "yearNo4",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo4 >=1 && yearNo4 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo4 >=1}",
+      "repeatsMin": "${yearNo4}",
+      "repeatsMax": "${yearNo4}",
+      "fields": [
+        {
+          "id": "generatedId_b7bf8f26_3840_4f7d_a77a_529605246a89",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_fa55c6aa_909a_43ff_8ce6_7cb2fecaeeba",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_3",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_3",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_3",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo4",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice4",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme4 = 0}",
+      "fields": [
+        {
+          "id": "scheme5",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme5 = 0}",
+      "fields": [
+        {
+          "id": "schemeName5",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo5",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 5 number of years",
+      "includeIf": "${scheme5 = 0}",
+      "fields": [
+        {
+          "id": "yearNo5",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo5 >=1 && yearNo5 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo5 >=1}",
+      "repeatsMin": "${yearNo5}",
+      "repeatsMax": "${yearNo5}",
+      "fields": [
+        {
+          "id": "generatedId_1dbe3d6d_d5e1_4ea2_9b64_8a0e109cef59",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_d539370d_6a7e_402f_b302_67b2e728d22e",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_4",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_4",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_4",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo5",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice5",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme5 = 0}",
+      "fields": [
+        {
+          "id": "scheme6",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme6 = 0}",
+      "fields": [
+        {
+          "id": "schemeName6",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo6",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 6 number of years",
+      "includeIf": "${scheme6 = 0}",
+      "fields": [
+        {
+          "id": "yearNo6",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo6 >=1 && yearNo6 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo6 >=1}",
+      "repeatsMin": "${yearNo6}",
+      "repeatsMax": "${yearNo6}",
+      "fields": [
+        {
+          "id": "generatedId_1bd38667_4316_4206_b2bd_bda8c439a0bc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_a1ad224a_4ab0_43c6_b43d_5e51f3cbf353",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_5",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_5",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_5",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo6",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice6",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme6 = 0}",
+      "fields": [
+        {
+          "id": "scheme7",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme7 = 0}",
+      "fields": [
+        {
+          "id": "schemeName7",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo7",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 7 number of years",
+      "includeIf": "${scheme7 = 0}",
+      "fields": [
+        {
+          "id": "yearNo7",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo7 >=1 && yearNo7 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo7 >=1}",
+      "repeatsMin": "${yearNo7}",
+      "repeatsMax": "${yearNo7}",
+      "fields": [
+        {
+          "id": "generatedId_3ddaeea7_07f6_4301_acd4_7b397f3ed221",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_34d00203_518b_4018_8bec_b18650f6ef70",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_6",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_6",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_6",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo7",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice7",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme7 = 0}",
+      "fields": [
+        {
+          "id": "scheme8",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme8 = 0}",
+      "fields": [
+        {
+          "id": "schemeName8",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo8",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 8 number of years",
+      "includeIf": "${scheme8 = 0}",
+      "fields": [
+        {
+          "id": "yearNo8",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo8 >=1 && yearNo8 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo8 >=1}",
+      "repeatsMin": "${yearNo8}",
+      "repeatsMax": "${yearNo8}",
+      "fields": [
+        {
+          "id": "generatedId_ab3fdd90_a2c1_4fad_846c_1269fa28ef48",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_f455ff08_d58a_4819_95d0_349fe2d54da7",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_7",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_7",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_7",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo8",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice8",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme8 = 0}",
+      "fields": [
+        {
+          "id": "scheme9",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme9 = 0}",
+      "fields": [
+        {
+          "id": "schemeName9",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo9",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 9 number of years",
+      "includeIf": "${scheme9 = 0}",
+      "fields": [
+        {
+          "id": "yearNo9",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo9 >=1 && yearNo9 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo9 >=1}",
+      "repeatsMin": "${yearNo9}",
+      "repeatsMax": "${yearNo9}",
+      "fields": [
+        {
+          "id": "generatedId_f7f6b5ca_87ef_4492_915c_4e644bed35ca",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ad4cda6c_547f_4ff6_acae_bf797617260c",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_8",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_8",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_8",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo9",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice9",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme9 = 0}",
+      "fields": [
+        {
+          "id": "scheme10",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "schemeName10",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo10",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 10 number of years",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "yearNo10",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo10 >=1 && yearNo10 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo10 >=1}",
+      "repeatsMin": "${yearNo10}",
+      "repeatsMax": "${yearNo10}",
+      "fields": [
+        {
+          "id": "generatedId_3e87c07e_aa89_4097_8cfd_8760aa683fb1",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_222fbbf1_9ca7_4371_b509_fc0abb40c9c3",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_9",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_9",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_9",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo10",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice10",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme10 = 0}",
+      "fields": [
+        {
+          "id": "scheme11",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "schemeName11",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo11",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 11 number of years",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "yearNo11",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo11 >=1 && yearNo11 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo11 >=1}",
+      "repeatsMin": "${yearNo11}",
+      "repeatsMax": "${yearNo11}",
+      "fields": [
+        {
+          "id": "generatedId_2ec2258a_7430_4ea8_9aa1_60884cdabbc5",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_ad468a0f_3530_4049_a500_ac4833196edc",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_10",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_10",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_10",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo11",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice11",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme11 = 0}",
+      "fields": [
+        {
+          "id": "scheme12",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "schemeName12",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo12",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 12 number of years",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "yearNo12",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo12 >=1 && yearNo12 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo12 >=1}",
+      "repeatsMin": "${yearNo12}",
+      "repeatsMax": "${yearNo12}",
+      "fields": [
+        {
+          "id": "generatedId_d9784056_1bc4_46d8_bf50_0cbb5cb9e35d",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_dfcc7e0c_baec_4b6e_9c53_22088670db35",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_11",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_11",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_11",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo12",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice12",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme12 = 0}",
+      "fields": [
+        {
+          "id": "scheme13",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 13 number of years",
+      "includeIf": "${scheme13 = 0}",
+      "fields": [
+        {
+          "id": "yearNo13",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo13 >=1 && yearNo13 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo13 >=1}",
+      "repeatsMin": "${yearNo13}",
+      "repeatsMax": "${yearNo13}",
+      "fields": [
+        {
+          "id": "generatedId_280a3d98_5ec2_4e24_9f24_a30266cd538e",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_92def486_b9ae_4b0a_9440_54a5f9aa0661",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_12",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_12",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_12",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo13",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice13",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme13 = 0}",
+      "fields": [
+        {
+          "id": "scheme14",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "schemeName14",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo14",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 14 number of years",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "yearNo14",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo14 >=1 && yearNo14 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo14 >=1}",
+      "repeatsMin": "${yearNo14}",
+      "repeatsMax": "${yearNo14}",
+      "fields": [
+        {
+          "id": "generatedId_f0c8e54d_76bd_40c7_9cec_ff44fd9dcee8",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_25ced4d4_1087_4693_9ee4_ffffcc504668",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_13",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_13",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_13",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo14",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice14",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme14 = 0}",
+      "fields": [
+        {
+          "id": "scheme15",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "schemeName15",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo15",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 15 number of years",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "yearNo15",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo15 >=1 && yearNo15 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo15 >=1}",
+      "repeatsMin": "${yearNo15}",
+      "repeatsMax": "${yearNo15}",
+      "fields": [
+        {
+          "id": "generatedId_de209d5e_9357_4fed_a0b5_ea65075fcf1a",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_715d8995_d20b_43ae_891e_a9aa9e23c173",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_14",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_14",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_14",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo15",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice15",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme15 = 0}",
+      "fields": [
+        {
+          "id": "scheme16",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "schemeName16",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo16",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 16 number of years",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "yearNo16",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo16 >=1 && yearNo16 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo16 >=1}",
+      "repeatsMin": "${yearNo16}",
+      "repeatsMax": "${yearNo16}",
+      "fields": [
+        {
+          "id": "generatedId_4bbb5f5a_421c_428d_9210_1bc919ef69a9",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_4e6bd05b_82b4_4e67_a455_a36b1f98a0b4",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_15",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_15",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_15",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo16",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice16",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme16 = 0}",
+      "fields": [
+        {
+          "id": "scheme17",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "schemeName17",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo17",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 17 number of years",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "yearNo17",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo17 >=1 && yearNo17 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo17 >=1}",
+      "repeatsMin": "${yearNo17}",
+      "repeatsMax": "${yearNo17}",
+      "fields": [
+        {
+          "id": "generatedId_6c404aef_53e4_4bc8_ac0e_450b25f713bf",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_f04a940b_d708_49c0_b363_adc7acae0856",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_17a",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_17a",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_17a",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo17",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice17",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme17 = 0}",
+      "fields": [
+        {
+          "id": "scheme18",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "schemeName18",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo18",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 18 number of years",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "yearNo18",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo18 >=1 && yearNo18 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo18 >=1}",
+      "repeatsMin": "${yearNo18}",
+      "repeatsMax": "${yearNo18}",
+      "fields": [
+        {
+          "id": "generatedId_1b56e8e9_0a83_411f_b9b7_29cfbafeaa1e",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_b88bfce7_6215_422f_8808_a9be97aa7d7b",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_16",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_16",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_16",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo18",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice18",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme18 = 0}",
+      "fields": [
+        {
+          "id": "scheme19",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "schemeName19",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo19",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 19 number of years",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "yearNo19",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo19 >=1 && yearNo19 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo19 >=1}",
+      "repeatsMin": "${yearNo19}",
+      "repeatsMax": "${yearNo19}",
+      "fields": [
+        {
+          "id": "generatedId_47458440_83a5_498d_afe0_78bd35985147",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_5abc807c_076e_4273_ae70_2e0c33add12e",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_17",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_17",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_17",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo19",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice19",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Do you need to tell us about another scheme?",
+      "includeIf": "${scheme19 = 0}",
+      "fields": [
+        {
+          "id": "scheme20",
+          "type": "choice",
+          "label": "Do you need to tell us about another scheme?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Scheme details",
+      "shortName": "Scheme details",
+      "includeIf": "${scheme20 = 0}",
+      "fields": [
+        {
+          "id": "schemeName20",
+          "type": "text",
+          "label": "Scheme name",
+          "shortName": "Scheme name",
+          "errorMessage": "enter your scheme name"
+        },
+        {
+          "id": "schRefNo20",
+          "type": "text",
+          "label": "Scheme reference number",
+          "helpText": "Can be up to 25 Alpha numeric characters",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "How many years do you need to tell us about regarding this scheme?",
+      "shortName": "Scheme 20 number of years",
+      "includeIf": "${scheme20 = 0}",
+      "fields": [
+        {
+          "id": "yearNo20",
+          "type": "text",
+          "label": "How many years do you need to tell us about regarding this scheme?",
+          "format": "number(2,0)",
+          "displayWidth": "xs",
+          "validIf": "${yearNo20 >=1 && yearNo20 <21}",
+          "errorMessage": "Enter a number of years between one and twenty"
+        }
+      ]
+    },
+    {
+      "title": "Year $n",
+      "shortName": "Year $n",
+      "includeIf": "${yearNo20 >=1}",
+      "repeatsMin": "${yearNo20}",
+      "repeatsMax": "${yearNo20}",
+      "fields": [
+        {
+          "id": "generatedId_8c1bd2e3_8ec5_42ee_b753_c89d566288fc",
+          "type": "info",
+          "label": "",
+          "infoText": "The tax year cannot be before 05/04/2000 or after 05/04/2019",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_cc63e748_ebf8_4c56_8a61_b52f75cd5e62",
+          "type": "info",
+          "label": "What do I enter on the form?",
+          "infoText": "The tax year ends on the fifth of April every year.\n\n* For example, you are in a scheme between 06/04/2000 and 05/04/2001.\n\n* In this example you would need to enter 2001",
+          "infoType": "long"
+        },
+        {
+          "id": "year_copy_18",
+          "type": "text",
+          "label": "Tell us the tax year where you recieved the loan",
+          "helpText": "Enter the tax year ending 5 April date in the format YYYY",
+          "format": "number(4,0)",
+          "displayWidth": "xs",
+          "errorMessage": "The year must be in the format YYYY and between 2000 and 2019"
+        },
+        {
+          "id": "totalLoanAmount1_copy_18",
+          "type": "text",
+          "label": "Total loan amount for the year",
+          "format": "sterling",
+          "mandatory": "true",
+          "shortname": "Loan amount"
+        },
+        {
+          "id": "engagementType1_copy_18",
+          "type": "choice",
+          "label": "Engagement Type",
+          "format": "vertical",
+          "mandatory": "true",
+          "choices": [
+            "Employed",
+            "Self-employed",
+            "Partnership"
+          ]
+        },
+        {
+          "id": "schemeInfo20",
+          "type": "info",
+          "label": "",
+          "infoText": "Inheritance Tax (IHT) can be included in the settlement on the basis of the loans being written off or released within 30 days of a settlement being agreed.  \n\nNo further evidence will be required by HMRC of this.  \n\nIf the loans aren’t written off or released within 30 days of a settlement being agreed, you can contact HMRC so that the IHT position can be reviewed.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "writeOffChoice20",
+          "type": "choice",
+          "label": "Do you wish to have IHT included in the settlement on this basis?",
+          "format": "yesno",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Other schemes",
+      "fields": [
+        {
+          "id": "moreSchemesQuestion",
+          "type": "choice",
+          "label": "Are you or have you been involved in other disguised remuneration schemes that you have not told us about on this form?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Number of other schemes ",
+      "includeIf": "${moreSchemesQuestion = 0}",
+      "fields": [
+        {
+          "id": "howManyOthers",
+          "type": "text",
+          "label": "How many other disguised remuneration schemes have you been involved in that you haven't told us about on this form? ",
+          "format": "number(2,0)",
+          "validIf": "${howManyOthers >0 && howManyOthers <21}"
+        }
+      ]
+    },
+    {
+      "title": "Other scheme $n",
+      "includeIf": "${moreSchemesQuestion = 0}",
+      "repeatsMin": "${howManyOthers}",
+      "repeatsMax": "${howManyOthers}",
+      "fields": [
+        {
+          "id": "otherSchemeName",
+          "type": "text",
+          "label": "Scheme name"
+        },
+        {
+          "id": "otherSchemeRef",
+          "type": "text",
+          "label": "Scheme Reference number",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "I have now stopped using tax avoidance schemes",
+      "fields": [
+        {
+          "id": "stoppedChoice",
+          "type": "choice",
+          "label": "I have now stopped using tax avoidance schemes",
+          "helpText": "If you agree, select yes",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your domicile",
+      "fields": [
+        {
+          "id": "domChoice",
+          "type": "choice",
+          "label": "What is your country of domicile?",
+          "choices": [
+            "UK",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Non-UK domicile",
+      "includeIf": "${domChoice = 1}",
+      "fields": [
+        {
+          "id": "otherDom",
+          "type": "text",
+          "label": "Enter your country of domicile here"
+        },
+        {
+          "id": "priorUKDate",
+          "type": "date",
+          "label": "The date you arrived in the UK prior to receiving the loan(s) or date of birth if resident from birth"
+        },
+        {
+          "id": "leftUKDate",
+          "type": "date",
+          "label": "The date you left the UK after receiving the loan(s)",
+          "mandatory": "false",
+          "validIf": "${leftUKDate > priorUKDate}"
+        },
+        {
+          "id": "otherDatesChoice",
+          "type": "choice",
+          "label": "Apart from the dates shown above have you resided in the UK for any other periods?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many other periods have you resided in the UK?",
+      "includeIf": "${domChoice = 1}",
+      "fields": [
+        {
+          "id": "otherPeriods",
+          "type": "text",
+          "label": "How many other periods have you resided in the UK?",
+          "format": "number(20,0)"
+        }
+      ]
+    },
+    {
+      "title": "Non-UK domicile visits to the UK",
+      "includeIf": "${domChoice = 1 && otherDatesChoice = 0}",
+      "repeatsMin": "${otherPeriods}",
+      "repeatsMax": "${otherPeriods}",
+      "fields": [
+        {
+          "id": "arrivalDate",
+          "type": "date",
+          "label": "Arrival date",
+          "shortName": "Arrival date"
+        },
+        {
+          "id": "depatureDate",
+          "type": "date",
+          "label": "Departure date",
+          "shortName": "Departure date"
+        },
+        {
+          "id": "reason",
+          "type": "text",
+          "label": "Reason for visit",
+          "shortName": "Reason for visit"
+        }
+      ]
+    },
+    {
+      "title": "Request to pay by instalments",
+      "fields": [
+        {
+          "id": "instalConsider",
+          "type": "choice",
+          "label": "I will need HMRC to consider an instalment offer",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "belowFiftyK",
+          "type": "choice",
+          "label": "My current annual income is",
+          "choices": [
+            "Under £30,000",
+            "Between £30,000 and £50,000",
+            "Over £50,000"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Payment information",
+      "fields": [
+        {
+          "id": "howMuchWadge",
+          "type": "text",
+          "label": "What lump sum can you pay within 30 days?",
+          "format": "sterling"
+        },
+        {
+          "id": "monthlyPayments",
+          "type": "text",
+          "label": "What monthly payments can you afford to pay after 30 days?",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Income details",
+      "includeIf": "${belowFiftyK = 2 || (stoppedChoice =1 && belowFiftyK =0) || (stoppedChoice =1 && belowFiftyK =1) || (stoppedChoice =1 && belowFiftyK =2)}",
+      "fields": [
+        {
+          "id": "generatedId_7936611d_f55c_4b93_956e_29332ca30357",
+          "type": "info",
+          "label": "",
+          "infoText": "Monthly Income",
+          "infoType": "noformat"
+        },
+        {
+          "id": "salary",
+          "type": "text",
+          "label": "Salary or earnings",
+          "format": "sterling"
+        },
+        {
+          "id": "otherIncome",
+          "type": "text",
+          "label": "Other income",
+          "format": "sterling",
+          "mandatory": "false"
+        },
+        {
+          "id": "totalIncome",
+          "type": "text",
+          "label": "Total",
+          "format": "sterling",
+          "value": "${salary + otherIncome}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Expenditure details",
+      "includeIf": "${belowFiftyK = 2 || (stoppedChoice =1 && belowFiftyK =0) || (stoppedChoice =1 && belowFiftyK =1) || (stoppedChoice =1 && belowFiftyK =2)}",
+      "fields": [
+        {
+          "id": "generatedId_afe8c95f_0fa5_45a1_b528_1ce29d454fcb",
+          "type": "info",
+          "label": "Monthly expenses",
+          "infoText": "Do not include any payment made by members of your household",
+          "infoType": "noformat"
+        },
+        {
+          "id": "mortgage",
+          "type": "text",
+          "label": "Mortgage, rent or boarding",
+          "helpText": "including any second mortgage",
+          "format": "sterling"
+        },
+        {
+          "id": "bills",
+          "type": "text",
+          "label": "Household bills",
+          "format": "sterling"
+        },
+        {
+          "id": "totalOut",
+          "type": "text",
+          "label": "Total",
+          "format": "sterling",
+          "value": "${mortgage + bills}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Disposable income",
+      "includeIf": "${belowFiftyK = 2 || (stoppedChoice =1 && belowFiftyK =0) || (stoppedChoice =1 && belowFiftyK =1) || (stoppedChoice =1 && belowFiftyK =2)}",
+      "fields": [
+        {
+          "id": "generatedId_93c60c32_9264_4c0b_bb80_e8877f0b8dfa",
+          "type": "info",
+          "label": "Income less expenditure",
+          "infoText": "Income less expenditure",
+          "infoType": "noformat"
+        },
+        {
+          "id": "disposableIncome",
+          "type": "text",
+          "label": "Disposable income",
+          "format": "sterling",
+          "value": "${totalIncome - totalOut}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Do you have any other outstanding loans or debts?",
+      "fields": [
+        {
+          "id": "othLoan",
+          "type": "choice",
+          "label": "Do you have any other outstanding loans or debts?",
+          "helpText": "These can include but are not limited to credit cards, payday loans, bank loans",
+          "choices": [
+            "Yes I have other outstanding debts or loans",
+            "No I have no other outstanding debts or loans"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other debts",
+      "includeIf": "${othLoan = 0}",
+      "fields": [
+        {
+          "id": "loansOut",
+          "type": "text",
+          "label": "Loan amounts outstanding",
+          "format": "sterling"
+        },
+        {
+          "id": "finPayloan",
+          "type": "date",
+          "label": "date of final payment"
+        },
+        {
+          "id": "otherDebtsOutstanding",
+          "type": "text",
+          "label": "Other debts outstanding",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Do you have any other payment arrangements?",
+      "includeIf": "${othLoan = 0}",
+      "fields": [
+        {
+          "id": "otherPaymentsInPlace",
+          "type": "choice",
+          "label": "Do you have any other payment arrangements?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other arrangements",
+      "includeIf": "${otherPaymentsInPlace = 0}",
+      "fields": [
+        {
+          "id": "upToDate",
+          "type": "choice",
+          "label": "Have you kept up to date with these payments?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "affordIt",
+          "type": "choice",
+          "label": "Can you confirm that you are able to fund a settlement offer on top of these arrangements?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Not up to date with payments",
+      "includeIf": "${otherPaymentsInPlace = 0 && upToDate = 1}",
+      "fields": [
+        {
+          "id": "whyDefault",
+          "type": "text",
+          "label": "Reason for defaulting on arrangement payments",
+          "format": "text(0,250)"
+        }
+      ]
+    },
+    {
+      "title": "How many certificates of tax deposit do you have?",
+      "fields": [
+        {
+          "id": "certPurchQues",
+          "type": "choice",
+          "label": "Have you purchased one or more certificates of tax deposit (CTD)?",
+          "choices": [
+            "Between 1 to 20",
+            "21 or more",
+            "None"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Number of certificates",
+      "includeIf": "${certPurchQues = 0}",
+      "fields": [
+        {
+          "id": "noCerts",
+          "type": "text",
+          "label": "How many certificates of tax deposit have you purchased?",
+          "format": "positiveNumber(2,0)",
+          "validIf": "{noCerts >=1 && noCerts <=20}"
+        }
+      ]
+    },
+    {
+      "title": "Certificate of tax deposit $n",
+      "includeIf": "${certPurchQues = 0}",
+      "repeatsMin": "${noCerts}",
+      "repeatsMax": "${noCerts}",
+      "fields": [
+        {
+          "id": "ctdRefNo",
+          "type": "text",
+          "label": "CTD reference number"
+        },
+        {
+          "id": "ctdAmount",
+          "type": "text",
+          "label": "CTD amount",
+          "format": "sterling"
+        },
+        {
+          "id": "ctdDate",
+          "type": "date",
+          "label": "Purchase date"
+        }
+      ]
+    },
+    {
+      "title": "You cannot use this service",
+      "includeIf": "${certPurchQues = 1}",
+      "fields": [
+        {
+          "id": "generatedId_33abe374_8ee0_44db_aa46_bdff47d04c30",
+          "type": "info",
+          "label": "",
+          "infoText": "You have purchased over twenty certificates of tax deposits",
+          "infoType": "important"
+        },
+        {
+          "id": "generatedId_df9ca190_9d54_4c26_863d_df44f985c137",
+          "type": "info",
+          "label": "What should I do if I need to tell HMRC about twenty-one  or more CTDs?",
+          "infoText": "If you have purchased twenty or more certificates of tax deposits you will need to contact us at this email address.......",
+          "infoType": "long"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Make your declaration and send the form",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Enter the details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declaration-firstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-lastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "Enter an email address below to receive confirmation that your return has been submitted ",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By entering your full name above you confirm that the information you have provided is true and complete.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "We will check the details you have sent to us.\n\nWe will contact you within X calendar days if we need you to provide more information.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_c61b0435_34f8_40de_ae60_ae5a2a18a331",
+        "type": "info",
+        "label": "",
+        "infoText": "##If you need help",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a5801e53_93e8_4420_937a_0f0baf03941d",
+        "type": "info",
+        "label": "",
+        "infoText": "If you need help using this service, use the 'get help with this page' link at the bottom of the page.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "infoText": ""
+}
