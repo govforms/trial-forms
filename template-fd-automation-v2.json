@@ -39,25 +39,30 @@
       ]
     },
     {
-      "title": "Has the business authorised you to register it for Fuel Duty?",
+      "title": "What is your role in the business?",
       "fields": [
         {
-          "id": "authFD",
           "type": "choice",
+          "id": "roleBus",
           "label": "",
           "choices": [
-            "Yes",
-            "No"
+            "Director",
+            "Authorised official",
+            "Company secretary",
+            "Partner",
+            "Sole proprietor",
+            "Other"
           ]
         }
       ]
     },
     {
       "title": "You cannot register the business for Fuel Duty",
+      "includeIf": "${cannotReg = 5}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_865a52ef_3eb4_4f2a_9853_1891ab9c040b",
+          "type": "info",
           "label": "cannotReg",
           "infoText": "This is because the business has not authorised you to register it for Fuel Duty.\n\nYou'll need to sign out, or save your progress and come back when you have been authorised.",
           "infoType": "noformat"
@@ -85,7 +90,7 @@
           "id": "generatedId_2cb047c7_ddfc_4152_9ab3_1def63b8c7e8",
           "type": "info",
           "label": "",
-          "infoText": "To register for Fuel Duty you must complete and submit this form. \n\nYour guarantor must also complete the VAT: deferment schedule - Simplified Import VAT Accounting reduced security (SIVA2) form (opens in a new window) and send it to HMRC.",
+          "infoText": "To register for Fuel Duty you must complete and submit this form. \n\nYour guarantor must also complete the VAT: deferment schedule - Simplified Import VAT Accounting reduced security (SIVA2) form (opens in a new window). They must then send it to HMRC.",
           "infoType": "noformat"
         }
       ]
@@ -105,86 +110,6 @@
       ]
     },
     {
-      "title": "Is this guarantee executed in Scotland?",
-      "includeIf": "${gauraChoi = 0}",
-      "fields": [
-        {
-          "id": "scotChoice",
-          "type": "choice",
-          "label": "Is this guarantee executed in Scotland?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the details of the person witnessing this application",
-      "includeIf": "${gauraChoi = 0 && scotChoice = 0}",
-      "fields": [
-        {
-          "id": "witName",
-          "type": "text",
-          "label": "Full name",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "witRole",
-          "type": "text",
-          "label": "Occupation",
-          "format": "text(0,40)"
-        },
-        {
-          "id": "witAdd",
-          "type": "address",
-          "label": "Address",
-          "international": "true"
-        },
-        {
-          "id": "witPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "witEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Enter your details",
-      "fields": [
-        {
-          "type": "info",
-          "id": "generatedId_5167b032_6bd7_4cde_b9f7_caf28b9328b7",
-          "label": "contDet",
-          "infoText": "We will use these details to contact you if we need to discuss this form.",
-          "infoType": "noformat"
-        },
-        {
-          "type": "text",
-          "id": "fullName",
-          "label": "Full name"
-        },
-        {
-          "type": "text",
-          "id": "telNum",
-          "label": "Telephone number"
-        },
-        {
-          "type": "text",
-          "id": "eAd",
-          "label": "Email address",
-          "helpText": "For example, name@example.com"
-        }
-      ]
-    },
-    {
       "title": "Enter business name",
       "shortName": "Business details",
       "fields": [
@@ -200,8 +125,42 @@
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
-          "helpText": "Enter the trading name if different from your business name",
+          "helpText": "Enter the trading name if different from the business name",
           "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter the business' Economic Operator Registration and Identification (EORI) number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "Enter the business' Economic Operator Registration and Identification (EORI) number",
+          "shortName": "EORI number",
+          "helpText": "This is 2 letters and then 15 numbers. The 2 letters must be the country code. For example 'GB'",
+          "format": "EORI",
+          "mandatory": "false"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find an EORI country code",
+          "infoText": "Code and Country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you expect the business to start owing fuel duty",
+      "shortName": "Details of first fuel duty liability",
+      "fields": [
+        {
+          "id": "taxableDisposalDate",
+          "type": "date",
+          "label": "",
+          "shortName": "Date",
+          "helpText": "For example, 21 03 2019"
         }
       ]
     },
@@ -212,7 +171,7 @@
           "id": "youInfo1b",
           "type": "info",
           "label": "",
-          "infoText": "We will only use these details if we need to discuss this form with you unless you provide another correspondence details.",
+          "infoText": "We will only use these details if we need to discuss this form with the business unless you provide another correspondence details.",
           "infoType": "noformat"
         },
         {
@@ -245,40 +204,6 @@
       ]
     },
     {
-      "title": "Enter the business' Economic Operator Registration and Identification (EORI) number",
-      "fields": [
-        {
-          "id": "eORI",
-          "type": "text",
-          "label": "Enter the business' Economic Operator Registration and Identification (EORI) number",
-          "shortName": "EORI number",
-          "helpText": "This is 2 letters and then 15 numbers. The 2 letters must be your country code. For example 'GB'",
-          "format": "EORI",
-          "mandatory": "false"
-        },
-        {
-          "id": "mSCountryCodes",
-          "type": "info",
-          "label": "Find an EORI country code",
-          "infoText": "Code and Country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Enter the date you expect the business to start owing fuel duty",
-      "shortName": "Details of first fuel duty liability",
-      "fields": [
-        {
-          "id": "taxableDisposalDate",
-          "type": "date",
-          "label": "",
-          "shortName": "Date",
-          "helpText": "For example, 21 03 2019"
-        }
-      ]
-    },
-    {
       "title": "Correspondence details",
       "includeIf": "${corresChoice = 0}",
       "fields": [
@@ -286,7 +211,7 @@
           "id": "youInfo1a",
           "type": "info",
           "label": "",
-          "infoText": "We will use these details if we need to contact you to discuss this form.",
+          "infoText": "We will use these details if we need to contact the business to discuss this form.",
           "infoType": "noformat"
         },
         {
@@ -310,29 +235,30 @@
       ]
     },
     {
-      "title": "Do you have a trading style?",
+      "title": "Enter your details",
       "fields": [
         {
-          "id": "tradStyChoi",
-          "type": "choice",
-          "label": "Do you have a trading style?",
-          "mandatory": "false",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is your trading style?",
-      "includeIf": "${tradStyChoi = 0}",
-      "fields": [
+          "id": "generatedId_5167b032_6bd7_4cde_b9f7_caf28b9328b7",
+          "type": "info",
+          "label": "contDet",
+          "infoText": "We will use these details to contact you if we need to discuss this form.",
+          "infoType": "noformat"
+        },
         {
-          "id": "tradStyDesc",
+          "id": "fullName",
           "type": "text",
-          "label": "What is your trading style?",
-          "format": "text(0,40)"
+          "label": "Full name"
+        },
+        {
+          "id": "telNum",
+          "type": "text",
+          "label": "Telephone number"
+        },
+        {
+          "id": "eAd",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "For example, name@example.com"
         }
       ]
     }
@@ -370,7 +296,7 @@
         "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
         "type": "info",
         "label": "",
-        "infoText": "You must check [the guidance for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
+        "infoText": "Your guarantor must also complete the VAT: deferment schedule - Simplified Import VAT Accounting reduced security (SIVA2) form (opens in a new window). They must then send it to HMRC.",
         "infoType": "standard"
       },
       {
