@@ -1,5 +1,4 @@
 {
-  "_id": "SC1TestBuild",
   "formName": "Register as a children’s social care provider",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -44,7 +43,7 @@
           "choices": [
             "Yes I have evidence",
             "No I do not have evidence",
-            "No I do no need to provide evidence as a local council or NHS trust"
+            "No I do not need to provide evidence as a local council or NHS trust"
           ]
         }
       ]
@@ -53,13 +52,24 @@
       "title": "You don't have the right documents to continue with this application",
       "includeIf": "${eviChoi = 1}",
       "continueIf": "true",
+      "continueLabel": "Save and continue",
       "fields": [
         {
           "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
           "type": "info",
-          "label": "Ofsted will not be able to consider your application without these documents to show you are able to run a social care establishment or agency.",
-          "infoText": "Ofsted will not be able to consider your application without these documents. \n\nYou can continue with this application if you plan to provide these documents later in your application or by post.",
-          "infoType": "noformat"
+          "label": "You don't have the right documents to continue with this application",
+          "infoText": "By law, you must provide these documents for us to consider your application.\n\nWe will reject your application without these documents if you submit it without them.",
+          "infoType": "important"
+        },
+        {
+          "type": "choice",
+          "id": "continueOptions",
+          "label": "",
+          "format": "vertical",
+          "choices": [
+            "Continue with application",
+            "Leave form"
+          ]
         }
       ]
     },
@@ -120,6 +130,373 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your organisation",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "orgName2",
+          "type": "text",
+          "label": "Organisation name",
+          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
+        },
+        {
+          "id": "orgBirthDate",
+          "type": "date",
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": " For example, 31 03 2018"
+        },
+        {
+          "id": "regChar",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank",
+          "mandatory": "false",
+          "displayWidth": "m"
+        },
+        {
+          "id": "regCoNum",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank",
+          "mandatory": "false",
+          "displayWidth": "m"
+        }
+      ]
+    },
+    {
+      "title": "Your organisations contact details",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
+          "type": "info",
+          "label": "",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "agEsAdd_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "locAuth",
+          "type": "text",
+          "label": "Local council"
+        },
+        {
+          "id": "agEsTel_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agEsEm_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Is your organisation a subsidiary of a holding company?",
+      "includeIf": "${businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "holCoCho",
+          "type": "choice",
+          "label": "Is your organisation a subsidiary of a holding company?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your holding company",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "hoCoNom",
+          "type": "text",
+          "label": "Holding company name",
+          "shortName": "Name",
+          "helpText": "This is the name of the company running the establishment. For example, Social care limited.",
+          "format": "shortText"
+        },
+        {
+          "id": "hoCoDOB",
+          "type": "date",
+          "label": "Trading start date",
+          "shortName": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "regChar_copy_1",
+          "type": "text",
+          "label": "Registered charity number if applicable",
+          "shortName": "Charity number",
+          "helpText": "If you do not have a registered charity number leave blank",
+          "mandatory": "false"
+        },
+        {
+          "id": "regCoNum_copy_1",
+          "type": "text",
+          "label": "Registered company number if applicable",
+          "shortName": "Company number",
+          "helpText": "If you do not have a registered company number leave blank",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company's contact details",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Does your holding company have subsidiaries registered with Ofsted?",
+      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
+      "fields": [
+        {
+          "id": "orgSubOft",
+          "type": "choice",
+          "label": "Does your holding company have subsidiaries registered with Ofsted?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your holding company's subsidiary",
+      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
+      "fields": [
+        {
+          "id": "subNam",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_1",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 2018"
+        },
+        {
+          "id": "subOfRegNo",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. \n\nFor registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  \n\nFrom 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company subsidiary's contact details",
+      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
+      "fields": [
+        {
+          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers2",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers2",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers2",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "id": "subAddOrg1",
+          "type": "choice",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your holding company's subsidiary 2",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
+      "fields": [
+        {
+          "id": "subNam_copy_1",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_2",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "subOfRegNo_copy_1",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company subsidiary's contact details 2",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_12b23211_f331_4eb8_9177_04f8082157c7",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers3",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers3",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers3",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
+        },
+        {
+          "id": "subAddOrg2",
+          "type": "choice",
+          "label": "Do you want to add another subsidiary?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your holding company's subsidiary 3",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
+      "fields": [
+        {
+          "id": "subNam_copy_2",
+          "type": "text",
+          "label": "Name of the subsidiary"
+        },
+        {
+          "id": "hoCoDOB_copy_3",
+          "type": "date",
+          "label": "Trading start date",
+          "helpText": "For example, 31 03 1980"
+        },
+        {
+          "id": "subOfRegNo_copy_2",
+          "type": "text",
+          "label": "URN of subsidiary",
+          "shortName": "URN",
+          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your holding company subsidiary's contact details 3",
+      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
+      "fields": [
+        {
+          "id": "generatedId_f25aa5a2_4ba7_4264_961f_118a71bc4e20",
+          "type": "info",
+          "label": "provInfo",
+          "infoText": "We may contact you using these details  when checking your application",
+          "infoType": "noformat"
+        },
+        {
+          "id": "hoCoAddVers3_copy_1",
+          "type": "address",
+          "label": "",
+          "shortName": "Address"
+        },
+        {
+          "id": "hoCoTelVers3_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
+          "helpText": "Include area code, for example 020 7960 0000",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "hoCoEmVers3_copy_1",
+          "type": "text",
+          "label": "Email ",
+          "format": "email"
         }
       ]
     },
@@ -1080,373 +1457,6 @@
           "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
           "format": "text(0,30)",
           "displayWidth": "s"
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your organisation",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "orgName2",
-          "type": "text",
-          "label": "Organisation name",
-          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
-        },
-        {
-          "id": "orgBirthDate",
-          "type": "date",
-          "label": "Trading start date",
-          "shortName": "Trading start date",
-          "helpText": " For example, 31 03 2018"
-        },
-        {
-          "id": "regChar",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank",
-          "mandatory": "false",
-          "displayWidth": "m"
-        },
-        {
-          "id": "regCoNum",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank",
-          "mandatory": "false",
-          "displayWidth": "m"
-        }
-      ]
-    },
-    {
-      "title": "Your organisations contact details",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_0354295e_7c7c_42f6_b255_e5be51b499fd",
-          "type": "info",
-          "label": "",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "agEsAdd_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "locAuth",
-          "type": "text",
-          "label": "Local council"
-        },
-        {
-          "id": "agEsTel_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "agEsEm_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "Is your organisation a subsidiary of a holding company?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "holCoCho",
-          "type": "choice",
-          "label": "Is your organisation a subsidiary of a holding company?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your holding company",
-      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "hoCoNom",
-          "type": "text",
-          "label": "Holding company name",
-          "shortName": "Name",
-          "helpText": "This is the name of the company running the establishment. For example, Social care limited.",
-          "format": "shortText"
-        },
-        {
-          "id": "hoCoDOB",
-          "type": "date",
-          "label": "Trading start date",
-          "shortName": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "regChar_copy_1",
-          "type": "text",
-          "label": "Registered charity number if applicable",
-          "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank",
-          "mandatory": "false"
-        },
-        {
-          "id": "regCoNum_copy_1",
-          "type": "text",
-          "label": "Registered company number if applicable",
-          "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank",
-          "mandatory": "false"
-        }
-      ]
-    },
-    {
-      "title": "Your holding company's contact details",
-      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_ec734dcb_875a_421f_ba98_8029b78ff19d",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers2_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers2_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers2_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        }
-      ]
-    },
-    {
-      "title": "Does your holding company have subsidiaries registered with Ofsted?",
-      "includeIf": "${holCoCho = 0 && businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "orgSubOft",
-          "type": "choice",
-          "label": "Does your holding company have subsidiaries registered with Ofsted?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your holding company's subsidiary",
-      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
-      "fields": [
-        {
-          "id": "subNam",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_1",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 2018"
-        },
-        {
-          "id": "subOfRegNo",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. \n\nFor registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  \n\nFrom 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "Your holding company subsidiary's contact details",
-      "includeIf": "${businessChoice2 = 0 && orgSubOft = 0}",
-      "fields": [
-        {
-          "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers2",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers2",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers2",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        },
-        {
-          "id": "subAddOrg1",
-          "type": "choice",
-          "label": "Do you want to add another subsidiary?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your holding company's subsidiary 2",
-      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
-      "fields": [
-        {
-          "id": "subNam_copy_1",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_2",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "subOfRegNo_copy_1",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "Your holding company subsidiary's contact details 2",
-      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg1 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_12b23211_f331_4eb8_9177_04f8082157c7",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers3",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers3",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers3",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
-        },
-        {
-          "id": "subAddOrg2",
-          "type": "choice",
-          "label": "Do you want to add another subsidiary?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about your holding company's subsidiary 3",
-      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
-      "fields": [
-        {
-          "id": "subNam_copy_2",
-          "type": "text",
-          "label": "Name of the subsidiary"
-        },
-        {
-          "id": "hoCoDOB_copy_3",
-          "type": "date",
-          "label": "Trading start date",
-          "helpText": "For example, 31 03 1980"
-        },
-        {
-          "id": "subOfRegNo_copy_2",
-          "type": "text",
-          "label": "URN of subsidiary",
-          "shortName": "URN",
-          "helpText": "It's on correspondence letters from Ofsted. For registrations before 2015,  the number starts with SC and has 6 digits, for example, SC123456.  From 2015, it's 7 digits. For example, 1234567.",
-          "format": "text(0,20)"
-        }
-      ]
-    },
-    {
-      "title": "Your holding company subsidiary's contact details 3",
-      "includeIf": "${(businessChoice2 = 0 && orgSubOft = 0) && subAddOrg2 = 0}",
-      "fields": [
-        {
-          "id": "generatedId_f25aa5a2_4ba7_4264_961f_118a71bc4e20",
-          "type": "info",
-          "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
-          "infoType": "noformat"
-        },
-        {
-          "id": "hoCoAddVers3_copy_1",
-          "type": "address",
-          "label": "",
-          "shortName": "Address"
-        },
-        {
-          "id": "hoCoTelVers3_copy_1",
-          "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "hoCoEmVers3_copy_1",
-          "type": "text",
-          "label": "Email ",
-          "format": "email"
         }
       ]
     },
@@ -3351,15 +3361,15 @@
       "includeIf": "${appType =0}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_9698ec37_be05_4de5_a548_2a0957973a6f",
+          "type": "info",
           "label": "",
           "infoText": "By law, you need to provide these documents for us to consider your application to register a children's home:\n\n- Statement of purpose (*all*)\n- Equalities policy (*all*)\n- Copy of certificate of insurance or written confirmation that insurance will be provided (*all*)\n- Children's guide (*All except for holiday schemes*)\n- Missing Child policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Safeguarding policy (*all*)\n- Behaviour management policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Prevention of bullying policy (*All except for Adoption support agency and Voluntary Agency*)\n- Complaints procedure (*All*)\n- Location assessment (*Childrens home only*)",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "chilHomDocsavailable",
+          "type": "choice",
           "label": "",
           "format": "vertical",
           "choices": [
@@ -3374,15 +3384,15 @@
       "includeIf": "${appType =5}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_b8ba616c_c838_43ca_aae2_6b750fd6bbbc",
+          "type": "info",
           "label": "",
           "infoText": "By law, you need to provide these documents for us to consider your application to register a *residential family centre*:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Accident and missing resident procedure\n- Safeguarding policy\n- Prevention of bullying policy\n- Complaints procedure",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "resFamPolDocAvai",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes, I have these documents",
@@ -3396,15 +3406,15 @@
       "includeIf": "${appType =3 || appType = 2}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_2a3fe497_af37_419f_9ead_b12e264bd309",
+          "type": "info",
           "label": "",
           "infoText": "By law, you need to provide these documents for us to consider your application to register a voluntary support agency or voluntary adoption agency :\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Safeguarding policy\n- Complaints procedure",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "agPolDocAvai",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes, I have these documents",
@@ -3418,15 +3428,15 @@
       "includeIf": "${appType =1}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_07faf4b7_cae4_4640_b80c_be91f87bae94",
+          "type": "info",
           "label": "",
           "infoText": "By law, you need to provide these documents for us to consider your application to register an independent fostering agency:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Children's guide\n- Missing Child policy\n- Safeguarding policy\n- Behaviour management policy\n- Prevention of bullying policy\n- Complaints procedure",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "adoAgPolDocAvai",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes, I have these documents",
@@ -3440,15 +3450,15 @@
       "includeIf": "${appType =4}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_f285deda_6cc1_4b06_b099_2e6e3f4d88cd",
+          "type": "info",
           "label": "",
           "infoText": "By law, you need to provide these documents for us to consider your application to register a residential holiday scheme for disabled children:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided\n- Missing Child policy\n- Safeguarding policy\n- Behaviour management policy\n- Prevention of bullying policy\n- Complaints procedure",
           "infoType": "noformat"
         },
         {
-          "type": "choice",
           "id": "holSchPolDocAvai",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes, I have these documents",
@@ -3462,15 +3472,15 @@
       "includeIf": "${appType = 0 || (appType =1 || appType = 4)}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_3ee3481f_cc9b_43ef_929c_168fdb26edca",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "misChiUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3481,15 +3491,15 @@
       "includeIf": "${appType = 0}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_a1b2e429_a97f_4d4b_8f7c_e68f9fecab1a",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "chiHomLocAssUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3500,15 +3510,15 @@
       "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_966745e7_cdbe_4d25_8f74_499663782a38",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "estAgCompProcUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3519,15 +3529,15 @@
       "includeIf": "${(appType = 0 || appType = 1) || (appType = 4 || appType = 5)}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_4636a2b0_1853_415f_89cc_3bb1a5ef3aae",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "bulPolUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3538,15 +3548,15 @@
       "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_63b25c27_4d72_4025_a1aa_7460367756cc",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "behManUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3556,15 +3566,15 @@
       "title": "Upload your establishment's or agency's safeguarding policy",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_47c4625f_1ee7_4930_8a66_6e269db78fc0",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "safeGuardUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3574,15 +3584,15 @@
       "title": "Upload your agency's or establishment's statement of purpose",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_ba976944_75b7_474f_a566_b09872715d17",
+          "type": "info",
           "label": "",
           "infoText": "Your statement should describe what you do, where you do it and who you do it for.\n\nIt can include:\n\n- aims and objectives.\n- services you provide.\n- needs your service meets.\n- your contact details\n- your service's legal entity\n- places where services are provided",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "purpStatUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3592,15 +3602,15 @@
       "title": "Upload your establishment's or agency's children guide",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_25a5c79d_7e75_462e_8799_faea2f00e756",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "chiGuiUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3610,15 +3620,15 @@
       "title": "Upload your establishment's or agency's copy of certificate of insurance",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_49d196ae_0560_4ff9_b4a7_6bcaf8fdacf7",
+          "type": "info",
           "label": "",
           "infoText": "By law, all social care providers must have business insurance for their establishment or agency.\n\nIf you are in the process of getting insurance, upload a written statement confirming?????",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "insCertUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3628,15 +3638,15 @@
       "title": "Upload your establishment's or agency's equalities policy",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_d1ac38ef_c3d4_44ae_82c7_ba664772abe5",
+          "type": "info",
           "label": "",
           "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "equaPolUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3647,15 +3657,15 @@
       "includeIf": "${appType = 5}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_b9d8cec0_db8c_4a13_a9ef_e93ebb89ef40",
+          "type": "info",
           "label": "",
           "infoText": "We need to know your plan for when a resident is injured in an accident or goes missing at your residential family centre.",
           "infoType": "noformat"
         },
         {
-          "type": "file",
           "id": "famCenMisPerUpl",
+          "type": "file",
           "label": "",
           "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
         }
@@ -3666,29 +3676,11 @@
       "includeIf": "${holSchPolDocAvai = 1 || (chilHomDocsavailable = 1 || resFamPolDocAvai = 1) || (agPolDocAvai = 1 || adoAgPolDocAvai = 1)}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_30a4f1fa_d495_46c6_8f88_eee46a9697de",
+          "type": "info",
           "label": "",
           "infoText": "By law, you must provide the documents for us to consider your application.\n\nWe will reject your application without these documents if you submit it without them.\n\nYou can continue with this application if you plan to come back later to upload the documents.",
           "infoType": "important"
-        }
-      ]
-    },
-    {
-      "title": "Upload your procedures and policies",
-      "fields": [
-        {
-          "id": "generatedId_3dc358f9_65ab_4860_9174_a2ea579ccc92",
-          "type": "info",
-          "label": "",
-          "infoText": "You need to upload the following procedures and policies as a single document, using headings to identify each policy within the single document:\n\n\n\n-Accident and missing resident procedure\n\n-Safeguarding policy\n\n-Children's guide\n\n-Prevention of bullying policy\n\n-Complaints procedure",
-          "infoType": "noformat"
-        },
-        {
-          "id": "fullUpload",
-          "type": "file",
-          "label": "",
-          "helpText": "We accept documents of 5MB or less in the following formats .jpg, .gif etc."
         }
       ]
     }
@@ -3773,5 +3765,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "SC1TestBuild"
 }
