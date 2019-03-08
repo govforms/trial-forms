@@ -1,0 +1,523 @@
+{
+  "formCategory": "hmrcReturnForm",
+  "formName": "Submit a Corporate Interest Restriction return",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "dmsSubmission": {
+    "dmsFormId": "cirRet",
+    "customerId": "${utrRepComp}",
+    "classificationType": "BT-CTS-CIR",
+    "businessArea": "BT"
+  },
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "emailTemplateId": "cir_return_confirmation",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "sections": [
+    {
+      "title": "Corporate interest restriction return",
+      "fields": [
+        {
+          "id": "agent",
+          "type": "choice",
+          "label": "Are you an agent acting on behalf of the reporting company?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${agent=0}",
+      "title": "Enter agent details",
+      "fields": [
+        {
+          "id": "agentName",
+          "type": "text",
+          "label": "Name of agent",
+          "format": "text",
+          "helpText": "Name of firm"
+        }
+      ]
+    },
+    {
+      "title": "Enter the reporting company's details",
+      "fields": [
+        {
+          "id": "reportingCompany",
+          "type": "text",
+          "label": "Reporting company name",
+          "format": "text",
+          "mandatory": "yes"
+        },
+        {
+          "id": "oRN",
+          "type": "text",
+          "label": " UK Tax reference - tax office",
+          "format": "text(3,3)",
+          "helpText": "This is the first three digits of the tax reference number before the space (for example, 123 1234567890)",
+          "mandatory": "yes",
+          "errorMessage": "Enter the first three digits of your thirteen digit unique taxpayer reference number, if this is unknown enter 000"
+        },
+        {
+          "id": "utrRepComp",
+          "type": "text",
+          "label": "UK Tax reference - unique taxpayer reference",
+          "format": "text(10,10)",
+          "helpText": "This is the last ten digits of the tax reference number after the space (for example, 123 1234567890)",
+          "mandatory": "yes"
+        },
+        {
+          "id": "compRef",
+          "type": "text",
+          "label": "Company Registration Number",
+          "helpText": "This should be 8 characters including numbers and/or letters",
+          "mandatory": "yes"
+        },
+        {
+          "id": "ultParSame",
+          "type": "choice",
+          "label": "Is the reporting company the same as the ultimate parent?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${ultParSame=1}",
+      "title": "Enter the ultimate parent company's details",
+      "fields": [
+        {
+          "id": "ultPName",
+          "type": "text",
+          "label": "Ultimate parent company name",
+          "format": "text",
+          "mandatory": "yes"
+        },
+        {
+          "id": "juris",
+          "type": "text",
+          "label": "Jurisdiction of incorporation",
+          "mandatory": "no",
+          "helpText": "If known"
+        },
+        {
+          "id": "uPrn",
+          "type": "text",
+          "label": "UK Tax reference - tax office",
+          "format": "text",
+          "helpText": "This is the first 3 digits of the tax reference number before the space (for example, 123 1234567890), only if available",
+          "mandatory": "no"
+        },
+        {
+          "id": "UtrNoP",
+          "type": "text",
+          "label": "UK Tax reference - unique taxpayer reference",
+          "format": "text",
+          "helpText": "This is the last 10 digits of the tax reference number after the space (for example, 123 1234567890), only if available",
+          "mandatory": "no"
+        },
+        {
+          "id": "upComRegNo",
+          "type": "text",
+          "label": "Local Company Registration Number",
+          "helpText": "Registration number in jurisdiction of incorporation, only if available",
+          "mandatory": "no",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Number of group companies",
+      "fields": [
+        {
+          "id": "worlwideGroup",
+          "type": "text",
+          "label": "Number of companies in the worldwide group",
+          "helpText": "This can be an estimate",
+          "format": "text"
+        },
+        {
+          "id": "noOfComp",
+          "type": "text",
+          "label": "Number of UK companies in the group",
+          "helpText": "These are within charge to corporation tax"
+        },
+        {
+          "id": "consenting",
+          "type": "choice",
+          "label": "Does this include non consenting companies in relation to this return?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "mandatory": "no"
+        }
+      ]
+    },
+    {
+      "title": "Period of account",
+      "fields": [
+        {
+          "id": "accPeriodStartDate",
+          "type": "date",
+          "label": "Start date of worldwide group period of account",
+          "helpText": "For example, 01 04 2017"
+        },
+        {
+          "id": "accPeriodEndDate",
+          "type": "date",
+          "label": "End date of worldwide group period of account",
+          "helpText": "For example, 31 12 2017",
+          "format": "after ${accPeriodStartDate}"
+        }
+      ]
+    },
+    {
+      "title": "Type of return",
+      "fields": [
+        {
+          "id": "original",
+          "type": "choice",
+          "label": "Is this an original or a revised return?",
+          "choices": [
+            "Original",
+            "Revised"
+          ]
+        },
+        {
+          "id": "fullAbbrev",
+          "type": "choice",
+          "label": "Is this an abbreviated or full return?",
+          "choices": [
+            "Abbreviated",
+            "Full"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${fullAbbrev=1}",
+      "title": "Full return",
+      "fields": [
+        {
+          "id": "restrict",
+          "type": "choice",
+          "label": "Are you subject to interest restrictions for the period?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${restrict=0 && fullAbbrev=1}",
+      "title": "Restriction",
+      "fields": [
+        {
+          "id": "interestRestriction",
+          "type": "text",
+          "label": "Total disallowed amount",
+          "format": "sterling",
+          "helpText": "Commas can be included"
+        }
+      ]
+    },
+    {
+      "includeIf": "${restrict=1}",
+      "title": "Reactivation",
+      "fields": [
+        {
+          "id": "reactivate",
+          "type": "choice",
+          "label": "Are you subject to interest reactivations?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${reactivate=0 && restrict=1}",
+      "title": "Reactivation",
+      "fields": [
+        {
+          "id": "reactCap",
+          "type": "text",
+          "label": "Interest reactivation cap",
+          "format": "sterling",
+          "helpText": "Commas can be included"
+        }
+      ]
+    },
+    {
+      "includeIf": "${fullAbbrev=1}",
+      "title": "Tax-interest, tax-EBITDA, interest allowance and interest capacity",
+      "fields": [
+        {
+          "id": "aggTaxIntExp",
+          "type": "text",
+          "label": "Aggregate net tax-interest expense",
+          "mandatory": "yes",
+          "format": "sterling",
+          "helpText": "Enter 0 if applicable"
+        },
+        {
+          "id": "aggTaxIntIncome",
+          "type": "text",
+          "label": "Aggregate net tax-interest income",
+          "mandatory": "yes",
+          "format": "sterling",
+          "helpText": "Enter 0 if applicable"
+        },
+        {
+          "id": "ebitda",
+          "type": "text",
+          "label": "Aggregate tax-EBITDA",
+          "format": "sterling",
+          "mandatory": "yes"
+        },
+        {
+          "id": "IntAllowForward",
+          "type": "text",
+          "label": "Interest allowance brought forward",
+          "mandatory": "yes",
+          "format": "sterling"
+        },
+        {
+          "id": "IntAllowPeriod",
+          "type": "text",
+          "label": "Interest allowance for period",
+          "mandatory": "yes",
+          "format": "sterling"
+        },
+        {
+          "id": "intCapPeriod",
+          "type": "text",
+          "label": "Interest capacity for period",
+          "mandatory": "yes",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "includeIf": "${fullAbbrev=1}",
+      "title": "Group ratio election",
+      "fields": [
+        {
+          "id": "groupElec",
+          "type": "choice",
+          "label": "Are you making a group ratio election?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${groupElec=0 && fullAbbrev=1}",
+      "title": "Group ratio",
+      "fields": [
+        {
+          "id": "angie1",
+          "type": "text",
+          "label": "Adjusted net group-interest expense (ANGIE)",
+          "format": "sterling"
+        },
+        {
+          "id": "qngie",
+          "type": "text",
+          "label": "Qualifying net group-interest expense (QNGIE)",
+          "format": "sterling"
+        },
+        {
+          "id": "groupEBITDA",
+          "type": "text",
+          "label": "Group-EBITDA",
+          "format": "sterling"
+        },
+        {
+          "id": "groupRatio",
+          "type": "text",
+          "label": "Group ratio percentage",
+          "format": "positiveNumber(3,2,'%')",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "includeIf": "${groupElec=1}",
+      "title": "Fixed ratio",
+      "fields": [
+        {
+          "id": "intAllowAngie",
+          "type": "choice",
+          "label": "Is the interest allowance determined by the adjusted net group-interest expense (ANGIE) of the group for the period?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${intAllowAngie=0 && groupElec=1}",
+      "title": "Interest allowance adjusted net group-interest expense (ANGIE)",
+      "fields": [
+        {
+          "id": "angie",
+          "type": "text",
+          "label": "Adjusted net group-interest expense (ANGIE)",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Public Infrastructure Rules",
+      "fields": [
+        {
+          "id": "qic",
+          "type": "choice",
+          "label": "Has any company in the group made a qualifying infrastructure company election for the period?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${fullAbbrev=1}",
+      "title": "Full corporate interest restriction return",
+      "fields": [
+        {
+          "id": "uploadFull",
+          "type": "file",
+          "label": "Upload full corporate interest restriction return"
+        },
+        {
+          "id": "uploadText",
+          "type": "info",
+          "label": "",
+          "infoText": "Attach full return. Accepted format is PDF"
+        },
+        {
+          "id": "estimate",
+          "type": "choice",
+          "label": "Does this return contain estimates?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${fullAbbrev=0}",
+      "title": "Abbreviated corporate interest restriction return",
+      "fields": [
+        {
+          "id": "uploadAbbrev",
+          "type": "file",
+          "label": "Upload corporate interest restriction return"
+        },
+        {
+          "id": "uploadTextAbb",
+          "type": "info",
+          "label": "",
+          "infoText": "Attach abbreviated return. Accepted format is PDF"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "shortName": "Sign and submit your return",
+    "title": "Submit your return",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Submitters details",
+        "fields": [
+          {
+            "id": "approverText",
+            "type": "info",
+            "label": "",
+            "infoText": "Tell us who is submitting the return."
+          },
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name",
+            "helpText": "If an agent, agent's firm",
+            "format": "text"
+          },
+          {
+            "id": "declarationJobTitle",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "Example: Finance Director"
+          },
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "helpText": "This is for acknowledgement purposes only",
+            "format": "email"
+          }
+        ]
+      },
+      {
+        "id": "declarationGroup",
+        "type": "group",
+        "label": "Declaration",
+        "fields": [
+          {
+            "id": "declarationText",
+            "type": "info",
+            "label": "",
+            "infoType": "noformat",
+            "infoText": "I confirm that the information I have given on this interest restriction return and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this return, can lead to both the company and me being prosecuted."
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "shortName": "Acknowledgement Page",
+    "title": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "infoType": "noformat",
+        "label": "",
+        "infoText": ""
+      },
+      {
+        "id": "ackPageWarning",
+        "type": "info",
+        "infoType": "important",
+        "label": "ack page text to be input here",
+        "infoText": ""
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4669744/Feedback-Survey-CIR) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "_id": "Corporate-Interest-Restriction-Return"
+}
