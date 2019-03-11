@@ -1,5 +1,4 @@
 {
-  "_id": "Alternative-Dispute-Resolution",
   "formName": "Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -34,13 +33,13 @@
           "id": "beforeYouStartInfo3",
           "type": "info",
           "label": "",
-          "infoText": "If you are an authorised agent, please complete the following pages with your client's information and enter your own details in the 'Agent's details' section..",
+          "infoText": "If you are an authorised agent, please complete the following pages with your client's information and enter your own details in the 'Agent's details' section.",
           "infoType": "noformat"
         },
         {
           "id": "yesNoQuestion1",
           "type": "choice",
-          "label": "Are you an authorised agent?.",
+          "label": "Are you an authorised agent?",
           "format": "yesno"
         },
         {
@@ -48,7 +47,7 @@
           "type": "text",
           "label": "Email address",
           "helpText": "Enter your email address. HM Revenue & Customs (HMRC) will use this to contact you about this form",
-          "infoType": "email"
+          "format": "email"
         }
       ]
     },
@@ -67,6 +66,13 @@
             "CCO",
             "Other"
           ]
+        },
+        {
+          "id": "hmrcunit1help",
+          "type": "info",
+          "label": "Help with choice meanings",
+          "infoText": "This form should only be used for substantive tax disputes. For further help on what constitutes a substantive tax dispute please see the ADR guidance. Your latest piece of post from HM Revenue and Customs should indicate whether your tax affairs are dealt with by Small and Medium Enterprise (SME), Individuals & Public Bodies (I&PB), Mid Size Business (MSB), Customs, International Trade and Excise (CITEX), Central Compliance Operations (CCO) or another customer grouping. However, if you are not sure, please select Other.",
+          "infoType": "long"
         },
         {
           "id": "HMRCUnit2",
@@ -116,6 +122,13 @@
           "id": "HMRCreferencenumber",
           "type": "text",
           "label": "HMRC Reference Number"
+        },
+        {
+          "id": "hmrcrefnumberhelp",
+          "type": "info",
+          "label": "Help with HMRC Reference Number",
+          "infoText": "Please enter the HMRC reference number. For example, if the dispute is about Income Tax, enter the Unique Taxpayers Reference. For Corporation Tax, use the Corporation Tax Reference, or for VAT, please enter the VAT Registration Number.",
+          "infoType": "long"
         }
       ]
     },
@@ -148,12 +161,14 @@
         {
           "id": "appealsofficername",
           "type": "text",
-          "label": "HMRC appeals officer name (if applicable)"
+          "label": "HMRC appeals officer name (if applicable)",
+          "mandatory": "false"
         },
         {
           "id": "appealsrefnumber",
           "type": "text",
-          "label": "HMRC appeals reference number (if applicable)"
+          "label": "HMRC appeals reference number (if applicable)",
+          "mandatory": "false"
         },
         {
           "id": "YearPeriod",
@@ -164,13 +179,15 @@
           "id": "multilinetext1",
           "type": "text",
           "label": "To help HMRC process your application for ADR, outline the issues (in the box below) that are in dispute and any details that you feel are relevant.",
-          "multiline": "yes"
+          "multiline": "yes",
+          "format": "text(0, 2000)"
         },
         {
           "id": "multilinetext2",
           "type": "text",
           "label": "Please give your reasons (in the box below) for applying for ADR to help settle the dispute.",
-          "multiline": "yes"
+          "multiline": "yes",
+          "format": "text(0, 2000)"
         },
         {
           "id": "AdrHow",
@@ -191,9 +208,17 @@
           "infoType": "noformat"
         },
         {
+          "id": "pleasenote1",
+          "type": "info",
+          "label": "",
+          "infoText": "### Please note: \nYou are an authorised agent if your client has completed paper forms 64-8 or FBI 2 or you have used HMRC Online Services to set up client authorisations.",
+          "infoType": "important"
+        },
+        {
           "id": "Agentsbusinessname",
           "type": "text",
-          "label": "Agent's Business Name"
+          "label": "Agent's Business Name",
+          "helpText": "Please enter your business name (if any) or the name of the organisation that you work for."
         },
         {
           "id": "Namedcontact",
@@ -204,7 +229,8 @@
           "id": "Agentaddresss",
           "type": "address",
           "label": "Agent's address",
-          "postcodeLookup": "no"
+          "postcodeLookup": "no",
+          "helpText": "Please enter the full working address and postcode of your office or main place of work"
         },
         {
           "id": "agentPhone",
@@ -215,7 +241,8 @@
         {
           "id": "clientreferencenumber",
           "type": "text",
-          "label": "Client Reference Number"
+          "label": "Client Reference Number",
+          "helpText": "Please enter your own or your firm's reference for this client. The reference should be client specific and not include the clients name or other personal information."
         },
         {
           "id": "textFieldInfoFormat6",
@@ -299,5 +326,6 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "Alternative-Dispute-Resolution"
 }
