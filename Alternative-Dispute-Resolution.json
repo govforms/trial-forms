@@ -1,0 +1,303 @@
+{
+  "_id": "Alternative-Dispute-Resolution",
+  "formName": "Alternative Dispute Resolution",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Before you start",
+      "fields": [
+        {
+          "id": "beforeYouStartInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "Before you complete this form, please make sure you read the Alternative Dispute Resolution (ADR) guidance.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "beforeYoustartInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "This will help you to decide if ADR is the right process to meet your needs.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "beforeYouStartInfo3",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are an authorised agent, please complete the following pages with your client's information and enter your own details in the 'Agent's details' section..",
+          "infoType": "noformat"
+        },
+        {
+          "id": "yesNoQuestion1",
+          "type": "choice",
+          "label": "Are you an authorised agent?.",
+          "format": "yesno"
+        },
+        {
+          "id": "beforeYouStartInfo4",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "Enter your email address. HM Revenue & Customs (HMRC) will use this to contact you about this form",
+          "infoType": "email"
+        }
+      ]
+    },
+    {
+      "title": "HMRC Unit",
+      "fields": [
+        {
+          "id": "HMRCUnit1",
+          "type": "choice",
+          "label": "If you know which unit in HMRC you deal with please tick one box below. If you don't know, please tick 'Other'.",
+          "choices": [
+            "Small and Medium Enterprise (SME) unit",
+            "Individuals and Public Bodies",
+            "Mid-size Business",
+            "CITEX",
+            "CCO",
+            "Other"
+          ]
+        },
+        {
+          "id": "HMRCUnit2",
+          "type": "choice",
+          "label": "If you know what type of tax is in dispute, please tick the appopriate box below.",
+          "choices": [
+            "Direct",
+            "Indirect",
+            "Don't Know / Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Customer Contact details",
+      "fields": [
+        {
+          "id": "textFieldInfoFormat",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide the businesses' contact details.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "usersFirstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "usersLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "userAddress",
+          "type": "address",
+          "label": "Address",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "userPhone",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "HMRCreferencenumber",
+          "type": "text",
+          "label": "HMRC Reference Number"
+        }
+      ]
+    },
+    {
+      "title": "Dispute Details",
+      "fields": [
+        {
+          "id": "DisputeDetailsInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "To help HMRC deal with your ADR request, please enter details of your dispute in the fields below.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "HMRCcaseworkername",
+          "type": "text",
+          "label": "HMRC Caseworker name"
+        },
+        {
+          "id": "caseworkeroffice",
+          "type": "text",
+          "label": "Caseworker's Office"
+        },
+        {
+          "id": "Caseworkerphone",
+          "type": "text",
+          "label": "Caseworker's telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "appealsofficername",
+          "type": "text",
+          "label": "HMRC appeals officer name (if applicable)"
+        },
+        {
+          "id": "appealsrefnumber",
+          "type": "text",
+          "label": "HMRC appeals reference number (if applicable)"
+        },
+        {
+          "id": "YearPeriod",
+          "type": "text",
+          "label": "Year/period involved in the dispute"
+        },
+        {
+          "id": "multilinetext1",
+          "type": "text",
+          "label": "To help HMRC process your application for ADR, outline the issues (in the box below) that are in dispute and any details that you feel are relevant.",
+          "multiline": "yes"
+        },
+        {
+          "id": "multilinetext2",
+          "type": "text",
+          "label": "Please give your reasons (in the box below) for applying for ADR to help settle the dispute.",
+          "multiline": "yes"
+        },
+        {
+          "id": "AdrHow",
+          "type": "text",
+          "label": "How did you hear about ADR?"
+        }
+      ]
+    },
+    {
+      "title": "Agent's details",
+      "includeIf": "${yesNoQuestion1=0}",
+      "fields": [
+        {
+          "id": "textFieldInfoFormat5",
+          "type": "info",
+          "label": "",
+          "infoText": "If you are an authorised agent completing this form on behalf of your client, enter your details in the fields below.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "Agentsbusinessname",
+          "type": "text",
+          "label": "Agent's Business Name"
+        },
+        {
+          "id": "Namedcontact",
+          "type": "text",
+          "label": "Named contact within agent’s business"
+        },
+        {
+          "id": "Agentaddresss",
+          "type": "address",
+          "label": "Agent's address",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "agentPhone",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "clientreferencenumber",
+          "type": "text",
+          "label": "Client Reference Number"
+        },
+        {
+          "id": "textFieldInfoFormat6",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will include your client's reference in the response to you, but for data security reasons this will not include the client's name or any other personal information.",
+          "infoType": "noformat"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Placeholder Declaration Text."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFirstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declarationLastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
