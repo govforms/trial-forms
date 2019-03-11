@@ -5,8 +5,12 @@
   "emailTemplateId": "eeitt_submission_confirmation",
   "emailParameters": [
     {
-      "value": "${declarationFullName}",
+      "value": "${customerName}",
       "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
     }
   ],
   "authConfig": {
@@ -204,11 +208,13 @@
     },
     {
       "title": "Will you change at another airport, port or station?",
+      "shortName": "Change at another airport, port or station",
       "fields": [
         {
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Will you change at another airport, port or station?",
+          "shortName": "Change",
           "helpText": "If you change to another plane, boat or train on your way to the UK, select yes. For example, if you are flying into France and then take the Channel Tunnel to the UK.",
           "choices": [
             "Yes",
@@ -252,6 +258,7 @@
     },
     {
       "title": "Where are you making this declaration?",
+      "shortName": "Where you are making declaration",
       "description": "This is your UK entry or exit point",
       "fields": [
         {
@@ -269,11 +276,13 @@
     },
     {
       "title": "Are you carrying more than 5 different currencies?",
+      "shortName": "Carrying more than 5 currencies",
       "fields": [
         {
           "id": "fiveCurrenciesChoice",
           "type": "choice",
           "label": "Are you carrying more than 5 different currencies?",
+          "shortName": "More than 5",
           "choices": [
             "Yes",
             "No"
@@ -287,12 +296,14 @@
     },
     {
       "title": "How many currencies are you carrying?",
+      "shortName": "How many currencies",
       "includeIf": "${fiveCurrenciesChoice=1}",
       "fields": [
         {
           "id": "howManyCurrency",
           "type": "text",
           "label": "How many currencies are you carrying?",
+          "shortName": "Currencies",
           "helpText": "Enter a number between 1 and 5",
           "displayWidth": "xs",
           "validIf": "${howManyCurrency>0 && howManyCurrency <=5}"
@@ -391,11 +402,13 @@
     },
     {
       "title": "Does the cash belong to you?",
+      "shortName": "Do you own the cash",
       "fields": [
         {
           "id": "moneyOwner",
           "type": "choice",
           "label": "Does the cash belong to you?",
+          "shortName": "Cash owner",
           "helpText": "If you own the largest amount, select yes",
           "choices": [
             "Yes",
@@ -429,6 +442,7 @@
     },
     {
       "title": "Provide details of where the cash comes from",
+      "shortName": "Where cash comes from",
       "description": "We ask this to help with money laundering regulations",
       "fields": [
         {
@@ -447,11 +461,14 @@
     },
     {
       "title": "Are you intending to give the cash to someone else?",
+      "shortName": "Intending to give cash to someone",
       "fields": [
         {
           "id": "cashYours",
           "type": "choice",
           "label": "Are you intending to give the cash to someone else?",
+          "shortName": "Give cash",
+          "errorMessage": "Select whether you will give the cash to someone else ",
           "choices": [
             "Yes",
             "No"
@@ -461,12 +478,14 @@
     },
     {
       "title": "Who will receive the cash? ",
+      "shortName": "Who will receive cash",
       "includeIf": "${cashYours=0}",
       "fields": [
         {
           "id": "cashIndividual",
           "type": "choice",
           "label": "Who will receive the cash? ",
+          "shortName": "Cash recipient",
           "helpText": "If the cash will be split, select who will receive the largest amount",
           "choices": [
             "An individual",
@@ -523,12 +542,14 @@
     },
     {
       "title": "What will the cash be used for?",
+      "shortName": "What cash will be used for",
       "fields": [
         {
           "id": "cashIntent",
           "type": "text",
           "label": "What will the cash be used for?",
-          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter N/A."
+          "shortName": "Cash use",
+          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a."
         }
       ]
     },
@@ -546,7 +567,7 @@
           ]
         },
         {
-          "id": "declarationFullName",
+          "id": "customerName",
           "type": "text",
           "label": "Full name"
         },
@@ -557,6 +578,15 @@
           "helpText": "We will only use this to send a confirmation that we have received your application. This will include your submission reference number, which you need to save.",
           "format": "email",
           "mandatory": "false"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Submission reference",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
         }
       ]
     }
@@ -582,7 +612,7 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "You need to make a note of your submission reference number, which confirms you have made a declaration.\n\nYou should print a copy of this form now, so you can show it to customs officers if they ask.\n\nThis is your last opportunity to print or save a PDF copy of your form."
+        "infoText": "You need to make a note of your submission reference number. This confirms that you have made a declaration.\n\nYou should print a copy of this form now, so you can show it to customs officers if they ask.\n\nThis is your last opportunity to print or save a PDF copy of your form."
       }
     ]
   },
