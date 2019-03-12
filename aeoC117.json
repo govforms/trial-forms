@@ -115,12 +115,13 @@
     },
     {
       "title": "What is your registered business address?",
+      "shortName": "Registered business address",
       "fields": [
         {
           "id": "agentOfficeAddressRefTrue1",
           "type": "address",
           "label": "What is your registered business address?",
-          "shortName": "Registered business address",
+          "shortName": "What is your registered business address",
           "international": "true"
         }
       ]
@@ -133,6 +134,7 @@
           "id": "addressChoice2",
           "type": "choice",
           "label": "Is the address of your primary place of business the same as your registered business address?",
+          "shortName": "Primary place of business same as registered business address",
           "format": "yesno",
           "errorMessage": "Select whether the address of your primary place of business is the same as your registered business address"
         }
@@ -310,7 +312,7 @@
           "id": "rPC",
           "type": "choice",
           "label": "Is the address of this person the same as any previously mentioned address?",
-          "shortName": "Responsible person same address",
+          "shortName": "Responsible person address same as",
           "format": "vertical",
           "errorMessage": "Select whether the responsible person's address is the same as any other address",
           "choices": [
@@ -599,8 +601,8 @@
           "id": "gC",
           "type": "choice",
           "label": "Have any simplifications or facilitations already been granted?",
-          "shortName": "Simplifications or facilitations already granted",
-          "format": "vertical",
+          "shortName": "Simplifications or facilitations granted",
+          "format": "yesno",
           "mandatory": "true",
           "errorMessage": "Select whether you already have any simplifications or facilitations"
         },
@@ -650,6 +652,7 @@
           "id": "holderChoice1",
           "type": "choice",
           "label": "Do you hold one or more certificates mentioned in article 28 of Commission Implementing Regulation (EU) 2015/2447?",
+          "shortName": "Certificates mentioned in article 28 of Commission Implementing Regulation (EU) 2015/2447",
           "format": "yesno"
         }
       ]
@@ -669,12 +672,14 @@
     },
     {
       "title": "Information exchange consent",
-      "shortName": "Information consent",
+      "shortName": "Information exchange",
       "fields": [
         {
           "id": "consentChoice1",
           "type": "choice",
           "label": "I hereby give my consent to the exchange of the information in the AEO authorisation in order to ensure the implementation of international agreements with third countries on mutual recognition of the status of authorised economic operators and measures related to security.",
+          "shortName": "Confirm consent",
+          "errorMessage": "Select whether you give consent to information being exchanged",
           "choices": [
             "Yes",
             "No"
@@ -724,14 +729,16 @@
       ]
     },
     {
-      "title": "Does the application cover Permanent Business Establishments (PBEs)?",
-      "shortName": "PBEs",
+      "title": "Does the application cover permanent business establishments (PBEs)?",
+      "shortName": "Permanent business establishments (PBEs)",
       "fields": [
         {
           "id": "pbeChoice1",
           "type": "choice",
           "label": "Does the application cover permanent business establishments (PBEs)?",
-          "format": "yesno"
+          "shortName": "Application covers PBEs",
+          "format": "yesno",
+          "errorMessage": "Select whether the application covers PBEs"
         }
       ]
     },
@@ -752,7 +759,6 @@
     },
     {
       "title": "Permanent business establishment $n",
-      "shortName": "PBEs $n",
       "repeatsMin": "${howManyPBE}",
       "repeatsMax": "${howManyPBE}",
       "fields": [
@@ -765,6 +771,7 @@
           "id": "pbeAddress",
           "type": "address",
           "label": "Full address of permanent business establishment",
+          "shortName": "PBE full address",
           "international": "true"
         },
         {
@@ -784,9 +791,10 @@
           "id": "oRFPACI",
           "type": "choice",
           "label": "Is the address of the office responsible for providing all customs identifications the same as any previously mentioned address?",
-          "shortName": "Office responsible for providing all customs identifications address is same as",
+          "shortName": "Office providing customs identifications address is same as",
           "format": "vertical",
           "mandatory": "true",
+          "errorMessage": "Select whether the address of office responsible for providing all customs identifications is the same as a previously mentioned address",
           "choices": [
             "Registered business address",
             "Primary place of business",
@@ -813,13 +821,14 @@
     },
     {
       "title": "Is the address of the office where the customs documentation is kept the same as any previously mentioned address?",
-      "shortName": "Office where the customs documentation is kept",
+      "shortName": "Office where customs documentation kept",
       "fields": [
         {
           "id": "oWCDIK",
           "type": "choice",
           "label": "Is the address of the office where the customs documentation is kept the same as any previously mentioned address?",
           "shortName": "Office where the customs documentation is kept address is same as",
+          "errorMessage": "Select whether the address where customs documentation is kept is the same as a previously mentioned address",
           "choices": [
             "Registered business address",
             "Primary place of business",
@@ -847,12 +856,14 @@
     },
     {
       "title": "Do you consent to publication on the list of authorisation holders?",
-      "shortName": "Publication consent",
+      "shortName": "Publication on list of authorisation holders",
       "fields": [
         {
           "id": "pbeChoice",
           "type": "choice",
           "label": "Do you consent to publication on the list of authorisation holders?",
+          "shortName": "Confirm consent",
+          "errorMessage": "Select whether you consent to being published on the list of authorisation holders",
           "choices": [
             "Yes",
             "No"
@@ -862,12 +873,13 @@
     },
     {
       "title": "What is your business size?",
-      "shortName": "Business size",
+      "shortName": "Size of your business",
       "fields": [
         {
           "id": "businessSizeChoice",
           "type": "choice",
           "label": "What is your business size?",
+          "shortName": "Business size",
           "choices": [
             "Micro",
             "Small",
