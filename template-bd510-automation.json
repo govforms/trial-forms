@@ -587,22 +587,44 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull BDreg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "BD510",
-      "customerId": "${' '}",
+      "customerId": "${BDreg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull BDreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BD510",
+      "customerId": "${BDreferencenumber}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull BDreg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "BD510",
-      "customerId": "${' '}",
+      "customerId": "${BDreg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull BDreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BD510",
+      "customerId": "${BDreferencenumber}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
