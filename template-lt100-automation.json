@@ -78,7 +78,7 @@
       ]
     },
     {
-      "title": "You are completing an Landfill Tax return for the following registration",
+      "title": "You are completing a Landfill Tax return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
@@ -697,22 +697,44 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull landfillTaxReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "LT100",
-      "customerId": "${' '}",
+      "customerId": "${landfillTaxReg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull landfillTaxRegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "LT100",
+      "customerId": "${landfillTaxRegAgent}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull landfillTaxReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "LT100",
-      "customerId": "${' '}",
+      "customerId": "${landfillTaxReg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull landfillTaxRegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "LT100",
+      "customerId": "${landfillTaxRegAgent}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
