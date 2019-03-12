@@ -9,13 +9,13 @@
   },
   "sections": [
     {
-      "title": "Do you expect to produce more than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
+      "title": "Do you expect to produce less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
       "shortName": "Expected biofuel or fuel substitute production ",
       "fields": [
         {
           "id": "litreChoice",
           "type": "choice",
-          "label": "Do you expect to produce more than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
+          "label": "Do you expect to produce less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
           "shortName": "More than 2,500 litres in next 12 months",
           "choices": [
             "Yes",
@@ -26,15 +26,29 @@
     },
     {
       "title": "You can not register for this service at this time",
-      "includeIf": "${litreChoice=1}",
+      "includeIf": "${litreChoice=0}",
       "continueIf": "false",
       "description": "As you expect to produce less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months, you are an exempt producer and do not need to register at this time.",
       "fields": [
         {
+          "type": "info",
+          "id": "generatedId_77485d1d_d444_4dde_8627_4f8ff13be675",
+          "label": "",
+          "infoText": "##What happens next",
+          "infoType": "noformat"
+        },
+        {
           "id": "generatedId_2e7a826b_762d_4cd7_a7fc_5734345ad1a0",
           "type": "info",
           "label": "",
-          "infoText": "You must come back and register if you exceed 2,500 litres in a 12 month period, or if you later expect to exceed this amount within the next 12\nmonths. \n\nAs an exempt producer there are simple records that you are required to  keep about the fuel you supply or use. You can find details about this on GOV.UK in [Excise Notice 179e: biofuels and other fuel substitutes](https://www.gov.uk/government/publications/excise-notice-179e-biofuels-and-other-fuel-substitutes/excise-notice-179e-biofuels-and-other-fuel-substitutes#exempt-producers-users).",
+          "infoText": "You must come back and register if you exceed 2,500 litres in a 12 month period, or if you later expect to exceed this amount within the next 12\nmonths. ",
+          "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_84e26b18_2faa_4fe5_bb8d_400134b6d718",
+          "label": "",
+          "infoText": "As an exempt producer, there are simple records that you are required to keep. You can find details about this on GOV.UK in [Excise Notice 179e: biofuels and other fuel substitutes](https://www.gov.uk/government/publications/excise-notice-179e-biofuels-and-other-fuel-substitutes/excise-notice-179e-biofuels-and-other-fuel-substitutes#exempt-producers-users).\n\nYou now need to sign out of this service.",
           "infoType": "noformat"
         }
       ]
@@ -159,7 +173,7 @@
         {
           "id": "corresChoice",
           "type": "choice",
-          "label": "Do you also want to use these details for your ongoing correspondence and returns?",
+          "label": "Do you also want to use these details for your ongoing biofuels and other fuel substitutes correspondence?",
           "shortName": "Use details for correspondence",
           "choices": [
             "Yes",
@@ -171,7 +185,7 @@
     {
       "title": "Preferred contact details",
       "includeIf": "${corresChoice = 1}",
-      "description": "We will use these for your ongoing correspondence and returns for duty on biofuels and other fuel substitutes.",
+      "description": "We will use these for your ongoing correspondence for duty on biofuels and other fuel substitutes.",
       "fields": [
         {
           "id": "prefName",
@@ -214,7 +228,7 @@
           "id": "generatedId_f93e562b_a0c1_4984_87e2_6b77e3e69cf2",
           "type": "info",
           "label": "When is duty chargeable?",
-          "infoText": "Duty is chargeable from when biofuels or other fuel substitutes are first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or other fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labeled as motor fuel.",
+          "infoText": "Duty is chargeable from when a biofuel or other fuel substitute is first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labeled as motor fuel.",
           "infoType": "long"
         }
       ]
@@ -282,7 +296,7 @@
           "label": "",
           "shortName": "Biofuel or fuel substitute duty registration numbers",
           "helpText": "",
-          "repeatsMax": "20",
+          "repeatsMax": 20,
           "repeatLabel": "Business $n",
           "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
@@ -366,7 +380,7 @@
     },
     {
       "title": "Estimate the duty you expect your business to owe for biofuels or fuel substitutes for the next 12 months",
-      "shortName": "Estimate of duty owed for next 12 months ",
+      "shortName": "Estimated duty owed for next 12 months ",
       "fields": [
         {
           "id": "estTax",
