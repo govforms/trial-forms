@@ -473,22 +473,44 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ho930Reg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "HO930",
-      "customerId": "${' '}",
+      "customerId": "${ho930Reg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ho930RegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "HO930",
+      "customerId": "${ho930RegAgent}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ho930Reg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "HO930",
-      "customerId": "${' '}",
+      "customerId": "${ho930Reg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ho930RegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "HO930",
+      "customerId": "${ho930RegAgent}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
