@@ -11,6 +11,15 @@
     {
       "title": "Details of business to register",
       "shortName": "Business details",
+      "validators": {
+        "errorMessage": "The UTR could not be found or the postcode did not match.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "ZGRF",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
       "fields": [
         {
           "id": "businessUtr",
@@ -25,6 +34,28 @@
           "label": "Business Address Postcode",
           "shortName": "Postcode",
           "format": "text(5,8)"
+        }
+      ]
+    },
+    {
+      "title": "You are completing a Gas as Road Fuel registration for the following business",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business Name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -69,13 +100,6 @@
       "title": "Enter the name of your business ",
       "shortName": "Business details",
       "fields": [
-        {
-          "id": "businessName",
-          "type": "text",
-          "label": "Business name",
-          "shortName": "Business name",
-          "helpText": ""
-        },
         {
           "id": "businessTradingName",
           "type": "text",
@@ -211,7 +235,8 @@
         {
           "id": "grfTaxRegNo",
           "type": "text",
-          "label": "GRF Tax registration number"
+          "label": "GRF Tax registration number",
+          "format": "positiveNumber(1, 30)"
         }
       ]
     },
@@ -258,143 +283,6 @@
           "type": "date",
           "label": "Tax obligation start date",
           "helpText": "Enter your tax obligation start date in the format dd/mm/yyyy"
-        }
-      ]
-    },
-    {
-      "title": "How many sites do you want to tell us about?",
-      "fields": [
-        {
-          "id": "howManySites",
-          "type": "text",
-          "label": "How many sites do you want to tell us about?",
-          "format": "positiveWholeNumber"
-        }
-      ]
-    },
-    {
-      "title": "Site $n",
-      "repeatsMin": "${howManySites}",
-      "repeatsMax": "${howManySites}",
-      "fields": [
-        {
-          "id": "siteTradName",
-          "type": "text",
-          "label": "Trading name of site",
-          "format": "text(0,160)"
-        },
-        {
-          "id": "siteRef",
-          "type": "text",
-          "label": "Site reference / Site licence or permit number",
-          "format": "text(0,20)"
-        },
-        {
-          "id": "siteAdd",
-          "type": "address",
-          "label": "Site Address",
-          "shortName": "Address",
-          "international": "true"
-        },
-        {
-          "id": "siteTelephoneNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteEmailAddress",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
-          "id": "bulkCyl",
-          "type": "choice",
-          "label": "Is the gas for road fuel handled in bulk or in cylinders",
-          "choices": [
-            "Bulk",
-            "Cylinders"
-          ]
-        },
-        {
-          "id": "distMarks",
-          "type": "text",
-          "label": "Description and distinguishing marks of every place, tank or vessel in which gas is to be supplied, sent out or set aside for use as a road fuel",
-          "format": "text(0,255)",
-          "multiline": "true"
-        },
-        {
-          "id": "otherThanRF",
-          "type": "choice",
-          "label": "Is any gas supplied or sent out from the same place, tank or vessel for use other than as road fuel?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "onsiteProd",
-          "type": "choice",
-          "label": "Is the gas produced at the premises stated in this notification or supplied to it from other premises? ",
-          "choices": [
-            "Gas is produced at these premises",
-            "Gas is supplied from other premises"
-          ]
-        },
-        {
-          "id": "supChoi",
-          "type": "choice",
-          "label": "Has the supplier been or will be informed that the gas is for use as a road fuel?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "vehData",
-          "type": "text",
-          "label": "Description, registration mark and number of each road vehicle controlled or operated by the person giving this notification, which uses gas as a fuel for its propulsion",
-          "format": "text(0,255)",
-          "multiline": "true"
-        },
-        {
-          "id": "othFueChoi",
-          "type": "choice",
-          "label": "Is this vehicle constructed or adapted to be propelled by any other fuel?",
-          "choices": [
-            "First selectable choice",
-            "Second selectable choice"
-          ]
-        },
-        {
-          "id": "othFuelVehi",
-          "type": "text",
-          "label": "Description of other fuel",
-          "format": "text(0,255)"
-        },
-        {
-          "id": "sameTime",
-          "type": "choice",
-          "label": "Is this fuel to be used in place of or at the same time as gas?",
-          "choices": [
-            "In place of gas",
-            "Same time as gas"
-          ]
-        },
-        {
-          "id": "custdets",
-          "type": "text",
-          "label": "details of how you propose to advise customers that the gas supplied has been charged with excise duty",
-          "format": "text(0,255)",
-          "multiline": "true"
-        },
-        {
-          "id": "quantHow",
-          "type": "text",
-          "label": "How is the quantity of gas determined at this site?",
-          "format": "text(0,255)",
-          "multiline": "true"
         }
       ]
     }
@@ -492,7 +380,18 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/subscription/ZGRF/utr/{{businessUtr}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZGR2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '1'; ('1') => '7'; ('2') => '2'; ('3') => '3'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAdd\"}},                           'postCode': '{{businessAdd-postcode}}',                           'telephoneNumber': '{{businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#corresAdd-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"corresAdd\"}},                         'postCode': '{{corresAdd-postcode}}',                         'telephoneNumber': '{{corresPhone}}',                         'email': '{{corresEmail}}'                         },                       {{/corresAdd-postcode}}                       'declarationStatus': '{{lookup ^('0') => '01'; ('1') => '02'; ('2') => '03'; ('3') => '04'; ('4') => '05'^ (stripCommas statusChoice)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{lookup ^('0') => 'MA'; ('1') => 'MB'; ('2') => 'MC'; ('3') => 'MM'^ (stripCommas retPer)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{obliDate-year}}{{obliDate-month}}{{obliDate-day}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_GFU_NOTIF',                           'paramValue': '{{lookup ^('0') => '1'; ('1') => '2'; ('2') => '3'^ (stripCommas authChoi)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_GFU_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice bfChoiOther}}'                         },                         {{#each grfTaxRegNo}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZGR5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_HANDL',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_TANK',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_SUPP_PLACE',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_PROD_SUPP',                               'paramValue': '2'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_VEH_OPER',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_ADAP_FUEL',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_CUST_EXCISE_NOTIF',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_QNT_DET',                               'paramValue': 'N/A'                             }                           ]                         },                       ]                     }                   }"
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZGR2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '1'; ('1') => '7'; ('2') => '2'; ('3') => '3'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAdd\"}},                           'postCode': '{{businessAdd-postcode}}',                           'telephoneNumber': '{{businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#corresAdd-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"corresAdd\"}},                         'postCode': '{{corresAdd-postcode}}',                         'telephoneNumber': '{{corresPhone}}',                         'email': '{{corresEmail}}'                         },                       {{/corresAdd-postcode}}                       'declarationStatus': '{{lookup ^('0') => '01'; ('1') => '02'; ('2') => '03'; ('3') => '04'; ('4') => '05'^ (stripCommas statusChoice)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{lookup ^('0') => 'MA'; ('1') => 'MB'; ('2') => 'MC'; ('3') => 'MM'^ (stripCommas retPer)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{toEtmpDate 'obliDate'}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_GFU_NOTIF',                           'paramValue': '{{lookup ^('0') => '1'; ('1') => '2'; ('2') => '3'^ (stripCommas authChoi)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_GFU_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice bfChoiOther}}'                         },                         {{#each grfTaxRegNo}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZGR5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_HANDL',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_TANK',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_SUPP_PLACE',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_PROD_SUPP',                               'paramValue': '2'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_VEH_OPER',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_ADAP_FUEL',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_CUST_EXCISE_NOTIF',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_QNT_DET',                               'paramValue': 'None'                             }                           ]                         },                       ]                     }                   }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/submissions/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
