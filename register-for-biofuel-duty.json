@@ -1,6 +1,6 @@
 {
   "_id": "register-for-biofuel-duty",
-  "formName": "Register for Biofuel Duty",
+  "formName": "Register for duty on biofuels and other fuel substitutes",
   "description": "",
   "developmentPhase": "beta",
   "emailTemplateId": "lt_registration_confirmation",
@@ -10,13 +10,13 @@
   "sections": [
     {
       "title": "Do you expect to produce more than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
-      "shortName": "Expected biofuel production for next 12 months",
+      "shortName": "Expected biofuel or fuel substitute production ",
       "fields": [
         {
           "id": "litreChoice",
           "type": "choice",
-          "label": "",
-          "shortName": "More than 2,500 litres",
+          "label": "Do you expect to produce more than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
+          "shortName": "More than 2,500 litres in next 12 months",
           "choices": [
             "Yes",
             "No"
@@ -159,7 +159,7 @@
         {
           "id": "corresChoice",
           "type": "choice",
-          "label": "Do you also want to use these details for your ongoing Biofuel Duty correspondence?",
+          "label": "Do you also want to use these details for your ongoing correspondence and returns?",
           "shortName": "Use details for correspondence",
           "choices": [
             "Yes",
@@ -171,7 +171,7 @@
     {
       "title": "Preferred contact details",
       "includeIf": "${corresChoice = 1}",
-      "description": "We will use these for your ongoing Biofuel Duty correspondence and returns.",
+      "description": "We will use these for your ongoing correspondence and returns for duty on biofuels and other fuel substitutes.",
       "fields": [
         {
           "id": "prefName",
@@ -200,8 +200,8 @@
       ]
     },
     {
-      "title": "What date do you expect your business to start owing Biofuel Duty?",
-      "shortName": "Date you expect to start owing duty for the gas",
+      "title": "What date do you expect your business to start owing duty for the biofuels or fuel substitutes?",
+      "shortName": "Date you expect to start owing duty",
       "fields": [
         {
           "id": "taxLiabiityDate",
@@ -213,21 +213,21 @@
         {
           "id": "generatedId_f93e562b_a0c1_4984_87e2_6b77e3e69cf2",
           "type": "info",
-          "label": "When is Biofuel Duty payable?",
-          "infoText": "Duty is payable from when biofuels or other fuel substitutes are first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or other fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labeled as a motor fuel.",
+          "label": "When is duty chargeable?",
+          "infoText": "Duty is chargeable from when biofuels or other fuel substitutes are first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or other fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labeled as motor fuel.",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Have you as the sole trader been involved in any other biofuel businesses in the last 2 years?",
+      "title": "Have you as the sole trader been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
       "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=1}",
       "fields": [
         {
           "id": "bfChoiOther",
           "type": "choice",
-          "label": "Have you as the sole trader been involved in any other biofuel businesses in the last 2 years?",
+          "label": "Have you as the sole trader been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
           "shortName": "Sole trader involved in other businesses\n",
           "choices": [
             "Yes",
@@ -237,15 +237,15 @@
       ]
     },
     {
-      "title": "Have any of the directors in your business been involved in any other biofuel businesses in the last 2 years?",
+      "title": "Have any of the directors in your business been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
       "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=0}",
       "fields": [
         {
           "id": "bfChoiOtherDirectors",
           "type": "choice",
-          "label": "Have any of the directors in your business been involved in any other biofuel businesses in the last 2 years?",
-          "shortName": "Directors involved in other businesses",
+          "label": "Have any of the directors in your business been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
+          "shortName": "Directors involved in other registered businesses",
           "choices": [
             "Yes",
             "No"
@@ -254,15 +254,15 @@
       ]
     },
     {
-      "title": "Have any of the partners in your business been involved in any other biofuel businesses in the last 2 years?",
-      "shortName": "Involvement in other registered businesses\n",
+      "title": "Have any of the partners in your business been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses",
       "includeIf": "${businessType=2 || businessType=3} ",
       "fields": [
         {
           "id": "bfChoiOtherPartners",
           "type": "choice",
-          "label": "Have any of the partners in your business been involved in any other biofuel businesses in the last 2 years?",
-          "shortName": "Partners involved in other businesses",
+          "label": "Have any of the partners in your business been involved in any other biofuel or fuel substitute businesses in the last 2 years?",
+          "shortName": "Partners involved in other registered businesses",
           "choices": [
             "Yes",
             "No"
@@ -271,18 +271,18 @@
       ]
     },
     {
-      "title": "Enter the Biofuel Duty registration number for each business the directors have been involved in",
+      "title": "Enter the registration number for each business the directors have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherDirectors =0}",
-      "description": "Provide the registration number for each business the directors have been involved in within the last 2 years.",
+      "description": "Provide the biofuel or fuel substitute duty registration number for each business the directors have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBus",
           "type": "group",
           "label": "",
-          "shortName": "Biofuel Duty registration number",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
           "helpText": "",
-          "repeatsMax": 20,
+          "repeatsMax": "20",
           "repeatLabel": "Business $n",
           "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
@@ -290,24 +290,23 @@
               "id": "regNumberOther",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Registration number",
-              "helpText": ""
+              "shortName": "Registration number"
             }
           ]
         }
       ]
     },
     {
-      "title": "Enter the Biofuel Duty registration number for each business the partners have been involved in",
+      "title": "Enter the registration number for each business the partners have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherPartners=0}",
-      "description": "Provide the registration number for each business the partners have been involved in within the last 2 years.",
+      "description": "Provide the biofuel or fuel substitute duty registration number for each business the partners have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusPartners",
           "type": "group",
           "label": "",
-          "shortName": "Biofuel Duty registration number",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
           "helpText": "",
           "repeatsMax": 20,
           "repeatLabel": "Business $n",
@@ -317,24 +316,23 @@
               "id": "regNumberOther_copy_1",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Registration number",
-              "helpText": ""
+              "shortName": "Registration number"
             }
           ]
         }
       ]
     },
     {
-      "title": "Enter the Biofuel Duty registration number for each other business",
+      "title": "Enter the registration number for each other business",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOther=0}",
-      "description": "Provide the registration number for each biofuel business you, the sole trader have been involved in within the last 2 years.",
+      "description": "Provide the biofuel or fuel substitute duty registration number for each biofuel business you, the sole trader have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusSoleTrad",
           "type": "group",
           "label": "",
-          "shortName": "Biofuel Duty registration number",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
           "helpText": "",
           "repeatsMax": 20,
           "repeatLabel": "Registration number",
@@ -353,7 +351,7 @@
     },
     {
       "title": "Estimate the amount of biofuels or fuel substitutes you expect to produce each year",
-      "shortName": "Annual biofuel production ",
+      "shortName": "Annual biofuel or fuel substitute production ",
       "description": "This is the total production across all sites",
       "fields": [
         {
@@ -361,14 +359,14 @@
           "type": "text",
           "label": "Estimate the amount of biofuels or fuel substitutes you expect to produce each year",
           "shortName": "Estimated total litres",
-          "helpText": "Enter the total amount produced across all sites in litres",
+          "helpText": "Enter the total amount produced across all premises",
           "format": "positiveNumber(8,2, 'litres')"
         }
       ]
     },
     {
       "title": "Estimate the duty you expect your business to owe for biofuels or fuel substitutes for the next 12 months",
-      "shortName": "Estimated duty owed for next 12 months ",
+      "shortName": "Estimate of duty owed for next 12 months ",
       "fields": [
         {
           "id": "estTax",
@@ -380,8 +378,8 @@
         {
           "id": "generatedId_2d1775ae_409c_4c5e_9733_acd1df1381aa",
           "type": "info",
-          "label": "Where can I find out how to calculate duty on biofuels?",
-          "infoText": "To find out how to calculate duty follow the steps below.\n1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'UK Trade Tariff: excise duties, reliefs, drawbacks and allowances'.",
+          "label": "Where can I find out how to calculate the duty?",
+          "infoText": "1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'UK Trade Tariff: excise duties, reliefs, drawbacks and allowances'.",
           "infoType": "long"
         }
       ]
