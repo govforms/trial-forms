@@ -122,7 +122,7 @@
           "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
           "shortName": "1.1.1: Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
           "helpText": "For example, incorporation or sale of a business unit. [Ref 1.1.1]",
-          "errorMessage": "Select whether the business has been established for less than 3 years due to an internal reorganisation of a previously existing business",
+          "errorMessage": "Select whether the business has been established for less than 3 years due to internal reorganisation",
           "choices": [
             "Yes",
             "No"
@@ -156,7 +156,8 @@
           "shortName": "1.1.2: How many people involved in the ownership, direction or management of your business are UK nationals?",
           "helpText": "[Ref 1.1.2]",
           "format": "positiveWholeNumber",
-          "displayWidth": "xs"
+          "displayWidth": "xs",
+          "errorMessage": "Enter how many people involved in the ownership, direction or management of your business are UK nationals "
         },
         {
           "id": "uKWho",
@@ -218,17 +219,18 @@
       ]
     },
     {
-      "title": "How many non UK-nationals are involved in the ownership, direction or management of your business?",
+      "title": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
       "shortName": "Number non-UK nationals involved",
       "fields": [
         {
           "id": "nonUKNatCO1",
           "type": "text",
-          "label": "How many non UK-nationals are involved in the ownership, direction or management of your business?",
-          "shortName": "1.1.2: How many non UK-nationals are involved in the ownership, direction or management of your business?",
+          "label": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
+          "shortName": "1.1.2: How many non-UK nationals are involved in the ownership, direction or management of your business?",
           "helpText": "Input the number of owners or main shareholders who are not UK nationals. [Ref 1.1.2] ",
           "format": "positiveWholeNumber",
-          "displayWidth": "xs"
+          "displayWidth": "xs",
+          "errorMessage": "Enter how many people involved in the ownership, direction or management of your business are not UK nationals "
         },
         {
           "id": "nonUKWhoInclude",
@@ -240,8 +242,8 @@
       ]
     },
     {
-      "title": "Non UK national involved in the ownership, direction or management of your business $n",
-      "shortName": "Non UK national details $n",
+      "title": "Non-UK national involved in the ownership, direction or management of your business $n",
+      "shortName": "Non-UK national details $n",
       "includeIf": "${nonUKNatCO1 >= 1}",
       "repeatsMin": "${nonUKNatCO1}",
       "repeatsMax": "${nonUKNatCO1}",
@@ -368,16 +370,17 @@
       ]
     },
     {
-      "title": "How many locations do you have involved in customs activities for your company?",
+      "title": "How many locations do you have involved in customs activities for your business?",
       "shortName": "Locations involved in customs activities",
       "fields": [
         {
           "id": "coLocNum",
           "type": "text",
-          "label": "How many locations do you have involved in customs activities for your company?",
-          "shortName": "1.1.5: How many locations do you have involved in customs activities for your company?",
+          "label": "How many locations do you have involved in customs activities for your business?",
+          "shortName": "1.1.5: How many locations do you have involved in customs activities for your business?",
           "helpText": "[Ref 1.1.5]",
           "displayWidth": "xs",
+          "errorMessage": "Select how many locations you have involved in customs activities",
           "fomat": "positiveWholeNumber"
         }
       ]
@@ -441,7 +444,8 @@
           "shortName": "1.1.5b: How many sites do you have where third parties execute outsourced activities for your business?",
           "helpText": "You can enter a maximum of 20. [Ref 1.1.5b]",
           "displayWidth": "xs",
-          "validIf": "${tPLiCA1 > 0 || tPLiCA1 <=20}"
+          "validIf": "${tPLiCA1 > 0 || tPLiCA1 <=20}",
+          "errorMessage": "Select how many sites you have where third parties execute outsourced activities"
         }
       ]
     },
