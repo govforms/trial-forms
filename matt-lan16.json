@@ -692,7 +692,6 @@
     },
     {
       "title": "How many people do you want to add to your proposed register provider?",
-      "includeIf": "${businessChoice2 = 1}",
       "fields": [
         {
           "id": "noIndPeoAdd",
@@ -776,7 +775,6 @@
     },
     {
       "title": "Tell us about the establishment or agency",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "esAgNam",
@@ -788,7 +786,6 @@
     },
     {
       "title": "Contact details and address of main site",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
@@ -1010,7 +1007,6 @@
     },
     {
       "title": "Do the premises require planning permission?",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "planReqChoi2",
@@ -1026,7 +1022,7 @@
     },
     {
       "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
-      "includeIf": "${appType != 4 && planReqChoi2 = 0}",
+      "includeIf": "${planReqChoi2 = 0}",
       "fields": [
         {
           "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
@@ -1054,7 +1050,7 @@
     },
     {
       "title": "Upload your planning document",
-      "includeIf": "${appType != 4 && planChoi = 0}",
+      "includeIf": "${planChoi = 0}",
       "fields": [
         {
           "id": "upPlan",
