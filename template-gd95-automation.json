@@ -633,22 +633,44 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull GDreg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "GD95",
-      "customerId": "${' '}",
-      "classificationType": "BT-NRU-Environmental",
+      "customerId": "${GDreg}",
+      "classificationType": "BT-NRU-Gaming",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull gamingdutyreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${gamingdutyreferencenumber}",
+      "classificationType": "BT-NRU-Gaming",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull GDreg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "GD95",
-      "customerId": "${' '}",
+      "customerId": "${GDreg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull gamingdutyreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${gamingdutyreferencenumber}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
