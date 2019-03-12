@@ -10,7 +10,7 @@
   "sections": [
     {
       "title": "Do you expect to produce more than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
-      "shortName": "Expected biofuel production in next 12 months",
+      "shortName": "Expected biofuel production for next 12 months",
       "fields": [
         {
           "id": "litreChoice",
@@ -221,12 +221,14 @@
     },
     {
       "title": "Have you as the sole trader been involved in any other biofuel businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=1}",
       "fields": [
         {
           "id": "bfChoiOther",
           "type": "choice",
           "label": "Have you as the sole trader been involved in any other biofuel businesses in the last 2 years?",
+          "shortName": "Sole trader involved in other businesses\n",
           "choices": [
             "Yes",
             "No"
@@ -236,12 +238,14 @@
     },
     {
       "title": "Have any of the directors in your business been involved in any other biofuel businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=0}",
       "fields": [
         {
           "id": "bfChoiOtherDirectors",
           "type": "choice",
           "label": "Have any of the directors in your business been involved in any other biofuel businesses in the last 2 years?",
+          "shortName": "Directors involved in other businesses",
           "choices": [
             "Yes",
             "No"
@@ -251,12 +255,14 @@
     },
     {
       "title": "Have any of the partners in your business been involved in any other biofuel businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=2 || businessType=3} ",
       "fields": [
         {
           "id": "bfChoiOtherPartners",
           "type": "choice",
           "label": "Have any of the partners in your business been involved in any other biofuel businesses in the last 2 years?",
+          "shortName": "Partners involved in other businesses",
           "choices": [
             "Yes",
             "No"
@@ -284,7 +290,7 @@
               "id": "regNumberOther",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Business $n",
+              "shortName": "Registration number",
               "helpText": ""
             }
           ]
@@ -311,7 +317,7 @@
               "id": "regNumberOther_copy_1",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Business $n",
+              "shortName": "Registration number",
               "helpText": ""
             }
           ]
@@ -331,7 +337,7 @@
           "shortName": "Biofuel Duty registration number",
           "helpText": "",
           "repeatsMax": 20,
-          "repeatLabel": "Business $n",
+          "repeatLabel": "Registration number",
           "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
@@ -347,12 +353,14 @@
     },
     {
       "title": "Estimate the amount of biofuels or fuel substitutes you expect to produce each year",
+      "shortName": "Annual biofuel production ",
       "description": "This is the total production across all sites",
       "fields": [
         {
           "id": "estProd",
           "type": "text",
           "label": "Estimate the amount of biofuels or fuel substitutes you expect to produce each year",
+          "shortName": "Estimated total litres",
           "helpText": "Enter the total amount produced across all sites in litres",
           "format": "positiveNumber(8,2, 'litres')"
         }
@@ -360,11 +368,13 @@
     },
     {
       "title": "Estimate the duty you expect your business to owe for biofuels or fuel substitutes for the next 12 months",
+      "shortName": "Estimated duty owed for next 12 months ",
       "fields": [
         {
           "id": "estTax",
           "type": "text",
           "label": "Estimate the duty you expect your business to owe for biofuels or fuel substitutes for the next 12 months",
+          "shortName": "Estimated amount ",
           "format": "sterling"
         },
         {
@@ -378,11 +388,13 @@
     },
     {
       "title": "How often would you like to submit your returns?",
+      "shortName": "Return periods",
       "fields": [
         {
           "id": "returnPeriod",
           "type": "choice",
           "label": "",
+          "shortName": "Monthly or quarterly",
           "choices": [
             "Monthly",
             "Quarterly"
