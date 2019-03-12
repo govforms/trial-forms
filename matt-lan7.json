@@ -100,7 +100,6 @@
     },
     {
       "title": "Which sector does your organisation belong to?",
-      "includeIf": "${businessChoice2 = 2 || businessChoice2 = 0} ",
       "fields": [
         {
           "id": "orgTypChoi",
@@ -320,7 +319,6 @@
     },
     {
       "title": " Does your partnership have the finance available to run your establishment or agency?",
-      "includeIf": "${businessChoice2 = 2}",
       "fields": [
         {
           "id": "generatedId_373dddc9_064b_42eb_bcf4_ff0824d14655",
@@ -554,7 +552,6 @@
     },
     {
       "title": "Upload your financial reference from your bank",
-      "includeIf": "${couChoi != 0}",
       "fields": [
         {
           "id": "generatedId_b863f3e5_7b6a_40f7_8450_0845138381a6",
@@ -573,7 +570,6 @@
     },
     {
       "title": "Upload your business plan",
-      "includeIf": "${couChoi != 0}",
       "fields": [
         {
           "id": "generatedId_7f5db5a6_ad42_4111_9627_d54f6903f5dc",
@@ -592,7 +588,6 @@
     },
     {
       "title": "Upload your cash-flow forecast",
-      "includeIf": "${couChoi != 0}",
       "fields": [
         {
           "id": "generatedId_1a46157a_411f_479e_9613_9b5d39722953",
@@ -611,7 +606,6 @@
     },
     {
       "title": "Upload your company's annual accounts",
-      "includeIf": "${couChoi != 0 || newCoChoi != 0}",
       "fields": [
         {
           "id": "generatedId_7af6481a_3f6e_4c2b_833c_2ee3f2830cd8",
@@ -630,7 +624,6 @@
     },
     {
       "title": "Upload your company's last annual reports",
-      "includeIf": "${couChoi != 0 || newCoChoi != 0}",
       "fields": [
         {
           "id": "generatedId_7470500e_f9cf_443b_8940_386e7eafe52b",
@@ -649,7 +642,7 @@
     },
     {
       "title": "Has your partnership ever been registered, been a partner or given a licence to run children and social care services under law?",
-      "includeIf": "${businessChoice2 = 2}",
+      "includeIf": "${businessChoice2 = 0}",
       "description": "",
       "fields": [
         {
@@ -674,7 +667,7 @@
     },
     {
       "title": "Give us more details of the previous registrations",
-      "includeIf": "${businessChoice2 = 2 && actsChoice3 = 0} ",
+      "includeIf": "${businessChoice2 = 0 && actsChoice3 = 0} ",
       "fields": [
         {
           "id": "generatedId_d44cfb62_95a9_465b_8cea_f6a59adcdaee",
@@ -693,7 +686,7 @@
     },
     {
       "title": "Has your partnership ever had an application refused or registration cancelled to provide children and social care services?",
-      "includeIf": "${businessChoice2 = 2}",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "generatedId_108b7626_1296_40d8_9a9b_ac7affe095a5",
@@ -753,7 +746,7 @@
     },
     {
       "title": "How many partners do you want to add to your proposed registered provider?",
-      "includeIf": "${businessChoice2 = 2}",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "noPARPeoAdd",
@@ -834,7 +827,7 @@
     },
     {
       "title": "Who is the responsible partner?",
-      "includeIf": "${businessChoice2 = 2}",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "resIndTit_copy_1",
@@ -877,7 +870,7 @@
     },
     {
       "title": "Does this person have management responsibility for staff?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "staffMan",
@@ -892,7 +885,7 @@
     },
     {
       "title": "Will this person have significant contact with children?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
+      "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "kidCon",
@@ -907,7 +900,6 @@
     },
     {
       "title": "Tell us about the establishment or agency",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "esAgNam",
@@ -918,20 +910,7 @@
       ]
     },
     {
-      "title": "What is the name of your holiday scheme?",
-      "includeIf": "${appType = 4}",
-      "fields": [
-        {
-          "id": "esAgNam_copy_1",
-          "type": "text",
-          "label": "Establishment or agency name ",
-          "shortName": "Name"
-        }
-      ]
-    },
-    {
       "title": "Contact details and address of main site",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
@@ -1130,7 +1109,6 @@
     },
     {
       "title": "Do the premises require planning permission?",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "planReqChoi2",
@@ -1146,7 +1124,6 @@
     },
     {
       "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
-      "includeIf": "${appType != 4}",
       "fields": [
         {
           "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
@@ -1174,7 +1151,7 @@
     },
     {
       "title": "Upload your planning document",
-      "includeIf": "${appType != 4 && planChoi = 0}",
+      "includeIf": "${planChoi = 0}",
       "fields": [
         {
           "id": "upPlan",
