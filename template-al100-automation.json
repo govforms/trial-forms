@@ -319,22 +319,44 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{lookup ^('true' *) => 'true'; (* 'agent') => 'true'; (* *) => 'false'^ (isNotSuccessCode eeittReturnApi.status) (either aggregatesLevyReg 'agent')}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull aggregatesLevyReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "AL100",
-      "customerId": "${' '}",
+      "customerId": "${aggregatesLevyReg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull aggregatesLevyRegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "AL100",
+      "customerId": "${aggregatesLevyRegAgent}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull aggregatesLevyReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "AL100",
-      "customerId": "${' '}",
+      "customerId": "${aggregatesLevyReg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull aggregatesLevyRegAgent)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "AL100",
+      "customerId": "${aggregatesLevyRegAgent}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
