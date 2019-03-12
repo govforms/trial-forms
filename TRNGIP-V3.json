@@ -1,6 +1,6 @@
 {
   "_id": "TRNGIP-V3",
-  "formName": "Register a non-resident company for corporation tax",
+  "formName": "Register a non-resident company for Corporation Tax",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -60,13 +60,13 @@
       ]
     },
     {
-      "title": "Do you have a Corporation Tax Unique Taxpayer Reference?",
+      "title": "Does the company you are registering have a Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Corporation Tax Unique Taxpayer Reference",
       "fields": [
         {
           "id": "uTRChoice",
           "type": "choice",
-          "label": "Do you have a Corporation Tax Unique Taxpayer Reference?",
+          "label": "Does the company you are registering have a Corporation Tax Unique Taxpayer Reference?",
           "shortName": "CT Unique Taxpayer Reference",
           "helpText": "This is on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
           "choices": [
@@ -77,35 +77,36 @@
       ]
     },
     {
-      "title": "What is your Corporation Tax Unique Taxpayer Reference? ",
+      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Corporation Tax Unique Taxpayer Reference",
       "includeIf": "${uTRChoice=0}",
       "fields": [
         {
           "id": "uKUTR",
           "type": "text",
-          "label": "What is your Corporation Tax Unique Taxpayer Reference? ",
+          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
           "shortName": "CT Unique Taxpayer Reference",
           "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  "
         }
       ]
     },
     {
-      "title": "What is your company name?",
+      "title": "What is the company name?",
       "shortName": "Company details",
       "includeIf": "${uTRChoice=1}",
       "fields": [
         {
           "id": "fullCompanyName_copy_1",
           "type": "text",
-          "label": "What is your company name?",
+          "label": "What is the company name?",
           "shortName": "Company name",
+          "helpText": "Enter the name of the company you are registering",
           "format": "shortText"
         }
       ]
     },
     {
-      "title": "What is your current company name?",
+      "title": "What is the current company name?",
       "shortName": "Company details",
       "includeIf": "${uTRChoice=0}",
       "fields": [
@@ -121,20 +122,19 @@
           "type": "text",
           "label": "Company name",
           "shortName": "Company name",
-          "helpText": "This is your current company name (?)",
           "format": "shortText"
         }
       ]
     },
     {
-      "title": "Do you have an employer PAYE reference number?",
+      "title": "Does the company have an employer PAYE reference number?",
       "shortName": "PAYE details",
       "includeIf": "${uTRChoice=1}",
       "fields": [
         {
           "id": "referenceChoice",
           "type": "choice",
-          "label": "Do you have an employer PAYE reference number?",
+          "label": "Does the company have an employer PAYE reference number?",
           "shortName": "Employer PAYE reference",
           "helpText": "It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60.",
           "choices": [
@@ -145,14 +145,14 @@
       ]
     },
     {
-      "title": "What is your Employer PAYE reference? ",
+      "title": "What is the Employer PAYE reference?",
       "shortName": "Employer PAYE reference",
       "includeIf": "${referenceChoice=0}",
       "fields": [
         {
           "id": "uKUTR_copy_1",
           "type": "text",
-          "label": "What is your Employer PAYE reference? ",
+          "label": "What is the Employer PAYE reference?",
           "shortName": "Employer PAYE reference",
           "helpText": "This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60.",
           "mandatory": "true"
@@ -160,14 +160,14 @@
       ]
     },
     {
-      "title": "Do you have any HMRC company reference numbers?",
+      "title": "Does the company have any HMRC reference numbers?",
       "shortName": "HMRC reference number",
       "includeIf": "${referenceChoice=1}",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Do you have any HMRC company reference numbers?",
+          "label": "Does the company have any HMRC reference numbers?",
           "helpText": "Your company will have a reference number if it has been registered for an HMRC service. You only need to provide one.",
           "choices": [
             "Non-resident Capital Gains Tax reference",
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "title": "Enter your company's incorporation details",
+      "title": "Enter the company's incorporation details",
       "shortName": "Incorporation details",
       "fields": [
         {
@@ -288,14 +288,14 @@
       ]
     },
     {
-      "title": "What is your country of tax residence?",
+      "title": "What is the country of tax residence?",
       "shortName": "Country of tax residence",
       "includeIf": "${countryOfTax=1}",
       "fields": [
         {
           "id": "countryOfTaxResidence",
           "type": "text",
-          "label": "What is your country of tax residence?",
+          "label": "What is the country of tax residence?",
           "shortName": "Tax residence",
           "helpText": "Enter the country where the company currently pays tax",
           "mandatory": "true"
@@ -310,13 +310,13 @@
       ]
     },
     {
-      "title": "Do you have a company reference number or equivalent?",
+      "title": "Does the company have a reference number or equivalent?",
       "shortName": "Company reference number",
       "fields": [
         {
           "id": "cRnYesNo",
           "type": "choice",
-          "label": "Do you have a company reference number or equivalent?",
+          "label": "Does the company have a reference number or equivalent?",
           "shortName": "Company reference number",
           "helpText": "This is the number given to your company when it was formed. This may also be referred to as a registration number.",
           "choices": [
@@ -327,13 +327,13 @@
       ]
     },
     {
-      "title": "What is the company reference number of your business?",
+      "title": "What is the company reference number?",
       "includeIf": "${cRnYesNo=0}",
       "fields": [
         {
           "id": "cRnRef",
           "type": "text",
-          "label": "What is the company reference number of your business?",
+          "label": "What is the company reference number?",
           "helpText": "This information will help us to confirm who you are"
         }
       ]
@@ -385,13 +385,13 @@
         {
           "id": "businessTelephone",
           "type": "text",
-          "label": "Telephone number (optional)",
+          "label": "Telephone number",
           "helpText": "Include the country code"
         },
         {
           "id": "businessEmail",
           "type": "text",
-          "label": "Email address (optional)",
+          "label": "Email address",
           "shortName": "Email address",
           "mandatory": "false"
         }
@@ -416,13 +416,13 @@
       ]
     },
     {
-      "title": "Is your company a member of a group?",
+      "title": "Is the company a member of a group?",
       "shortName": "Group details",
       "fields": [
         {
           "id": "companyMemGroup",
           "type": "choice",
-          "label": "Is your company a member of a group?",
+          "label": "Is the company a member of a group?",
           "shortName": "Group member",
           "helpText": "(help text)",
           "format": "yesno"
@@ -484,13 +484,13 @@
       ]
     },
     {
-      "title": "Does your parent company have a company reference number or equivalent?",
+      "title": "Does the parent company have a company reference number or equivalent?",
       "shortName": "Parent company reference number",
       "fields": [
         {
           "id": "parentCompanyref",
           "type": "choice",
-          "label": "Does your parent company have a company reference number or equivalent?",
+          "label": "Does the parent company have a company reference number or equivalent?",
           "shortName": "Reference number",
           "helpText": "This may also be referred to as a registration number and is used to identify a company's legal existence",
           "choices": [
@@ -501,14 +501,14 @@
       ]
     },
     {
-      "title": "What is the reference number of your parent company?",
+      "title": "What is the reference number of the parent company?",
       "shortName": "",
       "includeIf": "${companyMemGroup=0 && parentCompanyref=0}",
       "fields": [
         {
           "id": "parentCompanyRegNumber",
           "type": "text",
-          "label": "What is the reference number of your parent company?",
+          "label": "What is the reference number of the parent company?",
           "shortName": "Reference number",
           "helpText": "This information will help us to confirm the identity of the company",
           "format": "text",
@@ -624,12 +624,12 @@
       ]
     },
     {
-      "title": "Has your company taken over another UK business?",
+      "title": "Has the company you are registering taken over another UK business?",
       "fields": [
         {
           "id": "takenOverAnotherBusinessYesNo",
           "type": "choice",
-          "label": "Has your company taken over another UK business?",
+          "label": "Has the company you are registering taken over another UK business?",
           "choices": [
             "Yes",
             "No"
@@ -638,17 +638,17 @@
       ]
     },
     {
-      "title": "Select which type of UK business your company has taken over",
+      "title": "Select which type of UK business the company has taken over",
       "includeIf": "${takenOverAnotherBusinessYesNo=0}",
       "fields": [
         {
           "id": "takenOverAnotherBusiness",
           "type": "choice",
-          "label": "Select which type of UK business your company has taken over",
+          "label": "Select which type of UK business the company has taken over",
           "choices": [
-            "A limited company",
-            "A sole trader",
-            "A partnership"
+            "a limited company",
+            "a sole trader",
+            "a partnership"
           ]
         }
       ]
@@ -689,14 +689,13 @@
           "id": "generatedId_7e5ff053_87a0_48bf_92ee_0f1ab6612896",
           "type": "info",
           "label": "Enter the details of the main company director.",
-          "infoText": "Enter the details of the main company director.",
+          "infoText": "Enter the details of the principal company director. This is the previous director of the business.",
           "infoType": "noformat"
         },
         {
           "id": "companyDirectorName",
           "type": "text",
-          "label": "Company director's name",
-          "helpText": "This is the previous director of the business"
+          "label": "Full name"
         },
         {
           "id": "PreviousPartnerAddress_copy_2",
@@ -706,14 +705,13 @@
       ]
     },
     {
-      "title": "Enter the details of the previous owner",
+      "title": "Enter the details of the previous sole trader",
       "includeIf": "${takenOverAnotherBusiness=1}",
       "fields": [
         {
           "id": "previousOwnerName",
           "type": "text",
-          "label": "Full name",
-          "helpText": "This is the name of the sole trader"
+          "label": "Full name"
         },
         {
           "id": "tradingName",
@@ -724,7 +722,7 @@
         {
           "id": "previousOwnerAddress",
           "type": "address",
-          "label": "Previous owner's address"
+          "label": "Sole trader's address (business?)"
         }
       ]
     },
@@ -771,7 +769,7 @@
         {
           "id": "PreviousPartnerAddress_copy_1",
           "type": "address",
-          "label": "Partner's address"
+          "label": "Home address"
         }
       ]
     }
