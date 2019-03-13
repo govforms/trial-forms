@@ -263,21 +263,18 @@
       ]
     },
     {
-      "title": "Do you have business establishments in the UK?",
-      "shortName": "UK establishments",
+      "title": "Do you trade from a premises in the UK?",
+      "shortName": "UK business premises",
       "fields": [
         {
           "id": "ukBEChoice",
           "type": "choice",
-          "label": "(clarify)",
-          "shortName": "Establishments",
+          "label": "Do you trade from a premises in the UK?",
+          "shortName": "UK business premises",
+          "helpText": "This is the address we will use to contact you about your Insurance Premium Tax",
           "choices": [
             "Yes",
             "No"
-          ],
-          "optionHelpText": [
-            "",
-            "If you wish to appoint an agent to act on your behalf they cannot use this service and must fill out the paper form."
           ]
         }
       ]
@@ -337,7 +334,7 @@
         {
           "id": "othText",
           "type": "text",
-          "label": "Business type"
+          "label": "Describe your type of insurance business"
         }
       ]
     },
@@ -348,7 +345,7 @@
           "id": "goConCho",
           "type": "choice",
           "label": "Are you applying to register for IPT because a business has been transferred to you as a going concern?",
-          "helpText": "A business is a going concern is if it is not at risk of bankruptcy or liquidation, if your business will continue to operate you must select yes",
+          "helpText": "A business is a going concern is if it is not at risk of bankruptcy or liquidation, (if your business will continue to operate you must select yes)",
           "choices": [
             "Yes",
             "No"
@@ -360,6 +357,19 @@
       "title": "Enter the details of the business transfer",
       "includeIf": "${goConCho=0}",
       "fields": [
+        {
+          "id": "generatedId_354620ad_5f65_4293_9de8_78d2dc22a1b1",
+          "type": "info",
+          "label": "transferExplanation",
+          "infoText": "Provide details about the transfer of another insurance business to your business.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "transferDate",
+          "type": "date",
+          "label": "Date of transfer",
+          "helpText": "For example, 21 08 2018"
+        },
         {
           "id": "IPTRegPrev",
           "type": "text",
@@ -390,12 +400,13 @@
       ]
     },
     {
-      "title": "Enter an estimate of taxable premium income you expect to receive in the first 12 months",
+      "title": "How much taxable premium income do you expect to receive in the first 12 months?",
       "fields": [
         {
           "id": "valPrems",
           "type": "text",
-          "label": "The 12 month period starts from the date of your expected taxable premium. If you do not have completely accurate figures, enter an estimate instead.",
+          "label": "How much taxable premium income do you expect to receive in the first 12 months?",
+          "helpText": "The 12 month period starts from the date of your expected taxable premium. If you do not know enter an estimate instead.",
           "format": "sterling"
         }
       ]
@@ -406,36 +417,50 @@
         {
           "id": "classChoice",
           "type": "choice",
-          "label": "Classes of insurance (list alphabetically?)",
-          "helpText": "Select all that you provide.",
+          "label": "Which classes of insurance do you provide?",
+          "helpText": "Select all that you provide from this list and continue to the next page",
           "multivalue": "true",
           "choices": [
             "Accident",
-            "Sickness",
-            "Land vehicles",
-            "Railway rolling stock",
             "Aircraft",
-            "Ships",
-            "Goods in transit",
-            "Fire and natural forces",
-            "Damage to property",
-            "Motor vehicle liability",
             "Aircraft liability",
-            "Liability of ships",
-            "General liability",
+            "Assistance",
             "Credit",
-            "Suretyship",
-            "Miscellaneous financial loss",
+            "Damage to property",
+            "Fire and natural forces",
+            "General liability",
+            "Goods in transit",
+            "Land vehicles"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Which classes of insurance do you provide?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "choicePageTwo",
+          "label": "Which classes of insurance do you provide?",
+          "multivalue": "true",
+          "choices": [
             "Legal expenses",
-            "Assistance"
+            "Liability of ships",
+            "Long term insurance",
+            "Miscellaneous financial loss",
+            "Motor vehicle liability",
+            "Railway rolling stock",
+            "Ships",
+            "Sickness",
+            "Suretyship"
           ]
         },
         {
           "id": "generatedId_d5a31b95_7b91_41a3_85be_70695d597f57",
           "type": "info",
-          "label": "More information on insurance classes",
-          "infoType": "long",
-          "infoText": "To find out more about insurance that is chargeable for Insurance Premium Tax, open a new window and search for Section 5 of the Insurance Premium Tax notice on GOV.UK.  "
+          "label": "More about insurance classes",
+          "infoText": "To find out more about which insurance classes are liable for Insurance Premium Tax, open a new window and go to Section 5 of Notice IPT1: Insurance Premium Tax on GOV.UK.",
+          "infoType": "long"
         }
       ]
     }
