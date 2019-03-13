@@ -186,28 +186,28 @@
       ]
     },
     {
-      "title": "What is your non-resident Capital Gains Tax reference? ",
+      "title": "What is your non-resident Capital Gains Tax reference number? ",
       "includeIf": "${hMRCref=0}",
       "fields": [
         {
           "id": "nonResidentNumber",
           "type": "text",
-          "label": "What is your non-resident Capital Gains Tax reference? ",
+          "label": "What is your non-resident Capital Gains Tax reference number? ",
           "shortName": "non-resident Capital Gains Tax reference",
           "helpText": "The charge reference number is made up of 14 or 15 characters, starting with an X."
         }
       ]
     },
     {
-      "title": "What is your Annual Tax on Enveloped Dwellings (ATED) reference number?",
+      "title": "What is your Annual Tax on Enveloped Dwellings (ATED) Unique Taxpayer Reference?",
       "includeIf": "${hMRCref=1}",
       "fields": [
         {
           "id": "atedRef",
           "type": "text",
-          "label": "What is your Annual Tax on Enveloped Dwellings (ATED) reference number?",
+          "label": "What is your Annual Tax on Enveloped Dwellings (ATED) Unique Taxpayer Reference?",
           "shortName": "ATED reference",
-          "helpText": "The ATED reference number is made up of 14 or 15 characters, starting with an ‘X’."
+          "helpText": "(The ATED reference number is made up of 14 or 15 characters, starting with an ‘X’.) This will be a 15 digit number beginning with the letter X, for example XLAT00000123456, and will be displayed in the top right hand corner of the ATED service."
         }
       ]
     },
@@ -247,6 +247,12 @@
       "shortName": "Incorporation details",
       "fields": [
         {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "Date of incorporation",
+          "helpText": "For example, 01 08 2007"
+        },
+        {
           "id": "countryOfIncorporation",
           "type": "text",
           "label": "Country of incorporation",
@@ -278,12 +284,6 @@
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "dateOfIncorporation",
-          "type": "date",
-          "label": "Date of incorporation",
-          "helpText": "For example, 01 08 2007"
         }
       ]
     },
@@ -318,7 +318,7 @@
           "type": "choice",
           "label": "Does the company have a reference number or equivalent?",
           "shortName": "Company reference number",
-          "helpText": "This is the number given to your company when it was formed. This may also be referred to as a registration number.",
+          "helpText": "This is the number given to the company when it was formed. This may also be referred to as a registration number.",
           "choices": [
             "Yes",
             "No"
@@ -334,7 +334,7 @@
           "id": "cRnRef",
           "type": "text",
           "label": "What is the company reference number?",
-          "helpText": "This information will help us to confirm who you are"
+          "helpText": "This information will help us to confirm its identity"
         }
       ]
     },
@@ -486,6 +486,7 @@
     {
       "title": "Does the parent company have a company reference number or equivalent?",
       "shortName": "Parent company reference number",
+      "includeIf": "${companyMemGroup=0}",
       "fields": [
         {
           "id": "parentCompanyref",
@@ -684,6 +685,7 @@
     },
     {
       "title": "Company director details",
+      "includeIf": "${takenOverAnotherBusiness=0}",
       "fields": [
         {
           "id": "generatedId_7e5ff053_87a0_48bf_92ee_0f1ab6612896",
