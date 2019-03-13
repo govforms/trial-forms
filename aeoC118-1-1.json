@@ -56,16 +56,16 @@
       ]
     },
     {
-      "title": "Is your company part of a group?",
+      "title": "Is your business part of a group?",
       "shortName": "Part of a group",
       "fields": [
         {
           "id": "groupQuestion",
           "type": "choice",
-          "label": "Is your company part of a group?",
-          "shortName": "1.1.1: Is your company part of a group?",
+          "label": "Is your business part of a group?",
+          "shortName": "1.1.1: Is business part of group",
           "helpText": "[Ref 1.1.1]",
-          "errorMessage": "Select whether your company is part of a group",
+          "errorMessage": "Select whether your business is part of a group",
           "choices": [
             "Yes",
             "No"
@@ -82,7 +82,7 @@
           "id": "groupdescription",
           "type": "text",
           "label": "Provide a brief description of the group",
-          "shortName": "1.1.1: Provide a brief description of the group",
+          "shortName": "1.1.1: Brief description of group",
           "helpText": "[Ref 1.1.1]",
           "multiline": "yes"
         },
@@ -90,7 +90,7 @@
           "id": "groupQuestion1",
           "type": "choice",
           "label": "Do any other entities in the group already have an AEO authorisation?",
-          "shortName": "1.1.1a: Do any other entities in the group already have an AEO authorisation?",
+          "shortName": "1.1.1a: Other entities already have AEO authorisation",
           "helpText": "[Ref 1.1.1a]",
           "errorMessage": "Select whether any other entities in the group already have an AEO authorisation",
           "choices": [
@@ -102,7 +102,7 @@
           "id": "groupQuestion2",
           "type": "choice",
           "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
-          "shortName": "1.1.1b Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
+          "shortName": "1.1.1b Other entities already applied for AEO status and undergoing AEO audit",
           "helpText": "[Ref 1.1.1b]",
           "errorMessage": "Select whether any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority",
           "choices": [
@@ -114,13 +114,13 @@
     },
     {
       "title": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
-      "shortName": "Established for less than 3 years",
+      "shortName": "Established less than 3 years",
       "fields": [
         {
           "id": "lessThan3Years",
           "type": "choice",
           "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
-          "shortName": "1.1.1: Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
+          "shortName": "1.1.1: Internal reorganisation of existing business",
           "helpText": "For example, incorporation or sale of a business unit. [Ref 1.1.1]",
           "errorMessage": "Select whether the business has been established for less than 3 years due to internal reorganisation",
           "choices": [
@@ -132,14 +132,14 @@
     },
     {
       "title": "Provide details of the reorganisation of your business",
-      "shortName": "Established for less than 3 years",
+      "shortName": "Established less than 3 years",
       "includeIf": "${lessThan3Years = 0}",
       "fields": [
         {
           "id": "reorganisationDetails",
           "type": "text",
           "label": "Provide details of the reorganisation of your business",
-          "shortName": "1.1.1: Provide details of the reorganisation of your business",
+          "shortName": "1.1.1: Details of reorganisation",
           "helpText": "[Ref 1.1.1]",
           "multiline": "yes"
         }
@@ -147,13 +147,13 @@
     },
     {
       "title": "How many people involved in the ownership, direction or management of your business are UK nationals?",
-      "shortName": "Number UK nationals involved",
+      "shortName": "Number of UK nationals involved",
       "fields": [
         {
           "id": "UKNatCO1",
           "type": "text",
           "label": "How many people involved in the ownership, direction or management of your business are UK nationals?",
-          "shortName": "1.1.2: How many people involved in the ownership, direction or management of your business are UK nationals?",
+          "shortName": "1.1.2: How many involved in ownership, direction or management of business",
           "helpText": "[Ref 1.1.2]",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
@@ -220,13 +220,13 @@
     },
     {
       "title": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
-      "shortName": "Number non-UK nationals involved",
+      "shortName": "Number of non-UK nationals involved",
       "fields": [
         {
           "id": "nonUKNatCO1",
           "type": "text",
           "label": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
-          "shortName": "1.1.2: How many non-UK nationals are involved in the ownership, direction or management of your business?",
+          "shortName": "1.1.2: How many involved in ownership, direction or management of business",
           "helpText": "Input the number of owners or main shareholders who are not UK nationals. [Ref 1.1.2] ",
           "format": "positiveWholeNumber",
           "displayWidth": "xs"
@@ -306,7 +306,7 @@
           "id": "prcs1",
           "type": "choice",
           "label": "Is the person responsible for customs matters for your business a UK national?",
-          "shortName": "1.1.3: Is the person responsible for customs matters a UK national?",
+          "shortName": "1.1.3: UK national",
           "helpText": "[Ref 1.1.3]",
           "errorMessage": "Select whether the person responsible for customs matters for your business is a UK national",
           "choices": [
@@ -332,7 +332,7 @@
           "id": "prcs1b",
           "type": "text",
           "label": "National insurance number",
-          "shortName": "1.1.3: Person responsible for customs matters (NI) number",
+          "shortName": "1.1.3:National Insurance number",
           "helpText": "For example, AA124424H. [Ref 1.1.3]",
           "format": "text(9,9)"
         }
@@ -376,7 +376,7 @@
           "id": "coLocNum",
           "type": "text",
           "label": "How many locations do you have involved in customs activities for your business?",
-          "shortName": "1.1.5: How many locations do you have involved in customs activities for your business?",
+          "shortName": "1.1.5: How many locations",
           "helpText": "[Ref 1.1.5]",
           "displayWidth": "xs",
           "errorMessage": "Select how many locations you have involved in customs activities",
@@ -433,14 +433,14 @@
       ]
     },
     {
-      "title": "How many sites do you have where third parties execute outsourced activities for your  business?",
+      "title": "How many sites do you have where third parties execute outsourced activities for your business?",
       "shortName": "Third party locations involved",
       "fields": [
         {
           "id": "tPLiCA1",
           "type": "text",
           "label": "How many sites do you have where third parties execute outsourced activities for your  business?",
-          "shortName": "1.1.5b: How many sites do you have where third parties execute outsourced activities for your business?",
+          "shortName": "1.1.5b: Number of third party sites",
           "helpText": "You can enter a maximum of 20. [Ref 1.1.5b]",
           "displayWidth": "xs",
           "validIf": "${tPLiCA1 > 0 || tPLiCA1 <=20}",
@@ -489,7 +489,7 @@
           "id": "agentLocationsDescription",
           "type": "text",
           "label": "Provide a brief description of the business conducted here",
-          "shortName": "1.1.5b: Provide a brief description of the business conducted here",
+          "shortName": "1.1.5b: Brief description of business conducted",
           "helpText": "[Ref 1.1.5b]",
           "multiline": "yes"
         }
@@ -497,13 +497,13 @@
     },
     {
       "title": "Do you buy from or sell to businesses with which you are associated?",
-      "shortName": "Purchases and sales",
+      "shortName": "Trade with associated businesses",
       "fields": [
         {
           "id": "purchases1",
           "type": "choice",
           "label": "Do you buy from or sell to businesses with which you are associated?",
-          "shortName": "1.1.6: Do you buy from/sell to businesses with which you are associated?",
+          "shortName": "1.1.6: Buy from or sell to businesses you are associated with",
           "helpText": "[Ref 1.1.6]",
           "errorMessage": "Select whether you buy from/sell to business with which you are associated",
           "choices": [
@@ -521,7 +521,7 @@
           "id": "organisationalDescription",
           "type": "text",
           "label": "Describe the internal organisational structure of your business",
-          "shortName": "1.1.7: Describe the internal organisational structure of your business",
+          "shortName": "1.1.7: Describe internal structure of business",
           "helpText": "Include the tasks or responsibilities of each department. [Ref 1.1.7] ",
           "multiline": "yes",
           "errorMessage": "Enter details about the internal structure of your business"
@@ -536,7 +536,7 @@
           "id": "seniorManagement",
           "type": "text",
           "label": "Give the names of senior management of the business and briefly describe the stand in rules",
-          "shortName": "1.1.8: Give the names of senior management of the business and describe briefly the stand in rules",
+          "shortName": "1.1.8: Give names and briefly describe stand in rules",
           "helpText": "For example, directors, heads of departments, head of accounting, head of customs department. [Ref 1.1.8]",
           "multiline": "yes"
         }
@@ -544,13 +544,13 @@
     },
     {
       "title": "How many employees do you have in your business?",
-      "shortName": "Employees",
+      "shortName": "Number of employees",
       "fields": [
         {
           "id": "numberOfEmployees",
           "type": "text",
           "label": "How many employees do you have in your business?",
-          "shortName": "1.1.9: How many employees do you have in your business?",
+          "shortName": "1.1.9: Number",
           "helpText": "[Ref 1.1.9]",
           "format": "number",
           "displayWidth": "xs"
