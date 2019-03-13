@@ -86,7 +86,8 @@
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
           "shortName": "CT UTR",
-          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  "
+          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  ",
+          "format": "utr"
         }
       ]
     },
@@ -448,7 +449,7 @@
         {
           "id": "addressOfParentCompany",
           "type": "address",
-          "label": "",
+          "label": "Business address",
           "international": "true",
           "mandatory": "false",
           "postcodeLookup": "no"
@@ -468,7 +469,7 @@
     },
     {
       "title": "What is the parent company's country of tax residence?",
-      "shortName": "Tax residence",
+      "shortName": "Country",
       "includeIf": "${parentTaxResidence=1}",
       "fields": [
         {
@@ -508,7 +509,7 @@
     },
     {
       "title": "What is the reference number of the parent company?",
-      "shortName": "",
+      "shortName": "Parent company reference number",
       "includeIf": "${companyMemGroup=0 && parentCompanyref=0}",
       "fields": [
         {
@@ -517,8 +518,7 @@
           "label": "What is the reference number of the parent company?",
           "shortName": "Reference number",
           "helpText": "This information will help us to confirm the identity of the company",
-          "format": "text",
-          "mandatory": "false"
+          "format": "shortText"
         }
       ]
     },
@@ -656,9 +656,9 @@
           "label": "Select which type of UK business the company has taken over",
           "shortName": "Business type",
           "choices": [
-            "a limited company",
-            "a sole trader",
-            "a partnership"
+            "Limited company",
+            "Sole trader",
+            "Partnership"
           ]
         }
       ]
