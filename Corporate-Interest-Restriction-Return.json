@@ -1,21 +1,19 @@
 {
-  "formCategory": "hmrcReturnForm",
+  "_id": "Corporate-Interest-Restriction-Return",
   "formName": "Submit a Corporate Interest Restriction return",
-  "draftRetrievalMethod": "formAccessCodeForAgents",
   "description": "",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "cir_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
   "dmsSubmission": {
     "dmsFormId": "cirRet",
     "customerId": "${utrRepComp}",
     "classificationType": "BT-CTS-CIR",
     "businessArea": "BT"
   },
-  "developmentPhase": "beta",
-  "authConfig": {
-    "authModule": "hmrc"
-  },
-  "emailTemplateId": "cir_return_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
   "sections": [
     {
       "title": "Corporate interest restriction return",
@@ -32,15 +30,15 @@
       ]
     },
     {
-      "includeIf": "${agent=0}",
       "title": "Enter agent details",
+      "includeIf": "${agent=0}",
       "fields": [
         {
           "id": "agentName",
           "type": "text",
           "label": "Name of agent",
-          "format": "text",
-          "helpText": "Name of firm"
+          "helpText": "Name of firm",
+          "format": "text"
         }
       ]
     },
@@ -58,8 +56,8 @@
           "id": "oRN",
           "type": "text",
           "label": " UK Tax reference - tax office",
-          "format": "text(3,3)",
           "helpText": "This is the first three digits of the tax reference number before the space (for example, 123 1234567890)",
+          "format": "text(3,3)",
           "mandatory": "yes",
           "errorMessage": "Enter the first three digits of your thirteen digit unique taxpayer reference number, if this is unknown enter 000"
         },
@@ -67,8 +65,8 @@
           "id": "utrRepComp",
           "type": "text",
           "label": "UK Tax reference - unique taxpayer reference",
-          "format": "text(10,10)",
           "helpText": "This is the last ten digits of the tax reference number after the space (for example, 123 1234567890)",
+          "format": "text(10,10)",
           "mandatory": "yes"
         },
         {
@@ -90,8 +88,8 @@
       ]
     },
     {
-      "includeIf": "${ultParSame=1}",
       "title": "Enter the ultimate parent company's details",
+      "includeIf": "${ultParSame=1}",
       "fields": [
         {
           "id": "ultPName",
@@ -104,23 +102,23 @@
           "id": "juris",
           "type": "text",
           "label": "Jurisdiction of incorporation",
-          "mandatory": "no",
-          "helpText": "If known"
+          "helpText": "If known",
+          "mandatory": "no"
         },
         {
           "id": "uPrn",
           "type": "text",
           "label": "UK Tax reference - tax office",
-          "format": "text",
           "helpText": "This is the first 3 digits of the tax reference number before the space (for example, 123 1234567890), only if available",
+          "format": "text",
           "mandatory": "no"
         },
         {
           "id": "UtrNoP",
           "type": "text",
           "label": "UK Tax reference - unique taxpayer reference",
-          "format": "text",
           "helpText": "This is the last 10 digits of the tax reference number after the space (for example, 123 1234567890), only if available",
+          "format": "text",
           "mandatory": "no"
         },
         {
@@ -128,8 +126,8 @@
           "type": "text",
           "label": "Local Company Registration Number",
           "helpText": "Registration number in jurisdiction of incorporation, only if available",
-          "mandatory": "no",
-          "format": "text"
+          "format": "text",
+          "mandatory": "no"
         }
       ]
     },
@@ -153,11 +151,11 @@
           "id": "consenting",
           "type": "choice",
           "label": "Does this include non consenting companies in relation to this return?",
+          "mandatory": "no",
           "choices": [
             "Yes",
             "No"
-          ],
-          "mandatory": "no"
+          ]
         }
       ]
     },
@@ -203,8 +201,8 @@
       ]
     },
     {
-      "includeIf": "${fullAbbrev=1}",
       "title": "Full return",
+      "includeIf": "${fullAbbrev=1}",
       "fields": [
         {
           "id": "restrict",
@@ -218,21 +216,21 @@
       ]
     },
     {
-      "includeIf": "${restrict=0 && fullAbbrev=1}",
       "title": "Restriction",
+      "includeIf": "${restrict=0 && fullAbbrev=1}",
       "fields": [
         {
           "id": "interestRestriction",
           "type": "text",
           "label": "Total disallowed amount",
-          "format": "sterling",
-          "helpText": "Commas can be included"
+          "helpText": "Commas can be included",
+          "format": "sterling"
         }
       ]
     },
     {
-      "includeIf": "${restrict=1}",
       "title": "Reactivation",
+      "includeIf": "${restrict=1}",
       "fields": [
         {
           "id": "reactivate",
@@ -246,37 +244,37 @@
       ]
     },
     {
-      "includeIf": "${reactivate=0 && restrict=1}",
       "title": "Reactivation",
+      "includeIf": "${reactivate=0 && restrict=1}",
       "fields": [
         {
           "id": "reactCap",
           "type": "text",
           "label": "Interest reactivation cap",
-          "format": "sterling",
-          "helpText": "Commas can be included"
+          "helpText": "Commas can be included",
+          "format": "sterling"
         }
       ]
     },
     {
-      "includeIf": "${fullAbbrev=1}",
       "title": "Tax-interest, tax-EBITDA, interest allowance and interest capacity",
+      "includeIf": "${fullAbbrev=1}",
       "fields": [
         {
           "id": "aggTaxIntExp",
           "type": "text",
           "label": "Aggregate net tax-interest expense",
-          "mandatory": "yes",
+          "helpText": "Enter 0 if applicable",
           "format": "sterling",
-          "helpText": "Enter 0 if applicable"
+          "mandatory": "yes"
         },
         {
           "id": "aggTaxIntIncome",
           "type": "text",
           "label": "Aggregate net tax-interest income",
-          "mandatory": "yes",
+          "helpText": "Enter 0 if applicable",
           "format": "sterling",
-          "helpText": "Enter 0 if applicable"
+          "mandatory": "yes"
         },
         {
           "id": "ebitda",
@@ -289,28 +287,28 @@
           "id": "IntAllowForward",
           "type": "text",
           "label": "Interest allowance brought forward",
-          "mandatory": "yes",
-          "format": "sterling"
+          "format": "sterling",
+          "mandatory": "yes"
         },
         {
           "id": "IntAllowPeriod",
           "type": "text",
           "label": "Interest allowance for period",
-          "mandatory": "yes",
-          "format": "sterling"
+          "format": "sterling",
+          "mandatory": "yes"
         },
         {
           "id": "intCapPeriod",
           "type": "text",
           "label": "Interest capacity for period",
-          "mandatory": "yes",
-          "format": "sterling"
+          "format": "sterling",
+          "mandatory": "yes"
         }
       ]
     },
     {
-      "includeIf": "${fullAbbrev=1}",
       "title": "Group ratio election",
+      "includeIf": "${fullAbbrev=1}",
       "fields": [
         {
           "id": "groupElec",
@@ -324,8 +322,8 @@
       ]
     },
     {
-      "includeIf": "${groupElec=0 && fullAbbrev=1}",
       "title": "Group ratio",
+      "includeIf": "${groupElec=0 && fullAbbrev=1}",
       "fields": [
         {
           "id": "angie1",
@@ -355,8 +353,8 @@
       ]
     },
     {
-      "includeIf": "${groupElec=1}",
       "title": "Fixed ratio",
+      "includeIf": "${groupElec=1}",
       "fields": [
         {
           "id": "intAllowAngie",
@@ -370,8 +368,8 @@
       ]
     },
     {
-      "includeIf": "${intAllowAngie=0 && groupElec=1}",
       "title": "Interest allowance adjusted net group-interest expense (ANGIE)",
+      "includeIf": "${intAllowAngie=0 && groupElec=1}",
       "fields": [
         {
           "id": "angie",
@@ -396,8 +394,8 @@
       ]
     },
     {
-      "includeIf": "${fullAbbrev=1}",
       "title": "Full corporate interest restriction return",
+      "includeIf": "${fullAbbrev=1}",
       "fields": [
         {
           "id": "uploadFull",
@@ -422,8 +420,8 @@
       ]
     },
     {
-      "includeIf": "${fullAbbrev=0}",
       "title": "Abbreviated corporate interest restriction return",
+      "includeIf": "${fullAbbrev=0}",
       "fields": [
         {
           "id": "uploadAbbrev",
@@ -440,8 +438,8 @@
     }
   ],
   "declarationSection": {
-    "shortName": "Sign and submit your return",
     "title": "Submit your return",
+    "shortName": "Sign and submit your return",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -485,30 +483,30 @@
             "id": "declarationText",
             "type": "info",
             "label": "",
-            "infoType": "noformat",
-            "infoText": "I confirm that the information I have given on this interest restriction return and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this return, can lead to both the company and me being prosecuted."
+            "infoText": "I confirm that the information I have given on this interest restriction return and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this return, can lead to both the company and me being prosecuted.",
+            "infoType": "noformat"
           }
         ]
       }
     ]
   },
   "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
     "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
         "id": "ackPageInfoTop",
         "type": "info",
-        "infoType": "noformat",
         "label": "",
-        "infoText": ""
+        "infoText": "",
+        "infoType": "noformat"
       },
       {
         "id": "ackPageWarning",
         "type": "info",
-        "infoType": "important",
         "label": "ack page text to be input here",
-        "infoText": ""
+        "infoText": "",
+        "infoType": "important"
       },
       {
         "id": "ackpageSurvey",
@@ -519,5 +517,7 @@
       }
     ]
   },
-  "_id": "Corporate-Interest-Restriction-Return"
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk"
 }
