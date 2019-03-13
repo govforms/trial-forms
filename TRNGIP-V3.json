@@ -67,7 +67,7 @@
           "id": "uTRChoice",
           "type": "choice",
           "label": "Does the company you are registering have a Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT Unique Taxpayer Reference",
+          "shortName": "CT UTR",
           "helpText": "This is on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
           "choices": [
             "Yes",
@@ -85,7 +85,7 @@
           "id": "uKUTR",
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT Unique Taxpayer Reference",
+          "shortName": "CT UTR",
           "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  "
         }
       ]
@@ -244,7 +244,7 @@
     },
     {
       "title": "Enter the company's incorporation details",
-      "shortName": "Incorporation details",
+      "shortName": "Company incorporation details",
       "fields": [
         {
           "id": "dateOfIncorporation",
@@ -317,7 +317,7 @@
           "id": "cRnYesNo",
           "type": "choice",
           "label": "Does the company have a reference number or equivalent?",
-          "shortName": "Company reference number",
+          "shortName": "Reference",
           "helpText": "This is the number given to the company when it was formed. This may also be referred to as a registration number.",
           "choices": [
             "Yes",
@@ -328,12 +328,14 @@
     },
     {
       "title": "What is the company reference number?",
+      "shortName": "Company reference number",
       "includeIf": "${cRnYesNo=0}",
       "fields": [
         {
           "id": "cRnRef",
           "type": "text",
           "label": "What is the company reference number?",
+          "shortName": "Reference",
           "helpText": "This information will help us to confirm its identity"
         }
       ]
@@ -367,12 +369,14 @@
               "id": "addressThree",
               "type": "text",
               "label": "Address 3 (optional)",
+              "shortName": "Address 3",
               "mandatory": "false"
             },
             {
               "id": "addressFour",
               "type": "text",
               "label": "Address 4 (optional)",
+              "shortName": "Address 4",
               "mandatory": "false"
             },
             {
@@ -626,11 +630,13 @@
     },
     {
       "title": "Has the company you are registering taken over another UK business?",
+      "shortName": "The company has taken over another UK business",
       "fields": [
         {
           "id": "takenOverAnotherBusinessYesNo",
           "type": "choice",
           "label": "Has the company you are registering taken over another UK business?",
+          "shortName": "Taken over another UK business",
           "choices": [
             "Yes",
             "No"
@@ -640,12 +646,14 @@
     },
     {
       "title": "Select which type of UK business the company has taken over",
+      "shortName": "Type of business taken over",
       "includeIf": "${takenOverAnotherBusinessYesNo=0}",
       "fields": [
         {
           "id": "takenOverAnotherBusiness",
           "type": "choice",
           "label": "Select which type of UK business the company has taken over",
+          "shortName": "Business type",
           "choices": [
             "a limited company",
             "a sole trader",
@@ -708,6 +716,7 @@
     },
     {
       "title": "Enter the details of the previous sole trader",
+      "shortName": "Sole trader details",
       "includeIf": "${takenOverAnotherBusiness=1}",
       "fields": [
         {
@@ -719,6 +728,7 @@
           "id": "tradingName",
           "type": "text",
           "label": "Trading name (optional)",
+          "shortName": "Trading name",
           "helpText": "Enter the trading name if different from the sole trader's name"
         },
         {
