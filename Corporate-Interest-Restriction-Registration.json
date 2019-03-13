@@ -1,20 +1,18 @@
 {
+  "_id": "Corporate-Interest-Restriction-Registration",
   "formName": "Appoint a reporting company",
-  "draftRetrievalMethod": "formAccessCodeForAgents",
   "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "cir_appointment_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
   "dmsSubmission": {
     "dmsFormId": "cirApp",
     "customerId": "${utrRepComp}",
     "classificationType": "BT-CTS-CIR",
     "businessArea": "BT"
   },
-  "developmentPhase": "beta",
-  "authConfig": {
-    "authModule": "hmrc"
-  },
-  "emailTemplateId": "cir_appointment_confirmation",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
   "sections": [
     {
       "title": "Appoint a reporting company sending a corporate interest restriction return",
@@ -31,15 +29,15 @@
       ]
     },
     {
-      "includeIf": "${agent=0}",
       "title": "Enter the agent's details",
+      "includeIf": "${agent=0}",
       "fields": [
         {
           "id": "agentName",
           "type": "text",
           "label": "Name of agent",
-          "format": "text",
-          "helpText": "Name of the firm"
+          "helpText": "Name of the firm",
+          "format": "text"
         }
       ]
     },
@@ -57,24 +55,24 @@
           "id": "oRN",
           "type": "text",
           "label": "Tax reference - tax office",
-          "format": "text(3,3)",
           "helpText": "This is the first three digits of the tax reference number before the space (for example, 123 1234567890)",
+          "format": "text(3,3)",
           "mandtory": "yes"
         },
         {
           "id": "utrRepComp",
           "type": "text",
           "label": "Tax reference - unique taxpayer reference",
-          "format": "text(10,10)",
           "helpText": "This is the last 10 digits of the tax reference number after the space (for example, 123 1234567890)",
+          "format": "text(10,10)",
           "mandatory": "yes"
         },
         {
           "id": "compRef",
           "type": "text",
           "label": "Company Registration Number",
-          "format": "text(8,8)",
-          "helpText": "Enter the 8 character unique reference (this may include numbers and letters)"
+          "helpText": "Enter the 8 character unique reference (this may include numbers and letters)",
+          "format": "text(8,8)"
         },
         {
           "id": "reportingIdentity",
@@ -97,8 +95,8 @@
       ]
     },
     {
-      "includeIf": "${reportingIdentity=1}",
       "title": "Identity of company making appointment",
+      "includeIf": "${reportingIdentity=1}",
       "fields": [
         {
           "id": "compName",
@@ -117,31 +115,31 @@
           "id": "compUTR",
           "type": "text",
           "label": "Taxpayer reference - tax office",
-          "format": "text(3,3)",
           "helpText": "For companies tax resident in the UK, the first 3 digits of a tax reference number before the space (for example, 123 1234567890)",
+          "format": "text(3,3)",
           "mandatory": "no"
         },
         {
           "id": "tenDigCom",
           "type": "text",
           "label": "Taxpayer reference - unique taxpayer reference",
-          "format": "text(10,10)",
           "helpText": "For companies tax resident in the UK, the last 10 digits of the tax reference number after the space (for example, 123 1234567890)",
+          "format": "text(10,10)",
           "mandatory": "no"
         },
         {
           "id": "idCRN",
           "type": "text",
           "label": "Company Registration Number",
-          "format": "text(8,8)",
           "helpText": "For companies tax resident in the UK, enter the 8 character unique reference (this may include numbers and letters)",
+          "format": "text(8,8)",
           "mandatory": "no"
         }
       ]
     },
     {
-      "includeIf": "${ultParSame=1}",
       "title": "Enter details of the ultimate parent company",
+      "includeIf": "${ultParSame=1}",
       "fields": [
         {
           "id": "ultPName",
@@ -161,16 +159,16 @@
           "id": "uPrn",
           "type": "text",
           "label": "Tax reference - tax office",
-          "format": "text(3,3)",
           "helpText": "This is the first 3 digits of the tax reference number before the space (for example, 123 1234567890), only if available",
+          "format": "text(3,3)",
           "mandatory": "no"
         },
         {
           "id": "UtrNoP",
           "type": "text",
           "label": "Tax reference - unique taxpayer reference",
-          "format": "text(10,10)",
           "helpText": "This is the last 10 digits of the tax reference number after the space (for example, 123 1234567890), only if available",
+          "format": "text(10,10)",
           "mandatory": "no"
         },
         {
@@ -186,14 +184,14 @@
       "title": "Period of account",
       "fields": [
         {
-          "type": "date",
           "id": "accPeriodStartDateRep",
+          "type": "date",
           "label": "Start date of worldwide group period of account",
           "helpText": "Example, 01 04 2017"
         },
         {
-          "type": "date",
           "id": "accPeriodEndDate",
+          "type": "date",
           "label": "End date of worldwide group period of account",
           "helpText": "Example, 31 12 2017",
           "format": "after ${accPeriodStartDateRep}"
@@ -218,18 +216,18 @@
           "id": "eligible",
           "type": "choice",
           "label": "The listed companies constitute at least 50% of eligible companies",
+          "mandatory": "yes",
           "choices": [
             "As the reporting company, I confirm this is true",
             "As the agent, I confirm that the statement is true according to the information provided by the client"
-          ],
-          "mandatory": "yes"
+          ]
         }
       ]
     }
   ],
   "declarationSection": {
-    "shortName": "Sign and submit your return",
     "title": "Submit your appointment",
+    "shortName": "Sign and submit your return",
     "fields": [
       {
         "id": "declarationNameGroup",
@@ -259,9 +257,9 @@
             "id": "email",
             "type": "text",
             "label": "Email address",
-            "mandatory": "true",
             "helpText": "This is for acknowledgement purposes only",
-            "format": "email"
+            "format": "email",
+            "mandatory": "true"
           }
         ]
       },
@@ -274,30 +272,30 @@
             "id": "declarationText",
             "type": "info",
             "label": "",
-            "infoType": "noformat",
-            "infoText": "I confirm that the information I have given on this appointment of a reporting company and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this appointment, can lead to both the company and me being prosecuted."
+            "infoText": "I confirm that the information I have given on this appointment of a reporting company and any attachments are correct and complete to the best of my knowledge and belief. I understand that concealing or giving false information with regards to this appointment, can lead to both the company and me being prosecuted.",
+            "infoType": "noformat"
           }
         ]
       }
     ]
   },
   "acknowledgementSection": {
-    "shortName": "Acknowledgement Page",
     "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
         "id": "ackPageWarning",
         "type": "info",
-        "infoType": "important",
         "label": "",
-        "infoText": "Remember to file your corporate interest restriction return (either abbreviated or full)."
+        "infoText": "Remember to file your corporate interest restriction return (either abbreviated or full).",
+        "infoType": "important"
       },
       {
         "id": "ackPageInfoBottom",
         "type": "info",
-        "infoType": "noformat",
         "label": "",
-        "infoText": ""
+        "infoText": "",
+        "infoType": "noformat"
       },
       {
         "id": "ackpageSurvey",
@@ -308,5 +306,7 @@
       }
     ]
   },
-  "_id": "Corporate-Interest-Restriction-Registration"
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "submitErrorUrl": "http://www.yahoo.co.uk"
 }
