@@ -16,7 +16,7 @@
   "sections": [
     {
       "title": "What type of business do you want to register?",
-      "shortName": "Type of business",
+      "shortName": "What type of business do you want to register?",
       "fields": [
         {
           "id": "legalStatus",
@@ -45,7 +45,7 @@
           "id": "roleBus",
           "type": "choice",
           "label": "",
-          "shortName": "Your role in the business",
+          "shortName": "What is your role in the business?",
           "choices": [
             "Director",
             "Authorised official",
@@ -78,29 +78,17 @@
           "type": "text",
           "label": "Enter the business' Economic Operator Registration and Identification (EORI) number",
           "shortName": "EORI number",
-          "helpText": "This is 2 letters and then 15 numbers. The 2 letters must be the country code. For example 'GB'",
+          "helpText": "This starts with the 2-letter country code and then has 15 numbers",
           "format": "EORI",
-          "mandatory": "true"
+          "mandatory": "true",
+          "errorMessage": "Enter the business' EORI number in the correct format"
         },
         {
           "id": "mSCountryCodes",
           "type": "info",
           "label": "Find an EORI country code",
-          "infoText": "Code and country:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB",
+          "infoText": "Country - country code:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSweden - SE \n\nUnited Kingdom - GB",
           "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "You cannot register the business for Fuel Duty",
-      "includeIf": "${roleBus = 5}",
-      "fields": [
-        {
-          "id": "generatedId_a96b874e_740b_4ac5_8978_08d2a0ee018e",
-          "type": "info",
-          "label": "cannotReg",
-          "infoText": "This is because you need to enter the business' Economic Operator Registration and Identification (EORI) number.\n\nYou'll need to sign out, or save your progress and come back when you have the number. \n\nIf you do not have an EORI number you'll need to [go to GOV.UK to apply for one] (https://www.gov.uk/eori).",
-          "infoType": "noformat"
         }
       ]
     },
