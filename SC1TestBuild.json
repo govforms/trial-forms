@@ -20,7 +20,7 @@
           "id": "generatedId_44fb61e2_4fcc_47b1_967e_c80ade178dd1",
           "type": "info",
           "label": "",
-          "infoText": "You will need to upload evidence of your organisation's finance to show it has enough funds to run and maintain the social care establishment or agency.",
+          "infoText": "Before you start this application to register a social care establishment or agency, you will need to upload evidence of your organisation's financial viability for us to consider your eligibility to be a social care provider.",
           "infoType": "noformat"
         },
         {
@@ -42,9 +42,9 @@
           "type": "choice",
           "label": "",
           "choices": [
-            "Yes I have evidence",
-            "No I do not have evidence",
-            "No I do not need to provide evidence as a local council or NHS trust"
+            "Yes, I have evidence",
+            "No, I do not have evidence",
+            "No, I do not need to provide evidence as a local council or NHS trust"
           ]
         }
       ]
@@ -59,8 +59,15 @@
           "id": "generatedId_bc229245_768f_48c2_921d_def03f568142",
           "type": "info",
           "label": "You do not have the right documents to continue with this application",
-          "infoText": "By law, you must provide your organisation's financial documents with your application.\n\nYou should prepare these documents before you continue as you will be asked to upload them in the application.\n\nWe will reject your application without them.",
+          "infoText": "By law, you must provide your organisation's financial documents with your application.",
           "infoType": "important"
+        },
+        {
+          "id": "generatedId_52fbd9d0_aa79_4cfe_94e3_e37d1f1f74c7",
+          "type": "info",
+          "label": "",
+          "infoText": "You should prepare these documents before you continue as you will be asked to upload them in the application.\n\nWe will reject your application without them.",
+          "infoType": "noformat"
         },
         {
           "id": "continueOptions",
@@ -69,13 +76,14 @@
           "format": "vertical",
           "choices": [
             "Continue with application",
-            "Leave form"
+            "Leave application"
           ]
         }
       ]
     },
     {
       "title": "What type of business do you want to apply as ?",
+      "shortName": "Type of business applying as",
       "fields": [
         {
           "id": "generatedId_bc91dd83_114e_48dc_84f2_4e659156d623",
@@ -103,13 +111,14 @@
       ]
     },
     {
-      "title": "Are you a local council?",
+      "title": "Are you a local council or an NHS trust?",
+      "shortName": "Local council or NHS trust",
       "includeIf": "${businessChoice2 = 0}",
       "fields": [
         {
           "id": "couChoi",
           "type": "choice",
-          "label": "Are you a local council?",
+          "label": "Are you a local council or an NHS trust?",
           "choices": [
             "Yes",
             "No"
@@ -142,30 +151,30 @@
           "id": "orgName2",
           "type": "text",
           "label": "Organisation name",
-          "helpText": "This is the name of the organisation running the establishment. For example, Social care limited."
+          "helpText": "This is the name of your organisation running the establishment. For example, Social care limited."
         },
         {
           "id": "orgBirthDate",
           "type": "date",
           "label": "Trading start date",
           "shortName": "Trading start date",
-          "helpText": " For example, 31 03 2018"
+          "helpText": "If you are a company, this is the date you registered with Companies House. It can be found on your Certificate of Incorporation. For example, 31 3 1980. Leave blank if you are not a company."
         },
         {
           "id": "regChar",
           "type": "text",
-          "label": "Registered charity number if applicable",
+          "label": "Registered charity number",
           "shortName": "Charity number",
-          "helpText": "If you do not have a registered charity number leave blank",
+          "helpText": "Leave blank if you do not have a registered charity number",
           "mandatory": "false",
           "displayWidth": "m"
         },
         {
           "id": "regCoNum",
           "type": "text",
-          "label": "Registered company number if applicable",
+          "label": "Registered company number",
           "shortName": "Company number",
-          "helpText": "If you do not have a registered company number leave blank",
+          "helpText": "Leave blank if you do not have a registered company number",
           "mandatory": "false",
           "displayWidth": "m"
         }
@@ -189,22 +198,18 @@
           "shortName": "Address"
         },
         {
-          "id": "locAuth",
-          "type": "text",
-          "label": "Local council"
-        },
-        {
           "id": "agEsTel_copy_1",
           "type": "text",
-          "label": "Telephone number",
-          "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "label": "Office number",
+          "shortName": "Office number",
+          "helpText": "This is your organisation's number. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
           "id": "agEsEm_copy_1",
           "type": "text",
           "label": "Email ",
+          "helpText": "This is the main email used for business. For exampl, info@company.co.uk",
           "format": "email"
         }
       ]
@@ -521,6 +526,7 @@
     {
       "title": "What is your type of organisation?",
       "includeIf": "${businessChoice2 = 0}",
+      "description": "We want to know about your organisation not the establishment or agency you are applying to register.",
       "fields": [
         {
           "id": "orgType",
@@ -533,10 +539,10 @@
             "Other organisation"
           ],
           "optionHelpText": [
-            "",
+            "This includes a private limited company and LLP that have been incorporated by Companies House.",
             "This includes a local council, a trust or school governing body",
-            "",
-            ""
+            "A group of people who run an organisation. For example, social care committee of a local community",
+            "This may include a charity "
           ]
         }
       ]
@@ -554,7 +560,7 @@
             "Independent fostering agency",
             "Adoption support agency",
             "Voluntary adoption agency",
-            "Residential holiday scheme for disabled children",
+            "Residential holiday schemes for disabled children",
             "Residential family centre"
           ]
         }
@@ -611,13 +617,13 @@
       ]
     },
     {
-      "title": "Do you plan to buy a children's social care establishment or agency?",
+      "title": "Are you applying to register a social care establishment or agency that exists already?",
       "fields": [
         {
           "id": "planCSCEstOrAg",
           "type": "choice",
           "label": "",
-          "shortName": "Plan to buy",
+          "shortName": "Existing social care establishment or agency",
           "choices": [
             "Yes",
             "No, it's new"
@@ -626,14 +632,14 @@
       ]
     },
     {
-      "title": "Is the existing children's establishment or agency you will buy registered with Ofsted?",
+      "title": "Is the existing social establishment or agency registered with Ofsted?",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "ofRegQues",
           "type": "choice",
           "label": "",
-          "shortName": "Existing children's establishment or agency",
+          "shortName": "Existing social care establishment or agency",
           "choices": [
             "Yes",
             "No"
@@ -642,7 +648,7 @@
       ]
     },
     {
-      "title": "Details of existing establishment or agency you will buy",
+      "title": "Details of existing social care establishment or agency registered with Ofsted",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
@@ -663,7 +669,7 @@
       ]
     },
     {
-      "title": "Details of existing establishment or agency you will buy",
+      "title": "Details of existing establishment or agency you are applying to register",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
@@ -696,6 +702,7 @@
     },
     {
       "title": "Have you applied to register a children's social care establishment or agency with Ofsted before?",
+      "description": "We need to know this so we can check to see if you are already registered in our records.",
       "fields": [
         {
           "id": "prevOfApp",
@@ -710,7 +717,7 @@
       ]
     },
     {
-      "title": "Was the application made before 30 September 2010?",
+      "title": "Was the application made before or after 30 September 2010?",
       "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
@@ -718,20 +725,21 @@
           "type": "choice",
           "label": "",
           "choices": [
-            "Yes",
-            "No"
+            "Before 30 September 2010",
+            "After 30 September 2010",
+            "I do not know"
           ]
         }
       ]
     },
     {
-      "title": "Details of your previous application",
+      "title": "Details of your last application registered after 30 September 2010",
       "includeIf": "${prevOfApp = 0}",
       "fields": [
         {
           "id": "URN",
           "type": "text",
-          "label": "URN of establishment"
+          "label": "Ofsted regististration number (URN) of establishment or agency"
         },
         {
           "id": "generatedId_d73809af_eded_4fab_a2c2_10b98d6418b5",
@@ -743,8 +751,8 @@
         {
           "id": "prevAppDetML",
           "type": "text",
-          "label": "Details of previous application",
-          "helpText": "Include date of application, establishment or agency name and address",
+          "label": "Details of last application",
+          "helpText": "Include the date of when the application was made, establishment or agency name and address.",
           "multiline": "true"
         }
       ]
@@ -1074,6 +1082,13 @@
           "infoType": "noformat"
         },
         {
+          "type": "info",
+          "id": "generatedId_3e6c74c7_b7a7_40bb_b79c_9356ab746d2a",
+          "label": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoText": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoType": "standard"
+        },
+        {
           "id": "actsChoice1",
           "type": "choice",
           "label": "",
@@ -1171,6 +1186,13 @@
           "infoType": "noformat"
         },
         {
+          "type": "info",
+          "id": "generatedId_4709bffb_75f0_49ef_951c_e76b24f55042",
+          "label": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoText": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoType": "standard"
+        },
+        {
           "id": "actsChoice2",
           "type": "choice",
           "label": "",
@@ -1184,15 +1206,22 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "Give us more details of all your previous registrations with other authorities",
       "includeIf": "${businessChoice2 = 0 && actsChoice2 = 0} ",
       "fields": [
         {
           "id": "generatedId_c21d99eb_b778_498a_8178_7c45344029b8",
           "type": "info",
           "label": "What details should I include?",
-          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoText": "Provide details of the previous registration including:\n\n- who you registered with, names of the establishments or agencies, \n- length of time it was registered for,\n- Ofsted URNs  of applications you haven't told us about already \n- what type of service you registered. \n\nFor example, an adult social care service registered with the Care Quality Commission called Adult Care limited, registered from 2012 to 2016.",
           "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_d615bb0a_50c4_4d5a_aa3b_7bb31314c5c2",
+          "label": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us already earlier in this application.",
+          "infoText": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us already earlier in this application.",
+          "infoType": "standard"
         },
         {
           "id": "prevRegDetsOrg_copy_1",
@@ -1210,14 +1239,14 @@
           "id": "generatedId_b863f3e5_7b6a_40f7_8450_0845138381a6",
           "type": "info",
           "label": "",
-          "infoText": "We'll need a financial reference from your bank to show you have the funds to run the social care establishment or agency you want to register with us.  ",
+          "infoText": "We'll need a financial reference from your bank to show you have the funds to run the social care establishment or agency you want to register with us.",
           "infoType": "noformat"
         },
         {
           "id": "finRefUpl",
           "type": "file",
-          "label": "Upload your financial reference from your bank",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "label": "Upload your organisation's financial reference from your bank",
+          "helpText": "We accept documents in PDF and JPEG. \nYou can upload a file up to 2MB. \nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
@@ -1370,6 +1399,13 @@
           "infoType": "noformat"
         },
         {
+          "type": "info",
+          "id": "generatedId_ad0d1dc2_e55d_440e_9dad_3cdc7bdef02d",
+          "label": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoText": "This does not include children social care services registered with Ofsted that you may have already told us about earlier in this application.",
+          "infoType": "standard"
+        },
+        {
           "id": "actsChoice3",
           "type": "choice",
           "label": "",
@@ -1383,15 +1419,22 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "Give us more details of all your previous registrations with other authorities",
       "includeIf": "${businessChoice2 = 2 && actsChoice3 = 0} ",
       "fields": [
         {
           "id": "generatedId_d44cfb62_95a9_465b_8cea_f6a59adcdaee",
           "type": "info",
           "label": "What details should I include?",
-          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoText": "Provide details of the previous registration including:\n\n- who you registered with, names of the establishments or agencies, \n- length of time it was registered for,\n- Ofsted URNs  of applications you haven't told us about already \n- what type of service you registered. \n\nFor example, an adult social care service registered with the Care Quality Commission called Adult Care limited, registered from 2012 to 2016.",
           "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_1861b15b_3c9a_48fc_9f61_ae8ff8053aad",
+          "label": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us already earlier in this application.",
+          "infoText": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us already earlier in this application.",
+          "infoType": "standard"
         },
         {
           "id": "prevRegDetsOrg_copy_2",
