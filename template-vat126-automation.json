@@ -1,5 +1,4 @@
 {
-  "_id": "template-vat126-automation",
   "formName": "Claim a VAT refund as an organisation not registered for VAT",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -286,7 +285,8 @@
             {
               "id": "suppliersVrn",
               "type": "text",
-              "label": "Supplier's VAT registration number"
+              "label": "Supplier's VAT registration number",
+              "format": "text(0,15)"
             },
             {
               "id": "descriptionOfGoodsOrServices",
@@ -422,7 +422,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/ZVTR/eeits/{{VATCRN}}",
       "method": "POST",
-      "payload": "{'returnsDetails':{                     'isrScenario':'ZVT1',                     'regimeSpecificDetails':[                       {'paramSequence':'01',                        'paramName':'A_REGISTRATION_NUMBER',                        'paramValue':'{{VATCRN}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_FIRST_CLAIM',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BANK_DET_CHANGE',                        'paramValue':'{{yesNoToEtmpChoice bankChange}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_FROM_SELECT',                        'paramValue':'{{startDate-year}}{{startDate-month}}{{startDate-day}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_TO_SELECT',                        'paramValue':'{{endDate-year}}{{endDate-month}}{{endDate-day}}'},                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_SEQ_ID',                        'paramValue':'{{toEtmpParamSequence @index}}'},                       {{/each}}                       {{#each dateOfInvoice-year}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_INV_DATE_TBL',                        'paramValue':'{{elementAt dateOfInvoice-year @index}}{{elementAt dateOfInvoice-month @index}}{{elementAt dateOfInvoice-day @index}}'},                       {{/each}}                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_SUPP_VAT_NUM_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each descriptionOfGoodsOrServices}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_DESC_GOOD_SUPP_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each invoiceAddress}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_PERS_INVOICE_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each amountOfVatPaid}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_PAID_SUB_TBL',                        'paramValue':'{{stripCommas .}}'},                       {{/each}}                       {'paramSequence':'01',                        'paramName':'A_VTR_TOTAL_VAT_PAID',                        'paramValue':'{{stripCommas totalAmountOfVatPaid}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_CLAIM_AMOUNT',                        'paramValue':'{{stripCommas claimTotal}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BUSINESS_ACTIVITIES',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_DATA_ORIGIN',                        'paramValue':'1'}]},                     'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'returnsDetails':{                     'isrScenario':'ZVT1',                     'regimeSpecificDetails':[                       {'paramSequence':'01',                        'paramName':'A_REGISTRATION_NUMBER',                        'paramValue':'{{VATCRN}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_FIRST_CLAIM',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BANK_DET_CHANGE',                        'paramValue':'{{yesNoToEtmpChoice bankChange}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_FROM_SELECT',                        'paramValue':'{{toEtmpDate startDate}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_TO_SELECT',                        'paramValue':'{{toEtmpDate endDate}}'},                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_SEQ_ID',                        'paramValue':'{{toEtmpParamSequence @index}}'},                       {{/each}}                       {{#each dateOfInvoice}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_INV_DATE_TBL',                        'paramValue':'{{toEtmpDate .}}'},                       {{/each}}                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_SUPP_VAT_NUM_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each descriptionOfGoodsOrServices}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_DESC_GOOD_SUPP_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each invoiceAddress}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_PERS_INVOICE_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each amountOfVatPaid}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_PAID_SUB_TBL',                        'paramValue':'{{stripCommas .}}'},                       {{/each}}                       {'paramSequence':'01',                        'paramName':'A_VTR_TOTAL_VAT_PAID',                        'paramValue':'{{stripCommas totalAmountOfVatPaid}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_CLAIM_AMOUNT',                        'paramValue':'{{stripCommas claimTotal}}'},                       {'paramSequence':'01',                        'paramName':'A_DATA_ORIGIN',                        'paramValue':'1'}]},                     'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -430,7 +430,7 @@
       "includeIf": "{{or (lookup ^('0') => 'true'; (*) => 'false';^ (stripCommas address)) (isNotSuccessCode eeittReturnApi.status)}}",
       "convertSingleQuotes": true,
       "dmsFormId": "VAT126",
-      "customerId": "${' '}",
+      "customerId": "${VATCRN}",
       "classificationType": "FinanceOpsCorpT-IndTax-VAT126",
       "businessArea": "FinanceOpsCorpT"
     },
@@ -440,12 +440,13 @@
       "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
       "convertSingleQuotes": true,
       "dmsFormId": "VAT126",
-      "customerId": "${' '}",
+      "customerId": "${VATCRN}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
   "GFC579Ready": "true",
   "submitSuccessUrl": "",
-  "submitErrorUrl": ""
+  "submitErrorUrl": "",
+  "_id": "template-vat126-automation"
 }
