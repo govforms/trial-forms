@@ -200,8 +200,8 @@
         {
           "id": "agEsTel_copy_1",
           "type": "text",
-          "label": "Office number",
-          "shortName": "Office number",
+          "label": "Telephone number",
+          "shortName": "Telephone number",
           "helpText": "This is your organisation's number. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
@@ -288,7 +288,7 @@
           "type": "text",
           "label": "Telephone number",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your company's phone number. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -347,7 +347,7 @@
           "id": "generatedId_b6eba3f0_088b_487e_a667_cd7df0b770d7",
           "type": "info",
           "label": "provInfo",
-          "infoText": "We may contact you using these details  when checking your application",
+          "infoText": "We may contact you using these details when checking your application",
           "infoType": "noformat"
         },
         {
@@ -361,7 +361,7 @@
           "type": "text",
           "label": "Telephone number",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your holding company's number. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -759,7 +759,7 @@
     },
     {
       "title": "Do you or your organisation have financial interests in any establishment or agency registered with Ofsted?",
-      "description": "We need to check details of all establishments or agencies that your organisation has a financial interest in against records we hold. \n\nIf you are an individual this could mean working for another organisation.",
+      "description": "We need to check details of all establishments or agencies that your organisation has a financial interest in against records we hold. \n\nIf you are an individual this means working for another organisation.",
       "fields": [
         {
           "id": "generatedId_04c75fa6_11e9_4cf7_b8a2_cabe2d11af01",
@@ -783,6 +783,17 @@
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "How many registered establishment or agency do you or your organisation have a financial interest in?",
+      "description": "If you or your organisation have financial interests in more than one agency or establishment, you will need to tell us about all of them.",
+      "fields": [
+        {
+          "id": "NoRegisteredEstablishmentorAgency",
+          "type": "text",
+          "label": "Number of registered establishment or agency"
         }
       ]
     },
@@ -1397,9 +1408,17 @@
       ]
     },
     {
-      "title": "How many people do you want to add to your proposed register provider?",
+      "title": "How many people need to be registered for your establishment or agency?",
       "includeIf": "${businessChoice2 = 1}",
+      "description": "We need to know about each person in your business who will be responsible for making sure the establishment or agency meet the social care standards required by law. They will be named as registered individuals on your establishment's or agency's registration certificate.",
       "fields": [
+        {
+          "id": "generatedId_1c3127e8_342e_48b4_ba26_b24872020ee0",
+          "type": "info",
+          "label": "Do not include the person who will register as the manager.",
+          "infoText": "Do not include the person who will register as the manager.",
+          "infoType": "standard"
+        },
         {
           "id": "noIndPeoAdd",
           "type": "text",
