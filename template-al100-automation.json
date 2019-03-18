@@ -62,22 +62,21 @@
           "type": "text",
           "label": "Registration number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Choose your client's Aggregate Levy return dates",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "fields": [
         {
-          "id": "startDate",
-          "type": "date",
-          "label": "Return start date",
-          "helpText": "For example, 01 03 2018.",
-          "format": "before ${endDate}",
-          "mandatory": "true"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "Return end date",
-          "helpText": "For example, 31 05 2018.",
-          "format": "before today +1",
-          "mandatory": "true"
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${aggregatesLevyRegAgent}",
+          "regimeType": "AGL"
         }
       ]
     },
@@ -310,7 +309,6 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
-      "includeIf": "{{#if aggregatesLevyReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
