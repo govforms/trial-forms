@@ -9,14 +9,14 @@
   },
   "sections": [
     {
-      "title": "Do you expect to produce less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
+      "title": "Do you expect to produce or use less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
       "shortName": "Expected biofuel or fuel substitute production ",
       "fields": [
         {
           "id": "litreChoice",
           "type": "choice",
-          "label": "Do you expect to produce less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
-          "shortName": "More than 2,500 litres in next 12 months",
+          "label": "Do you expect to produce or use less than 2,500 litres of biofuels or fuel substitutes in the next 12 months?",
+          "shortName": "Less than 2,500 litres in next 12 months",
           "choices": [
             "Yes",
             "No"
@@ -25,10 +25,10 @@
       ]
     },
     {
-      "title": "You can not register your business for duty on biofuels and other fuel substitutes",
+      "title": "You can not register your business for duty on biofuels and other fuel substitutes at this time",
       "includeIf": "${litreChoice=0}",
       "continueIf": "false",
-      "description": "This is because you expect to produce less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months.",
+      "description": "This is because you expect to produce or use less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months.",
       "fields": [
         {
           "id": "generatedId_77485d1d_d444_4dde_8627_4f8ff13be675",
@@ -148,7 +148,7 @@
           "id": "youInfo1b",
           "type": "info",
           "label": "",
-          "infoText": "Provide details for the main place of business, where the day-to-day business activities are managed.\n\nWe may use these details  to verify your business details against records we hold.",
+          "infoText": "Provide details for the main place of business, where the day-to-day business activities are managed.\n\nWe may use these details  to verify your business against records we hold.",
           "infoType": "noformat"
         },
         {
@@ -227,9 +227,25 @@
         {
           "id": "generatedId_f93e562b_a0c1_4984_87e2_6b77e3e69cf2",
           "type": "info",
-          "label": "When is the duty due?",
-          "infoText": "Duty is due from when a biofuel or other fuel substitute is first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labeled as motor fuel.",
+          "label": "What is the start point for the duty?",
+          "infoText": "You start being liable for duty when a biofuel or other fuel substitute is first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labelled as a motor fuel.",
           "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you expect to produce less than 450,000 litres of biofuels or fuel substitutes in the next 12 months?",
+      "shortName": "Estimate of biofuels or fuel substitutes production ",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "largeProducerChoice",
+          "label": "Do you expect to produce less than 450,000 litres of biofuels or fuel substitutes in the next 12 months?",
+          "shortName": "Less than 450,000 litres in next 12 months",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -265,22 +281,6 @@
           "label": "Where can I find out how to calculate the duty?",
           "infoText": "1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'UK Trade Tariff: excise duties, reliefs, drawbacks and allowances'.",
           "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "How often would you like to submit your returns?",
-      "shortName": "Return periods",
-      "fields": [
-        {
-          "id": "returnPeriod",
-          "type": "choice",
-          "label": "",
-          "shortName": "Monthly or quarterly",
-          "choices": [
-            "Monthly",
-            "Quarterly"
-          ]
         }
       ]
     },
@@ -339,7 +339,7 @@
       "title": "Enter the registration number for each business the directors have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherDirectors =0}",
-      "description": "Provide the biofuel or fuel substitute duty registration number for each business the directors have been involved in within the last 2 years.",
+      "description": "Provide the biofuel or fuel substitute duty registration number for each business any of the directors in your business have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBus",
@@ -365,7 +365,7 @@
       "title": "Enter the registration number for each business the partners have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherPartners=0}",
-      "description": "Provide the biofuels and fuel substitutes duty registration number for each business the partners have been involved in within the last 2 years.",
+      "description": "Provide the biofuels or fuel substitutes duty registration number for each business any of the partners in your business have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusPartners",
@@ -388,10 +388,10 @@
       ]
     },
     {
-      "title": "Enter the registration number for each other business",
+      "title": "Enter the registration number for each business",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOther=0}",
-      "description": "Provide the biofuel or fuel substitute duty registration number for each biofuel business you, the sole trader have been involved in within the last 2 years.",
+      "description": "Provide the biofuels or fuel substitutes duty registration number for each business that you, the sole trader have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusSoleTrad",
@@ -435,7 +435,7 @@
         "type": "info",
         "label": "",
         "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
-        "infoType": "important"
+        "infoType": "standard"
       },
       {
         "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
@@ -448,7 +448,7 @@
         "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
         "type": "info",
         "label": "",
-        "infoText": "To complete this registration you must provide us with more details about your premises using an additional form.\n\nThe form you need depends on the type of business you are registering.\n\n* if you are a limited company or limited liability partnership (LLP) you need to complete form [EX103A](https://www.gov.uk/government/publications/excise-entry-incorporated-company-ex103a)\n\n* if you are a sole trader or partnership you need to complete form [EX103](https://www.gov.uk/government/publications/excise-entry-private-trader-ex103)",
+        "infoText": "To complete this registration you must provide us with more details about your premises and the fuel your produce or use, using an additional form.\n\nThe form you need depends on the type of business you are registering.\n\n* if you are a limited company or limited liability partnership (LLP) you need to complete form [EX103A](https://www.gov.uk/government/publications/excise-entry-incorporated-company-ex103a) for each of your premises\n\n* if you are a sole trader or partnership you need to complete form [EX103](https://www.gov.uk/government/publications/excise-entry-private-trader-ex103) for each of your premises\n\nOnce you have submitted the additional form you will be sent a questionnaire, which you must also complete and return to HMRC.",
         "infoType": "noformat"
       }
     ]
