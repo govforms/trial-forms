@@ -15,35 +15,6 @@
   },
   "sections": [
     {
-      "title": "Are you legally established within the United Kingdom?",
-      "shortName": "Legally established within UK    ",
-      "fields": [
-        {
-          "id": "choiceLegalEstablishment",
-          "type": "choice",
-          "label": "Are you legally established within the United Kingdom?",
-          "shortName": "Established in UK",
-          "helpText": "This means you have a registered office, central headquarters or a permanent business establishment in the United Kingdom",
-          "format": "yesno",
-          "errorMessage": "Select whether you are legally established within the United Kingdom"
-        }
-      ]
-    },
-    {
-      "title": "You cannot apply for Transitional Simplified Procedures",
-      "includeIf": "${choiceLegalEstablishment=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_4c9bb828_0441_4ea6_af93_5612109d73ab",
-          "type": "info",
-          "label": "",
-          "infoText": "You will not be able to continue as you are not legally established within the United Kingdom",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
       "title": "Business details",
       "fields": [
         {
@@ -67,6 +38,12 @@
       "title": "Business office details",
       "shortName": "Business office details",
       "fields": [
+        {
+          "type": "text",
+          "id": "chfphone",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
         {
           "id": "chfAdd",
           "type": "address",
