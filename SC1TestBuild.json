@@ -787,13 +787,15 @@
       ]
     },
     {
-      "title": "How many registered establishment or agency do you or your organisation have a financial interest in?",
+      "title": "How many registered establishments or agencies do you or your organisation have a financial interest in?",
+      "includeIf": "${intsInOthOrgs = 0}",
       "description": "If you or your organisation have financial interests in more than one agency or establishment, you will need to tell us about all of them.",
       "fields": [
         {
-          "id": "NoRegisteredEstablishmentorAgency",
+          "id": "numbRegisteredEstablishmentorAgency",
           "type": "text",
-          "label": "Number of registered establishment or agency"
+          "label": "Number of registered establishment or agency",
+          "format": "positiveWholeNumber"
         }
       ]
     },
