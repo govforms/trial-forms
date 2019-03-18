@@ -2332,46 +2332,14 @@
       ]
     },
     {
-      "title": "Do the premises require planning permission?",
-      "includeIf": "${appType = 4}",
-      "fields": [
-        {
-          "id": "planReqChoi",
-          "type": "choice",
-          "label": "Do the premises require planning permission?",
-          "shortName": "Planning permission required",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Do the premises require planning permission?",
+      "title": "Have you got planning permission for your premises?",
       "includeIf": "${appType != 4}",
-      "fields": [
-        {
-          "id": "planReqChoi2",
-          "type": "choice",
-          "label": "Do the premises require planning permission?",
-          "shortName": "Planning permission required",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have you obtained the required planning permission? Or do you have evidence from the local authority to confirm that planning permission is not required?",
-      "includeIf": "${appType != 4 && planReqChoi2 = 0}",
       "fields": [
         {
           "id": "generatedId_417c1278_6717_4fc6_9160_f228f5cef23c",
           "type": "info",
           "label": "What evidence should I provide?",
-          "infoText": "You need to provide either:\n\n* copy of planning permission granted\n\n* certificate of lawfulness\n\n* copy of a planning application\n\n* evidence that planning permission is not required",
+          "infoText": "You will need to give us evidence of your planning permission for your premises from your local authority to run the establishment or agency.",
           "infoType": "noformat"
         },
         {
@@ -2379,14 +2347,16 @@
           "type": "choice",
           "label": "",
           "choices": [
-            "Yes I will upload a copy",
-            "Yes I will post a copy",
-            "No "
+            "Yes, I have planning permission or certficate of lawfulness",
+            "No, but I can give a written confirmation from the local council that I do not need planning permission",
+            "No, but my planning application is being considered. I can give my planning application to Ofsted.",
+            "No"
           ],
           "optionHelpText": [
             "",
             "You need to post the documents with a cover note that states the name and address of your application. \n\nSend your application to this postal address:\n\n\n\nApplications team\n\nOfsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
-            "Your application to register will be delayed until we have received the relevant documents."
+            "Your application to register will be delayed until we have received the relevant documents.",
+            ""
           ]
         }
       ]
@@ -2401,6 +2371,38 @@
           "label": "Upload your planning document here",
           "shortName": "Planning upload",
           "helpText": "We accept files up to 5mb  in size if formats like .jpg, .gif, .xml"
+        }
+      ]
+    },
+    {
+      "title": "Planning fail",
+      "includeIf": "${planChoi =3}",
+      "continueIf": "false",
+      "continueLabel": "Save and continue",
+      "fields": [
+        {
+          "id": "generatedId_c7d41da7_79e5_4b2a_a03b_69e8a7c52259",
+          "type": "info",
+          "label": "You do not have the right documents to continue with this application",
+          "infoText": "By law, you must provide your organisation's financial documents with your application.",
+          "infoType": "important"
+        },
+        {
+          "id": "generatedId_7554b3f3_c250_498b_9bdd_ed86326bed4f",
+          "type": "info",
+          "label": "",
+          "infoText": "You should prepare these documents before you continue as you will be asked to upload them in the application.\n\nWe will reject your application without them.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "continueOptions_copy_1",
+          "type": "choice",
+          "label": "",
+          "format": "vertical",
+          "choices": [
+            "Continue with application",
+            "Leave application"
+          ]
         }
       ]
     },
