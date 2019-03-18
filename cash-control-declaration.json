@@ -1,5 +1,4 @@
 {
-  "_id": "cash-control-declaration",
   "formName": "Cash Control Declaration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -135,7 +134,7 @@
       "includeIf": "${enterExit=0}",
       "fields": [
         {
-          "id": "airSea",
+          "id": "airSeaIfEntering",
           "type": "choice",
           "label": "How are you travelling into the UK?",
           "choices": [
@@ -156,7 +155,7 @@
       "includeIf": "${enterExit=1}",
       "fields": [
         {
-          "id": "airSea_copy_1",
+          "id": "airSeaIfExiting",
           "type": "choice",
           "label": "How are you travelling out of the UK?",
           "choices": [
@@ -183,7 +182,7 @@
           "helpText": "For example, London Heathrow"
         },
         {
-          "id": "countryName",
+          "id": "startCountry",
           "type": "text",
           "label": "Country name"
         }
@@ -194,7 +193,7 @@
       "shortName": "Where your journey ends",
       "fields": [
         {
-          "id": "endName",
+          "id": "destinationName",
           "type": "text",
           "label": "Name of airport, port, or station",
           "helpText": "For example, London Heathrow"
@@ -228,29 +227,29 @@
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
-          "id": "howManyAirports",
+          "id": "howManyIntermediateAirports",
           "type": "text",
           "label": "How many other airports, ports or stations will you travel via?",
           "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${howManyAirports>0 && howManyAirports<=20}"
+          "validIf": "${howManyIntermediateAirportss>0 && howManyIntermediateAirports<=20}"
         }
       ]
     },
     {
       "title": "Details of change $n",
-      "repeatsMin": "${howManyAirports}",
-      "repeatsMax": "${howManyAirports}",
+      "repeatsMin": "${howManyIntermediateAirports}",
+      "repeatsMax": "${howManyIntermediateAirports}",
       "fields": [
         {
-          "id": "intermediatePortName",
+          "id": "intermediatePortNames",
           "type": "text",
           "label": "Name of airport, port or station",
           "helpText": "For example, Singapore Changi Airport"
         },
         {
-          "id": "intermediatePortCountryName",
+          "id": "intermediatePortCountryNames",
           "type": "text",
           "label": "Name of country"
         }
@@ -618,5 +617,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "cash-control-declaration"
 }
