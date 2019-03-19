@@ -934,6 +934,7 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{and (match ^('1') => 'true'; (*) => 'false'^ (stripCommas ceasedTrading))                           (match ^('1' '0') => 'true'; (* *) => 'false'^ (stripCommas address) (stripCommas manualUpload))}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
