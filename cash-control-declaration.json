@@ -67,6 +67,7 @@
     },
     {
       "title": "Passport number",
+      "shortName": "Passport details",
       "fields": [
         {
           "id": "passportNumber",
@@ -84,6 +85,7 @@
           "id": "yourAddress",
           "type": "address",
           "label": "Your address",
+          "shortName": "Address",
           "international": "true"
         }
       ]
@@ -96,7 +98,6 @@
           "id": "enterExit",
           "type": "choice",
           "label": "Are you entering or leaving the UK?",
-          "shortName": "Entering or leaving UK",
           "choices": [
             "Entering",
             "Leaving"
@@ -106,6 +107,7 @@
     },
     {
       "title": "When are you entering the UK?",
+      "shortName": "Entering the UK",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
@@ -113,12 +115,14 @@
           "type": "date",
           "label": "When are you entering the UK?",
           "shortName": "Date entering the UK",
+          "helpText": "This can be up to 3 days after you submit your declaration",
           "format": "after today -1, before today +4"
         }
       ]
     },
     {
       "title": "When are you leaving the UK?",
+      "shortName": "Leaving the UK",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
@@ -193,8 +197,8 @@
       ]
     },
     {
-      "title": "End of journey",
-      "shortName": "Where your journey ends",
+      "title": "Where will you end your journey?",
+      "shortName": "End of journey",
       "fields": [
         {
           "id": "destinationName",
@@ -211,14 +215,14 @@
     },
     {
       "title": "Will you change at another airport, port or station?",
-      "shortName": "Change at another airport, port or station",
+      "shortName": "Changes",
       "fields": [
         {
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Will you change at another airport, port or station?",
-          "shortName": "Change",
           "helpText": "If you change to another plane, boat or train on your way to the UK, select yes. For example, if you are flying into France and then take the Channel Tunnel to the UK.",
+          "errorMessage": "Select whether you will change at another airport, port or station",
           "choices": [
             "Yes",
             "No"
@@ -330,6 +334,7 @@
           "id": "noteTotal",
           "type": "text",
           "label": "Total amount in this currency in notes/coins",
+          "shortName": "Total in notes/coins",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
@@ -337,6 +342,7 @@
           "id": "totalTravellersCheque",
           "type": "text",
           "label": "Total amount in this currency in cheques, including travellers cheques",
+          "shortName": "Total in cheques",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
@@ -344,6 +350,7 @@
           "id": "totalBankersDraft",
           "type": "text",
           "label": "Total amount in this currency in banker's drafts",
+          "shortName": "Total in banker's drafts",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         }
@@ -366,6 +373,7 @@
           "id": "noteTotalMoreThanFive",
           "type": "text",
           "label": "Total amount in this currency in notes/coins",
+          "shortName": "Total in notes/coins",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
@@ -373,6 +381,7 @@
           "id": "totalTravellersMoreThanFive",
           "type": "text",
           "label": "Total amount in this currency in cheques, including travellers cheques",
+          "shortName": "Total in cheques",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         },
@@ -380,6 +389,7 @@
           "id": "totalBankersMoreThanFive",
           "type": "text",
           "label": "Total amount in this currency in banker's drafts",
+          "shortName": "Total banker's drafts",
           "helpText": "Enter 0 if none",
           "format": "positiveNumber(9, 2)"
         }
@@ -387,6 +397,7 @@
     },
     {
       "title": "Upload details of all your currencies",
+      "shortName": "Details of all currencies",
       "includeIf": "${overFiveCurrenciesChoice=0}",
       "fields": [
         {
@@ -553,7 +564,8 @@
           "type": "text",
           "label": "What will the cash be used for?",
           "shortName": "Cash use",
-          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a."
+          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a.",
+          "format": "text"
         }
       ]
     },
