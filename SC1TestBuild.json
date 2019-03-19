@@ -127,14 +127,14 @@
       ]
     },
     {
-      "title": "Have you recently set up a new company?",
+      "title": "Was your company set up in the last 2 years?",
       "includeIf": "${businessChoice2 = 0}",
+      "description": "We need to know if you have filed any accounts with Companies House so that we can check if you have the funds to run and maintain the social care service.",
       "fields": [
         {
           "id": "newCoChoi",
           "type": "choice",
-          "label": "Have you recently set up a new company?",
-          "helpText": "You are a new company if you have not submitted your company's accounts yet.",
+          "label": "",
           "format": "vertical",
           "choices": [
             "Yes",
@@ -617,13 +617,13 @@
       ]
     },
     {
-      "title": "Are you applying to register a social care establishment or agency that exists already?",
+      "title": "Are you applying to register an existing children's social care service?",
       "fields": [
         {
           "id": "planCSCEstOrAg",
           "type": "choice",
           "label": "",
-          "shortName": "Existing social care establishment or agency",
+          "shortName": "Existing social care service",
           "choices": [
             "Yes",
             "No, it's new"
@@ -632,7 +632,7 @@
       ]
     },
     {
-      "title": "Is the existing social establishment or agency registered with Ofsted?",
+      "title": "Is the existing children's social care service registered with Ofsted?",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
@@ -648,7 +648,7 @@
       ]
     },
     {
-      "title": "Details of existing social care establishment or agency registered with Ofsted",
+      "title": "Details of existing children's social care service registered with Ofsted",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 0}",
       "fields": [
         {
@@ -669,7 +669,7 @@
       ]
     },
     {
-      "title": "Details of existing establishment or agency you are applying to register",
+      "title": "Details of existing children's social care service you are applying to register",
       "includeIf": "${planCSCEstOrAg = 0 && ofRegQues = 1}",
       "fields": [
         {
@@ -682,14 +682,14 @@
       ]
     },
     {
-      "title": "Address of existing establishment or agency you are applying to register",
+      "title": "Address of existing children's social care service you are applying to register",
       "includeIf": "${planCSCEstOrAg = 0}",
       "fields": [
         {
           "id": "generatedId_24529809_67bd_4c36_9831_dfadc8c694a8",
           "type": "info",
           "label": "",
-          "infoText": "We may contact you using these details  when checking your application",
+          "infoText": "We may contact you using these details when checking your application",
           "infoType": "noformat"
         },
         {
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "title": "Have you applied to register a children's social care establishment or agency with Ofsted before?",
+      "title": "Have you applied to register a children's social care service with Ofsted before?",
       "description": "We need to know this so we can check to see if you are already registered in our records.",
       "fields": [
         {
@@ -758,7 +758,7 @@
       ]
     },
     {
-      "title": "Do you or your organisation have financial interests in any establishment or agency registered with Ofsted?",
+      "title": "Does your organisation have financial interests in any establishment or agency registered with Ofsted?",
       "description": "We need to check details of all establishments or agencies that your organisation has a financial interest in against records we hold. \n\nIf you are an individual this means working for another organisation.",
       "fields": [
         {
@@ -787,20 +787,21 @@
       ]
     },
     {
-      "title": "How many registered establishments or agencies do you or your organisation have a financial interest in?",
+      "title": "How many registered establishments or agencies does your organisation have a financial interest in?",
       "includeIf": "${intsInOthOrgs = 0}",
-      "description": "If you or your organisation have financial interests in more than one agency or establishment, you will need to tell us about all of them.",
+      "description": "Tell us about all the agencies and or establishments your organisation has a financial interests in.",
       "fields": [
         {
           "id": "numbRegisteredEstablishmentorAgency",
           "type": "text",
           "label": "Number of registered establishment or agency",
-          "format": "positiveWholeNumber"
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
         }
       ]
     },
     {
-      "title": "About the registered agency or establishment you or your organisation have a financial interest in",
+      "title": "About the registered agency or establishment your organisation has a financial interest in",
       "includeIf": "${intsInOthOrgs =0}",
       "description": "If you have financial interests in more than one agency or establishment, you will have the option to tell us about all of them after providing details of your first establishment or agency.",
       "fields": [
@@ -820,7 +821,7 @@
       ]
     },
     {
-      "title": "Address and contact details of your registered agency or establishment you or your organisation have a financial interest in",
+      "title": "Address and contact details of your registered agency or establishment your organisation has a financial interest in",
       "includeIf": "${intsInOthOrgs =0}",
       "fields": [
         {
@@ -862,7 +863,7 @@
       ]
     },
     {
-      "title": "Tell us about your second registered agency or establishment you or your organisation have a financial interest in",
+      "title": "Tell us about your second registered agency or establishment your organisation has a financial interest in",
       "includeIf": "${intsInOthOrgs =0 && addAgOrEst = 0}",
       "fields": [
         {
@@ -923,7 +924,7 @@
       ]
     },
     {
-      "title": "Tell us about your third registered agency or establishment",
+      "title": "Tell us about your third registered agency or establishment your organisation has a financial interest in",
       "includeIf": "${intsInOthOrgs =0 && addAgOrEst2 = 0}",
       "fields": [
         {
@@ -942,7 +943,7 @@
       ]
     },
     {
-      "title": "Address and contact details of your third registered agency or establishment",
+      "title": "Address and contact details of your third registered agency or establishment your organisation has a financial interest in",
       "includeIf": "${intsInOthOrgs =0 &&addAgOrEst2 = 0}",
       "fields": [
         {
@@ -1007,14 +1008,21 @@
       ]
     },
     {
-      "title": "Give us more details of the previous registrations",
+      "title": "Give us more details of the previous registrations with other authorities",
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_9f1b7028_5317_4491_a561_712fc93c9f60",
+          "label": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us about earlier in this application.",
+          "infoText": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us about earlier in this application.",
+          "infoType": "standard"
+        },
         {
           "id": "generatedId_169efc1f_1143_4a97_a179_455948fb86b6",
           "type": "info",
           "label": "What details should I include?",
-          "infoText": "Provide details of the previous registration including:\n\n* Names of the establishments or agencies\n\n* Ofsted unique reference numbers\n\n* Description of previous registrations",
+          "infoText": "Provide details of the previous registration including:\n\n- who you registered with, names of the establishments or agencies, \n- length of time it was registered for,\n- Ofsted URNs  of applications you haven't told us about already \n- what type of service you registered. \n\nFor example, an adult social care service registered with the Care Quality Commission called Adult Care limited, registered from 2012 to 2016.",
           "infoType": "noformat"
         },
         {
@@ -1048,7 +1056,7 @@
       ]
     },
     {
-      "title": "Tell us about your refused or cancelled application with Ofsted or another organisation ",
+      "title": "Tell us about all of your refused or cancelled applications with Ofsted or other authorities",
       "includeIf": "${cancRefOk1 = 0}",
       "fields": [
         {
@@ -1201,7 +1209,7 @@
           "id": "generatedId_7af6481a_3f6e_4c2b_833c_2ee3f2830cd8",
           "type": "info",
           "label": "",
-          "infoText": "We will need to see your last two company accounts if you have them.\n\nYou only need to upload the previous year's accounts if you have been trading for less than 2 years.",
+          "infoText": "We need to see your last 2 annual accounts if you have been trading at least for the last 2 years.\n\nYou only need to upload the previous year's accounts if you have been trading for less than 2 years.",
           "infoType": "noformat"
         },
         {
@@ -1220,7 +1228,7 @@
           "id": "generatedId_7470500e_f9cf_443b_8940_386e7eafe52b",
           "type": "info",
           "label": "",
-          "infoText": "We will need your last two company reports.\n\nIf you are a new company that has filed last year's report, upload that.",
+          "infoText": "We need to see your last 2 annual reports if you have been trading at least for the last 2 years.\n\nYou only need to upload the previous year's report if you have been trading for less than 2 years.",
           "infoType": "noformat"
         },
         {
@@ -1412,7 +1420,7 @@
     {
       "title": "How many people need to be registered for your establishment or agency?",
       "includeIf": "${businessChoice2 = 1}",
-      "description": "We need to know about each person in your business who will be responsible for making sure the establishment or agency meet the social care standards required by law. They will be named as registered individuals on your establishment's or agency's registration certificate.",
+      "description": "We need to register each person in your business who will be responsible for making sure the establishment or agency meets the social care standards required by law. ",
       "fields": [
         {
           "id": "generatedId_1c3127e8_342e_48b4_ba26_b24872020ee0",
@@ -1424,13 +1432,33 @@
         {
           "id": "noIndPeoAdd",
           "type": "text",
-          "label": "How many people do you want to add to your proposed register provider?",
+          "label": "Number of individuals to register",
           "format": "positiveNumber"
         }
       ]
     },
     {
-      "title": "Tell us about the people you want to add to your proposed registered provider",
+      "title": "How many people will be involved in running your establishment or agency?",
+      "includeIf": "${businessChoice2 = 0}",
+      "description": "We need to know about each person in your organisation who will have an active role in running the establishment or agency.\n\nThey will be responsible for making sure the establishment or agency meets the social care standards required by law.\n\nYou could include all the directors, secretaries, clerks, treasurers and trustees that will be involved.",
+      "fields": [
+        {
+          "id": "generatedId_fdf2fd25_4f0a_4e7f_a631_69866a50c83a",
+          "type": "info",
+          "label": "Do not include the person who will register as the manager or responsible individual.",
+          "infoText": "Do not include the person who will register as the manager or responsible individual.",
+          "infoType": "standard"
+        },
+        {
+          "id": "noIndPeoAdd_copy_1",
+          "type": "text",
+          "label": "Number of individuals",
+          "format": "positiveNumber"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the people you want to register to run the establishment or agency",
       "repeatsMin": "${noIndPeoAdd}",
       "repeatsMax": "${noIndPeoAdd}",
       "fields": [
@@ -1438,7 +1466,7 @@
           "id": "generatedId_bb3885c8_88bf_43ec_a65f_1c9767deea24",
           "type": "info",
           "label": "",
-          "infoText": "We need to know about each individual so we can check their eligibility to be an individual provider.",
+          "infoText": "We will add these individuals to your establishment's or agency's registration certificate.",
           "infoType": "noformat"
         },
         {
@@ -1452,7 +1480,7 @@
         {
           "id": "indProvFiNam",
           "type": "text",
-          "label": "First name(s)",
+          "label": "First name",
           "shortName": "First name"
         },
         {
@@ -1466,18 +1494,19 @@
           "type": "date",
           "label": "Date of birth",
           "shortName": "Date of birth",
-          "helpText": "Enter the date of birth in the following format, dd/mm/yyyy"
+          "helpText": "Enter the date of birth in this format, dd/mm/yyyy. For example, 31 12 1980"
         },
         {
           "id": "indProvPos",
           "type": "text",
-          "label": "Position",
-          "shortName": "Position"
+          "label": "Position in company",
+          "shortName": "Position in company",
+          "helpText": "For example a director, secretary, manager, clerk, treasurer or trustee"
         },
         {
           "id": "indProvMan",
           "type": "choice",
-          "label": "Does this person have management responsibility?",
+          "label": "Will this person have management responsibility?",
           "choices": [
             "Yes",
             "No"
@@ -1486,35 +1515,29 @@
         {
           "id": "indProvKid",
           "type": "choice",
-          "label": "Does this person have contact with children and / or young people?",
+          "label": "Will this person have contact with children or young people?",
           "choices": [
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "generatedId_9d7bf20e_593c_4950_ace8_80e0a709823a",
-          "type": "info",
-          "label": "",
-          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
-          "infoType": "important"
         }
       ]
     },
     {
-      "title": "How many people do you want to add to your proposed registered provider?",
+      "title": "How many people will be involved in running your establishment or agency?",
       "includeIf": "${businessChoice2 = 0}",
+      "description": "We need to know about each person in your organisation who will have an active role in running the establishment or agency.\n\nThey will be responsible for making sure the establishment or agency meets the social care standards required by law.\n\nYou could include all the directors, secretaries, clerks, treasurers and trustees that will be involved.",
       "fields": [
         {
           "id": "noORGPeoAdd",
           "type": "text",
-          "label": "How many people do you want to add to your proposed register provider?",
+          "label": "How many people will be involved in running your establishment or agency?",
           "format": "positiveNumber"
         }
       ]
     },
     {
-      "title": "Tell us about the people you want to add to your proposed registered provider",
+      "title": "Tell us about the people involved in running your establishment or agency",
       "repeatsMin": "${noORGPeoAdd}",
       "repeatsMax": "${noORGPeoAdd}",
       "fields": [
@@ -1522,8 +1545,15 @@
           "id": "generatedId_75449e31_e0d2_437d_af86_090bbd2ae8cb",
           "type": "info",
           "label": "",
-          "infoText": "We need to know about each individual so we can check their eligibility to be an individual provider.",
+          "infoText": "By law, you must tell us about each person who will have an active role in running your organisation. This could be the director, manager, secretary, clerk, treasurer, trustees and other officers.",
           "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "generatedId_7b1fd0a4_1efa_45aa_9492_4e931acc38e7",
+          "label": "Do not include the people who will register as the manager or the responsible individual for the establishment or agency.",
+          "infoText": "Do not include the people who will register as the manager or the responsible individual for the establishment or agency.",
+          "infoType": "standard"
         },
         {
           "id": "orgProvTi",
@@ -1536,7 +1566,7 @@
         {
           "id": "orgProvFiNa",
           "type": "text",
-          "label": "First name(s)",
+          "label": "First name",
           "shortName": "First name"
         },
         {
@@ -1550,13 +1580,13 @@
           "type": "date",
           "label": "Date of birth",
           "shortName": "Date of birth",
-          "helpText": "Enter the date of birth in the following format, dd/mm/yyyy"
+          "helpText": "Enter the date of birth in this format, dd/mm/yyyy. For example, 31 12 1980"
         },
         {
           "id": "orgProvPos",
           "type": "text",
-          "label": "Position",
-          "shortName": "Position"
+          "label": "Position in company",
+          "shortName": "Position in company"
         },
         {
           "id": "orgDisq",
@@ -1570,7 +1600,7 @@
         {
           "id": "orgProvMan",
           "type": "choice",
-          "label": "Does this person have management responsibility?",
+          "label": "Will this person have management responsibility?",
           "choices": [
             "Yes",
             "No"
@@ -1579,35 +1609,37 @@
         {
           "id": "orgProvKid",
           "type": "choice",
-          "label": "Does this person have contact with children and / or young people?",
+          "label": "Will this person have contact with children or young people?",
           "choices": [
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "generatedId_134d40bc_adc8_482b_a71b_aaa49a048c26",
-          "type": "info",
-          "label": "",
-          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
-          "infoType": "important"
         }
       ]
     },
     {
-      "title": "How many partners do you want to add to your proposed registered provider?",
+      "title": "How many partners will be involved in running your establishment or agency?",
       "includeIf": "${businessChoice2 = 2}",
+      "description": "We need to know about each partner in your partnership who will have an active role in running the establishment or agency.\n\nThey will be responsible for making sure the establishment or agency meets the social care standards required by law.",
       "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_fd3497bf_3894_442c_a8a7_eedf871ff3b9",
+          "label": "Do not include the person who will register as the manager.",
+          "infoText": "Do not include the person who will register as the manager.",
+          "infoType": "standard"
+        },
         {
           "id": "noPARPeoAdd",
           "type": "text",
-          "label": "How many people do you want to add to your proposed register provider?",
+          "label": "Number of partners",
           "format": "positiveNumber"
         }
       ]
     },
     {
-      "title": "Who are the partners?",
+      "title": "Tell us about the partners involved in running your establishment or agency",
+      "description": "Each person in the partnership must apply and be granted registration.",
       "repeatsMin": "${noPARPeoAdd}",
       "repeatsMax": "${noPARPeoAdd}",
       "fields": [
@@ -1639,19 +1671,20 @@
           "type": "date",
           "label": "Date of birth",
           "shortName": "Date of birth",
-          "helpText": "Enter the date of birth in the format dd/mm/yyyy"
+          "helpText": "Enter the date of birth in this format, dd/mm/yyyy. For example, 31 12 1980"
         },
         {
           "id": "paPos",
           "type": "text",
-          "label": "Position within the company",
-          "shortName": "Position",
+          "label": "Role in partnership",
+          "shortName": "Partner's role",
+          "helpText": "Describe role of partner. For example, partner is responsible for managing finances of partnership.",
           "displayWidth": "m"
         },
         {
           "id": "indProvMan_copy_1",
           "type": "choice",
-          "label": "Does this person have management responsibility?",
+          "label": "Will this partner have management responsibility?",
           "choices": [
             "Yes",
             "No"
@@ -1660,24 +1693,18 @@
         {
           "id": "indProvKid_copy_1",
           "type": "choice",
-          "label": "Does this person have contact with children and / or young people?",
+          "label": "Will this partner have contact with children or young people?",
           "choices": [
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "generatedId_6daecad5_0d63_428d_9e72_b0b6794ed91b",
-          "type": "info",
-          "label": "",
-          "infoText": "Each person who is part of the individual provider must submit a completed SC2 form  in order for us to consider this application",
-          "infoType": "important"
         }
       ]
     },
     {
-      "title": "Who is the responsible individual?",
+      "title": "Tell us about the responsible individual for your organisation",
       "includeIf": "${businessChoice2 = 0}",
+      "description": "Suggest a responsible individual to represent your organisation when dealing with us. This could be a director or manager of your organisation.",
       "fields": [
         {
           "id": "resIndTit",
@@ -1690,7 +1717,7 @@
         {
           "id": "resIndFirNam",
           "type": "text",
-          "label": "First name(s)",
+          "label": "First name",
           "shortName": "First name",
           "format": "text(0,50)",
           "displayWidth": "m"
@@ -1705,7 +1732,7 @@
         {
           "id": "resIndPos",
           "type": "text",
-          "label": "Position within the company",
+          "label": "Position in company",
           "shortName": "Position",
           "displayWidth": "m"
         },
