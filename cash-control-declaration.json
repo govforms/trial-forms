@@ -1,4 +1,5 @@
 {
+  "_id": "cash-control-declaration",
   "formName": "Cash Control Declaration",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -112,7 +113,7 @@
           "type": "date",
           "label": "When are you entering the UK?",
           "shortName": "Date entering the UK",
-          "format": "after today -1"
+          "format": "after today -1, before today +4"
         }
       ]
     },
@@ -125,12 +126,14 @@
           "type": "date",
           "label": "When are you leaving the UK?",
           "shortName": "Date leaving the UK",
-          "format": "after today -1"
+          "helpText": "This can be up to 3 days after you submit your declaration",
+          "format": "after today -1, before today +4"
         }
       ]
     },
     {
       "title": "How are you travelling into the UK?",
+      "shortName": "Into the UK",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
@@ -152,6 +155,7 @@
     },
     {
       "title": "How are you travelling out of the UK?",
+      "shortName": "Out of the UK",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
@@ -173,7 +177,7 @@
     },
     {
       "title": "Where will you start your journey?",
-      "shortName": "Where your journey starts",
+      "shortName": "Start of journey",
       "fields": [
         {
           "id": "startName",
@@ -189,7 +193,7 @@
       ]
     },
     {
-      "title": "Where will you end your journey?",
+      "title": "End of journey",
       "shortName": "Where your journey ends",
       "fields": [
         {
@@ -224,6 +228,7 @@
     },
     {
       "title": "How many other airports, ports or stations will you travel via?",
+      "shortName": "Number of airports/ports/stations",
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
@@ -233,7 +238,7 @@
           "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${howManyIntermediateAirportss>0 && howManyIntermediateAirports<=20}"
+          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}"
         }
       ]
     },
@@ -388,7 +393,7 @@
           "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
           "type": "info",
           "label": "",
-          "infoText": "Enter a document with all the currencies you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total cheques, including travellers cheques, amount in this currency\n* total bankers drafts amount in this currency\n\nWe accept insert file and format type here.",
+          "infoText": "Enter a document with all the currencies you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total cheques, including travellers cheques, amount in this currency\n* total bankers drafts amount in this currency",
           "infoType": "noformat"
         },
         {
@@ -617,6 +622,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "cash-control-declaration"
+  "submitSuccessUrl": "deprecated"
 }
