@@ -2673,55 +2673,57 @@
       ]
     },
     {
-      "title": "Tell us about the maximum number of children you plan to have in each category specified in the Care Standards Act in line with your statement of purpose?",
+      "title": "Tell us about the number of children with needs you will have at your home",
       "includeIf": "${appType = 0}",
+      "description": "By law, you must tell us how many children in the categories below will live at your home.",
       "fields": [
         {
           "id": "emo",
           "type": "text",
-          "label": "Children with emotional or behavioural difficulties ",
+          "label": "Number of children with emotional or behavioural difficulties ",
           "shortName": "Emotional or behavioural difficulties",
           "format": "number(4,0)"
         },
         {
           "id": "phys",
           "type": "text",
-          "label": "Children with physical disabilities ",
+          "label": "Number of children with physical disabilities ",
           "shortName": "Physical disabilities",
           "format": "number(4,0)"
         },
         {
           "id": "lear",
           "type": "text",
-          "label": "Children with learning disabilities ",
+          "label": "Number of children with learning disabilities ",
           "shortName": "Learning disabilities",
           "format": "number(4,0)"
         },
         {
           "id": "ment",
           "type": "text",
-          "label": "Children with mental disorders, not including learning disabilities ",
+          "label": "Number of children with mental disorders only",
           "shortName": "Mental disorders",
+          "helpText": "Do not include children with learning disabilities. Add them to the category above.",
           "format": "number(4,0)"
         },
         {
           "id": "drug",
           "type": "text",
-          "label": "Children with present drug problems",
+          "label": "Number of children with drug problems",
           "shortName": "Drug problems",
           "format": "number(4,0)"
         },
         {
           "id": "alch",
           "type": "text",
-          "label": "Children with present alcohol problems",
+          "label": "Number of children with alcohol problems",
           "shortName": "Alcohol problems",
           "format": "number(4,0)"
         },
         {
           "id": "sens",
           "type": "text",
-          "label": "Children with hearing or eyesight difficulties ",
+          "label": "Number of children with hearing or eyesight difficulties ",
           "shortName": "Sensory impairment",
           "format": "number(4,0)"
         }
@@ -2743,23 +2745,25 @@
       ]
     },
     {
-      "title": "What is the age range you will accommodate?",
-      "shortName": "Age range accommodated",
+      "title": "What is the age range of the children you will care for in your home?",
+      "shortName": "Age range of children in children's home",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "startAge",
           "type": "text",
-          "label": "From",
-          "shortName": "From",
+          "label": "Age of youngest child",
+          "shortName": "Age of youngest child",
+          "helpText": "For example, 8",
           "format": "number(3,0)",
           "displayWidth": "xs"
         },
         {
-          "id": "startAge_copy_1",
+          "id": "EndAge",
           "type": "text",
-          "label": "To",
-          "shortName": "To",
+          "label": "Age of oldest child",
+          "shortName": "Age of oldest child",
+          "helpText": "For example, 16",
           "format": "number(3,0)",
           "displayWidth": "xs"
         }
@@ -2795,14 +2799,14 @@
       ]
     },
     {
-      "title": "Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
+      "title": "Is your children's home registered or applying to register with the Care Quality Commission?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "regChoiCQC",
           "type": "choice",
-          "label": "Is your establishment registered (or are you also applying to register any 'registerable activities') with the Care Quality Commission (CQC) under the Health and Social Care Act 2008?",
-          "shortName": "Establishment CQC registered",
+          "label": "Is your children's home registered or applying to register with the Care Quality Commission (CQC)?",
+          "shortName": "Children's home registered with CQC",
           "choices": [
             "Yes",
             "No"
@@ -2811,15 +2815,15 @@
       ]
     },
     {
-      "title": "Further details of Care quality commission registration",
+      "title": "Give us details of your children's home CQC registration",
       "includeIf": "${appType = 0 && regChoiCQC = 0} ",
       "fields": [
         {
           "id": "furDets",
           "type": "text",
-          "label": "Further details of Care quality commission registration",
-          "shortName": "CQC further details",
-          "helpText": "Include a registration number if relevant, and tell us if you're already registered or if you are applying to register with the CQC",
+          "label": "Give us details of your children's home CQC registration",
+          "shortName": "Children's home CQC registration details",
+          "helpText": "Include a registration number if relevant, and tell us if you're already registered or if you are applying to register with the CQC.",
           "multiline": "true"
         }
       ]
@@ -2827,6 +2831,7 @@
     {
       "title": " Are you intending to provide a short-breaks service?",
       "includeIf": "${appType = 0}",
+      "description": "Short breaks services provide opportunities for disabled children to spend time away from their primary carers. This can include overnight or weekend activities.",
       "fields": [
         {
           "id": "shoBreProv",
@@ -2841,43 +2846,60 @@
       ]
     },
     {
-      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "title": "How much will you charge the people using your children's home?",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "chargeTextHome",
           "type": "text",
-          "label": "What will be the range of charges to the people using your establishment or agency?",
-          "shortName": "Range of charges for users",
+          "label": "How much will you charge the people using your children's home?",
+          "shortName": "Range of fees for children's home services",
+          "helpText": "Include details of the range of fees for all the services you will provide.",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "What type of service will you provide?",
-      "includeIf": "${appType = 1}",
-      "fields": [
-        {
-          "id": "fostChoi1",
-          "type": "choice",
-          "label": "What type of service will your fostering agency provide?",
-          "shortName": "Service provided",
-          "choices": [
-            "an agency carrying out the functions of one or more local councils about placing children with foster parents",
-            "a voluntary organisation that places children with foster parents under section 59(1) of the Children Act 1989"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
+      "title": "Will your agency arrange for a foster parent to provide a refuge for children?",
       "includeIf": "${appType = 1}",
       "fields": [
         {
           "id": "refChoi",
           "type": "choice",
-          "label": "Will your agency arrange for a foster parent to provide a refuge for children under section 51 of the Children's Act 1989?",
+          "label": "Will your agency arrange for a foster parent to provide a refuge for children?",
           "shortName": "Provides refuge for children",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your agency going to provide fostering for adoption?",
+      "includeIf": "${appType = 1}",
+      "fields": [
+        {
+          "id": "Agencytoprovidefostering4adoption",
+          "type": "choice",
+          "label": "Is your agency going to provide fostering for adoption?",
+          "shortName": "Agency providing fostering for adoption service",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your agency registering as an independent fostering agency only to provide fostering for adoption?",
+      "includeIf": "${appType = 1}",
+      "fields": [
+        {
+          "id": "OnlyProvideFostering4adoption_copy_1",
+          "type": "choice",
+          "label": "Is your agency registering as an independent fostering agency only to provide fostering for adoption?",
+          "shortName": "Registering only to provide fostering for adoption service",
           "choices": [
             "Yes",
             "No"
@@ -2912,8 +2934,8 @@
         {
           "id": "joiFosPan",
           "type": "choice",
-          "label": "Will you share a joint fostering panel with another agency or two fostering services?",
-          "shortName": "Share joint fostering panel",
+          "label": "Will you share a joint fostering panel with another agency or agencies?",
+          "shortName": "Sharing a joint fostering panel",
           "choices": [
             "Yes",
             "No"
@@ -2922,42 +2944,44 @@
       ]
     },
     {
-      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "title": "How much will you charge the people using your fostering agency?",
       "includeIf": "${appType = 1}",
       "fields": [
         {
           "id": "chargeText",
           "type": "text",
-          "label": "What will be the range of charges to the people using your establishment or agency?",
-          "shortName": "Range of charges for users",
+          "label": "How much will you charge the people using your fostering agency?",
+          "shortName": "Range of fees for fostering agency services",
+          "helpText": "Include details of the range of fees for all the services you will provide.",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "How many families will you accommodate at the residential family centre?",
+      "title": "How many families will live at the residential family centre?",
       "includeIf": "${appType = 5}",
       "fields": [
         {
           "id": "noFams",
           "type": "text",
           "label": "How many families will you accommodate at the residential family centre?",
-          "shortName": "Number of families accommodated",
-          "helpText": "This can be with one or two parents and one or more children.",
+          "shortName": "Number of families living at family centre",
+          "helpText": "This can be with one or 2 parents and one or more children.",
           "format": "positiveWholeNumber",
           "displayWidth": "xs"
         }
       ]
     },
     {
-      "title": "Will your establishment do any of the following?",
+      "title": "Will your family centre provide any of these services?",
       "includeIf": "${appType = 5}",
+      "description": "Select all that apply.",
       "fields": [
         {
           "id": "estQuery",
           "type": "choice",
-          "label": "Will your establishment do any of the following?",
-          "shortName": "Establishment does",
+          "label": "Will your family centre offer any of these services?",
+          "shortName": "Family centre services provided",
           "multivalue": "true",
           "choices": [
             "Take emergency admissions",
@@ -2971,21 +2995,23 @@
       ]
     },
     {
-      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "title": "How much will you charge the people using your fostering agency?",
       "includeIf": "${appType = 5}",
       "fields": [
         {
           "id": "chargeTextResFam",
           "type": "text",
-          "label": "What will be the range of charges to the people using your establishment or agency?",
-          "shortName": "Range of charges for users",
+          "label": "",
+          "shortName": "Range of fees for fostering agency services",
+          "helpText": "Include details of the range of fees for all of your services. For example, £500 to £1,000 to foster a child a week.",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "What type of service will you provide?",
+      "title": "What type of service will your voluntary adoption agency provide?",
       "includeIf": "${appType = 3}",
+      "description": "Select only one service type",
       "fields": [
         {
           "id": "domAdoOnly",
@@ -3011,8 +3037,8 @@
           "id": "branchesChoi",
           "type": "choice",
           "label": "Will the voluntary adoption agency have any branches?",
-          "shortName": "Has branches",
-          "helpText": "You must complete a separate online application to apply to register each of your voluntary adoption agency branch.",
+          "shortName": "Will voluntary adoption agency have branches",
+          "helpText": "You must complete an application to register as a social care provider form for each branch of your voluntary adoption agency.",
           "choices": [
             "Yes",
             "No"
@@ -3129,6 +3155,7 @@
     {
       "title": "Will your agency provide birth records counselling?",
       "includeIf": "${appType = 3}",
+      "description": "This is where your agency will provide counselling support to individuals that want their birth record details.",
       "fields": [
         {
           "id": "brcoun",
@@ -3144,6 +3171,7 @@
     {
       "title": "Will your agency provide intermediary services?",
       "includeIf": "${appType = 3}",
+      "description": "This is where you will help birth relatives and adopted people find information, trace and make contact with each other.",
       "fields": [
         {
           "id": "interServ",
@@ -3157,14 +3185,15 @@
       ]
     },
     {
-      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "title": "How much will you charge the people using your adoption agency?",
       "includeIf": "${appType = 3}",
       "fields": [
         {
           "id": "chargeRange",
           "type": "text",
-          "label": "What will be the range of charges to the people using your establishment or agency?",
-          "shortName": "Charges for users",
+          "label": "",
+          "shortName": "Range of fees for adoption agency services",
+          "helpText": "Include details of the range of fees for all of your services. For example, £25 to £50 an hour to provide therapeutic services for adopted children.",
           "multiline": "true"
         }
       ]
@@ -3193,81 +3222,69 @@
           "id": "servProvChoi",
           "type": "choice",
           "label": "Will your agency provide any of these services?",
-          "shortName": "Services provided",
+          "shortName": "Adoption support agency services provided",
           "helpText": "Tick all the services that your agency will provide.",
           "multivalue": "true",
           "choices": [
-            "Counselling relating to adoption",
+            "Counselling services to help with adoption",
             "Advice and information about adoption",
-            "Birth records counselling",
+            "Birth records counselling services",
             "Intermediary services",
-            "Support, including mediation services, for contact between children who have been adopted, or who live with or have been matched with potential adopters, and their former families",
-            "Intermediary services for adults",
+            "Mediation services and support to help children with their adopted families, potential families or former families",
             "Therapy services to help children with their adopted families, potential families or former families",
-            "Relationship support services to help sustain a relationship between the adoptive parents and the children",
+            "Relationship support services to help build a relationship between the adoptive parents and the children",
             "Mitigation support services where there is or could be a disruption in an adoption, or placement for adoptionSecond selectable choice",
             "Support to adoption agencies in preparing and training parents who want to adopt"
           ],
           "optionHelpText": [
-            "This means...? For example?",
-            "This means...? For example?",
-            "This means...? For example?",
-            "This means...? For example?",
-            "This means...? For example?",
-            "Intermediary services: providing support to adults who have been adopted, and to their families, including helping them to find out about adoption and arrange contact if appropriate",
+            "",
+            "",
+            "",
+            "This includes helping birth relatives and adopted people find information, trace and make contact with each other.",
+            "",
             "This includes art or play therapy",
             "This includes training parents so that they can meet the child's special needs",
             "This includes mediation services and organising meetings to discuss disruptions",
-            "This means...? For example?"
+            ""
           ]
         }
       ]
     },
     {
-      "title": "What is the age range you will accommodate?",
-      "shortName": "Age range accommodated",
+      "title": "What is the age range of the children you will care for at your holiday scheme?",
+      "shortName": "Age range of children at holiday scheme",
       "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "startAgeResHolDis",
           "type": "text",
-          "label": "From",
-          "shortName": "From",
+          "label": "Age of youngest child",
+          "shortName": "Age of youngest child",
+          "helpText": "For example, 8",
           "format": "number(3,0)",
           "displayWidth": "xs"
         },
         {
           "id": "finAgeResHolDis",
           "type": "text",
-          "label": "To",
-          "shortName": "To",
+          "label": "Age of oldest child",
+          "shortName": "Age of oldest child",
+          "helpText": "For example, 16",
           "format": "number(3,0)",
           "displayWidth": "xs"
         }
       ]
     },
     {
-      "title": "What will be the range of charges to the people using your establishment or agency?",
+      "title": "How much will you charge the people using your holiday scheme?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "adSupAgCharge",
           "type": "text",
-          "label": "What will be the range of charges to the people using your establishment or agency?",
-          "shortName": "Charges for users",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "What are your arrangements for children to raise questions and concerns about the holiday scheme?",
-      "includeIf": "${appType = 4}",
-      "fields": [
-        {
-          "id": "othSelCritTex_copy_2",
-          "type": "text",
           "label": "",
-          "shortName": "arrangements for child questions and concerns",
+          "shortName": "Range of fees for holiday scheme services",
+          "helpText": "Include details of the range of fees for all of your services. For example, £50 to £100 to look after a child.",
           "multiline": "true"
         }
       ]
@@ -3280,7 +3297,7 @@
           "id": "manInfo1",
           "type": "info",
           "label": "",
-          "infoText": "The manager is the person who has day-to-day management of the establishment or agency.",
+          "infoText": "The manager is the person who will manage your new establishment or agency.",
           "infoType": "noformat"
         },
         {
@@ -3293,7 +3310,7 @@
         {
           "id": "manFirNam",
           "type": "text",
-          "label": "First name(s) in full",
+          "label": "First name",
           "format": "text(0,100)"
         },
         {
@@ -3306,24 +3323,21 @@
           "id": "manInfo2",
           "type": "info",
           "label": "",
-          "infoText": "The manager must submit an SC2 form for the proposed registered manager.\n\nThe manager must have had all their checks completed before we can make a decision about your registration as a provider. We make a decision about your registration at the same time as we decide the manager's application for registration.\n\nWe do not register the manager of a voluntary adoption agency and they do not have to complete an SC2 form. But their details should be completed on this page so that we know who they are.",
+          "infoText": "As we decide both your children's social care service's and manager's registration applications at the same time, the manager must have their security checks completed before we can decide on your application.",
           "infoType": "noformat"
         },
         {
-          "id": "manTick",
-          "type": "choice",
-          "label": "",
-          "shortName": "SC2 submitted by proposed manager",
-          "multivalue": "true",
-          "choices": [
-            "The proposed registered manager has submitted a completed SC2 form."
-          ]
+          "type": "info",
+          "id": "generatedId_8856f816_8c53_4f05_b79c_0fe82d766851",
+          "label": "The manager must apply to be the proposed registered manager of your new children's social care service unless you are registering a voluntary adoption agency, in which case we only need their details on this page. ",
+          "infoText": "The manager must apply to be the proposed registered manager of your new children's social care service unless you are registering a voluntary adoption agency, in which case we only need their details on this page. ",
+          "infoType": "standard"
         }
       ]
     },
     {
-      "title": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
-      "shortName": "Manager already runs an establishment, agency or business",
+      "title": "Other than your establishment or agency, is the manager running any other social care services?",
+      "shortName": "Manager running any other social care services",
       "fields": [
         {
           "id": "manWorking",
@@ -3338,28 +3352,14 @@
       ]
     },
     {
-      "title": "Tell us about the establishment the manager is running or will run in the future",
-      "includeIf": "${manWorking =0}",
+      "title": "Will the manager run any other social care services?",
+      "shortName": "Will manager run any other social care services",
       "fields": [
         {
-          "id": "manWrkDets",
-          "type": "text",
-          "label": "Provide details of the establishment the manager is running or will run in the future",
-          "shortName": "Establishments manager is running",
-          "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
-      "includeIf": "${appType = 3}",
-      "fields": [
-        {
-          "id": "manChkComp",
+          "id": "manWorking_copy_1",
           "type": "choice",
-          "label": "Have you carried out all the required checks to ensure that the proposed manager is a fit person?",
-          "shortName": "All required checks completed",
-          "helpText": "This means all checks specified in The Adoption Support Agencies (England) and Adoption Agencies (Miscellaneous Amendments) Regulations 2005 (Regulation 9) .",
+          "label": "Is the manager already running any other establishment, agency or business? Or will they do so in future?",
+          "shortName": "Manager already running an establishment",
           "choices": [
             "Yes",
             "No"
@@ -3368,14 +3368,51 @@
       ]
     },
     {
-      "title": "Do you have these policy documents for your children's home to upload?",
+      "title": "Tell us about all the children's social care services the manager is running or will run",
+      "includeIf": "${manWorking =0}",
+      "fields": [
+        {
+          "id": "manWrkDets",
+          "type": "text",
+          "label": "Provide details of the establishment the manager is running or will run in the future",
+          "shortName": "Details of social care services manager is running",
+          "helpText": "Include the name and address of each establishment or agency and the date of when they started work or will start work",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you carried out all the required checks to ensure that the proposed manager is a fit person to run your adoption agency?",
+      "includeIf": "${appType = 3}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_b2b6beed_c7ca_4a32_9728_a6e584246c10",
+          "label": "By law, you must carry out checks on the person who will manage your adoption agency.",
+          "infoText": "By law, you must carry out checks on the person who will manage your adoption agency.",
+          "infoType": "important"
+        },
+        {
+          "id": "manChkComp",
+          "type": "choice",
+          "label": "",
+          "shortName": "All checks completed for manager of adoption agency",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have these policy documents to upload for your new children's home?",
       "includeIf": "${appType =0}",
       "fields": [
         {
           "id": "generatedId_9698ec37_be05_4de5_a548_2a0957973a6f",
           "type": "info",
           "label": "",
-          "infoText": "By law, you need to provide these documents for us to consider your application to register a children's home:\n\n- Statement of purpose (*all*)\n- Equalities policy (*all*)\n- Copy of certificate of insurance or written confirmation that insurance will be provided (*all*)\n- Children's guide (*All except for holiday schemes*)\n- Missing Child policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Safeguarding policy (*all*)\n- Behaviour management policy (*All except for Adoption agency, FamilyCentre &VoluntaryAgency*)\n- Prevention of bullying policy (*All except for Adoption support agency and Voluntary Agency*)\n- Complaints procedure (*All*)\n- Location assessment (*Childrens home only*)",
+          "infoText": "By law, you need to provide these documents for us to consider your application to register a children's home:\n\n- Statement of purpose\n- Equalities policy\n- Copy of certificate of insurance or written confirmation that insurance will be provided \n- Children's guide \n- Missing Child policy \n- Safeguarding policy\n- Behaviour management policy\n- Prevention of bullying policy\n- Complaints procedure\n- Location assessment ",
           "infoType": "noformat"
         },
         {
@@ -3391,7 +3428,7 @@
       ]
     },
     {
-      "title": "Do you have these policy documents for your residential family centre to upload?",
+      "title": "Do you have these policy documents to upload for your new residential family centre?",
       "includeIf": "${appType =5}",
       "fields": [
         {
@@ -3413,7 +3450,7 @@
       ]
     },
     {
-      "title": "Do you have these policy documents for your agency to upload?",
+      "title": "Do you have these policy documents to upload for your new agency?",
       "includeIf": "${appType =3 || appType = 2}",
       "fields": [
         {
@@ -3435,7 +3472,7 @@
       ]
     },
     {
-      "title": "Do you have these policy documents for your fostering agency to upload?",
+      "title": "Do you have these policy documents to upload for your new fostering agency?",
       "includeIf": "${appType =1}",
       "fields": [
         {
@@ -3457,7 +3494,7 @@
       ]
     },
     {
-      "title": "Do you have these policy documents for your holiday scheme to upload?",
+      "title": "Do you have these policy documents to upload for your new holiday scheme?",
       "includeIf": "${appType =4}",
       "fields": [
         {
@@ -3479,120 +3516,120 @@
       ]
     },
     {
-      "title": "Upload your establishment's or agency's missing child policy",
+      "title": "Upload your new establishment's or agency's missing child policy",
       "includeIf": "${appType = 0 || (appType =1 || appType = 4)}",
       "fields": [
         {
           "id": "generatedId_3ee3481f_cc9b_43ef_929c_168fdb26edca",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your policy should describe what steps you will take to prevent children from being absent without permission and what you will do when children go missing.",
           "infoType": "noformat"
         },
         {
           "id": "misChiUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your children's home location assessment",
+      "title": "Upload your new children's home location assessment",
       "includeIf": "${appType = 0}",
       "fields": [
         {
           "id": "generatedId_a1b2e429_a97f_4d4b_8f7c_e68f9fecab1a",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your assessment should include any risks and opportunities you found and your plan to manage the risks and make the opportunities available for children. For example, the risk could be busy roads and the opportunity could be accessing a local park. ",
           "infoType": "noformat"
         },
         {
           "id": "chiHomLocAssUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your establishment's or agency's complaints procedure",
+      "title": "Upload your new children's social care service's complaints procedure",
       "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
       "fields": [
         {
           "id": "generatedId_966745e7_cdbe_4d25_8f74_499663782a38",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your policy should set out how you will handle complaints about your social care service.",
           "infoType": "noformat"
         },
         {
           "id": "estAgCompProcUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your agency's or establishment's prevention of bullying policy",
+      "title": "Upload your new children's social care service's prevention of bullying policy",
       "includeIf": "${(appType = 0 || appType = 1) || (appType = 4 || appType = 5)}",
       "fields": [
         {
           "id": "generatedId_4636a2b0_1853_415f_89cc_3bb1a5ef3aae",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "The policy should describe how you will prevent bullying and how you will handle allegations of bullying.",
           "infoType": "noformat"
         },
         {
           "id": "bulPolUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your agency's or establishment's behaviour management policy",
+      "title": "Upload your children's social care service's behaviour management policy",
       "includeIf": "${appType = 0 || (appType = 1 || appType = 4)}",
       "fields": [
         {
           "id": "generatedId_63b25c27_4d72_4025_a1aa_7460367756cc",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your policy should describe how you will promote good behaviour and how you will use restraint.",
           "infoType": "noformat"
         },
         {
           "id": "behManUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your establishment's or agency's safeguarding policy",
+      "title": "Upload your new children's social care service's safeguarding policy",
       "fields": [
         {
           "id": "generatedId_47c4625f_1ee7_4930_8a66_6e269db78fc0",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your policy should describe how you will keep children safe from abuse or neglect and raise concerns about children at risk of harm to the authorities.",
           "infoType": "noformat"
         },
         {
           "id": "safeGuardUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your agency's or establishment's statement of purpose",
+      "title": "Upload your new children's social care service's statement of purpose",
       "fields": [
         {
           "id": "generatedId_ba976944_75b7_474f_a566_b09872715d17",
@@ -3605,36 +3642,36 @@
           "id": "purpStatUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your establishment's or agency's children guide",
+      "title": "Upload your new children's social care service's children guide",
       "fields": [
         {
           "id": "generatedId_25a5c79d_7e75_462e_8799_faea2f00e756",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your guide should be written for children describing what to expect from your service.",
           "infoType": "noformat"
         },
         {
           "id": "chiGuiUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your establishment's or agency's copy of certificate of insurance",
+      "title": "Upload your new children's social care service's copy of certificate of insurance",
       "fields": [
         {
           "id": "generatedId_49d196ae_0560_4ff9_b4a7_6bcaf8fdacf7",
           "type": "info",
           "label": "",
-          "infoText": "By law, all social care providers must have business insurance for their establishment or agency.\n\nIf you are in the process of getting insurance, upload a written statement confirming?????",
+          "infoText": "By law, all social care providers must have public liability insurance for their establishment or agency.\n\nIf you are getting the insurance, an authorised person from your organisation must upload a written statement confirming you will be insured before operating as a social care provider.",
           "infoType": "noformat"
         },
         {
@@ -3646,25 +3683,25 @@
       ]
     },
     {
-      "title": "Upload your establishment's or agency's equalities policy",
+      "title": "Upload your new children's social care service's equalities policy",
       "fields": [
         {
           "id": "generatedId_d1ac38ef_c3d4_44ae_82c7_ba664772abe5",
           "type": "info",
           "label": "",
-          "infoText": "Your policy should describe XXX \n\nIt can include:\n\n- [insert example]\n-  [insert example]",
+          "infoText": "Your policy must set out how your establishment or agency will value individuals, combat discrimination and safeguard those who may face inequality or harassment due to one or more of the characteristics protected under the Equality Act 2010.",
           "infoType": "noformat"
         },
         {
           "id": "equaPolUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Upload your family centre's accident and missing resident procedure",
+      "title": "Upload your residential family centre's accident and missing resident procedure",
       "includeIf": "${appType = 5}",
       "fields": [
         {
@@ -3678,19 +3715,19 @@
           "id": "famCenMisPerUpl",
           "type": "file",
           "label": "",
-          "helpText": "We accept documents in formats like PDF and JPEG (2MB maximum)."
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "You don't have the right documents to continue with this application",
+      "title": "You do not have the right documents to continue with this application",
       "includeIf": "${holSchPolDocAvai = 1 || (chilHomDocsavailable = 1 || resFamPolDocAvai = 1) || (agPolDocAvai = 1 || adoAgPolDocAvai = 1)}",
       "fields": [
         {
           "id": "generatedId_30a4f1fa_d495_46c6_8f88_eee46a9697de",
           "type": "info",
           "label": "",
-          "infoText": "By law, you must provide the documents for us to consider your application.\n\nWe will reject your application without these documents if you submit it without them.\n\nYou can continue with this application if you plan to come back later to upload the documents.",
+          "infoText": "By law, you must provide the policy documents for us to consider your application.\n\nWe will reject your application without these documents if you submit it without them.\n\nYou can continue with this application if you plan to come back later to upload the documents.",
           "infoType": "important"
         }
       ]
