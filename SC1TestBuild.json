@@ -1639,7 +1639,7 @@
     },
     {
       "title": "Tell us about the partners involved in running your establishment or agency",
-      "description": "Each person in the partnership must apply and be granted registration.",
+      "description": "Each partner in the partnership must apply to register to run a social care service separately and have their own registration certificate.",
       "repeatsMin": "${noPARPeoAdd}",
       "repeatsMax": "${noPARPeoAdd}",
       "fields": [
@@ -1680,6 +1680,15 @@
           "shortName": "Partner's role",
           "helpText": "Describe role of partner. For example, partner is responsible for managing finances of partnership.",
           "displayWidth": "m"
+        },
+        {
+          "id": "orgDisq_copy_1",
+          "type": "choice",
+          "label": " Is this person disqualified?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "indProvMan_copy_1",
@@ -1733,21 +1742,34 @@
           "id": "resIndPos",
           "type": "text",
           "label": "Position in company",
-          "shortName": "Position",
+          "shortName": "Position in company",
+          "helpText": "For example a director, secretary, manager, clerk, treasurer or trustee",
           "displayWidth": "m"
         },
         {
-          "id": "generatedId_354d99f5_5a87_4c31_8332_7eceaaf06d06",
-          "type": "info",
-          "label": "",
-          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
-          "infoType": "noformat"
+          "id": "orgProvKid2",
+          "type": "choice",
+          "label": "Will this person have contact with children or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "orgProvMan2",
+          "type": "choice",
+          "label": "Will this person have management responsibility?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
     {
-      "title": "Who is the responsible partner?",
+      "title": "Tell us about the partner nominated to represent your partnership",
       "includeIf": "${businessChoice2 = 2}",
+      "description": "Suggest a responsible partner to represent your partnership when dealing with us. This could be the director or head of your partnership.",
       "fields": [
         {
           "id": "resIndTit_copy_1",
@@ -1760,7 +1782,7 @@
         {
           "id": "resIndFirNam_copy_1",
           "type": "text",
-          "label": "First name(s)",
+          "label": "First name",
           "shortName": "First name",
           "format": "text(0,50)",
           "displayWidth": "m"
@@ -1775,27 +1797,24 @@
         {
           "id": "resIndPos_copy_1",
           "type": "text",
-          "label": "Position within the company",
-          "shortName": "Position",
+          "label": "Role in partnership",
+          "shortName": "Role in partnership",
+          "helpText": "Describe role of partner. For example, partner is responsible for managing finances of partnership.",
           "displayWidth": "m"
         },
         {
-          "id": "generatedId_7033001f_9d09_4301_a3a4_897c71c9af21",
-          "type": "info",
-          "label": "",
-          "infoText": "If the sole purpose of the organisation is to provide a children's home, all directors must submit a completed form SC2.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Is this person disqualified?",
-      "includeIf": "${businessChoice2 = 0}",
-      "fields": [
-        {
-          "id": "respKidCon",
+          "id": "indProvKid_copy_2",
           "type": "choice",
-          "label": "Is this person disqualified?",
+          "label": "Will this partner have contact with children or young people?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "indProvMan_copy_2",
+          "type": "choice",
+          "label": "Will this partner have management responsibility?",
           "choices": [
             "Yes",
             "No"
@@ -1804,37 +1823,7 @@
       ]
     },
     {
-      "title": "Does this person have management responsibility for staff?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
-      "fields": [
-        {
-          "id": "staffMan",
-          "type": "choice",
-          "label": "Does this person have management responsibility for staff?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Will this person have significant contact with children?",
-      "includeIf": "${businessChoice2 = 0 || businessChoice2 =2}",
-      "fields": [
-        {
-          "id": "kidCon",
-          "type": "choice",
-          "label": "Will this person have significant contact with children?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tell us about the establishment or agency",
+      "title": "What is the name of your establishment or agency you are applying to register?",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -1846,20 +1835,21 @@
       ]
     },
     {
-      "title": "What is the name of your holiday scheme?",
+      "title": "What is the name of the residential holiday scheme for disabled children you are applying to register?",
       "includeIf": "${appType = 4}",
       "fields": [
         {
           "id": "esAgNam_copy_1",
           "type": "text",
-          "label": "Establishment or agency name ",
-          "shortName": "Name"
+          "label": "Holiday scheme name ",
+          "shortName": "Holiday scheme name"
         }
       ]
     },
     {
-      "title": "Contact details and address of main site",
+      "title": "Your new agency's or establishment's office address and contact details",
       "includeIf": "${appType != 4}",
+      "description": "This is the main address where you will provide the social care service you are applying to register.\nWe may contact you using these details when checking your application.",
       "fields": [
         {
           "id": "generatedId_f1693131_d517_49bf_97e0_f78709dd08c8",
@@ -1877,22 +1867,24 @@
         {
           "id": "estAbTel",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your new agency's or establishment's business number. Include area code, for example 020 7960 0000.",
           "format": "telephoneNumber"
         },
         {
           "id": "estAbEm",
           "type": "text",
-          "label": "Email ",
+          "label": "Email address (if you have one)",
+          "helpText": "This is your new agency's or establishment's email address.",
           "format": "email"
         }
       ]
     },
     {
-      "title": "Contact details and address of your administration office ",
+      "title": "Your new holiday scheme's administration office address and contact details",
       "includeIf": "${appType = 4}",
+      "description": "This is the office where you run your administration.\n\nWe may contact you using these details when checking your application.",
       "fields": [
         {
           "id": "generatedId_1adc3086_1410_4c56_a2f3_989bd7c7e267",
@@ -1910,15 +1902,16 @@
         {
           "id": "estAbTel2a",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your new holiday schme's business number. Include area code, for example 020 7960 0000.",
           "format": "telephoneNumber"
         },
         {
           "id": "estAbEm2a",
           "type": "text",
-          "label": "Email ",
+          "label": "Email address (if you have one)",
+          "helpText": "This is your new holiday scheme's email address.",
           "format": "email"
         }
       ]
@@ -1939,13 +1932,13 @@
       ]
     },
     {
-      "title": "Is the agency operated from more than one site?",
+      "title": "Will you run your new agency from more than one site?",
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
           "id": "agMultiSiteChoi",
           "type": "choice",
-          "label": "Is the agency operated from more than one site?",
+          "label": "Will you run your new agency from more than one site?",
           "choices": [
             "Yes",
             "No"
@@ -1954,7 +1947,7 @@
       ]
     },
     {
-      "title": "Tell us about your agency's other sites 1",
+      "title": "Tell us about your new agency's other sites 1",
       "includeIf": "${agMultiSiteChoi = 0}",
       "fields": [
         {
@@ -1966,27 +1959,23 @@
         {
           "id": "agSiteTel",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Phone number",
+          "helpText": "This is your new agency's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
           "id": "agSiteEm",
           "type": "text",
-          "label": "Email address",
+          "label": "Email address (if you have one)",
           "shortName": "Email address",
+          "helpText": "This is your new agency's email address.",
           "format": "email"
-        },
-        {
-          "id": "agSiteText",
-          "type": "text",
-          "label": "Describe any travel arrangements between the sites",
-          "multiline": "true"
         },
         {
           "id": "agSiteAddChoi1",
           "type": "choice",
-          "label": "Do you wish to add another site?",
+          "label": "Do you want to add another site?",
           "choices": [
             "Yes",
             "No"
@@ -1995,7 +1984,7 @@
       ]
     },
     {
-      "title": "Tell us about your agency's other sites 2",
+      "title": "Tell us about your new agency's other sites 2",
       "includeIf": "${agSiteAddChoi1 = 0}",
       "fields": [
         {
@@ -2007,8 +1996,9 @@
         {
           "id": "agSiteTel2",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Phone number",
+          "helpText": "This is your new agency's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -2019,15 +2009,9 @@
           "format": "email"
         },
         {
-          "id": "agSiteText2",
-          "type": "text",
-          "label": "Describe any travel arrangements between the sites",
-          "multiline": "true"
-        },
-        {
           "id": "agSiteAddChoi2",
           "type": "choice",
-          "label": "Do you wish to add another site?",
+          "label": "Do you want to add another site?",
           "choices": [
             "Yes",
             "No"
@@ -2036,7 +2020,7 @@
       ]
     },
     {
-      "title": "Tell us about your agency's other sites 3",
+      "title": "Tell us about your new agency's other sites 3",
       "includeIf": "${agSiteAddChoi2 = 0}",
       "fields": [
         {
@@ -2048,8 +2032,9 @@
         {
           "id": "agSiteTel3",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Phone number",
+          "helpText": "This is your new agency's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -2058,17 +2043,23 @@
           "label": "Email address",
           "shortName": "Email address",
           "format": "email"
-        },
-        {
-          "id": "agSiteText3",
-          "type": "text",
-          "label": "Describe any travel arrangements between the sites",
-          "multiline": "true"
         }
       ]
     },
     {
-      "title": "Tell us about each site from which the residential holiday scheme for disabled children will operate",
+      "title": "What are your travel arrangements between your sites?",
+      "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "Detailsbetweensites",
+          "label": "Include details such as transports used to pick up staff and move children between sites.",
+          "multiline": "false"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about the sites where you will run your new holiday scheme",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -2094,7 +2085,19 @@
       ]
     },
     {
-      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "What are your holiday scheme's travel arrangements between sites?",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "Detailsbetweensites_copy_1",
+          "label": "Include details such as transports used to pick up staff and move children between sites.",
+          "multiline": "false"
+        }
+      ]
+    },
+    {
+      "title": "Provide the contact details of your residential holiday scheme for disabled children site 1",
       "includeIf": "${appType = 4}",
       "fields": [
         {
@@ -2113,9 +2116,9 @@
         {
           "id": "othSitTel_copy_1",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your new holiday scheme's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -2133,7 +2136,7 @@
         {
           "id": "holSiteAddChoi",
           "type": "choice",
-          "label": "Do you wish to add another site?",
+          "label": "Do you want to add another site?",
           "choices": [
             "Yes",
             "No"
@@ -2142,7 +2145,7 @@
       ]
     },
     {
-      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "Provide the contact details of your residential holiday scheme for disabled children site 2",
       "includeIf": "${appType = 4 && holSiteAddChoi = 0}",
       "fields": [
         {
@@ -2161,9 +2164,9 @@
         {
           "id": "othSitTel2",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your new holiday scheme's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -2190,7 +2193,7 @@
       ]
     },
     {
-      "title": "Provide the contact details for this residential holiday scheme for disabled children site",
+      "title": "Provide the contact details of your residential holiday scheme for disabled children site 3",
       "includeIf": "${appType = 4 && holSiteAddChoi2 = 0}",
       "fields": [
         {
@@ -2209,9 +2212,9 @@
         {
           "id": "othSitTel3",
           "type": "text",
-          "label": "Telephone number",
+          "label": "Telephone number (if you have one)",
           "shortName": "Telephone number",
-          "helpText": "Include area code, for example 020 7960 0000",
+          "helpText": "This is your new holiday scheme's office number for this site. Include area code, for example 020 7960 0000",
           "format": "telephoneNumber"
         },
         {
@@ -2223,13 +2226,13 @@
         {
           "id": "othSitEm3",
           "type": "text",
-          "label": "Email ",
+          "label": "Email address",
           "format": "email"
         }
       ]
     },
     {
-      "title": "Will you regularly use any other premises in connection with the establishment?",
+      "title": "Will you use any other premises for the establishment you are registering?",
       "includeIf": "${appType = 0 || appType = 5}",
       "fields": [
         {
@@ -2251,7 +2254,7 @@
       ]
     },
     {
-      "title": "Tell us about your other premises of your establishment 1",
+      "title": "Tell us about your other premises of your new establishment 1",
       "includeIf": "${(appType = 0 || appType = 5) && othPremReg = 0}",
       "fields": [
         {
@@ -2262,13 +2265,8 @@
         {
           "id": "homeSiteTel",
           "type": "text",
-          "label": "Telephone number"
-        },
-        {
-          "id": "homeSiteTransport",
-          "type": "text",
-          "label": "Describe any travel arrangements between the sites",
-          "multiline": "true"
+          "label": "Telephone number (if you have one)",
+          "helpText": "This is your new establishment's office number for this site. Include area code, for example 020 7960 0000"
         },
         {
           "id": "homeSiteAdd1",
@@ -2282,7 +2280,7 @@
       ]
     },
     {
-      "title": "Tell us about your other premises of your establishment 2",
+      "title": "Tell us about your other premises of your new establishment 2",
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
@@ -2293,7 +2291,8 @@
         {
           "id": "homeSiteTel2",
           "type": "text",
-          "label": "Telephone number"
+          "label": "Telephone number (if you have one)",
+          "helpText": "This is your new establishment's office number for this site. Include area code, for example 020 7960 0000"
         },
         {
           "id": "homeSiteTransport2",
@@ -2313,7 +2312,7 @@
       ]
     },
     {
-      "title": "Tell us about your other premises of your establishment 3",
+      "title": "Tell us about your other premises of your new establishment 3",
       "includeIf": "${(appType = 0 || appType = 5) && homeSiteAdd1 = 0}",
       "fields": [
         {
@@ -2324,7 +2323,8 @@
         {
           "id": "homeSiteTel3",
           "type": "text",
-          "label": "Telephone number"
+          "label": "Telephone number (if you have one)",
+          "helpText": "This is your new establishment's office number for this site. Include area code, for example 020 7960 0000"
         },
         {
           "id": "homeSiteTransport3",
@@ -2335,19 +2335,33 @@
       ]
     },
     {
-      "title": "Describe the premises",
+      "title": "What are your new establishment's travel arrangements between sites?",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "Detailsbetweensites_copy_2",
+          "label": "Include details such as transports used to pick up staff and move children between sites.",
+          "multiline": "false"
+        }
+      ]
+    },
+    {
+      "title": "Describe the premises of your children's social care service",
+      "description": "We need to know about the building you will operate from to decide if it is appropriate for your registration.",
       "fields": [
         {
           "id": "premDesc",
           "type": "text",
           "label": "Describe the premises",
-          "helpText": "For example, whether the premises are purpose built or converted, and the area they are located in.",
+          "helpText": "We only need to more about the building of the premises. Include details such as whether the premises are purpose-built or converted and the type of neighbourhood where it is located. For example, it is on a residential street or main road.",
           "multiline": "true"
         }
       ]
     },
     {
-      "title": "Are the premises ready to meet the needs of the service users as set out in the statement of purpose?",
+      "title": "Are the premises ready to meet the needs of your service users? ",
+      "description": "By law, you need to tell us if your premises are ready to provide the social care service as set out in your statement of purpose.",
       "fields": [
         {
           "id": "premRedChoi",
@@ -2362,13 +2376,13 @@
       ]
     },
     {
-      "title": "Details of building works needed",
+      "title": "Describe the building or conversion you need to make",
       "includeIf": "${premRedChoi = 1}",
       "fields": [
         {
           "id": "buildDesc",
           "type": "text",
-          "label": "Describe building work or conversions you need to meet the aims of the service",
+          "label": "Describe building work or conversions you need to meet the aims of the service.\nFor example, need to add a conservatory and meeting room to facilitate family contact.",
           "multiline": "true"
         },
         {
@@ -2376,6 +2390,21 @@
           "type": "date",
           "label": "Date of when the premises will be ready",
           "helpText": "For example, 31 03 1999"
+        }
+      ]
+    },
+    {
+      "title": "Can you use the premises without changing the existing planning permission?",
+      "includeIf": "${appType = 4}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "Premiseschangewithoutplanningpermission",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -2402,28 +2431,35 @@
           ],
           "optionHelpText": [
             "",
-            "You need to post the documents with a cover note that states the name and address of your application. \n\nSend your application to this postal address:\n\n\n\nApplications team\n\nOfsted\n\nPiccadilly Gate\n\nStore Street\n\nManchester\n\nM1 2WD",
-            "Your application to register will be delayed until we have received the relevant documents.",
+            "",
+            "When your planning permission application has been approved, you can send your documents by email to enquiries@Ofsted.gov.uk.",
             ""
           ]
         }
       ]
     },
     {
-      "title": "Upload your planning document",
+      "title": "Upload your organisation's planning permission document",
       "includeIf": "${appType != 4 && planChoi != 3}",
       "fields": [
         {
+          "type": "info",
+          "id": "generatedId_c76518ce_4f85_42b0_b806_822a709a4007",
+          "label": "TypeofPlanningDocEvidence",
+          "infoText": "You need to provide one of these documents:\n\n- copy of planning permission granted\n\n- certificate of lawfulness\n\n- copy of a planning application\n\n- evidence that planning permission is not required",
+          "infoType": "noformat"
+        },
+        {
           "id": "upPlan",
           "type": "file",
-          "label": "Upload your planning document here",
+          "label": "Upload document",
           "shortName": "Planning upload",
-          "helpText": "We accept files up to 5mb  in size if formats like .jpg, .gif, .xml"
+          "helpText": "We accept documents in PDF and JPEG and a file size up to 2MB.\n\nIf your file is larger than this, compress it before uploading it."
         }
       ]
     },
     {
-      "title": "Planning fail",
+      "title": "You do not have planning permission to continue with this application",
       "includeIf": "${planChoi = 2}",
       "continueIf": "true",
       "continueLabel": "Save and continue",
@@ -2490,7 +2526,7 @@
           "type": "text",
           "label": "What are the security arrangements of the premises?",
           "shortName": "Security arrangements",
-          "helpText": "Explain how you will safeguard access to the information you hold and restrict access from other buildings or other parts of the building, where appropriate.",
+          "helpText": "Explain how you will protect the information you hold and how you will make your premises secure.\n\nFor example, you keep your sensitive papers locked in a safe and password-protect your electronic documents.",
           "multiline": "true"
         }
       ]
