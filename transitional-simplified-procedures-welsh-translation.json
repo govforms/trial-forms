@@ -1,0 +1,266 @@
+{
+  "_id": "transitional-simplified-procedures-welsh-translation",
+  "formName": "Transitional Simplified Procedures",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "tsp_application_confirmation",
+  "authConfig": {
+    "authModule": "anonymous"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-TSP",
+    "customerId": "${eoriNo}",
+    "dmsFormId": "TSP"
+  },
+  "sections": [
+    {
+      "title": "Are you legally established within the United Kingdom?",
+      "shortName": "Legally established within UK   ",
+      "fields": [
+        {
+          "id": "choiceLegalEstablishment",
+          "type": "choice",
+          "label": "Are you legally established within the United Kingdom?",
+          "shortName": "Established in UK",
+          "helpText": "This means you have a registered office, central headquarters or a permanent business establishment in the United Kingdom",
+          "format": "yesno",
+          "errorMessage": "Select whether you are legally established within the United Kingdom"
+        }
+      ]
+    },
+    {
+      "title": "You cannot apply for Transitional Simplified Procedures",
+      "includeIf": "${choiceLegalEstablishment=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_4c9bb828_0441_4ea6_af93_5612109d73ab",
+          "type": "info",
+          "label": "",
+          "infoText": "You will not be able to continue as you are not legally established within the United Kingdom",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "fields": [
+        {
+          "id": "eoriNo",
+          "type": "text",
+          "label": "EORI reference",
+          "helpText": "This includes the country code followed by up to 15 numbers, for example GB123456789123",
+          "format": "text(9,17)"
+        },
+        {
+          "id": "busName",
+          "type": "text",
+          "label": "Business or trading name",
+          "helpText": "This must match the business or trading name you have provided as part of your EORI registration"
+        }
+      ]
+    },
+    {
+      "title": "What is your registered office address in the UK?",
+      "shortName": "Registered office UK address",
+      "fields": [
+        {
+          "id": "appAdd",
+          "type": "address",
+          "label": "What is your registered office address in the UK?",
+          "shortName": "Address",
+          "helpText": "You must provide an address based in the UK. For example, a registered office, central headquarters or a permanent business establishment in the UK. If you are a sole trader, this could be your UK residential address."
+        }
+      ]
+    },
+    {
+      "title": "Is your registered office the same as your business address?",
+      "shortName": "Registered office same as business address",
+      "fields": [
+        {
+          "id": "regAdd",
+          "type": "choice",
+          "label": "Is your registered office the same as your business address?",
+          "shortName": "Same address",
+          "errorMessage": "Select whether the registered office address is the same as your business address",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your business address",
+      "shortName": "Business address",
+      "includeIf": "${regAdd = 1}",
+      "fields": [
+        {
+          "id": "yourAddress",
+          "type": "address",
+          "label": "Enter your business address",
+          "shortName": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Contact person details",
+      "fields": [
+        {
+          "id": "appName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "companyRole",
+          "type": "text",
+          "label": "Job title"
+        },
+        {
+          "id": "appPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include country code if outside the UK",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Your consent to use email",
+      "fields": [
+        {
+          "id": "emailInfo2",
+          "type": "info",
+          "label": "",
+          "infoText": "Email is not 100% secure, as it is sent over the internet.\n\nThis means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emCons1",
+          "type": "choice",
+          "label": "Do you agree to let us contact you by email about your application?",
+          "shortName": "Confirm email consent",
+          "errorMessage": "Select whether you consent to being contacted using your email address",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "",
+            "We will use telephone or post if we need to contact you about your application"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is your business VAT registered?",
+      "shortName": "Business VAT registration",
+      "fields": [
+        {
+          "id": "choiceVAT",
+          "type": "choice",
+          "label": "Is your business VAT registered?",
+          "shortName": "VAT registered",
+          "errorMessage": "Select whether your business is VAT registered",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "VAT Registration Number",
+      "includeIf": "${choiceVAT=0}",
+      "fields": [
+        {
+          "id": "vATNo",
+          "type": "text",
+          "label": "VAT Registration Number",
+          "shortName": "Number",
+          "helpText": "Your VAT Registration Number is a 9 digit number supplied when you registered for VAT. For example, 123456789. Please enter the reference with no spaces. You can find it on any correspondence from HM Revenue & Customs relating to your VAT or your VAT certificate."
+        }
+      ]
+    },
+    {
+      "title": "Do you intend to move controlled goods?",
+      "shortName": "Intent to move controlled goods",
+      "fields": [
+        {
+          "id": "controlledGoods",
+          "type": "choice",
+          "label": "Do you intend to move controlled goods?",
+          "shortName": "Controlled goods",
+          "helpText": "Controlled goods are products that require a\nlicense to import, or excise goods, for example\nalcohol or tobacco",
+          "errorMessage": "Select whether you intend to move controlled goods",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By signing below, you confirm that:\n\n* you have an EORI number\n\n* you are established in the UK\n\n* you will be importing goods from the EU into the UK\n\n* you will pay in full all duties that you are liable for on these imports, and make all appropriate customs declarations\n\n* the information in this form is true, complete and accurate",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declaration-status",
+            "type": "text",
+            "label": "Job role",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will only use this to send a confirmation that we have received your application",
+        "format": "email"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.\n\nWe have received your registration request for Transitional Simplified Procedures (TSP). \n\nWe will reply with our decision within 15 working  days.\n\nFor further information see the [TSP guidance page](https://www.gov.uk/guidance/register-for-simplified-import-procedures-if-the-uk-leaves-the-eu-without-a-deal). \n\n[What did you think of this service?](https://www.surveygizmo.com/s3/4830827/Feedback-Transitional-Simplified-Procedures) (takes 30 seconds)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
