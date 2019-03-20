@@ -119,7 +119,8 @@
           "label": "When are you entering the UK?",
           "shortName": "Date entering the UK",
           "helpText": "This can be up to 3 days after you submit your declaration",
-          "format": "after today -1, before today +4"
+          "format": "after today -1, before today +4",
+          "errorMessage": "You cannot enter a date more than 3 days in the future"
         }
       ]
     },
@@ -134,7 +135,8 @@
           "label": "When are you leaving the UK?",
           "shortName": "Date leaving the UK",
           "helpText": "This can be up to 3 days after you submit your declaration",
-          "format": "after today -1, before today +4"
+          "format": "after today -1, before today +4",
+          "errorMessage": "You cannot enter a date more than 3 days in the future"
         }
       ]
     },
@@ -204,6 +206,7 @@
     {
       "title": "Where will you end your journey?",
       "shortName": "End of journey",
+      "description": "Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
       "fields": [
         {
           "id": "destinationName",
@@ -237,23 +240,25 @@
     },
     {
       "title": "How many other airports, ports or stations will you travel via?",
-      "shortName": "Number of airports/ports/stations",
+      "shortName": "How many airports, ports or stations",
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
           "id": "howManyIntermediateAirports",
           "type": "text",
           "label": "How many other airports, ports or stations will you travel via?",
-          "shortName": "Number of other airports, ports or stations will you change at",
+          "shortName": "Number of other airports, ports or stations changing at",
           "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}"
+          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
+          "errorMessage": "Select how many other airports, ports or stations you will change at"
         }
       ]
     },
     {
       "title": "Details of change $n",
+      "description": "Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
       "repeatsMin": "${howManyIntermediateAirports}",
       "repeatsMax": "${howManyIntermediateAirports}",
       "fields": [
@@ -273,7 +278,7 @@
     {
       "title": "Where are you making this declaration?",
       "shortName": "Where you are making declaration",
-      "description": "This is your UK entry or exit point",
+      "description": "This is your UK entry or exit point. Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
       "fields": [
         {
           "id": "declarationPlaceName",
@@ -478,8 +483,8 @@
         {
           "id": "countryGenerated",
           "type": "text",
-          "label": "Country",
-          "helpText": "Where the cash was generated "
+          "label": "Country where the cash was generated",
+          "helpText": "Enter only standard English characters. For example, for Côte d’Ivoire, enter: Cote d’Ivoire."
         }
       ]
     },
@@ -588,6 +593,7 @@
           "label": "",
           "shortName": "Signed",
           "multivalue": "true",
+          "errorMessage": "You must check the box to sign the declaration",
           "choices": [
             "I declare that all the details entered are correct and complete to the best of my knowledge and belief "
           ]
