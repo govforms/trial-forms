@@ -1,4 +1,5 @@
 {
+  "_id": "Alternative-Dispute-Resolution",
   "formName": "Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -37,27 +38,37 @@
           "infoType": "noformat"
         },
         {
+          "id": "pleasenote1",
+          "type": "info",
+          "label": "",
+          "infoText": "### Please note: \nYou are an authorised agent if your client has completed paper forms 64-8 or FBI 2 or you have used HMRC Online Services to set up client authorisations.",
+          "infoType": "important"
+        },
+        {
           "id": "yesNoQuestion1",
           "type": "choice",
           "label": "Are you an authorised agent?",
-          "format": "yesno"
+          "format": "yesno",
+          "errorMessage": "Select if you are an authorised agent."
         },
         {
           "id": "beforeYouStartInfo4",
           "type": "text",
           "label": "Email address",
-          "helpText": "Enter your email address. HM Revenue & Customs (HMRC) will use this to contact you about this form",
+          "helpText": "Enter your email address.: HM Revenue & Customs (HMRC) will use this to contact you about this form",
           "format": "email"
         }
       ]
     },
     {
-      "title": "HMRC Unit",
+      "title": "HMRC Unit and Tax Type",
       "fields": [
         {
           "id": "HMRCUnit1",
           "type": "choice",
           "label": "If you know which unit in HMRC you deal with please tick one box below. If you don't know, please tick 'Other'.",
+          "shortName": "HMRC Unit",
+          "errorMessage": "Select the HMRC unit you deal with",
           "choices": [
             "Small and Medium Enterprise (SME) unit",
             "Individuals and Public Bodies",
@@ -77,7 +88,9 @@
         {
           "id": "HMRCUnit2",
           "type": "choice",
-          "label": "If you know what type of tax is in dispute, please tick the appopriate box below.",
+          "label": "If you know what type of tax is in dispute, please tick the appropriate box below.",
+          "shortName": "Type of tax in dispute",
+          "errorMessage": "Select the type of tax in dispute",
           "choices": [
             "Direct",
             "Indirect",
@@ -110,6 +123,7 @@
           "id": "userAddress",
           "type": "address",
           "label": "Address",
+          "international": "true",
           "postcodeLookup": "no"
         },
         {
@@ -127,7 +141,7 @@
           "id": "hmrcrefnumberhelp",
           "type": "info",
           "label": "Help with HMRC Reference Number",
-          "infoText": "Please enter the HMRC reference number. For example, if the dispute is about Income Tax, enter the Unique Taxpayers Reference. For Corporation Tax, use the Corporation Tax Reference, or for VAT, please enter the VAT Registration Number.",
+          "infoText": "Enter the HMRC reference number. For example, if the dispute is about Income Tax, enter the Unique Taxpayers Reference. For Corporation Tax, use the Corporation Tax Reference, or for VAT, please enter the VAT Registration Number.",
           "infoType": "long"
         }
       ]
@@ -179,20 +193,25 @@
           "id": "multilinetext1",
           "type": "text",
           "label": "To help HMRC process your application for ADR, outline the issues (in the box below) that are in dispute and any details that you feel are relevant.",
+          "shortName": "Details of your dispute",
+          "format": "text(0, 2000)",
           "multiline": "yes",
-          "format": "text(0, 2000)"
+          "errorMessage": "Outline details of your issues"
         },
         {
           "id": "multilinetext2",
           "type": "text",
-          "label": "Please give your reasons (in the box below) for applying for ADR to help settle the dispute.",
+          "label": "Give your reasons (in the box below) for applying for ADR to help settle the dispute.",
+          "shortName": "Reasons for applying for ADR",
+          "format": "text(0, 2000)",
           "multiline": "yes",
-          "format": "text(0, 2000)"
+          "errorMessage": "Give your reasons for applying for ADR"
         },
         {
           "id": "AdrHow",
           "type": "text",
-          "label": "How did you hear about ADR?"
+          "label": "How did you hear about ADR?",
+          "errorMessage": "Give details of how you heard of ADR"
         }
       ]
     },
@@ -201,24 +220,10 @@
       "includeIf": "${yesNoQuestion1=0}",
       "fields": [
         {
-          "id": "textFieldInfoFormat5",
-          "type": "info",
-          "label": "",
-          "infoText": "If you are an authorised agent completing this form on behalf of your client, enter your details in the fields below.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "pleasenote1",
-          "type": "info",
-          "label": "",
-          "infoText": "### Please note: \nYou are an authorised agent if your client has completed paper forms 64-8 or FBI 2 or you have used HMRC Online Services to set up client authorisations.",
-          "infoType": "important"
-        },
-        {
           "id": "Agentsbusinessname",
           "type": "text",
           "label": "Agent's Business Name",
-          "helpText": "Please enter your business name (if any) or the name of the organisation that you work for."
+          "helpText": "Enter your business name (if any) or the name of the organisation that you work for."
         },
         {
           "id": "Namedcontact",
@@ -229,8 +234,9 @@
           "id": "Agentaddresss",
           "type": "address",
           "label": "Agent's address",
-          "postcodeLookup": "no",
-          "helpText": "Please enter the full working address and postcode of your office or main place of work"
+          "helpText": "Enter the full working address and postcode of your office or main place of work",
+          "international": "true",
+          "postcodeLookup": "no"
         },
         {
           "id": "agentPhone",
@@ -242,7 +248,7 @@
           "id": "clientreferencenumber",
           "type": "text",
           "label": "Client Reference Number",
-          "helpText": "Please enter your own or your firm's reference for this client. The reference should be client specific and not include the clients name or other personal information."
+          "helpText": "Enter your own or your firm's reference for this client. The reference should be client specific and not include the clients name or other personal information."
         },
         {
           "id": "textFieldInfoFormat6",
@@ -326,6 +332,5 @@
     ]
   },
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "Alternative-Dispute-Resolution"
+  "submitSuccessUrl": "deprecated"
 }
