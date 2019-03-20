@@ -553,8 +553,8 @@
         {
           "id": "appType",
           "type": "choice",
-          "label": "What type of agency or establishment are you applying to register?",
-          "shortName": "Type of agency or establishment",
+          "label": "What type of children's social care service are you applying to register?",
+          "shortName": "Children's social care service applying to register",
           "choices": [
             "Children's home",
             "Independent fostering agency",
@@ -654,7 +654,7 @@
         {
           "id": "agEstName",
           "type": "text",
-          "label": "Name of agency or establishment",
+          "label": "Name of existing agency or establishment registered with Ofsted",
           "shortName": "Name",
           "format": "text(0,150)"
         },
@@ -675,8 +675,8 @@
         {
           "id": "agEstName_copy_1",
           "type": "text",
-          "label": "Name of agency or establishment",
-          "shortName": "Name of agency or establishment",
+          "label": "Name of existing agency or establishment",
+          "shortName": "Name of existing agency or establishment",
           "format": "text(0,150)"
         }
       ]
@@ -762,8 +762,8 @@
       "description": "We need to check details of all establishments or agencies that your organisation has a financial interest in against records we hold. ",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_30f11271_9426_43a5_96da_6352e36bb24e",
+          "type": "info",
           "label": "",
           "infoText": "If you are an individual this means working for another organisation.",
           "infoType": "noformat"
@@ -1019,8 +1019,8 @@
       "includeIf": "${businessChoice2 = 1 && actsChoice1 = 0} ",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_9f1b7028_5317_4491_a561_712fc93c9f60",
+          "type": "info",
           "label": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us about earlier in this application.",
           "infoText": "You do not need to provide details of children's social care services registered by Ofsted that you may have told us about earlier in this application.",
           "infoType": "standard"
@@ -1556,8 +1556,8 @@
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_7b1fd0a4_1efa_45aa_9492_4e931acc38e7",
+          "type": "info",
           "label": "Do not include the people who will register as the manager or the responsible individual for the establishment or agency.",
           "infoText": "Do not include the people who will register as the manager or the responsible individual for the establishment or agency.",
           "infoType": "standard"
@@ -1630,8 +1630,8 @@
       "description": "We need to know about each partner in your partnership who will have an active role in running the establishment or agency.\n\nThey will be responsible for making sure the establishment or agency meets the social care standards required by law.",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_fd3497bf_3894_442c_a8a7_eedf871ff3b9",
+          "type": "info",
           "label": "Do not include the person who will register as the manager.",
           "infoText": "Do not include the person who will register as the manager.",
           "infoType": "standard"
@@ -1830,7 +1830,7 @@
       ]
     },
     {
-      "title": "What is the name of your establishment or agency you are applying to register?",
+      "title": "What is the name of the establishment or agency you are applying to register?",
       "includeIf": "${appType != 4}",
       "fields": [
         {
@@ -2058,8 +2058,8 @@
       "includeIf": "${appType = 1 || (appType = 2 || appType = 3)}",
       "fields": [
         {
-          "type": "text",
           "id": "Detailsbetweensites",
+          "type": "text",
           "label": "Include details such as transports used to pick up staff and move children between sites.",
           "multiline": "false"
         }
@@ -2096,8 +2096,8 @@
       "includeIf": "${appType = 4}",
       "fields": [
         {
-          "type": "text",
           "id": "Detailsbetweensites_copy_1",
+          "type": "text",
           "label": "Include details such as transports used to pick up staff and move children between sites.",
           "multiline": "false"
         }
@@ -2346,8 +2346,8 @@
       "includeIf": "${appType = 4}",
       "fields": [
         {
-          "type": "text",
           "id": "Detailsbetweensites_copy_2",
+          "type": "text",
           "label": "Include details such as transports used to pick up staff and move children between sites.",
           "multiline": "false"
         }
@@ -2405,8 +2405,8 @@
       "includeIf": "${appType = 4}",
       "fields": [
         {
-          "type": "choice",
           "id": "Premiseschangewithoutplanningpermission",
+          "type": "choice",
           "label": "",
           "choices": [
             "Yes",
@@ -2450,8 +2450,8 @@
       "includeIf": "${appType != 4 && planChoi != 3}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_c76518ce_4f85_42b0_b806_822a709a4007",
+          "type": "info",
           "label": "TypeofPlanningDocEvidence",
           "infoText": "You need to provide one of these documents:\n\n- copy of planning permission granted\n\n- certificate of lawfulness\n\n- copy of a planning application\n\n- evidence that planning permission is not required",
           "infoType": "noformat"
@@ -2900,10 +2900,10 @@
     },
     {
       "title": "Is your agency registering as an independent fostering agency only to provide fostering for adoption?",
-      "includeIf": "${appType = 1}",
+      "includeIf": "${appType = 1 && Agencytoprovidefostering4adoption = 0}",
       "fields": [
         {
-          "id": "OnlyProvideFostering4adoption_copy_1",
+          "id": "onlyProvideFostAdop1",
           "type": "choice",
           "label": "Is your agency registering as an independent fostering agency only to provide fostering for adoption?",
           "shortName": "Registering only to provide fostering for adoption service",
@@ -3334,8 +3334,8 @@
           "infoType": "noformat"
         },
         {
-          "type": "info",
           "id": "generatedId_8856f816_8c53_4f05_b79c_0fe82d766851",
+          "type": "info",
           "label": "The manager must apply to be the proposed registered manager of your new children's social care service unless you are registering a voluntary adoption agency, in which case we only need their details on this page. ",
           "infoText": "The manager must apply to be the proposed registered manager of your new children's social care service unless you are registering a voluntary adoption agency, in which case we only need their details on this page. ",
           "infoType": "standard"
@@ -3361,6 +3361,7 @@
     {
       "title": "Will the manager run any other social care services?",
       "shortName": "Will manager run any other social care services",
+      "includeIf": "${manWorking = 1}",
       "fields": [
         {
           "id": "manWorking_copy_1",
@@ -3393,8 +3394,8 @@
       "includeIf": "${appType = 3}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_b2b6beed_c7ca_4a32_9728_a6e584246c10",
+          "type": "info",
           "label": "By law, you must carry out checks on the person who will manage your adoption agency.",
           "infoText": "By law, you must carry out checks on the person who will manage your adoption agency.",
           "infoType": "important"
@@ -3738,8 +3739,8 @@
           "infoType": "important"
         },
         {
-          "type": "info",
           "id": "generatedId_d38412c0_3fb7_4108_96d2_1f3d0dd3600c",
+          "type": "info",
           "label": "",
           "infoText": "We will reject your application without these documents if you submit it without them.\n\nYou can continue with this application if you plan to come back later to upload the documents.",
           "infoType": "noformat"
