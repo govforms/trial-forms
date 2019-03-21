@@ -100,7 +100,7 @@
           "id": "enterExit",
           "type": "choice",
           "label": "Are you entering or leaving the UK?",
-          "shortName": "Entering or leaving",
+          "shortName": "Are you entering or leaving",
           "errorMessage": "Select whether your are entering or leaving the UK",
           "choices": [
             "Entering",
@@ -119,9 +119,9 @@
           "type": "date",
           "label": "When are you entering the UK?",
           "shortName": "Date entering the UK",
-          "helpText": "This can be up to 3 days after you submit your declaration",
+          "helpText": "You can only enter a date that is up to 3 days from now",
           "format": "after today -1, before today +4",
-          "errorMessage": "You cannot enter a date more than 3 days in the future"
+          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
         }
       ]
     },
@@ -135,9 +135,9 @@
           "type": "date",
           "label": "When are you leaving the UK?",
           "shortName": "Date leaving the UK",
-          "helpText": "This can be up to 3 days after you submit your declaration",
+          "helpText": "You can only enter a date that is up to 3 days from now",
           "format": "after today -1, before today +4",
-          "errorMessage": "You cannot enter a date more than 3 days in the future"
+          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
         }
       ]
     },
@@ -282,7 +282,7 @@
     {
       "title": "Where are you making this declaration?",
       "shortName": "Where you are making declaration",
-      "description": "This is your UK entry or exit point. Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
+      "description": "This is your UK entry or exit point.",
       "fields": [
         {
           "id": "declarationPlaceName",
@@ -337,6 +337,7 @@
     },
     {
       "title": "Currency $n",
+      "includeIf": "${overFiveCurrenciesChoice=1}",
       "description": "Enter details about one currency only, and do not convert into GBP",
       "repeatsMin": "${howManyCurrency}",
       "repeatsMax": "${howManyCurrency}",
@@ -650,7 +651,7 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "You need to make a note of your submission reference number. This confirms that you have made a declaration.\n\nYou should print a copy of this form now, so you can show it to customs officers if they ask.\n\nThis is your last opportunity to print or save a PDF copy of your form."
+        "infoText": "You need to make a copy of your submission reference. This confirms that you have made a declaration.\n\nYou should also print a copy of this form now, so you can show it to customs officers if they ask."
       }
     ]
   },
