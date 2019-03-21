@@ -34,7 +34,7 @@
           "id": "generatedId_77485d1d_d444_4dde_8627_4f8ff13be675",
           "type": "info",
           "label": "",
-          "infoText": "##What happens next",
+          "infoText": "##What you'll need to do next",
           "infoType": "noformat"
         },
         {
@@ -234,17 +234,21 @@
       ]
     },
     {
-      "title": "Do you expect to produce or use less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
+      "title": "Do you expect to produce less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
       "shortName": "Estimate of biofuels or other fuel substitutes production ",
       "fields": [
         {
           "id": "largeProducerChoice",
           "type": "choice",
-          "label": "Do you expect to produce or use less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
+          "label": "Do you expect to produce less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
           "shortName": "Less than 450,000 litres in next 12 months",
           "choices": [
             "Yes",
             "No"
+          ],
+          "optionHelpText": [
+            " As a business that expects to produce less than 450,000 litres HMRC will send you quarterly returns ",
+            "As a business that expects to produce more than than 450,000 litres HMRC will notify you that you’re a large producer and send you monthly returns"
           ]
         }
       ]
@@ -259,7 +263,7 @@
           "type": "text",
           "label": "Estimate the amount of biofuels or other fuel substitutes you expect to produce or use each year",
           "shortName": "Estimated total litres",
-          "helpText": "Enter the total amount produced or used across all premises",
+          "helpText": "Enter the total amount across all premises",
           "format": "positiveNumber(8,2, 'litres')"
         }
       ]
@@ -285,14 +289,14 @@
       ]
     },
     {
-      "title": "Have you as the sole trader been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "title": "Have you as the sole trader been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
       "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=1}",
       "fields": [
         {
           "id": "bfChoiOther",
           "type": "choice",
-          "label": "Have you as the sole trader been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "label": "Have you as the sole trader been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
           "shortName": "Sole trader involved in other businesses\n",
           "choices": [
             "Yes",
@@ -302,14 +306,14 @@
       ]
     },
     {
-      "title": "Have any of the directors in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "title": "Have any of the directors in your business been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
       "shortName": "Involvement in other registered businesses\n",
       "includeIf": "${businessType=0}",
       "fields": [
         {
           "id": "bfChoiOtherDirectors",
           "type": "choice",
-          "label": "Have any of the directors in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "label": "Have any of the directors in your business been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
           "shortName": "Directors involved in other registered businesses",
           "choices": [
             "Yes",
@@ -319,14 +323,14 @@
       ]
     },
     {
-      "title": "Have any of the partners in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "title": "Have any of the partners in your business been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
       "shortName": "Involvement in other registered businesses",
       "includeIf": "${businessType=2 || businessType=3} ",
       "fields": [
         {
           "id": "bfChoiOtherPartners",
           "type": "choice",
-          "label": "Have any of the partners in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "label": "Have any of the partners in your business been involved in any other biofuels or fuel substitutes businesses in the last 2 years?",
           "shortName": "Partners involved in other registered businesses",
           "choices": [
             "Yes",
@@ -339,7 +343,7 @@
       "title": "Enter the registration number for each business the directors have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherDirectors =0}",
-      "description": "Provide the biofuel or other fuel substitute duty registration number for each business any of the directors in your business have been involved in within the last 2 years.",
+      "description": "Provide the biofuels or other fuel substitutes duty registration number for each of the other businesses any of the directors in your business have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBus",
@@ -365,7 +369,7 @@
       "title": "Enter the registration number for each business the partners have been involved in",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOtherPartners=0}",
-      "description": "Provide the biofuels or other fuel substitutes duty registration number for each business any of the partners in your business have been involved in within the last 2 years.",
+      "description": "Provide the biofuels or other fuel substitutes duty registration number for each of the other businesses any of the partners in your business have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusPartners",
@@ -391,7 +395,7 @@
       "title": "Enter the registration number for each business",
       "shortName": "Registration number of each other business",
       "includeIf": "${bfChoiOther=0}",
-      "description": "Provide the biofuels or other fuel substitutes duty registration number for each business that you, the sole trader have been involved in within the last 2 years.",
+      "description": "Provide the biofuels or other fuel substitutes duty registration number for each of the other businesses that you, the sole trader have been involved in within the last 2 years.",
       "fields": [
         {
           "id": "RegNumberOtherBusSoleTrad",
@@ -448,7 +452,7 @@
         "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
         "type": "info",
         "label": "",
-        "infoText": "To complete this registration you must provide us with more details about your premises using an additional form.\n\nThe form you need depends on the type of business you are registering.\n\n* if the business is a limited company or limited liability partnership (LLP) you'll need to complete and send form [EX103A](https://www.gov.uk/government/publications/excise-entry-incorporated-company-ex103a) for each of your premises\n\n* if the business is a sole trader or partnership you'll need to complete and send form [EX103](https://www.gov.uk/government/publications/excise-entry-private-trader-ex103) for each of your premises\n\nHMRC will then send you a questionnaire, which you must complete and return to us.",
+        "infoText": "To complete this registration you must provide us with more details about your premises using an additional form.\n\nThe form you need to use depends on the type of business you are registering.\n\n* if the business is a limited company or limited liability partnership (LLP) you'll need to complete and send form [EX103A](https://www.gov.uk/government/publications/excise-entry-incorporated-company-ex103a) \n\n* if the business is a sole trader or partnership you'll need to complete and send form [EX103](https://www.gov.uk/government/publications/excise-entry-private-trader-ex103) \n\nHMRC will then send you a questionnaire, which you must complete and return to us.",
         "infoType": "noformat"
       },
       {
@@ -476,7 +480,7 @@
         "id": "generatedId_93ce3d8f_45da_43fb_b05d_b0db4b4a14b1",
         "type": "info",
         "label": "",
-        "infoText": "You'll need to check [Excise Notice 179: motor and heating fuels - general information and accounting for Excise Duty and VAT](https://www.gov.uk/government/publications/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat#section100) on GOV.UK for details on how to apply for deferment. ",
+        "infoText": "You'll need to check [Excise Notice 179: motor and heating fuels - general information and accounting for Excise Duty and VAT](https://www.gov.uk/government/publications/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat#section100) on GOV.UK for details about how to apply for deferment. ",
         "infoType": "noformat"
       }
     ]
