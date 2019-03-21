@@ -1,0 +1,521 @@
+{
+  "_id": "register-for-duty-on-biofuels-and-other-fuel-substitutes",
+  "formName": "Register for duty on biofuels and other fuel substitutes",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "lt_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "sections": [
+    {
+      "title": "Do you expect to produce or use less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months?",
+      "shortName": "Expected biofuels or other fuel substitutes production ",
+      "fields": [
+        {
+          "id": "litreChoice",
+          "type": "choice",
+          "label": "Do you expect to produce or use less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months?",
+          "shortName": "Less than 2,500 litres in next 12 months",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register your business for duty on biofuels and other fuel substitutes at this time",
+      "includeIf": "${litreChoice=0}",
+      "continueIf": "false",
+      "description": "This is because you expect to produce or use less than 2,500 litres of biofuels or other fuel substitutes in the next 12 months. This means that you are an exempt producer and are not currently liable for duty.",
+      "fields": [
+        {
+          "id": "generatedId_77485d1d_d444_4dde_8627_4f8ff13be675",
+          "type": "info",
+          "label": "",
+          "infoText": "##What happens next",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_2e7a826b_762d_4cd7_a7fc_5734345ad1a0",
+          "type": "info",
+          "label": "",
+          "infoText": "You must come back and register if you produce or use 2,500 litres or more in a 12 month period, or if you later expect to produce or use this amount within the next 12\nmonths.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_84e26b18_2faa_4fe5_bb8d_400134b6d718",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to sign out of this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What is your business type?",
+      "shortName": "Type of business",
+      "fields": [
+        {
+          "id": "businessType",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business type",
+          "choices": [
+            "Limited company",
+            "Sole trader",
+            "Limited liability partnership (LLP)",
+            "Partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the person filling in this form",
+      "shortName": "Details of person filling in this form",
+      "description": "HMRC will use these details if we need to discuss this form.",
+      "fields": [
+        {
+          "id": "contactName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_370c1bc5_313e_429d_8eb8_08e9bf52422b",
+          "type": "info",
+          "label": "#Your role within the business",
+          "infoText": "#Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "id": "roleChoice",
+          "type": "choice",
+          "label": "Select the role relevant to you",
+          "shortName": "Role within business",
+          "helpText": "You must be one of the following to complete this registration",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Partner",
+            "Authorised individual"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "",
+            "An authorised individual is someone within the business who is authorised by the business to register on their behalf"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your business ",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "busName",
+          "type": "text",
+          "label": "Business name "
+        },
+        {
+          "id": "businessTradingName",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "shortName": "Trading name",
+          "helpText": "Enter the trading name, if different from the business name ",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Principal place of business details",
+      "fields": [
+        {
+          "id": "youInfo1b",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details for the main place of business, where the day-to-day business activities are managed.\n\nWe may use these details  to verify your business against records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "busiAdd1",
+          "type": "address",
+          "label": "Business address",
+          "international": "true"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Business telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEmail1",
+          "type": "text",
+          "label": "Business email address",
+          "format": "email"
+        },
+        {
+          "id": "corresChoice",
+          "type": "choice",
+          "label": "Do you also want to use these details for your ongoing correspondence and returns?",
+          "shortName": "Use details for correspondence",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Preferred contact details",
+      "includeIf": "${corresChoice = 1}",
+      "description": "We will use these for your ongoing correspondence for duty on biofuels and other fuel substitutes.",
+      "fields": [
+        {
+          "id": "prefName",
+          "type": "text",
+          "label": "Full name of contact"
+        },
+        {
+          "id": "prefAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "id": "prefPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "prefEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "What date do you expect your business to start being liable for duty on biofuels or other fuel substitutes?",
+      "shortName": "Date you expect to start being liable for duty",
+      "fields": [
+        {
+          "id": "taxLiabiityDate",
+          "type": "date",
+          "label": "What date do you expect your business to start being liable for duty on biofuels or other fuel substitutes?",
+          "shortName": "Date",
+          "helpText": "For example, 19 04 2019"
+        },
+        {
+          "id": "generatedId_f93e562b_a0c1_4984_87e2_6b77e3e69cf2",
+          "type": "info",
+          "label": "What is the start point for the duty?",
+          "infoText": "You start being liable for duty when a biofuel or other fuel substitute is first, sent out from your premises, set aside, or used as a motor fuel. \n\nA biofuel or fuel substitute is 'set aside' when the decision has been made to use it as a motor fuel. For example, when its container is labelled as a motor fuel.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you expect to produce or use less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
+      "shortName": "Estimate of biofuels or other fuel substitutes production ",
+      "fields": [
+        {
+          "id": "largeProducerChoice",
+          "type": "choice",
+          "label": "Do you expect to produce or use less than 450,000 litres of biofuels or other fuel substitutes in the next 12 months?",
+          "shortName": "Less than 450,000 litres in next 12 months",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Estimate the amount of biofuels or other fuel substitutes you expect to produce or use each year",
+      "shortName": "Annual biofuels or other fuel substitutes production ",
+      "description": "This is the total production across all sites",
+      "fields": [
+        {
+          "id": "estProd",
+          "type": "text",
+          "label": "Estimate the amount of biofuels or other fuel substitutes you expect to produce or use each year",
+          "shortName": "Estimated total litres",
+          "helpText": "Enter the total amount produced or used across all premises",
+          "format": "positiveNumber(8,2, 'litres')"
+        }
+      ]
+    },
+    {
+      "title": "Estimate the amount of duty on biofuels or other fuel substitutes you expect your business to be liable for over the next 12 months",
+      "shortName": "Amount of duty business expects to be liable for over next 12 months",
+      "fields": [
+        {
+          "id": "estTax",
+          "type": "text",
+          "label": "Estimate the amount of duty on biofuels or other fuel substitutes you expect your business to be liable for over the next 12 months",
+          "shortName": "Estimated amount ",
+          "format": "sterling"
+        },
+        {
+          "id": "generatedId_2d1775ae_409c_4c5e_9733_acd1df1381aa",
+          "type": "info",
+          "label": "Where can I find out how to calculate the duty?",
+          "infoText": "1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'UK Trade Tariff: excise duties, reliefs, drawbacks and allowances'.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Have you as the sole trader been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses\n",
+      "includeIf": "${businessType=1}",
+      "fields": [
+        {
+          "id": "bfChoiOther",
+          "type": "choice",
+          "label": "Have you as the sole trader been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "shortName": "Sole trader involved in other businesses\n",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have any of the directors in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses\n",
+      "includeIf": "${businessType=0}",
+      "fields": [
+        {
+          "id": "bfChoiOtherDirectors",
+          "type": "choice",
+          "label": "Have any of the directors in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "shortName": "Directors involved in other registered businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have any of the partners in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses",
+      "includeIf": "${businessType=2 || businessType=3} ",
+      "fields": [
+        {
+          "id": "bfChoiOtherPartners",
+          "type": "choice",
+          "label": "Have any of the partners in your business been involved in any other biofuels or other fuel substitutes businesses in the last 2 years?",
+          "shortName": "Partners involved in other registered businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the registration number for each business the directors have been involved in",
+      "shortName": "Registration number of each other business",
+      "includeIf": "${bfChoiOtherDirectors =0}",
+      "description": "Provide the biofuel or other fuel substitute duty registration number for each business any of the directors in your business have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumberOtherBus",
+          "type": "group",
+          "label": "",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
+          "helpText": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNumberOther",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the registration number for each business the partners have been involved in",
+      "shortName": "Registration number of each other business",
+      "includeIf": "${bfChoiOtherPartners=0}",
+      "description": "Provide the biofuels or other fuel substitutes duty registration number for each business any of the partners in your business have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumberOtherBusPartners",
+          "type": "group",
+          "label": "",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
+          "helpText": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNumberOther_copy_1",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the registration number for each business",
+      "shortName": "Registration number of each other business",
+      "includeIf": "${bfChoiOther=0}",
+      "description": "Provide the biofuels or other fuel substitutes duty registration number for each business that you, the sole trader have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumberOtherBusSoleTrad",
+          "type": "group",
+          "label": "",
+          "shortName": "Biofuel or fuel substitute duty registration numbers",
+          "helpText": "",
+          "repeatsMax": 20,
+          "repeatLabel": "Registration number",
+          "repeatAddAnotherText": "Add another business's registration number",
+          "fields": [
+            {
+              "id": "regNumberOther_copy_2",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Business $n",
+              "helpText": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
+        "infoType": "standard"
+      },
+      {
+        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
+        "type": "info",
+        "label": "",
+        "infoText": "##Complete your registration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
+        "type": "info",
+        "label": "",
+        "infoText": "To complete this registration you must provide us with more details about your premises using an additional form.\n\nThe form you need depends on the type of business you are registering.\n\n* if the business is a limited company or limited liability partnership (LLP) you'll need to complete and send form [EX103A](https://www.gov.uk/government/publications/excise-entry-incorporated-company-ex103a) for each of your premises\n\n* if the business is a sole trader or partnership you'll need to complete and send form [EX103](https://www.gov.uk/government/publications/excise-entry-private-trader-ex103) for each of your premises\n\nHMRC will then send you a questionnaire, which you must complete and return to us.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_ed1af13e_6eb8_42e2_8707_115f3a921542",
+        "type": "info",
+        "label": "",
+        "infoText": "##If the business is a partnership or limited liability partnership (LLP)",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_1f98809c_1fde_4a1f_a20a_46d69996543d",
+        "type": "info",
+        "label": "",
+        "infoText": "You must also inform HMRC of this, so that we can ask you for details about the partnership. You'll need to email HMRC on, enquiries.eeitts@hmrc.gov.uk to tell us.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_8c3e8ea5_ddd0_4a82_b92c_f51679998034",
+        "type": "info",
+        "label": "",
+        "infoText": "##If you want to apply to defer duty payments",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_93ce3d8f_45da_43fb_b05d_b0db4b4a14b1",
+        "type": "info",
+        "label": "",
+        "infoText": "You'll need to check [Excise Notice 179: motor and heating fuels - general information and accounting for Excise Duty and VAT](https://www.gov.uk/government/publications/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat/excise-notice-179-motor-and-heating-fuels-general-information-and-accounting-for-excise-duty-and-vat#section100) on GOV.UK for details on how to apply for deferment. ",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/ZBFP/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBF2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '1'; ('1') => '7'; ('2') => '2'; ('3') => '3'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAdd\"}},                           'postCode': '{{businessAdd-postcode}}',                           'telephoneNumber': '{{businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice corresChoice}}',                       {{#corresAdd-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"corresAdd\"}},                         'postCode': '{{corresAdd-postcode}}',                         'telephoneNumber': '{{corresPhone}}',                         'email': '{{corresEmail}}'                         },                       {{/corresAdd-postcode}}                       'declarationStatus': '{{lookup ^('0') => '01'; ('1') => '02'; ('2') => '03'; ('3') => '04'; ('4') => '05'^ (stripCommas statusChoice)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{lookup ^('0') => 'MA'; ('1') => 'MB'; ('2') => 'MC'; ('3') => 'MM'^ (stripCommas retPer)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{obliDate-year}}{{obliDate-month}}{{obliDate-day}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEAL',                           'paramValue': '{{yesNoToEtmpChoice authChoi}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_BFP_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice bfChoiOther}}'                         },                         {{#each bfpTaxRegNo}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_BFP_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_BIO_ESTIMATE',                           'paramValue': '{{stripCommas estProd}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZBF5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_NAT_BUS',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_MON_QNT_PROD',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP_OTHER',                               'paramValue': 'N/A'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_SET_ASIDE',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_ASIDE_OTHER',                               'paramValue': 'N/A'                             }                           ]                         },                       ]                     }                   }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "GFC579Ready": "true",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
