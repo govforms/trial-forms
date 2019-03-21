@@ -20,7 +20,7 @@
           "id": "generatedId_ca7964b9_7243_4d51_8899_645c45cd2fb8",
           "type": "info",
           "label": "",
-          "infoText": "Provide the contact details of someone authorised to discuss this form with HMRC. \n\nWe will contact this person if we have a question about this registration.",
+          "infoText": "Provide the contact details of someone authorised to discuss this form with HMRC. (authorised to fill in this form) \n\nWe will contact this person if we have a question about this registration.",
           "infoType": "noformat"
         },
         {
@@ -54,104 +54,26 @@
           "choices": [
             "Director",
             "Company secretary",
+            "Agent",
             "Authorised individual"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "You are only authorised for completing this form. If you will act on behalf of this company in future tax affairs you must be authorised by HMRC.",
+            ""
           ]
         }
       ]
     },
     {
-      "title": "Are you disposing of any UK properties?",
-      "fields": [
-        {
-          "id": "disposalYesNo_copy_1",
-          "type": "choice",
-          "label": "Are you disposing of any UK properties?",
-          "helpText": "A disposal of a property refers to a sale, a gift or a transfer of ownership",
-          "choices": [
-            "1 property disposal ",
-            "More than 1 property disposal",
-            "None"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Do you want to report any other UK business activity to HMRC?",
-      "includeIf": "${disposalYesNo_copy_1=2}",
-      "fields": [
-        {
-          "id": "disposalYesNo_copy_2",
-          "type": "choice",
-          "label": "Do you want to report any other UK business activity to HMRC?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_5fce2fac_e226_467b_8415_f2400a5c3e01",
-          "type": "info",
-          "label": "UK business activities chargeable to UK Corporation Tax",
-          "infoText": "Activities chargeable to UK Corporation Tax are:\nYou must tell HMRC if you are:\n\n• selling assets\n\n• carrying on a business activity such as a trade or professional activity\n\n• buying and selling goods with a view to making a profit\n\n• providing services\n\n• earning interest\n\n• managing investments\n\n• receiving any other income",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "You cannot use this service",
-      "includeIf": "${disposalYesNo_copy_2=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_123f8065_4eeb_4a57_9b25_d90a80425a25",
-          "type": "info",
-          "label": "whyCannotUseService",
-          "infoText": "You must be selling a UK property or conducting a UK business activity in order to register a non-resident company for UK Corporation Tax.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Does the company you are registering have a Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "fields": [
-        {
-          "id": "uTRChoice",
-          "type": "choice",
-          "label": "Does the company you are registering have a Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT UTR",
-          "helpText": "This is on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "includeIf": "${uTRChoice=0}",
-      "fields": [
-        {
-          "id": "uKUTR",
-          "type": "text",
-          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT UTR",
-          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  ",
-          "format": "utr"
-        }
-      ]
-    },
-    {
-      "title": "What is the company name?",
+      "title": "What is the current company name?",
       "shortName": "Company details",
-      "includeIf": "${uTRChoice=1}",
       "fields": [
         {
           "id": "fullCompanyName_copy_1",
           "type": "text",
-          "label": "What is the company name?",
+          "label": "What is the current company name?",
           "shortName": "Company name",
           "helpText": "Enter the name of the company you are registering",
           "format": "shortText"
@@ -159,236 +81,31 @@
       ]
     },
     {
-      "title": "What is the current company name?",
+      "title": "Has this company had a different name?",
       "shortName": "Company details",
-      "includeIf": "${uTRChoice=0}",
       "fields": [
         {
-          "id": "generatedId_e2afc277_3b21_40cd_b30d_7a801ac6fa4c",
-          "type": "info",
-          "label": "If your company name has changed since you last registered it will not be updated in other government services.",
-          "infoText": "If your company name has changed since you last registered it will not be updated in other government services.",
-          "infoType": "standard"
-        },
+          "type": "choice",
+          "id": "companyNameChange",
+          "label": "Has this company had a different name?",
+          "helpText": "(If your company name has changed since you last registered it will not be updated in other government services.) If the company has had more than 1 name change, provide the last name the company had.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the previous company name",
+      "includeIf": "${companyNameChange=0}",
+      "fields": [
         {
           "id": "fullCompanyName",
           "type": "text",
           "label": "Company name",
           "shortName": "Company name",
           "format": "shortText"
-        }
-      ]
-    },
-    {
-      "title": "Does the company have an employer PAYE reference number?",
-      "shortName": "PAYE details",
-      "includeIf": "${uTRChoice=1}",
-      "fields": [
-        {
-          "id": "referenceChoice",
-          "type": "choice",
-          "label": "Does the company have an employer PAYE reference number?",
-          "shortName": "Employer PAYE reference",
-          "helpText": "It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60.",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the Employer PAYE reference?",
-      "shortName": "Employer PAYE reference",
-      "includeIf": "${referenceChoice=0}",
-      "fields": [
-        {
-          "id": "uKUTR_copy_1",
-          "type": "text",
-          "label": "What is the Employer PAYE reference?",
-          "shortName": "Employer PAYE reference",
-          "helpText": "This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60.",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Does the company have any HMRC reference numbers?",
-      "shortName": "HMRC reference number",
-      "includeIf": "${referenceChoice=1}",
-      "fields": [
-        {
-          "id": "hMRCref",
-          "type": "choice",
-          "label": "Does the company have any HMRC reference numbers?",
-          "helpText": "Your company will have a reference number if it has been registered for an HMRC service. You only need to provide one.",
-          "choices": [
-            "Non-resident Capital Gains Tax reference",
-            "Annual Tax on Enveloped Dwellings (ATED) related Capital Gains Tax reference",
-            "VAT registration number ",
-            "The company does not have any HMRC references"
-          ]
-        },
-        {
-          "id": "generatedId_ac1a463f_7cc2_4374_9db7_e7a5822e4b4e",
-          "type": "info",
-          "label": "Where to find an HMRC reference number",
-          "infoText": "HMRC gives every company a unique reference number in order to deal with its tax affairs. You'll find it either:\n\n• in your HMRC online account \n\n• on official communications from HMRC",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "What is your non-resident Capital Gains Tax reference number? ",
-      "includeIf": "${hMRCref=0}",
-      "fields": [
-        {
-          "id": "nonResidentNumber",
-          "type": "text",
-          "label": "What is your non-resident Capital Gains Tax reference number? ",
-          "shortName": "non-resident Capital Gains Tax reference",
-          "helpText": "The charge reference number is made up of 14 or 15 characters, starting with an X. HMRC emailed this to the company after we received the company's Capital Gains Tax return."
-        }
-      ]
-    },
-    {
-      "title": "What is your Annual Tax on Enveloped Dwellings (ATED) related Capital Gains Tax reference?",
-      "includeIf": "${hMRCref=1}",
-      "fields": [
-        {
-          "id": "atedRef",
-          "type": "text",
-          "label": "What is your Annual Tax on Enveloped Dwellings (ATED) related Capital Gains Tax reference?",
-          "shortName": "ATED reference",
-          "helpText": "The ATED-related Capital Gains Tax reference number is made up of 14 characters, starting with an ‘X’."
-        }
-      ]
-    },
-    {
-      "title": "What is your company's VAT registration number?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "includeIf": "${hMRCref=2}",
-      "fields": [
-        {
-          "id": "vAtNumber",
-          "type": "text",
-          "label": "What is your company's VAT registration number?",
-          "shortName": "VAT registration number",
-          "helpText": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate."
-        }
-      ]
-    },
-    {
-      "title": "Provide your HMRC reference details ",
-      "includeIf": "${false}",
-      "fields": [
-        {
-          "id": "hMRCrefName",
-          "type": "text",
-          "label": "Type of reference ",
-          "helpText": "For example, a non-resident Capital Gain Tax reference, Annual Tax on Enveloped Dwellings reference or VAT reference number"
-        },
-        {
-          "id": "hMRCrefnumber",
-          "type": "text",
-          "label": "Reference number"
-        }
-      ]
-    },
-    {
-      "title": "Enter the company's incorporation details",
-      "shortName": "Company incorporation details",
-      "fields": [
-        {
-          "id": "dateOfIncorporation",
-          "type": "date",
-          "label": "Date of incorporation",
-          "helpText": "For example, 01 08 2007"
-        },
-        {
-          "id": "countryOfIncorporation",
-          "type": "text",
-          "label": "Country of incorporation",
-          "shortName": "Country of incorporation",
-          "helpText": "This is where the company was formed"
-        },
-        {
-          "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
-          "type": "info",
-          "label": "You must use accepted geographical names to complete our forms. If you do not, we might reject your filing.",
-          "infoText": "You must use official geographical names to complete our forms.",
-          "infoType": "standard"
-        },
-        {
-          "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
-          "type": "info",
-          "label": "Guidance on geographical names ",
-          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document 'Geographical names'. \nUse the list of countries and territories when doing your company filings.",
-          "infoType": "long"
-        },
-        {
-          "id": "countryOfTax",
-          "type": "choice",
-          "label": "Is this the country of tax residence?",
-          "shortName": "Tax residence",
-          "format": "vertical",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the country of tax residence?",
-      "shortName": "Country of tax residence",
-      "includeIf": "${countryOfTax=1}",
-      "fields": [
-        {
-          "id": "countryOfTaxResidence",
-          "type": "text",
-          "label": "What is the country of tax residence?",
-          "shortName": "Tax residence",
-          "helpText": "Enter the country where the company currently pays tax",
-          "mandatory": "true"
-        },
-        {
-          "id": "generatedId_ec608bb7_96c8_43ed_b7db_b50e90c7eba3",
-          "type": "info",
-          "label": "Guidance on geographical names ",
-          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document 'Geographical names'. \nUse the list of countries and territories when doing your company filings.",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Does the company have a reference number or equivalent?",
-      "shortName": "Company reference number",
-      "fields": [
-        {
-          "id": "cRnYesNo",
-          "type": "choice",
-          "label": "Does the company have a reference number or equivalent?",
-          "shortName": "Reference",
-          "helpText": "This is the number given to the company when it was formed. This may also be referred to as a registration number.",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the company reference number?",
-      "shortName": "Company reference number",
-      "includeIf": "${cRnYesNo=0}",
-      "fields": [
-        {
-          "id": "cRnRef",
-          "type": "text",
-          "label": "What is the company reference number?",
-          "shortName": "Reference",
-          "helpText": "This information will help us to confirm its identity"
         }
       ]
     },
@@ -469,46 +186,11 @@
           "label": "Home address",
           "international": "true",
           "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Is the company a member of a group?",
-      "shortName": "Group details",
-      "fields": [
-        {
-          "id": "companyMemGroup",
-          "type": "choice",
-          "label": "Is the company a member of a group?",
-          "shortName": "Group member",
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "title": "Parent company details",
-      "includeIf": "${companyMemGroup=0}",
-      "fields": [
-        {
-          "id": "parentName",
-          "type": "text",
-          "label": "Parent company name",
-          "format": "text(0, 56)",
-          "mandatory": "false"
         },
         {
-          "id": "addressOfParentCompany",
-          "type": "address",
-          "label": "Business address",
-          "international": "true",
-          "mandatory": "false",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "parentTaxResidence",
           "type": "choice",
-          "label": "Is this the country of tax residence?",
-          "shortName": "Tax residence",
+          "id": "companyContact",
+          "label": "Is this the person HMRC can contact about the company's tax affairs?",
           "format": "horizontal",
           "choices": [
             "Yes",
@@ -518,38 +200,77 @@
       ]
     },
     {
-      "title": "What is the parent company's country of tax residence?",
-      "shortName": "Country",
-      "includeIf": "${parentTaxResidence=1}",
+      "title": "Enter the company contact details",
+      "includeIf": "${companyContact=1}",
       "fields": [
         {
-          "id": "countryOfTaxResidence_copy_1",
-          "type": "text",
-          "label": "What is the parent company's country of tax residence?",
-          "shortName": "Tax residence",
-          "helpText": "This is the country where the company currently pays tax",
-          "mandatory": "true"
+          "type": "info",
+          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
+          "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n\nWe will contact this person if we have a question about this registration.",
+          "infoText": "Provide the contact details of someone within the company authorised to discuss this form with HMRC. \n\nWe will contact this person about the company's tax affairs.",
+          "infoType": "noformat"
         },
         {
-          "id": "generatedId_4075d43f_6464_4aab_8cd2_35b3b8a58599",
+          "type": "text",
+          "id": "nameOfContactPerson",
+          "label": "Full name"
+        },
+        {
+          "type": "text",
+          "id": "telephoneNumberOfContactPerson",
+          "label": "Telephone number",
+          "helpText": "Include the country code"
+        },
+        {
+          "type": "text",
+          "id": "emailOfContactPerson",
+          "label": "Email address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the company's incorporation details",
+      "shortName": "Company incorporation details",
+      "fields": [
+        {
+          "id": "dateOfIncorporation",
+          "type": "date",
+          "label": "Date of incorporation",
+          "helpText": "For example, 01 08 2007"
+        },
+        {
+          "id": "countryOfIncorporation",
+          "type": "text",
+          "label": "Country of incorporation",
+          "shortName": "Country of incorporation",
+          "helpText": "This is where the company was formed"
+        },
+        {
+          "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
           "type": "info",
-          "label": "Guidance on geographical names ",
+          "label": "You must use accepted country names to complete our forms. If you do not, we might reject your filing.",
+          "infoText": "You must use the english alphabet and official country names to complete our forms, for example, for USA enter United States.",
+          "infoType": "standard"
+        },
+        {
+          "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
+          "type": "info",
+          "label": "Where to find the official country names ",
           "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document 'Geographical names'. \nUse the list of countries and territories when doing your company filings.",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Does the parent company have a company reference number or equivalent?",
-      "shortName": "Parent company reference number",
-      "includeIf": "${companyMemGroup=0}",
+      "title": "Does the company have a reference number or equivalent?",
+      "shortName": "Company reference number",
       "fields": [
         {
-          "id": "parentCompanyref",
+          "id": "cRnYesNo",
           "type": "choice",
-          "label": "Does the parent company have a company reference number or equivalent?",
-          "shortName": "Reference number",
-          "helpText": "This may also be referred to as a registration number and is used to identify a company's legal existence",
+          "label": "Does the company have a reference number or equivalent?",
+          "shortName": "Reference",
+          "helpText": "This is the number given to the company in its country of incorporation. This may also be referred to as a registration number.",
           "choices": [
             "Yes",
             "No"
@@ -558,46 +279,80 @@
       ]
     },
     {
-      "title": "What is the reference number of the parent company?",
-      "shortName": "Parent company reference number",
-      "includeIf": "${companyMemGroup=0 && parentCompanyref=0}",
+      "title": "What is the company reference number?",
+      "shortName": "Company reference number",
+      "includeIf": "${cRnYesNo=0}",
       "fields": [
         {
-          "id": "parentCompanyRegNumber",
+          "id": "cRnRef",
           "type": "text",
-          "label": "What is the reference number of the parent company?",
-          "shortName": "Reference number",
-          "helpText": "This information will help us to confirm the identity of the company",
-          "format": "shortText"
+          "label": "What is the company reference number?",
+          "shortName": "Company reference number",
+          "helpText": "This information will help us to confirm its identity"
         }
       ]
     },
     {
-      "title": "What UK business activity do you want to tell HMRC about?",
-      "includeIf": "${false}",
+      "title": "Does the company you are registering already have a Corporation Tax Unique Taxpayer Reference?",
+      "shortName": "Corporation Tax Unique Taxpayer Reference",
       "fields": [
         {
-          "id": "disposalYesNo",
+          "id": "uTRChoice",
           "type": "choice",
-          "label": "What UK business activity do you want to tell HMRC about?",
-          "helpText": "A disposal of a property refers to a sale, a gift or a transfer of ownership",
+          "label": "Does the company you are registering already have a Corporation Tax Unique Taxpayer Reference?",
+          "shortName": "CT UTR",
+          "helpText": "You will already have a CT UTR if the company has previously been chargeable to UK Corporation Tax, for example, if it has traded as a Property Developer or has had a permanent UK establishment in the past.",
           "choices": [
-            "1 property disposal ",
-            "More than 1 disposal or other business activities"
+            "Yes",
+            "No"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
+      "shortName": "Corporation Tax Unique Taxpayer Reference",
+      "includeIf": "${uTRChoice=0}",
+      "fields": [
         {
-          "id": "generatedId_540d0d3a_24fc_4985_b884_d8532c4951d5",
-          "type": "info",
-          "label": "UK business activities chargeable to UK Corporation Tax",
-          "infoText": "You must tell HMRC if you are:\n\n• selling assets\n\n• carrying on a business activity such as a trade or professional activity\n\n• buying and selling goods with a view to making a profit\n\n• providing services\n\n• earning interest\n\n• managing investments\n\n• receiving any other income",
-          "infoType": "long"
+          "id": "uKUTR",
+          "type": "text",
+          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
+          "shortName": "CT UTR",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  ",
+          "format": "utr"
+        }
+      ]
+    },
+    {
+      "title": "Does the company have an Income Tax Unique Taxpayer Reference?",
+      "shortName": "Income Tax UTR",
+      "fields": [
+        {
+          "id": "hMRCref",
+          "type": "choice",
+          "label": "Does the company have a UK Income Tax Unique Taxpayer Reference?",
+          "helpText": "Your company will have a reference number if it has received or currently receives rental income as a non-resident landlord. A Unique Taxpayer Reference is 10 numbers like 12345 67890.  ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the company's Income Tax Unique Taxpayer Reference",
+      "fields": [
+        {
+          "type": "text",
+          "id": "incomeTaxRef",
+          "label": "Enter the company's Income Tax Unique Taxpayer Reference",
+          "helpText": "Non-resident Company Income Tax Reference"
         }
       ]
     },
     {
       "title": "Enter the date you became chargeable to UK Corporation Tax",
-      "includeIf": "${disposalYesNo_copy_1=0}",
       "fields": [
         {
           "id": "generatedId_95db4abe_93c1_46de_a8dc_cb197ffd0be4",
@@ -614,189 +369,6 @@
           "mandatory": "true"
         }
       ]
-    },
-    {
-      "title": "Enter the period chargeable to UK Corporation Tax",
-      "includeIf": "${disposalYesNo_copy_1=1 || disposalYesNo_copy_2=0}",
-      "fields": [
-        {
-          "id": "generatedId_fe135349_57fe_4975_b043_361774e548dc",
-          "type": "info",
-          "label": "This is the period in which your company plans to conduct business chargeable for UK Corporation Tax.",
-          "infoText": "This is the period in which your company is chargeable for UK Corporation Tax.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "startWhichCompanyPreparesAccounts",
-          "type": "date",
-          "label": "Date you came within charge to UK Corporation Tax",
-          "helpText": "For example, 31 03 2018"
-        },
-        {
-          "id": "dateWhichCompanyPreparesAccounts",
-          "type": "date",
-          "label": "Date you will prepare your next accounts to",
-          "helpText": "For example, 31 08 2019",
-          "mandatory": "true"
-        }
-      ]
-    },
-    {
-      "title": "Has the company you are registering taken over another UK business?",
-      "shortName": "The company has taken over another UK business",
-      "fields": [
-        {
-          "id": "takenOverAnotherBusinessYesNo",
-          "type": "choice",
-          "label": "Has the company you are registering taken over another UK business?",
-          "shortName": "Taken over another UK business",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Select which type of UK business the company has taken over",
-      "shortName": "Type of business taken over",
-      "includeIf": "${takenOverAnotherBusinessYesNo=0}",
-      "fields": [
-        {
-          "id": "takenOverAnotherBusiness",
-          "type": "choice",
-          "label": "Select which type of UK business the company has taken over",
-          "shortName": "Business type",
-          "choices": [
-            "Limited company",
-            "Sole trader",
-            "Partnership"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Company details",
-      "includeIf": "${takenOverAnotherBusiness=0}",
-      "fields": [
-        {
-          "id": "generatedId_52cbe649_3a01_4834_8ba9_5a928cd5ea7a",
-          "type": "info",
-          "label": "",
-          "infoText": "These are the details of the company which has transferred its business to you.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "previousBusinessName",
-          "type": "text",
-          "label": "Company name"
-        },
-        {
-          "id": "previousBusinessName_copy_1",
-          "type": "text",
-          "label": "Trading name",
-          "helpText": "Enter the trading name if different from the company name"
-        },
-        {
-          "id": "PreviousBusAddress",
-          "type": "address",
-          "label": "Business address"
-        }
-      ]
-    },
-    {
-      "title": "Company director details",
-      "includeIf": "${takenOverAnotherBusiness=0}",
-      "fields": [
-        {
-          "id": "generatedId_7e5ff053_87a0_48bf_92ee_0f1ab6612896",
-          "type": "info",
-          "label": "Enter the details of the main company director.",
-          "infoText": "Enter the details of the principal company director. This is the previous director of the business.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "companyDirectorName",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "PreviousPartnerAddress_copy_2",
-          "type": "address",
-          "label": "Home address"
-        }
-      ]
-    },
-    {
-      "title": "Enter the details of the previous sole trader",
-      "shortName": "Sole trader details",
-      "includeIf": "${takenOverAnotherBusiness=1}",
-      "fields": [
-        {
-          "id": "previousOwnerName",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "tradingName",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "shortName": "Trading name",
-          "helpText": "Enter the trading name if different from the sole trader's name"
-        },
-        {
-          "id": "previousOwnerAddress",
-          "type": "address",
-          "label": "Sole trader's address (business?)"
-        }
-      ]
-    },
-    {
-      "title": "Partnership details",
-      "includeIf": "${takenOverAnotherBusiness=2}",
-      "fields": [
-        {
-          "id": "generatedId_eff11397_e4a2_4e7b_9718_c39565aa0a49",
-          "type": "info",
-          "label": "These are the details of the partnership which has transferred its business to you.",
-          "infoText": "These are the details of the partnership which has transferred its business to you.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "partnershipName_copy_1",
-          "type": "text",
-          "label": "Trading name"
-        },
-        {
-          "id": "PreviousPartnerAddress",
-          "type": "address",
-          "label": "Business address"
-        }
-      ]
-    },
-    {
-      "title": "Partner details",
-      "includeIf": "${takenOverAnotherBusiness=2}",
-      "fields": [
-        {
-          "id": "generatedId_cc5fb91a_febe_4e5a_a388_0816feea7d44",
-          "type": "info",
-          "label": "Enter the details of the principle or nominated partner.",
-          "infoText": "Enter the details of the principle or nominated partner.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "partnerName_copy_1",
-          "type": "text",
-          "label": "Partner name",
-          "helpText": "This is one of the previous owners of the business"
-        },
-        {
-          "id": "PreviousPartnerAddress_copy_1",
-          "type": "address",
-          "label": "Home address"
-        }
-      ]
     }
   ],
   "declarationSection": {
@@ -809,13 +381,6 @@
         "label": "Declaration copy",
         "infoText": "By submitting this form you declare that the information that you have provided is true and complete.",
         "infoType": "noformat"
-      },
-      {
-        "id": "declarationTopInfo_copy_1",
-        "type": "info",
-        "label": "Declaration copy",
-        "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
-        "infoType": "important"
       }
     ]
   },
