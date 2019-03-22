@@ -60,7 +60,7 @@
           "optionHelpText": [
             "",
             "",
-            "You are only authorised for completing this form. If you will act on behalf of this company in future tax affairs you must be authorised by HMRC.",
+            "You are only authorised to complete this form. If you will act on behalf of this company for its tax affairs you must get authorised as an agent by HMRC. Details of how to do this will be sent to the client.",
             ""
           ]
         }
@@ -85,10 +85,10 @@
       "shortName": "Company details",
       "fields": [
         {
-          "type": "choice",
           "id": "companyNameChange",
+          "type": "choice",
           "label": "Has this company had a different name?",
-          "helpText": "(If your company name has changed since you last registered it will not be updated in other government services.) If the company has had more than 1 name change, provide the last name the company had.",
+          "helpText": "If the company has changed its name we will ask you to provide the previous name",
           "choices": [
             "Yes",
             "No"
@@ -103,9 +103,42 @@
         {
           "id": "fullCompanyName",
           "type": "text",
-          "label": "Company name",
+          "label": "Enter the previous company name",
           "shortName": "Company name",
+          "helpText": "Provide the last name your company had before changing to its current name",
           "format": "shortText"
+        }
+      ]
+    },
+    {
+      "title": "Does the company already have a Corporation Tax Unique Taxpayer Reference (UTR)?",
+      "shortName": "Corporation Tax Unique Taxpayer Reference",
+      "fields": [
+        {
+          "id": "uTRChoice",
+          "type": "choice",
+          "label": "Does the company already have a Corporation Tax Unique Taxpayer Reference (UTR)?",
+          "shortName": "CT UTR",
+          "helpText": "You will already have a UTR if the company has previously been chargeable to UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
+      "shortName": "Corporation Tax Unique Taxpayer Reference",
+      "includeIf": "${uTRChoice=0}",
+      "fields": [
+        {
+          "id": "uKUTR",
+          "type": "text",
+          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
+          "shortName": "CT UTR",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr"
         }
       ]
     },
@@ -154,26 +187,47 @@
               "label": "Country"
             }
           ]
+        }
+      ]
+    },
+    {
+      "title": "Company contact details",
+      "fields": [
+        {
+          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
+          "type": "info",
+          "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n",
+          "infoText": "Provide the contact details of someone within the company who we can contact about its tax affairs.",
+          "infoType": "noformat"
         },
         {
-          "id": "businessTelephone",
+          "id": "nameOfContactPerson",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telephoneNumberOfContactPerson",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "Include the country code",
-          "format": "telephoneNumber"
+          "helpText": "Include the country code"
         },
         {
-          "id": "businessEmail",
+          "id": "emailOfContactPerson",
           "type": "text",
-          "label": "Email address",
-          "shortName": "Email address",
-          "format": "email"
+          "label": "Email address"
         }
       ]
     },
     {
       "title": "Company director details",
       "fields": [
+        {
+          "id": "generatedId_4955607b_6452_4980_841a_f4716d8fee3b",
+          "type": "info",
+          "label": "If there is more than one director, enter the details of the nominated company director. ",
+          "infoText": "If there is more than one company director, enter the details of the nominated director.",
+          "infoType": "noformat"
+        },
         {
           "id": "fullName1",
           "type": "text",
@@ -186,45 +240,6 @@
           "label": "Home address",
           "international": "true",
           "postcodeLookup": "no"
-        },
-        {
-          "type": "choice",
-          "id": "companyContact",
-          "label": "Is this the person HMRC can contact about the company's tax affairs?",
-          "format": "horizontal",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the company contact details",
-      "includeIf": "${companyContact=1}",
-      "fields": [
-        {
-          "type": "info",
-          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
-          "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n\nWe will contact this person if we have a question about this registration.",
-          "infoText": "Provide the contact details of someone within the company authorised to discuss this form with HMRC. \n\nWe will contact this person about the company's tax affairs.",
-          "infoType": "noformat"
-        },
-        {
-          "type": "text",
-          "id": "nameOfContactPerson",
-          "label": "Full name"
-        },
-        {
-          "type": "text",
-          "id": "telephoneNumberOfContactPerson",
-          "label": "Telephone number",
-          "helpText": "Include the country code"
-        },
-        {
-          "type": "text",
-          "id": "emailOfContactPerson",
-          "label": "Email address"
         }
       ]
     },
@@ -249,7 +264,7 @@
           "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
           "type": "info",
           "label": "You must use accepted country names to complete our forms. If you do not, we might reject your filing.",
-          "infoText": "You must use the english alphabet and official country names to complete our forms, for example, for USA enter United States.",
+          "infoText": "You must use the english alphabet and official country names to complete our forms. For example, for USA enter United States.",
           "infoType": "standard"
         },
         {
@@ -293,46 +308,14 @@
       ]
     },
     {
-      "title": "Does the company you are registering already have a Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "fields": [
-        {
-          "id": "uTRChoice",
-          "type": "choice",
-          "label": "Does the company you are registering already have a Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT UTR",
-          "helpText": "You will already have a CT UTR if the company has previously been chargeable to UK Corporation Tax, for example, if it has traded as a Property Developer or has had a permanent UK establishment in the past.",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "includeIf": "${uTRChoice=0}",
-      "fields": [
-        {
-          "id": "uKUTR",
-          "type": "text",
-          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT UTR",
-          "helpText": "A Unique Taxpayer Reference is 10 numbers like 12345 67890. It will be on tax returns and other letters about Corporation Tax. It may be called 'reference', 'UTR' or 'official use'.  ",
-          "format": "utr"
-        }
-      ]
-    },
-    {
-      "title": "Does the company have an Income Tax Unique Taxpayer Reference?",
+      "title": "Does the company have an Income Tax Unique Taxpayer Reference (UTR)?",
       "shortName": "Income Tax UTR",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does the company have a UK Income Tax Unique Taxpayer Reference?",
-          "helpText": "Your company will have a reference number if it has received or currently receives rental income as a non-resident landlord. A Unique Taxpayer Reference is 10 numbers like 12345 67890.  ",
+          "label": "Does the company have an Income Tax Unique Taxpayer Reference (UTR)?",
+          "helpText": "Your company will have a UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
             "No"
@@ -344,30 +327,29 @@
       "title": "Enter the company's Income Tax Unique Taxpayer Reference",
       "fields": [
         {
-          "type": "text",
           "id": "incomeTaxRef",
+          "type": "text",
           "label": "Enter the company's Income Tax Unique Taxpayer Reference",
-          "helpText": "Non-resident Company Income Tax Reference...You can find this on..."
+          "helpText": "This is 10 numbers, for example 12345 67890. You can find this on previous tax returns and other notices from HMRC. (?)"
         }
       ]
     },
     {
-      "title": "When did you dispose of the UK property?",
+      "title": "Enter the date the company disposed of the UK property",
       "fields": [
+        {
+          "id": "generatedId_0130f221_25c0_411b_9130_88a70b423905",
+          "type": "info",
+          "label": "This is the date the property transferred out of your company's possession. Disposal refers to a\nsale, gift or transfer of ownership",
+          "infoText": "This is the date the property transferred out of your company's possession (?). Disposal refers to a\nsale, gift or transfer of ownership.",
+          "infoType": "noformat"
+        },
         {
           "id": "dateCameWithinChargeUK",
           "type": "date",
           "label": "Date of disposal",
           "helpText": "For example, 01 08 2018",
           "mandatory": "true"
-        },
-        {
-          "id": "generatedId_95db4abe_93c1_46de_a8dc_cb197ffd0be4",
-          "type": "info",
-          "label": "This is the date the property transferred out of your company's possession. Disposal refers to a sale, gift or transfer of ownership",
-          "helpText": "This is the date the property transferred out of your company's possession. Disposal refers to a sale, gift or transfer of ownership",
-          "infoText": "This is the date the property transferred out of your company's possession. Disposal refers to a sale, gift or transfer of ownership",
-          "infoType": "noformat"
         }
       ]
     }
