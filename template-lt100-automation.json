@@ -12,21 +12,23 @@
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "LF",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Landfill Tax registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Landfill Tax registration number",
-          "format": "text(15, 15)"
+          "label": "Landfill Tax registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Landfill Tax",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Landfill Tax",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -45,14 +47,14 @@
   },
   "sections": [
     {
-      "title": "Enter your client's reference number",
+      "title": "Enter your client's Landfill Tax details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
           "id": "accessCode",
           "type": "text",
           "label": "Access code",
-          "value": "${eeitt.agent}",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
           "submitMode": "derived"
         },
         {
@@ -60,20 +62,22 @@
           "type": "text",
           "label": "Landfill Tax registration number for your client",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        }
-      ]
-    },
-    {
-      "title": "Choose your client's Landfill Tax return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "fields": [
+        },
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "${landfillTaxRegAgent}",
-          "regimeType": "LFT"
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
@@ -120,23 +124,20 @@
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "mandatory": "true"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
+          "mandatory": "true"
         },
         {
           "id": "positionInTheCompanyBusiness",
           "type": "text",
           "label": "Job title",
           "shortName": "Job title",
-          "mandatory": "true",
-          "errorMessage": "Enter your job title"
+          "mandatory": "true"
         }
       ]
     },
@@ -155,8 +156,7 @@
           "id": "businessName",
           "type": "text",
           "label": "Registered business name",
-          "mandatory": "true",
-          "errorMessage": "Enter your business name"
+          "mandatory": "true"
         },
         {
           "id": "emailBusiness",
@@ -172,8 +172,7 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "mandatory": "true"
         }
       ]
     },
@@ -192,8 +191,7 @@
           "id": "businessNameAgent",
           "type": "text",
           "label": "Registered business name",
-          "mandatory": "true",
-          "errorMessage": "Enter your registered business name"
+          "mandatory": "true"
         },
         {
           "id": "emailAgent",
@@ -209,8 +207,7 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes.",
           "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "mandatory": "true"
         }
       ]
     },
@@ -691,12 +688,13 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{#if landfillTaxReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/LFT/eeits/{{either landfillTaxReg landfillTaxRegAgent}}",
+      "uri": "cross-regime/return/LFT/eeits/{{landfillTaxReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                     'returnsDetails':{                       'isrScenario':'Z048',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{either landfillTaxReg landfillTaxRegAgent}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BOX1_TAX_DUE',                          'paramValue':'{{stripCommas taxDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX2_UNDERDECLARATIONS',                          'paramValue':'{{stripCommas (either underDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX3_TOTAL',                          'paramValue':'{{stripCommas Box3Total}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX4_OVERDECLARATIONS',                          'paramValue':'{{stripCommas (either overDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX5_TAX_CREDIT_CLAIMED',                          'paramValue':'0'},                         {'paramSequence':'01',                          'paramName':'A_BOX6_BAD_DEBT_RELIEF',                          'paramValue':'{{stripCommas badDebtReliefClaimed}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX7_OTHER_CREDITS',                          'paramValue':'{{stripCommas otherCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX8_TOTAL_CREDITS',                          'paramValue':'{{stripCommas Box8TotalCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX9_NET_TAX_DUE',                          'paramValue':'{{stripCommas (either totaTaxDueFinal totaTaxDueFinalUnderOver)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX10_STANDARD_RATE_WASTE',                          'paramValue':'{{stripCommas standardRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX11_LOWER_RATE_WASTE',                          'paramValue':'{{stripCommas lowerRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX12_EXEMPT_WASTE',                          'paramValue':'{{stripCommas exemptmaterial}}'},                         {{#each environmentalBodyNumber}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_ENV_BODY',                          'paramValue':'{{.}}'},                         {{/each}}                         {{#each amountOfContribution}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_CONTRIBUTION',                          'paramValue':'{{.}}'},                         {{/each}}                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'Z048',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{landfillTaxReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BOX1_TAX_DUE',                          'paramValue':'{{stripCommas taxDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX2_UNDERDECLARATIONS',                          'paramValue':'{{stripCommas (either underDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX3_TOTAL',                          'paramValue':'{{stripCommas Box3Total}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX4_OVERDECLARATIONS',                          'paramValue':'{{stripCommas (either overDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX5_TAX_CREDIT_CLAIMED',                          'paramValue':'0'},                         {'paramSequence':'01',                          'paramName':'A_BOX6_BAD_DEBT_RELIEF',                          'paramValue':'{{stripCommas badDebtReliefClaimed}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX7_OTHER_CREDITS',                          'paramValue':'{{stripCommas otherCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX8_TOTAL_CREDITS',                          'paramValue':'{{stripCommas Box8TotalCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX9_NET_TAX_DUE',                          'paramValue':'{{stripCommas (either totaTaxDueFinal totaTaxDueFinalUnderOver)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX10_STANDARD_RATE_WASTE',                          'paramValue':'{{stripCommas standardRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX11_LOWER_RATE_WASTE',                          'paramValue':'{{stripCommas lowerRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX12_EXEMPT_WASTE',                          'paramValue':'{{stripCommas exemptmaterial}}'},                         {{#each environmentalBodyNumber}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_ENV_BODY',                          'paramValue':'{{.}}'},                         {{/each}}                         {{#each amountOfContribution}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_CONTRIBUTION',                          'paramValue':'{{.}}'},                         {{/each}}                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
