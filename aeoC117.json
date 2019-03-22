@@ -1,4 +1,5 @@
 {
+  "_id": "C117-Apply-for-AEO",
   "formName": " C117 Apply for AEO",
   "description": "Fill in your application for Authorised Economic Operator certificate online",
   "developmentPhase": "beta",
@@ -122,20 +123,15 @@
           "label": "What is your registered business address?",
           "shortName": "What is your registered business address",
           "international": "true"
-        }
-      ]
-    },
-    {
-      "title": "Is the address of your primary place of business the same as your registered business address?",
-      "shortName": "Primary place of business",
-      "fields": [
+        },
         {
-          "id": "addressChoice2",
           "type": "choice",
-          "label": "Is the address of your primary place of business the same as your registered business address?",
-          "shortName": "Primary place of business same as registered business address",
-          "format": "yesno",
-          "errorMessage": "Select whether the address of your primary place of business is the same as your registered business address"
+          "id": "addressChoice2",
+          "label": "Is this address your primary place of business?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -162,11 +158,12 @@
           "type": "choice",
           "label": "What authorisation do you require?",
           "shortName": "AEO authorisation",
+          "helpText": "Select all authorisations that you require",
+          "multivalue": "true",
           "errorMessage": "Select which authorisation you require",
           "choices": [
             "Customs simplification",
-            "Security and safety",
-            "Both"
+            "Security and safety"
           ]
         }
       ]
@@ -287,7 +284,7 @@
           "type": "text",
           "label": "Legal registration number",
           "shortName": "Legal number",
-          "helpText": "Your legal registration number is 8 alpha and/or numerical digits",
+          "helpText": "Also known as a Company registration number (CRN) your legal registration number is 8 alpha and/or numerical digitsy",
           "format": "text(8,8)"
         }
       ]
@@ -299,19 +296,20 @@
         {
           "id": "applicantName",
           "type": "text",
-          "label": "Name of the person responsible for customs matters",
+          "label": "Full name of the person responsible for customs matters",
           "shortName": "Responsible person's name"
         },
         {
           "id": "emailContacta",
           "type": "text",
           "label": "Email address",
+          "helpText": "We require this address if we are unable to contact your designated contact within the company",
           "format": "email"
         },
         {
           "id": "rPC",
           "type": "choice",
-          "label": "Is the address of this person the same as any previously mentioned address?",
+          "label": "Is the contact address of this person the same as any previously mentioned address?",
           "shortName": "Responsible person address same as",
           "format": "vertical",
           "errorMessage": "Select whether the responsible person's address is the same as any other address",
@@ -341,7 +339,7 @@
     {
       "title": "Designated contact",
       "shortName": "Designated contact",
-      "description": "This is the point of contact for HMRC about the application.",
+      "description": "We will use these details to contact you about your application.",
       "fields": [
         {
           "id": "contactName",
@@ -610,7 +608,7 @@
           "id": "grantedSimpInfo1",
           "type": "info",
           "label": "Examples of simplifications and facilitations",
-          "infoText": "These can be safety certificates issued on the basis of international conventions:\n\n* of an international standard of the international organisation for standardisation \n\n* or a European standard of a European standardisation bodies \n\n* or AEO-equivalent certificates issued in third countries",
+          "infoText": "These can be safety certificates issued on the basis of international conventions that are:\n\n- of an international standard of the international organisation for standardisation \n\n- or a European standard of a European standardisation body \n\n- or AEO-equivalent certificates issued in third countries",
           "infoType": "long"
         }
       ]
@@ -1018,6 +1016,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C117-Apply-for-AEO"
+  "submitSuccessUrl": "deprecated"
 }
