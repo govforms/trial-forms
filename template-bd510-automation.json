@@ -8,25 +8,27 @@
   "authConfig": {
     "authModule": "hmrc",
     "agentAccess": "requireMTDAgentEnrolment",
-    "enrolmentCheck": "always",
+    "enrolmentCheck": "forNonAgents",
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "BD",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Bingo Duty registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Bingo Duty registration number",
-          "format": "text(15, 15)"
+          "label": "Bingo Duty registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Bingo Duty",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Bingo Duty",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -45,14 +47,14 @@
   },
   "sections": [
     {
-      "title": "Enter your client’s reference number (also known as an access code)",
+      "title": "Enter your client's Bingo Duty details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
           "id": "agentReferenceNumber",
           "type": "text",
           "label": "Agent reference number",
-          "value": "${eeitt.agent}",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
           "submitMode": "derived"
         },
         {
@@ -67,21 +69,37 @@
           "type": "info",
           "label": "",
           "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Choose your client's Bingo Duty return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "title": "You are completing a Bingo Duty return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "$(BDreferencenumber)",
-          "regimeType": "BD"
+          "id": "BDReg",
+          "type": "text",
+          "label": "",
+          "shortName": "Bingo Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -89,15 +107,6 @@
       "title": "Choose your Bingo Duty return dates",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
-        {
-          "id": "BDReg",
-          "type": "text",
-          "label": "Bingo Duty registration number: ",
-          "shortName": "Bingo Duty registration number",
-          "value": "${user.enrolledIdentifier}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
         {
           "id": "returnPeriodInfo",
           "type": "info",
@@ -110,7 +119,7 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "${user.enrolledIdentifier}",
+          "idNumber": "${BDReg}",
           "regimeType": "BD"
         }
       ]
@@ -577,21 +586,22 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{#if BDReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/BD/eeits/{{either BDreg BDreferencenumber}}",
+      "uri": "cross-regime/return/BD/eeits/{{BDReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                     'returnsDetails':{                       'isrScenario':'ZBD1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{either BDreg BDreferencenumber}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX1_PAYMENTS',                          'paramValue':'{{stripCommas amountDueAsPayments}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX2_EXPENDITURE',                          'paramValue':'{{stripCommas amountSpentWinning}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX3_LOSSCF',                          'paramValue':'{{stripCommas bingoLossesCarried}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX4_TOTALEXP',                          'paramValue':'{{stripCommas (either totalExpen totalExpenNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX5_PROFITORLOSS',                          'paramValue':'{{stripCommas (either bingoProfitsLosses bingoProfitsNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX6_DUTY_DUE',                          'paramValue':'{{stripCommas (either dutyDueBingoProfitsLosses dutyDueBingoProfitsNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX7_UNDERDEC',                          'paramValue':'{{stripCommas bingoUnderDec}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX8_TOTALDUE',                          'paramValue':'{{stripCommas (either totalAmountToPayLossesUnderDec totalAmountLossesNoUnderDue totalAmountNoLossesNoUnderDutyDue totalAmountNoLossesUnder 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZBD1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{BDReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX1_PAYMENTS',                          'paramValue':'{{stripCommas amountDueAsPayments}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX2_EXPENDITURE',                          'paramValue':'{{stripCommas amountSpentWinning}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX3_LOSSCF',                          'paramValue':'{{stripCommas bingoLossesCarried}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX4_TOTALEXP',                          'paramValue':'{{stripCommas (either totalExpen totalExpenNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX5_PROFITORLOSS',                          'paramValue':'{{stripCommas (either bingoProfitsLosses bingoProfitsNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX6_DUTY_DUE',                          'paramValue':'{{stripCommas (either dutyDueBingoProfitsLosses dutyDueBingoProfitsNoLosses)}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX7_UNDERDEC',                          'paramValue':'{{stripCommas bingoUnderDec}}'},                         {'paramSequence':'01',                          'paramName':'A_BD_BOX8_TOTALDUE',                          'paramValue':'{{stripCommas (either totalAmountToPayLossesUnderDec totalAmountLossesNoUnderDue totalAmountNoLossesNoUnderDutyDue totalAmountNoLossesUnder 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull BDreg)}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull BDReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "BD510",
-      "customerId": "${BDreg}",
+      "customerId": "${BDReg}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
@@ -609,11 +619,11 @@
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull BDreg)}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull BDReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "BD510",
-      "customerId": "${BDreg}",
+      "customerId": "${BDReg}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     },
