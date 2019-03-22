@@ -67,28 +67,26 @@
       ]
     },
     {
-      "title": "What is the current company name?",
+      "title": "What is the registered name of the company?",
       "shortName": "Company details",
       "fields": [
         {
           "id": "fullCompanyName_copy_1",
           "type": "text",
-          "label": "What is the current company name?",
+          "label": "What is the registered name of the company?",
           "shortName": "Company name",
-          "helpText": "Enter the name of the company you are registering",
           "format": "shortText"
         }
       ]
     },
     {
-      "title": "Has this company had a different name?",
+      "title": "Has this company had a different registered name?",
       "shortName": "Company details",
       "fields": [
         {
           "id": "companyNameChange",
           "type": "choice",
-          "label": "Has this company had a different name?",
-          "helpText": "If the company has changed its name we will ask you to provide the previous name",
+          "label": "Has this company had a different registered name?",
           "choices": [
             "Yes",
             "No"
@@ -97,29 +95,28 @@
       ]
     },
     {
-      "title": "Enter the previous company name",
+      "title": "What was the previous registered company name?",
       "includeIf": "${companyNameChange=0}",
       "fields": [
         {
           "id": "fullCompanyName",
           "type": "text",
-          "label": "Enter the previous company name",
+          "label": "What was the previous registered company name?",
           "shortName": "Company name",
-          "helpText": "Provide the last name your company had before changing to its current name",
           "format": "shortText"
         }
       ]
     },
     {
-      "title": "Does the company already have a Corporation Tax Unique Taxpayer Reference (UTR)?",
+      "title": "Does the company have a Corporation Tax Unique Taxpayer Reference (UTR)?",
       "shortName": "Corporation Tax Unique Taxpayer Reference",
       "fields": [
         {
           "id": "uTRChoice",
           "type": "choice",
-          "label": "Does the company already have a Corporation Tax Unique Taxpayer Reference (UTR)?",
+          "label": "Does the company have a Corporation Tax Unique Taxpayer Reference (UTR)?",
           "shortName": "CT UTR",
-          "helpText": "You will already have a UTR if the company has previously been chargeable to UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
+          "helpText": "The company will have a UTR if it has been previously chargeable for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
           "choices": [
             "Yes",
             "No"
@@ -149,13 +146,13 @@
           "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
           "type": "info",
           "label": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
-          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
+          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example, letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoType": "noformat"
         },
         {
           "id": "generatedId_5d115606_700a_49c4_9440_87256680a0ef",
           "type": "group",
-          "label": "Company address",
+          "label": "Address",
           "fields": [
             {
               "id": "addressOne",
@@ -191,7 +188,7 @@
       ]
     },
     {
-      "title": "Company contact details",
+      "title": "Contact person's details",
       "fields": [
         {
           "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
@@ -237,7 +234,7 @@
         {
           "id": "directorAddress1",
           "type": "address",
-          "label": "Home address",
+          "label": "DIrector's address",
           "international": "true",
           "postcodeLookup": "no"
         }
@@ -258,34 +255,27 @@
           "type": "text",
           "label": "Country of incorporation",
           "shortName": "Country of incorporation",
-          "helpText": "This is where the company was formed"
-        },
-        {
-          "id": "generatedId_91687efb_ab31_41e6_83d7_61c471ee7f18",
-          "type": "info",
-          "label": "You must use accepted country names to complete our forms. If you do not, we might reject your filing.",
-          "infoText": "You must use the english alphabet and official country names to complete our forms. For example, for USA enter United States.",
-          "infoType": "standard"
+          "helpText": "Enter the official country name in English."
         },
         {
           "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
           "type": "info",
-          "label": "Where to find the official country names ",
-          "infoText": "Go to GOV.UK and search for 'Nationalities and countries for company filings', in this guidance select the document 'Geographical names'. \nUse the list of countries and territories when doing your company filings.",
+          "label": "How to find an official country name ",
+          "infoText": "Search GOV.UK for 'Nationalities and countries for company filings'. Go to the 'Geographical names' guidance to find the official names of countries and territories.",
           "infoType": "long"
         }
       ]
     },
     {
-      "title": "Does the company have a reference number or equivalent?",
+      "title": "Does the company have a registration number or equivalent in its country?",
       "shortName": "Company reference number",
       "fields": [
         {
           "id": "cRnYesNo",
           "type": "choice",
-          "label": "Does the company have a reference number or equivalent?",
+          "label": "Does the company have a registration number or equivalent in its country?",
           "shortName": "Reference",
-          "helpText": "This is the number given to the company in its country of incorporation. This may also be referred to as a registration number.",
+          "helpText": "This is the number given to the company in its country of incorporation. This may also be called a reference number.",
           "choices": [
             "Yes",
             "No"
@@ -294,27 +284,27 @@
       ]
     },
     {
-      "title": "What is the company reference number?",
+      "title": "What is the company registration number or equivalent?",
       "shortName": "Company reference number",
       "includeIf": "${cRnYesNo=0}",
       "fields": [
         {
           "id": "cRnRef",
           "type": "text",
-          "label": "What is the company reference number?",
+          "label": "What is the company registration number or equivalent?",
           "shortName": "Company reference number",
-          "helpText": "This information will help us to confirm its identity"
+          "helpText": "This information will help us to confirm its identity."
         }
       ]
     },
     {
-      "title": "Does the company have an Income Tax Unique Taxpayer Reference (UTR)?",
+      "title": "Does (the company) have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
       "shortName": "Income Tax UTR",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does the company have an Income Tax Unique Taxpayer Reference (UTR)?",
+          "label": "Does (the company) have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
           "helpText": "Your company will have a UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
@@ -324,31 +314,24 @@
       ]
     },
     {
-      "title": "Enter the company's Income Tax Unique Taxpayer Reference",
+      "title": "What is (the company's) UK Self Assessment Unique Taxpayer Reference?",
       "fields": [
         {
           "id": "incomeTaxRef",
           "type": "text",
-          "label": "Enter the company's Income Tax Unique Taxpayer Reference",
+          "label": "What is (the company's) UK Self Assessment Unique Taxpayer Reference?",
           "helpText": "This is 10 numbers, for example 12345 67890. You can find this on previous tax returns and other notices from HMRC. (?)"
         }
       ]
     },
     {
-      "title": "Enter the date the company disposed of the UK property",
+      "title": "When did the company dispose of the UK property?",
       "fields": [
-        {
-          "id": "generatedId_0130f221_25c0_411b_9130_88a70b423905",
-          "type": "info",
-          "label": "This is the date the property transferred out of your company's possession. Disposal refers to a\nsale, gift or transfer of ownership",
-          "infoText": "This is the date the property transferred out of your company's possession (?). Disposal refers to a\nsale, gift or transfer of ownership.",
-          "infoType": "noformat"
-        },
         {
           "id": "dateCameWithinChargeUK",
           "type": "date",
-          "label": "Date of disposal",
-          "helpText": "For example, 01 08 2018",
+          "label": "",
+          "helpText": "This is the date the property transferred out of the company's possession (?). Disposal means a\nsale, gift or transfer of ownership. For example, 01 08 2018",
           "mandatory": "true"
         }
       ]
