@@ -7,25 +7,27 @@
   "authConfig": {
     "authModule": "hmrc",
     "agentAccess": "requireMTDAgentEnrolment",
-    "enrolmentCheck": "always",
+    "enrolmentCheck": "forNonAgents",
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "IP",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Insurance Premium Tax registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Insurance Premium Tax registration number",
-          "format": "text(15, 15)"
+          "label": "Insurance Premium Tax registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Insurance Premium Tax",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Insurance Premium Tax",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -51,7 +53,7 @@
           "id": "agentReferenceNumber",
           "type": "text",
           "label": "Agent reference number",
-          "value": "${eeitt.agent}",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
           "submitMode": "derived"
         },
         {
@@ -64,21 +66,37 @@
           "type": "info",
           "label": "",
           "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Choose your client's Insurance Premium Tax return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
+      "title": "You are completing an Insurance Premium Tax return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "$(IPTreferencenumber)",
-          "regimeType": "IPT"
+          "id": "IPTReg",
+          "type": "text",
+          "label": "",
+          "shortName": "Insurance Premium Tax registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -87,15 +105,6 @@
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
       "fields": [
-        {
-          "id": "IPTReg",
-          "type": "text",
-          "label": "Insurance Premium Tax registration number: ",
-          "shortName": "Insurance Premium Tax registration number",
-          "value": "${user.enrolledIdentifier}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
         {
           "id": "returnPeriodInfo",
           "type": "info",
@@ -108,7 +117,7 @@
           "type": "hmrcTaxPeriod",
           "label": "Select tax period",
           "idType": "eeits",
-          "idNumber": "${user.enrolledIdentifier}",
+          "idNumber": "${IPTReg}",
           "regimeType": "IPT"
         }
       ]
@@ -482,12 +491,13 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{#if IPTReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/IPT/eeits/{{either IPTReg IPTreferencenumber}}",
+      "uri": "cross-regime/return/IPT/eeits/{{IPTReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{either IPTReg IPTreferencenumber}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {{#underDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfStandardRate.[0]}}                         {{#underDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfHigherRate.[0]}}                         {{#totalIPTAndUnderDecs.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas .}}'},                         {{/totalIPTAndUnderDecs.[0]}}                         {{#overDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfStandardRate.[0]}}                         {{#overDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfHigherRate.[0]}}                         {{#overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX9_NETTAXDUE',                          'paramValue':'{{stripCommas (either netTaxPayable netTaxRefund)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{IPTReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {{#underDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfStandardRate.[0]}}                         {{#underDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfHigherRate.[0]}}                         {{#totalIPTAndUnderDecs.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas .}}'},                         {{/totalIPTAndUnderDecs.[0]}}                         {{#overDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfStandardRate.[0]}}                         {{#overDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfHigherRate.[0]}}                         {{#overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX9_NETTAXDUE',                          'paramValue':'{{stripCommas (either netTaxPayable netTaxRefund)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
