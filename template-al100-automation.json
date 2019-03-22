@@ -12,20 +12,20 @@
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "AL",
     "enrolmentSection": {
-      "title": "Register for enrolment",
+      "title": "Enter your Aggregates Levy registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Aggregates Levy registration number",
+          "label": "Aggregates Levy registration number",
           "format": "text(15, 15)",
           "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Aggregates Levy",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Aggregates Levy",
           "format": "text(5, 8)",
           "mandatory": "true",
           "displayWidth": "s"
@@ -54,7 +54,7 @@
           "id": "accessCode",
           "type": "text",
           "label": "Access code",
-          "value": "${eeitt.agent}",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
           "submitMode": "derived"
         },
         {
@@ -62,21 +62,22 @@
           "type": "text",
           "label": "Registration number",
           "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        }
-      ]
-    },
-    {
-      "title": "Choose your client's Aggregate Levy return dates",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "The return dates are on the notice to file letter we sent out telling your client when their return is due.",
-      "fields": [
+        },
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "${aggregatesLevyRegAgent}",
-          "regimeType": "AGL"
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
@@ -109,7 +110,7 @@
         {
           "id": "returnPeriod",
           "type": "hmrcTaxPeriod",
-          "label": "",
+          "label": "Select tax period",
           "idType": "eeits",
           "idNumber": "${aggregatesLevyReg}",
           "regimeType": "AGL"
@@ -131,6 +132,12 @@
           "id": "regContactNameAgent",
           "type": "text",
           "label": "Full name"
+        },
+        {
+          "id": "businessNameAgent",
+          "type": "text",
+          "label": "Registered business name",
+          "mandatory": "true"
         },
         {
           "id": "RegPhoneNumberAgent",
@@ -170,6 +177,12 @@
           "id": "regContactName",
           "type": "text",
           "label": "Full name"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Registered business name",
+          "mandatory": "true"
         },
         {
           "id": "regPhoneNumber",
@@ -309,6 +322,7 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{#if aggregatesLevyReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
