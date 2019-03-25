@@ -7,26 +7,27 @@
   "emailTemplateId": "eeitt_ho930_confirmation",
   "authConfig": {
     "authModule": "hmrc",
-    "agentAccess": "requireMTDAgentEnrolment",
-    "enrolmentCheck": "forNonAgents",
+    "enrolmentCheck": "always",
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "BF",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Biofuels registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Biofuels registration number",
-          "format": "text(15, 15)"
+          "label": "Biofuels registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Biofuels",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Biofuels",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -44,18 +45,6 @@
     }
   },
   "sections": [
-    {
-      "title": "Enter your client's reference number",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "fields": [
-        {
-          "id": "ho930RegAgent",
-          "type": "text",
-          "label": "Client's Biofuels reference number",
-          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        }
-      ]
-    },
     {
       "title": "You are completing a Biofuels return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
@@ -99,22 +88,19 @@
         {
           "id": "businessName",
           "type": "text",
-          "label": "Business name",
-          "errorMessage": "Enter the business name"
+          "label": "Business name"
         },
         {
           "id": "businessPhone",
           "type": "text",
           "label": "Telephone number",
-          "format": "telephoneNumber",
-          "errorMessage": "Enter a valid phone number"
+          "format": "telephoneNumber"
         },
         {
           "id": "businessAddress",
           "type": "address",
           "label": "Registered business address",
-          "international": "yes",
-          "errorMessage": "Enter the registered business address"
+          "international": "yes"
         }
       ]
     },
@@ -372,15 +358,13 @@
         {
           "id": "contactName",
           "type": "text",
-          "label": "Full name",
-          "errorMessage": "Enter a full name"
+          "label": "Full name"
         },
         {
           "id": "contactEmailAddress",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "errorMessage": "Enter a valid email address"
+          "format": "email"
         }
       ]
     }
@@ -404,8 +388,7 @@
             "id": "declarationJobTitle",
             "type": "text",
             "label": "Job title",
-            "helpText": "Example: Finance Director",
-            "errorMessage": "Enter a job title"
+            "helpText": "Example: Finance Director"
           },
           {
             "id": "email",
@@ -466,51 +449,29 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/ZBFP/eeits/{{either ho930Reg ho930RegAgent}}",
+      "uri": "cross-regime/return/ZBFP/eeits/{{ho930Reg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                       'returnsDetails':{                         'isrScenario':'ZBF1',                         'regimeSpecificDetails':[]},                         'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                       'returnsDetails':{                         'isrScenario':'ZBF1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{ho930Reg}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {{#taxType33589Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIODIESEL_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33589Quantity.[0]}}                           {{#taxType33589DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIODIESEL_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33589DutyDue.[0]}}                           {{#taxType33571Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIO_NONROAD_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33571Quantity.[0]}}                           {{#taxType33571DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIO_NONROAD_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33571DutyDue.[0]}}                           {{#taxType33595Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIOETHANOL_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33595Quantity.[0]}}                           {{#taxType33595DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_BIOETHANOL_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33595DutyDue.[0]}}                           {{#taxType33541Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_HEAVY_OIL_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33541Quantity.[0]}}                           {{#taxType33541DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_HEAVY_OIL_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33541DutyDue.[0]}}                           {{#taxType33522Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_UNLEADED_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33522Quantity.[0]}}                           {{#taxType33522DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_UNLEADED_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33522DutyDue.[0]}}                           {{#taxType33520Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_LEADED_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33520Quantity.[0]}}                           {{#taxType33520DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_LEADED_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33520DutyDue.[0]}}                           {{#taxType33511Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_AVIATION_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33511Quantity.[0]}}                           {{#taxType33511DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_AVIATION_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33511DutyDue.[0]}}                           {{#taxType33597Quantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_AQUAMETH_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33597Quantity.[0]}}                           {{#taxType33597DutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_AQUAMETH_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxType33597DutyDue.[0]}}                           {{#taxCodeOtherGroupCode.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_1_DESC',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupCode.[0]}}                           {{#taxCodeOtherGroupQuantity.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_1_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupQuantity.[0]}}                           {{#taxCodeOtherGroupAmountDutyDue.[0]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_1_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupAmountDutyDue.[0]}}                           {{#taxCodeOtherGroupCode.[1]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_2_DESC',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupCode.[1]}}                           {{#taxCodeOtherGroupQuantity.[1]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_2_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupQuantity.[1]}}                           {{#taxCodeOtherGroupAmountDutyDue.[1]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_2_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupAmountDutyDue.[1]}}                           {{#taxCodeOtherGroupCode.[2]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_3_DESC',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupCode.[2]}}                           {{#taxCodeOtherGroupQuantity.[2]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_3_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupQuantity.[2]}}                           {{#taxCodeOtherGroupAmountDutyDue.[2]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_3_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupAmountDutyDue.[2]}}                           {{#taxCodeOtherGroupCode.[3]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_4_DESC',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupCode.[3]}}                           {{#taxCodeOtherGroupQuantity.[3]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_4_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupQuantity.[3]}}                           {{#taxCodeOtherGroupAmountDutyDue.[3]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_4_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupAmountDutyDue.[3]}}                           {{#taxCodeOtherGroupCode.[4]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_5_DESC',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupCode.[4]}}                           {{#taxCodeOtherGroupQuantity.[4]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_5_QTY',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupQuantity.[4]}}                           {{#taxCodeOtherGroupAmountDutyDue.[4]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_OTHER_5_AMNT',                            'paramValue':'{{stripCommas .}}'},                           {{/taxCodeOtherGroupAmountDutyDue.[4]}}                           {'paramSequence':'01',                            'paramName':'A_BFP_DUTY_DUE_SITE',                            'paramValue':'{{stripCommas totalDue}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                         'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ho930Reg)}}",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "HO930",
       "customerId": "${ho930Reg}",
-      "classificationType": "BT-NRU-Environmental",
-      "businessArea": "BT"
-    },
-    {
-      "id": "attendedDmsQueueDestinationAgent",
-      "type": "hmrcDms",
-      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ho930RegAgent)}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "HO930",
-      "customerId": "${ho930RegAgent}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ho930Reg)}}",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "HO930",
       "customerId": "${ho930Reg}",
-      "classificationType": "BT-CTO-EMCS Fallback",
-      "businessArea": "BT"
-    },
-    {
-      "id": "unattendedDmsQueueDestinationAgent",
-      "type": "hmrcDms",
-      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ho930RegAgent)}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "HO930",
-      "customerId": "${ho930RegAgent}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
