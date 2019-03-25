@@ -74,7 +74,7 @@
       ]
     },
     {
-      "title": "Has this company had a different registered name?",
+      "title": "Has this company previously had a different registered name?",
       "shortName": "",
       "fields": [
         {
@@ -112,7 +112,7 @@
           "type": "choice",
           "label": "Does the company have a Corporation Tax Unique Taxpayer Reference (UTR)?",
           "shortName": "Corporation Tax UTR",
-          "helpText": "The company will have a UTR if it has been previously chargeable for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
+          "helpText": "The company will have a Corporation Tax UTR if it has been previously chargeable for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
           "choices": [
             "Yes",
             "No"
@@ -142,7 +142,7 @@
           "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
           "type": "info",
           "label": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
-          "infoText": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example, letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
+          "infoText": "This is the official registration address listed on (your) country's public register. It is where official communication is sent, for example, letters from (your) government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoType": "noformat"
         },
         {
@@ -239,6 +239,56 @@
       ]
     },
     {
+      "title": "Company director details",
+      "includeIf": "${false}",
+      "fields": [
+        {
+          "id": "generatedId_cef71cf0_3158_4fa8_9488_c6ec0dc11972",
+          "type": "info",
+          "label": "If there is more than one director, enter the details of the nominated company director. ",
+          "infoText": "If there is more than one company director, enter the details of the nominated director.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullName1_copy_1",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress1_copy_1",
+          "type": "address",
+          "label": "Director's address",
+          "international": "true",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "telephoneNumber_copy_1",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAddressUser_copy_1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email",
+          "mandatory": "true"
+        },
+        {
+          "id": "contactPerson",
+          "type": "choice",
+          "label": "Do you want HMRC to also use these details for your ongoing Corporation Tax correspondence?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Enter the company's incorporation details",
       "shortName": "Company incorporation details",
       "fields": [
@@ -302,7 +352,7 @@
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does the company have a UK Self Assessment UTR",
+          "label": "Does the company have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
           "helpText": "Your company will have a Self Assessment UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
