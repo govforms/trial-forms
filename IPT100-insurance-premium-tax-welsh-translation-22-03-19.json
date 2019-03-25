@@ -1,0 +1,549 @@
+{
+  "_id": "IPT100-insurance-premium-tax-welsh-translation-22-03-19",
+  "formName": "Insurance Premium Tax return",
+  "description": "Fill in your insurance premium tax return form online",
+  "developmentPhase": "beta",
+  "emailTemplateId": "ipt100_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "IP",
+    "enrolmentSection": {
+      "title": "Enter your Insurance Premium Tax registration details",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Insurance Premium Tax registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Insurance Premium Tax",
+          "format": "text(5, 8)",
+          "mandatory": "true",
+          "displayWidth": "s"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client's registration number",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "agentReferenceNumber",
+          "type": "text",
+          "label": "Agent reference number",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "IPTreferencenumber",
+          "type": "text",
+          "label": "Client’s registration number"
+        },
+        {
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Insurance Premium Tax return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "IPTReg",
+          "type": "text",
+          "label": "",
+          "shortName": "Insurance Premium Tax registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Insurance Premium Tax return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${IPTReg}",
+          "regimeType": "IPT"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "businessTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Company name",
+          "shortName": "Name of company",
+          "format": "text"
+        },
+        {
+          "id": "positionInTheCompany",
+          "type": "text",
+          "label": "Your position",
+          "helpText": "For example, partner, director, agent"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "firstNameAgent",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastNameAgent",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "businessTelephoneAgent",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessNameAgent",
+          "type": "text",
+          "label": "Company name",
+          "shortName": "Name of company"
+        },
+        {
+          "id": "positionInTheCompanyAgent",
+          "type": "text",
+          "label": "Your position",
+          "helpText": "For example, director, company secretary, agent"
+        }
+      ]
+    },
+    {
+      "title": "IPT accounting schemes",
+      "shortName": "Special accounting scheme",
+      "fields": [
+        {
+          "id": "specialAccountingSchemeAdditional",
+          "type": "choice",
+          "label": "Are you using a special accounting scheme?",
+          "format": "yesno",
+          "errorMessage": "Select yes if you are using a special accounting scheme"
+        }
+      ]
+    },
+    {
+      "title": "Insurance Premium Tax",
+      "description": "Tell us how much IPT your business owes for this return period.",
+      "fields": [
+        {
+          "id": "standardRateIPTDueForThisPeriod",
+          "type": "text",
+          "label": "Standard rate IPT",
+          "helpText": "Deduct any standard credits that are due to you, enter 0 if nothing is owed at standard rate",
+          "format": "sterling"
+        },
+        {
+          "id": "higherRateIPTDueForThisPeriod",
+          "type": "text",
+          "label": "Higher rate IPT",
+          "helpText": "Deduct any higher rate credits that are due to you, enter 0 if nothing is owed at higher rate",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Previous declarations",
+      "fields": [
+        {
+          "id": "correctErrorsIPT",
+          "type": "info",
+          "label": "",
+          "infoText": "You can correct errors from previous Insurance Premium Tax returns if one of these criteria apply:\n * the amount does not exceed £10,000 \n * the amount is between £10,000 and £50,000 and does not exceed 1% of the net value of taxable premiums (excluding tax) due for this return period \nYou won't be able to correct errors if the amount exceeds £50,000, contact HMRC separately for advice.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "underOverChoice",
+          "type": "choice",
+          "label": "Do you wish to correct any errors from previous IPT returns?",
+          "format": "yesno",
+          "errorMessage": "Select yes if you want to correct any errors from previous returns"
+        }
+      ]
+    },
+    {
+      "title": "Tell us about your declarations",
+      "includeIf": "${underOverChoice = 0}",
+      "fields": [
+        {
+          "id": "underDecGroup",
+          "type": "group",
+          "label": "Under-declarations",
+          "fields": [
+            {
+              "id": "underDecOfStandardRate",
+              "type": "text",
+              "label": "Under-declarations of standard rate IPT",
+              "shortName": "Standard rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "mandatory": "false",
+              "validIf": "${underDecOfStandardRate>=0 && underDecOfStandardRate<=50000}"
+            },
+            {
+              "id": "underDecOfHigherRate",
+              "type": "text",
+              "label": "Under-declarations of higher rate IPT",
+              "shortName": "Higher rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "mandatory": "false",
+              "validIf": "${underDecOfHigherRate>=0 && underDecOfHigherRate<=50000}"
+            },
+            {
+              "id": "totalIPTAndUnderDecs",
+              "type": "text",
+              "label": "Total amount of IPT and previous under-declarations",
+              "format": "sterling",
+              "value": "${underDecOfStandardRate + underDecOfHigherRate + standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
+              "submitMode": "readonly",
+              "presentationHint": "totalValue",
+              "validIf": "${totalIPTAndUnderDecs>=-50000 && totalIPTAndUnderDecs<=50000}",
+              "errorMessage": "This amount exceeds £50,000. Please contact HMRC separately for advice."
+            }
+          ]
+        },
+        {
+          "id": "overDecGroup",
+          "type": "group",
+          "label": "Over-declarations",
+          "fields": [
+            {
+              "id": "overDecOfStandardRate",
+              "type": "text",
+              "label": "Over-declarations of standard rate IPT",
+              "shortName": "Standard rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "validIf": "${overDecOfStandardRate>=0 && overDecOfStandardRate<=50000}"
+            },
+            {
+              "id": "overDecOfHigherRate",
+              "type": "text",
+              "label": "Over-declarations of higher rate IPT",
+              "shortName": "Higher rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "validIf": "${overDecOfHigherRate>=0 && overDecOfHigherRate<=50000}"
+            },
+            {
+              "id": "overDecTotal",
+              "type": "text",
+              "label": "Total amount of over-declarations",
+              "format": "sterling",
+              "value": "${overDecOfStandardRate + overDecOfHigherRate}",
+              "submitMode": "readonly",
+              "presentationHint": "totalValue",
+              "validIf": "${overDecTotal>=0 && overDecTotal<=50000}",
+              "errorMessage": "This amount exceeds £50,000. Please contact HMRC separately for advice."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Your IPT balance",
+      "includeIf": "${underOverChoice=0 && totalIPTAndUnderDecs-overDecTotal<0}",
+      "fields": [
+        {
+          "id": "netTaxRefund",
+          "type": "text",
+          "label": "Net tax refundable",
+          "format": "sterling",
+          "value": "${totalIPTAndUnderDecs - overDecTotal}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Your IPT balance",
+      "includeIf": "${underOverChoice=0 && totalIPTAndUnderDecs-overDecTotal>=0}",
+      "fields": [
+        {
+          "id": "netTaxPayable",
+          "type": "text",
+          "label": "Net tax payable",
+          "format": "sterling",
+          "value": "${totalIPTAndUnderDecs - overDecTotal}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Your taxable premiums",
+      "includeIf": "${underOverChoice = 0}",
+      "fields": [
+        {
+          "id": "netValueOfTaxablePremiums0",
+          "type": "text",
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "helpText": "This is the amount you received minus any standard or higher rate credits",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "IPT payable total and taxable premiums",
+      "includeIf": "${underOverChoice = 1 && standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod<0}",
+      "fields": [
+        {
+          "id": "netTaxRefund1",
+          "type": "text",
+          "label": "Net tax repayable",
+          "format": "sterling",
+          "value": "${standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "netValueOfTaxablePremiums1",
+          "type": "text",
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "IPT payable total and taxable premiums",
+      "includeIf": "${underOverChoice = 1 && standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod>=0}",
+      "fields": [
+        {
+          "id": "netTaxPayable1",
+          "type": "text",
+          "label": "Net tax payable",
+          "format": "sterling",
+          "value": "${standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "netValueOfTaxablePremiums2",
+          "type": "text",
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "format": "sterling"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationTopInfo",
+        "type": "info",
+        "label": "Declaration copy",
+        "infoText": "Avoid financial penalties by ensuring we receive your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declarationfirstname",
+            "type": "text",
+            "label": "First name"
+          },
+          {
+            "id": "declarationlastname",
+            "type": "text",
+            "label": "Last name"
+          },
+          {
+            "id": "declarationstatus",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, Director, Financial Controller, Secretary"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "Enter an email address if you would like confirmation that your report has been submitted",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Information about paying IPT",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don't need to do anything else. Your payment will be collected automatically from your bank.\n\n Otherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your IPT registration number on any payment.\n\nSort code: 08-32-00\n\nAccount number: 11963163\n\nAccount name: HMRC Insurance Premium Tax\n\nFind out more about how to pay your IPT at\n https://www.gov.uk/guidance/pay-insurance-premium-tax"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4669767/Feedback-Survey-IPT) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{#if IPTReg}}true{{else}}false{{/if}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/IPT/eeits/{{IPTReg}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{IPTReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {{#underDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfStandardRate.[0]}}                         {{#underDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/underDecOfHigherRate.[0]}}                         {{#totalIPTAndUnderDecs.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas .}}'},                         {{/totalIPTAndUnderDecs.[0]}}                         {{#overDecOfStandardRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfStandardRate.[0]}}                         {{#overDecOfHigherRate.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecOfHigherRate.[0]}}                         {{#overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either . 0)}}'},                         {{/overDecTotal.[0]}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX9_NETTAXDUE',                          'paramValue':'{{stripCommas (either netTaxPayable netTaxRefund)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull IPTReg)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTReg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull IPTreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTreferencenumber}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull IPTReg)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTReg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull IPTreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTreferencenumber}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
+}
