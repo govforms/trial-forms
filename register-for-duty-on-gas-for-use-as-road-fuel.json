@@ -1,0 +1,414 @@
+{
+  "_id": "register-for-duty-on-gas-for-use-as-road-fuel",
+  "formName": "Register for Road Fuel Gas Duty ",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "lt_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${''}",
+    "dmsFormId": "LTREG"
+  },
+  "sections": [
+    {
+      "title": "What is your business type?",
+      "shortName": "Type of business",
+      "fields": [
+        {
+          "id": "businessType",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business type",
+          "choices": [
+            "Limited company",
+            "Sole trader",
+            "Limited liability partnership (LLP)",
+            "Partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the person filling in this form",
+      "shortName": "Details of the person filling in this form",
+      "description": "HMRC will use these details if we need to discuss this registration.",
+      "fields": [
+        {
+          "id": "contactName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will also use this to send you a confirmation email",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_92c4ce11_5c2c_4313_8f3a_24344ca50bac",
+          "type": "info",
+          "label": "",
+          "infoText": "##Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "id": "roleChoice",
+          "type": "choice",
+          "label": "Select the role relevant to you",
+          "shortName": "Role within business",
+          "helpText": "You must be one of the following to complete this registration",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Sole trader",
+            "Partner",
+            "Authorised individual"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "",
+            "",
+            "An authorised individual is someone within the business who is authorised by the business to register on their behalf"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the name of your business ",
+      "shortName": "Business details",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name",
+          "shortName": "Business name"
+        },
+        {
+          "id": "businessTradingName",
+          "type": "text",
+          "label": "Trading name (optional)",
+          "shortName": "Trading name",
+          "helpText": "Enter your trading name, if different from your business name ",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Principal place of business details",
+      "shortName": "Principal place of business details",
+      "fields": [
+        {
+          "id": "princPlaceBus",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details for the main place of business,  where the day-to-day business activities are managed. \n\nHMRC may use these details to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Business address",
+          "international": "true"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Business telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEmail",
+          "type": "text",
+          "label": "Business email address",
+          "format": "email"
+        },
+        {
+          "id": "corresChoice",
+          "type": "choice",
+          "label": "Do you also want to use these details for you ongoing Road Fuel Gas Duty correspondence?",
+          "shortName": "Use details for correspondence",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Preferred correspondence details",
+      "includeIf": "${corresChoice =1}",
+      "fields": [
+        {
+          "id": "prefContactDetails",
+          "type": "info",
+          "label": "",
+          "infoText": "We will use these for your ongoing Road Fuel Gas Duty\ncorrespondence and returns.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prefContactName",
+          "type": "text",
+          "label": "Full name of contact"
+        },
+        {
+          "id": "prefContactAdd",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "id": "prefEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "prefPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        }
+      ]
+    },
+    {
+      "title": "What do you plan to do with the gas?",
+      "shortName": "What you plan to do with the gas ",
+      "fields": [
+        {
+          "id": "sendSetSupplyChoice",
+          "type": "choice",
+          "label": "What do you plan to do with the gas?",
+          "shortName": "Intention for the gas",
+          "choices": [
+            "Send it out",
+            "Set it aside",
+            "Supply it"
+          ]
+        },
+        {
+          "id": "generatedId_e3653143_9a41_468e_908b_5cf124238f80",
+          "type": "info",
+          "label": "What do 'send out', 'set aside' and 'supply' mean?",
+          "infoText": "*Send out*\n\nThis is when you send out the gas from your premises for use as road fuel.\n\n*Set aside*\n\nThis is when it is decided that the gas will be used as a road fuel. For example, when you label the container of the gas to show it will be used as road fuel.\n\n*Supply*\n\nThis is when the gas is used as fuel for a road vehicle.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you expect your business to start being liable for duty on road fuel gas",
+      "shortName": "Date you expect to start being liable for duty on the gas",
+      "fields": [
+        {
+          "id": "taxLiabilityDate",
+          "type": "date",
+          "label": "",
+          "shortName": "Date",
+          "helpText": "Duty is due from the date you first send out, set aside or supply gas for use as road fuel. For example 21 04 2019"
+        }
+      ]
+    },
+    {
+      "title": "Estimate the duty you expect your business to owe for road fuel gas for the next 12 months",
+      "shortName": "Duty you will be liable for over next 12 months",
+      "fields": [
+        {
+          "id": "estTax",
+          "type": "text",
+          "label": "Estimate the duty you expect your business to owe for road fuel gas for the next 12 months",
+          "shortName": "Estimated amount",
+          "format": "sterling"
+        },
+        {
+          "id": "moreInfoCalculateTax",
+          "type": "info",
+          "label": "Where can I find out how to calculate the duty?",
+          "infoText": "1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'Excise Notice 76: excise duty on gas for use as fuel in road vehicles'.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Have any of the directors in your business been involved in any other road fuel gas businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses",
+      "includeIf": "${businessType=0}",
+      "fields": [
+        {
+          "id": "otherBusinessChoiceDirectors",
+          "type": "choice",
+          "label": "Have any of the directors in your business been involved in any other road fuel gas businesses in the last 2 years?",
+          "shortName": "Directors involved in other businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have any of the partners in your business been involved in any other road fuel gas businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses",
+      "includeIf": "${businessType=2|| businessType=3}",
+      "fields": [
+        {
+          "id": "otherBusinessChoicePartners",
+          "type": "choice",
+          "label": "Have any of the partners in your business been involved in any other road fuel gas businesses in the last 2 years?",
+          "shortName": "Partners involved in other businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you as the sole trader been involved in any other road fuel gas businesses in the last 2 years?",
+      "shortName": "Involvement in other registered businesses",
+      "includeIf": "${businessType=1}",
+      "fields": [
+        {
+          "id": "otherBusinessChoiceST",
+          "type": "choice",
+          "label": "Have you as the sole trader been involved in any other road fuel gas businesses in the last 2 years?",
+          "shortName": "Sole trader involved in other businesses",
+          "helpText": "",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the Road Fuel Gas Duty registration number for each business the directors have been involved in",
+      "shortName": "Registration number of each other business",
+      "includeIf": "${otherBusinessChoiceDirectors=0}",
+      "description": "Provide the registration number for each business the directors have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinesses",
+          "type": "group",
+          "label": "",
+          "shortName": "Road Fuel Gas Duty registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the Road Fuel Gas Duty registration number for each business the partners have been involved in",
+      "shortName": "Registration number of each other business ",
+      "includeIf": "${otherBusinessChoicePartners=0}",
+      "description": "Provide the registration number for each business the partners have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinessesPartners",
+          "type": "group",
+          "label": "",
+          "shortName": "Road Fuel Gas Duty registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus_copy_1",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the Road Fuel Gas Duty registration number for each business",
+      "shortName": "Registration number of each other business ",
+      "includeIf": "${otherBusinessChoiceST=0}",
+      "description": "Provide the registration number for each business that you, the sole trader,  have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinessesDirectors",
+          "type": "group",
+          "label": "",
+          "shortName": "Road Fuel Gas Duty registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus_copy_2",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
+        "infoType": "standard"
+      },
+      {
+        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
+        "type": "info",
+        "label": "",
+        "infoText": "##Complete your registration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
+        "type": "info",
+        "label": "",
+        "infoText": "To complete this registration you must also use form C&E930B to provide us with more details about your premises. You can access this from the guidance page for this service on GOV.UK.\n\nIf the business you are registering is a partnership, you’ll also need to email: enquiries.eeitts@hmrc.gov.uk to tell us so that we can ask you for more details about the partnership.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk"
+}
