@@ -14,13 +14,13 @@
   },
   "sections": [
     {
-      "title": "About you",
+      "title": "Enter the details of the person filling in this form",
       "fields": [
         {
           "id": "generatedId_ca7964b9_7243_4d51_8899_645c45cd2fb8",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration.",
+          "infoText": "You must be authorised by the company to fill in this form. HMRC will use these details if we need to discuss this registration.",
           "infoType": "noformat"
         },
         {
@@ -50,7 +50,7 @@
           "id": "positionInCompany",
           "type": "choice",
           "label": "Select the role relevant to you",
-          "helpText": "You must be one of the following to register on behalf of the business",
+          "helpText": "You must be one of the following to register on behalf of the company",
           "choices": [
             "Director",
             "Company secretary",
@@ -142,7 +142,7 @@
           "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
           "type": "info",
           "label": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
-          "infoText": "This is the official registration address listed on (your) country's public register. It is where official communication is sent, for example, letters from (your) government or tax authority.\n\nHMRC will send correspondence to this address.",
+          "infoText": "This is the company's official registration address listed on its country's public register. It is where official communication is sent, for example, letters from its government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoType": "noformat"
         },
         {
@@ -233,6 +233,7 @@
           "id": "directorAddress1",
           "type": "address",
           "label": "Director's address",
+          "shortName": "Address",
           "international": "true",
           "postcodeLookup": "no"
         }
@@ -280,7 +281,7 @@
         {
           "id": "contactPerson",
           "type": "choice",
-          "label": "Do you want HMRC to also use these details for your ongoing Corporation Tax correspondence?",
+          "label": "Is this the person HMRC can contact about the company's Corporation Tax affairs?",
           "choices": [
             "Yes",
             "No"
@@ -322,7 +323,7 @@
           "id": "cRnYesNo",
           "type": "choice",
           "label": "Does the company have a registration number or equivalent in its country?",
-          "shortName": "Reference",
+          "shortName": "Does the company have a registration number",
           "helpText": "This is the number given to the company in its country of incorporation. This may also be called a reference number.",
           "choices": [
             "Yes",
@@ -333,14 +334,14 @@
     },
     {
       "title": "What is the company registration number or equivalent?",
-      "shortName": "Company reference number",
+      "shortName": "Company registration number",
       "includeIf": "${cRnYesNo=0}",
       "fields": [
         {
           "id": "cRnRef",
           "type": "text",
           "label": "What is the company registration number or equivalent?",
-          "shortName": "Company reference number",
+          "shortName": "Company registration number",
           "helpText": "This information will help us to confirm its identity."
         }
       ]
@@ -353,6 +354,7 @@
           "id": "hMRCref",
           "type": "choice",
           "label": "Does the company have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
+          "shortName": "Does the company have a UK Self Assessment UTR",
           "helpText": "Your company will have a Self Assessment UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
@@ -371,12 +373,12 @@
           "type": "text",
           "label": "What is the company's UK Self Assessment Unique Taxpayer Reference?",
           "shortName": "Uk Self Assessment UTR",
-          "helpText": "This is 10 numbers, for example 12345 67890. You can find this on previous tax returns and other notices from HMRC. (?)"
+          "helpText": "This is 10 numbers, for example 12345 67890. This on SA700 tax returns or other correspondence from HMRC about the company's rental income."
         }
       ]
     },
     {
-      "title": "When did the company dispose of the UK property?",
+      "title": "When did the company dispose of the UK property or land?",
       "shortName": "Disposal details",
       "fields": [
         {
@@ -384,7 +386,7 @@
           "type": "date",
           "label": "",
           "shortName": "Date of disposal",
-          "helpText": "This is the date the property transferred out of the company's possession (?). Disposal means a\nsale, gift or transfer of ownership. For example, 01 08 2018",
+          "helpText": "A disposal means a sale, gift or transfer of ownership. This is the date the company ceased to own the property or land. For example, 01 08 2018",
           "mandatory": "true"
         }
       ]
