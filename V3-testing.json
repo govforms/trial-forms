@@ -75,12 +75,13 @@
     },
     {
       "title": "Has this company had a different registered name?",
-      "shortName": "Company details",
+      "shortName": "",
       "fields": [
         {
           "id": "companyNameChange",
           "type": "choice",
           "label": "Has this company had a different registered name?",
+          "shortName": "Has this company had a different registered name",
           "choices": [
             "Yes",
             "No"
@@ -90,13 +91,14 @@
     },
     {
       "title": "What was the previous registered company name?",
+      "shortName": "Previous registered company name",
       "includeIf": "${companyNameChange=0}",
       "fields": [
         {
           "id": "fullCompanyName",
           "type": "text",
           "label": "What was the previous registered company name?",
-          "shortName": "Company name",
+          "shortName": "Previous company name",
           "format": "shortText"
         }
       ]
@@ -109,7 +111,7 @@
           "id": "uTRChoice",
           "type": "choice",
           "label": "Does the company have a Corporation Tax Unique Taxpayer Reference (UTR)?",
-          "shortName": "CT UTR",
+          "shortName": "Corporation Tax UTR",
           "helpText": "The company will have a UTR if it has been previously chargeable for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
           "choices": [
             "Yes",
@@ -127,7 +129,7 @@
           "id": "uKUTR",
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "CT UTR",
+          "shortName": "Corporation Tax UTR",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
           "format": "utr"
         }
@@ -230,7 +232,7 @@
         {
           "id": "directorAddress1",
           "type": "address",
-          "label": "DIrector's address",
+          "label": "Director's address",
           "international": "true",
           "postcodeLookup": "no"
         }
@@ -295,12 +297,12 @@
     },
     {
       "title": "Does the company have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
-      "shortName": "Income Tax UTR",
+      "shortName": "UK Self Assessment UTR",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
-          "label": "Does the company have a UK Self Assessment Unique Taxpayer Reference (UTR)?",
+          "label": "Does the company have a UK Self Assessment UTR",
           "helpText": "Your company will have a Self Assessment UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
@@ -311,23 +313,27 @@
     },
     {
       "title": "What is the company's UK Self Assessment Unique Taxpayer Reference?",
+      "shortName": "UK Self Assessment UTR",
       "includeIf": "${hMRCref=0}",
       "fields": [
         {
           "id": "incomeTaxRef",
           "type": "text",
           "label": "What is the company's UK Self Assessment Unique Taxpayer Reference?",
+          "shortName": "Uk Self Assessment UTR",
           "helpText": "This is 10 numbers, for example 12345 67890. You can find this on previous tax returns and other notices from HMRC. (?)"
         }
       ]
     },
     {
       "title": "When did the company dispose of the UK property?",
+      "shortName": "Disposal details",
       "fields": [
         {
           "id": "dateCameWithinChargeUK",
           "type": "date",
           "label": "",
+          "shortName": "Date of disposal",
           "helpText": "This is the date the property transferred out of the company's possession (?). Disposal means a\nsale, gift or transfer of ownership. For example, 01 08 2018",
           "mandatory": "true"
         }
