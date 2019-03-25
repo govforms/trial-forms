@@ -12,21 +12,23 @@
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "GD",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Gaming Duty registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Gaming Duty registration number",
-          "format": "text(15, 15)"
+          "label": "Gaming Duty registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Gaming Duty",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Gaming Duty",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -45,14 +47,14 @@
   },
   "sections": [
     {
-      "title": "Enter your client’s reference number (also known as an access code)",
+      "title": "Enter your client’s Gaming Duty details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
           "id": "agentReferenceNumber",
           "type": "text",
           "label": "Agent reference number",
-          "value": "${eeitt.agent}",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
           "submitMode": "derived"
         },
         {
@@ -66,20 +68,22 @@
           "type": "info",
           "label": "",
           "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
-        }
-      ]
-    },
-    {
-      "title": "What are your client's return dates for this period?",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "fields": [
+        },
         {
-          "id": "returnPeriodAgent",
-          "type": "hmrcTaxPeriod",
-          "label": "Select tax period",
-          "idType": "eeits",
-          "idNumber": "${gamingdutyreferencenumber}",
-          "regimeType": "GD"
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
@@ -127,23 +131,20 @@
           "id": "firstNameBusiness",
           "type": "text",
           "label": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "mandatory": "true"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
           "label": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
+          "mandatory": "true"
         },
         {
           "id": "positionInTheCompanyBusiness",
           "type": "text",
           "label": "Job title",
           "shortName": "Job title",
-          "mandatory": "true",
-          "errorMessage": "Enter your job title"
+          "mandatory": "true"
         }
       ]
     },
@@ -155,23 +156,20 @@
           "id": "firstNameBusinessA",
           "type": "text",
           "label": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
+          "mandatory": "true"
         },
         {
           "id": "lastNameBusinessA",
           "type": "text",
           "label": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
+          "mandatory": "true"
         },
         {
           "id": "positionInTheCompanyBusinessA",
           "type": "text",
           "label": "Job title",
           "shortName": "Job title",
-          "mandatory": "true",
-          "errorMessage": "Enter your job title"
+          "mandatory": "true"
         }
       ]
     },
@@ -190,8 +188,7 @@
           "id": "businessName",
           "type": "text",
           "label": "Registered business name",
-          "mandatory": "true",
-          "errorMessage": "Enter your registered business name"
+          "mandatory": "true"
         },
         {
           "id": "emailAgent",
@@ -199,8 +196,7 @@
           "label": "Email address (optional)",
           "shortName": "Email address",
           "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter your email address"
+          "mandatory": "false"
         },
         {
           "id": "agentTelephone",
@@ -208,8 +204,7 @@
           "label": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "mandatory": "true"
         }
       ]
     },
@@ -536,14 +531,12 @@
           {
             "id": "declarationFullName",
             "type": "text",
-            "label": "Full name",
-            "errorMessage": "Enter your full name"
+            "label": "Full name"
           },
           {
             "id": "declarationStatus",
             "type": "text",
-            "label": "Job title",
-            "errorMessage": "Enter your job title"
+            "label": "Job title"
           }
         ]
       },
@@ -553,8 +546,7 @@
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm we’ve received your return",
         "format": "email",
-        "mandatory": "true",
-        "errorMessage": "Enter your email address"
+        "mandatory": "true"
       },
       {
         "id": "decPageContent",
@@ -622,13 +614,13 @@
     {
       "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
-      "includeIf": "{{lookup ^('nounderpayment' *) => 'true'; (* 'nopoa') => 'true'; (* *) => 'false'^                                             (either underAmount1 'nounderpayment')                                             (either totalPaidOnAccount1 'nopoa')}}",
+      "includeIf": "{{and (isNotNull GDreg) (isNull underAmount1) (equal totalPaidOnAccount1 0)}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/GD/eeits/{{either GDreg gamingdutyreferencenumber}}",
+      "uri": "cross-regime/return/GD/eeits/{{GDreg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                       'returnsDetails':{                         'isrScenario':'ZGD1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{either GDreg gamingdutyreferencenumber}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises1}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fifteenpercent}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable1}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'02',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises2}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas twentypercent}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable2}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'03',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises3}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas thirtypercent}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable3}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'04'},                           {'paramSequence':'04',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises4}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fortypercent}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable4}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'05'},                           {'paramSequence':'05',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises5}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fiftypercent}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable5}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_TOTALDUE',                            'paramValue':'{{stripCommas totalpayable1}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                         'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                       'returnsDetails':{                         'isrScenario':'ZGD1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{GDreg}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises1}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fifteenpercent}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable1}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'02',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises2}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas twentypercent}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable2}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'03',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises3}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas thirtypercent}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable3}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'04'},                           {'paramSequence':'04',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises4}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fortypercent}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable4}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'05'},                           {'paramSequence':'05',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises5}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fiftypercent}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable5}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_TOTALDUE',                            'paramValue':'{{stripCommas totalpayable1}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                         'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
