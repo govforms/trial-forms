@@ -7,26 +7,27 @@
   "emailTemplateId": "eeitt_ce930_confirmation",
   "authConfig": {
     "authModule": "hmrc",
-    "agentAccess": "requireMTDAgentEnrolment",
-    "enrolmentCheck": "forNonAgents",
+    "enrolmentCheck": "always",
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "GR",
     "enrolmentSection": {
-      "title": "Register for Enrolment",
+      "title": "Enter your Gas for use as road fuel registration details",
       "fields": [
         {
           "id": "etmpRegistrationNumber",
           "type": "text",
-          "label": "Enter your Biofuels registration number",
-          "format": "text(15, 15)"
+          "label": "Gas for use as road fuel registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Enter the postcode of your primary place of business",
-          "infoText": "This is the postcode you gave to HMRC when you registered for Biofuels",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Gas for use as road fuel",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "displayWidth": "s"
         }
       ],
       "identifiers": [
@@ -44,18 +45,6 @@
     }
   },
   "sections": [
-    {
-      "title": "Enter your client's reference number",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "fields": [
-        {
-          "id": "ce930RegAgent",
-          "type": "text",
-          "label": "Client's Gas for use as road fuel reference number",
-          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
-        }
-      ]
-    },
     {
       "title": "You are completing a Gas for use as road fuel return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
@@ -229,15 +218,13 @@
         {
           "id": "contactName",
           "type": "text",
-          "label": "Full name",
-          "errorMessage": "Enter a full name"
+          "label": "Full name"
         },
         {
           "id": "contactEmailAddress",
           "type": "text",
           "label": "Email address",
-          "format": "email",
-          "errorMessage": "Enter a valid email address"
+          "format": "email"
         }
       ]
     }
@@ -266,8 +253,7 @@
             "id": "declarationJobTitle",
             "type": "text",
             "label": "Job title",
-            "helpText": "Example: Finance Director",
-            "errorMessage": "Enter a job title"
+            "helpText": "Example: Finance Director"
           },
           {
             "id": "email",
@@ -329,51 +315,29 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/ZGRF/eeits/{{either ce930Reg ce930RegAgent}}",
+      "uri": "cross-regime/return/ZGRF/eeits/{{ce930Reg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod returnPeriodAgent}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod returnPeriodAgent}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod returnPeriodAgent}}',                     'returnsDetails':{                       'isrScenario':'ZGR1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{either ce930Reg ce930RegAgent}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_GRF_SITE_RETURN',                          'paramValue':'Dummy Site 1'},                         {'paramSequence':'01',                          'paramName':'A_GRF_EXCISE_DUTY_SITE',                          'paramValue':'{{stripCommas totalDue}}'},                         {'paramSequence':'01',                          'paramName':'A_GRF_DUTY_DUE_TOTAL',                          'paramValue':'{{stripCommas totalDue}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZGR1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{ce930Reg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_GRF_SITE_RETURN',                          'paramValue':'Dummy Site 1'},                         {{#taxType591Quantity.[0]}}                         {'paramSequence':'01',                          'paramName':'A_GRF_TYPE_591_QTY',                          'paramValue':'{{stripCommas .}}'},                         {{/taxType591Quantity.[0]}}                         {{#taxType592Quantity.[0]}}                          {'paramSequence':'01',                          'paramName':'A_GRF_TYPE_592_QTY',                          'paramValue':'{{stripCommas .}}'},                         {{/taxType592Quantity.[0]}}                         {{#taxType591DutyDue.[0]}}                         {'paramSequence':'01',                          'paramName':'A_GRF_TYPE_591_DUE',                          'paramValue':'{{stripCommas .}}'},                         {{/taxType591DutyDue.[0]}}                         {{#taxType592DutyDue.[0]}}                         {'paramSequence':'01',                          'paramName':'A_GRF_TYPE_592_DUE',                          'paramValue':'{{stripCommas .}}'},                         {{/taxType592DutyDue.[0]}}                         {'paramSequence':'01',                          'paramName':'A_GRF_EXCISE_DUTY_SITE',                          'paramValue':'{{stripCommas totalDue}}'},                         {'paramSequence':'01',                          'paramName':'A_GRF_DUTY_DUE_TOTAL',                          'paramValue':'{{stripCommas totalDue}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ce930Reg)}}",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "CE930",
       "customerId": "${ce930Reg}",
-      "classificationType": "BT-NRU-Environmental",
-      "businessArea": "BT"
-    },
-    {
-      "id": "attendedDmsQueueDestinationAgent",
-      "type": "hmrcDms",
-      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull ce930RegAgent)}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "CE930",
-      "customerId": "${ce930RegAgent}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ce930Reg)}}",
+      "includeIf": "{{isSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "CE930",
       "customerId": "${ce930Reg}",
-      "classificationType": "BT-CTO-EMCS Fallback",
-      "businessArea": "BT"
-    },
-    {
-      "id": "unattendedDmsQueueDestinationAgent",
-      "type": "hmrcDms",
-      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull ce930RegAgent)}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "CE930",
-      "customerId": "${ce930RegAgent}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
