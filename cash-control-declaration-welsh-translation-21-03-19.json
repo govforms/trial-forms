@@ -1,0 +1,661 @@
+{
+  "_id": "cash-control-declaration-welsh-translation-21-03-19",
+  "formName": "Cash Declaration",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "cash_declaration",
+  "emailParameters": [
+    {
+      "value": "${customerName}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
+  "authConfig": {
+    "authModule": "anonymous"
+  },
+  "dmsSubmission": {
+    "businessArea": "RIS",
+    "classificationType": "RIS-Intel-Cash Control",
+    "customerId": "${passportNumber}",
+    "dmsFormId": "CCD"
+  },
+  "sections": [
+    {
+      "title": "About you",
+      "fields": [
+        {
+          "id": "firstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "dateOfBirth",
+          "type": "date",
+          "label": "Date of birth",
+          "helpText": "For example, 21 03 1979"
+        },
+        {
+          "id": "placeOfBirth",
+          "type": "text",
+          "label": "Place of birth",
+          "helpText": "For example, London"
+        },
+        {
+          "id": "countryOfBirth",
+          "type": "text",
+          "label": "Country of birth"
+        },
+        {
+          "id": "nationality",
+          "type": "text",
+          "label": "Nationality"
+        },
+        {
+          "id": "occupation",
+          "type": "text",
+          "label": "Occupation"
+        }
+      ]
+    },
+    {
+      "title": "What is your passport number?",
+      "shortName": "Passport details",
+      "fields": [
+        {
+          "id": "passportNumber",
+          "type": "text",
+          "label": "What is your passport number?",
+          "shortName": "Passport number",
+          "helpText": "For example, 502135326",
+          "format": "text(0,20)"
+        }
+      ]
+    },
+    {
+      "title": "Your address",
+      "fields": [
+        {
+          "id": "yourAddress",
+          "type": "address",
+          "label": "Your address",
+          "shortName": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Are you entering or leaving the UK?",
+      "shortName": "Entering or leaving UK",
+      "fields": [
+        {
+          "id": "enterExit",
+          "type": "choice",
+          "label": "Are you entering or leaving the UK?",
+          "shortName": "Are you entering or leaving",
+          "errorMessage": "Select whether your are entering or leaving the UK",
+          "choices": [
+            "Entering",
+            "Leaving"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "When are you entering the UK?",
+      "shortName": "Entering the UK",
+      "includeIf": "${enterExit=0}",
+      "fields": [
+        {
+          "id": "entryDate",
+          "type": "date",
+          "label": "When are you entering the UK?",
+          "shortName": "Date entering the UK",
+          "helpText": "You can only enter a date that is up to 3 days from now",
+          "format": "after today -1, before today +4",
+          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
+        }
+      ]
+    },
+    {
+      "title": "When are you leaving the UK?",
+      "shortName": "Leaving the UK",
+      "includeIf": "${enterExit=1}",
+      "fields": [
+        {
+          "id": "leaveDate",
+          "type": "date",
+          "label": "When are you leaving the UK?",
+          "shortName": "Date leaving the UK",
+          "helpText": "You can only enter a date that is up to 3 days from now",
+          "format": "after today -1, before today +4",
+          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
+        }
+      ]
+    },
+    {
+      "title": "How are you travelling into the UK?",
+      "shortName": "Into the UK",
+      "includeIf": "${enterExit=0}",
+      "fields": [
+        {
+          "id": "airSeaIfEntering",
+          "type": "choice",
+          "label": "How are you travelling into the UK?",
+          "shortName": "How you are travelling",
+          "errorMessage": "Select how you are travelling into the UK",
+          "choices": [
+            "Air",
+            "Sea",
+            "Channel Tunnel"
+          ],
+          "optionHelpText": [
+            "",
+            "This is via ferry ports, for example",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How are you travelling out of the UK?",
+      "shortName": "Out of the UK",
+      "includeIf": "${enterExit=1}",
+      "fields": [
+        {
+          "id": "airSeaIfExiting",
+          "type": "choice",
+          "label": "How are you travelling out of the UK?",
+          "errorMessage": "Select how you are travelling out of the UK",
+          "choices": [
+            "Air",
+            "Sea",
+            "Channel Tunnel"
+          ],
+          "optionHelpText": [
+            "",
+            "This is via ferry ports, for example",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Where will you start your journey?",
+      "shortName": "Start of journey",
+      "description": "Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
+      "fields": [
+        {
+          "id": "startName",
+          "type": "text",
+          "label": "Name of airport, port, or station",
+          "helpText": "For example, London Heathrow"
+        },
+        {
+          "id": "startCountry",
+          "type": "text",
+          "label": "Country name"
+        }
+      ]
+    },
+    {
+      "title": "Where will you end your journey?",
+      "shortName": "End of journey",
+      "description": "Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
+      "fields": [
+        {
+          "id": "destinationName",
+          "type": "text",
+          "label": "Name of airport, port, or station",
+          "helpText": "For example, London Heathrow"
+        },
+        {
+          "id": "destinationCountry",
+          "type": "text",
+          "label": "Country name"
+        }
+      ]
+    },
+    {
+      "title": "Will you change at another airport, port or station?",
+      "shortName": "Journey changes",
+      "fields": [
+        {
+          "id": "intermediateAirport",
+          "type": "choice",
+          "label": "Will you change at another airport, port or station?",
+          "shortName": "Change at another airport, port or station",
+          "helpText": "If you change to another plane, boat or train on your way to the UK, select yes. For example, if you are flying into France and then take the Channel Tunnel to the UK.",
+          "errorMessage": "Select whether you will change at another airport, port or station",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many other airports, ports or stations will you travel via?",
+      "shortName": "How many airports, ports or stations",
+      "includeIf": "${intermediateAirport=0}",
+      "fields": [
+        {
+          "id": "howManyIntermediateAirports",
+          "type": "text",
+          "label": "How many other airports, ports or stations will you travel via?",
+          "shortName": "Number of other airports, ports or stations changing at",
+          "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs",
+          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
+          "errorMessage": "Select how many other airports, ports or stations you will change at"
+        }
+      ]
+    },
+    {
+      "title": "Details of change $n",
+      "description": "Enter only standard English characters. For example, for Düsseldorf Airport, enter: Dusseldorf Airport. For Côte d’Ivoire, enter: Cote d’Ivoire.",
+      "repeatsMin": "${howManyIntermediateAirports}",
+      "repeatsMax": "${howManyIntermediateAirports}",
+      "fields": [
+        {
+          "id": "intermediatePortName",
+          "type": "text",
+          "label": "Name of airport, port or station",
+          "helpText": "For example, Singapore Changi Airport"
+        },
+        {
+          "id": "intermediatePortCountryName",
+          "type": "text",
+          "label": "Name of country"
+        }
+      ]
+    },
+    {
+      "title": "Where are you making this declaration?",
+      "shortName": "Where you are making declaration",
+      "description": "This is your UK entry or exit point.",
+      "fields": [
+        {
+          "id": "declarationPlaceName",
+          "type": "text",
+          "label": "Name of airport, port, or station",
+          "helpText": "For example, London Heathrow"
+        },
+        {
+          "id": "declarationCountryName",
+          "type": "text",
+          "label": "Country name"
+        }
+      ]
+    },
+    {
+      "title": "Are you carrying more than 5 different currencies?",
+      "shortName": "Currencies",
+      "fields": [
+        {
+          "id": "overFiveCurrenciesChoice",
+          "type": "choice",
+          "label": "Are you carrying more than 5 different currencies?",
+          "shortName": "Carrying more than 5",
+          "errorMessage": "Select whether you are carrying more than 5 different currencies",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "On the next 5 pages you need to enter the 5 largest currency amounts, then upload a document detailing all of your currencies",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many currencies are you carrying?",
+      "shortName": "How many currencies",
+      "includeIf": "${overFiveCurrenciesChoice=1}",
+      "fields": [
+        {
+          "id": "howManyCurrency",
+          "type": "text",
+          "label": "How many currencies are you carrying?",
+          "shortName": "Currencies",
+          "helpText": "Enter a number between 1 and 5",
+          "displayWidth": "xs",
+          "validIf": "${howManyCurrency>0 && howManyCurrency <=5}",
+          "errorMessage": "Select how many currencies you are carrying"
+        }
+      ]
+    },
+    {
+      "title": "Currency $n",
+      "includeIf": "${overFiveCurrenciesChoice=1}",
+      "description": "Enter details about one currency only, and do not convert into GBP",
+      "repeatsMin": "${howManyCurrency}",
+      "repeatsMax": "${howManyCurrency}",
+      "fields": [
+        {
+          "id": "currencyType",
+          "type": "text",
+          "label": "Currency name",
+          "helpText": "For example: Euros, US Dollars, British Pounds"
+        },
+        {
+          "id": "noteTotal",
+          "type": "text",
+          "label": "Total amount in this currency in notes/coins",
+          "shortName": "Total in notes/coins",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalTravellersCheque",
+          "type": "text",
+          "label": "Total amount in this currency in cheques, including travellers cheques",
+          "shortName": "Total in cheques",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalBankersDraft",
+          "type": "text",
+          "label": "Total amount in this currency in banker's drafts",
+          "shortName": "Total in banker's drafts",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        }
+      ]
+    },
+    {
+      "title": "Main currency $n",
+      "includeIf": "${overFiveCurrenciesChoice=0}",
+      "description": "Enter details about one currency only, and do not convert into GBP",
+      "repeatsMin": "${5}",
+      "repeatsMax": "${5}",
+      "fields": [
+        {
+          "id": "currencyTypeMoreThanFive",
+          "type": "text",
+          "label": "Currency name",
+          "helpText": "For example, Euros, US Dollars, British Pounds"
+        },
+        {
+          "id": "noteTotalMoreThanFive",
+          "type": "text",
+          "label": "Total amount in this currency in notes/coins",
+          "shortName": "Total in notes/coins",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalTravellersMoreThanFive",
+          "type": "text",
+          "label": "Total amount in this currency in cheques, including travellers cheques",
+          "shortName": "Total in cheques",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        },
+        {
+          "id": "totalBankersMoreThanFive",
+          "type": "text",
+          "label": "Total amount in this currency in banker's drafts",
+          "shortName": "Total banker's drafts",
+          "helpText": "Enter 0 if none",
+          "format": "positiveNumber(9, 2)"
+        }
+      ]
+    },
+    {
+      "title": "Upload details of all your currencies",
+      "shortName": "Details of all currencies",
+      "includeIf": "${overFiveCurrenciesChoice=0}",
+      "fields": [
+        {
+          "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
+          "type": "info",
+          "label": "",
+          "infoText": "Upload a document with all the currencies you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total cheques, including travellers cheques, amount in this currency\n* total bankers drafts amount in this currency",
+          "infoType": "noformat"
+        },
+        {
+          "id": "currencyUpload",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "Your currencies file",
+          "helpText": "For example, XLSX, DOCX, or JPEG"
+        }
+      ]
+    },
+    {
+      "title": "Does the cash belong to you?",
+      "shortName": "Do you own the cash",
+      "fields": [
+        {
+          "id": "moneyOwnerYou",
+          "type": "choice",
+          "label": "Does the cash belong to you?",
+          "shortName": "Cash owner",
+          "helpText": "If you own the largest amount, select yes",
+          "errorMessage": "Select whether the cash belongs to you",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Details of main cash owner",
+      "includeIf": "${moneyOwnerYou=1}",
+      "description": "If there are multiple cash owners, provide details of the person who owns the largest amount",
+      "fields": [
+        {
+          "id": "cashOwnerName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "cashOwnerBusiness",
+          "type": "text",
+          "label": "Business or occupation"
+        },
+        {
+          "id": "cashOwnerAddressUK",
+          "type": "address",
+          "label": "Main cash owner address",
+          "shortName": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide details of where the cash comes from",
+      "shortName": "Where cash comes from",
+      "description": "We ask this to help with money laundering regulations",
+      "fields": [
+        {
+          "id": "cashOrigin",
+          "type": "text",
+          "label": "Cash origin",
+          "helpText": "For example, sale of a property, personal savings or business takings"
+        },
+        {
+          "id": "countryGenerated",
+          "type": "text",
+          "label": "Country where the cash was generated",
+          "helpText": "Enter only standard English characters. For example, for Côte d’Ivoire, enter: Cote d’Ivoire."
+        }
+      ]
+    },
+    {
+      "title": "Are you intending to give the cash to someone else?",
+      "shortName": "Intending to give cash to someone",
+      "fields": [
+        {
+          "id": "givingCashToSomeoneElse",
+          "type": "choice",
+          "label": "Are you intending to give the cash to someone else?",
+          "shortName": "Give cash",
+          "errorMessage": "Select whether you will give the cash to someone else ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Who will receive the cash? ",
+      "shortName": "Who will receive cash",
+      "includeIf": "${givingCashToSomeoneElse=0}",
+      "fields": [
+        {
+          "id": "cashIndividualOrBusiness",
+          "type": "choice",
+          "label": "Who will receive the cash? ",
+          "shortName": "Cash recipient",
+          "helpText": "If the cash will be split, select who will receive the largest amount",
+          "errorMessage": "Select who will receive the cash",
+          "choices": [
+            "An individual",
+            "A business"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Person receiving the cash",
+      "includeIf": "${cashIndividualOrBusiness=0}",
+      "description": "If the cash will be split, enter the person who will receive the largest amount.",
+      "fields": [
+        {
+          "id": "receivingName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "receivingOccupation",
+          "type": "text",
+          "label": "Occupation"
+        },
+        {
+          "id": "receivingAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "Business receiving the cash",
+      "includeIf": "${cashIndividualOrBusiness=1}",
+      "description": "If the cash will be split, enter the business which will receive the largest amount.",
+      "fields": [
+        {
+          "id": "receivingBusiness",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "receivingIndustry",
+          "type": "text",
+          "label": "Industry"
+        },
+        {
+          "id": "receivingBusinessAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        }
+      ]
+    },
+    {
+      "title": "What will the cash be used for?",
+      "shortName": "What cash will be used for",
+      "fields": [
+        {
+          "id": "cashIntent",
+          "type": "text",
+          "label": "What will the cash be used for?",
+          "shortName": "Cash use",
+          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a.",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Declaration",
+      "fields": [
+        {
+          "id": "decChoice",
+          "type": "choice",
+          "label": "",
+          "shortName": "Signed",
+          "multivalue": "true",
+          "errorMessage": "You must check the box to sign the declaration",
+          "choices": [
+            "I declare that all the details entered are correct and complete to the best of my knowledge and belief "
+          ]
+        },
+        {
+          "id": "customerName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will only use this to send a confirmation that we have received your application. This will include your submission reference number, which you need to save.",
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Submission reference",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Form submission",
+    "shortName": "Submission",
+    "fields": [
+      {
+        "id": "generatedId_2c5b531f_260b_48e4_929c_880fc16d78a9",
+        "type": "info",
+        "label": "decInfo",
+        "infoText": "You now need to submit your form, which will give you a reference number to show customs officers.\n\nBy submitting below, you confirm that:\n\n* you are carrying £10,000 or more into or out of the UK",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to make a copy of your submission reference. This confirms that you have made a declaration.\n\nYou should also print a copy of this form now, so you can show it to customs officers if they ask."
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
