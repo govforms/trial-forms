@@ -1,0 +1,672 @@
+{
+  "_id": "send-your-gaming-duty-return-online-welsh-translation-25-03-19",
+  "formName": "Send your Gaming Duty return online",
+  "description": "Fill in your Gaming Duty return form online",
+  "formCategory": "hmrcReturnForm",
+  "developmentPhase": "beta",
+  "emailTemplateId": "gd95_return_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "GD",
+    "enrolmentSection": {
+      "title": "Enter your Gaming Duty registration details",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Gaming Duty registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Gaming Duty",
+          "format": "text(5, 8)",
+          "mandatory": "true",
+          "displayWidth": "s"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client’s Gaming Duty details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "agentReferenceNumber",
+          "type": "text",
+          "label": "Agent reference number",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "gamingdutyreferencenumber",
+          "type": "text",
+          "label": "Client's Gaming Duty reference number",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        },
+        {
+          "id": "insetInfoBoxAgent",
+          "type": "info",
+          "label": "",
+          "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Gaming Duty return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "GDreg",
+          "type": "text",
+          "label": "",
+          "shortName": "Gaming Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Gaming Duty return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${GDreg}",
+          "regimeType": "GD"
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "firstNameBusiness",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastNameBusiness",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "positionInTheCompanyBusiness",
+          "type": "text",
+          "label": "Job title",
+          "shortName": "Job title",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "About you",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "firstNameBusinessA",
+          "type": "text",
+          "label": "First name",
+          "mandatory": "true"
+        },
+        {
+          "id": "lastNameBusinessA",
+          "type": "text",
+          "label": "Last name",
+          "mandatory": "true"
+        },
+        {
+          "id": "positionInTheCompanyBusinessA",
+          "type": "text",
+          "label": "Job title",
+          "shortName": "Job title",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "description": "",
+      "fields": [
+        {
+          "id": "insetInfoBox2",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will only use your contact details to discuss this return.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Registered business name",
+          "mandatory": "true"
+        },
+        {
+          "id": "emailAgent",
+          "type": "text",
+          "label": "Email address (optional)",
+          "shortName": "Email address",
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
+          "id": "agentTelephone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country and area codes",
+          "format": "telephoneNumber",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide the gross gaming yield (GGY) and the number of premises liable for Gaming Duty at 15% rate",
+      "shortName": "Gross gaming yield (GGY) and the number of premises liable at 15% duty rate",
+      "fields": [
+        {
+          "id": "firstmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC charge a 15% duty on premises earning less than £2,423,500.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "numberofpremises1",
+          "type": "text",
+          "label": "Number of premises liable for duty at this rate",
+          "shortName": "Premises liable at 15% rate",
+          "format": "positiveNumber(5, 0)",
+          "errorMessage": "Enter the number of premises liable for duty at this rate"
+        },
+        {
+          "id": "fifteenpercent",
+          "label": "Total amount of gross gaming yield (GGY) chargeable at this rate",
+          "shortName": "Total amount of GGY chargeable at 15% rate",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of GGY chargeable at this rate"
+        }
+      ]
+    },
+    {
+      "title": "Provide the GGY and the number of premises liable for Gaming Duty at 20% rate",
+      "shortName": "GGY and the number of premises liable at 20% duty rate",
+      "fields": [
+        {
+          "id": "secondmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC charge a 20% duty on premises earning between £2,423,500 to £4,094,000.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "numberofpremises2",
+          "type": "text",
+          "label": "Number of premises liable for duty at this rate",
+          "shortName": "Premises liable at 20% rate",
+          "helpText": "Enter '0' if you have no premises",
+          "format": "positiveNumber(5, 0)",
+          "errorMessage": "Enter the number of premises liable for duty at this rate or enter '0' if you have no premises"
+        },
+        {
+          "id": "twentypercent",
+          "label": "Total amount of GGY chargeable at this rate",
+          "shortName": "Total amount of GGY chargeable at 20% rate",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of GGY chargeable at this rate"
+        }
+      ]
+    },
+    {
+      "title": "Provide the GGY and the number of premises liable for Gaming Duty at 30% rate",
+      "shortName": "GGY and the number of premises liable at 30% duty rate",
+      "fields": [
+        {
+          "id": "thirdmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC charge a 30% duty on premises earning between £4,094,000 to £7,019,500.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "numberofpremises3",
+          "type": "text",
+          "label": "Number of premises liable for duty at this rate",
+          "shortName": "Premises liable at 30% rate",
+          "helpText": "Enter '0' if you have no premises",
+          "format": "positiveNumber(5, 0)",
+          "errorMessage": "Enter the number of premises liable for duty at this rate or enter '0' if you have no premises"
+        },
+        {
+          "id": "thirtypercent",
+          "label": "Total amount of GGY chargeable at this rate",
+          "shortName": "Total amount of GGY chargeable at 30% rate",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of GGY chargeable at this rate"
+        }
+      ]
+    },
+    {
+      "title": "Provide the GGY and the number of premises liable for Gaming Duty at 40% rate",
+      "shortName": "GGY and the number of premises liable at 40% duty rate",
+      "fields": [
+        {
+          "id": "fourthmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC charge a 40% duty on premises earning between £7,019,500 to £13,195,000.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "numberofpremises4",
+          "type": "text",
+          "label": "Number of premises liable for duty at this rate",
+          "shortName": "Premises liable at 40% rate",
+          "helpText": "Enter '0' if you have no premises",
+          "format": "positiveNumber(5, 0)",
+          "errorMessage": "Enter the number of premises liable for duty at this rate or enter '0' if you have no premises"
+        },
+        {
+          "id": "fortypercent",
+          "label": "Total amount of GGY chargeable at this rate",
+          "shortName": "Total amount of GGY chargeable at 40% rate",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of GGY chargeable at this rate"
+        }
+      ]
+    },
+    {
+      "title": "Provide the GGY and the number of premises liable for Gaming Duty at 50% rate",
+      "shortName": "GGY and the number of premises liable at 50% duty rate",
+      "fields": [
+        {
+          "id": "fifthmoney",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC charge a 50% duty on premises earning over £13,195,000.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "numberofpremises5",
+          "type": "text",
+          "label": "Number of premises liable for duty at this rate",
+          "shortName": "Premises liable at 50% rate",
+          "helpText": "Enter '0' if you have no premises",
+          "format": "positiveNumber(5, 0)",
+          "errorMessage": "Enter the number of premises liable for duty at this rate or enter '0' if you have no premises"
+        },
+        {
+          "id": "fiftypercent",
+          "label": "Total amount of GGY chargeable at this rate",
+          "shortName": "Total amount of GGY chargeable at 50% rate",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount of GGY chargeable at this rate"
+        }
+      ]
+    },
+    {
+      "title": "How HMRC worked out your Gaming Duty before corrections",
+      "shortName": "Duty before adjustments",
+      "fields": [
+        {
+          "id": "amountpayable1",
+          "label": "Duty charged at 15%",
+          "format": "sterling",
+          "value": "${fifteenpercent * 0.15}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "amountpayable2",
+          "label": "Duty charged at 20%",
+          "format": "sterling",
+          "value": "${twentypercent * 0.20}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "amountpayable3",
+          "label": "Duty charged at 30%",
+          "format": "sterling",
+          "value": "${thirtypercent * 0.30}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "amountpayable4",
+          "label": "Duty charged at 40%",
+          "format": "sterling",
+          "value": "${fortypercent * 0.40}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "amountpayable5",
+          "label": "Duty charged at 50%",
+          "format": "sterling",
+          "value": "${fiftypercent * 0.50}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "lineBreaktotal1",
+          "type": "info",
+          "label": "",
+          "infoText": "****",
+          "infoType": "noformat"
+        },
+        {
+          "id": "totalpayable1",
+          "label": "Total Gaming Duty to pay before corrections",
+          "format": "sterling",
+          "value": "${amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Adjustments from previous returns",
+      "shortName": "Adjustments from previous returns",
+      "fields": [
+        {
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "helpText": "You can adjust this return if you have under-declared tax from a previous return",
+          "infoText": "Do you have adjustments to make in this return?",
+          "infoType": "noformat"
+        },
+        {
+          "id": "insetInfoBoxHTEr",
+          "type": "info",
+          "label": "",
+          "infoText": "You can adjust this return if you have under-declared tax from a previous return.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "underChoice",
+          "type": "choice",
+          "label": "",
+          "shortName": "Under-declarations",
+          "format": "yesno",
+          "errorMessage": "Select yes if you have adjustments to make or no if you have no adjustments"
+        }
+      ]
+    },
+    {
+      "title": "Enter the amount of duty under-declared from previous returns",
+      "shortName": "Under-declarations from previous returns",
+      "includeIf": "${underChoice = 0}",
+      "fields": [
+        {
+          "id": "underAmount1",
+          "type": "text",
+          "label": "Under-declared amount",
+          "shortName": "Under-declared amount",
+          "format": "sterling",
+          "errorMessage": "Enter an amount under-declared from previous returns"
+        }
+      ]
+    },
+    {
+      "title": "Enter the Gaming Duty paid on account",
+      "shortName": "Gaming Duty paid on account",
+      "fields": [
+        {
+          "id": "totalPaidOnAccount1",
+          "type": "text",
+          "label": "Gaming Duty paid to date",
+          "shortName": "Account balance",
+          "helpText": "Include the total amount paid for the first 3 months of this 6-month return period",
+          "format": "sterling",
+          "errorMessage": "Enter the total amount for the first 3 months of this 6-month return period"
+        }
+      ]
+    },
+    {
+      "title": "Final payment of Gaming Duty for this period",
+      "shortName": "Final payment of Gaming Duty for this period",
+      "includeIf": "${underChoice = 1}",
+      "fields": [
+        {
+          "id": "totalPayable1NoUnder",
+          "label": "Gaming Duty to pay",
+          "shortName": "Gaming Duty to pay",
+          "format": "sterling",
+          "value": "${totalpayable1 - totalPaidOnAccount1}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "howDoesHMRCWorkThisBalanceOut9j",
+          "type": "info",
+          "label": "How did HMRC calculate the final payment?",
+          "infoText": "The final payment is the sum of: \n\n * your Gaming Duty for this 6-month return \n\n * plus any under-declarations from previous returns \n\n * minus the balance paid on account from your previous 3-month return",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Final payment of Gaming Duty for this period",
+      "shortName": "Final payment of Gaming Duty for this period",
+      "includeIf": "${underChoice = 0}",
+      "fields": [
+        {
+          "id": "totalPayable1YesUnder",
+          "label": "Gaming Duty to pay",
+          "shortName": "Gaming Duty to pay",
+          "format": "sterling",
+          "value": "${totalpayable1 - totalPaidOnAccount1 + underAmount1}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "howDoesHMRCWorkThisBalanceOut9i",
+          "type": "info",
+          "label": "How did HMRC calculate the final payment?",
+          "infoText": "The final payment is the sum of: \n\n * your Gaming Duty for this 6-month return \n\n * plus any under-declarations from previous returns \n\n * minus the balance paid on account from your previous 3-month return",
+          "infoType": "long"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Confirm details and send your return",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received your return",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decPageContent",
+        "type": "info",
+        "label": "",
+        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decPageImportant",
+        "type": "info",
+        "label": "",
+        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a copy of your submitted form as you won’t be able to retrieve it later.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "lineBreakOne",
+        "type": "info",
+        "label": "",
+        "infoText": "\n\n### Make a payment",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Information about paying Gaming Duty",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo2",
+        "type": "info",
+        "label": "Information about paying Gaming Duty",
+        "infoText": "\n\nYou can also use Bacs, CHAPS or Faster Payments to pay. \n\nAccount details: \n\n Account name: HMRC GACA \n\n Account number: 12000911 \n\n Sort code: 08-32-002",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo3",
+        "type": "info",
+        "label": "Information about paying Gaming Duty",
+        "infoText": "You must include your 15 digit Gaming Duty registration number as a payment reference."
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?]( https://www.surveygizmo.com/s3/4669761/Feedback-Survey-Gaming-Duty-GD95) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{and (isNotNull GDreg) (isNull underAmount1) (equal totalPaidOnAccount1 0)}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/GD/eeits/{{GDreg}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                       'returnsDetails':{                         'isrScenario':'ZGD1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{GDreg}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises1}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fifteenpercent}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable1}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'02',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises2}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas twentypercent}}'},                           {'paramSequence':'02',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable2}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'03',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises3}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas thirtypercent}}'},                           {'paramSequence':'03',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable3}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'04'},                           {'paramSequence':'04',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises4}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fortypercent}}'},                           {'paramSequence':'04',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable4}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_GD_BAND_TYPE',                            'paramValue':'05'},                           {'paramSequence':'05',                            'paramName':'A_GD_PREMISES',                            'paramValue':'{{stripCommas numberofpremises5}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_GROSSAMOUNT',                            'paramValue':'{{stripCommas fiftypercent}}'},                           {'paramSequence':'05',                            'paramName':'A_GD_DUTYAMOUNT',                            'paramValue':'{{stripCommas amountpayable5}}'},                           {'paramSequence':'01',                            'paramName':'A_GD_TOTALDUE',                            'paramValue':'{{stripCommas totalpayable1}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                         'receivedAt':'{{currentTimestamp}}'}"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull GDreg)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${GDreg}",
+      "classificationType": "BT-NRU-Gaming",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull gamingdutyreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${gamingdutyreferencenumber}",
+      "classificationType": "BT-NRU-Gaming",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull GDreg)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${GDreg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull gamingdutyreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GD95",
+      "customerId": "${gamingdutyreferencenumber}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": ""
+}
