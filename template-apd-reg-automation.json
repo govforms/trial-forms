@@ -9,10 +9,61 @@
   },
   "sections": [
     {
-      "title": "Details of business to register",
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is the business you want to register based in the UK?",
+      "shortName": "Business location",
+      "includeIf": "${utrChoice=1}",
+      "fields": [
+        {
+          "id": "ukChoice",
+          "type": "choice",
+          "label": "Is the business you want to register based in the UK?",
+          "shortName": "Is business based in the UK",
+          "errorMessage": "Select whether the business is based in the UK",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${ukChoice=0}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a Unique Taxpayer Reference (UTR) when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
       "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
       "validators": {
-        "errorMessage": "The UTR could not be found or the postcode did not match.",
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
         "validatorName": "hmrcRosmRegistrationCheck",
         "parameters": {
           "regime": "APD",
@@ -22,23 +73,28 @@
       },
       "fields": [
         {
-          "id": "businessUtr",
-          "type": "text",
-          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
-          "shortName": "Unique Taxpayer Reference",
-          "format": "utr"
-        },
-        {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Business Address Postcode",
-          "shortName": "Postcode",
-          "format": "text(5,8)"
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
         }
       ]
     },
     {
-      "title": "You are completing a Air Passenger Duty registration for the following business",
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
       "fields": [
         {
           "id": "safeId",
@@ -52,10 +108,35 @@
           "id": "businessName",
           "type": "text",
           "label": "",
-          "shortName": "Business Name",
+          "shortName": "Business name",
           "value": "${hmrcRosmRegistrationCheck.organisationName}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to enter different details or exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to do one of the following:\n\n* check your records and [enter the correct Unique Taxpayer Reference and postcode](javascript:window.history.go(-2)) for the business you want to register\n\n* exit this service",
+          "infoType": "noformat"
         }
       ]
     },
@@ -137,8 +218,8 @@
       ]
     },
     {
-      "title": "Enter the name of your business",
-      "shortName": "Name of business",
+      "title": "Enter the trading name of your business",
+      "shortName": "Trading name of business",
       "fields": [
         {
           "id": "busTrading",
@@ -624,12 +705,13 @@
     {
       "id": "eeittRegistrationApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{isNotNull businessUtr}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
       "uri": "cross-regime/subscription/APD/utr/{{businessUtr}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZAP2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '5'; ('4') => '3'; ('5') => '6'^                                             (stripCommas businessType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#firstCarryPast-year}}                         'taxStartDate': '{{firstCarryPast-year}}-{{firstCarryPast-month}}-{{firstCarryPast-day}}'                         {{/firstCarryPast-year}}                         {{#firstCarryFuture-year}}                         'taxStartDate': '{{firstCarryFuture-year}}-{{firstCarryFuture-month}}-{{firstCarryFuture-day}}'                         {{/firstCarryFuture-year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#busTrading}}                       'aboutBusiness':                         {                         'tradingName': '{{busTrading}}'                         },                       {{/busTrading}}                       'businessContactDetails':                         {                           {{#busAddress-postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"busAddress\"}},                           'postCode': '{{busAddress-postcode}}',                           'telephoneNumber': '{{busTelephone}}',                           'email': '{{busEmail}}'                           {{/busAddress-postcode}}                           {{#addresscountryInt}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{addressOneInt}}',                           'addressLine2': '{{addressTwoInt}}',                           'addressLine3': '{{addressThreeInt}}',                           'addressLine4': '{{addressFourInt}}',                           'nonUKCountry': '{{addresscountryInt}}',                           'telephoneNumber': '{{busPhoneInt}}',                           'email': '{{busEmailInt}}'                           {{/addresscountryInt}}                         },                       'correspondenceAddressDifferent': '{{stripCommas contactChoice}}',                       {{#contactAddressRep-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"contactAddressRep\"}},                           'postCode': '{{contactAddressRep-postcode}}',                           'telephoneNumber': '{{contactTelRep}}',                           'email': '{{contactEmailRep}}'                         },                       {{/contactAddressRep-postcode}}                       {{#contactAddressPref-postcode}}                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"contactAddressPref\"}},                           'postCode': '{{contactAddressPref-postcode}}',                           'telephoneNumber': '{{contactTelPref}}',                           'email': '{{contactEmailPref}}'                         },                       {{/contactAddressPref-postcode}}                       'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '04'; ('3') => '01'^ (stripCommas role)}}'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_BUS_ESTABLISH',                           'paramValue': '{{lookup ^('0') => '1'; ('1') => '0'; (*) => '1'^ (stripCommas (either UKCorrChoice 'UK'))}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEASONAL_TRADER',                           'paramValue': '0'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigPlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_BLW',                           'paramValue': '{{yesNoToEtmpChoice littlePlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_LESS',                           'paramValue': '{{yesNoToEtmpChoice littleSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_A',                           'paramValue': '{{stripCommas shortHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_B',                           'paramValue': '{{stripCommas longHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DIRECT_FLT',                           'paramValue': '{{yesNoToEtmpChoice NIChoice}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estimateAPD}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                       ]                     }                   }"
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZAP2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '5'; ('4') => '3'; ('5') => '6'^                                             (stripCommas businessType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#firstCarryPast.year}}                         'taxStartDate': '{{toDesDate firstCarryPast}}'                         {{/firstCarryPast.year}}                         {{#firstCarryFuture.year}}                         'taxStartDate': '{{toDesDate firstCarryFuture}}'                         {{/firstCarryFuture.year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#busTrading}}                       'aboutBusiness':                         {                         'tradingName': '{{busTrading}}'                         },                       {{/busTrading}}                       'businessContactDetails':                         {                           {{#busAddress.postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode busAddress}},                           'postCode': '{{busAddress.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber busTelephone}}',                           'email': '{{busEmail}}'                           {{/busAddress.postcode}}                           {{#addresscountryInt}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{addressOneInt}}',                           'addressLine2': '{{addressTwoInt}}',                           'addressLine3': '{{addressThreeInt}}',                           'addressLine4': '{{addressFourInt}}',                           'nonUKCountry': '{{addresscountryInt}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber busTelephoneInt}}',                           'email': '{{busEmailInt}}'                           {{/addresscountryInt}}                         },                       {{#contactAddressRep.postcode}}                       'correspondenceAddressDifferent': '{{yesNoToEtmpChoice UKCorrChoice}}',                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode contactAddressRep}},                           'postCode': '{{contactAddressRep.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber contactTelRep}}',                           'email': '{{contactEmailRep}}'                         },                       {{/contactAddressRep.postcode}}                       {{#contactAddressPref.postcode}}                       'correspondenceAddressDifferent': '{{stripCommas contactChoice}}',                       'correspondenceContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode contactAddressPref}},                           'postCode': '{{contactAddressPref.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber contactTelPref}}',                           'email': '{{contactEmailPref}}'                         },                       {{/contactAddressPref.postcode}}                       'declarationStatus': '{{match ^('0') => '03'; ('1') => '02'; ('2') => '04'; ('3') => '01'^ (stripCommas role)}}',                       'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_BUS_ESTABLISH',                           'paramValue': '{{match ^('0') => '1'; ('1') => '0'; (*) => '1'^ (stripCommas (either UKCorrChoice 'UK'))}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEASONAL_TRADER',                           'paramValue': '0'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigPlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_W_BLW',                           'paramValue': '{{yesNoToEtmpChoice littlePlanes}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_OVER',                           'paramValue': '{{yesNoToEtmpChoice bigSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_AUTHORISED_S_LESS',                           'paramValue': '{{yesNoToEtmpChoice littleSeats}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_A',                           'paramValue': '{{stripCommas shortHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_BAND_B',                           'paramValue': '{{stripCommas longHaulPassengers}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DIRECT_FLT',                           'paramValue': '{{yesNoToEtmpChoice NIChoice}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estimateAPD}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                       ]                     }                   }"
     },
     {
       "id": "taxEnrollment",
@@ -640,16 +722,16 @@
       "convertSingleQuotes": true,
       "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
       "method": "PUT",
-      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/submissions/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "APDREG",
-      "customerId": "${businessUtr}",
+      "customerId": "${' '}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
@@ -660,7 +742,7 @@
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "APDREG",
-      "customerId": "${businessUtr}",
+      "customerId": "${' '}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
