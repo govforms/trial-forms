@@ -76,7 +76,7 @@
     },
     {
       "title": "Has this company previously had a different registered name?",
-      "shortName": "Has this company previously had a different registered name",
+      "shortName": "Previous company name",
       "fields": [
         {
           "id": "companyNameChange",
@@ -185,64 +185,7 @@
       ]
     },
     {
-      "title": "Contact person's details",
-      "fields": [
-        {
-          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
-          "type": "info",
-          "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n",
-          "infoText": "Provide the contact details of someone within the company who we can contact about its tax affairs.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "nameOfContactPerson",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "telephoneNumberOfContactPerson",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "Include the country code",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "emailOfContactPerson",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        }
-      ]
-    },
-    {
       "title": "Company director details",
-      "fields": [
-        {
-          "id": "generatedId_4955607b_6452_4980_841a_f4716d8fee3b",
-          "type": "info",
-          "label": "If there is more than one director, enter the details of the nominated company director. ",
-          "infoText": "If there is more than one company director, enter the details of the nominated director.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "fullName1",
-          "type": "text",
-          "label": "Full name",
-          "mandatory": "true"
-        },
-        {
-          "id": "directorAddress1",
-          "type": "address",
-          "label": "Director's address",
-          "shortName": "Address",
-          "international": "true",
-          "postcodeLookup": "no"
-        }
-      ]
-    },
-    {
-      "title": "Company director details",
-      "includeIf": "${false}",
       "fields": [
         {
           "id": "generatedId_cef71cf0_3158_4fa8_9488_c6ec0dc11972",
@@ -283,10 +226,69 @@
           "id": "contactPerson",
           "type": "choice",
           "label": "Is this the person HMRC can contact about the company's Corporation Tax affairs?",
+          "shortName": "Contact person",
           "choices": [
             "Yes",
             "No"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Contact person's details",
+      "includeIf": "${contactPerson=1}",
+      "fields": [
+        {
+          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
+          "type": "info",
+          "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n",
+          "infoText": "Provide the contact details of someone within the company who we can contact about its tax affairs.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "nameOfContactPerson",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telephoneNumberOfContactPerson",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "Include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "emailOfContactPerson",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Company director details",
+      "includeIf": "${false}",
+      "fields": [
+        {
+          "id": "generatedId_4955607b_6452_4980_841a_f4716d8fee3b",
+          "type": "info",
+          "label": "If there is more than one director, enter the details of the nominated company director. ",
+          "infoText": "If there is more than one company director, enter the details of the nominated director.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullName1",
+          "type": "text",
+          "label": "Full name",
+          "mandatory": "true"
+        },
+        {
+          "id": "directorAddress1",
+          "type": "address",
+          "label": "Director's address",
+          "shortName": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
