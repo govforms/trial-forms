@@ -218,16 +218,45 @@
       ]
     },
     {
+      "title": "Enter the name of your business",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=1}",
+      "fields": [
+        {
+          "id": "busName",
+          "type": "text",
+          "label": "Enter the name of your business",
+          "shortName": "Business name"
+        }
+      ]
+    },
+    {
+      "title": "Does the business have a trading name different to the business name?",
+      "shortName": "Trading name",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "choice",
+          "label": "Does the business have a trading name different to the business name?",
+          "shortName": "Does business have a trading name",
+          "errorMessage": "Select whether the business has a trading name different to the business name",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Enter the trading name of your business",
-      "shortName": "Trading name of business",
+      "shortName": "Trading name details",
+      "includeIf": "${tradingName=0}",
       "fields": [
         {
           "id": "busTrading",
           "type": "text",
-          "label": "Trading name (optional)",
-          "shortName": "Trading name",
-          "helpText": "Enter the trading name if different from the business name",
-          "mandatory": "false"
+          "label": "Enter the trading name of your business",
+          "shortName": "Trading name of business"
         }
       ]
     },
@@ -727,11 +756,11 @@
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittReturnApi.status}}",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "APDREG",
-      "customerId": "${' '}",
+      "customerId": "${businessUtr}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
@@ -742,7 +771,7 @@
       "failOnError": true,
       "convertSingleQuotes": true,
       "dmsFormId": "APDREG",
-      "customerId": "${' '}",
+      "customerId": "${businessUtr}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
