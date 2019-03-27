@@ -1,5 +1,4 @@
 {
-  "_id": "register-for-duty-on-biofuels-and-other-fuel-substitutes",
   "formName": "Register for duty on biofuels and other fuel substitutes (EX103/EX103A BFS)",
   "description": "",
   "developmentPhase": "beta",
@@ -12,6 +11,12 @@
   ],
   "authConfig": {
     "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${''}",
+    "dmsFormId": "BIOFUELS"
   },
   "sections": [
     {
@@ -475,31 +480,8 @@
       }
     ]
   },
-  "destinations": [
-    {
-      "id": "attendedDmsQueueDestination",
-      "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "BFREG",
-      "customerId": "${businessUtr}",
-      "classificationType": "BT-NRU-Environmental",
-      "businessArea": "BT"
-    },
-    {
-      "id": "unattendedDmsQueueDestination",
-      "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
-      "failOnError": true,
-      "convertSingleQuotes": true,
-      "dmsFormId": "BFREG",
-      "customerId": "${businessUtr}",
-      "classificationType": "BT-CTO-EMCS Fallback",
-      "businessArea": "BT"
-    }
-  ],
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "register-for-duty-on-biofuels-and-other-fuel-substitutes"
 }
