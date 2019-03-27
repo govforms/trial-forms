@@ -21,13 +21,38 @@
           "displayWidth": "l"
         },
         {
+          "id": "generatedId_d94ba93a_62a6_4ab7_b9fc_6979a3b2647d",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is based in the UK",
+          "infoType": "noformat"
+        },
+        {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Postcode of main place of business",
-          "helpText": "Enter the postcode of the main place of business that you registered for Insurance Premium Tax",
+          "label": "Enter the business postcode",
+          "shortName": "Business postcode",
+          "helpText": "This is the postcode of the main place of business that you registered for Insurance Premium Tax.",
           "format": "text(5, 8)",
-          "mandatory": "true",
+          "mandatory": "false",
           "displayWidth": "s"
+        },
+        {
+          "id": "generatedId_1fa11b89_0457_46a7_b43d_cb5b5f2aff45",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is not based in the UK",
+          "infoType": "noformat"
+        },
+        {
+          "id": "nonUKCountryCode",
+          "type": "text",
+          "label": "Enter the country code",
+          "shortName": "Country code",
+          "helpText": "This is the 2-letter country code of the main place of business that you registered for Insurance Premium Tax. Use capital letters, for example DE for Germany and FR for France.",
+          "format": "nonUkCountryCode",
+          "mandatory": "false",
+          "displayWidth": "xs"
         }
       ],
       "identifiers": [
@@ -40,6 +65,10 @@
         {
           "value": "${businessPostcode}",
           "key": "BusinessPostcode"
+        },
+        {
+          "value": "${nonUKCountryCode}",
+          "key": "nonUKCountryCode"
         }
       ]
     }
