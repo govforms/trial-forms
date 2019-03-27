@@ -471,13 +471,13 @@
       ]
     },
     {
-      "title": "Did you generate the cash yourself?",
+      "title": "Do you own the cash?",
       "shortName": "Did you generate cash",
       "fields": [
         {
           "id": "moneyGenerator",
           "type": "choice",
-          "label": "Did you generate the cash yourself?",
+          "label": "Do you own the cash?",
           "errorMessage": "Select whether you generated the cash",
           "choices": [
             "Yes",
@@ -487,13 +487,13 @@
       ]
     },
     {
-      "title": "Who generated the cash?",
+      "title": "Where did the cash come from?",
       "includeIf": "${moneyGenerator=1}",
       "fields": [
         {
           "id": "cashGenerator",
           "type": "choice",
-          "label": "Who generated the cash?",
+          "label": "Where did the cash come from?",
           "errorMessage": "Select who generated the cash",
           "choices": [
             "Family",
@@ -535,7 +535,7 @@
           "choices": [
             "Property",
             "Vehicle",
-            "Other"
+            "Other sale"
           ]
         }
       ]
@@ -547,11 +547,11 @@
         {
           "id": "moneySavingsEarnings",
           "type": "choice",
-          "label": "Which savings or earnings?",
+          "label": "Which type of savings or earnings did the cash come from?",
           "errorMessage": "Select what savings or earnings generated the cash",
           "choices": [
-            "Cash savings",
-            "Bank savings",
+            "Personal cash savings",
+            "Personal savings in a bank",
             "Personal earnings"
           ]
         }
@@ -654,15 +654,71 @@
     },
     {
       "title": "What will the cash be used for?",
-      "shortName": "What cash will be used for",
       "fields": [
         {
-          "id": "cashIntent",
-          "type": "text",
+          "type": "choice",
+          "id": "cashUsePersonalBusiness",
           "label": "What will the cash be used for?",
-          "shortName": "Cash use",
-          "helpText": "For example, buying a car, going on holiday or running a business. If you do not know, enter n/a.",
-          "format": "text"
+          "choices": [
+            "Personal or family spending",
+            "Business costs"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What business costs will the cash be used for?",
+      "includeIf": "${cashUsePersonalBusiness=1}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "cashBusinessCosts",
+          "label": "What business costs will the cash be used for?",
+          "choices": [
+            "Buying a commercial vehicle or parts",
+            "Wages",
+            "Expenses",
+            "Other business costs"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will you spend the cash on?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "cashUse",
+          "label": "What will you spend the cash on?",
+          "choices": [
+            "Making a big purchase",
+            "Shopping or tourism",
+            "Clothing",
+            "Other purchase",
+            "Family costs",
+            "Investment",
+            "Medical costs",
+            "Education fees"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will you buy?",
+      "includeIf": "${cashUse=0}",
+      "continueIf": "true",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "cashPurchase",
+          "label": "What will you buy?",
+          "choices": [
+            "Vehicle",
+            "Property",
+            "Antiques",
+            "Jewellery",
+            "Other"
+          ]
         }
       ]
     },
