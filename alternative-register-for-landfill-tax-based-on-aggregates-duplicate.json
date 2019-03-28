@@ -1,5 +1,4 @@
 {
-  "_id": "register-for-landfill-tax",
   "formName": "Register for Landfill Tax",
   "description": "",
   "developmentPhase": "beta",
@@ -7,13 +6,121 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${''}",
-    "dmsFormId": "LTREG"
-  },
   "sections": [
+    {
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
+      "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
+      "validators": {
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "APD",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
+        }
+      ]
+    },
     {
       "title": "What is your business type?",
       "shortName": "Type of business",
@@ -258,18 +365,12 @@
       "includeIf": "${legalStatus=0 || legalStatus=2 || legalStatus=3 || legalStatus=4 || legalStatus=5}",
       "fields": [
         {
-          "id": "businessName",
-          "type": "text",
-          "label": "Business name",
-          "shortName": "Business name",
-          "helpText": ""
-        },
-        {
           "id": "businessTradingName",
           "type": "text",
           "label": "Trading name (optional)",
           "shortName": "Trading name",
           "helpText": "Enter your trading name, if different from your business name ",
+          "format": "text(0,160)",
           "mandatory": "false"
         }
       ]
@@ -279,13 +380,6 @@
       "shortName": "Business details",
       "includeIf": "${legalStatus=1}",
       "fields": [
-        {
-          "id": "businessNameSoleTrader",
-          "type": "text",
-          "label": "Full name of sole trader owner",
-          "shortName": "Business owner name",
-          "helpText": ""
-        },
         {
           "id": "businessTradingNameSoleTrader",
           "type": "text",
@@ -299,13 +393,13 @@
     {
       "title": "Details for main place of business",
       "shortName": "Main place of business details",
-      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. ",
+      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. \n",
       "fields": [
         {
           "id": "infoBusinessDetails",
           "type": "info",
           "label": "",
-          "infoText": "HMRC may use these to verify your business information with records we hold.",
+          "infoText": "HMRC may use these to verify your business information with records we hold.\n\n\n",
           "infoType": "noformat"
         },
         {
@@ -688,7 +782,7 @@
           "displayWidth": "m"
         },
         {
-          "id": "generatedId_4bfd8037_20f7_408c_9174_8198724f5df9",
+          "id": "sitePermit",
           "type": "info",
           "label": "",
           "infoText": "##Site environmental permit details",
@@ -719,11 +813,12 @@
           ]
         },
         {
-          "id": "permitTextfield_copy_1",
+          "id": "permitTextfield",
           "type": "text",
           "label": "Enter the site environmental permit number",
           "shortName": "Permit number",
           "helpText": "If you have not been granted the permit yet, leave blank",
+          "format": "text(0,20)",
           "mandatory": "false",
           "displayWidth": "l"
         }
@@ -865,7 +960,8 @@
               "id": "regNo1",
               "type": "text",
               "label": "Registration number",
-              "shortName": "Registration number of other business"
+              "shortName": "Registration number of other business",
+              "format": "text(1,15)"
             }
           ]
         }
@@ -891,7 +987,7 @@
               "type": "text",
               "label": "Landfill Tax registration number",
               "shortName": "Registration number of other business",
-              "format": "text"
+              "format": "text(1,15)"
             }
           ]
         }
@@ -913,11 +1009,11 @@
           "repeatAddAnotherText": "Add another business's registration number",
           "fields": [
             {
-              "id": "regNo1LtdCo",
+              "id": "regNo1Part",
               "type": "text",
               "label": "Registration number",
               "shortName": "Registration number",
-              "format": "text"
+              "format": "text(1,15)"
             }
           ]
         }
@@ -990,7 +1086,54 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{and (isNull prevBusinessName) (not (exists weighbridgeChoice '1')) (not (exists weighbridgeChoice '1,'))}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/LFT/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'Z049',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{toDesDate taxableDisposalDate}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#businessTradingNameSoleTrader}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingNameSoleTrader}}'                         },                       {{/businessTradingNameSoleTrader}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode businessAddress}},                           'postCode': '{{businessAddress.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber BusinessPhone}}',                           {{#businessEmail}}                           'email': '{{businessEmail}}'                           {{/businessEmail}}                         },                       'correspondenceAddressDifferent': '{{stripCommas altAdd}}',                       {{#businessAddressPreferred.postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode businessAddressPreferred}},                         'postCode': '{{businessAddressPreferred.postcode}}',                         'telephoneNumber': '{{toEtmpTelephoneNumber phoneNumberPreferred}}',                         {{#emailPreferred}}                         'email': '{{emailPreferred}}'                         {{/emailPreferred}}                         },                       {{/businessAddressPreferred.postcode}}                         'declarationStatus': '{{match ^('0' '0') => '03'; ('0' '1') => '02'; ('0' '2') => '01'; ('1' '0') => '05'; ('1' '1') => '01';                                                     ('3' '0') => '04';  ('3' '1') => '01'; (* *) => '01'^                                             (stripCommas legalStatus) (stripCommas (either roleInBusiness1 roleInBusiness2 roleInBusiness3 roleInBusiness4))}}',                         'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_NUMBER_OF_SITES',                          'paramValue': '{{noOfSites}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_OTHER_LF_BUSINESSES',                          'paramValue': '{{match ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart  '1'))}}'},                         {{#each regNo1}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1LtdCo}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1Part}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},                         {{#transferDate-year}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{toEtmpDate transferDate}}'},                         {{/transferDate-year}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{prevBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{prevRegNo}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'siteDetails':                      {                       'isrScenario': 'Z050',                       'formData': [                         {{#each siteTradingName}}                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': '{{.}}',                               'siteReferenceNumber': '{{elementAt permitTextfield @index}}',                               'addressInputModeIndicator': '2',                               {{#with (lookup @root.siteAddress @index) as |addr|}}                               {{toDesAddressWithoutPostcode addr @index}},                               'postCode': '{{addr.postcode}}',                               {{/with}}                               'telephoneNumber': '{{toEtmpTelephoneNumber (elementAt sitePhone @index)}}',                               'email': '{{elementAt siteEmail @index}}'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_EST_STANDARD_WASTE',                               'paramValue': '{{stripCommas (elementAt altStdRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_LOWER_WASTE',                               'paramValue': '{{stripCommas (elementAt altLowRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_EXEMPT_WASTE',                               'paramValue': '{{stripCommas (elementAt altExamptMaterials @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_WB_USED_TO_WEIGHT',                               'paramValue': '{{yesNoToEtmpChoice (elementAt weighbridgeChoice @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_SITE_HAS_CONTROLLER',                               'paramValue': '{{yesNoToEtmpChoice (elementAt controllerChoice @index)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "LTREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "LTREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
   "GFC579Ready": "true",
-  "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk"
+  "submitErrorUrl": "",
+  "submitSuccessUrl": "",
+  "_id": "register-for-landfill-tax"
 }
