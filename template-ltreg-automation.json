@@ -9,36 +9,74 @@
   },
   "sections": [
     {
-      "title": "Details of business to register",
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
       "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
       "validators": {
-        "errorMessage": "The UTR could not be found or the postcode did not match.",
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
         "validatorName": "hmrcRosmRegistrationCheck",
         "parameters": {
-          "regime": "LFT",
+          "regime": "APD",
           "utr": "${businessUtr}",
           "postcode": "${businessPostcode}"
         }
       },
       "fields": [
         {
-          "id": "businessUtr",
-          "type": "text",
-          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
-          "shortName": "Unique Taxpayer Reference",
-          "format": "utr"
-        },
-        {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Business Address Postcode",
-          "shortName": "Postcode",
-          "format": "text(5,8)"
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
         }
       ]
     },
     {
-      "title": "You are completing a Land Fill Tax registration for the following business",
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
       "fields": [
         {
           "id": "safeId",
@@ -52,10 +90,35 @@
           "id": "businessName",
           "type": "text",
           "label": "",
-          "shortName": "Business Name",
+          "shortName": "Business name",
           "value": "${hmrcRosmRegistrationCheck.organisationName}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -1028,13 +1091,13 @@
     {
       "id": "eeittRegistrationApi",
       "type": "handlebarsHttpApi",
-      "includeIf": "{{lookup ^('notransfer') => 'true'; (*) => 'false'^ (either prevBusinessName 'notransfer')}}",
+      "includeIf": "{{and (isNull prevBusinessName) (not (exists weighbridgeChoice '1')) (not (exists weighbridgeChoice '1,'))}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
       "uri": "cross-regime/subscription/LFT/utr/{{businessUtr}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'Z049',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{taxableDisposalDate-year}}-{{taxableDisposalDate-month}}-{{taxableDisposalDate-day}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#businessTradingNameSoleTrader}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingNameSoleTrader}}'                         },                       {{/businessTradingNameSoleTrader}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode \"businessAddress\"}},                           'postCode': '{{businessAddress-postcode}}',                           'telephoneNumber': '{{BusinessPhone}}',                           {{#businessEmail}}                           'email': '{{businessEmail}}'                           {{/businessEmail}}                         },                       'correspondenceAddressDifferent': '{{stripCommas altAdd}}',                       {{#businessAddressPreferred-postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode \"businessAddressPreferred\"}},                         'postCode': '{{businessAddressPreferred-postcode}}',                         'telephoneNumber': '{{phoneNumberPreferred}}',                         {{#emailPreferred}}                         'email': '{{emailPreferred}}'                         {{/emailPreferred}}                         },                       {{/businessAddressPreferred-postcode}}                         'declarationStatus': '{{lookup ^('0' '0') => '03'; ('0' '1') => '02'; ('0' '2') => '01'; ('1' '0') => '05'; ('1' '1') => '01';                                                     ('3' '0') => '04';  ('3' '1') => '01'; (* *) => '01'^                                             (stripCommas legalStatus) (stripCommas (either roleInBusiness1 roleInBusiness2 roleInBusiness3 roleInBusiness4))}}'},                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_NUMBER_OF_SITES',                          'paramValue': '{{noOfSites}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_OTHER_LF_BUSINESSES',                          'paramValue': '{{lookup ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart  '1'))}}'},                         {{#each regNo1}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1LtdCo}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1Part}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},                         {{#transferDate-year}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{toEtmpDate 'transferDate'}}'},                         {{/transferDate-year}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{prevBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{prevRegNo}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'siteDetails':                      {                       'isrScenario': 'Z050',                       'formData': [                         {{#each siteTradingName}}                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': '{{.}}',                               'siteReferenceNumber': '{{elementAt permitTextfield @index}}',                               'addressInputModeIndicator': '2',                               {{toDesAddressWithoutPostcodeFromArray \"siteAddress\" @index}},                               'postCode': '{{elementAt ../siteAddress-postcode @index}}',                               'telephoneNumber': '{{elementAt sitePhone @index}}',                               'email': '{{elementAt siteEmail @index}}'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_EST_STANDARD_WASTE',                               'paramValue': '{{stripCommas (elementAt altStdRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_LOWER_WASTE',                               'paramValue': '{{stripCommas (elementAt altLowRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_EXEMPT_WASTE',                               'paramValue': '{{stripCommas (elementAt altExamptMaterials @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_WB_USED_TO_WEIGHT',                               'paramValue': '{{yesNoToEtmpChoice (elementAt weighbridgeChoice @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_SITE_HAS_CONTROLLER',                               'paramValue': '{{yesNoToEtmpChoice (elementAt controllerChoice @index)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'Z049',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{toDesDate taxableDisposalDate}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#businessTradingNameSoleTrader}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingNameSoleTrader}}'                         },                       {{/businessTradingNameSoleTrader}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode businessAddress}},                           'postCode': '{{businessAddress.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber BusinessPhone}}',                           {{#businessEmail}}                           'email': '{{businessEmail}}'                           {{/businessEmail}}                         },                       'correspondenceAddressDifferent': '{{stripCommas altAdd}}',                       {{#businessAddressPreferred.postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode businessAddressPreferred}},                         'postCode': '{{businessAddressPreferred.postcode}}',                         'telephoneNumber': '{{toEtmpTelephoneNumber phoneNumberPreferred}}',                         {{#emailPreferred}}                         'email': '{{emailPreferred}}'                         {{/emailPreferred}}                         },                       {{/businessAddressPreferred.postcode}}                         'declarationStatus': '{{match ^('0' '0') => '03'; ('0' '1') => '02'; ('0' '2') => '01'; ('1' '0') => '05'; ('1' '1') => '01';                                                     ('3' '0') => '04';  ('3' '1') => '01'; (* *) => '01'^                                             (stripCommas legalStatus) (stripCommas (either roleInBusiness1 roleInBusiness2 roleInBusiness3 roleInBusiness4))}}',                         'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_NUMBER_OF_SITES',                          'paramValue': '{{noOfSites}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_OTHER_LF_BUSINESSES',                          'paramValue': '{{match ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart  '1'))}}'},                         {{#each regNo1}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1LtdCo}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1Part}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},                         {{#transferDate-year}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{toEtmpDate transferDate}}'},                         {{/transferDate-year}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{prevBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{prevRegNo}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'siteDetails':                      {                       'isrScenario': 'Z050',                       'formData': [                         {{#each siteTradingName}}                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': '{{.}}',                               'siteReferenceNumber': '{{elementAt permitTextfield @index}}',                               'addressInputModeIndicator': '2',                               {{#with (lookup @root.siteAddress @index) as |addr|}}                               {{toDesAddressWithoutPostcode addr @index}},                               'postCode': '{{addr.postcode}}',                               {{/with}}                               'telephoneNumber': '{{toEtmpTelephoneNumber (elementAt sitePhone @index)}}',                               'email': '{{elementAt siteEmail @index}}'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_EST_STANDARD_WASTE',                               'paramValue': '{{stripCommas (elementAt altStdRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_LOWER_WASTE',                               'paramValue': '{{stripCommas (elementAt altLowRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_EXEMPT_WASTE',                               'paramValue': '{{stripCommas (elementAt altExamptMaterials @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_WB_USED_TO_WEIGHT',                               'paramValue': '{{yesNoToEtmpChoice (elementAt weighbridgeChoice @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_SITE_HAS_CONTROLLER',                               'paramValue': '{{yesNoToEtmpChoice (elementAt controllerChoice @index)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
     },
     {
       "id": "taxEnrollment",
@@ -1045,7 +1108,7 @@
       "convertSingleQuotes": true,
       "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
       "method": "PUT",
-      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/submissions/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
