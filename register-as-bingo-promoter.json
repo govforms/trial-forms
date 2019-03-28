@@ -1,20 +1,126 @@
 {
-  "_id": "register-as-bingo-promoter",
   "formName": "Register as a bingo promoter",
   "description": "",
   "developmentPhase": "beta",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "emailTemplateId": "ex250_registration_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "BD"
-  },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${eeitt.userId}",
-    "dmsFormId": "EX250"
+    "authModule": "hmrc"
   },
   "sections": [
+    {
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
+      "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
+      "validators": {
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "APD",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
+        }
+      ]
+    },
     {
       "title": "Contact details",
       "description": "Provide the contact details of someone who is authorised to discuss this form with HMRC.",
@@ -22,42 +128,38 @@
         {
           "id": "firstNameBusiness",
           "type": "text",
-          "label": "First name",
-          "shortName": "First name"
+          "label": "First name"
         },
         {
           "id": "lastNameBusiness",
           "type": "text",
-          "label": "Last name",
-          "shortName": "Last name"
+          "label": "Last name"
         },
         {
           "id": "emailAgent",
           "type": "text",
           "label": "Email address",
-          "shortName": "Email address",
           "format": "email"
         },
         {
           "id": "agentTelephone",
           "type": "text",
           "label": "Telephone number",
-          "shortName": "Telephone number",
           "helpText": "Include the country and area codes",
           "format": "telephoneNumber"
         }
       ]
     },
     {
-      "title": "Which of these best describes the bingo promoter?",
+      "title": "Which of these best describes the promoter?",
+      "shortName": "Promoter details",
       "fields": [
         {
-          "id": "orgType",
+          "id": "promoterType",
           "type": "choice",
           "label": "",
-          "shortName": "Type of bingo promoter",
-          "helpText": "",
-          "errorMessage": "Select the type that best describes the bingo promoter",
+          "shortName": "Type of promoter",
+          "errorMessage": "Select the type that best describes the promoter",
           "choices": [
             "Limited company",
             "Sole trader",
@@ -69,299 +171,125 @@
       ]
     },
     {
-      "title": "Business details",
-      "fields": [
-        {
-          "id": "businessName",
-          "type": "text",
-          "label": "Business or organisation name",
-          "shortName": "Business name",
-          "mandatory": "true",
-          "errorMessage": "Enter the business name"
-        },
-        {
-          "id": "UTR",
-          "type": "text",
-          "label": "Your Unique Taxpayer Reference",
-          "shortName": "Unique Taxpayer Reference",
-          "helpText": "This is a 10 digit number, like 0123456789. You can find this on your tax return or statement of accounts.",
-          "mandatory": "true",
-          "errorMessage": "Enter the UTR"
-        }
-      ]
-    },
-    {
       "title": "Do you trade under a different name?",
+      "shortName": "Different trading name",
       "fields": [
         {
-          "id": "doYouHaveTrading",
+          "id": "differentTradingName",
           "type": "choice",
           "label": "",
           "shortName": "Trade under a different name",
-          "helpText": "",
           "format": "yesno",
           "errorMessage": "Select yes or no if you trade under a different name"
         }
       ]
     },
     {
-      "title": "What is your trading name?",
-      "includeIf": "${doYouHaveTrading=0}",
+      "title": "What is your business trading name?",
+      "shortName": "Business trading name",
+      "includeIf": "${differentTradingName=0 && !promoterType=4}",
       "fields": [
         {
-          "id": "tradingNameSetFifth",
+          "id": "businessTradingName",
           "type": "text",
           "label": "",
-          "shortName": "Trading name",
-          "errorMessage": "Enter a trading name"
+          "shortName": "Trading name"
+        }
+      ]
+    },
+    {
+      "title": "What is your unincorporated body trading name?",
+      "shortName": "Unincorporated body trading name",
+      "includeIf": "${differentTradingName=0 && promoterType=4}",
+      "fields": [
+        {
+          "id": "unincorpTradingName",
+          "type": "text",
+          "label": "",
+          "shortName": "Trading name"
         }
       ]
     },
     {
       "title": "Is your business registered for VAT?",
-      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
+      "includeIf": "${!promoterType=4}",
       "fields": [
         {
           "id": "areYouVATRegistered",
           "type": "choice",
           "label": "",
-          "shortName": "Business VAT registered",
-          "helpText": "",
+          "shortName": "VAT registered",
           "format": "yesno",
           "errorMessage": "Select yes or no if the business is VAT registered"
         }
       ]
     },
     {
-      "title": "Is your organisation VAT registered?",
-      "includeIf": "${orgType=4}",
+      "title": "Is your unincorporated body VAT registered?",
+      "includeIf": "${promoterType=4}",
       "fields": [
         {
           "id": "areYouVATRegisteredUn",
           "type": "choice",
           "label": "",
-          "shortName": "Organisation VAT registered",
-          "helpText": "",
+          "shortName": "VAT registered",
           "format": "yesno",
-          "errorMessage": "Select yes or no if your organisation is VAT registered"
+          "errorMessage": "Select yes or no if the unincorporated body is VAT registered"
         }
       ]
     },
     {
       "title": "What is the VAT registration number?",
       "includeIf": "${areYouVATRegistered=0 || areYouVATRegisteredUn=0}",
-      "description": "This is 9 numbers, sometimes with ‘GB’ at the start, for example 123456789 or GB123456789.",
       "fields": [
         {
           "id": "VATRegsiteredNumber",
           "type": "text",
           "label": "",
           "shortName": "VAT registration number",
-          "errorMessage": "Enter your VAT registration number"
+          "helpText": "This is 9 numbers with ‘GB’ at the start, for example GB123456789.",
+          "format": "ukVrn"
         }
       ]
     },
     {
-      "title": "Provide all trading addresses",
-      "description": "By law, the promoter must provide all the addresses they plan to trade from.",
+      "title": "How many trading addresses do you have?",
+      "shortName": "Trading addresses",
       "fields": [
         {
-          "id": "userAddress",
+          "id": "noOfTradingAddress",
+          "type": "text",
+          "label": "",
+          "shortName": "Number of addresses",
+          "helpText": "By law, the promoter must provide all the addresses they plan to trade from, you must provide at least 1 address.",
+          "format": "positiveNumber(3, 0)",
+          "displayWidth": "xs",
+          "validIf": "${noOfTradingAddress >0 && noOfTradingAddress <300}"
+        }
+      ]
+    },
+    {
+      "title": "Trading address $n",
+      "repeatsMin": "${noOfTradingAddress}",
+      "repeatsMax": "${noOfTradingAddress}",
+      "fields": [
+        {
+          "id": "tradingAddresses",
           "type": "address",
           "label": "",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises=0}",
-      "fields": [
-        {
-          "id": "userAddress2",
-          "type": "address",
-          "label": "Business address 2",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises2",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises2=0}",
-      "fields": [
-        {
-          "id": "userAddress3",
-          "type": "address",
-          "label": "Business address 3",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises3",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises3=0}",
-      "fields": [
-        {
-          "id": "userAddress4",
-          "type": "address",
-          "label": "Business address 4",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises4",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises4=0}",
-      "fields": [
-        {
-          "id": "userAddress5",
-          "type": "address",
-          "label": "Business address 5",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises5",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises5=0}",
-      "fields": [
-        {
-          "id": "userAddress6",
-          "type": "address",
-          "label": "Business address 6",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises6",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises6=0}",
-      "fields": [
-        {
-          "id": "userAddress7",
-          "type": "address",
-          "label": "Business address 7",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises7",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises7=0}",
-      "fields": [
-        {
-          "id": "userAddress8",
-          "type": "address",
-          "label": "Business address 8",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises8",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises8=0}",
-      "fields": [
-        {
-          "id": "userAddress9",
-          "type": "address",
-          "label": "Business address 9",
-          "postcodeLookup": "no"
-        },
-        {
-          "id": "tradeMultiplePremises9",
-          "type": "choice",
-          "label": "Do you want to add any more trading addresses?",
-          "shortName": "Additional address",
-          "format": "yesno",
-          "errorMessage": "Select yes or no if you want to add any more trading addresses"
-        }
-      ]
-    },
-    {
-      "title": "Trading addresses",
-      "includeIf": "${tradeMultiplePremises9=0}",
-      "fields": [
-        {
-          "id": "userAddress10",
-          "type": "address",
-          "label": "Business address 10",
-          "postcodeLookup": "no"
+          "shortName": "Trading address"
         }
       ]
     },
     {
       "title": "Is your business licensed to promote bingo events?",
-      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
+      "includeIf": "${!promoterType=4}",
       "fields": [
         {
           "id": "canRunBingo",
           "type": "choice",
           "label": "",
-          "shortName": "Licensed to promote bingo events",
+          "shortName": "Licensed to promote",
           "helpText": "All promoters must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
           "format": "yesno",
           "errorMessage": "Select yes or no if you are licensed to promote bingo events"
@@ -369,14 +297,14 @@
       ]
     },
     {
-      "title": "Is your organisation licensed to promote bingo events?",
-      "includeIf": "${orgType=4}",
+      "title": "Is your unincorporated body licensed to promote bingo events?",
+      "includeIf": "${promoterType=4}",
       "fields": [
         {
           "id": "canRunBingoUn",
           "type": "choice",
           "label": "",
-          "shortName": "Licensed to promote bingo events",
+          "shortName": "Licensed to promote",
           "helpText": "All promoters must be licensed under the Gambling Act 2005 or the Betting, Gaming, Lotteries and Amusements (NI) Order 1985.",
           "format": "yesno",
           "errorMessage": "Select yes or no if you are licensed to promote bingo events"
@@ -387,94 +315,92 @@
       "title": "Have you already started trading?",
       "fields": [
         {
-          "id": "haveStartedBingo",
+          "id": "haveStartedTrading",
           "type": "choice",
           "label": "",
           "shortName": "Already started trading",
           "format": "yesno",
-          "errorMessage": ""
+          "errorMessage": "Select yes or no if you have started trading"
         }
       ]
     },
     {
       "title": "Enter the trading date",
-      "includeIf": "${haveStartedBingo=0}",
+      "includeIf": "${haveStartedTrading=0}",
       "fields": [
         {
           "id": "tradingDate",
           "type": "date",
           "label": "",
           "shortName": "Trading date",
-          "helpText": "For example, 01 01 2017",
-          "errorMessage": "Enter the trading date"
+          "helpText": "For example, 01 01 2017"
         }
       ]
     },
     {
       "title": "When will you start to trade?",
-      "includeIf": "${haveStartedBingo=1}",
+      "includeIf": "${haveStartedTrading=1}",
       "fields": [
         {
           "id": "tradingDateNotStarted",
           "type": "date",
           "label": "",
           "shortName": "Future trading date",
-          "helpText": "For example, 01 01 2020",
-          "errorMessage": "Enter the trading date"
+          "helpText": "For example, 01 01 2020"
         }
       ]
     },
     {
       "title": "What is your business estimated profit for the next 12 months?",
-      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
+      "shortName": "Profit estimation",
+      "includeIf": "${!promoterType=4}",
       "fields": [
         {
           "id": "estimatedProfitBus",
           "type": "text",
           "label": "",
-          "shortName": "Estimated profit for the next 12 months",
-          "format": "sterling",
-          "errorMessage": "Enter an estimated profit amount for the next 12 months"
+          "shortName": "Estimated profit",
+          "format": "sterling"
         }
       ]
     },
     {
-      "title": "What is your organisation's estimated profit for the next 12 months?",
-      "includeIf": "${orgType=4}",
+      "title": "What is your unincorporated body estimated profit for the next 12 months?",
+      "includeIf": "${promoterType=4}",
       "fields": [
         {
           "id": "estimatedProfitUnincorporated",
           "type": "text",
           "label": "",
-          "shortName": "Estimated profit for the next 12 months",
-          "format": "sterling",
-          "errorMessage": "Enter an estimated profit amount for the next 12 months"
+          "shortName": "Estimated profit",
+          "format": "sterling"
         }
       ]
     },
     {
       "title": "Does your business only trade at certain times of the year?",
-      "includeIf": "${orgType=0 || orgType=1 || orgType=2 || orgType=3}",
+      "shortName": "Does your business trade at certain times of the year?",
+      "includeIf": "${!promoterType=4}",
       "fields": [
         {
-          "id": "limitedCompanyQuestion",
+          "id": "businessSeasonTrading",
           "type": "choice",
           "label": "",
-          "shortName": "Trade at certain times of the year",
+          "shortName": "Trade at certain times",
           "format": "yesno",
           "errorMessage": "Select yes or no if your business only trade at certain times of the year"
         }
       ]
     },
     {
-      "title": "Does your organisation only trade at certain times of the year?",
-      "includeIf": "${orgType=4}",
+      "title": "Does your unincorporated body only trade at certain times of the year?",
+      "includeIf": "${promoterType=4}",
       "fields": [
         {
           "id": "areSeasonalTrader",
           "type": "choice",
           "label": "",
-          "shortName": "Trade at certain times of the year",
+          "shortName": "Trade at certain times",
           "format": "yesno",
           "errorMessage": "Select yes or no if your unincorporated body only trade at certain times of the year"
         }
@@ -487,7 +413,7 @@
       {
         "id": "authorisedText",
         "type": "info",
-        "label": "authorisedText",
+        "label": "",
         "infoText": "You must be authorised to act on behalf of the company to submit this registration. For example, a director or a company secretary (if you have one)",
         "infoType": "noformat"
       },
@@ -497,16 +423,23 @@
         "label": "",
         "fields": [
           {
-            "id": "declaration-fullName",
+            "id": "declarationFullName",
             "type": "text",
-            "label": "Full name",
-            "errorMessage": "Enter a full name"
+            "label": "Full name"
           },
           {
-            "id": "declaration-status",
-            "type": "text",
-            "label": "Position in company",
-            "errorMessage": "Enter a position in the company"
+            "id": "declarationStatusRole",
+            "type": "choice",
+            "label": "Select the status relevant to you",
+            "shortName": "Your status",
+            "helpText": "For limited companies, a director or company secretary must complete this declaration",
+            "choices": [
+              "Director",
+              "Company secretary",
+              "Sole trader",
+              "Partner",
+              "Authorised official"
+            ]
           }
         ]
       },
@@ -515,9 +448,7 @@
         "type": "text",
         "label": "Email address",
         "helpText": "We will send an email to this address to confirm the application has been submitted",
-        "format": "email",
-        "mandatory": "true",
-        "errorMessage": "Enter an email address"
+        "format": "email"
       },
       {
         "id": "decPageContent",
@@ -548,6 +479,52 @@
       }
     ]
   },
-  "submitErrorUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs",
-  "submitSuccessUrl": "https://www.gov.uk/government/organisations/hm-revenue-customs"
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/BD/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBD2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '2'; ('4') => '5'^ (stripCommas promoterType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#tradingDateNotStarted.year}}                         'taxStartDate': '{{toDesDate tradingDateNotStarted}}'                         {{/tradingDateNotStarted.year}}                         {{#tradingDate.year}}                         'taxStartDate': '{{toDesDate tradingDate}}'                         {{/tradingDate.year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#unincorpTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{unincorpTradingName}}'                         },                       {{/unincorpTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{#with (lookup @root.tradingAddresses 0) as |addr|}}                           {{toDesAddressWithoutPostcode addr}},                           'postCode': '{{addr.postcode}}',                           {{/with}}                           'telephoneNumber': '{{toEtmpTelephoneNumber agentTelephone}}',                           {{#emailAgent}}                           'email': '{{emailAgent}}'                           {{/emailAgent}}                         },                       'correspondenceAddressDifferent': '0',                         'declarationStatus': '{{match ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas declarationStatusRole.[0])}}',                         'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {{#canRunBingo}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingo}}'},                         {{/canRunBingo}}                         {{#canRunBingoUn}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingoUn}}'},                         {{/canRunBingoUn}}                         {{#businessSeasonTrading}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice businessSeasonTrading}}'},                         {{/businessSeasonTrading}}                         {{#areSeasonalTrader}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice areSeasonalTrader}}'},                         {{/areSeasonalTrader}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas (either estimatedProfitBus estimatedProfitUnincorporated)}}'},                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'premiseDetails':                      {                       'isrScenario': 'Z062',                       'formData': [                         {{#each tradingAddresses}}                         {                           'commonDetails': {                             'action': '1',                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_SEQUENCE',                               'paramValue': '{{plus @index 1}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TRADE_NAME',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_REFERENCE',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_NON_UK',                               'paramValue': '0'                             },                             {{#with (lookup @root.tradingAddresses @index) as |addr|}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_1',                               'paramValue': '{{addr.street1}}'                             },                             {{#if addr.street2}}                               {                                 'paramSequence': '01',                                 'paramName': 'A_PREM_LIST_ADR_LINE_2',                                 'paramValue': '{{addr.street2}}'                               },                               {{#if addr.street3}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_3',                                   'paramValue': '{{addr.street3}}'                                 },                               {{/if}}                               {{#if addr.street4}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_4',                                   'paramValue': '{{addr.street4}}'                                 },                               {{/if}}                             {{else}}                               {                                 'paramSequence': '01',                                 'paramName': 'A_PREM_LIST_ADR_LINE_2',                                 'paramValue': '{{addr.street3}}-'                               },                               {{#if addr.street4}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_3',                                   'paramValue': '{{addr.street4}}'                                 },                               {{/if}}                             {{/if}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_POST_CODE',                               'paramValue': '{{addr.postcode}}'                             },                             {{/with}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TELEPHONE_NUM',                               'paramValue': '{{toEtmpTelephoneNumber agentTelephone}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_BODY_TYPE',                               'paramValue': '{{match ^('0') => 'Limited Company'; ('1') => 'Sole Trader'; ('2') => 'Partnership'; ('3') => 'LLP'; ('4') => 'Unincorporated Body'^ (stripCommas promoterType)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "EX250",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "EX250",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "submitErrorUrl": "",
+  "submitSuccessUrl": "",
+  "_id": "register-as-bingo-promoter"
 }
