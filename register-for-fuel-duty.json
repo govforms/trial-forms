@@ -1,0 +1,225 @@
+{
+  "_id": "register-for-fuel-duty",
+  "formName": "Register for Fuel Duty",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "lt_registration_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BT",
+    "classificationType": "BT-NRU-Environmental",
+    "customerId": "${''}",
+    "dmsFormId": "LTREG"
+  },
+  "sections": [
+    {
+      "title": "What type of business do you want to register?",
+      "shortName": "What type of business do you want to register?",
+      "fields": [
+        {
+          "id": "legalStatus",
+          "type": "choice",
+          "label": "What type of business do you want to register?",
+          "shortName": "Business type",
+          "choices": [
+            "Sole proprietorship",
+            "Limited company",
+            "Limited liability partnership (LLP)",
+            "Partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is your role in the business?",
+      "fields": [
+        {
+          "id": "roleBus",
+          "type": "choice",
+          "label": "What is your role in the business?",
+          "shortName": "What is your role in the business?",
+          "choices": [
+            "Director",
+            "Authorised official",
+            "Company secretary",
+            "Partner",
+            "Sole proprietor",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot register the business for Fuel Duty",
+      "includeIf": "${roleBus = 5}",
+      "fields": [
+        {
+          "id": "generatedId_865a52ef_3eb4_4f2a_9853_1891ab9c040b",
+          "type": "info",
+          "label": "cannotReg",
+          "infoText": "This is because you the business has not authorised you to register it for Fuel Duty.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter the business' Economic Operator Registration and Identification (EORI) number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "Enter the business' Economic Operator Registration and Identification (EORI) number",
+          "shortName": "EORI number",
+          "helpText": "This starts with the 2-letter country code in capital letters and then has up to 15 numbers",
+          "format": "EORI",
+          "mandatory": "true",
+          "errorMessage": "Enter the business' EORI number in the correct format"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find an EORI country code",
+          "infoText": "Country - country code:\n\n**United Kingdom - GB**\n\nAustria - AT\n\nBelgium - BE \n\nBulgaria - BG\n\nCroatia - HR\n\nCyprus - CY\n\nCzechia - CZ \n\nDenmark - DK \n\nEstonia - EE\n\nFinland - FI \n\nFrance - FR\n\nGermany - DE\n\nGreece - EL\n\nHungary - HU\n\nIreland - IE\n\nItaly - IT\n\nLatvia - LV\n\nLithuania - LT\n\nLuxembourg - LU\n\nMalta - MT\n\nNetherlands - NL\n\nPoland - PL\n\nPortugal - PT\n\nRomania - RO\n\nSlovakia - SK \n\nSlovenia - SL \n\nSpain - ES\n\nSweden - SE \n\nUnited Kingdom - GB",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the principal place of business",
+      "fields": [
+        {
+          "id": "youInfo1b",
+          "type": "info",
+          "label": "",
+          "infoText": "We'll only use these details to verify the business for the purposes of this registration. \n\nWe will also use these details to contact the business to discuss this form if we have a question, or you can choose to enter a different address for correspondence.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "busiAdd1",
+          "type": "address",
+          "label": "Address",
+          "international": "true",
+          "mandatory": "true"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEmail1",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        },
+        {
+          "id": "corresChoice",
+          "type": "choice",
+          "label": "Do you want to add a correspondence address that's different to the above address?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the correspondence details",
+      "includeIf": "${corresChoice = 0}",
+      "fields": [
+        {
+          "id": "youInfo1a",
+          "type": "info",
+          "label": "",
+          "infoText": "We will use these details if we need to contact the business to discuss this form.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "corresAddy",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "id": "corresPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "corresEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "fields": [
+        {
+          "id": "generatedId_5167b032_6bd7_4cde_b9f7_caf28b9328b7",
+          "type": "info",
+          "label": "contDet",
+          "infoText": "We will use these details to contact you if we need to discuss this form.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telNum",
+          "type": "text",
+          "label": "Telephone number"
+        },
+        {
+          "id": "eAd",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "For example, name@example.com",
+          "format": "email"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Submit form to register the business for Fuel Duty",
+    "fields": [
+      {
+        "id": "generatedId_fbda0632_23c1_40e0_b68d_42135635b0a4",
+        "type": "info",
+        "label": "Dec",
+        "infoText": "##Declaration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this form you are confirming that all the information you’ve provided is correct and complete.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Form submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "whatNext",
+        "infoText": "We will review your form.\n\n##If the business is Excise Payment Security System (EPSS) approved\nYou must complete a  [VAT: deferment schedule - SIVA reduced security (SIVA2) form (opens in a new window)](https://www.gov.uk/government/publications/vat-deferment-schedule-simplified-import-vat-accounting-reduced-security-siva2). You must send the completed SIVA2 form as well as a copy of your EPSS approval letter to HMRC.\n\n##If you’re not EPSS approved\nYou’ll need to appoint a guarantor and complete a [Guarantee deferment of payment to HMRC (C1201HO) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-guarantee-deferment-of-payment-to-hmrc-c1201) and send it to HMRC. \n\n##How to set up a Direct Debit for your return payments \nYou’ll also need to complete a [Set up a Direct Debit to pay deferred duty on imports and excise goods (C1202) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-duty-deferment-payment-instruction-payment-by-direct-debit-c1202) for your return payments and send it to HMRC.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "submitSuccessUrl": "http://www.google.co.uk",
+  "infoText": ""
+}
