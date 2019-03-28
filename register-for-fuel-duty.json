@@ -1,9 +1,8 @@
 {
-  "_id": "register-for-fuel-duty",
-  "formName": "Register for Fuel Duty",
+  "formName": "Register for Fuel Duty (C1201HO)",
   "description": "",
   "developmentPhase": "beta",
-  "emailTemplateId": "lt_registration_confirmation",
+  "emailTemplateId": "register_for_fuel_duty_confirmation",
   "authConfig": {
     "authModule": "hmrc"
   },
@@ -93,7 +92,7 @@
           "id": "youInfo1b",
           "type": "info",
           "label": "",
-          "infoText": "We'll only use these details to verify the business for the purposes of this registration. \n\nWe will also use these details to contact the business to discuss this form if we have a question, or you can choose to enter a different address for correspondence.",
+          "infoText": "We'll use these details to verify the business for the purposes of this registration. \n\nWe will also use these details for your ongoing Fuel Duty correspondence, or you can choose to enter different details for correspondence.",
           "infoType": "noformat"
         },
         {
@@ -118,13 +117,23 @@
         {
           "id": "corresChoice",
           "type": "choice",
-          "label": "Do you want to add a correspondence address that's different to the above address?",
+          "label": "Do you want to add correspondence details that are different to the above details?",
           "choices": [
             "Yes",
             "No"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Changed  references to  'address' to 'details' (as phone number and email are also required).\n\nAlso updated wording (about what these will be used for) from, 'questions about this form' to 'ongoing Fuel Duty correspondence and returns'.\n\n\n\n\n\n",
+            "colour": "#fffacd",
+            "date": 1553791449076,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Enter the correspondence details",
@@ -134,7 +143,7 @@
           "id": "youInfo1a",
           "type": "info",
           "label": "",
-          "infoText": "We will use these details if we need to contact the business to discuss this form.",
+          "infoText": "We will use these details for your ongoing Fuel Duty correspondence and returns.",
           "infoType": "noformat"
         },
         {
@@ -155,7 +164,17 @@
           "label": "Email address",
           "format": "email"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Moved this page so that it directly follows the question on the previous page (asking about adding correspondence details).\n\nAlso updated wording (about what these will be used for) from, 'questions about this form' to 'ongoing Fuel Duty correspondence and returns' . ",
+            "colour": "#fffacd",
+            "date": 1553791223632,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Enter your details",
@@ -181,10 +200,20 @@
           "id": "eAd",
           "type": "text",
           "label": "Email address",
-          "helpText": "For example, name@example.com",
+          "helpText": "We'll also use this to send you a confirmation email",
           "format": "email"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Added in help text to inform users that this email address will receive the confirmation email.",
+            "colour": "#fffacd",
+            "date": 1553791150493,
+            "author": "None"
+          }
+        ]
+      }
     }
   ],
   "declarationSection": {
@@ -213,13 +242,24 @@
         "id": "ackPageInfoTop",
         "type": "info",
         "label": "whatNext",
-        "infoText": "We will review your form.\n\n##If the business is Excise Payment Security System (EPSS) approved\nYou must complete a  [VAT: deferment schedule - SIVA reduced security (SIVA2) form (opens in a new window)](https://www.gov.uk/government/publications/vat-deferment-schedule-simplified-import-vat-accounting-reduced-security-siva2). You must send the completed SIVA2 form as well as a copy of your EPSS approval letter to HMRC.\n\n##If you’re not EPSS approved\nYou’ll need to appoint a guarantor and complete a [Guarantee deferment of payment to HMRC (C1201HO) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-guarantee-deferment-of-payment-to-hmrc-c1201) and send it to HMRC. \n\n##How to set up a Direct Debit for your return payments \nYou’ll also need to complete a [Set up a Direct Debit to pay deferred duty on imports and excise goods (C1202) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-duty-deferment-payment-instruction-payment-by-direct-debit-c1202) for your return payments and send it to HMRC.",
+        "infoText": "We will review your form.\n\nYou'll need to complete the following steps to complete your registration.\n\n##If the business is Excise Payment Security System (EPSS) approved\nYou must complete a  [VAT: deferment schedule - SIVA reduced security (SIVA2) form (opens in a new window)](https://www.gov.uk/government/publications/vat-deferment-schedule-simplified-import-vat-accounting-reduced-security-siva2). You must send the completed SIVA2 form as well as a copy of your EPSS approval letter to HMRC.\n\n##If you’re not EPSS approved\nYou’ll need to appoint a guarantor and complete a [Guarantee deferment of payment to HMRC (C1201HO) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-guarantee-deferment-of-payment-to-hmrc-c1201) and send it to HMRC. \n\n##How to set up a Direct Debit for your return payments \nYou’ll also need to complete a [Set up a Direct Debit to pay deferred duty on imports and excise goods (C1202) form (opens in a new window)](https://www.gov.uk/government/publications/import-and-export-duty-deferment-payment-instruction-payment-by-direct-debit-c1202) for your return payments and send it to HMRC.",
         "infoType": "noformat"
       }
-    ]
+    ],
+    "metadata": {
+      "comments": [
+        {
+          "text": "Added 'You'll need to complete the following steps to complete your registration.' to inform users they have to complete all the following to complete their registration. \n\n",
+          "colour": "#fffacd",
+          "date": 1553792783798,
+          "author": "None"
+        }
+      ]
+    }
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
   "submitSuccessUrl": "http://www.google.co.uk",
-  "infoText": ""
+  "infoText": "",
+  "_id": "register-for-fuel-duty"
 }
