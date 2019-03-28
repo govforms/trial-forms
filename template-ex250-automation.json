@@ -1,5 +1,4 @@
 {
-  "_id": "template-ex250-automation",
   "formName": "Register as a bingo promoter",
   "description": "",
   "developmentPhase": "beta",
@@ -9,13 +8,46 @@
   },
   "sections": [
     {
-      "title": "Details of business to register",
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
       "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
       "validators": {
-        "errorMessage": "The UTR could not be found or the postcode did not match.",
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
         "validatorName": "hmrcRosmRegistrationCheck",
         "parameters": {
-          "regime": "BD",
+          "regime": "APD",
           "utr": "${businessUtr}",
           "postcode": "${businessPostcode}"
         }
@@ -24,21 +56,26 @@
         {
           "id": "businessUtr",
           "type": "text",
-          "label": "Corporation Tax or Self Assessment Unique Taxpayer Reference",
-          "shortName": "Unique Taxpayer Reference",
-          "format": "utr"
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
         },
         {
           "id": "businessPostcode",
           "type": "text",
-          "label": "Business Address Postcode",
-          "shortName": "Postcode",
-          "format": "text(5,8)"
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
         }
       ]
     },
     {
-      "title": "You are completing a Bingo Duty registration for the following business",
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
       "fields": [
         {
           "id": "safeId",
@@ -52,10 +89,35 @@
           "id": "businessName",
           "type": "text",
           "label": "",
-          "shortName": "Business Name",
+          "shortName": "Business name",
           "value": "${hmrcRosmRegistrationCheck.organisationName}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -366,7 +428,7 @@
             "label": "Full name"
           },
           {
-            "id": "declarationStatus",
+            "id": "declarationStatusRole",
             "type": "choice",
             "label": "Select the status relevant to you",
             "shortName": "Your status",
@@ -426,7 +488,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/subscription/BD/utr/{{businessUtr}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBD2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{lookup ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '2'; ('4') => '5'^ (stripCommas promoterType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#tradingDateNotStarted-year}}                         'taxStartDate': '{{tradingDateNotStarted-year}}-{{tradingDateNotStarted-month}}-{{tradingDateNotStarted-day}}'                         {{/tradingDateNotStarted-year}}                         {{#tradingDate-year}}                         'taxStartDate': '{{tradingDate-year}}-{{tradingDate-month}}-{{tradingDate-day}}'                         {{/tradingDate-year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#unincorpTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{unincorpTradingName}}'                         },                       {{/unincorpTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcodeFromArray \"tradingAddresses\" 0}},                           'postCode': '{{tradingAddresses-postcode.[0]}}',                           'telephoneNumber': '{{agentTelephone}}',                           {{#emailAgent}}                           'email': '{{emailAgent}}'                           {{/emailAgent}}                         },                       'correspondenceAddressDifferent': '0',                         'declarationStatus': '{{lookup ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^                                             (stripCommas declarationStatus)}}'},                       'regimeSpecificDetails': [                         {{#canRunBingo}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingo}}'},                         {{/canRunBingo}}                         {{#canRunBingoUn}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingoUn}}'},                         {{/canRunBingoUn}}                         {{#businessSeasonTrading}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice businessSeasonTrading}}'},                         {{/businessSeasonTrading}}                         {{#areSeasonalTrader}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice areSeasonalTrader}}'},                         {{/areSeasonalTrader}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas (either estimatedProfitBus estimatedProfitUnincorporated)}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'premiseDetails':                      {                       'isrScenario': 'Z062',                       'formData': [                         {{#each tradingAddresses-postcode}}                         {                           'commonDetails': {                             'action': '1',                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_SEQUENCE',                               'paramValue': '{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TRADE_NAME',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_REFERENCE',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_NON_UK',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_1',                               'paramValue': '{{elementAt tradingAddresses-street1 @index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_2',                               'paramValue': '{{elementAt tradingAddresses-street2 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_3',                               'paramValue': '{{elementAt tradingAddresses-street3 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_4',                               'paramValue': '{{elementAt tradingAddresses-street4 @index}} '                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_POST_CODE',                               'paramValue': '{{elementAt tradingAddresses-postcode @index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TELEPHONE_NUM',                               'paramValue': '{{agentTelephone}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_BODY_TYPE',                               'paramValue': 'ZBD2'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBD2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '3'; ('3') => '2'; ('4') => '5'^ (stripCommas promoterType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         {{#tradingDateNotStarted.year}}                         'taxStartDate': '{{toDesDate tradingDateNotStarted}}'                         {{/tradingDateNotStarted.year}}                         {{#tradingDate.year}}                         'taxStartDate': '{{toDesDate tradingDate}}'                         {{/tradingDate.year}}                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#unincorpTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{unincorpTradingName}}'                         },                       {{/unincorpTradingName}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{#with (lookup @root.tradingAddresses 0) as |addr|}}                           {{toDesAddressWithoutPostcode addr}},                           'postCode': '{{addr.postcode}}',                           {{/with}}                           'telephoneNumber': '{{toEtmpTelephoneNumber agentTelephone}}',                           {{#emailAgent}}                           'email': '{{emailAgent}}'                           {{/emailAgent}}                         },                       'correspondenceAddressDifferent': '0',                         'declarationStatus': '{{match ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas declarationStatusRole.[0])}}',                         'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {{#canRunBingo}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingo}}'},                         {{/canRunBingo}}                         {{#canRunBingoUn}}                         {'paramSequence': '01',                          'paramName': 'A_LICENSE',                          'paramValue': '{{yesNoToEtmpChoice canRunBingoUn}}'},                         {{/canRunBingoUn}}                         {{#businessSeasonTrading}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice businessSeasonTrading}}'},                         {{/businessSeasonTrading}}                         {{#areSeasonalTrader}}                         {'paramSequence': '01',                          'paramName': 'A_SEASONAL_TRADER',                          'paramValue': '{{yesNoToEtmpChoice areSeasonalTrader}}'},                         {{/areSeasonalTrader}}                         {'paramSequence': '01',                          'paramName': 'A_ESTIMATE',                          'paramValue': '{{stripCommas (either estimatedProfitBus estimatedProfitUnincorporated)}}'},                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'premiseDetails':                      {                       'isrScenario': 'Z062',                       'formData': [                         {{#each tradingAddresses}}                         {                           'commonDetails': {                             'action': '1',                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_SEQUENCE',                               'paramValue': '{{plus @index 1}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TRADE_NAME',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_REFERENCE',                               'paramValue': '{{either businessTradingName unincorpTradingName businessName}}{{@index}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_NON_UK',                               'paramValue': '0'                             },                             {{#with (lookup @root.tradingAddresses @index) as |addr|}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_ADR_LINE_1',                               'paramValue': '{{addr.street1}}'                             },                             {{#if addr.street2}}                               {                                 'paramSequence': '01',                                 'paramName': 'A_PREM_LIST_ADR_LINE_2',                                 'paramValue': '{{addr.street2}}'                               },                               {{#if addr.street3}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_3',                                   'paramValue': '{{addr.street3}}'                                 },                               {{/if}}                               {{#if addr.street4}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_4',                                   'paramValue': '{{addr.street4}}'                                 },                               {{/if}}                             {{else}}                               {                                 'paramSequence': '01',                                 'paramName': 'A_PREM_LIST_ADR_LINE_2',                                 'paramValue': '{{addr.street3}}-'                               },                               {{#if addr.street4}}                                 {                                   'paramSequence': '01',                                   'paramName': 'A_PREM_LIST_ADR_LINE_3',                                   'paramValue': '{{addr.street4}}'                                 },                               {{/if}}                             {{/if}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_POST_CODE',                               'paramValue': '{{addr.postcode}}'                             },                             {{/with}}                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_TELEPHONE_NUM',                               'paramValue': '{{toEtmpTelephoneNumber agentTelephone}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_PREM_LIST_BODY_TYPE',                               'paramValue': '{{match ^('0') => 'Limited Company'; ('1') => 'Sole Trader'; ('2') => 'Partnership'; ('3') => 'LLP'; ('4') => 'Unincorporated Body'^ (stripCommas promoterType)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
     },
     {
       "id": "taxEnrollment",
@@ -437,7 +499,7 @@
       "convertSingleQuotes": true,
       "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
       "method": "PUT",
-      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/submissions/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -463,5 +525,6 @@
     }
   ],
   "submitErrorUrl": "",
-  "submitSuccessUrl": ""
+  "submitSuccessUrl": "",
+  "_id": "template-ex250-automation"
 }
