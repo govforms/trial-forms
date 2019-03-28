@@ -24,8 +24,8 @@
           "label": "What type of business do you want to register?",
           "shortName": "Business type",
           "choices": [
-            "Sole proprietorship",
             "Limited company",
+            "Sole proprietorship",
             "Limited liability partnership (LLP)",
             "Partnership"
           ]
@@ -55,6 +55,7 @@
     {
       "title": "You cannot register the business for Fuel Duty",
       "includeIf": "${roleBus = 5}",
+      "continueIf": "false",
       "fields": [
         {
           "id": "generatedId_865a52ef_3eb4_4f2a_9853_1891ab9c040b",
@@ -200,7 +201,7 @@
           "label": "Telephone number"
         },
         {
-          "id": "eAd",
+          "id": "email",
           "type": "text",
           "label": "Email address",
           "helpText": "We'll also use this to send you a confirmation email",
