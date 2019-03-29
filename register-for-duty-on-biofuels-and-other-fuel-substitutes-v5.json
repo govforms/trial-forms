@@ -13,13 +13,121 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "BT",
-    "classificationType": "BT-NRU-Environmental",
-    "customerId": "${''}",
-    "dmsFormId": "BFREG"
-  },
   "sections": [
+    {
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
+      "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
+      "validators": {
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "APD",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
+        }
+      ]
+    },
     {
       "title": "What is your business type?",
       "shortName": "Type of business",
@@ -93,22 +201,34 @@
       ]
     },
     {
-      "title": "Enter the name of your business",
-      "shortName": "Business details",
+      "title": "Does the business have a trading name different to the business name?",
+      "shortName": "Trading name",
       "fields": [
         {
-          "id": "busName",
-          "type": "text",
-          "label": "Business name "
-        },
+          "id": "tradingName",
+          "type": "choice",
+          "label": "Does the business have a trading name different to the business name?",
+          "shortName": "Does business have a trading name",
+          "errorMessage": "Select whether the business has a trading name different to the business name",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the trading name of your business",
+      "shortName": "Trading name details",
+      "includeIf": "${tradingName=0}",
+      "fields": [
         {
           "id": "businessTradingName",
           "type": "text",
-          "label": "Trading name (optional)",
+          "label": "Enter the trading name of your business",
           "shortName": "Trading name",
-          "helpText": "Enter the trading name, if different from the business name ",
-          "format": "text",
-          "mandatory": "false"
+          "helpText": "",
+          "format": "text"
         }
       ]
     },
@@ -495,6 +615,51 @@
       }
     ]
   },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/ZBFP/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZBF2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'^ (stripCommas businessType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{toDesDate taxLiabiityDate}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           {{#busiAdd1.postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode busiAdd1}},                           'postCode': '{{busiAdd1.postcode}}',                           {{/busiAdd1.postcode}}                           {{#busiAdd1.country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{busiAdd1.street1}}',                           {{#if busiAdd1.street2}}                             'addressLine2': '{{busiAdd1.street2}}',                             {{#busiAdd1.street3}}                             'addressLine3': '{{busiAdd1.street3}}',                             {{/busiAdd1.street3}}                             {{#busiAdd1.street4}}                             'addressLine4': '{{busiAdd1.street4}}',                             {{/busiAdd1.street4}}                           {{else}}                             'addressLine2': '{{busiAdd1.street3}}-',                             {{#busiAdd1.street4}}                             'addressLine3': '{{busiAdd1.street4}}',                             {{/busiAdd1.street4}}                           {{/if}}                           'nonUKCountry': '{{busiAdd1.country}}',                           {{/busiAdd1.country}}                           'telephoneNumber': '{{toEtmpTelephoneNumber businessPhone}}',                           'email': '{{businessEmail1}}'                         },                       'correspondenceAddressDifferent': '{{stripCommas corresChoice}}',                       {{#prefAddress.street1}}                       'correspondenceContactDetails':                         {                           {{#prefAddress.postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode prefAddress}},                           'postCode': '{{prefAddress.postcode}}',                           {{/prefAddress.postcode}}                           {{#prefAddress.country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{prefAddress.street1}}',                           {{#if prefAddress.street2}}                             'addressLine2': '{{prefAddress.street2}}',                             {{#prefAddress.street3}}                             'addressLine3': '{{prefAddress.street3}}',                             {{/prefAddress.street3}}                             {{#prefAddress.street4}}                             'addressLine4': '{{prefAddress.street4}}',                             {{/prefAddress.street4}}                           {{else}}                             'addressLine2': '{{prefAddress.street3}}-',                             {{#prefAddress.street4}}                             'addressLine3': '{{prefAddress.street4}}',                             {{/prefAddress.street4}}                           {{/if}}                           'nonUKCountry': '{{prefAddress.country}}',                           {{/prefAddress.country}}                           'telephoneNumber': '{{toEtmpTelephoneNumber prefPhone}}',                           'email': '{{prefEmail}}'                         },                       {{/prefAddress.street1}}                       'declarationStatus': '{{match ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas roleChoice)}}',                       'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {{#if (greaterThan estProd 449999)}}                           {                             'paramSequence': '01',                             'paramName': 'A_RETURN_PERIODICITY',                             'paramValue': 'MM'                           },                         {{else}}                           {                             'paramSequence': '01',                             'paramName': 'A_RETURN_PERIODICITY',                             'paramValue': '{{match  ^('1') => 'MC';                                                    ('2') => 'MA';                                                    ('3') => 'MB';                                                    ('4') => 'MC';                                                    ('5') => 'MA';                                                    ('6') => 'MB';                                                    ('7') => 'MC';                                                    ('8') => 'MA';                                                    ('9') => 'MB';                                                    ('10') => 'MC';                                                    ('11') => 'MA';                                                    ('12') => 'MB'^                                           (currentMonth)}}'                           },                         {{/if}}                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{toEtmpDate taxLiabiityDate}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_SEAL',                           'paramValue': '0'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_BFP_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice (either bfChoiOther bfChoiOtherDirectors bfChoiOtherPartners)}}'                         },                         {{#each RegNumberOther}}                         {                           'paramSequence': '{{toEtmpParamSequence @index}}',                           'paramName': 'A_OTHR_BFP_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each RegNumberOtherBusPart}}                         {                           'paramSequence': '{{toEtmpParamSequence @index}}',                           'paramName': 'A_OTHR_BFP_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each RegNumberOtherBusSoleT}}                         {                           'paramSequence': '{{toEtmpParamSequence @index}}',                           'paramName': 'A_OTHR_BFP_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_BIO_ESTIMATE',                           'paramValue': '{{stripCommas estProd}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZBF5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_NAT_BUS',                               'paramValue': 'Biofuels'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_MON_QNT_PROD',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_PURP_OTHER',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_SET_ASIDE',                               'paramValue': '3'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_BFP_ASIDE_OTHER',                               'paramValue': 'None'                             }                           ]                         },                       ]                     }                   }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "BFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
