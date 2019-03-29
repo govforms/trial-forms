@@ -1,0 +1,591 @@
+{
+  "_id": "register-for-duty-on-gas-for-use-as-road-fuel-welsh-translation-29-03-19",
+  "formName": "Register for duty on gas for use as road fuel",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "register_for_duty_on_gas_for_road_fuel_use",
+  "emailParameters": [
+    {
+      "value": "${customerName}",
+      "emailTemplateVariable": "customerName"
+    }
+  ],
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "sections": [
+    {
+      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
+      "shortName": "Unique Taxpayer Reference (UTR)",
+      "fields": [
+        {
+          "id": "utrChoice",
+          "type": "choice",
+          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
+          "shortName": "Does the business have a UTR ",
+          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can not register the business for this service",
+      "includeIf": "${utrChoice=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "type": "info",
+          "label": "",
+          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter details for the business you want to register",
+      "shortName": "Business details",
+      "includeIf": "${utrChoice=0}",
+      "validators": {
+        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
+        "validatorName": "hmrcRosmRegistrationCheck",
+        "parameters": {
+          "regime": "APD",
+          "utr": "${businessUtr}",
+          "postcode": "${businessPostcode}"
+        }
+      },
+      "fields": [
+        {
+          "id": "businessUtr",
+          "type": "text",
+          "label": "Unique Taxpayer Reference",
+          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
+          "format": "utr",
+          "displayWidth": "s"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "shortName": "Business postcode",
+          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
+          "format": "text(5,8)",
+          "displayWidth": "s"
+        }
+      ]
+    },
+    {
+      "title": "Is this the business you want to register?",
+      "shortName": "Name of business",
+      "includeIf": "${utrChoice=0}",
+      "fields": [
+        {
+          "id": "safeId",
+          "type": "text",
+          "label": "SafeId",
+          "value": "${hmrcRosmRegistrationCheck.safeId}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "",
+          "shortName": "Business name",
+          "value": "${hmrcRosmRegistrationCheck.organisationName}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "correctBusiness",
+          "type": "choice",
+          "label": "",
+          "shortName": "Business to register",
+          "errorMessage": "Select whether this is the business you want to register",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You'll need to exit this service",
+      "includeIf": "${correctBusiness=1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What is your business type?",
+      "shortName": "Type of business",
+      "fields": [
+        {
+          "id": "businessType",
+          "type": "choice",
+          "label": "What is your business type?",
+          "shortName": "Business type",
+          "choices": [
+            "Limited company",
+            "Sole trader",
+            "Limited liability partnership (LLP)",
+            "Partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the person filling in this form",
+      "shortName": "Details of the person filling in this form",
+      "description": "HMRC will use these details if we need to discuss this form.",
+      "fields": [
+        {
+          "id": "customerName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will also use this to send you a confirmation email",
+          "format": "email"
+        },
+        {
+          "id": "generatedId_92c4ce11_5c2c_4313_8f3a_24344ca50bac",
+          "type": "info",
+          "label": "",
+          "infoText": "##Your role within the business",
+          "infoType": "noformat"
+        },
+        {
+          "id": "roleChoice",
+          "type": "choice",
+          "label": "Select the role relevant to you",
+          "shortName": "Role within business",
+          "helpText": "You must be one of the following to complete this registration",
+          "errorMessage": "Select your role within the business",
+          "choices": [
+            "Director",
+            "Company secretary",
+            "Sole trader",
+            "Partner",
+            "Authorised individual"
+          ],
+          "optionHelpText": [
+            "",
+            "",
+            "",
+            "",
+            "An authorised individual is someone within the business who is authorised by the business to register on their behalf"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Does the business have a trading name different to the business name?",
+      "shortName": "Trading name",
+      "fields": [
+        {
+          "id": "tradingName",
+          "type": "choice",
+          "label": "Does the business have a trading name different to the business name?",
+          "shortName": "Does business have a trading name",
+          "errorMessage": "Select whether the business has a trading name different to the business name",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the trading name of your business",
+      "shortName": "Trading name details",
+      "includeIf": "${tradingName=0}",
+      "fields": [
+        {
+          "id": "businessTradingName",
+          "type": "text",
+          "label": "Enter the trading name of your business",
+          "shortName": "Trading name",
+          "helpText": "",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "Principal place of business details",
+      "shortName": "Principal place of business details",
+      "fields": [
+        {
+          "id": "princPlaceBus",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide details for the main place of business,  where the day-to-day business activities are managed. \n\nHMRC may use these details to verify your business information with records we hold.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessAddress",
+          "type": "address",
+          "label": "Business address",
+          "international": "true"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Business telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEmail",
+          "type": "text",
+          "label": "Business email address",
+          "format": "email"
+        },
+        {
+          "id": "corresChoice",
+          "type": "choice",
+          "label": "Do you also want to use these details for your ongoing correspondence for duty on gas for use as road fuel?",
+          "shortName": "Use details for correspondence",
+          "errorMessage": "Select whether you want to use these details for your ongoing correspondence",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Preferred contact details",
+      "includeIf": "${corresChoice =1}",
+      "fields": [
+        {
+          "id": "prefContactDetails",
+          "type": "info",
+          "label": "",
+          "infoText": "We will use these for your ongoing \ncorrespondence and returns for duty on gas for use as road fuel.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "prefContactName",
+          "type": "text",
+          "label": "Full name of contact"
+        },
+        {
+          "id": "prefContactAdd",
+          "type": "address",
+          "label": "Address",
+          "international": "true"
+        },
+        {
+          "id": "prefPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "prefEmail",
+          "type": "text",
+          "label": "Email address",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": "What do you plan to do with the gas?",
+      "shortName": "What you plan to do with the gas ",
+      "fields": [
+        {
+          "id": "sendSetSupplyChoice",
+          "type": "choice",
+          "label": "What do you plan to do with the gas?",
+          "shortName": "Intention for the gas",
+          "errorMessage": "Select what you plan to do with the gas",
+          "choices": [
+            "Send it out",
+            "Set it aside",
+            "Use it"
+          ]
+        },
+        {
+          "id": "generatedId_e3653143_9a41_468e_908b_5cf124238f80",
+          "type": "info",
+          "label": "What do 'send out', 'set aside' and 'use' the gas mean?",
+          "infoText": "*Send out*\n\nThis is when you send out the gas from your premises for use as road fuel.\n\n*Set aside*\n\nThis is when it is decided that the gas will be used as a road fuel. For example, when you label the container of the gas to show it will be used as road fuel.\n\n*Use*\n\nThis is when the gas is used as fuel for a road vehicle.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Enter the date you expect your business to start being liable for duty on the gas",
+      "shortName": "Date you expect to start being liable for the duty",
+      "fields": [
+        {
+          "id": "taxLiabilityDate",
+          "type": "date",
+          "label": "Enter the date you expect your business to start being liable for duty on the gas",
+          "shortName": "Date",
+          "helpText": "Your business will be liable for duty from the date you first send out, set aside or use gas for use as road fuel. For example 21 04 2019"
+        }
+      ]
+    },
+    {
+      "title": "Estimate the amount of duty on gas for use as road fuel you expect your business to be liable for over the next 12 months",
+      "shortName": "Amount of duty business expects to be liable for over next 12 months",
+      "fields": [
+        {
+          "id": "estTax",
+          "type": "text",
+          "label": "Estimate the amount of duty on gas for use as road fuel you expect your business to be liable for over the next 12 months",
+          "shortName": "Estimated amount",
+          "format": "sterling",
+          "errorMessage": "Estimated amount of duty for the next 12 months must be entered"
+        },
+        {
+          "id": "moreInfoCalculateTax",
+          "type": "info",
+          "label": "Where can I find out how to calculate the duty?",
+          "infoText": "1. Open a new tab or window.\n2. Go to GOV.UK.\n3. Search for 'Excise Notice 76: excise duty on gas for use as fuel in road vehicles'.",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Have any of the directors in your business been involved in any other gas for use as road fuel businesses in the last 2 years?",
+      "shortName": "Involvement in other gas for use as road fuel businesses",
+      "includeIf": "${businessType=0}",
+      "fields": [
+        {
+          "id": "otherBusinessChoiceDirectors",
+          "type": "choice",
+          "label": "Have any of the directors in your business been involved in any other gas for use as road fuel businesses in the last 2 years?",
+          "shortName": "Directors involved in other businesses",
+          "errorMessage": "Select whether the directors have been involved in other gas for use as road fuel businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have any of the partners in your business been involved in any other gas for use as road fuel businesses in the last 2 years?",
+      "shortName": "Involvement in other gas for use as road fuel businesses",
+      "includeIf": "${businessType=2|| businessType=3}",
+      "fields": [
+        {
+          "id": "otherBusinessChoicePartners",
+          "type": "choice",
+          "label": "Have any of the partners in your business been involved in any other gas for use as road fuel businesses in the last 2 years?",
+          "shortName": "Partners involved in other businesses",
+          "errorMessage": "Select whether any of the partners have been involved in other gas for use as road fuel businesses in the last 2 years",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you, as the sole trader, been involved in any other gas for use as road fuel businesses in the last 2 years?",
+      "shortName": "Involvement in other gas for use as road fuel businesses",
+      "includeIf": "${businessType=1}",
+      "fields": [
+        {
+          "id": "otherBusinessChoiceST",
+          "type": "choice",
+          "label": "Have you, as the sole trader, been involved in any other gas for use as road fuel businesses in the last 2 years?",
+          "shortName": "Sole trader involved in other businesses",
+          "errorMessage": "Select whether you, the sole trader, have been involved in other gas for use as road fuel businesses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the gas for use as road fuel duty registration number for each business the directors have been involved in",
+      "shortName": "Registration number of each other business",
+      "includeIf": "${otherBusinessChoiceDirectors=0}",
+      "description": "Provide the registration number for each of the other businesses the directors have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinesses",
+          "type": "group",
+          "label": "",
+          "shortName": "Duty on gas for use as road fuel registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBus",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the gas for use as road fuel duty registration number for each business the partners have been involved in",
+      "shortName": "Registration number of each other business ",
+      "includeIf": "${otherBusinessChoicePartners=0}",
+      "description": "Provide the registration number for each of the other businesses the partners have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinessesPartners",
+          "type": "group",
+          "label": "",
+          "shortName": "Duty on gas for use as road fuel registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBusPartners",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the gas for use as road fuel duty registration number for each business",
+      "shortName": "Registration number of each other business ",
+      "includeIf": "${otherBusinessChoiceST=0}",
+      "description": "Provide the registration number for each of the other businesses that you, the sole trader,  have been involved in within the last 2 years.",
+      "fields": [
+        {
+          "id": "RegNumbersOtherBusinessesSoleT",
+          "type": "group",
+          "label": "",
+          "shortName": "Duty on gas for use as road fuel registration numbers",
+          "repeatsMax": 20,
+          "repeatLabel": "Business $n",
+          "repeatAddAnotherText": "Add another business' registration number",
+          "fields": [
+            {
+              "id": "regNumberOtherBusSoleT",
+              "type": "text",
+              "label": "Registration number",
+              "shortName": "Registration number"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "fields": [
+      {
+        "id": "decInfoCheck",
+        "type": "info",
+        "label": "",
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you.",
+        "infoType": "important"
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Your registration has been submitted",
+    "fields": [
+      {
+        "id": "ackPageInfoTop",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
+        "infoType": "standard"
+      },
+      {
+        "id": "ackPageNextSteps",
+        "type": "info",
+        "label": "",
+        "infoText": "##Complete your registration",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackPageMoreNextSteps",
+        "type": "info",
+        "label": "",
+        "infoText": "You must complete form: [C&E930B](https://www.gov.uk/government/publications/fuel-duty-notification-to-supply-gas-for-use-as-fuel-in-road-vehicles-ce930b)\nfor each of your premises to provide us with further registration details. You can access this form on GOV.UK.\n\n\nIf the business you are registering is a partnership, you’ll also need to email: enquiries.eeitts@hmrc.gov.uk to tell us, so that we can ask you for more details about the partnership.",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "eeittRegistrationApi",
+      "type": "handlebarsHttpApi",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/subscription/ZGRF/utr/{{businessUtr}}",
+      "method": "POST",
+      "payload": "{'registrationDetails':                     {                     'isrScenario': 'ZGR2',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'^ (stripCommas businessType)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{toDesDate taxLiabilityDate}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       'businessContactDetails':                         {                           {{#businessAddress.postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode businessAddress}},                           'postCode': '{{businessAddress.postcode}}',                           {{/businessAddress.postcode}}                           {{#businessAddress.country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{businessAddress.street1}}',                           {{#if businessAddress.street2}}                             'addressLine2': '{{businessAddress.street2}}',                             {{#businessAddress.street3}}                             'addressLine3': '{{businessAddress.street3}}',                             {{/businessAddress.street3}}                             {{#businessAddress.street4}}                             'addressLine4': '{{businessAddress.street4}}',                             {{/businessAddress.street4}}                           {{else}}                             'addressLine2': '{{businessAddress.street3}}-',                             {{#businessAddress.street4}}                             'addressLine3': '{{businessAddress.street4}}',                             {{/businessAddress.street4}}                           {{/if}}                           'nonUKCountry': '{{businessAddress.country}}',                           {{/businessAddress.country}}                           'telephoneNumber': '{{toEtmpTelephoneNumber businessPhone}}',                           'email': '{{businessEmail}}'                         },                       'correspondenceAddressDifferent': '{{stripCommas corresChoice}}',                       {{#prefContactAdd.street1}}                       'correspondenceContactDetails':                         {                           {{#prefContactAdd.postcode}}                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode prefContactAdd}},                           'postCode': '{{prefContactAdd.postcode}}',                           {{/prefContactAdd.postcode}}                           {{#prefContactAdd.country}}                           'addressNotInUK': '1',                           'addressInputModeIndicator': '2',                           'addressLine1': '{{prefContactAdd.street1}}',                           {{#if prefContactAdd.street2}}                             'addressLine2': '{{prefContactAdd.street2}}',                             {{#prefContactAdd.street3}}                             'addressLine3': '{{prefContactAdd.street3}}',                             {{/prefContactAdd.street3}}                             {{#prefContactAdd.street4}}                             'addressLine4': '{{prefContactAdd.street4}}',                             {{/prefContactAdd.street4}}                           {{else}}                             'addressLine2': '{{prefContactAdd.street3}}-',                             {{#prefContactAdd.street4}}                             'addressLine3': '{{prefContactAdd.street4}}',                             {{/prefContactAdd.street4}}                           {{/if}}                           'nonUKCountry': '{{prefContactAdd.country}}',                           {{/prefContactAdd.country}}                           'telephoneNumber': '{{toEtmpTelephoneNumber prefPhone}}',                           'email': '{{prefEmail}}'                         },                       {{/prefContactAdd.street1}}                       'declarationStatus': '{{match ^('0') => '03'; ('1') => '02'; ('2') => '05'; ('3') => '04'; ('4') => '01'^ (stripCommas roleChoice)}}',                       'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {                           'paramSequence': '01',                           'paramName': 'A_RETURN_PERIODICITY',                           'paramValue': '{{match  ^('1') => 'MC';                                                  ('2') => 'MA';                                                  ('3') => 'MB';                                                  ('4') => 'MC';                                                  ('5') => 'MA';                                                  ('6') => 'MB';                                                  ('7') => 'MC';                                                  ('8') => 'MA';                                                  ('9') => 'MB';                                                  ('10') => 'MC';                                                  ('11') => 'MA';                                                  ('12') => 'MB'^                                         (currentMonth)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_TAX_START_DATE',                           'paramValue': '{{toEtmpDate taxLiabilityDate}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_GFU_NOTIF',                           'paramValue': '{{match ^('0') => '1'; ('1') => '2'; ('2') => '3'^ (stripCommas sendSetSupplyChoice)}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_OTHER_GFU_BUSINESSES',                           'paramValue': '{{yesNoToEtmpChoice (either otherBusinessChoiceDirectors otherBusinessChoicePartners otherBusinessChoiceST)}}'                         },                         {{#each regNumberOtherBus}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each regNumberOtherBusPartners}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {{#each regNumberOtherBusSoleT}}                         {                           'paramSequence': '01',                           'paramName': 'A_OTHR_GFU_BUS_REG_NUM',                           'paramValue': '{{.}}'                         },                         {{/each}}                         {                           'paramSequence': '01',                           'paramName': 'A_ESTIMATE',                           'paramValue': '{{stripCommas estTax}}'                         },                         {                           'paramSequence': '01',                           'paramName': 'A_DATA_ORIGIN',                           'paramValue': '1'                         }                         ]                        },                    'siteDetails':                      {                       'isrScenario': 'ZGR5',                       'formData': [                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': 'Dummy Site 1',                               'siteReferenceNumber': 'Dummy Site 1',                               'addressInputModeIndicator': '2',                               'addressLine1': 'Dummy Address 1',                               'addressLine2': 'Dummy Address 2',                               'postCode': 'AA11AA',                               'telephoneNumber': '111111'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_HANDL',                               'paramValue': '1'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_TANK',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_SUPP_PLACE',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_PROD_SUPP',                               'paramValue': '2'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_DESC_VEH_OPER',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_ADAP_FUEL',                               'paramValue': '0'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_CUST_EXCISE_NOTIF',                               'paramValue': 'None'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_GRF_QNT_DET',                               'paramValue': 'None'                             }                           ]                         },                       ]                     }                   }"
+    },
+    {
+      "id": "taxEnrollment",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "profile": "mdtp.tax-enrolments",
+      "convertSingleQuotes": true,
+      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
+      "method": "PUT",
+      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GRFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "GRFREG",
+      "customerId": "${businessUtr}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
