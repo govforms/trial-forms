@@ -51,6 +51,7 @@
           "id": "positionInCompany",
           "type": "choice",
           "label": "Select the role relevant to you",
+          "shortName": "Your role",
           "helpText": "You must be one of the following to register on behalf of the company",
           "choices": [
             "Director",
@@ -76,7 +77,7 @@
     },
     {
       "title": "Has this company previously had a different registered name?",
-      "shortName": "Previous company name",
+      "shortName": "Company details",
       "fields": [
         {
           "id": "companyNameChange",
@@ -113,7 +114,7 @@
           "id": "uTRChoice",
           "type": "choice",
           "label": "Does the company have a Corporation Tax Unique Taxpayer Reference (UTR)?",
-          "shortName": "Corporation Tax UTR",
+          "shortName": "Does the company have a Corporation Tax UTR",
           "helpText": "The company will have a Corporation Tax UTR if it has been previously chargeable for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
           "choices": [
             "Yes",
@@ -304,7 +305,7 @@
           "type": "date",
           "label": "Date of incorporation",
           "helpText": "For example, 01 08 2007",
-          "format": "after today -1"
+          "format": "before today +1"
         },
         {
           "id": "countryOfIncorporation",
@@ -355,13 +356,13 @@
     },
     {
       "title": "Does the company have an Income Tax Self Assessment Unique Taxpayer Reference (UTR)?",
-      "shortName": "UK Self Assessment UTR",
+      "shortName": "Income Tax Self Assessment UTR",
       "fields": [
         {
           "id": "hMRCref",
           "type": "choice",
           "label": "Does the company have an Income Tax Self Assessment Unique Taxpayer Reference (UTR)?",
-          "shortName": "Does the company have a UK Self Assessment UTR",
+          "shortName": "Does the company have a Income Tax Self Assessment UTR",
           "helpText": "Your company will have a Income Tax UTR if it has received or currently receives rental income in the UK as a non-resident landlord. This is 10 numbers, for example 12345 67890.",
           "choices": [
             "Yes",
@@ -372,14 +373,14 @@
     },
     {
       "title": "What is the company's Income Tax Self Assessment Unique Taxpayer Reference?",
-      "shortName": "UK Self Assessment UTR",
+      "shortName": "Income Tax Self Assessment UTR",
       "includeIf": "${hMRCref=0}",
       "fields": [
         {
           "id": "incomeTaxRef",
           "type": "text",
           "label": "What is the company's Income Tax Self Assessment Unique Taxpayer Reference?",
-          "shortName": "Uk Self Assessment UTR",
+          "shortName": "Income Tax Self Assessment UTR",
           "helpText": "This is 10 numbers, for example 12345 67890. This is on SA700 tax returns or other correspondence from HMRC about the company's rental income.",
           "format": "utr"
         }
@@ -395,7 +396,7 @@
           "label": "",
           "shortName": "Date of disposal",
           "helpText": "A disposal means a sale, gift or transfer of ownership. This is the date of completion. For example, 06 04 2019",
-          "format": "after 2018-04-06, before today +1",
+          "format": "after 2018-04-05, before today +1",
           "mandatory": "true",
           "errorMessage": "The date of disposal cannot be before 06 04 2019"
         }
@@ -444,7 +445,7 @@
         "id": "generatedId_73f9a08a_a345_4d2d_a8b7_cd0e4cfc38db",
         "type": "info",
         "label": "",
-        "infoText": "You will only be able to register for online services and file your return once you have received your Unique Taxpayer Reference.",
+        "infoText": "You will only be able to register for HMRC online services and file your return once you have received your Unique Taxpayer Reference.",
         "infoType": "standard"
       },
       {
