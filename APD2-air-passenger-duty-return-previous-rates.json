@@ -1,0 +1,556 @@
+{
+  "formName": "APD2 Air passenger duty return",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "requireMTDAgentEnrolment",
+    "enrolmentCheck": "forNonAgents",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "AP",
+    "enrolmentSection": {
+      "title": "Enter your Air Passenger Duty registration details",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Air Passenger Duty registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Postcode of main place of business",
+          "helpText": "Enter the postcode of the main place of business that you registered for Air Passenger Duty",
+          "format": "text(5, 8)",
+          "mandatory": "true",
+          "displayWidth": "s"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "title": "Enter your client's Air Passenger Duty details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "accessCode",
+          "type": "text",
+          "label": "Access code",
+          "value": "${user.enrolments.HMRC-AS-AGENT.AgentReferenceNumber}",
+          "submitMode": "derived"
+        },
+        {
+          "id": "APDreferencenumber",
+          "type": "text",
+          "label": "Air passenger duty reference number for your client",
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Air Passenger Duty return for the following registration",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "APDReg",
+          "type": "text",
+          "label": "",
+          "shortName": "Air Passenger Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Business details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Name of business"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${APDReg}",
+          "regimeType": "APD"
+        }
+      ]
+    },
+    {
+      "title": "Your details",
+      "fields": [
+        {
+          "id": "helpText1",
+          "type": "info",
+          "label": "",
+          "infoText": "Enter your details exactly as they are registered with your business."
+        },
+        {
+          "id": "yourFirstName",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "yourLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "yourtelephonenumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or country code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "status",
+          "type": "text",
+          "label": "Status within the business",
+          "helpText": "For example, director, company secretary or agent"
+        }
+      ]
+    },
+    {
+      "title": "Choose applicable band A rates",
+      "fields": [
+        {
+          "id": "helpTextZ",
+          "type": "info",
+          "label": "",
+          "infoText": "This band applies to journeys travelled over a distance of 0-2000 miles from London"
+        },
+        {
+          "id": "lowerBandAChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at lower band A flown in this period?",
+          "helpText": "This rate applies to the lowest class of travel available and is charged at £13 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "standardBandAChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at standard band A flown in this period?",
+          "helpText": "This rate applies to any other class of travel and is charged at £26 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "higherBandAChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at higher band A flown in this period?",
+          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £78 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Choose applicable band B rates",
+      "fields": [
+        {
+          "id": "helpTextZa",
+          "type": "info",
+          "label": "",
+          "infoText": "This band applies to journeys travelled over a distance of more than 2000 miles from London"
+        },
+        {
+          "id": "lowerBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at lower band B flown in this period?",
+          "helpText": "This rate applies to the lowest class of travel available and is charged at £78 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "standardBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at standard band B flown in this period?",
+          "helpText": "This rate applies to any other class of travel and is charged at £156 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "higherBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at higher band B flown in this period?",
+          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £468 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at lower band A",
+      "includeIf": "${lowerBandAChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText2",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in the lowest class of travel and is charged at £13 per passenger."
+        },
+        {
+          "id": "lowerAPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)"
+        },
+        {
+          "id": "amountpayable1",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${lowerAPassengerNumber * 13}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at standard band A",
+      "includeIf": "${standardBandAChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText3",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £26 per passenger."
+        },
+        {
+          "id": "standardAPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)"
+        },
+        {
+          "id": "amountpayable2",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${standardAPassengerNumber * 26}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at higher band A",
+      "includeIf": "${higherBandAChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText4",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £78 per passenger."
+        },
+        {
+          "id": "higherAPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)"
+        },
+        {
+          "id": "amountpayable3",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${higherAPassengerNumber * 78}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at lower band B",
+      "includeIf": "${lowerBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText5",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in the lowest class of travel and is charged at £78 per passenger."
+        },
+        {
+          "id": "lowerBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)",
+          "errorMessage": "Number of chargeable passengers must only include whole numbers"
+        },
+        {
+          "id": "amountpayable4",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${lowerBPassengerNumber * 78}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at standard band B",
+      "includeIf": "${standardBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText6",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £156 per passenger."
+        },
+        {
+          "id": "standardBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)"
+        },
+        {
+          "id": "amountpayable5",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${standardBPassengerNumber * 156}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at higher band B",
+      "includeIf": "${higherBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText7",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £468 per passenger."
+        },
+        {
+          "id": "higherBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(6, 0)"
+        },
+        {
+          "id": "amountpayable6",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${higherBPassengerNumber * 468}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Previous declarations",
+      "fields": [
+        {
+          "id": "warningDec1",
+          "type": "info",
+          "label": "",
+          "infoText": "You can correct errors from previous returns if one of these criteria apply:\n\nthe amount does not exceed £10,000;\n\nthe amount is between £10,000 and £50,000 and does not exceed 1% of the duty due for this return period"
+        },
+        {
+          "id": "underDec",
+          "type": "text",
+          "label": "Under-declarations",
+          "helpText": "Under-declarations are made if you have paid too little air passenger duty on your previous return.\n\n Enter a number between 0 and 50,000 ",
+          "format": "sterling"
+        },
+        {
+          "id": "overDec",
+          "type": "text",
+          "label": "Over-declarations",
+          "helpText": "Over-declarations are made if you have paid too much air passenger duty on your previous return.\n\n Avoid overpayments by entering the amount correctly. Enter 0 if you do not wish to make an over-declaration",
+          "format": "sterling",
+          "error message": "Over-declarations must be input as either a negative amount or zero"
+        },
+        {
+          "id": "totalNetDecs",
+          "type": "text",
+          "label": "Total net declarations",
+          "format": "sterling",
+          "value": "${underDec - overDec}",
+          "submitMode": "readonly",
+          "error message": "Over-declarations must be input as either a negative amount or zero"
+        }
+      ]
+    },
+    {
+      "title": "Additional details",
+      "fields": [
+        {
+          "id": "exempt",
+          "type": "text",
+          "label": "How many of the passengers you carried are exempt?",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "accountingRadio",
+          "type": "choice",
+          "label": "Are you using a special  accounting scheme?",
+          "format": "yesno"
+        },
+        {
+          "id": "totalAmountOfDuty",
+          "type": "text",
+          "label": "Total amount of duty",
+          "format": "sterling",
+          "value": "${amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5 + amountpayable6}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "totalPassengers",
+          "type": "text",
+          "label": "Total number of passengers flown, including exempt",
+          "format": "positiveWholeNumber",
+          "value": "${lowerAPassengerNumber + standardAPassengerNumber + higherAPassengerNumber + lowerBPassengerNumber + standardBPassengerNumber + higherBPassengerNumber + exempt}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "totalpayable",
+          "type": "text",
+          "label": "Total amount payable",
+          "helpText": "Value is total amount of duty plus total declarations",
+          "format": "sterling",
+          "value": "${totalNetDecs + amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5 + amountpayable6}",
+          "submitMode": "readonly"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Avoid financial penalties by ensuring we receive your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Details of the person signing this declaration",
+        "fields": [
+          {
+            "id": "declarationFirstname",
+            "type": "text",
+            "label": "First name"
+          },
+          {
+            "id": "declarationLastname",
+            "type": "text",
+            "label": "Last name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "Enter you email address to receive confirmation that your return has been submitted.",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": "If your payment is in excess of £20 million you won’t be able to use Direct Debit. You must make arrangements with your own bank using an alternative method, such as CHAPS. \n\nIf you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nOtherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your 15 digit registration number on any payment.\n\nSort code: 08-32-00\n\nAccount number: 12000938\n\nAccount name: HMRC Air Passenger Duty"
+      },
+      {
+        "id": "ackpageSurvey",
+        "type": "info",
+        "label": "",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4704016/Feedback-Survey-APD-online-form) (takes 1 minute)",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotNull APDReg}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APD2",
+      "customerId": "${APDReg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{isNotNull APDreferencenumber}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APD2",
+      "customerId": "${APDreferencenumber}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": "",
+  "_id": "APD2-air-passenger-duty-return-previous-rates"
+}
