@@ -336,32 +336,9 @@
       ]
     },
     {
-      "title": "What forms are your currencies in? ",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "currencyTypes",
-          "label": "Select all that apply",
-          "multivalue": "true",
-          "choices": [
-            "Notes",
-            "Travellers cheque",
-            "Bankers bond",
-            "Cheque",
-            "Bankers draft",
-            "Postal order",
-            "Other",
-            "Not known",
-            "Commodity",
-            "Coins"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Currency $n",
       "includeIf": "${overFiveCurrenciesChoice=1}",
-      "description": "Enter details about one currency only, and do not convert into GBP",
+      "description": "Enter details about one currency only.",
       "repeatsMin": "${howManyCurrency}",
       "repeatsMax": "${howManyCurrency}",
       "fields": [
@@ -372,41 +349,122 @@
           "helpText": "Start typing to show options"
         },
         {
-          "type": "choice",
-          "id": "currencyTypesRepeater",
-          "label": "Select all types of cash you have in this currency",
-          "multivalue": "true",
-          "choices": [
-            "Notes",
-            "Coins",
-            "Travellers cheques",
-            "Cheques",
-            "Banker's bonds",
-            "Banker's drafts",
-            "Postal orders",
-            "Not known"
+          "type": "info",
+          "id": "generatedId_28841690_118a_487f_9245_5ef61f311a8b",
+          "label": "",
+          "infoText": "##Currency form",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_b2b33216_2c13_45f2_a32c_3205b7424959",
+          "type": "info",
+          "label": "",
+          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each form. Do not convert this into GBP.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "generatedId_d36fc8ca_9fc2_4e0d_8b1b_578ee9a4c81f",
+          "type": "group",
+          "label": "Notes",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashNotes",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
           ]
         },
         {
-          "id": "noteTotal",
-          "type": "text",
-          "label": "Notes total amount",
-          "shortName": "Total in notes/coins",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_f6b10760_b7e1_45e4_91f5_665778ed2a96",
+          "type": "group",
+          "label": "Coins",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashCoins",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
         },
         {
-          "id": "totalTravellersCheque",
-          "type": "text",
-          "label": "Travellers cheques total amount",
-          "shortName": "Total in cheques",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_f20e6449_e794_4009_9a68_7aecf4d499f3",
+          "type": "group",
+          "label": "Travellers' cheques",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashTrav",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
         },
         {
-          "id": "totalBankersDraft",
-          "type": "text",
-          "label": "Banker's drafts total amount",
-          "shortName": "Total in banker's drafts",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_3cdfa8d4_7326_44d9_831d_8a08f39faecc",
+          "type": "group",
+          "label": "Cheques",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashCheque",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
+        },
+        {
+          "id": "generatedId_be32b9aa_8352_4e92_a41b_c2c86ad47b93",
+          "type": "group",
+          "label": "Bankers' bonds",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashBankerBond",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
+        },
+        {
+          "id": "generatedId_a537b8a6_9556_490f_8a85_d006f55f3c6b",
+          "type": "group",
+          "label": "Bankers' drafts",
+          "mandatory": "false",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashBankerDraft",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
+        },
+        {
+          "id": "generatedId_cab4359a_92ef_4c17_801e_80e136c73de7",
+          "type": "group",
+          "label": "Postal orders",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashPostal",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)"
+            }
+          ]
         }
       ]
     },
@@ -478,6 +536,7 @@
           "id": "moneyGenerator",
           "type": "choice",
           "label": "Do you own the cash?",
+          "helpText": "Select yes if you earned the cash, were given it to keep as your own, or won it.",
           "errorMessage": "Select whether you generated the cash",
           "choices": [
             "Yes",
@@ -515,7 +574,6 @@
           "choices": [
             "Savings or earnings",
             "Selling something",
-            "Personal",
             "Inheritance",
             "Gambling",
             "Other"
@@ -656,8 +714,8 @@
       "title": "What will the cash be used for?",
       "fields": [
         {
-          "type": "choice",
           "id": "cashUsePersonalBusiness",
+          "type": "choice",
           "label": "What will the cash be used for?",
           "choices": [
             "Personal or family spending",
@@ -668,11 +726,11 @@
     },
     {
       "title": "What business costs will the cash be used for?",
-      "includeIf": "${cashUsePersonalBusiness=1}",
+      "includeIf": "${cashIndividualOrBusiness =1} ",
       "fields": [
         {
-          "type": "choice",
           "id": "cashBusinessCosts",
+          "type": "choice",
           "label": "What business costs will the cash be used for?",
           "choices": [
             "Buying a commercial vehicle or parts",
@@ -684,11 +742,11 @@
       ]
     },
     {
-      "title": "What will you spend the cash on?",
+      "title": "What will the cash be spent on?",
       "fields": [
         {
-          "type": "choice",
           "id": "cashUse",
+          "type": "choice",
           "label": "What will you spend the cash on?",
           "choices": [
             "Making a big purchase",
@@ -709,8 +767,8 @@
       "continueIf": "true",
       "fields": [
         {
-          "type": "choice",
           "id": "cashPurchase",
+          "type": "choice",
           "label": "What will you buy?",
           "choices": [
             "Vehicle",
