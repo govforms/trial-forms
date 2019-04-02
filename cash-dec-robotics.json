@@ -515,7 +515,7 @@
           "type": "choice",
           "label": "Do you own the cash?",
           "shortName": "Own cash",
-          "helpText": "Select yes if you earned the cash, were given it to keep as your own, or won it.",
+          "helpText": "Select yes if the largest amount of the cash belongs to you. It belongs to you if you earned it, were given it to keep as your own, or won it.",
           "errorMessage": "Select whether you own the cash",
           "choices": [
             "Yes",
@@ -539,6 +539,30 @@
             "Business",
             "Other"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Details of main cash owner",
+      "includeIf": "${moneyGenerator=1}",
+      "description": "If there are multiple cash owners, provide details of who owns the largest amount.",
+      "fields": [
+        {
+          "type": "text",
+          "id": "cashOwnerName",
+          "label": "Full name"
+        },
+        {
+          "type": "text",
+          "id": "cashOwnerBusiness",
+          "label": "Business or occupation"
+        },
+        {
+          "type": "address",
+          "id": "cashOwnerAddressUK",
+          "label": "Main cash owner address",
+          "shortName": "Address",
+          "international": "true"
         }
       ]
     },
