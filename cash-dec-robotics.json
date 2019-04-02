@@ -215,7 +215,7 @@
           "id": "destinationName",
           "type": "text",
           "label": "Name of airport, port, or station",
-          "helpText": "For example, London Heathrow"
+          "helpText": "For example, London Heathrow."
         },
         {
           "id": "destinationCountry",
@@ -252,7 +252,7 @@
           "type": "text",
           "label": "How many other airports, ports or stations will you travel via?",
           "shortName": "Number of other airports, ports or stations changing at",
-          "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1",
+          "helpText": "For example, if you are flying into the UK from Australia and change in Singapore, enter 1.",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
           "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
@@ -270,7 +270,7 @@
           "id": "intermediatePortName",
           "type": "text",
           "label": "Name of airport, port or station",
-          "helpText": "For example, Singapore Changi Airport"
+          "helpText": "For example, Singapore Changi Airport."
         },
         {
           "id": "intermediatePortCountryName",
@@ -288,7 +288,7 @@
           "id": "declarationPlaceName",
           "type": "text",
           "label": "Name of airport, port, or station",
-          "helpText": "For example, London Heathrow"
+          "helpText": "For example, London Heathrow."
         },
         {
           "id": "declarationCountryName",
@@ -328,7 +328,7 @@
           "type": "text",
           "label": "How many currencies are you carrying?",
           "shortName": "Currencies",
-          "helpText": "Enter a number between 1 and 5",
+          "helpText": "Enter a number between 1 and 5.",
           "displayWidth": "xs",
           "validIf": "${howManyCurrency>0 && howManyCurrency <=5}",
           "errorMessage": "Select how many currencies you are carrying"
@@ -346,7 +346,7 @@
           "id": "currencyType",
           "type": "text",
           "label": "Currency name",
-          "helpText": "Start typing to show options"
+          "helpText": "Start typing to show options."
         },
         {
           "id": "generatedId_28841690_118a_487f_9245_5ef61f311a8b",
@@ -359,7 +359,7 @@
           "id": "generatedId_b2b33216_2c13_45f2_a32c_3205b7424959",
           "type": "info",
           "label": "",
-          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each forms. Do not convert into GBP.",
+          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each form. Do not convert into GBP.",
           "infoType": "noformat"
         },
         {
@@ -433,7 +433,7 @@
           "id": "generatedId_239e5b23_74e9_44c1_b7f8_96233676b662",
           "type": "info",
           "label": "",
-          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each forms. Do not convert into GBP.",
+          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each form. Do not convert into GBP.",
           "infoType": "noformat"
         },
         {
@@ -688,6 +688,7 @@
     },
     {
       "title": "What will the cash be used for?",
+      "includeIf": "${cashIndividualOrBusiness = 0}",
       "fields": [
         {
           "id": "cashUsePersonalBusiness",
@@ -702,7 +703,7 @@
     },
     {
       "title": "What business costs will the cash be used for?",
-      "includeIf": "${cashIndividualOrBusiness =1} ",
+      "includeIf": "${cashIndividualOrBusiness = 1 || cashUsePersonalBusiness = 1} ",
       "fields": [
         {
           "id": "cashBusinessCosts",
@@ -719,11 +720,12 @@
     },
     {
       "title": "What will the cash be spent on?",
+      "includeIf": "${cashIndividualOrBusiness=0 || givingCashToSomeoneElse=1}",
       "fields": [
         {
           "id": "cashUse",
           "type": "choice",
-          "label": "What will you spend the cash on?",
+          "label": "What will the cash be spent on?",
           "choices": [
             "Making a big purchase",
             "Shopping or tourism",
@@ -738,14 +740,14 @@
       ]
     },
     {
-      "title": "What will you buy?",
+      "title": "What will the cash buy?",
       "includeIf": "${cashUse=0}",
       "continueIf": "true",
       "fields": [
         {
           "id": "cashPurchase",
           "type": "choice",
-          "label": "What will you buy?",
+          "label": "What will the cash buy?",
           "choices": [
             "Vehicle",
             "Property",
