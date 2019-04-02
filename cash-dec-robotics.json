@@ -262,6 +262,7 @@
     },
     {
       "title": "Details of change $n",
+      "includeIf": "${intermediateAirport=0}",
       "description": "Start typing to show options.",
       "repeatsMin": "${howManyIntermediateAirports}",
       "repeatsMax": "${howManyIntermediateAirports}",
@@ -372,6 +373,7 @@
               "id": "cashNotesCoins",
               "type": "text",
               "label": "Total amount",
+              "shortName": "Total",
               "format": "positiveNumber(9, 2)",
               "mandatory": "false"
             }
@@ -755,7 +757,7 @@
       ]
     },
     {
-      "title": "What will the cash buy?",
+      "title": "What big purchase will the cash be used for?",
       "shortName": "What big purchase will the cash buy",
       "includeIf": "${cashUse=0}",
       "continueIf": "true",
@@ -763,7 +765,7 @@
         {
           "id": "cashPurchase",
           "type": "choice",
-          "label": "What will the cash buy?",
+          "label": "What big purchase will the cash be used for?",
           "shortName": "Big purchase",
           "errorMessage": "Select what the cash will buy",
           "choices": [
