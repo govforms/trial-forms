@@ -215,7 +215,7 @@
           "id": "destinationName",
           "type": "text",
           "label": "Name of airport, port, or station",
-          "helpText": "For example, London Heathrow."
+          "helpText": "For example, London Heathrow"
         },
         {
           "id": "destinationCountry",
@@ -525,14 +525,17 @@
       ]
     },
     {
-      "title": "Where did the cash come from?",
+      "title": "Who gave you the cash?",
+      "shortName": "Who gave the cash",
       "includeIf": "${moneyGenerator=1}",
       "fields": [
         {
           "id": "cashGenerator",
           "type": "choice",
-          "label": "Where did the cash come from?",
-          "errorMessage": "Select who generated the cash",
+          "label": "Who gave you the cash?",
+          "shortName": "Cash origin",
+          "helpText": "If the money came from more than one source, select who gave you the largest amount.",
+          "errorMessage": "Select who gave you the cash",
           "choices": [
             "Family",
             "Friend",
@@ -548,18 +551,18 @@
       "description": "If there are multiple cash owners, provide details of who owns the largest amount.",
       "fields": [
         {
-          "type": "text",
           "id": "cashOwnerName",
+          "type": "text",
           "label": "Full name"
         },
         {
-          "type": "text",
           "id": "cashOwnerBusiness",
+          "type": "text",
           "label": "Business or occupation"
         },
         {
-          "type": "address",
           "id": "cashOwnerAddressUK",
+          "type": "address",
           "label": "Main cash owner address",
           "shortName": "Address",
           "international": "true"
@@ -625,7 +628,7 @@
     },
     {
       "title": "Which country does the cash come from?",
-      "shortName": "Where cash comes from",
+      "shortName": "Which country cash comes from",
       "description": "We ask this to help with money laundering regulations.",
       "fields": [
         {
