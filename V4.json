@@ -1,6 +1,6 @@
 {
   "_id": "register-non-resident-company-for-corporation-tax",
-  "formName": "Register a non-resident company for Corporation Tax if you are disposing of UK property or land",
+  "formName": "Register a non-resident company for Corporation Tax if you have disposed of an interest in UK property or land",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -76,13 +76,13 @@
       ]
     },
     {
-      "title": "Has this company previously had a different registered name?",
+      "title": "Has this company previously had a different name?",
       "shortName": "Company details",
       "fields": [
         {
           "id": "companyNameChange",
           "type": "choice",
-          "label": "Has this company previously had a different registered name?",
+          "label": "Has this company previously had a different name?",
           "shortName": "Has this company had a different registered name",
           "errorMessage": "Select yes if the company has previously had a different registered name",
           "choices": [
@@ -93,14 +93,14 @@
       ]
     },
     {
-      "title": "What was the previous registered company name?",
+      "title": "What was the previous company name?",
       "shortName": "Previous registered company name",
       "includeIf": "${companyNameChange=0}",
       "fields": [
         {
           "id": "fullCompanyName",
           "type": "text",
-          "label": "What was the previous registered company name?",
+          "label": "What was the previous company name?",
           "shortName": "Previous company name",
           "helpText": "This will help us to confirm its identity.",
           "format": "shortText"
@@ -108,13 +108,13 @@
       ]
     },
     {
-      "title": "Has the company registered for Corporation Tax before?",
+      "title": "Has the company registered for UK Corporation Tax before?",
       "shortName": "Corporation Tax Unique Taxpayer Reference",
       "fields": [
         {
           "id": "uTRChoice",
           "type": "choice",
-          "label": "Has the company registered for Corporation Tax before?",
+          "label": "Has the company registered for UK Corporation Tax before?",
           "shortName": "Does the company have a Corporation Tax UTR",
           "helpText": "The company will have a Unique Taxpayer Reference if it has previously registered for UK Corporation Tax. For example, if it has traded as a property developer or has had a permanent UK establishment in the past.",
           "errorMessage": "Select yes if the company has a Corporation Tax UTR ",
@@ -207,7 +207,7 @@
         {
           "id": "directorAddress1_copy_1",
           "type": "address",
-          "label": "Director's address",
+          "label": "Home address",
           "shortName": "Address",
           "international": "true",
           "postcodeLookup": "no"
@@ -372,7 +372,7 @@
           "type": "date",
           "label": "",
           "shortName": "Date of disposal",
-          "helpText": "A disposal means a sale, gift or transfer of ownership. This is the date of completion. For example, 06 04 2019",
+          "helpText": "A disposal means a sale, gift or transfer of ownership. This is the date that legal ownership is transferred. For example, 06 04 2019",
           "format": "after 2018-04-05, before today +1",
           "mandatory": "true",
           "errorMessage": "The date of disposal cannot be before 06 04 2019"
