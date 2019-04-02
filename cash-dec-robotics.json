@@ -349,91 +349,46 @@
           "helpText": "Start typing to show options"
         },
         {
-          "type": "info",
           "id": "generatedId_28841690_118a_487f_9245_5ef61f311a8b",
+          "type": "info",
           "label": "",
-          "infoText": "##Currency form",
+          "infoText": "##Currency forms",
           "infoType": "noformat"
         },
         {
           "id": "generatedId_b2b33216_2c13_45f2_a32c_3205b7424959",
           "type": "info",
           "label": "",
-          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each form. Do not convert this into GBP.",
+          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each forms. Do not convert into GBP.",
           "infoType": "noformat"
         },
         {
           "id": "generatedId_d36fc8ca_9fc2_4e0d_8b1b_578ee9a4c81f",
           "type": "group",
-          "label": "Notes",
-          "mandatory": "false",
+          "label": "Notes and coins",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
-              "id": "cashNotes",
+              "id": "cashNotesCoins",
               "type": "text",
               "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
-            }
-          ]
-        },
-        {
-          "id": "generatedId_f6b10760_b7e1_45e4_91f5_665778ed2a96",
-          "type": "group",
-          "label": "Coins",
-          "mandatory": "false",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "cashCoins",
-              "type": "text",
-              "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
             }
           ]
         },
         {
           "id": "generatedId_f20e6449_e794_4009_9a68_7aecf4d499f3",
           "type": "group",
-          "label": "Travellers' cheques",
-          "mandatory": "false",
+          "label": "Cheques and traveller's cheques",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
               "id": "cashTrav",
               "type": "text",
               "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
-            }
-          ]
-        },
-        {
-          "id": "generatedId_3cdfa8d4_7326_44d9_831d_8a08f39faecc",
-          "type": "group",
-          "label": "Cheques",
-          "mandatory": "false",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "cashCheque",
-              "type": "text",
-              "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
-            }
-          ]
-        },
-        {
-          "id": "generatedId_be32b9aa_8352_4e92_a41b_c2c86ad47b93",
-          "type": "group",
-          "label": "Bankers' bonds",
-          "mandatory": "false",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "cashBankerBond",
-              "type": "text",
-              "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
             }
           ]
         },
@@ -441,28 +396,14 @@
           "id": "generatedId_a537b8a6_9556_490f_8a85_d006f55f3c6b",
           "type": "group",
           "label": "Bankers' drafts",
-          "mandatory": "false",
           "presentationHint": "collapseGroupUnderLabel",
           "fields": [
             {
               "id": "cashBankerDraft",
               "type": "text",
               "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
-            }
-          ]
-        },
-        {
-          "id": "generatedId_cab4359a_92ef_4c17_801e_80e136c73de7",
-          "type": "group",
-          "label": "Postal orders",
-          "presentationHint": "collapseGroupUnderLabel",
-          "fields": [
-            {
-              "id": "cashPostal",
-              "type": "text",
-              "label": "Total amount",
-              "format": "positiveNumber(9, 2)"
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
             }
           ]
         }
@@ -471,39 +412,74 @@
     {
       "title": "Main currency $n",
       "includeIf": "${overFiveCurrenciesChoice=0}",
-      "description": "Enter details about one currency only, and do not convert into GBP",
+      "description": "Enter details about one currency only.",
       "repeatsMin": "${5}",
       "repeatsMax": "${5}",
       "fields": [
         {
-          "id": "currencyTypeMoreThanFive",
+          "id": "currencyTypeMain",
           "type": "text",
           "label": "Currency name",
-          "helpText": "For example, Euros, US Dollars, British Pounds"
+          "helpText": "Start typing to show options"
         },
         {
-          "id": "noteTotalMoreThanFive",
-          "type": "text",
-          "label": "Total amount in this currency in notes/coins",
-          "shortName": "Total in notes/coins",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_49724b5e_41d5_43be_b350_67ed2f49a7bc",
+          "type": "info",
+          "label": "",
+          "infoText": "##Currency forms",
+          "infoType": "noformat"
         },
         {
-          "id": "totalTravellersMoreThanFive",
-          "type": "text",
-          "label": "Total amount in this currency in cheques, including travellers cheques",
-          "shortName": "Total in cheques",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_239e5b23_74e9_44c1_b7f8_96233676b662",
+          "type": "info",
+          "label": "",
+          "infoText": "Select which forms of this currency you are carrying, then enter the amount of currency in each forms. Do not convert into GBP.",
+          "infoType": "noformat"
         },
         {
-          "id": "totalBankersMoreThanFive",
-          "type": "text",
-          "label": "Total amount in this currency in banker's drafts",
-          "shortName": "Total banker's drafts",
-          "helpText": "Enter 0 if none",
-          "format": "positiveNumber(9, 2)"
+          "id": "generatedId_beb3baa8_08f7_4d72_ae6d_9fc1f58267ce",
+          "type": "group",
+          "label": "Notes and coins",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashNotesCoinsMain",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "generatedId_ba75db01_c7e3_4548_91a8_cd6330e0a0c3",
+          "type": "group",
+          "label": "Cheques and travellers' cheques",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashTravMain",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
+            }
+          ]
+        },
+        {
+          "id": "generatedId_df3f5758_04c2_423f_b1f6_0b6e598282b2",
+          "type": "group",
+          "label": "Bankers' drafts",
+          "presentationHint": "collapseGroupUnderLabel",
+          "fields": [
+            {
+              "id": "cashBankerDraftMain",
+              "type": "text",
+              "label": "Total amount",
+              "format": "positiveNumber(9, 2)",
+              "mandatory": "false"
+            }
+          ]
         }
       ]
     },
