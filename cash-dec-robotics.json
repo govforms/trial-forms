@@ -506,14 +506,15 @@
     },
     {
       "title": "Do you own the cash?",
-      "shortName": "Did you generate cash",
+      "shortName": "Own the cash yourself",
       "fields": [
         {
           "id": "moneyGenerator",
           "type": "choice",
           "label": "Do you own the cash?",
+          "shortName": "Own cash",
           "helpText": "Select yes if you earned the cash, were given it to keep as your own, or won it.",
-          "errorMessage": "Select whether you generated the cash",
+          "errorMessage": "Select whether you own the cash",
           "choices": [
             "Yes",
             "No"
@@ -541,12 +542,15 @@
     },
     {
       "title": "Where did the main part of your cash come from?",
+      "shortName": "Where main part of cash comes from",
       "includeIf": "${moneyGenerator=0}",
       "fields": [
         {
           "id": "moneySavings",
           "type": "choice",
           "label": "Where did the main part of your cash come from?",
+          "shortName": "Cash is from",
+          "errorMessage": "Select where the main part of your cash came from",
           "choices": [
             "Savings or earnings",
             "Selling something",
@@ -576,12 +580,14 @@
     },
     {
       "title": "Which type of savings or earnings did the cash come from?",
+      "shortName": "Which type of savings or earnings",
       "includeIf": "${moneySavings=0}",
       "fields": [
         {
           "id": "moneySavingsEarnings",
           "type": "choice",
           "label": "Which type of savings or earnings did the cash come from?",
+          "shortName": "Savings or earnings",
           "errorMessage": "Select what savings or earnings generated the cash",
           "choices": [
             "Personal cash savings",
@@ -600,7 +606,9 @@
           "id": "countryGenerated",
           "type": "text",
           "label": "Which country was the cash generated in?",
-          "helpText": "Start typing to show options"
+          "shortName": "Country name",
+          "helpText": "Start typing to show options",
+          "errorMessage": "Enter where the cash was generated"
         }
       ]
     },
@@ -688,12 +696,14 @@
     },
     {
       "title": "What will the cash be used for?",
+      "shortName": "What will cash be used for",
       "includeIf": "${cashIndividualOrBusiness = 0}",
       "fields": [
         {
           "id": "cashUsePersonalBusiness",
           "type": "choice",
           "label": "What will the cash be used for?",
+          "shortName": "Cash used for",
           "choices": [
             "Personal or family spending",
             "Business costs"
@@ -703,12 +713,14 @@
     },
     {
       "title": "What business costs will the cash be used for?",
+      "shortName": "What business costs will cash be used for",
       "includeIf": "${cashIndividualOrBusiness = 1 || cashUsePersonalBusiness = 1} ",
       "fields": [
         {
           "id": "cashBusinessCosts",
           "type": "choice",
           "label": "What business costs will the cash be used for?",
+          "shortName": "Business costs",
           "choices": [
             "Buying a commercial vehicle or parts",
             "Wages",
@@ -720,12 +732,15 @@
     },
     {
       "title": "What will the cash be spent on?",
+      "shortName": "What will cash be spent on",
       "includeIf": "${cashIndividualOrBusiness=0 || givingCashToSomeoneElse=1}",
       "fields": [
         {
           "id": "cashUse",
           "type": "choice",
           "label": "What will the cash be spent on?",
+          "shortName": "Cash spent on",
+          "errorMessage": "Select what the cash will be spent on",
           "choices": [
             "Making a big purchase",
             "Shopping or tourism",
@@ -741,6 +756,7 @@
     },
     {
       "title": "What will the cash buy?",
+      "shortName": "What big purchase will the cash buy",
       "includeIf": "${cashUse=0}",
       "continueIf": "true",
       "fields": [
@@ -748,6 +764,8 @@
           "id": "cashPurchase",
           "type": "choice",
           "label": "What will the cash buy?",
+          "shortName": "Big purchase",
+          "errorMessage": "Select what the cash will buy",
           "choices": [
             "Vehicle",
             "Property",
