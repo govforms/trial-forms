@@ -1,5 +1,4 @@
 {
-  "_id": "register-non-resident-company-for-corporation-tax",
   "formName": "Register a non-resident company for Corporation Tax if you have disposed of an interest in UK property or land",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -7,7 +6,7 @@
     "authModule": "hmrc"
   },
   "dmsSubmission": {
-    "dmsFormId": "TST123",
+    "dmsFormId": "NRCT",
     "customerId": "${' '}",
     "classificationType": "BT-CTS- NR Registrations",
     "businessArea": "BT"
@@ -18,7 +17,7 @@
       "shortName": "About you",
       "fields": [
         {
-          "id": "generatedId_ca7964b9_7243_4d51_8899_645c45cd2fb8",
+          "id": "userInfo",
           "type": "info",
           "label": "",
           "infoText": "You must be authorised by the company to fill in this form. HMRC will use these details if we need to discuss this registration.",
@@ -67,7 +66,7 @@
       "shortName": "Company details",
       "fields": [
         {
-          "id": "fullCompanyName_copy_1",
+          "id": "fullCompanyName",
           "type": "text",
           "label": "What is the name of the company you are registering?",
           "shortName": "Company name",
@@ -98,7 +97,7 @@
       "includeIf": "${companyNameChange=0}",
       "fields": [
         {
-          "id": "fullCompanyName",
+          "id": "previousCompanyName",
           "type": "text",
           "label": "What was the previous company name?",
           "shortName": "Previous company name",
@@ -112,7 +111,7 @@
       "shortName": "Corporation Tax Unique Taxpayer Reference",
       "fields": [
         {
-          "id": "uTRChoice",
+          "id": "utrChoice",
           "type": "choice",
           "label": "Has the company registered for UK Corporation Tax before?",
           "shortName": "Does the company have a Corporation Tax UTR",
@@ -128,10 +127,10 @@
     {
       "title": "What is the Corporation Tax Unique Taxpayer Reference?",
       "shortName": "Corporation Tax Unique Taxpayer Reference",
-      "includeIf": "${uTRChoice=0}",
+      "includeIf": "${utrChoice=0}",
       "fields": [
         {
-          "id": "uKUTR",
+          "id": "ukUTR",
           "type": "text",
           "label": "What is the Corporation Tax Unique Taxpayer Reference?",
           "shortName": "Corporation Tax UTR",
@@ -144,14 +143,14 @@
       "title": "Registered office address",
       "fields": [
         {
-          "id": "generatedId_3d3bd1e5_876c_41e7_bcd5_04e902f215cf",
+          "id": "registeredOfficeAddressInfo",
           "type": "info",
           "label": "This is the official registration address listed on your country's public register. It is where official communication is sent, for example letters from your government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoText": "This is the company's official registration address listed on its country's public register. It is where official communication is sent, for example, letters from its government or tax authority.\n\nHMRC will send correspondence to this address.",
           "infoType": "noformat"
         },
         {
-          "id": "generatedId_5d115606_700a_49c4_9440_87256680a0ef",
+          "id": "addressGroup",
           "type": "group",
           "label": "Address",
           "fields": [
@@ -192,20 +191,20 @@
       "title": "Company director details",
       "fields": [
         {
-          "id": "generatedId_cef71cf0_3158_4fa8_9488_c6ec0dc11972",
+          "id": "directorInfo",
           "type": "info",
           "label": "If there is more than one director, enter the details of the nominated company director. ",
           "infoText": "If there is more than one company director, enter the details of one  director for this registration.",
           "infoType": "noformat"
         },
         {
-          "id": "fullName1_copy_1",
+          "id": "fullNameDirector",
           "type": "text",
           "label": "Full name",
           "mandatory": "true"
         },
         {
-          "id": "directorAddress1_copy_1",
+          "id": "AddressDirector",
           "type": "address",
           "label": "Home address",
           "shortName": "Address",
@@ -213,7 +212,7 @@
           "postcodeLookup": "no"
         },
         {
-          "id": "telephoneNumber_copy_1",
+          "id": "telephoneNumberDirector",
           "type": "text",
           "label": "Telephone number",
           "helpText": "For international numbers include the country code",
@@ -221,7 +220,7 @@
           "mandatory": "true"
         },
         {
-          "id": "emailAddressUser_copy_1",
+          "id": "emailAddressDirector",
           "type": "text",
           "label": "Email address",
           "format": "email",
@@ -245,7 +244,7 @@
       "includeIf": "${contactPerson=1}",
       "fields": [
         {
-          "id": "generatedId_a880b2e0_e5e0_485a_bdb2_56dd3fcaca51",
+          "id": "contactPersonInfo",
           "type": "info",
           "label": "Provide the contact details of someone authorised to discuss this form with HMRC. \n",
           "infoText": "Provide the contact details of someone within the company who we can contact about its tax affairs.",
@@ -290,7 +289,7 @@
           "helpText": "Enter the official country name in English."
         },
         {
-          "id": "generatedId_97d65c3e_e2c7_4616_8e9a_02df000deb0b",
+          "id": "officialCountryNameInfo",
           "type": "info",
           "label": "How to find an official country name ",
           "infoText": "Search GOV.UK for 'Nationalities and countries for company filings'. Go to the 'Geographical names' guidance to find the official names of countries and territories.",
@@ -303,7 +302,7 @@
       "shortName": "Company registration number",
       "fields": [
         {
-          "id": "cRnYesNo",
+          "id": "crnYesNo",
           "type": "choice",
           "label": "Does the company have a registration number or equivalent in its country?",
           "shortName": "Does the company have a registration number",
@@ -319,10 +318,10 @@
     {
       "title": "What is the company registration number or equivalent?",
       "shortName": "Company registration number",
-      "includeIf": "${cRnYesNo=0}",
+      "includeIf": "${crnYesNo=0}",
       "fields": [
         {
-          "id": "cRnRef",
+          "id": "crnRef",
           "type": "text",
           "label": "What is the company registration number or equivalent?",
           "shortName": "Company registration number",
@@ -335,7 +334,7 @@
       "shortName": "Income Tax Self Assessment UTR",
       "fields": [
         {
-          "id": "hMRCref",
+          "id": "hmrcRef",
           "type": "choice",
           "label": "Does the company have an Income Tax Self Assessment Unique Taxpayer Reference (UTR)?",
           "shortName": "Does the company have an Income Tax Self Assessment UTR",
@@ -351,7 +350,7 @@
     {
       "title": "What is the company's Income Tax Self Assessment Unique Taxpayer Reference?",
       "shortName": "Income Tax Self Assessment UTR",
-      "includeIf": "${hMRCref=0}",
+      "includeIf": "${hmrcRef=0}",
       "fields": [
         {
           "id": "incomeTaxRef",
@@ -368,7 +367,7 @@
       "shortName": "Disposal details",
       "fields": [
         {
-          "id": "dateCameWithinChargeUK",
+          "id": "disposalDate",
           "type": "date",
           "label": "",
           "shortName": "Date of disposal",
@@ -442,6 +441,7 @@
     ]
   },
   "GFC579Ready": "true",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk"
+  "submitSuccessUrl": "deprecated",
+  "submitErrorUrl": "deprecated",
+  "_id": "register-non-resident-company-for-corporation-tax"
 }
