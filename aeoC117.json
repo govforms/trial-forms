@@ -1,4 +1,5 @@
 {
+  "_id": "C117-Apply-for-AEO",
   "formName": " C117 Apply for AEO",
   "description": "Fill in your application for Authorised Economic Operator certificate online",
   "developmentPhase": "beta",
@@ -260,8 +261,23 @@
       ]
     },
     {
+      "title": "Is your business VAT registered?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "vatBusiness",
+          "label": "Is your business VAT registered?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "What is your VAT registration number?",
       "shortName": "VAT registration number",
+      "includeIf": "${vatBusiness = 0}",
       "fields": [
         {
           "id": "vatRegNum",
@@ -671,6 +687,7 @@
     {
       "title": "Information exchange consent",
       "shortName": "Information exchange",
+      "includeIf": "${(aCh=1 && aCh=0) || aCh=1}",
       "fields": [
         {
           "id": "consentChoice1",
@@ -688,7 +705,7 @@
     {
       "title": "Information exchange consent details",
       "shortName": "Consent details",
-      "includeIf": "${consentChoice1 = 0}",
+      "includeIf": "${(aCh = 0 + 1) && consentChoice1 = 0}",
       "fields": [
         {
           "id": "emailConsent",
@@ -1031,6 +1048,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "C117-Apply-for-AEO"
+  "submitSuccessUrl": "deprecated"
 }
