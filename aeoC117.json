@@ -15,84 +15,39 @@
   },
   "sections": [
     {
-      "title": "Eligibility checker ",
+      "title": "Confirm AEO eligibility",
+      "description": "You must agree to all three points to continue the application.",
       "fields": [
         {
-          "id": "elChk",
           "type": "info",
+          "id": "generatedId_4c45e4e1_7ab6_458e_855e_8527c04a45f7",
           "label": "",
-          "infoText": "Answer the following questions to check if you are eligible to apply for AEO status:",
+          "infoText": "##The business applying:\n\n- is a legal entity  \n\n- is established in the territory of a European Union member state \n\n- has an Economic Operator Registration and Identification (EORI) number",
           "infoType": "noformat"
         },
         {
-          "id": "legalEntity",
           "type": "choice",
-          "label": "Is the business a legal entity?",
-          "format": "vertical",
-          "errorMessage": "Select whether the business is a legal entity",
+          "id": "eligibility_copy_1",
+          "label": "",
+          "multivalue": "true",
+          "errorMessage": "Check the box to confirm your business is eligible to apply",
           "choices": [
-            "Yes",
-            "No"
+            "I confirm the business is eligible to apply for AEO status."
           ]
-        },
+        }
+      ]
+    },
+    {
+      "title": "Is the business actively involved in customs operations and international trade?",
+      "fields": [
         {
-          "id": "estabilishedEU",
           "type": "choice",
-          "label": "Is the business established in the territory of an European Union member state?",
-          "format": "vertical",
-          "errorMessage": "Select whether the business is establised in the territory of an European Union member state",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "customIntTradeChoice",
-          "type": "choice",
+          "id": "activeTrader",
           "label": "Is the business actively involved in customs operations and international trade?",
-          "format": "vertical",
           "choices": [
             "Yes",
             "No"
           ]
-        },
-        {
-          "id": "choiceEORI",
-          "type": "choice",
-          "label": "Does the economic entity applying have an Economic Operator Registration and Identification (EORI) number?",
-          "format": "vertical",
-          "errorMessage": "Select whether the economic entity applying has an Economic Operator Registration and Identification number",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Eligibility checker passed",
-      "includeIf": "${(legalEntity = 0 && estabilishedEU=0) && choiceEORI=0}",
-      "fields": [
-        {
-          "id": "elPass",
-          "type": "info",
-          "label": "Basic eligibility successfully passed",
-          "infoText": "You have passed the basic eligibility checker. \n\n Continue with the rest of the application form",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Eligibility checker failed",
-      "includeIf": "${(legalEntity=1 || estabilishedEU=1) || choiceEORI= 1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "elFail",
-          "type": "info",
-          "label": "",
-          "infoText": "You must not continue with the rest of your application until you can answer yes to all four questions on the previous page.",
-          "infoType": "noformat"
         }
       ]
     },
@@ -264,8 +219,8 @@
       "title": "Is your business VAT registered?",
       "fields": [
         {
-          "type": "choice",
           "id": "vatBusiness",
+          "type": "choice",
           "label": "Is your business VAT registered?",
           "choices": [
             "Yes",
