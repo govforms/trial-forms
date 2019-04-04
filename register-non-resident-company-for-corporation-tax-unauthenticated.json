@@ -2,6 +2,16 @@
   "formName": "Register a non-resident company for Corporation Tax if you have disposed of an interest in UK property or land",
   "description": "",
   "emailTemplateId": "corporation_tax_confirmation",
+  "emailParameters": [
+    {
+      "value": "${fullNameBusinessContact}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "anonymous"
   },
@@ -39,12 +49,20 @@
           "mandatory": "true"
         },
         {
-          "id": "emailAddressUser",
+          "id": "email",
           "type": "text",
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email",
           "format": "email",
           "mandatory": "true"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false"
         },
         {
           "id": "positionInCompany",
