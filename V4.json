@@ -1,8 +1,17 @@
 {
-  "_id": "register-non-resident-company-for-corporation-tax",
   "formName": "Register a non-resident company for Corporation Tax if you have disposed of an interest in UK property or land",
   "description": "",
   "emailTemplateId": "corporation_tax_confirmation",
+  "emailParameters": [
+    {
+      "value": "${fullNameBusinessContact}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "hmrc"
   },
@@ -46,6 +55,14 @@
           "helpText": "We will also use this to send you a confirmation email",
           "format": "email",
           "mandatory": "true"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${fullNameBusinessContact}",
+          "submitMode": "derived",
+          "mandatory": "false"
         },
         {
           "id": "positionInCompany",
@@ -443,5 +460,6 @@
   },
   "GFC579Ready": "true",
   "submitSuccessUrl": "deprecated",
-  "submitErrorUrl": "deprecated"
+  "submitErrorUrl": "deprecated",
+  "_id": "register-non-resident-company-for-corporation-tax"
 }
