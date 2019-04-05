@@ -1,5 +1,4 @@
 {
-  "_id": "send-your-landfill-tax-return",
   "formName": "Send your Landfill Tax return online",
   "description": "Fill in your Landfill Tax return form online",
   "formCategory": "hmrcReturnForm",
@@ -61,7 +60,8 @@
           "id": "landfillTaxRegAgent",
           "type": "text",
           "label": "Landfill Tax registration number for your client",
-          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
+          "format": "text(15, 15)"
         },
         {
           "id": "startDate",
@@ -353,22 +353,6 @@
       "description": "List each environmental body contribution that you’re claiming as a tax credit. The sum of these contributions should be the same as the total credit claimed.",
       "fields": [
         {
-          "id": "Box3Total",
-          "type": "text",
-          "label": "Box 3 Total",
-          "format": "sterling",
-          "value": "${taxDueForThisPeriod + underDeclarationsFromPreviousPeriods}",
-          "submitMode": "derived"
-        },
-        {
-          "id": "Box8TotalCredits",
-          "type": "text",
-          "label": "Box 8 Total Credits",
-          "format": "sterling",
-          "value": "${overDeclarationsFromPreviousPeriods + badDebtReliefClaimed + otherCredits}",
-          "submitMode": "derived"
-        },
-        {
           "id": "environmentalBodyGroup",
           "type": "group",
           "label": "",
@@ -426,6 +410,13 @@
       "includeIf": "${underOverChoice = 0}",
       "fields": [
         {
+          "id": "lineBreakOneUnderDec",
+          "type": "info",
+          "label": "",
+          "infoText": "**** \n\n## Gross tax and under-declarations",
+          "infoType": "noformat"
+        },
+        {
           "id": "taxWithoutDeductionUnderDec",
           "type": "text",
           "label": "Tax due before deductions",
@@ -433,13 +424,6 @@
           "value": "${taxDueForThisPeriod}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
-        },
-        {
-          "id": "lineBreakOneUnderDec",
-          "type": "info",
-          "label": "",
-          "infoText": "**** \n\n## Under and over-declarations",
-          "infoType": "noformat"
         },
         {
           "id": "underDecTotal",
@@ -451,20 +435,11 @@
           "presentationHint": "totalValue"
         },
         {
-          "id": "overDecTotal",
-          "type": "text",
-          "label": "Over-declarations",
-          "format": "sterling",
-          "value": "${overDeclarationsFromPreviousPeriods}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "underOverTotal",
+          "id": "taxUnderTotal",
           "type": "text",
           "label": "Total amount",
           "format": "sterling",
-          "value": "${underDeclarationsFromPreviousPeriods - overDeclarationsFromPreviousPeriods}",
+          "value": "${taxWithoutDeductionUnderDec + underDeclarationsFromPreviousPeriods}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -472,8 +447,17 @@
           "id": "lineBreakTwoUnderDec",
           "type": "info",
           "label": "",
-          "infoText": "**** \n\n## Total tax credits and reliefs",
+          "infoText": "**** \n\n## Total over-declarations, tax credits and reliefs",
           "infoType": "noformat"
+        },
+        {
+          "id": "overDecTotal",
+          "type": "text",
+          "label": "Over-declarations",
+          "format": "sterling",
+          "value": "${overDeclarationsFromPreviousPeriods}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         },
         {
           "id": "badReliefsTotUnderOver",
@@ -503,11 +487,11 @@
           "presentationHint": "totalValue"
         },
         {
-          "id": "totalCreditsUnderOver",
+          "id": "totalCreditsOver",
           "type": "text",
           "label": "Total amount",
           "format": "sterling",
-          "value": "${otherCreditsTotUnderOver + creditsFromContUnderOver + badReliefsTotUnderOver}",
+          "value": "${overDeclarationsFromPreviousPeriods + otherCreditsTotUnderOver + creditsFromContUnderOver + badReliefsTotUnderOver}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
@@ -523,7 +507,7 @@
           "type": "text",
           "label": "Total Landfill Tax due",
           "format": "sterling",
-          "value": "${taxWithoutDeductionUnderDec + underOverTotal - totalCreditsUnderOver}",
+          "value": "${taxUnderTotal - totalCreditsOver}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         }
@@ -694,7 +678,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/LFT/eeits/{{landfillTaxReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'Z048',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{landfillTaxReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BOX1_TAX_DUE',                          'paramValue':'{{stripCommas taxDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX2_UNDERDECLARATIONS',                          'paramValue':'{{stripCommas (either underDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX3_TOTAL',                          'paramValue':'{{stripCommas Box3Total}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX4_OVERDECLARATIONS',                          'paramValue':'{{stripCommas (either overDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX5_TAX_CREDIT_CLAIMED',                          'paramValue':'0'},                         {'paramSequence':'01',                          'paramName':'A_BOX6_BAD_DEBT_RELIEF',                          'paramValue':'{{stripCommas badDebtReliefClaimed}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX7_OTHER_CREDITS',                          'paramValue':'{{stripCommas otherCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX8_TOTAL_CREDITS',                          'paramValue':'{{stripCommas Box8TotalCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX9_NET_TAX_DUE',                          'paramValue':'{{stripCommas (either totaTaxDueFinal totaTaxDueFinalUnderOver)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX10_STANDARD_RATE_WASTE',                          'paramValue':'{{stripCommas standardRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX11_LOWER_RATE_WASTE',                          'paramValue':'{{stripCommas lowerRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX12_EXEMPT_WASTE',                          'paramValue':'{{stripCommas exemptmaterial}}'},                         {{#each environmentalBodyNumber}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_ENV_BODY',                          'paramValue':'{{.}}'},                         {{/each}}                         {{#each amountOfContribution}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName':'A_CONTRIBUTION',                          'paramValue':'{{.}}'},                         {{/each}}                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'Z048',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{landfillTaxReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_BOX1_TAX_DUE',                          'paramValue':'{{stripCommas taxDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX2_UNDERDECLARATIONS',                          'paramValue':'{{stripCommas (either underDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX3_TOTAL',                          'paramValue':'{{stripCommas (either taxUnderTotal taxWithoutDeduction)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX4_OVERDECLARATIONS',                          'paramValue':'{{stripCommas (either overDeclarationsFromPreviousPeriods 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX5_TAX_CREDIT_CLAIMED',                          'paramValue':'{{stripCommas totalEnvironmentalBodyContAfterTax}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX6_BAD_DEBT_RELIEF',                          'paramValue':'{{stripCommas badDebtReliefClaimed}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX7_OTHER_CREDITS',                          'paramValue':'{{stripCommas otherCredits}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX8_TOTAL_CREDITS',                          'paramValue':'{{stripCommas (either totalCreditsOver totalCredits)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX9_NET_TAX_DUE',                          'paramValue':'{{stripCommas (either totaTaxDueFinal totaTaxDueFinalUnderOver)}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX10_STANDARD_RATE_WASTE',                          'paramValue':'{{stripCommas standardRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX11_LOWER_RATE_WASTE',                          'paramValue':'{{stripCommas lowerRatematerial}}'},                         {'paramSequence':'01',                          'paramName':'A_BOX12_EXEMPT_WASTE',                          'paramValue':'{{stripCommas exemptmaterial}}'},                         {{#each environmentalBodyNumber}}                           {{#with (lookup @root.environmentalBodyNumber @index) as |bodNum|}}                           {{#bodNum}}                           {'paramSequence': '{{toEtmpParamSequence @index}}',                            'paramName':'A_ENV_BODY',                            'paramValue':'{{bodNum}}'},                           {{/bodNum}}                           {{/with}}                           {{#with (lookup @root.amountOfContribution @index) as |cont|}}                           {{#cont}}                           {'paramSequence': '{{toEtmpParamSequence @index}}',                            'paramName':'A_CONTRIBUTION',                            'paramValue':'{{cont}}'},                           {{/cont}}                           {{/with}}                         {{/each}}                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -742,5 +726,6 @@
     }
   ],
   "submitSuccessUrl": "",
-  "submitErrorUrl": ""
+  "submitErrorUrl": "",
+  "_id": "send-your-landfill-tax-return"
 }
