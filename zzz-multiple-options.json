@@ -1,603 +1,430 @@
 {
-  "_id": "IPT100-insurance-premium-tax",
-  "formName": "Send your Landfill Tax return online",
-  "description": "Fill in your Landfill Tax return form online",
-  "formCategory": "hmrcReturnForm",
+  "formName": "Insurance Premium Tax return",
+  "description": "Fill in your insurance premium tax return form online",
   "developmentPhase": "beta",
-  "emailTemplateId": "lt100_return_confirmation",
+  "emailTemplateId": "ipt100_return_confirmation",
   "authConfig": {
-    "authModule": "legacyEEITTAuth",
-    "regimeId": "LF"
-  },
-  "dmsSubmission": {
-    "dmsFormId": "LT100",
-    "customerId": "${eeitt.userId}",
-    "classificationType": "BT-NRU-Environmental",
-    "businessArea": "FinanceOpsCorpT"
+    "authModule": "hmrc",
+    "agentAccess": "allowAnyAgentAffinityUser",
+    "enrolmentCheck": "never",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "IP"
   },
   "sections": [
     {
-      "title": "Your details",
+      "title": "Enter your client's Insurance Premium Tax details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
-          "id": "accessCode",
+          "id": "IPTreferencenumber2",
           "type": "text",
-          "label": "Access code",
-          "value": "${eeitt.agent}",
-          "submitMode": "derived"
+          "label": "Insurance premium tax registration number for your client",
+          "format": "text(15,15)"
         },
         {
-          "id": "landfillTaxRegnumber",
-          "type": "text",
-          "label": "Landfill Tax registration number for your client",
-          "helpText": "This begins with X and is followed by 3 letters, 5 zeroes and 6 other numbers, for example XABC00000123456"
+          "id": "insetInfoBox",
+          "type": "info",
+          "label": "",
+          "infoText": "You can’t complete multiple forms at the same time with the same access code, we hope to introduce this feature soon."
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "About you",
-      "fields": [
-        {
-          "id": "firstNameBusiness",
-          "type": "text",
-          "label": "First name",
-          "mandatory": "true",
-          "errorMessage": "Enter your first name"
-        },
-        {
-          "id": "lastNameBusiness",
-          "type": "text",
-          "label": "Last name",
-          "mandatory": "true",
-          "errorMessage": "Enter your last name"
-        },
-        {
-          "id": "positionInTheCompanyBusiness",
-          "type": "text",
-          "label": "Job title",
-          "shortName": "Job title",
-          "mandatory": "true",
-          "errorMessage": "Enter your job title"
-        }
-      ]
-    },
-    {
-      "title": "Business details",
+      "title": "Enter your Insurance Premium Tax details",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "businessInfoText1",
+          "id": "generatedId_7b43f69b_7a8b_499c_8068_5132fce58b09",
           "type": "info",
-          "label": " ",
-          "infoText": "HMRC will only use your contact details to discuss this return.",
+          "label": "Enter the reference number using capital letters",
+          "infoText": "Enter the reference number using capital letters",
+          "infoType": "standard"
+        },
+        {
+          "id": "IPTReg2",
+          "type": "text",
+          "label": "Insurance premium tax reference number",
+          "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
+          "format": "text(15,15)"
+        }
+      ]
+    },
+    {
+      "title": "Choose your Insurance Premium Tax return dates",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "description": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
+      "fields": [
+        {
+          "id": "returnPeriodInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "The return dates are on the notice to file letter we sent out telling you when your return is due.",
           "infoType": "noformat"
         },
         {
-          "id": "landfillTaxReg",
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${IPTReg2}",
+          "regimeType": "IPT"
+        }
+      ]
+    },
+    {
+      "title": "Enter your details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
+      "fields": [
+        {
+          "id": "firstName",
           "type": "text",
-          "label": "Landfill Tax registration number",
-          "value": "${eeitt.businessUser}",
-          "submitMode": "derived"
+          "label": "First name"
         },
         {
-          "id": "businessName",
+          "id": "lastName",
           "type": "text",
-          "label": "Registered business name",
-          "mandatory": "true",
-          "errorMessage": "Enter your business name"
-        },
-        {
-          "id": "emailBusiness",
-          "type": "text",
-          "label": "Email address (optional)",
-          "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter a valid email address"
+          "label": "Last name"
         },
         {
           "id": "businessTelephone",
           "type": "text",
           "label": "Telephone number",
-          "helpText": "Include the country and area codes",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Company name",
+          "shortName": "Name of company",
+          "format": "text"
+        },
+        {
+          "id": "positionInTheCompany",
+          "type": "text",
+          "label": "Your position",
+          "helpText": "For example, partner, director, agent"
         }
       ]
     },
     {
-      "title": "Business details",
+      "title": "Enter your details",
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
-          "id": "businessInfoText",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC will only use your contact details to discuss this return.",
-          "infoType": "noformat"
+          "id": "firstNameAgent",
+          "type": "text",
+          "label": "First name"
+        },
+        {
+          "id": "lastNameAgent",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "businessTelephoneAgent",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or dialling code",
+          "format": "telephoneNumber"
         },
         {
           "id": "businessNameAgent",
           "type": "text",
-          "label": "Registered business name",
-          "mandatory": "true",
-          "errorMessage": "Enter your registered business name"
+          "label": "Company name",
+          "shortName": "Name of company"
         },
         {
-          "id": "emailAgent",
+          "id": "positionInTheCompanyAgent",
           "type": "text",
-          "label": "Email address (optional)",
-          "format": "email",
-          "mandatory": "false",
-          "errorMessage": "Enter a valid email address"
-        },
-        {
-          "id": "agentTelephone",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "Include the country and area codes.",
-          "format": "telephoneNumber",
-          "mandatory": "true",
-          "errorMessage": "Enter your telephone number"
+          "label": "Your position",
+          "helpText": "For example, director, company secretary, agent"
         }
       ]
     },
     {
-      "title": "What are your return dates for this period?",
+      "title": "IPT accounting schemes",
+      "shortName": "Special accounting scheme",
       "fields": [
         {
-          "id": "insetInfoBox",
+          "id": "specialAccountingSchemeAdditional",
+          "type": "choice",
+          "label": "Are you using a special accounting scheme?",
+          "format": "yesno",
+          "errorMessage": "Select yes if you are using a special accounting scheme"
+        }
+      ]
+    },
+    {
+      "title": "Insurance Premium Tax",
+      "description": "Tell us how much IPT your business owes for this return period.",
+      "fields": [
+        {
+          "id": "standardRateIPTDueForThisPeriod",
+          "type": "text",
+          "label": "Standard rate IPT",
+          "helpText": "Deduct any standard credits that are due to you, enter 0 if nothing is owed at standard rate",
+          "format": "sterling"
+        },
+        {
+          "id": "higherRateIPTDueForThisPeriod",
+          "type": "text",
+          "label": "Higher rate IPT",
+          "helpText": "Deduct any higher rate credits that are due to you, enter 0 if nothing is owed at higher rate",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Previous declarations",
+      "fields": [
+        {
+          "id": "correctErrorsIPT",
           "type": "info",
           "label": "",
-          "infoText": "Your return dates are the last working day of the month after the end of the return period unless HMRC have agreed in writing to a non-standard accounting period.",
+          "infoText": "You can correct errors from previous Insurance Premium Tax returns if one of these criteria apply:\n * the amount does not exceed £10,000 \n * the amount is between £10,000 and £50,000 and does not exceed 1% of the net value of taxable premiums (excluding tax) due for this return period \nYou won't be able to correct errors if the amount exceeds £50,000, contact HMRC separately for advice.",
           "infoType": "noformat"
         },
-        {
-          "id": "whereCanThisBeFound",
-          "type": "info",
-          "label": "Where can this be found?",
-          "infoText": "The return dates can be found on the notice to file letter we sent out telling you when your return is due.",
-          "infoType": "long"
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Start date",
-          "helpText": "For example, 01 01 2018",
-          "format": "before ${endDate}",
-          "mandatory": "true",
-          "errorMessage": "Enter the start date using the correct format"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "End date",
-          "helpText": "For example, 31 01 2018",
-          "format": "before today +1",
-          "mandatory": "true",
-          "errorMessage": "Enter the end date using the correct format and it can’t be before the start date"
-        }
-      ]
-    },
-    {
-      "title": "Enter the weight of landfill material in tonnes for this period",
-      "shortName": "Landfill material weight in tonnes",
-      "fields": [
-        {
-          "id": "weightInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "When HMRC have agreed in a scheme to exclude the weight of water, don't include it in the figures below.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "lineBreakOneWeightInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "\n\nEnter 0 if you have no material.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "standardRatematerial",
-          "type": "text",
-          "label": "Tonnes of standard rate material",
-          "shortName": "Standard rate",
-          "mandatory": "true",
-          "errorMessage": "Enter the tonnes of standard rate material or enter 0 if you have no material"
-        },
-        {
-          "id": "lowerRatematerial",
-          "type": "text",
-          "label": "Tonnes of lower rate material",
-          "shortName": "Lower rate",
-          "mandatory": "true",
-          "errorMessage": "Enter the tonnes of lower rate material or enter 0 if you have no material"
-        },
-        {
-          "id": "exemptmaterial",
-          "type": "text",
-          "label": "Tonnes of exempt material",
-          "shortName": "Exempt material",
-          "mandatory": "true",
-          "errorMessage": "Enter the tonnes of exempt material or enter 0 if you have no material"
-        }
-      ]
-    },
-    {
-      "title": "Landfill Tax due in the return period",
-      "fields": [
-        {
-          "id": "taxDueForThisPeriod",
-          "type": "text",
-          "label": "Tax due before deductions",
-          "shortName": "Landfill Tax due",
-          "format": "sterling",
-          "errorMessage": "Enter the tax due for this period"
-        }
-      ]
-    },
-    {
-      "title": "Adjustments from previous returns",
-      "fields": [
         {
           "id": "underOverChoice",
           "type": "choice",
-          "label": "Adjustments in this return",
-          "helpText": "You can adjust this return if you have under or over-declared tax from a previous return",
+          "label": "Do you wish to correct any errors from previous IPT returns?",
           "format": "yesno",
-          "errorMessage": "Select yes if you have adjustments to make or no if you have no adjustments"
+          "errorMessage": "Select yes if you want to correct any errors from previous returns"
         }
       ]
     },
     {
-      "title": "Under and over-declarations",
+      "title": "Tell us about your declarations",
       "includeIf": "${underOverChoice = 0}",
-      "description": "Enter the under and over-declarations amounts from your previous return or enter 0 if you don’t have a tax declaration in the relevant fields.",
       "fields": [
         {
-          "id": "underDeclarationsFromPreviousPeriods",
-          "type": "text",
-          "label": "Under-declarations",
-          "shortName": "Under-declarations",
-          "format": "sterling",
-          "errorMessage": "Enter the under-declared amount from the previous return or enter 0 if you don't have anything to declare"
-        },
-        {
-          "id": "overDeclarationsFromPreviousPeriods",
-          "type": "text",
-          "label": "Over-declarations",
-          "shortName": "Over-declarations",
-          "helpText": "You can include adjustments of up to £50,000 as long as it's not over 1% of the total sales on your VAT Return for the return period in which you're adjusting",
-          "format": "sterling",
-          "errorMessage": "Enter the over-declared amount from the previous return or enter 0 if you don't have anything to declare"
-        }
-      ]
-    },
-    {
-      "title": "Tax credits for the return period",
-      "description": "Enter any bad debt reliefs and tax credits to deduct from the total tax due or enter 0 if you have no deductions.",
-      "fields": [
-        {
-          "id": "badDebtReliefClaimed",
-          "type": "text",
-          "label": "Total bad debt reliefs",
-          "format": "sterling",
-          "mandatory": "true",
-          "errorMessage": "Enter any bad debt reliefs and tax credits to deduct from the total tax due or enter 0 if you have no deductions"
-        },
-        {
-          "id": "otherCredits",
-          "type": "text",
-          "label": "Total tax credits",
-          "helpText": "",
-          "format": "sterling",
-          "mandatory": "true",
-          "errorMessage": "Enter the total tax credits amount or enter 0 if you don't have credits to deduct from the tax due in this period"
-        },
-        {
-          "id": "whatCanIClaim",
-          "type": "info",
-          "label": "What can I claim?",
-          "infoText": "This is the total amount of tax credits from material removed to another landfill site, removed for recycling, incineration or re-use, and later re-used to restore a landfill site.",
-          "infoType": "long"
-        },
-        {
-          "id": "totalTaxCred",
-          "type": "text",
-          "label": "Total tax credits and reliefs",
-          "shortName": "Total tax credits and reliefs",
-          "format": "sterling",
-          "value": "${badDebtReliefClaimed + otherCredits}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Enter your environmental bodies contributions",
-      "description": "List each environmental body contribution that you’re claiming as a tax credit. The sum of these contributions should be the same as the total credit claimed.",
-      "fields": [
-        {
-          "id": "environmentalBodyGroup",
+          "id": "underDecGroup",
           "type": "group",
-          "label": "",
-          "repeatsMax": 10,
-          "repeatLabel": "Environment body $n",
-          "repeatAddAnotherText": "Add another environment body",
+          "label": "Under-declarations",
           "fields": [
             {
-              "id": "environmentalBodyNumber",
+              "id": "underDecOfStandardRate",
               "type": "text",
-              "label": "Enrolment number",
-              "mandatory": "false",
-              "errorMessage": "Enter a valid enrolment number"
-            },
-            {
-              "id": "amountOfContribution",
-              "type": "text",
-              "label": "Contribution amount",
+              "label": "Under-declarations of standard rate IPT",
+              "shortName": "Standard rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
               "format": "sterling",
               "mandatory": "false",
-              "errorMessage": "Enter the environmental body contribution amount"
+              "validIf": "${underDecOfStandardRate>=0 && underDecOfStandardRate<=50000}"
+            },
+            {
+              "id": "underDecOfHigherRate",
+              "type": "text",
+              "label": "Under-declarations of higher rate IPT",
+              "shortName": "Higher rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "mandatory": "false",
+              "validIf": "${underDecOfHigherRate>=0 && underDecOfHigherRate<=50000}"
+            },
+            {
+              "id": "totalIPTAndUnderDecs",
+              "type": "text",
+              "label": "Total amount of IPT and previous under-declarations",
+              "format": "sterling",
+              "value": "${underDecOfStandardRate + underDecOfHigherRate + standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
+              "submitMode": "readonly",
+              "presentationHint": "totalValue",
+              "validIf": "${totalIPTAndUnderDecs>=-50000 && totalIPTAndUnderDecs<=50000}",
+              "errorMessage": "This amount exceeds £50,000. Please contact HMRC separately for advice."
             }
           ]
         },
         {
-          "id": "totalEnvironmentalBodyCont",
-          "type": "text",
-          "label": "Total environmental bodies contributions",
-          "format": "sterling",
-          "value": "${amountOfContribution.sum}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "totalEnvironmentalBodyContAfterTax",
-          "type": "text",
-          "label": "Total environmental tax credits",
-          "format": "sterling",
-          "value": "${amountOfContribution.sum*0.90}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "enviroBodiesInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "This amount is 90% of your total contributions",
-          "infoType": "noformat"
+          "id": "overDecGroup",
+          "type": "group",
+          "label": "Over-declarations",
+          "fields": [
+            {
+              "id": "overDecOfStandardRate",
+              "type": "text",
+              "label": "Over-declarations of standard rate IPT",
+              "shortName": "Standard rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "validIf": "${overDecOfStandardRate>=0 && overDecOfStandardRate<=50000}"
+            },
+            {
+              "id": "overDecOfHigherRate",
+              "type": "text",
+              "label": "Over-declarations of higher rate IPT",
+              "shortName": "Higher rate IPT",
+              "helpText": "Enter a number between 0 and 50,000",
+              "format": "sterling",
+              "validIf": "${overDecOfHigherRate>=0 && overDecOfHigherRate<=50000}"
+            },
+            {
+              "id": "overDecTotal",
+              "type": "text",
+              "label": "Total amount of over-declarations",
+              "format": "sterling",
+              "value": "${overDecOfStandardRate + overDecOfHigherRate}",
+              "submitMode": "readonly",
+              "presentationHint": "totalValue",
+              "validIf": "${overDecTotal>=0 && overDecTotal<=50000}",
+              "errorMessage": "This amount exceeds £50,000. Please contact HMRC separately for advice."
+            }
+          ]
         }
       ]
     },
     {
-      "title": "How we worked out what you need to pay",
+      "title": "Your IPT balance",
+      "includeIf": "${underOverChoice=0 && totalIPTAndUnderDecs-overDecTotal<0}",
+      "fields": [
+        {
+          "id": "netTaxRefund",
+          "type": "text",
+          "label": "Net tax refundable",
+          "format": "sterling",
+          "value": "${totalIPTAndUnderDecs - overDecTotal}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Your IPT balance",
+      "includeIf": "${underOverChoice=0 && totalIPTAndUnderDecs-overDecTotal>=0}",
+      "fields": [
+        {
+          "id": "netTaxPayable",
+          "type": "text",
+          "label": "Net tax payable",
+          "format": "sterling",
+          "value": "${totalIPTAndUnderDecs - overDecTotal}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        }
+      ]
+    },
+    {
+      "title": "Your taxable premiums",
       "includeIf": "${underOverChoice = 0}",
       "fields": [
         {
-          "id": "taxWithoutDeductionUnderDec",
+          "id": "netValueOfTaxablePremiums0",
           "type": "text",
-          "label": "Tax due before deductions",
-          "format": "sterling",
-          "value": "${taxDueForThisPeriod}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "lineBreakOneUnderDec",
-          "type": "info",
-          "label": "",
-          "infoText": "**** \n\n## Under and over-declarations",
-          "infoType": "noformat"
-        },
-        {
-          "id": "underDecTotal",
-          "type": "text",
-          "label": "Under-declarations",
-          "format": "sterling",
-          "value": "${underDeclarationsFromPreviousPeriods}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "overDecTotal",
-          "type": "text",
-          "label": "Over-declarations",
-          "format": "sterling",
-          "value": "${overDeclarationsFromPreviousPeriods}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "underOverTotal",
-          "type": "text",
-          "label": "Total amount",
-          "format": "sterling",
-          "value": "${underDeclarationsFromPreviousPeriods - overDeclarationsFromPreviousPeriods}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "lineBreakTwoUnderDec",
-          "type": "info",
-          "label": "",
-          "infoText": "**** \n\n## Total tax credits and reliefs",
-          "infoType": "noformat"
-        },
-        {
-          "id": "badReliefsTotUnderOver",
-          "type": "text",
-          "label": "Bad reliefs",
-          "format": "sterling",
-          "value": "${badDebtReliefClaimed}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "otherCreditsTotUnderOver",
-          "type": "text",
-          "label": "Tax credits",
-          "format": "sterling",
-          "value": "${otherCredits}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "creditsFromContUnderOver",
-          "type": "text",
-          "label": "Environmental bodies credits",
-          "format": "sterling",
-          "value": "${totalEnvironmentalBodyContAfterTax}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "totalCreditsUnderOver",
-          "type": "text",
-          "label": "Total amount",
-          "format": "sterling",
-          "value": "${otherCreditsTotUnderOver + creditsFromContUnderOver + badReliefsTotUnderOver}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "lineBreakThreeUnderDec",
-          "type": "info",
-          "label": "",
-          "infoText": "****",
-          "infoType": "noformat"
-        },
-        {
-          "id": "totaTaxDueFinalUnderOver",
-          "type": "text",
-          "label": "Total Landfill Tax due",
-          "format": "sterling",
-          "value": "${taxWithoutDeductionUnderDec + underOverTotal - totalCreditsUnderOver}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "helpText": "This is the amount you received minus any standard or higher rate credits",
+          "format": "sterling"
         }
       ]
     },
     {
-      "title": "How we worked out what you need to pay",
-      "includeIf": "${underOverChoice = 1}",
+      "title": "IPT payable total and taxable premiums",
+      "includeIf": "${underOverChoice = 1 && standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod<0}",
       "fields": [
         {
-          "id": "taxWithoutDeduction",
+          "id": "netTaxRefund1",
           "type": "text",
-          "label": "Tax due before deductions",
+          "label": "Net tax repayable",
           "format": "sterling",
-          "value": "${taxDueForThisPeriod}",
+          "value": "${standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "id": "lineBreakOne",
-          "type": "info",
-          "label": "",
-          "infoText": "**** \n\n## Total tax credits and reliefs",
-          "infoType": "noformat"
-        },
-        {
-          "id": "badReliefsTot",
+          "id": "netValueOfTaxablePremiums1",
           "type": "text",
-          "label": "Bad reliefs",
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "IPT payable total and taxable premiums",
+      "includeIf": "${underOverChoice = 1 && standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod>=0}",
+      "fields": [
+        {
+          "id": "netTaxPayable1",
+          "type": "text",
+          "label": "Net tax payable",
           "format": "sterling",
-          "value": "${badDebtReliefClaimed}",
+          "value": "${standardRateIPTDueForThisPeriod + higherRateIPTDueForThisPeriod}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "id": "otherCreditsTot",
+          "id": "netValueOfTaxablePremiums2",
           "type": "text",
-          "label": "Tax credits",
-          "format": "sterling",
-          "value": "${otherCredits}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "creditsFromCont",
-          "type": "text",
-          "label": "Environmental bodies credits",
-          "format": "sterling",
-          "value": "${totalEnvironmentalBodyContAfterTax}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "totalCredits",
-          "type": "text",
-          "label": "Total amount",
-          "format": "sterling",
-          "value": "${otherCreditsTot + creditsFromCont + badReliefsTot}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "lineBreakTwo",
-          "type": "info",
-          "label": "",
-          "infoText": "****",
-          "infoType": "noformat"
-        },
-        {
-          "id": "totaTaxDueFinal",
-          "type": "text",
-          "label": "Total Landfill Tax due",
-          "format": "sterling",
-          "value": "${taxWithoutDeduction - totalCredits}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
+          "label": "Net value of taxable premiums (excluding tax)",
+          "shortName": "Net value of taxable premiums",
+          "format": "sterling"
         }
       ]
     }
   ],
   "declarationSection": {
-    "title": "Confirm details and send your return",
+    "title": "Declaration",
     "shortName": "Declaration",
     "fields": [
+      {
+        "id": "declarationTopInfo",
+        "type": "info",
+        "label": "Declaration copy",
+        "infoText": "Avoid financial penalties by ensuring we receive your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
+      },
       {
         "id": "declarationNameGroup",
         "type": "group",
         "label": "",
         "fields": [
           {
-            "id": "declarationfullName",
+            "id": "declarationfirstname",
             "type": "text",
-            "label": "Full name",
-            "errorMessage": "Enter your full name"
+            "label": "First name"
+          },
+          {
+            "id": "declarationlastname",
+            "type": "text",
+            "label": "Last name"
           },
           {
             "id": "declarationstatus",
             "type": "text",
-            "label": "Job title",
-            "errorMessage": "Enter your job title"
+            "label": "Status",
+            "helpText": "For example, Director, Financial Controller, Secretary"
           }
         ]
       },
       {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We will send an email to this address to confirm we’ve received your return",
-        "format": "email",
-        "mandatory": "true",
-        "errorMessage": "Enter your email address"
-      },
-      {
-        "id": "decPageContent",
-        "type": "info",
-        "label": "",
-        "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete.",
-        "infoType": "noformat"
-      },
-      {
-        "id": "decPageImportant",
-        "type": "info",
-        "label": "",
-        "infoText": "Send your return and payment by the due date to avoid financial penalties. \n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
-        "infoType": "important"
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "Enter an email address if you would like confirmation that your report has been submitted",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
       }
     ]
   },
@@ -608,31 +435,81 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form as you won’t be able to retrieve it later."
-      },
-      {
-        "id": "lineBreakOne",
-        "type": "info",
-        "label": "",
-        "infoText": "\n\n## Make a payment",
-        "infoType": "noformat"
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
       },
       {
         "id": "ackpageInfo",
         "type": "info",
-        "label": "Information about paying Bingo Duty",
-        "infoText": "If you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nYou can also use Bacs, CHAPS or Faster Payments to pay. Make sure to include your 15 digit registration number on any payment.\n\n \n\nAccount details: \n\nAccount name: HMRC Landfill Tax \n\nAccount number: 11963198\n\n Sort code: 08 32 00\n\n Payment reference: Include your 15 digit registration number",
-        "infoType": "noformat"
+        "label": "Information about paying IPT",
+        "infoText": "If you have already set up a Direct Debit for this tax, you don't need to do anything else. Your payment will be collected automatically from your bank.\n\n Otherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your IPT registration number on any payment.\n\nSort code: 08-32-00\n\nAccount number: 11963163\n\nAccount name: HMRC Insurance Premium Tax\n\nFind out more about how to pay your IPT at\n https://www.gov.uk/guidance/pay-insurance-premium-tax"
       },
       {
         "id": "ackpageSurvey",
         "type": "info",
         "label": "",
-        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4708006/Feedback-Survey-Landfill-Tax) (takes 1 minute)",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4669767/Feedback-Survey-IPT) (takes 1 minute)",
         "infoType": "noformat"
       }
     ]
   },
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk"
+  "destinations": [
+    {
+      "id": "eeittReturnApi",
+      "type": "handlebarsHttpApi",
+      "includeIf": "{{#if IPTReg2}}true{{else}}false{{/if}}",
+      "failOnError": false,
+      "profile": "des",
+      "convertSingleQuotes": true,
+      "uri": "cross-regime/return/IPT/eeits/{{IPTReg2}}",
+      "method": "POST",
+      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{IPTReg2}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas totalIPTAndUnderDecs.[0]}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either overDecTotal.[0] 0)}}'},                         {{#if netTaxRefund}}                           {'paramSequence':'01',                            'paramName':'A_IPT_BOX9_NETTAXDUE',                            'paramValue':'{{stripCommas netTaxRefund}}'},                         {{else}}                           {{#if netTaxPayable}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas netTaxPayable}}'},                           {{else}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas totalIPTAndUnderDecs.[0]}}'},                           {{/if}}                         {{/if}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
+    },
+    {
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull IPTReg2)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTReg2}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull IPTreferencenumber2)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTreferencenumber2}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull IPTReg2)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTReg2}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull IPTreferencenumber2)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "IPT100",
+      "customerId": "${IPTreferencenumber2}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    }
+  ],
+  "submitSuccessUrl": "",
+  "submitErrorUrl": "",
+  "_id": "IPT100-insurance-premium-tax"
 }
