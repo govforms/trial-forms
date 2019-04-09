@@ -4,10 +4,9 @@
   "formCategory": "hmrcReturnForm",
   "developmentPhase": "beta",
   "emailTemplateId": "al100_return_confirmation",
-  "draftRetrievalMethod": "formAccessCodeForAgents",
   "authConfig": {
     "authModule": "hmrc",
-    "agentAccess": "allowAnyAgentAffinityUser",
+    "agentAccess": "requireMTDAgentEnrolment",
     "enrolmentCheck": "forNonAgents",
     "serviceId": "HMRC-OBTDS-ORG",
     "regimeId": "AL",
@@ -328,7 +327,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/AGL/eeits/{{aggregatesLevyReg}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{hmrcTaxPeriodKey returnPeriod}}',                     'periodFrom':'{{hmrcTaxPeriodFrom returnPeriod}}',                     'periodTo':'{{hmrcTaxPeriodTo returnPeriod}}',                     'returnsDetails':{                       'isrScenario':'ZAG1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{aggregatesLevyReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_AGL_LEVY_DUE',                          'paramValue':'{{stripCommas levyDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_TAXABLE_TON',                          'paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_RELIEVED_TON',                          'paramValue':'{{stripCommas tonnesOfRelievedAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_EXEMPT_TON',                          'paramValue':'{{stripCommas tonnesOfExemptAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                     'returnsDetails':{                       'isrScenario':'ZAG1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{aggregatesLevyReg}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_AGL_LEVY_DUE',                          'paramValue':'{{stripCommas levyDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_TAXABLE_TON',                          'paramValue':'{{stripCommas taxableAggregateExploitedThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_RELIEVED_TON',                          'paramValue':'{{stripCommas tonnesOfRelievedAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_AGL_EXEMPT_TON',                          'paramValue':'{{stripCommas tonnesOfExemptAggregateThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}]},                       'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
