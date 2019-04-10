@@ -1,5 +1,4 @@
 {
-  "_id": "claim-VAT-refund-if-not-VAT-registered-VAT126",
   "formName": "Claim a VAT refund as an organisation not registered for VAT",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -246,75 +245,81 @@
       ]
     },
     {
-      "title": "How would you like to provide evidence for your claim?",
+      "title": "How do you want to provide the invoice details?",
       "shortName": "Submission type",
       "fields": [
         {
           "id": "manualUpload",
           "type": "choice",
-          "label": "How would you like to provide evidence for your claim?",
+          "label": "How do you want to provide the invoice details?",
           "shortName": "Preferred invoice method",
-          "helpText": "You will need to provide details of each invoice for us to process your refund, if you have more than 5 invoices you will need to upload a document of the invoice details.",
+          "helpText": "You may find it easier to upload a file giving a summary of all the invoice details if you have 5 or more invoices",
           "choices": [
-            "Enter invoice details",
-            "Upload invoice details"
+            "Enter details for each invoice",
+            "Upload a file summarising all the invoice details"
           ]
         }
       ]
     },
     {
-      "title": "Provide your invoice details",
-      "shortName": "Invoice details",
+      "title": "How many invoices does this claim include?",
       "includeIf": "${manualUpload=0}",
-      "description": "Enter details of each invoice you are claiming for, if you have more than 5 invoices you'll need to upload a document of the invoice details.",
       "fields": [
         {
-          "id": "invoiceGroup",
-          "type": "group",
-          "label": "",
-          "repeatsMax": 5,
-          "repeatLabel": "Invoice $n",
-          "repeatAddAnotherText": "Add another invoice",
-          "fields": [
-            {
-              "id": "dateOfInvoice",
-              "type": "date",
-              "label": "Date on invoice",
-              "helpText": "For example, 30 09 2017"
-            },
-            {
-              "id": "suppliersVrn",
-              "type": "text",
-              "label": "Supplier's VAT registration number",
-              "format": "text(0,15)"
-            },
-            {
-              "id": "descriptionOfGoodsOrServices",
-              "type": "text",
-              "label": "Provide a brief description of goods or services supplied",
-              "shortName": "Brief description of goods or services supplied",
-              "format": "text(1,60)",
-              "multiline": "yes"
-            },
-            {
-              "id": "invoiceAddress",
-              "type": "text",
-              "label": "Organisation receiving goods or services on the invoice",
-              "shortName": "Organisation receiving goods or services",
-              "format": "text(1,35)"
-            },
-            {
-              "id": "amountOfVatPaid",
-              "type": "text",
-              "label": "Amount of VAT paid",
-              "format": "sterling"
-            }
-          ]
+          "id": "numInv",
+          "type": "text",
+          "label": "How many invoices does this claim include?",
+          "helpText": "The number must be between 1 and 50",
+          "format": "positiveNumber(2, 0)",
+          "displayWidth": "xs",
+          "validIf": "${numInv >=1 && numInv <=50}",
+          "errorMessage": "Enter a number between 1 and 50"
         }
       ]
     },
     {
-      "title": "Provide your invoice details",
+      "title": "Enter details for invoice $n",
+      "shortName": "Invoice details",
+      "description": "",
+      "repeatsMin": "${numInv}",
+      "repeatsMax": "${numInv}",
+      "fields": [
+        {
+          "id": "dateOfInvoice",
+          "type": "date",
+          "label": "Date of invoice",
+          "helpText": "For example, 30 02 2019"
+        },
+        {
+          "id": "suppliersVrn",
+          "type": "text",
+          "label": "Supplier's VAT Registration Number"
+        },
+        {
+          "id": "descriptionOfGoodsOrServices",
+          "type": "text",
+          "label": "Brief description of goods or services supplied",
+          "shortName": "Brief description of goods or services supplied",
+          "format": "text(1,35)",
+          "multiline": "false"
+        },
+        {
+          "id": "invoiceAddress",
+          "type": "text",
+          "label": "Organisation receiving goods or services",
+          "shortName": "Organisation receiving goods or services",
+          "format": "text(1,35)"
+        },
+        {
+          "id": "amountOfVatPaid",
+          "type": "text",
+          "label": "Amount of VAT paid",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Upload a file summarising details for all your invoices",
       "shortName": "Invoice details",
       "includeIf": "${manualUpload=1}",
       "fields": [
@@ -322,38 +327,54 @@
           "id": "invoiceInfo",
           "type": "info",
           "label": "",
-          "infoText": "Provide details of the invoices to claim your VAT refund.\n\nUpload a single file, which must include:\n* date of invoices\n* supplier's VAT registration numbers\n* a brief descriptions of the goods or services supplied\n* the organisation receiving services\n* amount of VAT paid",
+          "infoText": "You can provide the invoice details in a spreadsheet, PDF or JPEG.\n\nFor each invoice, you must provide these details:\n* invoice date\n* the supplier's VAT registration number\n* a brief description of the goods or services supplied\n* the name of the organisation that received the goods or services\n* the amount of VAT paid",
           "infoType": "noformat"
         },
         {
           "id": "uploadInfo",
           "type": "info",
           "label": "",
-          "infoText": "We accept spreadsheets and documents in formats like PDF and JPEG (15mb maximum)."
+          "infoText": "You can only upload one file. The file size must not be more than 15MB.",
+          "infoType": "important"
         },
         {
           "id": "uploadInvoice",
           "type": "file",
-          "label": "Upload an invoices file",
+          "label": "Upload file",
           "shortName": "Invoices file"
         }
       ]
     },
     {
-      "title": "Claim a VAT refund",
+      "title": "Enter the amount VAT you are wanting to get refunded",
       "shortName": "VAT refund",
+      "includeIf": "${manualUpload=1}",
+      "fields": [
+        {
+          "id": "claimTotalUpload",
+          "type": "text",
+          "label": "",
+          "shortName": "Claim amount",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Enter the amount VAT you are wanting to get refunded",
+      "shortName": "VAT refund",
+      "includeIf": "${manualUpload=0}",
       "fields": [
         {
           "id": "totalAmountOfVatPaid",
           "type": "text",
-          "label": "Total payable",
+          "label": "Total VAT paid",
           "format": "sterling",
           "value": "${amountOfVatPaid.sum}",
           "submitMode": "readonly",
           "presentationHint": "totalValue"
         },
         {
-          "id": "claimTotal",
+          "id": "claimTotalManual",
           "type": "text",
           "label": "Enter total amount",
           "shortName": "Claim amount",
@@ -422,7 +443,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/ZVTR/eeits/{{VATCRN}}",
       "method": "POST",
-      "payload": "{'returnsDetails':{                     'isrScenario':'ZVT1',                     'regimeSpecificDetails':[                       {'paramSequence':'01',                        'paramName':'A_REGISTRATION_NUMBER',                        'paramValue':'{{VATCRN}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_FIRST_CLAIM',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BANK_DET_CHANGE',                        'paramValue':'{{yesNoToEtmpChoice bankChange}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_FROM_SELECT',                        'paramValue':'{{toEtmpDate startDate}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_TO_SELECT',                        'paramValue':'{{toEtmpDate endDate}}'},                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_SEQ_ID',                        'paramValue':'{{toEtmpParamSequence @index}}'},                       {{/each}}                       {{#each dateOfInvoice}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_INV_DATE_TBL',                        'paramValue':'{{toEtmpDate .}}'},                       {{/each}}                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_SUPP_VAT_NUM_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each descriptionOfGoodsOrServices}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_DESC_GOOD_SUPP_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each invoiceAddress}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_PERS_INVOICE_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each amountOfVatPaid}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_PAID_SUB_TBL',                        'paramValue':'{{stripCommas .}}'},                       {{/each}}                       {'paramSequence':'01',                        'paramName':'A_VTR_TOTAL_VAT_PAID',                        'paramValue':'{{stripCommas totalAmountOfVatPaid}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_CLAIM_AMOUNT',                        'paramValue':'{{stripCommas claimTotal}}'},                       {'paramSequence':'01',                        'paramName':'A_DATA_ORIGIN',                        'paramValue':'1'}]},                     'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{'returnsDetails':{                     'isrScenario':'ZVT1',                     'regimeSpecificDetails':[                       {'paramSequence':'01',                        'paramName':'A_REGISTRATION_NUMBER',                        'paramValue':'{{VATCRN}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_FIRST_CLAIM',                        'paramValue':'0'},                       {'paramSequence':'01',                        'paramName':'A_VTR_BANK_DET_CHANGE',                        'paramValue':'{{yesNoToEtmpChoice bankChange}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_FROM_SELECT',                        'paramValue':'{{toEtmpDate startDate}}'},                       {'paramSequence':'01',                        'paramName':'A_PERIOD_TO_SELECT',                        'paramValue':'{{toEtmpDate endDate}}'},                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_SEQ_ID',                        'paramValue':'{{toEtmpParamSequence @index}}'},                       {{/each}}                       {{#each dateOfInvoice}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_INV_DATE_TBL',                        'paramValue':'{{toEtmpDate .}}'},                       {{/each}}                       {{#each suppliersVrn}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_SUPP_VAT_NUM_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each descriptionOfGoodsOrServices}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_DESC_GOOD_SUPP_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each invoiceAddress}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_PERS_INVOICE_TBL',                        'paramValue':'{{.}}'},                       {{/each}}                       {{#each amountOfVatPaid}}                       {'paramSequence':'{{toEtmpParamSequence @index}}',                        'paramName':'A_VTR_VAT_PAID_SUB_TBL',                        'paramValue':'{{stripCommas .}}'},                       {{/each}}                       {'paramSequence':'01',                        'paramName':'A_VTR_TOTAL_VAT_PAID',                        'paramValue':'{{stripCommas totalAmountOfVatPaid}}'},                       {'paramSequence':'01',                        'paramName':'A_VTR_CLAIM_AMOUNT',                        'paramValue':'{{stripCommas claimTotalManual}}'},                       {'paramSequence':'01',                        'paramName':'A_DATA_ORIGIN',                        'paramValue':'1'}]},                     'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -447,5 +468,6 @@
   ],
   "GFC579Ready": "true",
   "submitSuccessUrl": "",
-  "submitErrorUrl": ""
+  "submitErrorUrl": "",
+  "_id": "claim-VAT-refund-if-not-VAT-registered-VAT126"
 }
