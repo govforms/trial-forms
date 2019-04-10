@@ -1,5 +1,4 @@
 {
-  "_id": "VAT126-Live-And-Repeating-Pages",
   "formName": "Claim a VAT refund as an organisation not registered for VAT",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -314,11 +313,35 @@
     {
       "title": "Enter the amount VAT you are wanting to get refunded",
       "shortName": "VAT refund",
+      "includeIf": "${manualUpload=1}",
       "fields": [
         {
-          "id": "claimTotal",
+          "id": "claimTotalUpload",
           "type": "text",
           "label": "",
+          "shortName": "Claim amount",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Enter the amount VAT you are wanting to get refunded",
+      "shortName": "VAT refund",
+      "includeIf": "${manualUpload=0}",
+      "fields": [
+        {
+          "id": "totalAmountOfVatPaid",
+          "type": "text",
+          "label": "Total payable",
+          "format": "sterling",
+          "value": "${amountOfVatPaid.sum}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "claimTotalManual",
+          "type": "text",
+          "label": "Enter total amount",
           "shortName": "Claim amount",
           "format": "sterling"
         }
@@ -377,5 +400,6 @@
   },
   "GFC579Ready": "true",
   "submitSuccessUrl": "http://www.google.co.uk",
-  "submitErrorUrl": "http://www.yahoo.co.uk"
+  "submitErrorUrl": "http://www.yahoo.co.uk",
+  "_id": "VAT126-Live-And-Repeating-Pages"
 }
