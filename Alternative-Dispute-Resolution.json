@@ -14,84 +14,38 @@
   },
   "sections": [
     {
-      "title": "Before you start",
-      "fields": [
-        {
-          "id": "beforeYouStartInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "Before you complete this form, please make sure you read the Alternative Dispute Resolution (ADR) guidance.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "beforeYoustartInfo2",
-          "type": "info",
-          "label": "",
-          "infoText": "This will help you to decide if ADR is the right process to meet your needs.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "beforeYouStartInfo3",
-          "type": "info",
-          "label": "",
-          "infoText": "If you are an authorised agent, please complete the following pages with your client's information and enter your own details in the 'Agent's details' section.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "pleasenote1",
-          "type": "info",
-          "label": "",
-          "infoText": "### Please note: \nYou are an authorised agent if your client has completed paper forms 64-8 or FBI 2 or you have used HMRC Online Services to set up client authorisations.",
-          "infoType": "important"
-        },
-        {
-          "id": "yesNoQuestion1",
-          "type": "choice",
-          "label": "Are you an authorised agent?",
-          "format": "yesno",
-          "errorMessage": "Select if you are an authorised agent."
-        },
-        {
-          "id": "beforeYouStartInfo4",
-          "type": "text",
-          "label": "Email address",
-          "helpText": "Enter your email address.: HM Revenue & Customs (HMRC) will use this to contact you about this form",
-          "format": "email"
-        }
-      ]
-    },
-    {
       "title": "Enter the details of the person filling in this form ",
-      "description": "HMRC will use these details if we need to discuss this form. ",
       "fields": [
         {
+          "id": "fullNameFilling",
           "type": "text",
-          "id": "fullName",
           "label": "Full name"
         },
         {
+          "id": "telephoneNumberFilling",
           "type": "text",
-          "id": "phoneNumber",
           "label": "Telephone number",
           "helpText": "For international numbers include the country code."
         },
         {
+          "id": "emailFilling",
           "type": "text",
-          "id": "emailAddress",
           "label": "Email address",
-          "helpText": "We will also use this to send you a confirmation email."
+          "helpText": "We will also use this to send you a confirmation email.",
+          "format": "email"
         },
         {
           "type": "info",
-          "id": "generatedId_c84e559a_a330_49af_b053_601bd95b6f58",
+          "id": "generatedId_b8a27ccd_4d9c_42a7_b84a_a7424522ba93",
           "label": "",
-          "infoText": "##Authorised agent",
+          "infoText": "##Authority",
           "infoType": "noformat"
         },
         {
           "type": "choice",
-          "id": "youAgent",
-          "label": "Are you completing this form on behalf of a client?",
+          "id": "authYesNo",
+          "label": "Are you authorised to fill in this form?",
+          "helpText": "You must be an agent applying on behalf of a client, or an authorised employee of the business you are applying for",
           "choices": [
             "Yes",
             "No"
@@ -100,75 +54,55 @@
       ]
     },
     {
-      "title": "Which unit in HMRC do you deal with?",
+      "title": "Why are you applying to resolve a tax dispute with HMRC?",
       "fields": [
         {
-          "id": "HMRCUnit1",
+          "id": "useraffinityGroup",
           "type": "choice",
-          "label": "",
-          "shortName": "HMRC Unit",
-          "errorMessage": "Select the HMRC unit you deal with",
+          "label": "Why are you applying to resolve a tax dispute with HMRC?",
+          "errorMessage": "Select what capacity you are applying for R & D tax relief",
           "choices": [
-            "Small and Medium Enterprise (SME) unit",
-            "Individuals and Public Bodies",
-            "Mid-size Business",
-            "CITEX",
-            "CCO",
-            "Other"
-          ]
-        },
-        {
-          "id": "hmrcunit1help",
-          "type": "info",
-          "label": "Help with choice meanings",
-          "infoText": "This form should only be used for substantive tax disputes. For further help on what constitutes a substantive tax dispute please see the ADR guidance. Your latest piece of post from HM Revenue and Customs should indicate whether your tax affairs are dealt with by Small and Medium Enterprise (SME), Individuals & Public Bodies (I&PB), Mid Size Business (MSB), Customs, International Trade and Excise (CITEX), Central Compliance Operations (CCO) or another customer grouping. However, if you are not sure, please select Other.",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "What type of tax is in dispute?",
-      "fields": [
-        {
-          "id": "HMRCUnit2_copy_1",
-          "type": "choice",
-          "label": "",
-          "shortName": "Type of tax in dispute",
-          "errorMessage": "Select the type of tax in dispute",
-          "choices": [
-            "Direct",
-            "Indirect",
-            "Don't Know / Other"
+            "I'm an individual, trying to resolve personal tax issues",
+            "I'm part of an organisation, trying to resolve business tax issues",
+            "I'm an agent, acting on behalf of an organisation or an individual"
           ]
         }
       ]
     },
     {
-      "title": "Customer Contact details",
+      "title": "Are you looking to resolve an individual tax or a business tax dispute?",
+      "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
-          "id": "textFieldInfoFormat",
-          "type": "info",
-          "label": "",
-          "infoText": "Provide the businesses' contact details.",
-          "infoType": "noformat"
-        },
+          "id": "disputeIndividualBusiness",
+          "type": "choice",
+          "label": "Are you looking to resolve an individual tax or a business tax dispute?",
+          "choices": [
+            "Individual tax",
+            "Business tax"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the individual's address",
+      "includeIf": "${disputeIndividualBusiness=0}",
+      "fields": [
         {
-          "id": "usersFirstName",
-          "type": "text",
-          "label": "First name"
-        },
-        {
-          "id": "usersLastName",
-          "type": "text",
-          "label": "Last name"
-        },
-        {
-          "id": "userAddress",
+          "id": "addressIndividual",
           "type": "address",
-          "label": "Address",
-          "international": "true",
-          "postcodeLookup": "no"
+          "label": "Enter the individual's address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the business details",
+      "includeIf": "${disputeIndividualBusiness=1}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name"
         },
         {
           "id": "userPhone",
@@ -177,96 +111,22 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "HMRCreferencenumber",
-          "type": "text",
-          "label": "HMRC Reference Number"
-        },
-        {
-          "id": "hmrcrefnumberhelp",
-          "type": "info",
-          "label": "Help with HMRC Reference Number",
-          "infoText": "Enter the HMRC reference number. For example, if the dispute is about Income Tax, enter the Unique Taxpayers Reference. For Corporation Tax, use the Corporation Tax Reference, or for VAT, please enter the VAT Registration Number.",
-          "infoType": "long"
+          "id": "userAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
         }
       ]
     },
     {
-      "title": "Dispute Details",
-      "fields": [
-        {
-          "id": "DisputeDetailsInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "To help HMRC deal with your ADR request, please enter details of your dispute in the fields below.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "HMRCcaseworkername",
-          "type": "text",
-          "label": "HMRC Caseworker name"
-        },
-        {
-          "id": "caseworkeroffice",
-          "type": "text",
-          "label": "Caseworker's Office"
-        },
-        {
-          "id": "Caseworkerphone",
-          "type": "text",
-          "label": "Caseworker's telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "appealsofficername",
-          "type": "text",
-          "label": "HMRC appeals officer name (if applicable)",
-          "mandatory": "false"
-        },
-        {
-          "id": "appealsrefnumber",
-          "type": "text",
-          "label": "HMRC appeals reference number (if applicable)",
-          "mandatory": "false"
-        },
-        {
-          "id": "YearPeriod",
-          "type": "text",
-          "label": "Year/period involved in the dispute"
-        },
-        {
-          "id": "multilinetext1",
-          "type": "text",
-          "label": "To help HMRC process your application for ADR, outline the issues (in the box below) that are in dispute and any details that you feel are relevant.",
-          "shortName": "Details of your dispute",
-          "format": "text(0, 2000)",
-          "multiline": "yes",
-          "errorMessage": "Outline details of your issues"
-        },
-        {
-          "id": "multilinetext2",
-          "type": "text",
-          "label": "Give your reasons (in the box below) for applying for ADR to help settle the dispute.",
-          "shortName": "Reasons for applying for ADR",
-          "format": "text(0, 2000)",
-          "multiline": "yes",
-          "errorMessage": "Give your reasons for applying for ADR"
-        },
-        {
-          "id": "AdrHow",
-          "type": "text",
-          "label": "How did you hear about ADR?",
-          "errorMessage": "Give details of how you heard of ADR"
-        }
-      ]
-    },
-    {
-      "title": "Agent's details",
-      "includeIf": "${yesNoQuestion1=0}",
+      "title": "Enter agent details",
+      "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
           "id": "Agentsbusinessname",
           "type": "text",
-          "label": "Agent's Business Name",
+          "label": "Agent business name",
           "helpText": "Enter your business name (if any) or the name of the organisation that you work for."
         },
         {
@@ -300,6 +160,182 @@
           "label": "",
           "infoText": "HMRC will include your client's reference in the response to you, but for data security reasons this will not include the client's name or any other personal information.",
           "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What type of tax are you disputing?",
+      "fields": [
+        {
+          "id": "taxType",
+          "type": "choice",
+          "label": "What type of tax are you disputing?",
+          "shortName": "Type of tax in dispute",
+          "errorMessage": "Select the type of tax in dispute",
+          "choices": [
+            "Income Tax",
+            "Inheritance Tax",
+            "Corporation Tax",
+            "VAT",
+            "Customs Duty",
+            "Excise Duty",
+            "I don't know/Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your Unique Taxpayer Reference number",
+      "includeIf": "${taxType=0 || taxType=1}",
+      "fields": [
+        {
+          "id": "utrRef",
+          "type": "text",
+          "label": "Enter your Unique Taxpayer Reference number"
+        }
+      ]
+    },
+    {
+      "title": "Enter your Corporation Tax number",
+      "includeIf": "${taxType=2}",
+      "fields": [
+        {
+          "id": "ctrRef",
+          "type": "text",
+          "label": "Enter your Corporation Tax number"
+        }
+      ]
+    },
+    {
+      "title": "Enter your VAT number",
+      "includeIf": "${taxType=2 || taxType=3 || taxType=4 || taxType=5}",
+      "fields": [
+        {
+          "id": "vatRef",
+          "type": "text",
+          "label": "Enter your VAT number"
+        }
+      ]
+    },
+    {
+      "title": "Enter the HMRC caseworker details",
+      "fields": [
+        {
+          "id": "HMRCcaseworkername",
+          "type": "text",
+          "label": "HMRC caseworker name"
+        },
+        {
+          "id": "caseworkeroffice",
+          "type": "text",
+          "label": "Caseworker's office"
+        },
+        {
+          "id": "Caseworkerphone",
+          "type": "text",
+          "label": "Caseworker's telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "YearPeriod",
+          "type": "text",
+          "label": "Year or period involved in the dispute"
+        }
+      ]
+    },
+    {
+      "title": "Have you already appealed against the HMRC decision on this dispute?",
+      "fields": [
+        {
+          "id": "appealYesNo",
+          "type": "choice",
+          "label": "Have you already appealed against the HMRC decision on this dispute?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the appeal details",
+      "includeIf": "${appealYesNo=0}",
+      "fields": [
+        {
+          "id": "appealsCaseworkername",
+          "type": "text",
+          "label": "HMRC appeals caseworker name"
+        },
+        {
+          "id": "appealsCaseworkeroffice",
+          "type": "text",
+          "label": "Caseworker office"
+        },
+        {
+          "id": "appealsCaseworkerphone",
+          "type": "text",
+          "label": "Caseworker telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "appealsRefnumber",
+          "type": "text",
+          "label": "Appeals reference number",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Enter details of the issues and explain why you disagree with HMRC's decision",
+      "fields": [
+        {
+          "id": "disputeDetails",
+          "type": "text",
+          "label": "Enter details of the issues and explain why you disagree with HMRC's decision",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Why are you applying to ADR to help settle the dispute?",
+      "fields": [
+        {
+          "id": "adrReasons",
+          "type": "text",
+          "label": "Why are you applying to ADR to help settle the dispute?",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "QUESTION THIS Give details of how you heard of ADR",
+      "fields": [
+        {
+          "id": "adrHowHeard",
+          "type": "text",
+          "label": "Give details of how you heard of ADR",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "QUESTION THIS Which unit in HMRC has the business been dealing with?",
+      "fields": [
+        {
+          "id": "HMRCUnit1",
+          "type": "choice",
+          "label": "Which unit in HMRC has the business been dealing with?",
+          "shortName": "HMRC Unit",
+          "helpText": "Find this on a recent piece of post from HMRC.",
+          "errorMessage": "Select the HMRC unit you deal with",
+          "choices": [
+            "Small and Medium Enterprise (SME) unit",
+            "Individuals and Public Bodies (I&PB)",
+            "Mid-size Business (MSB)",
+            "Customs, International Trade and Excise (CITEX)",
+            "Central Compliance Operations (CCO)",
+            "Other"
+          ]
         }
       ]
     }
@@ -375,6 +411,7 @@
       }
     ]
   },
+  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
 }
