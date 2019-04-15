@@ -15,6 +15,7 @@
   "sections": [
     {
       "title": "Enter the details of the person filling in this form ",
+      "description": "HMRC will use these details if we need to discuss this form.",
       "fields": [
         {
           "id": "fullNameFilling",
@@ -35,17 +36,10 @@
           "format": "email"
         },
         {
-          "type": "info",
-          "id": "generatedId_b8a27ccd_4d9c_42a7_b84a_a7424522ba93",
-          "label": "",
-          "infoText": "##Authority",
-          "infoType": "noformat"
-        },
-        {
-          "type": "choice",
           "id": "authYesNo",
+          "type": "choice",
           "label": "Are you authorised to fill in this form?",
-          "helpText": "You must be an agent applying on behalf of a client, or an authorised employee of the business you are applying for",
+          "helpText": "You must be the individual taxpayer, an agent applying on behalf of a client, or an authorised employee of the business you are applying for.",
           "choices": [
             "Yes",
             "No"
@@ -62,8 +56,8 @@
           "label": "Why are you applying to resolve a tax dispute with HMRC?",
           "errorMessage": "Select what capacity you are applying for R & D tax relief",
           "choices": [
-            "I'm an individual, trying to resolve personal tax issues",
-            "I'm part of an organisation, trying to resolve business tax issues",
+            "I'm an individual, and I want to resolve personal tax issues",
+            "I'm part of an organisation, and I want to resolve business tax issues",
             "I'm an agent, acting on behalf of an organisation or an individual"
           ]
         }
@@ -96,8 +90,19 @@
       ]
     },
     {
-      "title": "Enter the business details",
-      "includeIf": "${disputeIndividualBusiness=1}",
+      "title": "Enter your address",
+      "includeIf": "${useraffinityGroup=0}",
+      "fields": [
+        {
+          "id": "addressIndividual_copy_1",
+          "type": "address",
+          "label": "Enter your address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the business address",
+      "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
       "fields": [
         {
           "id": "businessName",
@@ -132,7 +137,8 @@
         {
           "id": "Namedcontact",
           "type": "text",
-          "label": "Named contact within agent’s business"
+          "label": "Agent full name",
+          "helpText": "Enter the name of the agent who is working on this case "
         },
         {
           "id": "Agentaddresss",
@@ -165,6 +171,7 @@
     },
     {
       "title": "What type of tax are you disputing?",
+      "includeIf": "${useraffinityGroup=0 || disputeIndividualBusiness=0}",
       "fields": [
         {
           "id": "taxType",
@@ -175,6 +182,22 @@
           "choices": [
             "Income Tax",
             "Inheritance Tax",
+            "I don't know/Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of tax are you disputing?",
+      "includeIf": "${useraffinityGroup=1 || disputeIndividualBusiness=1}",
+      "fields": [
+        {
+          "id": "taxType2",
+          "type": "choice",
+          "label": "What type of tax are you disputing?",
+          "shortName": "Type of tax in dispute",
+          "errorMessage": "Select the type of tax in dispute",
+          "choices": [
             "Corporation Tax",
             "VAT",
             "Customs Duty",
@@ -239,7 +262,8 @@
         {
           "id": "YearPeriod",
           "type": "text",
-          "label": "Year or period involved in the dispute"
+          "label": "Year or period involved in the dispute",
+          "helpText": "For example, tax year 2017-2018"
         }
       ]
     },
@@ -286,12 +310,12 @@
       ]
     },
     {
-      "title": "Enter details of the issues and explain why you disagree with HMRC's decision",
+      "title": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
       "fields": [
         {
           "id": "disputeDetails",
           "type": "text",
-          "label": "Enter details of the issues and explain why you disagree with HMRC's decision",
+          "label": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
           "multiline": "true"
         }
       ]
@@ -308,7 +332,7 @@
       ]
     },
     {
-      "title": "QUESTION THIS Give details of how you heard of ADR",
+      "title": "RECOMMEND REMOVE Give details of how you heard of ADR",
       "fields": [
         {
           "id": "adrHowHeard",
@@ -319,7 +343,7 @@
       ]
     },
     {
-      "title": "QUESTION THIS Which unit in HMRC has the business been dealing with?",
+      "title": "RECOMMEND REMOVE Which unit in HMRC has the business been dealing with?",
       "fields": [
         {
           "id": "HMRCUnit1",
