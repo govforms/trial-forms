@@ -7,9 +7,75 @@
   "authConfig": {
     "authModule": "hmrc",
     "agentAccess": "allowAnyAgentAffinityUser",
-    "enrolmentCheck": "never",
+    "enrolmentCheck": "forNonAgents",
     "serviceId": "HMRC-OBTDS-ORG",
-    "regimeId": "AP"
+    "regimeId": "AP",
+    "legacyFcEnrolmentVerifier": "NonUKCountryCode",
+    "enrolmentSection": {
+      "title": "Enter your Air Passenger Duty registration details",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Air Passenger Duty registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l",
+          "toUpperCase": "true"
+        },
+        {
+          "id": "generatedId_d94ba93a_62a6_4ab7_b9fc_6979a3b2647d",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is based in the UK",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the business postcode",
+          "shortName": "Business postcode",
+          "helpText": "This is the postcode of the main place of business that you registered for Air Passenger Duty.",
+          "format": "text(5, 8)",
+          "mandatory": "false",
+          "displayWidth": "s",
+          "toUpperCase": "true"
+        },
+        {
+          "id": "generatedId_1fa11b89_0457_46a7_b43d_cb5b5f2aff45",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is not based in the UK",
+          "infoType": "noformat"
+        },
+        {
+          "id": "nonUKCountryCode",
+          "type": "text",
+          "label": "Enter the country code",
+          "shortName": "Country code",
+          "helpText": "This is the 2-letter country code of the main place of business that you registered for Air Passenger Duty, for example DE for Germany and FR for France.",
+          "format": "nonUkCountryCode",
+          "mandatory": "false",
+          "displayWidth": "xs",
+          "toUpperCase": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        },
+        {
+          "value": "${nonUKCountryCode}",
+          "key": "NonUKCountryCode"
+        }
+      ]
+    }
   },
   "sections": [
     {
@@ -17,54 +83,46 @@
       "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
-          "id": "generatedId_7b43f69b_7a8b_499c_8068_5132fce58b07",
-          "type": "info",
-          "label": "Enter the reference number using capital letters",
-          "infoText": "Enter the reference number using capital letters",
-          "infoType": "standard"
-        },
-        {
           "id": "APDreferencenumber",
           "type": "text",
           "label": "Air passenger duty reference number for your client",
           "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
-          "format": "text(15,15)"
-        },
-        {
-          "id": "startDate",
-          "type": "date",
-          "label": "Return start date",
-          "helpText": "For example, 01 03 2018.",
-          "format": "before ${endDate}",
-          "mandatory": "true"
-        },
-        {
-          "id": "endDate",
-          "type": "date",
-          "label": "Return end date",
-          "helpText": "For example, 31 05 2018.",
-          "format": "before today +1",
-          "mandatory": "true"
+          "format": "text(15,15)",
+          "toUpperCase": "true"
         }
       ]
     },
     {
-      "title": "Enter your Air Passenger Duty details",
+      "title": "Business details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
+      "fields": [
+        {
+          "id": "businessNameAgent",
+          "type": "text",
+          "label": "Name of business"
+        },
+        {
+          "id": "returnPeriodAgent",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${APDreferencenumber}",
+          "regimeType": "APD"
+        }
+      ]
+    },
+    {
+      "title": "You are completing an Air Passenger Duty return for the following registration",
       "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "generatedId_7b43f69b_7a8b_499c_8068_5132fce58b09",
-          "type": "info",
-          "label": "You must use capital letters.",
-          "infoText": "Enter the reference number using capital letters",
-          "infoType": "standard"
-        },
-        {
           "id": "APDReg",
           "type": "text",
-          "label": "Air passenger duty reference number",
-          "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
-          "format": "text(15,15)"
+          "label": "",
+          "shortName": "Air Passenger Duty registration number",
+          "value": "${user.enrolledIdentifier}",
+          "submitMode": "readonly",
+          "presentationHint": "totalValue"
         }
       ]
     },
@@ -169,7 +227,7 @@
           "id": "lowerBandBChoiceZ",
           "type": "choice",
           "label": "Have any chargeable aircraft at lower band B flown in this period?",
-          "helpText": "This rate applies to the lowest class of travel available and is charged at £78 per passenger",
+          "helpText": "This rate applies to the lowest class of travel available and is charged at £80 per passenger",
           "format": "yesno",
           "mandatory": "yes"
         },
@@ -177,7 +235,7 @@
           "id": "standardBandBChoiceZ",
           "type": "choice",
           "label": "Have any chargeable aircraft at standard band B flown in this period?",
-          "helpText": "This rate applies to any other class of travel and is charged at £156 per passenger",
+          "helpText": "This rate applies to any other class of travel and is charged at £172 per passenger",
           "format": "yesno",
           "mandatory": "yes"
         },
@@ -185,7 +243,7 @@
           "id": "higherBandBChoiceZ",
           "type": "choice",
           "label": "Have any chargeable aircraft at higher band B flown in this period?",
-          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £468 per passenger",
+          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £515 per passenger",
           "format": "yesno",
           "mandatory": "yes"
         }
@@ -304,7 +362,7 @@
           "id": "helpText6",
           "type": "info",
           "label": "",
-          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £156 per passenger."
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £172 per passenger."
         },
         {
           "id": "standardBPassengerNumber",
@@ -317,7 +375,7 @@
           "type": "text",
           "label": "Amount of duty",
           "format": "sterling",
-          "value": "${standardBPassengerNumber * 156}",
+          "value": "${standardBPassengerNumber * 172}",
           "submitMode": "readonly"
         }
       ]
@@ -330,7 +388,7 @@
           "id": "helpText7",
           "type": "info",
           "label": "",
-          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £468 per passenger."
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £515 per passenger."
         },
         {
           "id": "higherBPassengerNumber",
@@ -343,7 +401,7 @@
           "type": "text",
           "label": "Amount of duty",
           "format": "sterling",
-          "value": "${higherBPassengerNumber * 468}",
+          "value": "${higherBPassengerNumber * 515}",
           "submitMode": "readonly"
         }
       ]
@@ -508,9 +566,9 @@
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/return/APD/eeits/{{APDReg}}",
+      "uri": "cross-regime/return/APD/eeits/{{either APDReg APDreferencenumber}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                       'returnsDetails':{                         'isrScenario':'ZAP1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{APDReg}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerAPassengerNumber 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable1 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'02',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerBPassengerNumber 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable4 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'03',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardAPassengerNumber 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable2 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'04',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardBPassengerNumber 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable5 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'05',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherAPassengerNumber 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable3 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'06',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'6'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherBPassengerNumber 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable6 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_AMOUNT',                            'paramValue':'{{stripCommas totalAmountOfDuty}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_EXEMPT_PASSENGERS',                            'paramValue':'{{stripCommas exempt}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_PASSENGERS_FLOWN',                            'paramValue':'{{stripCommas totalPassengers}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_UNDER_DECLARATION',                            'paramValue':'{{stripCommas underDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_OVER_DECLARATION',                            'paramValue':'{{stripCommas overDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_DUE',                            'paramValue':'{{stripCommas totalpayable}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_SPECIAL_ACCOUNTING',                            'paramValue':'{{yesNoToEtmpChoice accountingRadio}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                          'receivedAt':'{{currentTimestamp}}'}"
+      "payload": "{                     {{#if APDReg}}                       'periodKey':'{{returnPeriod.periodKey}}',                       'periodFrom':'{{returnPeriod.periodFrom}}',                       'periodTo':'{{returnPeriod.periodTo}}',                     {{else}}                       'periodKey':'{{returnPeriodAgent.periodKey}}',                       'periodFrom':'{{returnPeriodAgent.periodFrom}}',                       'periodTo':'{{returnPeriodAgent.periodTo}}',                     {{/if}}                       'returnsDetails':{                         'isrScenario':'ZAP1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{either APDReg APDreferencenumber}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerAPassengerNumber 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable1 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'02',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerBPassengerNumber 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable4 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'03',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardAPassengerNumber 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable2 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'04',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardBPassengerNumber 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable5 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'05',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherAPassengerNumber 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable3 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'06',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'6'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherBPassengerNumber 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable6 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_AMOUNT',                            'paramValue':'{{stripCommas totalAmountOfDuty}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_EXEMPT_PASSENGERS',                            'paramValue':'{{stripCommas exempt}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_PASSENGERS_FLOWN',                            'paramValue':'{{stripCommas totalPassengers}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_UNDER_DECLARATION',                            'paramValue':'{{stripCommas underDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_OVER_DECLARATION',                            'paramValue':'{{stripCommas overDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_DUE',                            'paramValue':'{{stripCommas totalpayable}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_SPECIAL_ACCOUNTING',                            'paramValue':'{{yesNoToEtmpChoice accountingRadio}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                          'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
