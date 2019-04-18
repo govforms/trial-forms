@@ -1,1122 +1,562 @@
 {
-  "_id": "APD2-air-passenger-duty-return",
-  "formName": "Register for Landfill Tax",
+  "formName": "APD2 Air passenger duty return",
   "description": "",
   "developmentPhase": "beta",
-  "emailTemplateId": "lt_registration_confirmation",
+  "emailTemplateId": "apd_return_confirmation",
   "authConfig": {
-    "authModule": "hmrc"
+    "authModule": "hmrc",
+    "agentAccess": "allowAnyAgentAffinityUser",
+    "enrolmentCheck": "never",
+    "serviceId": "HMRC-OBTDS-ORG",
+    "regimeId": "AP"
   },
   "sections": [
     {
-      "title": "Does the business you want to register have a Unique Taxpayer Reference?",
-      "shortName": "Unique Taxpayer Reference (UTR)",
+      "title": "Enter your client's Air Passenger Duty details",
+      "includeIf": "${user.affinityGroup = 'agent'}",
       "fields": [
         {
-          "id": "utrChoice",
-          "type": "choice",
-          "label": "Does the business you want to register have a Unique Taxpayer Reference?",
-          "shortName": "Does the business have a UTR ",
-          "helpText": "A Unique Taxpayer Reference is 10 numbers. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
-          "errorMessage": "Select whether the business has a Unique Taxpayer Reference",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "You can not register the business for this service",
-      "includeIf": "${utrChoice=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_b64b70dd_1741_4ec3_a27a_55886034a3ab",
+          "id": "generatedId_7b43f69b_7a8b_499c_8068_5132fce58b07",
           "type": "info",
-          "label": "",
-          "infoText": "This is because the business must have a Unique Taxpayer Reference (UTR) to register for this service.\n\nThe business will automatically be sent a UTR when it:\n\n* registers for Self Assessment\n\n* sets up as a limited company\n\nInformation about [finding a lost UTR](https://www.gov.uk/find-lost-utr-number) can be found on GOV.UK\n\nYou'll need to exit this service.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Enter details for the business you want to register",
-      "shortName": "Business details",
-      "includeIf": "${utrChoice=0}",
-      "validators": {
-        "errorMessage": "The details you’ve entered do not match our records. Check your records and enter the UTR and postcode again.",
-        "validatorName": "hmrcRosmRegistrationCheck",
-        "parameters": {
-          "regime": "APD",
-          "utr": "${businessUtr}",
-          "postcode": "${businessPostcode}"
-        }
-      },
-      "fields": [
-        {
-          "id": "businessUtr",
-          "type": "text",
-          "label": "Unique Taxpayer Reference",
-          "helpText": "This is 10 numbers, for example 12345 67890. It will be on tax returns and other letters from HMRC. It may be called ‘reference’, ‘UTR’ or ‘official use’.",
-          "format": "utr",
-          "displayWidth": "s"
+          "label": "Enter the reference number using capital letters",
+          "infoText": "Enter the reference number using capital letters",
+          "infoType": "standard"
         },
         {
-          "id": "businessPostcode",
+          "id": "APDreferencenumber",
           "type": "text",
-          "label": "Postcode of main place of business",
-          "shortName": "Business postcode",
-          "helpText": "This should match the postcode HMRC holds for the business's Corporation Tax or Self Assessment details.",
-          "format": "text(5,8)",
-          "displayWidth": "s"
+          "label": "Air passenger duty reference number for your client",
+          "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
+          "format": "text(15,15)"
+        },
+        {
+          "id": "startDate",
+          "type": "date",
+          "label": "Return start date",
+          "helpText": "For example, 01 03 2018.",
+          "format": "before ${endDate}",
+          "mandatory": "true"
+        },
+        {
+          "id": "endDate",
+          "type": "date",
+          "label": "Return end date",
+          "helpText": "For example, 31 05 2018.",
+          "format": "before today +1",
+          "mandatory": "true"
         }
       ]
     },
     {
-      "title": "Is this the business you want to register?",
-      "shortName": "Name of business",
-      "includeIf": "${utrChoice=0}",
+      "title": "Enter your Air Passenger Duty details",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "correctBusiness",
-          "type": "choice",
-          "label": "",
-          "shortName": "Business to register",
-          "errorMessage": "Select whether this is the business you want to register",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "You'll need to exit this service",
-      "includeIf": "${correctBusiness=1}",
-      "continueIf": "false",
-      "fields": [
-        {
-          "id": "generatedId_565f0827_d2a3_45a8_a688_0f5fc536c1d9",
+          "id": "generatedId_7b43f69b_7a8b_499c_8068_5132fce58b09",
           "type": "info",
-          "label": "",
-          "infoText": "You'll need to exit this service, check your records and come back and start again using the correct Unique Taxpayer Reference and postcode for the business you want to register.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "What is your business type?",
-      "shortName": "Type of business",
-      "fields": [
-        {
-          "id": "legalStatus",
-          "type": "choice",
-          "label": "What is your business type?",
-          "shortName": "Business type",
-          "choices": [
-            "Limited company",
-            "Sole trader",
-            "Limited liability partnership (LLP)",
-            "Partnership",
-            "Unincorporated body",
-            "Local authority"
-          ],
-          "optionHelpText": [
-            "",
-            "",
-            "",
-            "",
-            "An unincorporated body is referred to as a business throughout the rest of this this registration.",
-            "A local authority is referred to as a business throughout the rest of this registration."
-          ]
-        }
-      ]
-    },
-    {
-      "title": "About you",
-      "includeIf": "${legalStatus=0}",
-      "fields": [
-        {
-          "id": "youInfo1",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC will use these details if we need to discuss this registration. ",
-          "infoType": "noformat"
+          "label": "You must use capital letters.",
+          "infoText": "Enter the reference number using capital letters",
+          "infoType": "standard"
         },
         {
-          "id": "regContactName1",
+          "id": "APDReg",
           "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "RegPhoneNumber1",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "regEmail1",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
-          "id": "roleWit",
-          "type": "info",
-          "label": "",
-          "infoText": "##Your role within the business",
-          "infoType": "noformat"
-        },
-        {
-          "id": "roleInBusiness1",
-          "type": "choice",
-          "label": "Select the role relevant to you",
-          "shortName": "Your role",
-          "helpText": "You must be one of the following to register on behalf your business",
-          "choices": [
-            "Director",
-            "Company secretary",
-            "Authorised individual"
-          ],
-          "optionHelpText": [
-            "",
-            "",
-            "An authorised individual is someone within the business who is authorised by the business to register on their behalf."
-          ]
-        }
-      ]
-    },
-    {
-      "title": "About you",
-      "includeIf": "${legalStatus=4 || legalStatus=5 || legalStatus=2}",
-      "description": "HMRC will use these details if we need to discuss this registration.",
-      "fields": [
-        {
-          "id": "regContactName2",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "regPhoneNumber2",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "regEmail2",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
-          "id": "roleInBusiness2",
-          "type": "text",
-          "label": "What is your role within the business?",
-          "shortName": "Role within the business",
-          "helpText": ""
-        }
-      ]
-    },
-    {
-      "title": "About you",
-      "includeIf": "${legalStatus=3}",
-      "description": "HMRC will use these details if we need to discuss this registration.",
-      "fields": [
-        {
-          "id": "regContactName3",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "regPhoneNumber3",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "regEmail3",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
-          "id": "infoPartner3",
-          "type": "info",
-          "label": "",
-          "infoText": "##Your role within the business",
-          "infoType": "noformat"
-        },
-        {
-          "id": "roleInBusiness3",
-          "type": "choice",
-          "label": "Select the role relevant to you",
-          "shortName": "Your role",
-          "helpText": "You must be one of the following to register on behalf of your business",
-          "choices": [
-            "Partner",
-            "Authorised individual"
-          ],
-          "optionHelpText": [
-            "",
-            "An authorised individual is someone within the business who is authorised by the business to register on their behalf."
-          ]
-        }
-      ]
-    },
-    {
-      "title": "About you",
-      "includeIf": "${legalStatus=1}",
-      "description": "HMRC will use these details if we need to discuss this registration.",
-      "fields": [
-        {
-          "id": "regContactName4",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "regPhoneNumber4",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "regEmail4",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
-        },
-        {
-          "id": "info4",
-          "type": "info",
-          "label": "",
-          "infoText": "##Your role within the business",
-          "infoType": "noformat"
-        },
-        {
-          "id": "roleInBusiness4",
-          "type": "choice",
-          "label": "Select the role relevant to you",
-          "shortName": "Your role",
-          "helpText": "You must be one of the following to register on behalf of your business",
-          "choices": [
-            "Sole trader",
-            "Authorised individual"
-          ],
-          "optionHelpText": [
-            "",
-            "An authorised individual is someone within the business who is authorised by the business to register on their behalf."
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Are you authorised by the business to register on their behalf?",
-      "shortName": "Authorisation to register",
-      "includeIf": "${legalStatus=2 || legalStatus=4 || legalStatus=5}",
-      "fields": [
-        {
-          "id": "authYesNo",
-          "type": "choice",
-          "label": "Are you authorised by the business to register on their behalf?",
-          "shortName": "Authorised to register",
-          "errorMessage": "Select whether you are authorised to register",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "To use this service you must be authorised by the business",
-      "includeIf": "${authYesNo=1}",
-      "continueIf": "false",
-      "description": "You can only use this service to register on behalf of your business if the business has authorised you to do so. \n\n",
-      "fields": [
-        {
-          "id": "generatedId_0d5d541f_c249_462e_a8d6_830ddde9a972",
-          "type": "info",
-          "label": "To use this service you must be authorised by the business",
-          "infoText": "You will need to sign out of this service, or save your progress and come back when you have authorisation.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "title": "Enter the name of your business ",
-      "shortName": "Business details",
-      "includeIf": "${legalStatus=0 || legalStatus=2 || legalStatus=3 || legalStatus=4 || legalStatus=5}",
-      "fields": [
-        {
-          "id": "businessTradingName",
-          "type": "text",
-          "label": "Trading name (optional)",
-          "shortName": "Trading name",
-          "helpText": "Enter your trading name, if different from your business name ",
-          "format": "text(0,160)",
-          "mandatory": "false"
+          "label": "Air passenger duty reference number",
+          "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
+          "format": "text(15,15)"
         }
       ]
     },
     {
       "title": "Business details",
-      "shortName": "Business details",
-      "includeIf": "${legalStatus=1}",
+      "includeIf": "${user.affinityGroup = 'organisation' || user.affinityGroup = 'individual'}",
       "fields": [
         {
-          "id": "businessTradingNameSoleTrader",
+          "id": "businessName",
           "type": "text",
-          "label": "Trading name of business (optional)",
-          "shortName": "Trading name",
-          "helpText": "",
-          "mandatory": "false"
+          "label": "Name of business"
+        },
+        {
+          "id": "returnPeriod",
+          "type": "hmrcTaxPeriod",
+          "label": "Select tax period",
+          "idType": "eeits",
+          "idNumber": "${APDReg}",
+          "regimeType": "APD"
         }
       ]
     },
     {
-      "title": "Details for main place of business",
-      "shortName": "Main place of business details",
-      "description": "Provide details for the main place of business, where the day-to-day business activities are managed. \n",
+      "title": "Your details",
       "fields": [
         {
-          "id": "infoBusinessDetails",
+          "id": "helpText1",
           "type": "info",
           "label": "",
-          "infoText": "HMRC may use these to verify your business information with records we hold.\n\n\n",
-          "infoType": "noformat"
+          "infoText": "Enter your details exactly as they are registered with your business."
         },
         {
-          "id": "businessAddress",
-          "type": "address",
-          "label": "Address",
-          "helpText": ""
-        },
-        {
-          "id": "businessEmail",
+          "id": "yourFirstName",
           "type": "text",
-          "label": "Email address (optional)",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false"
+          "label": "First name"
         },
         {
-          "id": "BusinessPhone",
+          "id": "yourLastName",
+          "type": "text",
+          "label": "Last name"
+        },
+        {
+          "id": "yourtelephonenumber",
           "type": "text",
           "label": "Telephone number",
+          "helpText": "If this is a UK landline or an overseas number, you must include the area or country code",
           "format": "telephoneNumber"
         },
         {
-          "id": "altAdd",
-          "type": "choice",
-          "label": "Do you want HMRC to also use these details for your Landfill Tax correspondence? ",
-          "shortName": "Use as contact details",
-          "errorMessage": "Select whether you want to use these as your correspondence details",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Preferred contact details",
-      "includeIf": "${altAdd=1}",
-      "description": "HMRC will use these for your ongoing Landfill Tax correspondence. ",
-      "fields": [
-        {
-          "id": "businessAddressPreferred",
-          "type": "address",
-          "label": "Address"
-        },
-        {
-          "id": "emailPreferred",
+          "id": "status",
           "type": "text",
-          "label": "Email address (optional)",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "phoneNumberPreferred",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
+          "label": "Status within the business",
+          "helpText": "For example, director, company secretary or agent"
         }
       ]
     },
     {
-      "title": "What is your Companies House registration number?",
-      "shortName": "Companies House registration details",
-      "includeIf": "${legalStatus=0 || legalStatus=2}",
+      "title": "Choose applicable band A rates",
       "fields": [
         {
-          "id": "certNo",
-          "type": "text",
-          "label": "What is your Companies House registration number?",
-          "shortName": "Registration number",
-          "helpText": "This can be found on your certificate of incorporation. It includes 8 numbers, or 2 letters followed by 6 numbers. For example, 01234567 or SC123456",
-          "format": "text(8,8)"
-        }
-      ]
-    },
-    {
-      "title": "Does your business have a Self Assessment Unique Taxpayer Reference?",
-      "shortName": "Self Assessment Unique Taxpayer Reference status",
-      "includeIf": "${legalStatus=3 || legalStatus=1 || legalStatus=2}",
-      "fields": [
-        {
-          "id": "SAUTRyesno",
-          "type": "choice",
-          "label": "Does your business have a Self Assessment Unique Taxpayer Reference?",
-          "shortName": "Self Assessment Unique Taxpayer Reference",
-          "errorMessage": "Select whether your business has a Self Assessment Unique Taxpayer Reference ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference status",
-      "includeIf": "${legalStatus=4 || legalStatus=0 || (legalStatus=2 && SAUTRyesno=1)}",
-      "fields": [
-        {
-          "id": "CTUTRyesno",
-          "type": "choice",
-          "label": "Does your business have a Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "Corporation Tax Unique Taxpayer Reference",
-          "errorMessage": "Select whether your business has a Corporation Tax Unique Taxpayer Reference ",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the Corporation Tax Unique Taxpayer Reference?",
-      "shortName": "Corporation Tax Unique Taxpayer Reference details",
-      "includeIf": "${CTUTRyesno=0}",
-      "fields": [
-        {
-          "id": "UTRuni",
-          "type": "text",
-          "label": "What is the Corporation Tax Unique Taxpayer Reference?",
-          "shortName": "Business Corporation Tax Unique Taxpayer Reference",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax. It may be called ‘reference’, ‘UTR’ or ‘official use’ ",
-          "format": "utr",
-          "errorMessage": "Enter a Corporation Tax Unique Taxpayer Reference in the correct format"
-        }
-      ]
-    },
-    {
-      "title": "What is your business's Self Assessment Unique Taxpayer Reference?",
-      "shortName": "Self Assessment Unique Taxpayer Reference details",
-      "includeIf": "${SAUTRyesno=0}",
-      "fields": [
-        {
-          "id": "saUTR",
-          "type": "text",
-          "label": "What is your business's Self Assessment Unique Taxpayer Reference?",
-          "shortName": "Business Self Assessment Unique Taxpayer Reference",
-          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Self Assessment. It may be called ‘reference’, ‘UTR’ or ‘official use’. ",
-          "format": "utr",
-          "errorMessage": "Enter a Self Assessment Tax Unique Taxpayer Reference in the correct format"
-        }
-      ]
-    },
-    {
-      "title": "Is your business registered for VAT?",
-      "shortName": "VAT registration status",
-      "fields": [
-        {
-          "id": "choiceVat",
-          "type": "choice",
-          "label": "Is your business registered for VAT?",
-          "shortName": "Business VAT registered",
-          "errorMessage": "Select whether your business is VAT registered",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "What is the VAT registration number?",
-      "shortName": "VAT registration details",
-      "includeIf": "${choiceVat=0}",
-      "fields": [
-        {
-          "id": "vatRegNo",
-          "type": "text",
-          "label": "What is the VAT registration number?",
-          "shortName": "VAT registration number",
-          "helpText": "This is 9 numbers, sometimes with 'GB' at the start, for example 123456789 or GB123456789. You can find it on your VAT registration certificate",
-          "format": "text(9, 11)"
-        }
-      ]
-    },
-    {
-      "title": "What is the date of your first expected taxable landfill disposal?",
-      "shortName": "Details of first taxable disposal",
-      "fields": [
-        {
-          "id": "taxableDisposalDate",
-          "type": "date",
-          "label": "What is the date of your first expected taxable landfill disposal?",
-          "shortName": "Date",
-          "helpText": "For example 21 04 2018"
-        },
-        {
-          "id": "infoDate",
+          "id": "helpTextZ",
           "type": "info",
-          "label": "Where can I find out more about what a taxable disposal is?",
-          "infoText": "To find out more about what a taxable landfill disposal is, open a new tab or window, go to GOV.UK and search for, 'Excise Notice LFT1: a general guide to Landfill Tax' .",
-          "infoType": "long"
-        }
-      ]
-    },
-    {
-      "title": "Do you have environmental permits for all the sites you operate or intend to operate?",
-      "shortName": "Required environmental site permits granted",
-      "fields": [
+          "label": "",
+          "infoText": "This band applies to journeys travelled over a distance of 0-2000 miles from London"
+        },
         {
-          "id": "permitQuestion",
+          "id": "lowerBandAChoiceZ",
           "type": "choice",
-          "label": "Do you have environmental permits for all the sites you operate or intend to operate?",
-          "shortName": "Environmental permits granted for all sites",
-          "helpText": "Environmental permits are issued by environmental regulators such as the Environment Agency",
-          "errorMessage": "Select whether you have permits for all your sites",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have you applied for environmental permits for all the sites that do not have one?",
-      "shortName": "Required applications for environmental permits made ",
-      "includeIf": "${permitQuestion=1}",
-      "fields": [
+          "label": "Have any chargeable aircraft at lower band A flown in this period?",
+          "helpText": "This rate applies to the lowest class of travel available and is charged at £13 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
         {
-          "id": "permitQuestion2",
+          "id": "standardBandAChoiceZ",
           "type": "choice",
-          "label": "Have you applied for environmental permits for all the sites that do not have one?",
-          "shortName": "Environmental site permits applied for  ",
-          "helpText": "",
-          "errorMessage": "Select whether you have applied for permits for all sites without permits",
-          "choices": [
-            "Yes",
-            "No"
-          ]
+          "label": "Have any chargeable aircraft at standard band A flown in this period?",
+          "helpText": "This rate applies to any other class of travel and is charged at £26 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "higherBandAChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at higher band A flown in this period?",
+          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £78 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
         }
       ]
     },
     {
-      "title": "To use this service you must have a permit or a permit application in place for all of your sites",
-      "includeIf": "${permitQuestion2=1}",
-      "continueIf": "false",
-      "description": "To register for Landfill Tax using this service you must have been granted (or applied for) an environmental permit for all the landfill sites your business operates or plans to operate.",
+      "title": "Choose applicable band B rates",
       "fields": [
         {
-          "id": "generatedId_770f8576_2bcc_459c_ab59_3ea834083c3f",
+          "id": "helpTextZa",
           "type": "info",
-          "label": "To use this service you must have applied for, or been granted an environmental permit for each of your sites",
-          "infoText": "You now need to sign out of this service.",
-          "infoType": "noformat"
+          "label": "",
+          "infoText": "This band applies to journeys travelled over a distance of more than 2000 miles from London"
+        },
+        {
+          "id": "lowerBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at lower band B flown in this period?",
+          "helpText": "This rate applies to the lowest class of travel available and is charged at £78 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "standardBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at standard band B flown in this period?",
+          "helpText": "This rate applies to any other class of travel and is charged at £172 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
+        },
+        {
+          "id": "higherBandBChoiceZ",
+          "type": "choice",
+          "label": "Have any chargeable aircraft at higher band B flown in this period?",
+          "helpText": "This rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer than 19 passengers and is charged at £515 per passenger",
+          "format": "yesno",
+          "mandatory": "yes"
         }
       ]
     },
     {
-      "title": "How many landfill sites do you operate in the UK?",
-      "shortName": "Number of landfill sites",
+      "title": "Chargeable aircraft flown at lower band A",
+      "includeIf": "${lowerBandAChoiceZ = 0}",
       "fields": [
         {
-          "id": "noOfSites",
+          "id": "helpText2",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in the lowest class of travel and is charged at £13 per passenger."
+        },
+        {
+          "id": "lowerAPassengerNumber",
           "type": "text",
-          "label": "How many landfill sites do you operate in the UK?",
-          "shortName": "Number of sites",
-          "helpText": "You must tell us about all the sites your business operates or plans to operate",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "amountpayable1",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${lowerAPassengerNumber * 13}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at standard band A",
+      "includeIf": "${standardBandAChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText3",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £26 per passenger."
+        },
+        {
+          "id": "standardAPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "amountpayable2",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${standardAPassengerNumber * 26}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at higher band A",
+      "includeIf": "${higherBandAChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText4",
+          "type": "info",
+          "label": "",
+          "infoText": "Band A rates apply to journeys travelled over a distance of 0-2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £78 per passenger."
+        },
+        {
+          "id": "higherAPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "amountpayable3",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${higherAPassengerNumber * 78}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at lower band B",
+      "includeIf": "${lowerBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText5",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in the lowest class of travel and is charged at £78 per passenger."
+        },
+        {
+          "id": "lowerBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)",
+          "errorMessage": "Number of chargeable passengers must only include whole numbers"
+        },
+        {
+          "id": "amountpayable4",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${lowerBPassengerNumber * 78}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at standard band B",
+      "includeIf": "${standardBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText6",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in any class (except the lowest) and is charged at £172 per passenger."
+        },
+        {
+          "id": "standardBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "amountpayable5",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${standardBPassengerNumber * 172}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Chargeable aircraft flown at higher band B",
+      "includeIf": "${higherBandBChoiceZ = 0}",
+      "fields": [
+        {
+          "id": "helpText7",
+          "type": "info",
+          "label": "",
+          "infoText": "Band B rates apply to journeys travelled over a distance of 2000 miles from London.\n\nThis rate applies to travel in aircraft of 20 tonnes or more, equipped to carry fewer that 19 passengers and is charged at £515 per passenger."
+        },
+        {
+          "id": "higherBPassengerNumber",
+          "type": "text",
+          "label": "Number of chargeable passengers",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "amountpayable6",
+          "type": "text",
+          "label": "Amount of duty",
+          "format": "sterling",
+          "value": "${higherBPassengerNumber * 515}",
+          "submitMode": "readonly"
+        }
+      ]
+    },
+    {
+      "title": "Previous declarations",
+      "fields": [
+        {
+          "id": "warningDec1",
+          "type": "info",
+          "label": "",
+          "infoText": "You can correct errors from previous returns if one of these criteria apply:\n\nthe amount does not exceed £10,000;\n\nthe amount is between £10,000 and £50,000 and does not exceed 1% of the duty due for this return period"
+        },
+        {
+          "id": "underDec",
+          "type": "text",
+          "label": "Under-declarations",
+          "helpText": "Under-declarations are made if you have paid too little air passenger duty on your previous return.\n\n Enter a number between 0 and 50,000 ",
+          "format": "sterling"
+        },
+        {
+          "id": "overDec",
+          "type": "text",
+          "label": "Over-declarations",
+          "helpText": "Over-declarations are made if you have paid too much air passenger duty on your previous return.\n\n Avoid overpayments by entering the amount correctly. Enter 0 if you do not wish to make an over-declaration",
+          "format": "sterling",
+          "error message": "Over-declarations must be input as either a negative amount or zero"
+        },
+        {
+          "id": "totalNetDecs",
+          "type": "text",
+          "label": "Total net declarations",
+          "format": "sterling",
+          "value": "${underDec - overDec}",
+          "submitMode": "readonly",
+          "error message": "Over-declarations must be input as either a negative amount or zero"
+        }
+      ]
+    },
+    {
+      "title": "Additional details",
+      "fields": [
+        {
+          "id": "exempt",
+          "type": "text",
+          "label": "How many of the passengers you carried are exempt?",
+          "format": "positiveNumber(10, 0)"
+        },
+        {
+          "id": "accountingRadio",
+          "type": "choice",
+          "label": "Are you using a special  accounting scheme?",
+          "format": "yesno"
+        },
+        {
+          "id": "totalAmountOfDuty",
+          "type": "text",
+          "label": "Total amount of duty",
+          "format": "sterling",
+          "value": "${amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5 + amountpayable6}",
+          "submitMode": "readonly"
+        },
+        {
+          "id": "totalPassengers",
+          "type": "text",
+          "label": "Total number of passengers flown, including exempt",
           "format": "positiveWholeNumber",
-          "displayWidth": "xs",
-          "validIf": "${noOfSites > 0 && noOfSites <= 100}",
-          "errorMessage": "You must enter a number between 1 and 100, if you have more than 100 sites refer to the guidance for this service on GOV.UK"
-        }
-      ]
-    },
-    {
-      "title": "Details for landfill site $n",
-      "shortName": "Site $n details",
-      "repeatsMin": "${noOfSites}",
-      "repeatsMax": "${noOfSites}",
-      "fields": [
-        {
-          "id": "siteContactDeats",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site contact details",
-          "infoType": "noformat"
+          "value": "${lowerAPassengerNumber + standardAPassengerNumber + higherAPassengerNumber + lowerBPassengerNumber + standardBPassengerNumber + higherBPassengerNumber + exempt}",
+          "submitMode": "readonly"
         },
         {
-          "id": "siteTradingName",
+          "id": "totalpayable",
           "type": "text",
-          "label": "Trading name of site",
-          "shortName": "Site trading name",
-          "helpText": "Enter site trading name if different from the business name",
-          "format": "text(0,160)",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteAddress",
-          "type": "address",
-          "label": "Site address"
-        },
-        {
-          "id": "sitePhone",
-          "type": "text",
-          "label": "Site telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "siteEmail",
-          "type": "text",
-          "label": "Site email address (optional)",
-          "shortName": "Email address",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "siteInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site information",
-          "infoType": "noformat"
-        },
-        {
-          "id": "weighbridgeChoice",
-          "type": "choice",
-          "label": "Do you use a weighbridge to weigh materials at this site?",
-          "shortName": "Weighbridge used",
-          "errorMessage": "You must select whether you use a weighbridge",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "",
-            "You will need to contact HMRC to agree an alternative method for weighing materials. Contact details will be provided after completing this registration. "
-          ]
-        },
-        {
-          "id": "controllerChoice",
-          "type": "choice",
-          "label": "Do you have a controller at this site?",
-          "shortName": "Site controller",
-          "helpText": "If a person other than the site operator determines what materials (if any) are disposed of at this site, that person is a controller. \n\nA person who is acting purely as an agent or an employee of someone else is not a controller",
-          "errorMessage": "You must select whether you have a site controller",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        },
-        {
-          "id": "generatedId_0aac6495_35f4_4bf0_babf_ff170224d041",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site landfill details",
-          "infoType": "noformat"
-        },
-        {
-          "id": "materialTypeInfo",
-          "type": "info",
-          "label": "Material types",
-          "infoText": "Provide details for the types of materials landfilled at this site. ",
-          "infoType": "noformat"
-        },
-        {
-          "id": "altStdRate",
-          "type": "text",
-          "label": "Standard rate materials",
-          "shortName": "Estimated standard rate materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,2)",
-          "displayWidth": "m"
-        },
-        {
-          "id": "altLowRate",
-          "type": "text",
-          "label": "Lower rate materials",
-          "shortName": "Estimated lower rate materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10, 2)",
-          "displayWidth": "m"
-        },
-        {
-          "id": "altExamptMaterials",
-          "type": "text",
-          "label": "Exempt materials",
-          "shortName": "Estimated exempt materials in tonnes",
-          "helpText": "Estimated tonnes per year (if none or not applicable enter 0)",
-          "format": "number(10,2)",
-          "displayWidth": "m"
-        },
-        {
-          "id": "sitePermit",
-          "type": "info",
-          "label": "",
-          "infoText": "##Site environmental permit details",
-          "infoType": "noformat"
-        },
-        {
-          "id": "generatedId_5dc502f7_cbfc_42ca_a2fb_a8d8997f159c",
-          "type": "info",
-          "label": "",
-          "infoText": "Provide details about this site's environmental permit. This is issued by an environmental regulator such as the Environment Agency.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "permitNoAppliedGranted",
-          "type": "choice",
-          "label": "Select the status of this site's environmental permit",
-          "shortName": "Environmental permit status",
-          "format": "vertical",
-          "multivalue": "false",
-          "errorMessage": "Status of site permit must be selected",
-          "choices": [
-            "Permit applied for",
-            "Permit granted "
-          ],
-          "optionHelpText": [
-            "Once your site permit has been granted, or if it is not granted, you need to contact HMRC to let us know. Contact details will be provided after completing this registration.",
-            ""
-          ]
-        },
-        {
-          "id": "permitTextfield",
-          "type": "text",
-          "label": "Enter the site environmental permit number",
-          "shortName": "Permit number",
-          "helpText": "If you have not been granted the permit yet, leave blank",
-          "format": "text(0,20)",
-          "mandatory": "false",
-          "displayWidth": "l"
-        }
-      ]
-    },
-    {
-      "title": "Has your business taken over another landfill business as a going concern?",
-      "shortName": "Taken over other landfill business as going concern",
-      "fields": [
-        {
-          "id": "businessTakeOver",
-          "type": "choice",
-          "label": "Has your business taken over another landfill business as a going concern?",
-          "shortName": "Taken over landfill business",
-          "errorMessage": "You must select whether you have taken over another landfill business",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Transfer details",
-      "shortName": "Transfer details",
-      "includeIf": "${businessTakeOver=0}",
-      "description": "Provide details about the transfer of another landfill business to your business.",
-      "fields": [
-        {
-          "id": "transferDate",
-          "type": "date",
-          "label": "Date of transfer",
-          "shortName": "Date",
-          "helpText": "For example, 21 08 2018"
-        },
-        {
-          "id": "prevBusinessName",
-          "type": "text",
-          "label": "Name of previous business",
-          "format": "text"
-        },
-        {
-          "id": "prevRegNo",
-          "type": "text",
-          "label": "Landfill Tax registration number of previous business",
-          "shortName": "Landfill Tax registration number of previous business",
-          "format": "text"
-        },
-        {
-          "id": "keepReg",
-          "type": "choice",
-          "label": "Do you want to keep the Landfill Tax registration number of the previous business?",
-          "shortName": "Keep previous Landfill Tax registration number",
-          "helpText": "If you keep the previous registration number, you’ll become liable for the previous owner’s Landfill Tax debts",
-          "errorMessage": "You must select whether you want to keep the previous registration number",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have you been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Involved in other landfill businesses in last 2 years",
-      "includeIf": "${legalStatus = 1}",
-      "fields": [
-        {
-          "id": "otherBusiness",
-          "type": "choice",
-          "label": "Have you been involved in any other landfill businesses in the last 2 years?",
-          "shortName": "Sole trader involved in other landfill businesses ",
-          "helpText": "Select whether you (the sole trader) has been involved in any other landfill business",
-          "errorMessage": "You must select whether you have been involved in any other landfill businesses",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have any of the partners in your business been involved in any other landfill businesses in the last 2 years?",
-      "shortName": "Business partners involved in any other landfill businesses",
-      "includeIf": "${legalStatus=2 || legalStatus=3}",
-      "fields": [
-        {
-          "id": "otherBusinessPart",
-          "type": "choice",
-          "label": "Have any of the partners in your business been involved in any other landfill businesses in the last 2 years?",
-          "shortName": "Partners involved in other landfill businesses",
-          "helpText": "",
-          "errorMessage": "Select whether any of the business partners have been involved with other landfill businesses",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Have any of your business directors been involved in other landfill businesses in the last 2 years?",
-      "shortName": "Directors involved in other landfill businesses in last 2 years",
-      "includeIf": "${legalStatus=0}",
-      "fields": [
-        {
-          "id": "otherBusinessLtdCompany",
-          "type": "choice",
-          "label": "Have any of your business directors been involved in other landfill businesses in the last 2 years?",
-          "shortName": "Directors involved in other landfill businesses",
-          "errorMessage": "Select whether your directors have been involved with other landfill businesses",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Registration numbers of the other businesses",
-      "shortName": "Details of the other landfill businesses",
-      "includeIf": "${otherBusiness=0}",
-      "description": "Enter the Landfill Tax registration number of each business that you (the sole trader) has been involved in within the last 2 years. ",
-      "fields": [
-        {
-          "id": "otherRegNo",
-          "type": "group",
-          "label": "",
-          "shortName": "Other business's registration numbers",
-          "repeatsMax": 7,
-          "repeatLabel": "Registration number of business $n",
-          "repeatAddAnotherText": "Add another business's registration number",
-          "fields": [
-            {
-              "id": "regNo1",
-              "type": "text",
-              "label": "Registration number",
-              "shortName": "Registration number of other business",
-              "format": "text(1,15)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Registration numbers of the other landfill businesses",
-      "shortName": "Details of the other landfill businesses",
-      "includeIf": "${otherBusinessLtdCompany = 0}",
-      "description": "Enter the Landfill Tax registration number of each business that your business directors have been involved in within the last 2 years. ",
-      "fields": [
-        {
-          "id": "otherRegNoLtdCo",
-          "type": "group",
-          "label": "",
-          "shortName": "Landfill Tax registration numbers",
-          "repeatsMax": 7,
-          "repeatLabel": "Registration number of business $n",
-          "repeatAddAnotherText": "Add another business's registration number",
-          "fields": [
-            {
-              "id": "regNo1LtdCo",
-              "type": "text",
-              "label": "Landfill Tax registration number",
-              "shortName": "Registration number of other business",
-              "format": "text(1,15)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Registration numbers of the other businesses",
-      "shortName": "Details of the other landfill businesses",
-      "includeIf": "${otherBusinessPart=0}",
-      "description": "Enter the Landfill Tax registration number of each business that any partners in your business have been involved in within the last 2 years. ",
-      "fields": [
-        {
-          "id": "otherRegNopartners",
-          "type": "group",
-          "label": "",
-          "shortName": "Other business's registration numbers",
-          "repeatsMax": 7,
-          "repeatLabel": "Registration number of business $n",
-          "repeatAddAnotherText": "Add another business's registration number",
-          "fields": [
-            {
-              "id": "regNo1Part",
-              "type": "text",
-              "label": "Registration number",
-              "shortName": "Registration number",
-              "format": "text(1,15)"
-            }
-          ]
+          "label": "Total amount payable",
+          "helpText": "Value is total amount of duty plus total declarations",
+          "format": "sterling",
+          "value": "${totalNetDecs + amountpayable1 + amountpayable2 + amountpayable3 + amountpayable4 + amountpayable5 + amountpayable6}",
+          "submitMode": "readonly"
         }
       ]
     }
   ],
   "declarationSection": {
     "title": "Declaration",
+    "shortName": "Declaration",
     "fields": [
       {
-        "id": "decInfoCheck",
+        "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete. \n\nIf you do not give complete and accurate information, HMRC may charge a financial penalty or even prosecute you. ",
-        "infoType": "important"
+        "infoText": "Avoid financial penalties by ensuring we receive your completed return and payment on account by the due date.\n\nIf you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.\n\nBy accepting, you declare that the information that you have provided is true and complete. "
       },
       {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We’ll use this to send you a confirmation email ",
-        "format": "email"
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Details of the person signing this declaration",
+        "fields": [
+          {
+            "id": "declarationFirstname",
+            "type": "text",
+            "label": "First name"
+          },
+          {
+            "id": "declarationLastname",
+            "type": "text",
+            "label": "Last name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "Enter you email address to receive confirmation that your return has been submitted.",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true"
+          }
+        ]
       }
     ]
   },
   "acknowledgementSection": {
-    "title": "Your registration has been submitted",
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
     "fields": [
       {
-        "id": "ackPageInfoTop",
+        "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted registration.",
-        "infoType": "important"
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
       },
       {
-        "id": "generatedId_112e3743_b8e6_4914_a354_33ec33fdcc51",
+        "id": "ackpageInfo",
         "type": "info",
-        "label": "",
-        "infoText": "You must check [the guidance for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK to see if you need to fill in and send any additional forms to complete your registration.",
-        "infoType": "standard"
+        "label": "Payment",
+        "infoText": "If your payment is in excess of £20 million you won’t be able to use Direct Debit. You must make arrangements with your own bank using an alternative method, such as CHAPS. \n\nIf you have already set up a Direct Debit for this tax, you don’t need to do anything else. Your payment will be collected automatically from your bank.\n\nOtherwise, paying electronically, such as BACS, CHAPS or Faster Payments, is an easy and secure way to pay. Make sure to include your 15 digit registration number on any payment.\n\nSort code: 08-32-00\n\nAccount number: 12000938\n\nAccount name: HMRC Air Passenger Duty"
       },
       {
-        "id": "generatedId_a37fdc98_2788_4079_b92d_1dcfd972d171",
+        "id": "ackpageSurvey",
         "type": "info",
         "label": "",
-        "infoText": "##Providing further details",
-        "infoType": "noformat"
-      },
-      {
-        "id": "generatedId_7c97b037_036a_45a0_9ad3_ebbea72206db",
-        "type": "info",
-        "label": "",
-        "infoText": "You will need to contact HMRC if you do not use a weighbridge at one or more of your sites (to agree an alternative method for weighing materials).\n\nIf you have registered any sites without environmental permits you must also contact us when the permits have been granted (or if they are refused). \n\n[Contact details](https://www.gov.uk/government/organisations/hm-revenue-customs/contact/landfill-tax) for Landfill Tax enquiries are available on GOV.UK or you can email, enquiries.eeitts@hmrc.gsi.gov.uk",
-        "infoType": "noformat"
-      },
-      {
-        "id": "generatedId_df25aac9_61b3_4b5c_b1e7_c401014681f4",
-        "type": "info",
-        "label": "",
-        "infoText": "##Registering as a partnership",
-        "infoType": "noformat"
-      },
-      {
-        "id": "generatedId_08d61649_0764_47f4_ab4e_6a8386f754ac",
-        "type": "info",
-        "label": "",
-        "infoText": "If your business is a partnership you must also complete form LT2 to complete your registration. You can access this from [the guidance page for this service](https://www.gov.uk/guidance/landfill-tax-register-and-change-your-details) on GOV.UK.",
+        "infoText": "[What do you think of this service?](https://www.surveygizmo.com/s3/4704016/Feedback-Survey-APD-online-form) (takes 1 minute)",
         "infoType": "noformat"
       }
     ]
   },
   "destinations": [
     {
-      "id": "eeittRegistrationApi",
+      "id": "eeittReturnApi",
       "type": "handlebarsHttpApi",
-      "includeIf": "{{and (isNull prevBusinessName) (not (exists weighbridgeChoice '1')) (not (exists weighbridgeChoice '1,'))}}",
+      "includeIf": "{{#if APDReg}}true{{else}}false{{/if}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
-      "uri": "cross-regime/subscription/LFT/utr/{{businessUtr}}",
+      "uri": "cross-regime/return/APD/eeits/{{APDReg}}",
       "method": "POST",
-      "payload": "{'registrationDetails':                     {                     'isrScenario': 'Z049',                     'commonDetails':                       {                       'legalEntity':                         {                         'organisationType': '{{match ^('0') => '7'; ('1') => '1'; ('2') => '2'; ('3') => '3'; ('4') => '5'; ('5') => '5'^ (stripCommas legalStatus)}}',                         'dateOfApplication': '{{desCurrentDate}}',                         'taxStartDate': '{{toDesDate taxableDisposalDate}}'                         },                       'customerIdentificationNumber':                         {                         'custIDNumber': '{{businessUtr}}'                         },                       {{#businessTradingName}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingName}}'                         },                       {{/businessTradingName}}                       {{#businessTradingNameSoleTrader}}                       'aboutBusiness':                         {                         'tradingName': '{{businessTradingNameSoleTrader}}'                         },                       {{/businessTradingNameSoleTrader}}                       'businessContactDetails':                         {                           'addressNotInUK': '0',                           'addressInputModeIndicator': '2',                           {{toDesAddressWithoutPostcode businessAddress}},                           'postCode': '{{businessAddress.postcode}}',                           'telephoneNumber': '{{toEtmpTelephoneNumber BusinessPhone}}',                           {{#businessEmail}}                           'email': '{{businessEmail}}'                           {{/businessEmail}}                         },                       'correspondenceAddressDifferent': '{{stripCommas altAdd}}',                       {{#businessAddressPreferred.postcode}}                       'correspondenceContactDetails':                         {                         'addressNotInUK': '0',                         'addressInputModeIndicator': '2',                         {{toDesAddressWithoutPostcode businessAddressPreferred}},                         'postCode': '{{businessAddressPreferred.postcode}}',                         'telephoneNumber': '{{toEtmpTelephoneNumber phoneNumberPreferred}}',                         {{#emailPreferred}}                         'email': '{{emailPreferred}}'                         {{/emailPreferred}}                         },                       {{/businessAddressPreferred.postcode}}                         'declarationStatus': '{{match ^('0' '0') => '03'; ('0' '1') => '02'; ('0' '2') => '01'; ('1' '0') => '05'; ('1' '1') => '01';                                                     ('3' '0') => '04';  ('3' '1') => '01'; (* *) => '01'^                                             (stripCommas legalStatus) (stripCommas (either roleInBusiness1 roleInBusiness2 roleInBusiness3 roleInBusiness4))}}',                         'declarationAcceptedIndicator': '1'},                       'regimeSpecificDetails': [                         {'paramSequence': '01',                          'paramName': 'A_NUMBER_OF_SITES',                          'paramValue': '{{noOfSites}}'                         },                         {'paramSequence': '01',                          'paramName': 'A_OTHER_LF_BUSINESSES',                          'paramValue': '{{match ^('0') => '1'; ('1') => '0'; (*) => '0'^ (stripCommas (either otherBusinessLtdCompany otherBusiness otherBusinessPart  '1'))}}'},                         {{#each regNo1}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1LtdCo}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {{#each regNo1Part}}                         {'paramSequence': '{{toEtmpParamSequence @index}}',                          'paramName': 'A_OTHR_LF_BUS_REG_NUM',                          'paramValue': '{{.}}'},                         {{/each}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER',                          'paramValue': '{{yesNoToEtmpChoice businessTakeOver}}'},                         {{#transferDate-year}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_DATE',                          'paramValue': '{{toEtmpDate transferDate}}'},                         {{/transferDate-year}}                         {{#prevBusinessName}}                         {'paramSequence': '01',                          'paramName': 'A_TKOVER_PRV_NAME',                          'paramValue': '{{prevBusinessName}}'},                         {{/prevBusinessName}}                         {{#prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_REG_PREVIOUS',                          'paramValue': '{{prevRegNo}}'},                         {{/prevRegNo}}                         {'paramSequence': '01',                          'paramName': 'A_DATA_ORIGIN',                          'paramValue': '1'}                         ]                       },                    'siteDetails':                      {                       'isrScenario': 'Z050',                       'formData': [                         {{#each siteTradingName}}                         {                           'commonDetails': {                             'action': '1',                             'siteAddress': {                               'tradingName': '{{.}}',                               'siteReferenceNumber': '{{elementAt permitTextfield @index}}',                               'addressInputModeIndicator': '2',                               {{#with (lookup @root.siteAddress @index) as |addr|}}                               {{toDesAddressWithoutPostcode addr @index}},                               'postCode': '{{addr.postcode}}',                               {{/with}}                               'telephoneNumber': '{{toEtmpTelephoneNumber (elementAt sitePhone @index)}}',                               'email': '{{elementAt siteEmail @index}}'                             }                           },                           'regimeSpecificDetails': [                             {                               'paramSequence': '01',                               'paramName': 'A_EST_STANDARD_WASTE',                               'paramValue': '{{stripCommas (elementAt altStdRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_LOWER_WASTE',                               'paramValue': '{{stripCommas (elementAt altLowRate @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_EST_EXEMPT_WASTE',                               'paramValue': '{{stripCommas (elementAt altExamptMaterials @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_WB_USED_TO_WEIGHT',                               'paramValue': '{{yesNoToEtmpChoice (elementAt weighbridgeChoice @index)}}'                             },                             {                               'paramSequence': '01',                               'paramName': 'A_SITE_HAS_CONTROLLER',                               'paramValue': '{{yesNoToEtmpChoice (elementAt controllerChoice @index)}}'                             }                           ]                         },                         {{/each}}                       ]                     }                   }"
-    },
-    {
-      "id": "taxEnrollment",
-      "type": "handlebarsHttpApi",
-      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
-      "failOnError": true,
-      "profile": "mdtp.tax-enrolments",
-      "convertSingleQuotes": true,
-      "uri": "tax-enrolments/subscriptions/{{eeittRegistrationApi.json.formBundleNumber}}/subscriber",
-      "method": "PUT",
-      "payload": " {'serviceName': 'HMRC-OBTDS-ORG',                      'callback': 'https://gform.protected.mdtp/forms/{{formId}}/enrolment-callback',                      'etmpId': '{{safeId}}'                     }"
+      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                       'returnsDetails':{                         'isrScenario':'ZAP1',                         'regimeSpecificDetails':[                           {'paramSequence':'01',                            'paramName':'A_REGISTRATION_NUMBER',                            'paramValue':'{{APDReg}}'},                           {'paramSequence':'01',                            'paramName':'A_RET_TYPE',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'1'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerAPassengerNumber 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable1 0)}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'02',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'2'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'01'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either lowerBPassengerNumber 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable4 0)}}'},                           {'paramSequence':'02',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'03',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'3'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardAPassengerNumber 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable2 0)}}'},                           {'paramSequence':'03',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'04',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'4'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'02'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either standardBPassengerNumber 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable5 0)}}'},                           {'paramSequence':'04',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'05',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'5'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'A'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherAPassengerNumber 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable3 0)}}'},                           {'paramSequence':'05',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'06',                            'paramName':'A_APD_BOX_NUM',                            'paramValue':'6'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_TYPE',                            'paramValue':'03'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_RATECATEGORY',                            'paramValue':'B'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_PASSENGER',                            'paramValue':'{{stripCommas (either higherBPassengerNumber 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_AMOUNT',                            'paramValue':'{{stripCommas (either amountpayable6 0)}}'},                           {'paramSequence':'06',                            'paramName':'A_APD_BAND_GROUP',                            'paramValue':' '},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_AMOUNT',                            'paramValue':'{{stripCommas totalAmountOfDuty}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_EXEMPT_PASSENGERS',                            'paramValue':'{{stripCommas exempt}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_PASSENGERS_FLOWN',                            'paramValue':'{{stripCommas totalPassengers}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_UNDER_DECLARATION',                            'paramValue':'{{stripCommas underDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_OVER_DECLARATION',                            'paramValue':'{{stripCommas overDec}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_TOTAL_DUE',                            'paramValue':'{{stripCommas totalpayable}}'},                           {'paramSequence':'01',                            'paramName':'A_APD_SPECIAL_ACCOUNTING',                            'paramValue':'{{yesNoToEtmpChoice accountingRadio}}'},                           {'paramSequence':'01',                            'paramName':'A_DATA_ORIGIN',                            'paramValue':'1'}]},                          'receivedAt':'{{currentTimestamp}}'}"
     },
     {
       "id": "attendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isNotSuccessCode eeittRegistrationApi.status}}",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull APDReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
-      "dmsFormId": "LTREG",
-      "customerId": "${businessUtr}",
+      "dmsFormId": "APD2",
+      "customerId": "${APDReg}",
+      "classificationType": "BT-NRU-Environmental",
+      "businessArea": "BT"
+    },
+    {
+      "id": "attendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isNotSuccessCode eeittReturnApi.status) (isNotNull APDreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APD2",
+      "customerId": "${APDreferencenumber}",
       "classificationType": "BT-NRU-Environmental",
       "businessArea": "BT"
     },
     {
       "id": "unattendedDmsQueueDestination",
       "type": "hmrcDms",
-      "includeIf": "{{isSuccessCode eeittRegistrationApi.status}}",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull APDReg)}}",
       "failOnError": true,
       "convertSingleQuotes": true,
-      "dmsFormId": "LTREG",
-      "customerId": "${businessUtr}",
+      "dmsFormId": "APD2",
+      "customerId": "${APDReg}",
+      "classificationType": "BT-CTO-EMCS Fallback",
+      "businessArea": "BT"
+    },
+    {
+      "id": "unattendedDmsQueueDestinationAgent",
+      "type": "hmrcDms",
+      "includeIf": "{{and (isSuccessCode eeittReturnApi.status) (isNotNull APDreferencenumber)}}",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "APD2",
+      "customerId": "${APDreferencenumber}",
       "classificationType": "BT-CTO-EMCS Fallback",
       "businessArea": "BT"
     }
   ],
-  "GFC579Ready": "true",
+  "submitSuccessUrl": "",
   "submitErrorUrl": "",
-  "submitSuccessUrl": ""
+  "_id": "APD2-air-passenger-duty-return"
 }
