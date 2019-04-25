@@ -14,6 +14,24 @@
   },
   "sections": [
     {
+      "title": "Has the HMRC decision in this dispute already been appealed?",
+      "fields": [
+        {
+          "id": "statAppeal",
+          "type": "choice",
+          "label": "Has the HMRC decision in this dispute already been appealed?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "The HMRC decision needs to be appealed before you can apply to this service",
+      "fields": []
+    },
+    {
       "title": "Enter the details of the person filling in this form ",
       "description": "HMRC will use these details if we need to discuss this form.",
       "fields": [
@@ -49,7 +67,6 @@
     },
     {
       "title": "Do you agree to let us contact you by email about your application?",
-      "description": "Email is not 100% secure, as it is sent over the internet. \n\nThis means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
       "fields": [
         {
           "id": "emCons1",
@@ -62,8 +79,8 @@
             "No"
           ],
           "optionHelpText": [
-            "",
-            "We will use telephone or post if we need to contact you about your application"
+            "Email is not 100% secure, as it is sent over the internet. This means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+            "We will use telephone or post if we need to contact you about your application."
           ]
         }
       ]
@@ -289,22 +306,8 @@
       ]
     },
     {
-      "title": "Have you already appealed against the HMRC decision on this dispute?",
-      "fields": [
-        {
-          "id": "appealYesNo",
-          "type": "choice",
-          "label": "Have you already appealed against the HMRC decision on this dispute?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ]
-    },
-    {
       "title": "Enter the appeal details",
-      "includeIf": "${appealYesNo=0}",
+      "includeIf": "${statAppeal=0}",
       "fields": [
         {
           "id": "appealsCaseworkername",
@@ -349,6 +352,20 @@
           "type": "text",
           "label": "Why are you applying to ADR to help settle the dispute?",
           "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Have you asked for a Statutory Review of your decision?",
+      "fields": [
+        {
+          "id": "statReview",
+          "type": "choice",
+          "label": "Have you asked for a Statutory Review of your decision?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     }
