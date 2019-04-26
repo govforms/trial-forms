@@ -1,0 +1,456 @@
+{
+  "_id": "Alternative-Dispute-Resolution-Test",
+  "formName": "Alternative Dispute Resolution",
+  "description": "",
+  "emailTemplateId": "eeitt_submission_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "For example: FinanceOpsCorpT",
+    "classificationType": "For example: BT-NRU-Environmental",
+    "customerId": "${fieldIdOfCustomerIdentifier}",
+    "dmsFormId": "CHANGEME"
+  },
+  "sections": [
+    {
+      "title": "Has the HMRC decision in this dispute already been appealed?",
+      "fields": [
+        {
+          "id": "appealYesNo",
+          "type": "choice",
+          "label": "Has the HMRC decision in this dispute already been appealed?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot apply for this service",
+      "includeIf": "${appealYesNo = 1}",
+      "fields": [
+        {
+          "id": "generatedId_dff28c5c_d645_4a0d_9d2f_eb3f3d3030f7",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to appeal against the HMRC decision before you can use Alternative Dispute Resolution.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Enter the details of the person filling in this form ",
+      "description": "HMRC will use these details if we need to discuss this form.",
+      "fields": [
+        {
+          "id": "fullNameFilling",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telephoneNumberFilling",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code."
+        },
+        {
+          "id": "emailFilling",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will also use this to send you a confirmation email.",
+          "format": "email"
+        },
+        {
+          "id": "authYesNo",
+          "type": "choice",
+          "label": "Are you authorised to fill in this form?",
+          "helpText": "You must be the individual taxpayer, an agent applying on behalf of a client, or an authorised employee of the organisation you are applying for.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you agree to let us contact you by email about your application?",
+      "fields": [
+        {
+          "id": "emCons1",
+          "type": "choice",
+          "label": "Do you agree to let us contact you by email about your application?",
+          "shortName": "Confirm email consent",
+          "errorMessage": "Select whether you consent to being contacted using your email address",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "Email is not 100% secure, as it is sent over the internet. This means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+            "We will use telephone or post if we need to contact you about your application."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Why are you applying to resolve a tax dispute with HMRC?",
+      "fields": [
+        {
+          "id": "useraffinityGroup",
+          "type": "choice",
+          "label": "Why are you applying to resolve a tax dispute with HMRC?",
+          "errorMessage": "Select what capacity you are applying for R & D tax relief",
+          "choices": [
+            "I'm an individual, and I want to resolve personal tax issues",
+            "I'm part of an organisation, and I want to resolve business tax issues",
+            "I'm an agent, acting on behalf of an organisation or an individual"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are you looking to resolve an individual tax or a business tax dispute?",
+      "includeIf": "${useraffinityGroup=2}",
+      "fields": [
+        {
+          "id": "disputeIndividualBusiness",
+          "type": "choice",
+          "label": "Are you looking to resolve an individual tax or a business tax dispute?",
+          "choices": [
+            "Individual tax",
+            "Business tax"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the individual's address",
+      "includeIf": "${disputeIndividualBusiness=0}",
+      "fields": [
+        {
+          "id": "addressIndividual",
+          "type": "address",
+          "label": "Enter the individual's address"
+        }
+      ]
+    },
+    {
+      "title": "Enter your address",
+      "includeIf": "${useraffinityGroup=0}",
+      "fields": [
+        {
+          "id": "addressIndividual_copy_1",
+          "type": "address",
+          "label": "Enter your address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the business address",
+      "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "userPhone",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "userAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Enter agent details",
+      "includeIf": "${useraffinityGroup=2}",
+      "fields": [
+        {
+          "id": "Agentsbusinessname",
+          "type": "text",
+          "label": "Agent business name",
+          "helpText": "Enter your business name (if any) or the name of the organisation that you work for."
+        },
+        {
+          "id": "Namedcontact",
+          "type": "text",
+          "label": "Agent full name",
+          "helpText": "Enter the name of the agent who is working on this case."
+        },
+        {
+          "id": "Agentaddresss",
+          "type": "address",
+          "label": "Agent's address",
+          "helpText": "Enter the full working address and postcode of your office or main place of work.",
+          "international": "true",
+          "postcodeLookup": "no"
+        },
+        {
+          "id": "agentPhone",
+          "type": "text",
+          "label": "Phone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "clientreferencenumber",
+          "type": "text",
+          "label": "Client Reference Number",
+          "helpText": "Enter your own or your firm's reference for this client. The reference should be client specific and not include the clients name or other personal information."
+        },
+        {
+          "id": "textFieldInfoFormat6",
+          "type": "info",
+          "label": "",
+          "infoText": "HMRC will include your client's reference in the response to you, but for data security reasons this will not include the client's name or any other personal information.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What type of tax are you disputing?",
+      "includeIf": "${useraffinityGroup=0 || disputeIndividualBusiness=0}",
+      "fields": [
+        {
+          "id": "taxType",
+          "type": "choice",
+          "label": "What type of tax are you disputing?",
+          "shortName": "Type of tax in dispute",
+          "errorMessage": "Select the type of tax in dispute",
+          "choices": [
+            "Income Tax",
+            "Inheritance Tax",
+            "I don't know/Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What type of tax are you disputing?",
+      "includeIf": "${useraffinityGroup=1 || disputeIndividualBusiness=1}",
+      "fields": [
+        {
+          "id": "taxType2",
+          "type": "choice",
+          "label": "What type of tax are you disputing?",
+          "shortName": "Type of tax in dispute",
+          "errorMessage": "Select the type of tax in dispute",
+          "choices": [
+            "Corporation Tax",
+            "VAT",
+            "Customs Duty",
+            "Excise Duty",
+            "I don't know/Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your Unique Taxpayer Reference number",
+      "includeIf": "${taxType=0 || taxType=1}",
+      "fields": [
+        {
+          "id": "utrRef",
+          "type": "text",
+          "label": "Enter your Unique Taxpayer Reference number"
+        }
+      ]
+    },
+    {
+      "title": "Enter your Corporation Tax number",
+      "includeIf": "${taxType2 = 0 || taxType2 = 4}",
+      "fields": [
+        {
+          "id": "ctrRef",
+          "type": "text",
+          "label": "Enter your Corporation Tax number"
+        }
+      ]
+    },
+    {
+      "title": "Enter your VAT number",
+      "includeIf": "${taxType2 = 1 || taxType2 = 2 || taxType2 = 3}",
+      "fields": [
+        {
+          "id": "vatRef",
+          "type": "text",
+          "label": "Enter your VAT number"
+        }
+      ]
+    },
+    {
+      "title": "Enter the HMRC caseworker details",
+      "fields": [
+        {
+          "id": "HMRCcaseworkername",
+          "type": "text",
+          "label": "HMRC caseworker name"
+        },
+        {
+          "id": "caseworkeroffice",
+          "type": "text",
+          "label": "Caseworker's office"
+        },
+        {
+          "id": "Caseworkerphone",
+          "type": "text",
+          "label": "Caseworker's telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "YearPeriod",
+          "type": "text",
+          "label": "Year or period involved in the dispute",
+          "helpText": "For example, tax year 2017-2018"
+        }
+      ]
+    },
+    {
+      "title": "Enter the appeal details",
+      "includeIf": "${appealYesNo=0}",
+      "fields": [
+        {
+          "id": "appealsCaseworkername",
+          "type": "text",
+          "label": "HMRC appeals caseworker name"
+        },
+        {
+          "id": "appealsCaseworkeroffice",
+          "type": "text",
+          "label": "Caseworker office"
+        },
+        {
+          "id": "appealsCaseworkerphone",
+          "type": "text",
+          "label": "Caseworker telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "appealsRefnumber",
+          "type": "text",
+          "label": "Appeals reference number",
+          "mandatory": "false"
+        }
+      ]
+    },
+    {
+      "title": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+      "fields": [
+        {
+          "id": "disputeDetails",
+          "type": "text",
+          "label": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Why are you applying to ADR to help settle the dispute?",
+      "fields": [
+        {
+          "id": "adrReasons",
+          "type": "text",
+          "label": "Why are you applying to ADR to help settle the dispute?",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Did you already ask for a Statutory Review of the HMRC decision?",
+      "fields": [
+        {
+          "id": "statReview",
+          "type": "choice",
+          "label": "Did you already ask for a Statutory Review of the HMRC decision?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "Placeholder Declaration Text."
+      },
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFirstname",
+            "type": "text",
+            "label": "First name",
+            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declarationLastname",
+            "type": "text",
+            "label": "Last name",
+            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Status",
+            "helpText": "For example, director, financial controller or secretary",
+            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
+          }
+        ]
+      },
+      {
+        "id": "declarationEmailGroup",
+        "type": "group",
+        "label": "To receive confirmation that your return has been submitted, enter an email address below",
+        "fields": [
+          {
+            "id": "email",
+            "type": "text",
+            "label": "Email address",
+            "format": "email",
+            "mandatory": "true",
+            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
+          }
+        ]
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a pdf copy of your submitted form."
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "Payment",
+        "infoText": ""
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
