@@ -17,7 +17,7 @@
       "title": "Has the HMRC decision in this dispute already been appealed?",
       "fields": [
         {
-          "id": "statAppeal",
+          "id": "appealYesNo",
           "type": "choice",
           "label": "Has the HMRC decision in this dispute already been appealed?",
           "choices": [
@@ -28,8 +28,17 @@
       ]
     },
     {
-      "title": "The HMRC decision needs to be appealed before you can apply to this service",
-      "fields": []
+      "title": "You cannot apply for this service",
+      "includeIf": "${appealYesNo = 1}",
+      "fields": [
+        {
+          "id": "generatedId_dff28c5c_d645_4a0d_9d2f_eb3f3d3030f7",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to appeal against the HMRC decision before you can use Alternative Dispute Resolution.",
+          "infoType": "noformat"
+        }
+      ]
     },
     {
       "title": "Enter the details of the person filling in this form ",
@@ -258,7 +267,7 @@
     },
     {
       "title": "Enter your Corporation Tax number",
-      "includeIf": "${taxType=2}",
+      "includeIf": "${taxType2 = 0 || taxType2 = 4}",
       "fields": [
         {
           "id": "ctrRef",
@@ -269,7 +278,7 @@
     },
     {
       "title": "Enter your VAT number",
-      "includeIf": "${taxType=2 || taxType=3 || taxType=4 || taxType=5}",
+      "includeIf": "${taxType2 = 1 || taxType2 = 2 || taxType2 = 3}",
       "fields": [
         {
           "id": "vatRef",
@@ -307,7 +316,7 @@
     },
     {
       "title": "Enter the appeal details",
-      "includeIf": "${statAppeal=0}",
+      "includeIf": "${appealYesNo=0}",
       "fields": [
         {
           "id": "appealsCaseworkername",
@@ -356,12 +365,12 @@
       ]
     },
     {
-      "title": "Have you asked for a Statutory Review of your decision?",
+      "title": "Did you already ask for a Statutory Review of the HMRC decision?",
       "fields": [
         {
           "id": "statReview",
           "type": "choice",
-          "label": "Have you asked for a Statutory Review of your decision?",
+          "label": "Did you already ask for a Statutory Review of the HMRC decision?",
           "choices": [
             "Yes",
             "No"
