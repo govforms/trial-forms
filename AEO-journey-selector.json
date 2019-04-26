@@ -1,5 +1,4 @@
 {
-  "_id": "AEO-journey-selector",
   "formName": "Apply for Authorised Economic Operator (AEO) status",
   "description": "",
   "developmentPhase": "beta",
@@ -21,14 +20,15 @@
           "id": "journeyChoice",
           "type": "choice",
           "label": "Which AEO status is your business applying for?",
-          "multivalue": "true",
           "choices": [
             "AEOC customs simplification status",
-            "AEOS security and safety status"
+            "AEOS security and safety status",
+            "Both AEOC and AEOS status"
           ],
           "optionHelpText": [
             "Your business must be able to show it has staff with the experience or qualifications to deal with customs activities",
-            "Your business must be able to show it has security standards in place for its customs activities"
+            "Your business must  be able to show it has security standards in place for its customs activities",
+            "Your business must also be able to show it has both experienced or qualified staff, and security standards in place for its customs activities"
           ]
         }
       ]
@@ -560,7 +560,7 @@
     },
     {
       "title": "Apply for both AEO customs simplification and AEO security and safety",
-      "includeIf": " ${journeyChoice = 0 && journeyChoice=1}",
+      "includeIf": " ${journeyChoice = 2}",
       "continueIf": "false",
       "fields": [
         {
@@ -886,5 +886,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "AEO-journey-selector"
 }
