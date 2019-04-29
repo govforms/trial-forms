@@ -1,4 +1,5 @@
 {
+  "_id": "IPT100-insurance-premium-tax",
   "formName": "Insurance Premium Tax return",
   "description": "Fill in your insurance premium tax return form online",
   "developmentPhase": "beta",
@@ -6,9 +7,75 @@
   "authConfig": {
     "authModule": "hmrc",
     "agentAccess": "allowAnyAgentAffinityUser",
-    "enrolmentCheck": "never",
+    "enrolmentCheck": "forNonAgents",
     "serviceId": "HMRC-OBTDS-ORG",
-    "regimeId": "IP"
+    "regimeId": "IP",
+    "legacyFcEnrolmentVerifier": "NonUKCountryCode",
+    "enrolmentSection": {
+      "title": "Enter your Insurance Premium Tax registration details",
+      "fields": [
+        {
+          "id": "etmpRegistrationNumber",
+          "type": "text",
+          "label": "Insurance Premium Tax registration number",
+          "format": "text(15, 15)",
+          "displayWidth": "l",
+          "toUpperCase": "true"
+        },
+        {
+          "id": "generatedId_d94ba93a_62a6_4ab7_b9fc_6979a3b2647d",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is based in the UK",
+          "infoType": "noformat"
+        },
+        {
+          "id": "businessPostcode",
+          "type": "text",
+          "label": "Enter the business postcode",
+          "shortName": "Business postcode",
+          "helpText": "This is the postcode of the main place of business that you registered for Insurance Premium Tax.",
+          "format": "text(5, 8)",
+          "mandatory": "false",
+          "displayWidth": "s",
+          "toUpperCase": "true"
+        },
+        {
+          "id": "generatedId_1fa11b89_0457_46a7_b43d_cb5b5f2aff45",
+          "type": "info",
+          "label": "",
+          "infoText": "##If the business is not based in the UK",
+          "infoType": "noformat"
+        },
+        {
+          "id": "nonUKCountryCode",
+          "type": "text",
+          "label": "Enter the country code",
+          "shortName": "Country code",
+          "helpText": "This is the 2-letter country code of the main place of business that you registered for Insurance Premium Tax, for example DE for Germany and FR for France.",
+          "format": "nonUkCountryCode",
+          "mandatory": "false",
+          "displayWidth": "xs",
+          "toUpperCase": "true"
+        }
+      ],
+      "identifiers": [
+        {
+          "value": "${etmpRegistrationNumber}",
+          "key": "EtmpRegistrationNumber"
+        }
+      ],
+      "verifiers": [
+        {
+          "value": "${businessPostcode}",
+          "key": "BusinessPostcode"
+        },
+        {
+          "value": "${nonUKCountryCode}",
+          "key": "NonUKCountryCode"
+        }
+      ]
+    }
   },
   "sections": [
     {
@@ -61,7 +128,8 @@
           "type": "text",
           "label": "Insurance premium tax reference number",
           "helpText": "This begins with X and is followed by 3 capital letters, 5 zeroes and 6 other numbers, for example XABC00000123456",
-          "format": "text(15,15)"
+          "format": "text(15,15)",
+          "toUpperCase": "true"
         }
       ]
     },
@@ -461,7 +529,7 @@
       "convertSingleQuotes": true,
       "uri": "cross-regime/return/IPT/eeits/{{IPTReg2}}",
       "method": "POST",
-      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{IPTReg2}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{stripCommas totalIPTAndUnderDecs.[0]}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either overDecTotal.[0] 0)}}'},                         {{#if netTaxRefund}}                           {'paramSequence':'01',                            'paramName':'A_IPT_BOX9_NETTAXDUE',                            'paramValue':'{{stripCommas netTaxRefund}}'},                         {{else}}                           {{#if netTaxPayable}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas netTaxPayable}}'},                           {{else}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas totalIPTAndUnderDecs.[0]}}'},                           {{/if}}                         {{/if}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
+      "payload": "{'periodKey':'{{returnPeriod.periodKey}}', 'periodFrom':'{{returnPeriod.periodFrom}}', 'periodTo':'{{returnPeriod.periodTo}}',                     'returnsDetails':{                       'isrScenario':'ZIP1',                       'regimeSpecificDetails':[                         {'paramSequence':'01',                          'paramName':'A_REGISTRATION_NUMBER',                          'paramValue':'{{IPTReg2}}'},                         {'paramSequence':'01',                          'paramName':'A_RET_TYPE',                          'paramValue':'1'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX1_STDRATE',                          'paramValue':'{{stripCommas standardRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX2_HIGHERRATE',                          'paramValue':'{{stripCommas higherRateIPTDueForThisPeriod}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX3_STDUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX4_HIGHUNDERDEC',                          'paramValue':'{{stripCommas (either underDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX5_TOTALTAX',                          'paramValue':'{{plus (stripCommas standardRateIPTDueForThisPeriod)                                             (stripCommas higherRateIPTDueForThisPeriod)                                             (stripCommas (either underDecOfStandardRate.[0] 0))                                             (stripCommas (either underDecOfHigherRate.[0] 0))                                       }}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX6_STDOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfStandardRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX7_HIGHOVERDEC',                          'paramValue':'{{stripCommas (either overDecOfHigherRate.[0] 0)}}'},                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX8_OVERDECTOTAL',                          'paramValue':'{{stripCommas (either overDecTotal.[0] 0)}}'},                         {{#if netTaxRefund}}                           {'paramSequence':'01',                            'paramName':'A_IPT_BOX9_NETTAXDUE',                            'paramValue':'{{stripCommas netTaxRefund}}'},                         {{else}}                           {{#if netTaxPayable}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas netTaxPayable}}'},                           {{else}}                             {'paramSequence':'01',                              'paramName':'A_IPT_BOX9_NETTAXDUE',                              'paramValue':'{{stripCommas (either netTaxPayable1 netTaxRefund1)}}'},                           {{/if}}                         {{/if}}                         {'paramSequence':'01',                          'paramName':'A_IPT_BOX10_PREMIUM',                          'paramValue':'{{stripCommas (either netValueOfTaxablePremiums0 netValueOfTaxablePremiums1 netValueOfTaxablePremiums2)}}'},                         {'paramSequence':'01',                          'paramName':'A_DATA_ORIGIN',                          'paramValue':'1'}                       ]},                       'receivedAt':'{{currentTimestamp}}'                     }"
     },
     {
       "id": "attendedDmsQueueDestination",
@@ -509,6 +577,5 @@
     }
   ],
   "submitSuccessUrl": "",
-  "submitErrorUrl": "",
-  "_id": "IPT100-insurance-premium-tax"
+  "submitErrorUrl": ""
 }
