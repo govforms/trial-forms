@@ -300,7 +300,7 @@
           "type": "text",
           "label": "Brief description of goods or services supplied",
           "shortName": "Brief description of goods or services supplied",
-          "format": "text(1,35)",
+          "format": "shortText(1,60)",
           "multiline": "false"
         },
         {
@@ -308,13 +308,16 @@
           "type": "text",
           "label": "Organisation receiving goods or services",
           "shortName": "Organisation receiving goods or services",
-          "format": "text(1,35)"
+          "format": "shortText(1,35)"
         },
         {
           "id": "amountOfVatPaid",
           "type": "text",
           "label": "Amount of VAT paid",
-          "format": "sterling"
+          "helpText": "This must be an amount greater than '0'",
+          "format": "sterling",
+          "validIf": "${amountOfVatPaid[$n] >0}",
+          "errorMessage": "VAT amount paid must be numeric and greater than zero"
         }
       ]
     },
@@ -355,7 +358,9 @@
           "type": "text",
           "label": "",
           "shortName": "Claim amount",
-          "format": "sterling"
+          "format": "sterling",
+          "validIf": "${claimTotalUpload >0}",
+          "errorMessage": "Total amount must be numeric and greater than '0'"
         }
       ]
     },
@@ -371,6 +376,8 @@
           "format": "sterling",
           "value": "${amountOfVatPaid.sum}",
           "submitMode": "readonly",
+          "validIf": "${totalAmountOfVatPaid >= claimTotalManual}",
+          "errorMessage": "Total amount must not be higher than the total VAT paid",
           "presentationHint": "totalValue"
         },
         {
@@ -378,7 +385,9 @@
           "type": "text",
           "label": "Enter total amount",
           "shortName": "Claim amount",
-          "format": "sterling"
+          "format": "sterling",
+          "validIf": "${claimTotalManual >0}",
+          "errorMessage": "Total amount must be numeric and greater than '0'"
         }
       ]
     }
