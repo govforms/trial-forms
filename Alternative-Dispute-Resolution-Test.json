@@ -112,13 +112,14 @@
           "type": "choice",
           "label": "Do you agree to let us contact you by email about this application?",
           "shortName": "Confirm email consent",
+          "helpText": "Because email is not 100% secure, HMRC reduces the risks to you when we send you email. We'll only quote part of your personal details, and use only confirmed email addresses.",
           "errorMessage": "Select whether you consent to being contacted using your email address",
           "choices": [
             "Yes",
             "No"
           ],
           "optionHelpText": [
-            "Email is not 100% secure, as it is sent over the internet. This means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+            "",
             "We will use telephone or post if we need to contact you about your application."
           ]
         }
@@ -186,13 +187,13 @@
       }
     },
     {
-      "title": "Enter the individual's address",
+      "title": "Enter the individual's contact details",
       "includeIf": "${disputeIndividualBusiness=0}",
       "fields": [
         {
           "id": "addressIndividual",
           "type": "address",
-          "label": "Enter the individual's address"
+          "label": "Enter the individual's contact details"
         },
         {
           "id": "individualPhone",
@@ -219,13 +220,13 @@
       }
     },
     {
-      "title": "Enter your address",
+      "title": "Enter your contact details",
       "includeIf": "${useraffinityGroup=0}",
       "fields": [
         {
           "id": "addressIndividual_copy_1",
           "type": "address",
-          "label": "Enter your address"
+          "label": "Enter your contact details"
         },
         {
           "id": "yourPhone",
@@ -252,7 +253,7 @@
       }
     },
     {
-      "title": "Enter the business address",
+      "title": "Enter the business contact details",
       "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
       "fields": [
         {
@@ -291,7 +292,7 @@
       }
     },
     {
-      "title": "Enter agent details",
+      "title": "Enter agent contact details",
       "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
@@ -443,7 +444,7 @@
       "metadata": {
         "comments": [
           {
-            "text": "Captures the HMRC reference for individual taxpayer applications.",
+            "text": "Captures the HMRC reference for individual taxpayer applications - this means we can ask a really targeted question, rather than a more generic: 'What is your HMRC ref?'",
             "colour": "#fffacd",
             "date": 1556621186536,
             "author": "None"
@@ -465,7 +466,7 @@
       "metadata": {
         "comments": [
           {
-            "text": "Captures the HMRC reference for business applications.",
+            "text": "Captures the HMRC reference for business applications - this means we can ask a really targeted question, rather than a more generic: 'What is your HMRC ref?'",
             "colour": "#fffacd",
             "date": 1556623790552,
             "author": "None"
@@ -487,7 +488,7 @@
       "metadata": {
         "comments": [
           {
-            "text": "For customs issues etc. with business applications.",
+            "text": "For customs issues etc. with business applications - this means we can ask a really targeted question, rather than a more generic: 'What is your HMRC ref?'",
             "colour": "#fffacd",
             "date": 1556624105433,
             "author": "None"
@@ -520,7 +521,17 @@
           "label": "Year or period involved in the dispute",
           "helpText": "For example, tax year 2017-2018"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Is it reasonable to expect the user to fill these details in? Should HMRC already have them?",
+            "colour": "#fffacd",
+            "date": 1556633730041,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Enter the appeal details",
@@ -548,18 +559,39 @@
           "label": "Appeals reference number",
           "mandatory": "false"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Is it reasonable to expect the user to fill these details in? Should HMRC already have them?",
+            "colour": "#fffacd",
+            "date": 1556633837407,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
-      "title": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+      "title": "Why do you disagree with HMRC's decision?",
       "fields": [
         {
           "id": "disputeDetails",
           "type": "text",
-          "label": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+          "label": "Why do you disagree with HMRC's decision?",
+          "helpText": "Give details on the background to the dispute",
           "multiline": "true"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Do we need background on this, or can we reduce this to a handful of radio options? Do we know some key scenarios? Seems it could be a negative user experience, letting the anger spill out here...",
+            "colour": "#fffacd",
+            "date": 1556634413463,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Why are you applying to ADR to help settle the dispute?",
@@ -570,7 +602,17 @@
           "label": "Why are you applying to ADR to help settle the dispute?",
           "multiline": "true"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Can we reduce this to a handful of radio options? Do we know some key scenarios? Seems it could be a negative user experience, letting the anger spill out here...",
+            "colour": "#fffacd",
+            "date": 1556634700381,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "How much tax or penalty are you disputing?",
@@ -596,7 +638,17 @@
             "No"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "This question doesn't seem to impact the fundamental 'have you made an appeal?' eligibility criteria. Is it necessary to know? (Should we know it already?)",
+            "colour": "#fffacd",
+            "date": 1556636064471,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Which HMRC business unit do you deal with?",
@@ -620,7 +672,17 @@
             "Counter Avoidance"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "This feels like information we should have internally - for example, if we know what tax is disputed, and we know they are a business, should we know who they dealt with?\n\n\nWe'd usually try and stick to 5 radios on a page. Or at least try and group them into manageable subheadings.",
+            "colour": "#fffacd",
+            "date": 1556637197481,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "How did you hear about this service?",
@@ -637,7 +699,17 @@
             "TV"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "We wouldn't typically have a 'marketing' type question within the journey. If we ask it though, it would be better to give some pre-determined options rather than a text field.",
+            "colour": "#fffacd",
+            "date": 1556637580258,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Memorandum of Understanding",
@@ -665,7 +737,17 @@
             "I confirm that I have read and understood the content of the MOU"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "This is an unusable length, effectively meaning the user can't take the info in. HMRC would struggle to use this to say 'we told them, and they agreed'.\n\n\nCould the most important elements be incorporated into the guidance page, and fuller information come once the application has been accepted?\n\n\nIt doesn't feel like this is the right place for this information.",
+            "colour": "#fffacd",
+            "date": 1556637824172,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Memorandum of Understanding",
@@ -693,7 +775,17 @@
             "I confirm that both myself and my client have read and understood the content of the MOU"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "This is an unusable length, effectively meaning the user can't take the info in. HMRC would struggle to use this to say 'we told them, and they agreed'.\n\n\nCould the most important elements be incorporated into the guidance page, and fuller information come once the application has been accepted?\n\n\nIt doesn't feel like this is the right place for this information.",
+            "colour": "#fffacd",
+            "date": 1556638037518,
+            "author": "None"
+          }
+        ]
+      }
     }
   ],
   "declarationSection": {
@@ -704,50 +796,19 @@
         "id": "decText",
         "type": "info",
         "label": "",
-        "infoText": "Placeholder Declaration Text."
-      },
-      {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Provide details below of who is signing the declaration",
-        "fields": [
-          {
-            "id": "declarationFirstname",
-            "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declarationLastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declarationStatus",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
-          }
-        ]
-      },
-      {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true",
-            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
-          }
-        ]
+        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete."
       }
-    ]
+    ],
+    "metadata": {
+      "comments": [
+        {
+          "text": "Simple declaration as per emerging GForms pattern - forces focus on the issue of declaring and submitting, and keeps the user out of 'secretary' mode, filling in too much information.",
+          "colour": "#fffacd",
+          "date": 1556640918442,
+          "author": "None"
+        }
+      ]
+    }
   },
   "acknowledgementSection": {
     "title": "Confirmation page",
