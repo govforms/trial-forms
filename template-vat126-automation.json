@@ -16,7 +16,10 @@
           "id": "etmpRegistrationNumber",
           "type": "text",
           "label": "Enter your VAT Refund registration number",
-          "format": "text(15, 15)"
+          "helpText": "This begins with X and is followed by 2 capital letters and 12 numbers, for example XAV126000123456",
+          "format": "text(15, 15)",
+          "displayWidth": "l",
+          "toUpperCase": "true"
         },
         {
           "id": "businessPostcode",
@@ -24,7 +27,8 @@
           "label": "Enter the postcode of your primary place of business",
           "infoText": "This is the postcode you gave to HMRC when you registered for VAT Refunds",
           "format": "text(5, 8)",
-          "mandatory": "true"
+          "mandatory": "true",
+          "toUpperCase": "true"
         }
       ],
       "identifiers": [
@@ -376,9 +380,9 @@
           "format": "sterling",
           "value": "${amountOfVatPaid.sum}",
           "submitMode": "readonly",
+          "presentationHint": "totalValue",
           "validIf": "${totalAmountOfVatPaid >= claimTotalManual}",
-          "errorMessage": "Total amount must not be higher than the total VAT paid",
-          "presentationHint": "totalValue"
+          "errorMessage": "Total amount must not be higher than the total VAT paid"
         },
         {
           "id": "claimTotalManual",
