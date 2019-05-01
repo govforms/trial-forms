@@ -82,7 +82,7 @@
           "type": "choice",
           "label": "Do you agree to let us contact you by email about this application?",
           "shortName": "Confirm email consent",
-          "helpText": "Because email is not 100% secure, HMRC reduces the risks to you when we send you email. We'll only quote part of your personal details, and use only confirmed email addresses.",
+          "helpText": "Because email is not 100% secure, HMRC always reduces the risk to your data. We only quote part of personal details and only use confirmed email addresses.",
           "errorMessage": "Select whether you consent to being contacted using your email address",
           "choices": [
             "Yes",
@@ -543,10 +543,14 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decText",
-        "type": "info",
+        "type": "choice",
+        "id": "decCheck",
         "label": "",
-        "infoText": "By submitting this registration you confirm that the information you have provided is true and complete."
+        "multivalue": "true",
+        "errorMessage": "You must check the box before submitting your application",
+        "choices": [
+          "I confirm that the information I have provided is true and complete"
+        ]
       }
     ]
   },
