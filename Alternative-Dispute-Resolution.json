@@ -28,12 +28,12 @@
       ]
     },
     {
-      "title": "Did you request a Statutory Review of the decision?",
+      "title": "Did you request a statutory review of the decision?",
       "fields": [
         {
           "type": "choice",
           "id": "statReview",
-          "label": "Did you request a Statutory Review of the decision?",
+          "label": "Did you request a statutory review of the decision?",
           "choices": [
             "Yes",
             "No"
@@ -396,6 +396,7 @@
     },
     {
       "title": "Do you have a National Insurance number?",
+      "includeIf": "${taxType = 0 && hmrcRef = 1 || taxType = 1 && hmrcRef = 1}",
       "fields": [
         {
           "type": "choice",
@@ -409,13 +410,13 @@
       ]
     },
     {
-      "title": "What is the taxpayer's National Insurance number?",
-      "includeIf": "${taxType = 0 && hmrcRef = 1 || taxType = 1 && hmrcRef = 1}",
+      "title": "What is the National Insurance number?",
+      "includeIf": "${haveNi = 0}",
       "fields": [
         {
           "id": "utrRef",
           "type": "text",
-          "label": "What is the taxpayer's National Insurance number?",
+          "label": "What is the National Insurance number?",
           "helpText": "For example, QQ 12 34 56 C",
           "format": "shortText"
         }
@@ -436,24 +437,24 @@
       ]
     },
     {
-      "title": "What is the business's Corporation Tax number?",
+      "title": "Enter the business's Corporation Tax number",
       "includeIf": "${haveCt = 0}",
       "fields": [
         {
           "id": "ctrRef",
           "type": "text",
-          "label": "What is the business's Corporation Tax number?",
+          "label": "Enter the business's Corporation Tax number",
           "helpText": "This may be called Unique Taxpayer Reference, 'official use' or 'reference'. It will be on tax returns and other letters about Corporation Tax. It is 10 numbers, for example: 12345 67890."
         }
       ]
     },
     {
-      "title": "Do you have a VAT reference number?",
+      "title": "Do you have a VAT registration number?",
       "fields": [
         {
           "type": "choice",
           "id": "vatRef",
-          "label": "Do you have a VAT reference number?",
+          "label": "Do you have a VAT registration number?",
           "choices": [
             "Yes",
             "No"
@@ -462,13 +463,13 @@
       ]
     },
     {
-      "title": "What is the VAT registration number?",
+      "title": "Enter the VAT registration number",
       "includeIf": "${vatRef = 0}",
       "fields": [
         {
           "id": "vatNumber",
           "type": "text",
-          "label": "What is the business's VAT registration number?",
+          "label": "Enter the VAT registration number",
           "helpText": "For example, 123456789"
         }
       ]
@@ -516,12 +517,12 @@
       ]
     },
     {
-      "title": "Do you know the details of your appeal caseworker?",
+      "title": "Do you know the contact details of your appeal caseworker?",
       "fields": [
         {
           "type": "choice",
           "id": "appealCaseworker",
-          "label": "Do you know the details of your appeal caseworker?",
+          "label": "Do you know the contact details of your appeal caseworker?",
           "choices": [
             "Yes",
             "No"
