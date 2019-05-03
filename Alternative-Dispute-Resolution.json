@@ -1,6 +1,5 @@
 {
-  "_id": "Alternative-Dispute-Resolution",
-  "formName": "Alternative Dispute Resolution",
+  "formName": "Apply for Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -75,20 +74,21 @@
       ]
     },
     {
-      "title": "Do you agree to let us contact you by email about your application?",
+      "title": "Do you agree to let us contact you by email about this application?",
       "fields": [
         {
           "id": "emCons1",
           "type": "choice",
-          "label": "Do you agree to let us contact you by email about your application?",
+          "label": "Do you agree to let us contact you by email about this application?",
           "shortName": "Confirm email consent",
+          "helpText": "HMRC reduces the risk to your data by only quoting part of personal details and by always using confirmed email addresses.",
           "errorMessage": "Select whether you consent to being contacted using your email address",
           "choices": [
             "Yes",
             "No"
           ],
           "optionHelpText": [
-            "Email is not 100% secure, as it is sent over the internet. This means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
+            "",
             "We will use telephone or post if we need to contact you about your application."
           ]
         }
@@ -126,13 +126,13 @@
       ]
     },
     {
-      "title": "Enter the individual's details",
+      "title": "Enter the individual's contact details",
       "includeIf": "${disputeIndividualBusiness=0}",
       "fields": [
         {
           "id": "addressIndividual",
           "type": "address",
-          "label": "Enter the individual's details"
+          "label": "Enter the individual's contact details"
         },
         {
           "id": "individualPhone",
@@ -149,13 +149,13 @@
       ]
     },
     {
-      "title": "Enter your address",
+      "title": "Enter your contact details",
       "includeIf": "${useraffinityGroup=0}",
       "fields": [
         {
           "id": "addressIndividual_copy_1",
           "type": "address",
-          "label": "Enter your address"
+          "label": "Enter your contact details"
         },
         {
           "id": "yourPhone",
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "title": "Enter the business address",
+      "title": "Enter the business contact details",
       "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
       "fields": [
         {
@@ -187,7 +187,7 @@
           "format": "telephoneNumber"
         },
         {
-          "id": "businessEmail",
+          "id": "businessEMail",
           "type": "text",
           "label": "Email address"
         },
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "title": "Enter agent details",
+      "title": "Enter agent contact details",
       "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
@@ -231,17 +231,27 @@
           "format": "telephoneNumber"
         },
         {
+          "id": "agentEmail",
+          "type": "text",
+          "label": "Email address"
+        }
+      ]
+    },
+    {
+      "title": "Enter your reference for this client",
+      "fields": [
+        {
           "id": "clientreferencenumber",
           "type": "text",
-          "label": "Client Reference Number",
-          "helpText": "Enter your own or your firm's reference for this client. The reference should be client specific and not include the clients name or other personal information."
+          "label": "Enter your reference for this client",
+          "helpText": "This should be specific to each client and cannot include the clients' name or other personal information."
         },
         {
           "id": "textFieldInfoFormat6",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will include your client's reference in the response to you, but for data security reasons this will not include the client's name or any other personal information.",
-          "infoType": "noformat"
+          "infoText": "HMRC will include your client's reference in the response to you. For data security reasons this response will not include the client's name or any other personal information.",
+          "infoType": "standard"
         }
       ]
     },
@@ -257,7 +267,10 @@
           "errorMessage": "Select the type of tax in dispute",
           "choices": [
             "Income Tax",
+            "Stamp Duty Land Tax",
+            "Capital Gains",
             "Inheritance Tax",
+            "Penalty",
             "I don't know/Other"
           ]
         }
@@ -276,43 +289,49 @@
           "choices": [
             "Corporation Tax",
             "VAT",
-            "Customs Duty",
-            "Excise Duty",
+            "PAYE",
+            "Customs, International Trade and Excise",
+            "Construction Industry",
+            "Penalty",
             "I don't know/Other"
           ]
         }
       ]
     },
     {
-      "title": "Enter your Unique Taxpayer Reference number",
-      "includeIf": "${taxType=0 || taxType=1}",
+      "title": "What is the taxpayer's National Insurance number?",
+      "includeIf": "${taxType = 0 || taxType = 1 || taxType = 2 || taxType = 3 || taxType = 4}",
       "fields": [
         {
           "id": "utrRef",
           "type": "text",
-          "label": "Enter your Unique Taxpayer Reference number"
+          "label": "What is the taxpayer's National Insurance number?",
+          "helpText": "For example, QQ 12 34 56 C",
+          "format": "shortText"
         }
       ]
     },
     {
-      "title": "Enter your Corporation Tax number",
-      "includeIf": "${taxType2 = 0 || taxType2 = 4}",
+      "title": "What is the business's Corporation Tax number?",
+      "includeIf": "${taxType2 = 0 || taxType2 = 2 || taxType2 = 4 || taxType2 = 5}",
       "fields": [
         {
           "id": "ctrRef",
           "type": "text",
-          "label": "Enter your Corporation Tax number"
+          "label": "What is the business's Corporation Tax number?",
+          "helpText": "This may be called Unique Taxpayer Reference, 'official use' or 'reference'. It will be on tax returns and other letters about Corporation Tax. It is 10 numbers, for example: 12345 67890."
         }
       ]
     },
     {
-      "title": "Enter your VAT number",
-      "includeIf": "${taxType2 = 1 || taxType2 = 2 || taxType2 = 3}",
+      "title": "What is the business's VAT registration number?",
+      "includeIf": "${taxType2 = 1 || taxType2 = 3}",
       "fields": [
         {
           "id": "vatRef",
           "type": "text",
-          "label": "Enter your VAT number"
+          "label": "What is the business's VAT registration number?",
+          "helpText": "For example, 123456789"
         }
       ]
     },
@@ -372,12 +391,13 @@
       ]
     },
     {
-      "title": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+      "title": "Why do you disagree with HMRC's decision?",
       "fields": [
         {
           "id": "disputeDetails",
           "type": "text",
-          "label": "Explain the background to the tax dispute, and why you disagree with HMRC's decision",
+          "label": "Why do you disagree with HMRC's decision?",
+          "helpText": "Give details on the background to the dispute",
           "multiline": "true"
         }
       ]
@@ -394,6 +414,18 @@
       ]
     },
     {
+      "title": "How much tax or penalty are you disputing?",
+      "fields": [
+        {
+          "id": "taxPenaltyAmount",
+          "type": "text",
+          "label": "How much tax or penalty are you disputing?",
+          "helpText": "Enter the amount in GBP ",
+          "format": "sterling"
+        }
+      ]
+    },
+    {
       "title": "Did you already ask for a Statutory Review of the HMRC decision?",
       "fields": [
         {
@@ -406,6 +438,103 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Which HMRC business unit do you deal with?",
+      "fields": [
+        {
+          "id": "bizUnit",
+          "type": "choice",
+          "label": "Which HMRC business unit do you deal with?",
+          "choices": [
+            "ISBC C&A",
+            "ISBC T&SC",
+            "ISBC C&P",
+            "WMBC MSB",
+            "WMBC Wealthy",
+            "WMBC Assets",
+            "WMBC Charities",
+            "Public Bodies and Complex Employment",
+            "WMBC Insight",
+            "Growth and Risk",
+            "FIS",
+            "Counter Avoidance"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How did you hear about this service?",
+      "fields": [
+        {
+          "id": "adService",
+          "type": "choice",
+          "label": "How did you hear about this service?",
+          "choices": [
+            "Personal recommendation",
+            "Radio",
+            "Newspaper",
+            "Online",
+            "TV"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Memorandum of Understanding",
+      "includeIf": "${useraffinityGroup = 0 || useraffinityGroup = 1}",
+      "fields": [
+        {
+          "id": "generatedId_f1c41248_843c_4a8c_b42d_af00849ebd32",
+          "type": "info",
+          "label": "mouInfo",
+          "infoText": "If this application is accepted into ADR, you need to sign a Memorandum of Understanding (MOU). \n\nThe MOU confirms that the individual or business is committed to the process, ensuring the best possible chance of a successful resolution.\n\nCompletion at this stage saves time but is not a guarantee that your application will be accepted.",
+          "infoType": "standard"
+        },
+        {
+          "id": "generatedId_668560ae_67d7_4759_915f_014f1d050ae9",
+          "type": "info",
+          "label": "mouDetail",
+          "infoText": "I am entering into dispute resolution because I want to try to settle this dispute. \n\nIf I don't engage with the process or work within the terms below, my dispute may be removed from the ADR process.\n\nIf I don't engage with the process or work within the terms below, my dispute may be removed from the ADR process.\n\nIf I feel that HMRC are not engaging with the process I will raise this with the mediator.\n\nI will provide any agreed relevant information to the mediator within 15 working days of their request unless they say otherwise. \n\nIf I’m unable to meet this deadline I’ll explain this to the mediator and agree if the deadline may be extended.\n\nIf I miss a deadline on more than one occasion I accept that this may lead to my case being removed from the process.\n\nDuring the ADR process I may need to provide more information, attend a meeting or teleconference. I will ensure that, I, and any representative of mine, will be available for 90 days from the date the application was accepted, for a meeting or a teleconference. I accept that if I’m unavailable in this time, my case may be removed from the process.\n\nIf I have new information prior to any meeting or teleconference I will make sure that I tell the caseworker, mediator or both. \n\nIf additional information is produced at a meeting that the caseworker is unaware of, the mediator may suspend the meeting to allow the caseworker to analyse it. \n\nI understand that ADR may not result in an agreement on a particular issue or issues and that my dispute may not be resolved. \n\nI also understand that if an agreement is not reached the process should help both myself and HMRC better understand the elements that resulted in this dispute and help us work towards a mutual solution.\n\nI understand that ADR is a confidential process carried out on a ‘without prejudice’ basis. I also accept that any material tax facts (facts which have the potential to result in significant changes to the tax or penalty position) that are shared with the mediator or HMRC during the mediation can be referred to in any later formal proceedings if agreement cannot be reached.\n\nI accept that the confidentiality of the ADR process does not extend to evidence of criminality.  I also accept that if I make a formal complaint about something happening within the ADR process then the mediator will be expected to comment on the matter when asked to do so by a complaints reviewing officer.\n\nI understand that the mediator has responsibility for the ADR process. Responsibility for decisions affecting the tax outcomes lies with the parties to the dispute.  \n\nIf I feel that these terms need to be altered, I’ll discuss and agree this in writing with the mediator at the beginning of the ADR process.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "mouDec",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "I confirm that I have read and understood the content of the MOU"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Memorandum of Understanding",
+      "includeIf": "${useraffinityGroup = 2}",
+      "fields": [
+        {
+          "id": "generatedId_150cfed8_4b82_412d_b6cb_aec8af11e024",
+          "type": "info",
+          "label": "mouInfoAgent",
+          "infoText": "If this application is accepted into ADR, both customer and authorised agent need to sign a Memorandum of Understanding (MOU). \n\nThe MOU confirms that you/you and your client are committed to the process, ensuring the best possible chance of a successful resolution.\n\nCompletion at this stage saves time but is not a guarantee that your application will be accepted.",
+          "infoType": "standard"
+        },
+        {
+          "id": "generatedId_3f3130d6_0733_4e1e_852d_688293f72318",
+          "type": "info",
+          "label": "Read what HMRC expects from you",
+          "infoText": "I am entering into dispute resolution because I want to try to settle this dispute. \n\nIf I don't engage with the process or work within the terms below, my dispute may be removed from the ADR process.\n\nIf I don't engage with the process or work within the terms below, my dispute may be removed from the ADR process.\n\nIf I feel that HMRC are not engaging with the process I will raise this with the mediator.\n\nI will provide any agreed relevant information to the mediator within 15 working days of their request unless they say otherwise. \n\nIf I’m unable to meet this deadline I’ll explain this to the mediator and agree if the deadline may be extended.\n\nIf I miss a deadline on more than one occasion I accept that this may lead to my case being removed from the process.\n\nDuring the ADR process I may need to provide more information, attend a meeting or teleconference. I will ensure that, I, and any representative of mine, will be available for 90 days from the date the application was accepted, for a meeting or a teleconference. I accept that if I’m unavailable in this time, my case may be removed from the process.\nIf I have new information prior to any meeting or teleconference I will make sure that I tell the caseworker, mediator or both. \n\nIf additional information is produced at a meeting that the caseworker is unaware of, the mediator may suspend the meeting to allow the caseworker to analyse it. \n\nI understand that ADR may not result in an agreement on a particular issue or issues and that my dispute may not be resolved. \n\nI also understand that if an agreement is not reached the process should help both myself and HMRC better understand the elements that resulted in this dispute and help us work towards a mutual solution.\n\nI understand that ADR is a confidential process carried out on a ‘without prejudice’ basis. I also accept that any material tax facts (facts which have the potential to result in significant changes to the tax or penalty position) that are shared with the mediator or HMRC during the mediation can be referred to in any later formal proceedings if agreement cannot be reached.\n\nI accept that the confidentiality of the ADR process does not extend to evidence of criminality.  I also accept that if I make a formal complaint about something happening within the ADR process then the mediator will be expected to comment on the matter when asked to do so by a complaints reviewing officer.\n\nI understand that the mediator has responsibility for the ADR process. Responsibility for decisions affecting the tax outcomes lies with the parties to the dispute.  \n\nIf I feel that these terms need to be altered, I’ll discuss and agree this in writing with the mediator at the beginning of the ADR process.",
+          "infoType": "long"
+        },
+        {
+          "id": "mouDecAgent",
+          "type": "choice",
+          "label": "",
+          "choices": [
+            "I confirm that both myself and my client have read and understood the content of the MOU"
+          ]
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -413,50 +542,13 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decText",
-        "type": "info",
+        "id": "decCheck",
+        "type": "choice",
         "label": "",
-        "infoText": "Placeholder Declaration Text."
-      },
-      {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Provide details below of who is signing the declaration",
-        "fields": [
-          {
-            "id": "declarationFirstname",
-            "type": "text",
-            "label": "First name",
-            "errorMessage": "First name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declarationLastname",
-            "type": "text",
-            "label": "Last name",
-            "errorMessage": "Last name can only include letters a to z, numbers, spaces, hyphens and apostrophes"
-          },
-          {
-            "id": "declarationStatus",
-            "type": "text",
-            "label": "Status",
-            "helpText": "For example, director, financial controller or secretary",
-            "errorMessage": "Position in the company can only include letters, numbers, spaces, hyphens and apostrophes"
-          }
-        ]
-      },
-      {
-        "id": "declarationEmailGroup",
-        "type": "group",
-        "label": "To receive confirmation that your return has been submitted, enter an email address below",
-        "fields": [
-          {
-            "id": "email",
-            "type": "text",
-            "label": "Email address",
-            "format": "email",
-            "mandatory": "true",
-            "errorMessage": "Enter a valid email address with no spaces, like name@example.com"
-          }
+        "multivalue": "true",
+        "errorMessage": "You must check the box before submitting your application",
+        "choices": [
+          "I confirm that the information I have provided is true and complete"
         ]
       }
     ]
@@ -481,5 +573,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "Alternative-Dispute-Resolution"
 }
