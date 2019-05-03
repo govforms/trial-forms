@@ -575,20 +575,6 @@
         "infoType": "noformat"
       },
       {
-        "id": "ackPageInfoThree",
-        "type": "info",
-        "label": "",
-        "infoText": "##If the business is a partnership or limited liability partnership (LLP)",
-        "infoType": "noformat"
-      },
-      {
-        "id": "ackPageInfoFour",
-        "type": "info",
-        "label": "",
-        "infoText": "You must also inform HMRC of this, so that we can ask you for details about the partnership. You'll need to email HMRC on enquiries.eeitts@hmrc.gov.uk to tell us.",
-        "infoType": "noformat"
-      },
-      {
         "id": "ackPageInfoFive",
         "type": "info",
         "label": "",
@@ -622,6 +608,7 @@
     {
       "id": "eeittRegistrationApi",
       "type": "handlebarsHttpApi",
+      "includeIf": "{{match ^('1' '0') => 'true'; ('1' '1') => 'true'; (* *) => 'false'^ (stripCommas deferduty) (stripCommas businessType}}}",
       "failOnError": false,
       "profile": "des",
       "convertSingleQuotes": true,
