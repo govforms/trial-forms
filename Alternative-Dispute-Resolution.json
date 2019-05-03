@@ -1,4 +1,5 @@
 {
+  "_id": "Alternative-Dispute-Resolution",
   "formName": "Apply for Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -13,12 +14,56 @@
   },
   "sections": [
     {
-      "title": "Has the HMRC decision in this dispute already been appealed?",
+      "title": "Has HMRC issued a decision offering a right to appeal in this dispute?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "disputeDecision",
+          "label": "Has HMRC issued a decision offering a right to appeal in this dispute?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Did you request a Statutory Review of the decision?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "statReview",
+          "label": "Did you request a Statutory Review of the decision?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you already appealed the HMRC decision?",
+      "includeIf": "${statReview = 1}",
       "fields": [
         {
           "id": "appealYesNo",
           "type": "choice",
-          "label": "Has the HMRC decision in this dispute already been appealed?",
+          "label": "Have you already appealed the HMRC decision?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you appealed the decision? ",
+      "includeIf": "${statReview = 0}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "appealDecision",
+          "label": "Have you appealed the decision? ",
           "choices": [
             "Yes",
             "No"
@@ -28,7 +73,7 @@
     },
     {
       "title": "You cannot apply for this service",
-      "includeIf": "${appealYesNo = 1}",
+      "includeIf": "${appealYesNo = 1 || appealDecision = 1}",
       "fields": [
         {
           "id": "generatedId_dff28c5c_d645_4a0d_9d2f_eb3f3d3030f7",
@@ -74,14 +119,27 @@
       ]
     },
     {
-      "title": "Do you agree to let us contact you by email about this application?",
+      "title": "You cannot apply for this service",
+      "includeIf": "${authYesNo = 1}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_afe02cef_0e5b_4db4_92a0_42e018efa046",
+          "label": "authorityNo",
+          "infoText": "You must be the individual taxpayer, an agent applying on behalf of a client, or an authorised employee of the organisation you are applying for.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Can we contact you by email about this application?",
       "fields": [
         {
           "id": "emCons1",
           "type": "choice",
-          "label": "Do you agree to let us contact you by email about this application?",
+          "label": "Can we contact you by email about this application?",
           "shortName": "Confirm email consent",
-          "helpText": "HMRC reduces the risk to your data by only quoting part of personal details and by always using confirmed email addresses.",
+          "helpText": "Because email is not 100% secure, HMRC always reduces the risk to your data. We do this  by only quoting part of personal details and by always using confirmed email addresses.",
           "errorMessage": "Select whether you consent to being contacted using your email address",
           "choices": [
             "Yes",
@@ -238,7 +296,22 @@
       ]
     },
     {
+      "title": "Do you have your own unique reference for this client?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "uniqueClientRef",
+          "label": "Do you have your own unique reference for this client?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Enter your reference for this client",
+      "includeIf": "${uniqueClientRef = 0}",
       "fields": [
         {
           "id": "clientreferencenumber",
@@ -267,11 +340,9 @@
           "errorMessage": "Select the type of tax in dispute",
           "choices": [
             "Income Tax",
-            "Stamp Duty Land Tax",
-            "Capital Gains",
-            "Inheritance Tax",
+            "VAT",
             "Penalty",
-            "I don't know/Other"
+            "Other"
           ]
         }
       ]
@@ -293,14 +364,53 @@
             "Customs, International Trade and Excise",
             "Construction Industry",
             "Penalty",
-            "I don't know/Other"
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you have an HMRC reference?",
+      "description": "Find this on the top right of any correspondence from HMRC. This makes it easier for us to understand your tax situation.",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "hmrcRef",
+          "label": "Do you have an HMRC reference?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your HMRC reference number",
+      "fields": [
+        {
+          "type": "text",
+          "id": "enterHmrcRef",
+          "label": "Enter your HMRC reference number"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a National Insurance number?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "haveNi",
+          "label": "Do you have a National Insurance number?",
+          "choices": [
+            "Yes",
+            "No"
           ]
         }
       ]
     },
     {
       "title": "What is the taxpayer's National Insurance number?",
-      "includeIf": "${taxType = 0 || taxType = 1 || taxType = 2 || taxType = 3 || taxType = 4}",
+      "includeIf": "${taxType = 0 && hmrcRef = 1 || taxType = 1 && hmrcRef = 1}",
       "fields": [
         {
           "id": "utrRef",
@@ -312,8 +422,22 @@
       ]
     },
     {
+      "title": "Does the business have a Corporation Tax number?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "haveCt",
+          "label": "Does the business have a Corporation Tax number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "What is the business's Corporation Tax number?",
-      "includeIf": "${taxType2 = 0 || taxType2 = 2 || taxType2 = 4 || taxType2 = 5}",
+      "includeIf": "${haveCt = 0}",
       "fields": [
         {
           "id": "ctrRef",
@@ -324,11 +448,25 @@
       ]
     },
     {
-      "title": "What is the business's VAT registration number?",
-      "includeIf": "${taxType2 = 1 || taxType2 = 3}",
+      "title": "Do you have a VAT reference number?",
       "fields": [
         {
+          "type": "choice",
           "id": "vatRef",
+          "label": "Do you have a VAT reference number?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the VAT registration number?",
+      "includeIf": "${vatRef = 0}",
+      "fields": [
+        {
+          "id": "vatNumber",
           "type": "text",
           "label": "What is the business's VAT registration number?",
           "helpText": "For example, 123456789"
@@ -336,7 +474,22 @@
       ]
     },
     {
+      "title": "Do you know your HMRC caseworker details?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "haveCaseworker",
+          "label": "Do you know your HMRC caseworker details?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "Enter the HMRC caseworker details",
+      "includeIf": "${haveCaseworker = 0}",
       "fields": [
         {
           "id": "HMRCcaseworkername",
@@ -363,8 +516,22 @@
       ]
     },
     {
-      "title": "Enter the appeal details",
-      "includeIf": "${appealYesNo=0}",
+      "title": "Do you know the details of your appeal caseworker?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "appealCaseworker",
+          "label": "Do you know the details of your appeal caseworker?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the appeal caseworker details",
+      "includeIf": "${appealCaseworker=0}",
       "fields": [
         {
           "id": "appealsCaseworkername",
@@ -414,7 +581,22 @@
       ]
     },
     {
+      "title": "Do you know how much tax or penalty you are disputing?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "taxValue",
+          "label": "Do you know how much tax or penalty you are disputing?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "How much tax or penalty are you disputing?",
+      "includeIf": "${taxValue = 0}",
       "fields": [
         {
           "id": "taxPenaltyAmount",
@@ -422,20 +604,6 @@
           "label": "How much tax or penalty are you disputing?",
           "helpText": "Enter the amount in GBP ",
           "format": "sterling"
-        }
-      ]
-    },
-    {
-      "title": "Did you already ask for a Statutory Review of the HMRC decision?",
-      "fields": [
-        {
-          "id": "statReview",
-          "type": "choice",
-          "label": "Did you already ask for a Statutory Review of the HMRC decision?",
-          "choices": [
-            "Yes",
-            "No"
-          ]
         }
       ]
     },
@@ -458,7 +626,8 @@
             "WMBC Insight",
             "Growth and Risk",
             "FIS",
-            "Counter Avoidance"
+            "Counter Avoidance",
+            "Other"
           ]
         }
       ]
@@ -475,7 +644,7 @@
             "Radio",
             "Newspaper",
             "Online",
-            "TV"
+            "Other"
           ]
         }
       ]
@@ -516,7 +685,7 @@
           "id": "generatedId_150cfed8_4b82_412d_b6cb_aec8af11e024",
           "type": "info",
           "label": "mouInfoAgent",
-          "infoText": "If this application is accepted into ADR, both customer and authorised agent need to sign a Memorandum of Understanding (MOU). \n\nThe MOU confirms that you/you and your client are committed to the process, ensuring the best possible chance of a successful resolution.\n\nCompletion at this stage saves time but is not a guarantee that your application will be accepted.",
+          "infoText": "You and your client need agree to some principles to continue your application.    \n\nThese help ensure the best chance of a successful resolution.\n\nPlease note this is not a guarantee that your application will be accepted.",
           "infoType": "standard"
         },
         {
@@ -573,6 +742,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "Alternative-Dispute-Resolution"
+  "submitSuccessUrl": "deprecated"
 }
