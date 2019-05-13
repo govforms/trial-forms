@@ -1,4 +1,5 @@
 {
+  "_id": "claim-VAT-refund-if-not-VAT-registered-VAT126",
   "formName": "Claim a VAT refund as an organisation not registered for VAT",
   "description": "",
   "formCategory": "hmrcClaimForm",
@@ -266,6 +267,33 @@
       ]
     },
     {
+      "title": "Upload a file summarising details for all your invoices",
+      "shortName": "Invoice details",
+      "includeIf": "${manualUpload=1}",
+      "fields": [
+        {
+          "id": "invoiceInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "You can provide the invoice details in a spreadsheet, PDF or JPEG.\n\nFor each invoice, you must provide these details:\n* invoice date\n* the supplier's VAT registration number\n* a brief description of the goods or services supplied\n* the name of the organisation that received the goods or services\n* the amount of VAT paid",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "You can only upload one file. The file size must not be more than 15MB.",
+          "infoType": "important"
+        },
+        {
+          "id": "uploadInvoice",
+          "type": "file",
+          "label": "Upload file",
+          "shortName": "Invoices file"
+        }
+      ]
+    },
+    {
       "title": "How many invoices does this claim include?",
       "includeIf": "${manualUpload=0}",
       "fields": [
@@ -284,6 +312,7 @@
     {
       "title": "Enter details for invoice $n",
       "shortName": "Invoice details",
+      "includeIf": "${manualUpload=0}",
       "description": "",
       "repeatsMin": "${numInv}",
       "repeatsMax": "${numInv}",
@@ -319,41 +348,12 @@
           "type": "text",
           "label": "Amount of VAT paid",
           "helpText": "This must be an amount greater than '0'",
-          "format": "sterling",
-          "validIf": "${amountOfVatPaid[$n] >0}",
-          "errorMessage": "VAT amount paid must be numeric and greater than zero"
+          "format": "sterling"
         }
       ]
     },
     {
-      "title": "Upload a file summarising details for all your invoices",
-      "shortName": "Invoice details",
-      "includeIf": "${manualUpload=1}",
-      "fields": [
-        {
-          "id": "invoiceInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "You can provide the invoice details in a spreadsheet, PDF or JPEG.\n\nFor each invoice, you must provide these details:\n* invoice date\n* the supplier's VAT registration number\n* a brief description of the goods or services supplied\n* the name of the organisation that received the goods or services\n* the amount of VAT paid",
-          "infoType": "noformat"
-        },
-        {
-          "id": "uploadInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "You can only upload one file. The file size must not be more than 15MB.",
-          "infoType": "important"
-        },
-        {
-          "id": "uploadInvoice",
-          "type": "file",
-          "label": "Upload file",
-          "shortName": "Invoices file"
-        }
-      ]
-    },
-    {
-      "title": "Enter the amount VAT you are wanting to get refunded",
+      "title": "Enter the amount of VAT you are wanting to get refunded",
       "shortName": "VAT refund",
       "includeIf": "${manualUpload=1}",
       "fields": [
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "title": "Enter the amount VAT you are wanting to get refunded",
+      "title": "Enter the amount of VAT you are wanting to get refunded",
       "shortName": "VAT refund",
       "includeIf": "${manualUpload=0}",
       "fields": [
@@ -481,6 +481,5 @@
   ],
   "GFC579Ready": "true",
   "submitSuccessUrl": "",
-  "submitErrorUrl": "",
-  "_id": "claim-VAT-refund-if-not-VAT-registered-VAT126"
+  "submitErrorUrl": ""
 }
