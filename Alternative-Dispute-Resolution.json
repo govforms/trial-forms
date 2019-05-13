@@ -17,8 +17,8 @@
       "title": "Has HMRC issued a decision offering a right to appeal in this dispute?",
       "fields": [
         {
-          "type": "choice",
           "id": "disputeDecision",
+          "type": "choice",
           "label": "Has HMRC issued a decision offering a right to appeal in this dispute?",
           "choices": [
             "Yes",
@@ -31,8 +31,8 @@
       "title": "Did you request a statutory review of the decision?",
       "fields": [
         {
-          "type": "choice",
           "id": "statReview",
+          "type": "choice",
           "label": "Did you request a statutory review of the decision?",
           "choices": [
             "Yes",
@@ -61,8 +61,8 @@
       "includeIf": "${statReview = 0}",
       "fields": [
         {
-          "type": "choice",
           "id": "appealDecision",
+          "type": "choice",
           "label": "Have you appealed the decision? ",
           "choices": [
             "Yes",
@@ -123,8 +123,8 @@
       "includeIf": "${authYesNo = 1}",
       "fields": [
         {
-          "type": "info",
           "id": "generatedId_afe02cef_0e5b_4db4_92a0_42e018efa046",
+          "type": "info",
           "label": "authorityNo",
           "infoText": "You must be the individual taxpayer, an agent applying on behalf of a client, or an authorised employee of the organisation you are applying for.",
           "infoType": "noformat"
@@ -139,7 +139,7 @@
           "type": "choice",
           "label": "Can we contact you by email about this application?",
           "shortName": "Confirm email consent",
-          "helpText": "Because email is not 100% secure, HMRC always reduces the risk to your data. We do this  by only quoting part of personal details and by always using confirmed email addresses.",
+          "helpText": "Because email is not 100% secure, HMRC always reduces the risk to your data. We'll never show your personal details in full and we'll only use confirmed email addresses.",
           "errorMessage": "Select whether you consent to being contacted using your email address",
           "choices": [
             "Yes",
@@ -299,8 +299,8 @@
       "title": "Do you have your own unique reference for this client?",
       "fields": [
         {
-          "type": "choice",
           "id": "uniqueClientRef",
+          "type": "choice",
           "label": "Do you have your own unique reference for this client?",
           "choices": [
             "Yes",
@@ -374,8 +374,8 @@
       "description": "Find this on the top right of any correspondence from HMRC. This makes it easier for us to understand your tax situation.",
       "fields": [
         {
-          "type": "choice",
           "id": "hmrcRef",
+          "type": "choice",
           "label": "Do you have an HMRC reference?",
           "choices": [
             "Yes",
@@ -388,8 +388,8 @@
       "title": "Enter your HMRC reference number",
       "fields": [
         {
-          "type": "text",
           "id": "enterHmrcRef",
+          "type": "text",
           "label": "Enter your HMRC reference number"
         }
       ]
@@ -399,8 +399,8 @@
       "includeIf": "${taxType = 0 && hmrcRef = 1 || taxType = 1 && hmrcRef = 1}",
       "fields": [
         {
-          "type": "choice",
           "id": "haveNi",
+          "type": "choice",
           "label": "Do you have a National Insurance number?",
           "choices": [
             "Yes",
@@ -426,8 +426,8 @@
       "title": "Does the business have a Corporation Tax number?",
       "fields": [
         {
-          "type": "choice",
           "id": "haveCt",
+          "type": "choice",
           "label": "Does the business have a Corporation Tax number?",
           "choices": [
             "Yes",
@@ -452,8 +452,8 @@
       "title": "Do you have a VAT registration number?",
       "fields": [
         {
-          "type": "choice",
           "id": "vatRef",
+          "type": "choice",
           "label": "Do you have a VAT registration number?",
           "choices": [
             "Yes",
@@ -478,8 +478,8 @@
       "title": "Do you know your HMRC caseworker details?",
       "fields": [
         {
-          "type": "choice",
           "id": "haveCaseworker",
+          "type": "choice",
           "label": "Do you know your HMRC caseworker details?",
           "choices": [
             "Yes",
@@ -520,8 +520,8 @@
       "title": "Do you know the contact details of your appeal caseworker?",
       "fields": [
         {
-          "type": "choice",
           "id": "appealCaseworker",
+          "type": "choice",
           "label": "Do you know the contact details of your appeal caseworker?",
           "choices": [
             "Yes",
@@ -585,8 +585,8 @@
       "title": "Do you know how much tax or penalty you are disputing?",
       "fields": [
         {
-          "type": "choice",
           "id": "taxValue",
+          "type": "choice",
           "label": "Do you know how much tax or penalty you are disputing?",
           "choices": [
             "Yes",
@@ -675,6 +675,18 @@
           "choices": [
             "I confirm that I have read and understood the content of the MOU"
           ]
+        }
+      ]
+    },
+    {
+      "title": "Agreement",
+      "fields": [
+        {
+          "id": "generatedId_3e839e11_6119_454a_bbd4_f3931037da44",
+          "type": "info",
+          "label": "",
+          "infoText": "Read and accept the following points before submitting your application. Agreeing does not mean you are guaranteed to be accepted, but it can save you time later.",
+          "infoType": "noformat"
         }
       ]
     },
