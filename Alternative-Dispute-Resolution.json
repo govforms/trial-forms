@@ -297,6 +297,7 @@
     },
     {
       "title": "Do you have your own unique reference for this client?",
+      "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
           "id": "uniqueClientRef",
@@ -330,7 +331,7 @@
     },
     {
       "title": "What type of tax are you disputing?",
-      "includeIf": "${useraffinityGroup=0 || disputeIndividualBusiness=0}",
+      "includeIf": "${disputeIndividualBusiness=0 || (useraffinityGroup=0 || useraffinityGroup=2)}",
       "fields": [
         {
           "id": "taxType",
@@ -349,7 +350,7 @@
     },
     {
       "title": "What type of tax are you disputing?",
-      "includeIf": "${useraffinityGroup=1 || disputeIndividualBusiness=1}",
+      "includeIf": "${disputeIndividualBusiness=1 || (useraffinityGroup=1 || useraffinityGroup=2)}",
       "fields": [
         {
           "id": "taxType2",
@@ -424,6 +425,7 @@
     },
     {
       "title": "Does the business have a Corporation Tax number?",
+      "includeIf": "${useraffinityGroup !=0}",
       "fields": [
         {
           "id": "haveCt",
