@@ -387,6 +387,7 @@
     },
     {
       "title": "Enter your HMRC reference number",
+      "includeIf": "${hmrcRef = 0}",
       "fields": [
         {
           "id": "enterHmrcRef",
@@ -397,7 +398,7 @@
     },
     {
       "title": "Do you have a National Insurance number?",
-      "includeIf": "${taxType = 0 && hmrcRef = 1 || taxType = 1 && hmrcRef = 1}",
+      "includeIf": "${taxType = 0 && hmrcRef = 1}",
       "fields": [
         {
           "id": "haveNi",
@@ -425,7 +426,7 @@
     },
     {
       "title": "Does the business have a Corporation Tax number?",
-      "includeIf": "${useraffinityGroup !=0}",
+      "includeIf": "${taxType2 = 0 && hmrcRef = 1}",
       "fields": [
         {
           "id": "haveCt",
@@ -452,6 +453,7 @@
     },
     {
       "title": "Do you have a VAT registration number?",
+      "includeIf": "${taxType = 1 || taxType2 = 1 && hmrcRef = 1}",
       "fields": [
         {
           "id": "vatRef",
