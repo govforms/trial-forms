@@ -525,6 +525,7 @@
             "Selling something",
             "Inheritance",
             "Gambling",
+            "Loan",
             "Other"
           ]
         }
@@ -711,14 +712,25 @@
           "shortName": "Cash spent on",
           "errorMessage": "Select what the cash will be spent on",
           "choices": [
-            "Making a big purchase",
+            "Buying something",
+            "Living costs and fees",
+            "Other cash use"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What did you buy?",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "whatBuy",
+          "label": "What did you buy?",
+          "choices": [
+            "A major purchase",
             "Shopping or tourism",
             "Clothing",
-            "Other purchase",
-            "Family costs",
-            "Investment",
-            "Medical costs",
-            "Education fees"
+            "Other purchase"
           ]
         }
       ]
@@ -726,7 +738,7 @@
     {
       "title": "What big purchase will the cash be used for?",
       "shortName": "What big purchase will the cash buy",
-      "includeIf": "${cashUse=0}",
+      "includeIf": "${whatBuy=0}",
       "continueIf": "true",
       "fields": [
         {
@@ -741,6 +753,39 @@
             "Antiques",
             "Jewellery",
             "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What costs and fees will you use the cash for?",
+      "includeIf": "${cashUse = 1}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "costsFees",
+          "label": "What costs or fees will you use the cash for?",
+          "choices": [
+            "Family costs",
+            "Medical costs",
+            "Education fees",
+            "Other"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What is the other cash use?",
+      "includeIf": "${cashUse = 2}",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "otherUse",
+          "label": "What is the other cash use?",
+          "choices": [
+            "Investment",
+            "Gambling",
+            "Ransome"
           ]
         }
       ]
