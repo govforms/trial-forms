@@ -28,14 +28,9 @@
       "title": "About you",
       "fields": [
         {
-          "id": "firstName",
+          "id": "customerName",
           "type": "text",
-          "label": "First name"
-        },
-        {
-          "id": "lastName",
-          "type": "text",
-          "label": "Last name"
+          "label": "Full name"
         },
         {
           "id": "dateOfBirth",
@@ -63,6 +58,23 @@
           "id": "occupation",
           "type": "text",
           "label": "Occupation"
+        },
+        {
+          "id": "email",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will only use this to send a confirmation that we have received your application. This will include your submission reference number, which you need to save.",
+          "format": "email",
+          "mandatory": "false"
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Submission reference",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
         }
       ]
     },
@@ -720,14 +732,15 @@
       ]
     },
     {
-      "title": "What did you buy?",
+      "title": "What will you buy?",
+      "includeIf": "${cashUse = 0}",
       "fields": [
         {
-          "type": "choice",
           "id": "whatBuy",
-          "label": "What did you buy?",
+          "type": "choice",
+          "label": "What will you buy?",
           "choices": [
-            "A major purchase",
+            "A big, one-off purchase",
             "Shopping or tourism",
             "Clothing",
             "Other purchase"
@@ -758,12 +771,12 @@
       ]
     },
     {
-      "title": "What costs and fees will you use the cash for?",
+      "title": "What costs or fees will you use the cash for?",
       "includeIf": "${cashUse = 1}",
       "fields": [
         {
-          "type": "choice",
           "id": "costsFees",
+          "type": "choice",
           "label": "What costs or fees will you use the cash for?",
           "choices": [
             "Family costs",
@@ -779,13 +792,13 @@
       "includeIf": "${cashUse = 2}",
       "fields": [
         {
-          "type": "choice",
           "id": "otherUse",
+          "type": "choice",
           "label": "What is the other cash use?",
           "choices": [
-            "Investment",
+            "An investment",
             "Gambling",
-            "Ransome"
+            "Paying a ransom"
           ]
         }
       ]
@@ -803,28 +816,6 @@
           "choices": [
             "I declare that all the details entered are correct and complete to the best of my knowledge and belief."
           ]
-        },
-        {
-          "id": "customerName",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "email",
-          "type": "text",
-          "label": "Email address",
-          "helpText": "We will only use this to send a confirmation that we have received your application. This will include your submission reference number, which you need to save.",
-          "format": "email",
-          "mandatory": "false"
-        },
-        {
-          "id": "formSubmissionRefHidden",
-          "type": "text",
-          "label": "Submission reference",
-          "value": "${form.submissionReference}",
-          "submitMode": "derived",
-          "mandatory": "false",
-          "presentationHint": "invisibleInSummary"
         }
       ]
     }
