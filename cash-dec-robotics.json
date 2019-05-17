@@ -127,13 +127,17 @@
       "includeIf": "${enterExit=0}",
       "fields": [
         {
+          "type": "choice",
           "id": "entryDate",
-          "type": "date",
           "label": "When are you entering the EU?",
           "shortName": "Date entering the EU",
-          "helpText": "You can only enter a date that is up to 3 days from now.",
-          "format": "after today -1, before today +4",
-          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
+          "helpText": "You can only use this form for entering the EU within the next 3 days.",
+          "choices": [
+            "Today",
+            "Tomorrow",
+            "2 days from now",
+            "3 days from now"
+          ]
         }
       ]
     },
@@ -143,13 +147,17 @@
       "includeIf": "${enterExit=1}",
       "fields": [
         {
+          "type": "choice",
           "id": "leaveDate",
-          "type": "date",
           "label": "When are you leaving the EU?",
           "shortName": "Date leaving the EU",
-          "helpText": "You can only enter a date that is up to 3 days from now.",
-          "format": "after today -1, before today +4",
-          "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
+          "helpText": "You can only use this form for leaving the EU within the next 3 days.",
+          "choices": [
+            "Today",
+            "Tomorrow",
+            "2 days from now",
+            "3 days from now"
+          ]
         }
       ]
     },
@@ -166,11 +174,13 @@
           "errorMessage": "Select how you are travelling into the EU",
           "choices": [
             "Air",
-            "Sea"
+            "Sea",
+            "Rail"
           ],
           "optionHelpText": [
             "",
-            "This is via ferry ports, for example"
+            "This is via ferry ports, for example",
+            ""
           ]
         }
       ]
@@ -187,11 +197,13 @@
           "errorMessage": "Select how you are travelling out of the EU",
           "choices": [
             "Air",
-            "Sea"
+            "Sea",
+            "Rail"
           ],
           "optionHelpText": [
             "",
-            "This is via ferry ports, for example"
+            "This is via ferry ports, for example",
+            ""
           ]
         }
       ]
