@@ -1,4 +1,5 @@
 {
+  "_id": "Alternative-Dispute-Resolution-Test",
   "formName": "Apply for Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -19,7 +20,7 @@
           "id": "appealConfirmation",
           "type": "choice",
           "label": "Did the HMRC decision give you a right to appeal?",
-          "helpText": "To apply you must have the right to appeal, and have made your appeal.",
+          "helpText": "To apply you must have the right to appeal, and have already made this appeal.",
           "choices": [
             "HMRC gave me a right to appeal",
             "HMRC did not give me a right to appeal"
@@ -63,7 +64,7 @@
           "id": "generatedId_164c2414_240f_42df_847b_3d0e50aec150",
           "type": "info",
           "label": "",
-          "infoText": "We will now ask you for more details about your dispute.\n\nIf your application for mediation is accepted, these details will help our mediators better understand your situation. \n\nThis will help them work together with you to share information and reach a resolution.",
+          "infoText": "We will now ask you for more details about your dispute.\n\nIf your application is accepted, these details will allow our mediators to better understand your situation. \n\nThis will help them work together with you to share information and reach a resolution.",
           "infoType": "noformat"
         }
       ]
@@ -97,14 +98,14 @@
       ]
     },
     {
-      "title": "You need to make an appeal and have this accepted before you can use this service",
+      "title": "You need to make an appeal before using this service",
       "includeIf": "${statReview = 1}",
       "fields": [
         {
           "id": "generatedId_9266375a_0584_43ab_aca3_64cac81909da",
           "type": "info",
           "label": "",
-          "infoText": "To appeal, go to https://www.gov.uk/tax-tribunal",
+          "infoText": "Once you have had an appeal accepted, you can use this service.\n\nTo appeal, go to https://www.gov.uk/tax-tribunal",
           "infoType": "noformat"
         }
       ]
@@ -213,8 +214,8 @@
       "includeIf": "${useraffinityGroup = 1 || disputeIndividualBusiness=1}",
       "fields": [
         {
-          "type": "text",
           "id": "utrRef",
+          "type": "text",
           "label": "What is the business's Unique Taxpayer Reference?",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax or Self Assessment. It may be called 'reference', 'UTR' or 'official use'."
         }
@@ -437,6 +438,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "Alternative-Dispute-Resolution-Test"
+  "submitSuccessUrl": "deprecated"
 }
