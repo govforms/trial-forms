@@ -13,24 +13,17 @@
   },
   "sections": [
     {
-      "title": "Confirm you can apply for Alternative Dispute Resolution",
+      "title": "Did the HMRC decision give you a right to appeal?",
       "fields": [
         {
-          "type": "choice",
           "id": "appealConfirmation",
-          "label": "Confirm you can apply for Alternative Dispute Resolution",
-          "helpText": "To apply for this service you must have had a tax decision appeal accepted by HMRC.",
+          "type": "choice",
+          "label": "Did the HMRC decision give you a right to appeal?",
+          "helpText": "To apply you must have the right to appeal, and have made your appeal.",
           "choices": [
-            "I have had an appeal accepted",
-            "I have not had an appeal accepted"
+            "HMRC gave me a right to appeal",
+            "HMRC did not give me a right to appeal"
           ]
-        },
-        {
-          "type": "info",
-          "id": "generatedId_8e855eb6_92ac_418b_ac31_f4ab03c821f2",
-          "label": "I have accepted a statutory review - can I apply for this service?",
-          "infoText": "You need to wait for the review to finish then appeal to the tribunal. This must be accepted before you can apply for Alternative Dispute Resolution.",
-          "infoType": "long"
         }
       ]
     },
@@ -42,7 +35,76 @@
           "id": "generatedId_dff28c5c_d645_4a0d_9d2f_eb3f3d3030f7",
           "type": "info",
           "label": "",
-          "infoText": "You need to appeal against the HMRC decision before you can use Alternative Dispute Resolution. \n\nTo appeal, go to https://www.gov.uk/tax-tribunal",
+          "infoText": "HMRC must have issued a right to appeal their decision for you to use Alternative Dispute Resolution.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Have you already made your appeal?",
+      "includeIf": "${appealConfirmation = 0}",
+      "fields": [
+        {
+          "id": "appealMade",
+          "type": "choice",
+          "label": "Have you already made your appeal?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You can apply for Alternative Dispute Resolution",
+      "includeIf": "${appealMade = 0}",
+      "fields": [
+        {
+          "id": "generatedId_164c2414_240f_42df_847b_3d0e50aec150",
+          "type": "info",
+          "label": "",
+          "infoText": "We will now ask you for more details about your dispute.\n\nIf your application for mediation is accepted, these details will help our mediators better understand your situation. \n\nThis will help them work together with you to share information and reach a resolution.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Have you been offered a statutory review and accepted this?",
+      "includeIf": "${appealMade = 1}",
+      "fields": [
+        {
+          "id": "statReview",
+          "type": "choice",
+          "label": "Have you been offered a statutory review and accepted this?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot apply for this service yet",
+      "includeIf": "${statReview = 0}",
+      "fields": [
+        {
+          "id": "generatedId_99f294f2_3916_4f70_be90_ba73b39f0cee",
+          "type": "info",
+          "label": "",
+          "infoText": "You need to wait for the review to finish then appeal to the tribunal. This appeal must be accepted before you can apply for Alternative Dispute Resolution.\n\nTo appeal, go to https://www.gov.uk/tax-tribunal",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "You need to make an appeal and have this accepted before you can use this service",
+      "includeIf": "${statReview = 1}",
+      "fields": [
+        {
+          "id": "generatedId_9266375a_0584_43ab_aca3_64cac81909da",
+          "type": "info",
+          "label": "",
+          "infoText": "To appeal, go to https://www.gov.uk/tax-tribunal",
           "infoType": "noformat"
         }
       ]
@@ -120,7 +182,7 @@
     },
     {
       "title": "Are you looking to resolve an individual tax or a business tax dispute?",
-      "includeIf": "${useraffinityGroup=2}",
+      "includeIf": "${useraffinityGroup = 2}",
       "fields": [
         {
           "id": "disputeIndividualBusiness",
@@ -134,70 +196,27 @@
       ]
     },
     {
-      "title": "Enter the individual's contact details",
-      "includeIf": "${disputeIndividualBusiness=0}",
+      "title": "What is your National Insurance number?",
+      "includeIf": "${useraffinityGroup = 0}",
       "fields": [
         {
+          "id": "ninoRef",
           "type": "text",
-          "id": "individualName",
-          "label": "Full name"
-        },
-        {
-          "id": "addressIndividual",
-          "type": "address",
-          "label": ""
-        },
-        {
-          "id": "individualPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
+          "label": "What is your National Insurance number?",
+          "helpText": "For example, QQ 12 34 56 C",
+          "format": "shortText"
         }
       ]
     },
     {
-      "title": "Enter your contact details",
-      "includeIf": "${useraffinityGroup=0}",
+      "title": "What is the business's Unique Taxpayer Reference?",
+      "includeIf": "${useraffinityGroup = 1 || disputeIndividualBusiness=1}",
       "fields": [
         {
-          "id": "addressIndividual_copy_1",
-          "type": "address",
-          "label": ""
-        },
-        {
-          "id": "yourPhone",
           "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        }
-      ]
-    },
-    {
-      "title": "Enter the business contact details",
-      "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
-      "fields": [
-        {
-          "id": "businessName",
-          "type": "text",
-          "label": "Business name"
-        },
-        {
-          "id": "businessPhone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
-        {
-          "id": "businessEMail",
-          "type": "text",
-          "label": "Email address"
-        },
-        {
-          "id": "userAddress",
-          "type": "address",
-          "label": "Address",
-          "international": "true",
-          "postcodeLookup": "no"
+          "id": "utrRef",
+          "label": "What is the business's Unique Taxpayer Reference?",
+          "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax or Self Assessment. It may be called 'reference', 'UTR' or 'official use'."
         }
       ]
     },
@@ -300,39 +319,14 @@
       ]
     },
     {
-      "title": "What is the taxpayer's National Insurance number?",
-      "includeIf": "${taxType = 0 || taxType = 1 || taxType = 2 || taxType = 3 || taxType = 4}",
+      "title": "How much tax or penalty are you disputing?",
       "fields": [
         {
-          "id": "utrRef",
+          "id": "taxPenaltyAmount",
           "type": "text",
-          "label": "What is the taxpayer's National Insurance number?",
-          "helpText": "For example, QQ 12 34 56 C",
-          "format": "shortText"
-        }
-      ]
-    },
-    {
-      "title": "What is the business's Corporation Tax number?",
-      "includeIf": "${taxType2 = 0 || taxType2 = 2 || taxType2 = 4 || taxType2 = 5}",
-      "fields": [
-        {
-          "id": "ctrRef",
-          "type": "text",
-          "label": "What is the business's Corporation Tax number?",
-          "helpText": "This may be called Unique Taxpayer Reference, 'official use' or 'reference'. It will be on tax returns and other letters about Corporation Tax. It is 10 numbers, for example: 12345 67890."
-        }
-      ]
-    },
-    {
-      "title": "What is the business's VAT registration number?",
-      "includeIf": "${taxType2 = 1 || taxType2 = 3}",
-      "fields": [
-        {
-          "id": "vatRef",
-          "type": "text",
-          "label": "What is the business's VAT registration number?",
-          "helpText": "For example, 123456789"
+          "label": "How much tax or penalty are you disputing?",
+          "helpText": "Enter the amount in GBP ",
+          "format": "sterling"
         }
       ]
     },
@@ -345,18 +339,6 @@
           "label": "Why do you disagree with HMRC's decision?",
           "helpText": "Give details on the background to the dispute",
           "multiline": "true"
-        }
-      ]
-    },
-    {
-      "title": "How much tax or penalty are you disputing?",
-      "fields": [
-        {
-          "id": "taxPenaltyAmount",
-          "type": "text",
-          "label": "How much tax or penalty are you disputing?",
-          "helpText": "Enter the amount in GBP ",
-          "format": "sterling"
         }
       ]
     },
