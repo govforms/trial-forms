@@ -92,7 +92,7 @@
           "id": "generatedId_99f294f2_3916_4f70_be90_ba73b39f0cee",
           "type": "info",
           "label": "",
-          "infoText": "You need to wait for the review to finish then appeal to the tribunal. This appeal must be accepted before you can apply for Alternative Dispute Resolution.\n\nTo appeal, go to https://www.gov.uk/tax-tribunal",
+          "infoText": "You need to wait for the review to finish then appeal to the tribunal. This appeal must be accepted before you can apply for Alternative Dispute Resolution.\n\n[Find out how to appeal to the tax tribunal](https://www.gov.uk/tax-tribunal).",
           "infoType": "noformat"
         }
       ]
@@ -105,7 +105,7 @@
           "id": "generatedId_9266375a_0584_43ab_aca3_64cac81909da",
           "type": "info",
           "label": "",
-          "infoText": "Once you have had an appeal accepted, you can use this service.\n\nTo appeal, go to https://www.gov.uk/tax-tribunal",
+          "infoText": "Once you have had an appeal accepted, you can use this service.\n\n[Find out how to appeal to the tax tribunal](https://www.gov.uk/tax-tribunal).",
           "infoType": "noformat"
         }
       ]
@@ -259,19 +259,20 @@
       ]
     },
     {
-      "title": "Enter your reference for this client",
+      "title": "Enter your own reference for this client",
+      "includeIf": "${useraffinityGroup=2}",
       "fields": [
         {
           "id": "clientreferencenumber",
           "type": "text",
-          "label": "Enter your reference for this client",
+          "label": "Enter your own reference for this client",
           "helpText": "This should be specific to each client and cannot include the clients' name or other personal information."
         },
         {
           "id": "textFieldInfoFormat6",
           "type": "info",
           "label": "",
-          "infoText": "HMRC will include your client's reference in the response to you. For data security reasons this response will not include the client's name or any other personal information.",
+          "infoText": "HMRC will include your client's reference in the response to you.",
           "infoType": "standard"
         }
       ]
@@ -288,11 +289,9 @@
           "errorMessage": "Select the type of tax in dispute",
           "choices": [
             "Income Tax",
-            "Stamp Duty Land Tax",
-            "Capital Gains",
-            "Inheritance Tax",
+            "VAT",
             "Penalty",
-            "I don't know/Other"
+            "Other"
           ]
         }
       ]
