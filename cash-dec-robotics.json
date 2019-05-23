@@ -136,7 +136,8 @@
             "Today",
             "Tomorrow",
             "2 days from now",
-            "3 days from now"
+            "3 days from now",
+            "More than 3 days from now"
           ]
         }
       ]
@@ -156,8 +157,22 @@
             "Today",
             "Tomorrow",
             "2 days from now",
-            "3 days from now"
+            "3 days from now",
+            "More than 3 days from now"
           ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot use Cash Declaration yet",
+      "includeIf": "${entryDate = 4 || leaveDate = 4}",
+      "fields": [
+        {
+          "type": "info",
+          "id": "generatedId_fe332f94_31f5_485b_86c8_1ebd03f840cf",
+          "label": "",
+          "infoText": "Use this form to declare your cash up to 3 days before travelling.\n\n[Return to GOVUK](https://www.gov.uk/).",
+          "infoType": "noformat"
         }
       ]
     },
@@ -263,14 +278,14 @@
       ]
     },
     {
-      "title": "How many other airports, ports or stations will you travel via?",
+      "title": "How many other airports or ports will you travel via?",
       "shortName": "How many airports, ports or stations",
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
           "id": "howManyIntermediateAirports",
           "type": "text",
-          "label": "How many other airports, ports or stations will you travel via?",
+          "label": "How many other airports or ports will you travel via?",
           "shortName": "Number of other airports, ports or stations changing at",
           "helpText": "For example, if you are flying into the EU from Australia and change in Singapore, enter 1.",
           "format": "positiveWholeNumber",
@@ -313,7 +328,7 @@
         {
           "id": "declarationPlaceName",
           "type": "text",
-          "label": "Name of airport, port, or station",
+          "label": "Name of airport or port",
           "helpText": "For example, London Heathrow"
         }
       ]
