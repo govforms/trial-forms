@@ -1,5 +1,4 @@
 {
-  "_id": "Alternative-Dispute-Resolution-Test",
   "formName": "Apply for Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -14,30 +13,17 @@
   },
   "sections": [
     {
-      "title": "Did the HMRC decision give you a right to appeal?",
+      "title": "Did HMRC issue a decision giving you a right to appeal?",
       "fields": [
         {
           "id": "appealConfirmation",
           "type": "choice",
-          "label": "Did the HMRC decision give you a right to appeal?",
+          "label": "Did HMRC issue a decision giving you a right to appeal?",
           "helpText": "To apply you must have the right to appeal, and have already made this appeal.",
           "choices": [
             "Yes",
             "No"
           ]
-        }
-      ]
-    },
-    {
-      "title": "You cannot apply for this service",
-      "includeIf": "${appealConfirmation = 1}",
-      "fields": [
-        {
-          "id": "generatedId_dff28c5c_d645_4a0d_9d2f_eb3f3d3030f7",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC must have issued a right to appeal their decision for you to use Alternative Dispute Resolution.",
-          "infoType": "noformat"
         }
       ]
     },
@@ -58,7 +44,7 @@
     },
     {
       "title": "You can now apply for Alternative Dispute Resolution",
-      "includeIf": "${appealMade = 0}",
+      "includeIf": "${appealMade = 0 || appealConfirmation = 1}",
       "fields": [
         {
           "id": "generatedId_164c2414_240f_42df_847b_3d0e50aec150",
@@ -145,22 +131,21 @@
       ]
     },
     {
-      "title": "Do you agree to let us contact you by email about this application?",
+      "title": "Do you want HMRC to contact you by email?",
       "fields": [
         {
           "id": "emCons1",
           "type": "choice",
-          "label": "Do you agree to let us contact you by email about this application?",
+          "label": "Do you want HMRC to contact you by email?",
           "shortName": "Confirm email consent",
-          "helpText": "Because email is not 100% secure, HMRC always reduces the risk to your data. We never show your personal details in full and we only use confirmed email addresses.",
-          "errorMessage": "Select whether you consent to being contacted using your email address",
+          "errorMessage": "Select whether you want to be contacted using your email address",
           "choices": [
             "Yes",
             "No"
           ],
           "optionHelpText": [
             "",
-            "We will use telephone or post if we need to contact you about your application."
+            "We will use the telephone if we need to contact you about your application."
           ]
         }
       ]
@@ -197,15 +182,77 @@
       ]
     },
     {
-      "title": "What is your National Insurance number?",
-      "includeIf": "${useraffinityGroup = 0}",
+      "title": "Enter your address",
+      "includeIf": "${useraffinityGroup=0}",
       "fields": [
         {
-          "id": "ninoRef",
+          "id": "addressIndividual_copy_1",
+          "type": "address",
+          "label": "Enter your address"
+        }
+      ]
+    },
+    {
+      "title": "Enter the individual's contact details",
+      "includeIf": "${disputeIndividualBusiness=0}",
+      "fields": [
+        {
           "type": "text",
-          "label": "What is your National Insurance number?",
-          "helpText": "For example, QQ 12 34 56 C",
-          "format": "shortText"
+          "id": "individualName",
+          "label": "Full name"
+        },
+        {
+          "id": "addressIndividual",
+          "type": "address",
+          "label": ""
+        }
+      ]
+    },
+    {
+      "title": "Enter the business contact details",
+      "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
+      "fields": [
+        {
+          "id": "businessName",
+          "type": "text",
+          "label": "Business name"
+        },
+        {
+          "id": "businessPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "businessEMail",
+          "type": "text",
+          "label": "Email address"
+        },
+        {
+          "id": "userAddress",
+          "type": "address",
+          "label": "Address",
+          "international": "true",
+          "postcodeLookup": "no"
+        }
+      ]
+    },
+    {
+      "title": "Select one HMRC reference you can provide to help with your application",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "hmrcRef",
+          "label": "Select one HMRC reference you can provide to help with your application",
+          "choices": [
+            "Caseflow reference",
+            "Unique Taxpayer Reference",
+            "VAT reference",
+            "PAYE reference",
+            "TC reference",
+            "SOLS review reference",
+            "None of these"
+          ]
         }
       ]
     },
@@ -244,12 +291,6 @@
           "helpText": "Enter the full working address and postcode of your office or main place of work.",
           "international": "true",
           "postcodeLookup": "no"
-        },
-        {
-          "id": "agentPhone",
-          "type": "text",
-          "label": "Phone number",
-          "format": "telephoneNumber"
         }
       ]
     },
@@ -273,13 +314,13 @@
       ]
     },
     {
-      "title": "What type of tax are you disputing?",
+      "title": "What type of decision are you disputing?",
       "includeIf": "${useraffinityGroup=0 || disputeIndividualBusiness=0}",
       "fields": [
         {
           "id": "taxType",
           "type": "choice",
-          "label": "What type of tax are you disputing?",
+          "label": "What type of decision are you disputing?",
           "shortName": "Type of tax in dispute",
           "errorMessage": "Select the type of tax in dispute",
           "choices": [
@@ -292,13 +333,13 @@
       ]
     },
     {
-      "title": "What type of tax are you disputing?",
+      "title": "What type of decision are you disputing?",
       "includeIf": "${useraffinityGroup=1 || disputeIndividualBusiness=1}",
       "fields": [
         {
           "id": "taxType2",
           "type": "choice",
-          "label": "What type of tax are you disputing?",
+          "label": "What type of decision are you disputing?",
           "shortName": "Type of tax in dispute",
           "errorMessage": "Select the type of tax in dispute",
           "choices": [
@@ -314,7 +355,22 @@
       ]
     },
     {
+      "title": "Do you know how much tax or penalty you are disputing?",
+      "fields": [
+        {
+          "id": "taxValue",
+          "type": "choice",
+          "label": "Do you know how much tax or penalty you are disputing?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
       "title": "How much tax or penalty are you disputing?",
+      "includeIf": "${taxValue = 0}",
       "fields": [
         {
           "id": "taxPenaltyAmount",
@@ -322,6 +378,49 @@
           "label": "How much tax or penalty are you disputing?",
           "helpText": "Enter the amount in GBP ",
           "format": "sterling"
+        }
+      ]
+    },
+    {
+      "title": "Do you know your HMRC caseworker details?",
+      "fields": [
+        {
+          "id": "haveCaseworker",
+          "type": "choice",
+          "label": "Do you know your HMRC caseworker details?",
+          "helpText": "Find these on correspondence about your dispute.",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter the HMRC caseworker details",
+      "includeIf": "${haveCaseworker = 0}",
+      "fields": [
+        {
+          "id": "HMRCcaseworkername",
+          "type": "text",
+          "label": "HMRC caseworker name"
+        },
+        {
+          "id": "caseworkeroffice",
+          "type": "text",
+          "label": "Caseworker's office"
+        },
+        {
+          "id": "Caseworkerphone",
+          "type": "text",
+          "label": "Caseworker's telephone number",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "YearPeriod",
+          "type": "text",
+          "label": "Year or period involved in the dispute",
+          "helpText": "For example, tax year 2017-2018"
         }
       ]
     },
@@ -432,5 +531,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "Alternative-Dispute-Resolution-Test"
 }
