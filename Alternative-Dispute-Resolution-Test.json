@@ -1,4 +1,5 @@
 {
+  "_id": "Alternative-Dispute-Resolution-Test",
   "formName": "Apply for Alternative Dispute Resolution",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
@@ -19,7 +20,6 @@
           "id": "appealConfirmation",
           "type": "choice",
           "label": "Did HMRC issue a decision giving you a right to appeal?",
-          "helpText": "To apply you must have the right to appeal, and have already made this appeal.",
           "choices": [
             "Yes",
             "No"
@@ -197,8 +197,8 @@
       "includeIf": "${disputeIndividualBusiness=0}",
       "fields": [
         {
-          "type": "text",
           "id": "individualName",
+          "type": "text",
           "label": "Full name"
         },
         {
@@ -241,16 +241,17 @@
       "title": "Select an HMRC reference you can provide",
       "fields": [
         {
-          "type": "choice",
           "id": "hmrcRef",
+          "type": "choice",
           "label": "Select an HMRC reference you can provide",
+          "helpText": "This helps us find your case details.",
           "choices": [
             "Caseflow reference",
             "Unique Taxpayer Reference",
             "VAT reference",
             "PAYE reference",
             "TC reference",
-            "SOLS review reference",
+            "Other reference",
             "None of these"
           ]
         }
@@ -531,6 +532,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "Alternative-Dispute-Resolution-Test"
+  "submitSuccessUrl": "deprecated"
 }
