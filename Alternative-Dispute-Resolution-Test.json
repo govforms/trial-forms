@@ -247,25 +247,60 @@
           "helpText": "This helps us find your case details.",
           "choices": [
             "Caseflow reference",
-            "Unique Taxpayer Reference",
             "VAT reference",
+            "Unique Taxpayer Reference",
             "PAYE reference",
-            "TC reference",
-            "Other reference",
+            "Tribunal Case reference",
             "None of these"
           ]
         }
       ]
     },
     {
+      "title": "Enter your Caseflow reference",
+      "includeIf": "${hmrcRef = 0}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "caseflowRef",
+          "label": "Enter your Caseflow reference",
+          "helpText": "This is a mix of letters and numbers, for example CFS-123456 or CFSS-1234567."
+        }
+      ]
+    },
+    {
+      "title": "Enter your VAT Registration Number",
+      "includeIf": "${hmrcRef = 1}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "vatRef",
+          "label": "Enter your VAT Registration Number",
+          "helpText": "Your VAT Registration Number is a 9 digit number supplied when you registered for VAT. For example, 123456789. Please enter the reference with no spaces. You can find it on any correspondence from HM Revenue & Customs relating to your VAT or your VAT certificate."
+        }
+      ]
+    },
+    {
       "title": "Enter your Unique Taxpayer Reference",
-      "includeIf": "${useraffinityGroup = 1 || disputeIndividualBusiness=1}",
+      "includeIf": "${hmrcRef = 1}",
       "fields": [
         {
           "id": "utrRef",
           "type": "text",
           "label": "Enter your Unique Taxpayer Reference",
           "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax or Self Assessment. It may be called 'reference', 'UTR' or 'official use'."
+        }
+      ]
+    },
+    {
+      "title": "Enter your Tribunal Case reference",
+      "includeIf": "${hmrcRef = 4}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "tcRef",
+          "label": "Enter your Tribunal Case reference",
+          "helpText": "This is in the format: TC/year/number."
         }
       ]
     },
