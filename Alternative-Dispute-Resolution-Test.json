@@ -131,12 +131,12 @@
       ]
     },
     {
-      "title": "Do you want HMRC to contact you by email?",
+      "title": "Do you want HMRC to contact you by email instead of by letter?",
       "fields": [
         {
           "id": "emCons1",
           "type": "choice",
-          "label": "Do you want HMRC to contact you by email?",
+          "label": "Do you want HMRC to contact you by email instead of by letter?",
           "shortName": "Confirm email consent",
           "errorMessage": "Select whether you want to be contacted using your email address",
           "choices": [
@@ -145,10 +145,20 @@
           ],
           "optionHelpText": [
             "",
-            "We will use the telephone if we need to contact you about your application."
+            "We will use letter or telephone if we need to contact you about your application."
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "We don't believe this is necessary, as per the lawful basis for processing of data for 'public tasks' or 'legitimate interests'.",
+            "colour": "#fffacd",
+            "date": 1559121317094,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Why are you applying to resolve a tax dispute with HMRC?",
@@ -205,6 +215,17 @@
           "id": "addressIndividual",
           "type": "address",
           "label": ""
+        },
+        {
+          "type": "text",
+          "id": "emailIndividual",
+          "label": "Email address",
+          "helpText": "We will only use this to contact your client about this resolution process."
+        },
+        {
+          "type": "text",
+          "id": "telIndividual",
+          "label": "Telephone number"
         }
       ]
     },
@@ -218,15 +239,16 @@
           "label": "Business name"
         },
         {
+          "id": "businessEMail",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will only use this to contact your client about this resolution process."
+        },
+        {
           "id": "businessPhone",
           "type": "text",
           "label": "Telephone number",
           "format": "telephoneNumber"
-        },
-        {
-          "id": "businessEMail",
-          "type": "text",
-          "label": "Email address"
         },
         {
           "id": "userAddress",
@@ -261,10 +283,10 @@
       "includeIf": "${hmrcRef = 0}",
       "fields": [
         {
-          "type": "text",
           "id": "caseflowRef",
+          "type": "text",
           "label": "Enter your Caseflow reference",
-          "helpText": "This is a mix of letters and numbers, for example CFS-123456 or CFSS-1234567."
+          "helpText": "This is a combination of letters and numbers, for example CFS-123456 or CFSS-1234567. You will find it on all correspondence about your case."
         }
       ]
     },
@@ -273,8 +295,8 @@
       "includeIf": "${hmrcRef = 1}",
       "fields": [
         {
-          "type": "text",
           "id": "vatRef",
+          "type": "text",
           "label": "Enter your VAT Registration Number",
           "helpText": "Your VAT Registration Number is a 9 digit number supplied when you registered for VAT. For example, 123456789. Please enter the reference with no spaces. You can find it on any correspondence from HM Revenue & Customs relating to your VAT or your VAT certificate."
         }
@@ -282,7 +304,7 @@
     },
     {
       "title": "Enter your Unique Taxpayer Reference",
-      "includeIf": "${hmrcRef = 1}",
+      "includeIf": "${hmrcRef = 2}",
       "fields": [
         {
           "id": "utrRef",
@@ -293,12 +315,33 @@
       ]
     },
     {
+      "title": "Enter your PAYE reference",
+      "includeIf": "${hmrcRef = 3}",
+      "fields": [
+        {
+          "type": "text",
+          "id": "payeRef",
+          "label": "Enter your PAYE reference"
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Need help text etc. on this one",
+            "colour": "#fffacd",
+            "date": 1559117342939,
+            "author": "None"
+          }
+        ]
+      }
+    },
+    {
       "title": "Enter your Tribunal Case reference",
       "includeIf": "${hmrcRef = 4}",
       "fields": [
         {
-          "type": "text",
           "id": "tcRef",
+          "type": "text",
           "label": "Enter your Tribunal Case reference",
           "helpText": "This is in the format: TC/year/number."
         }
@@ -321,9 +364,21 @@
           "helpText": "Enter the name of the agent who is working on this case."
         },
         {
+          "type": "text",
+          "id": "agentEmail",
+          "label": "Agent email address",
+          "helpText": "Enter the email address of the agent who is working on this case. "
+        },
+        {
+          "type": "text",
+          "id": "agentTel",
+          "label": "Agent telephone number",
+          "helpText": "Enter the telephone number of the agent who is working on this case. "
+        },
+        {
           "id": "Agentaddresss",
           "type": "address",
-          "label": "Agent's address",
+          "label": "Agent address",
           "helpText": "Enter the full working address and postcode of your office or main place of work.",
           "international": "true",
           "postcodeLookup": "no"
@@ -388,7 +443,17 @@
             "I don't know/Other"
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Can we slim down these options?",
+            "colour": "#fffacd",
+            "date": 1559118144964,
+            "author": "None"
+          }
+        ]
+      }
     },
     {
       "title": "Do you know how much tax or penalty you are disputing?",
