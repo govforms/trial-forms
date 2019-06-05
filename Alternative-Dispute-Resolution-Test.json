@@ -169,31 +169,33 @@
       ]
     },
     {
-      "title": "Why are you applying to resolve a tax dispute with HMRC?",
+      "title": "Why are you applying to resolve a dispute with HMRC?",
       "fields": [
         {
           "id": "useraffinityGroup",
-          "type": "choice",
-          "label": "Why are you applying to resolve a tax dispute with HMRC?",
-          "shortName": "Why applying to resolve dispute ",
-          "errorMessage": "Select what capacity you are applying for this service.",
+          "type": "revealingChoice",
+          "label": "Why are you applying to resolve a dispute with HMRC?",
+          "shortName": "Why applying",
           "choices": [
             "I'm an individual, and I want to resolve personal tax issues",
             "I'm part of an organisation, and I want to resolve business tax issues",
             "I'm an agent, acting on behalf of an organisation or an individual",
             "I'm helping a friend or relative resolve personal tax issues"
+          ],
+          "revealingFields": [
+            [],
+            [],
+            [],
+            [
+              {
+                "id": "helpName",
+                "type": "text",
+                "label": "Full name of taxpayer you are helping",
+                "shortName": "Full name of taxpayer",
+                "format": "shortText"
+              }
+            ]
           ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the name of the taxpayer you are helping apply for this service",
-      "includeIf": "${useraffinityGroup = 3}",
-      "fields": [
-        {
-          "id": "helpingName",
-          "type": "text",
-          "label": "Full name"
         }
       ]
     },
@@ -294,10 +296,11 @@
     },
     {
       "title": "Select an HMRC reference you can provide for this case",
+      "shortName": "Select an HMRC reference to provide for this case",
       "fields": [
         {
           "id": "hmrcRef",
-          "type": "choice",
+          "type": "revealingChoice",
           "label": "Select an HMRC reference you can provide for this case",
           "shortName": "HMRC reference",
           "helpText": "This helps us find your case details.",
@@ -307,14 +310,22 @@
             "VAT reference",
             "Unique Taxpayer Reference",
             "Employer PAYE reference",
-            "None of these - OTHER BOX?"
+            "Other reference",
+            "I don't have a reference"
           ],
-          "optionHelpText": [
-            "This is called 'HMRC ref' or 'Your ref' on correspondence about this dispute.",
-            "",
-            "",
-            "",
-            ""
+          "revealingFields": [
+            [],
+            [],
+            [],
+            [],
+            [
+              {
+                "id": "otherRef",
+                "type": "text",
+                "label": "Other HMRC reference"
+              }
+            ],
+            []
           ]
         }
       ]
@@ -430,11 +441,11 @@
     },
     {
       "title": "What type of decision are you disputing?",
-      "includeIf": "${useraffinityGroup=0 || disputeIndividualBusiness=0}",
+      "includeIf": "${useraffinityGroup = 0 || useraffinityGroup= 3 || disputeIndividualBusiness = 0}",
       "fields": [
         {
           "id": "taxType",
-          "type": "choice",
+          "type": "revealingChoice",
           "label": "What type of decision are you disputing?",
           "shortName": "Type of tax in dispute",
           "errorMessage": "Select the type of tax in dispute",
@@ -442,7 +453,21 @@
             "Income Tax",
             "VAT",
             "Penalty",
-            "I don't know/Other - TEXT BOX REVEAL"
+            "Other tax",
+            "I don't know"
+          ],
+          "revealingFields": [
+            [],
+            [],
+            [],
+            [
+              {
+                "id": "otherTax",
+                "type": "text",
+                "label": "Other tax type"
+              }
+            ],
+            []
           ]
         }
       ]
@@ -453,7 +478,7 @@
       "fields": [
         {
           "id": "taxType2",
-          "type": "choice",
+          "type": "revealingChoice",
           "label": "What type of decision are you disputing?",
           "shortName": "Type of tax in dispute",
           "errorMessage": "Select the type of tax in dispute",
@@ -462,7 +487,22 @@
             "VAT",
             "PAYE",
             "Penalty",
-            "I don't know/Other - TEXT BOX REVEAL"
+            "Other tax",
+            "I don't know"
+          ],
+          "revealingFields": [
+            [],
+            [],
+            [],
+            [],
+            [
+              {
+                "id": "otherTax2",
+                "type": "text",
+                "label": "Other tax type"
+              }
+            ],
+            []
           ]
         }
       ]
@@ -472,28 +512,26 @@
       "fields": [
         {
           "id": "taxValue",
-          "type": "choice",
+          "type": "revealingChoice",
           "label": "Do you know how much tax or penalty you are disputing?",
-          "shortName": "Know tax or penalty value",
+          "shortName": "Tax or penalty value known",
           "errorMessage": "Select whether you know the value of tax or penalty",
           "choices": [
             "Yes",
             "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "valueGBP",
+                "type": "text",
+                "label": "Value of tax or penalty",
+                "shortName": "Dispute value",
+                "format": "sterling"
+              }
+            ],
+            []
           ]
-        }
-      ]
-    },
-    {
-      "title": "How much tax or penalty are you disputing?",
-      "includeIf": "${taxValue = 0}",
-      "fields": [
-        {
-          "id": "taxPenaltyAmount",
-          "type": "text",
-          "label": "How much tax or penalty are you disputing?",
-          "shortName": "Dispute value",
-          "helpText": "Enter the amount in GBP.",
-          "format": "sterling"
         }
       ]
     },
@@ -502,38 +540,44 @@
       "fields": [
         {
           "id": "haveCaseworker",
-          "type": "choice",
+          "type": "revealingChoice",
           "label": "Do you know your HMRC caseworker details?",
-          "shortName": "Know caseworker details",
+          "shortName": "Caseworker details known",
           "helpText": "Find these on correspondence about your dispute.",
           "errorMessage": "Select whether you know the HMRC caseworker details",
           "choices": [
             "Yes",
             "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "generatedId_9ba33cc7_cf65_4a32_8a20_6d0f5b193a1f",
+                "type": "info",
+                "label": "caseworkerDetails",
+                "infoText": "Caseworker details",
+                "infoType": "noformat"
+              },
+              {
+                "id": "HMRCcaseworkername",
+                "type": "text",
+                "label": "HMRC caseworker name",
+                "format": "shortText"
+              },
+              {
+                "id": "caseworkeroffice",
+                "type": "text",
+                "label": "Caseworker's office"
+              },
+              {
+                "id": "Caseworkerphone",
+                "type": "text",
+                "label": "Caseworker's telephone number",
+                "format": "telephoneNumber"
+              }
+            ],
+            []
           ]
-        }
-      ]
-    },
-    {
-      "title": "Enter the HMRC caseworker details",
-      "includeIf": "${haveCaseworker = 0}",
-      "fields": [
-        {
-          "id": "HMRCcaseworkername",
-          "type": "text",
-          "label": "HMRC caseworker name",
-          "format": "shortText"
-        },
-        {
-          "id": "caseworkeroffice",
-          "type": "text",
-          "label": "Caseworker's office"
-        },
-        {
-          "id": "Caseworkerphone",
-          "type": "text",
-          "label": "Caseworker's telephone number",
-          "format": "telephoneNumber"
         }
       ]
     },
