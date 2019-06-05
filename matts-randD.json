@@ -1,6 +1,6 @@
 {
+  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme",
   "formName": "Send details to support an R&D tax relief claim for an SME",
-  "draftRetrievalMethod": "formAccessCodeForAgents",
   "description": "",
   "formCategory": "hmrcClaimForm",
   "developmentPhase": "beta",
@@ -267,7 +267,6 @@
     },
     {
       "title": "How many projects are you providing details for in your claim?",
-      "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
       "fields": [
         {
           "id": "generatedId_44454d88_029f_4442_b4e7_8f1131c584ff",
@@ -289,7 +288,6 @@
     },
     {
       "title": "Project $n",
-      "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
       "description": "Tell us about the project you want to claim for.",
       "repeatsMin": "${projTot}",
       "repeatsMax": "${projTot}",
@@ -373,115 +371,7 @@
       ]
     },
     {
-      "title": "How many projects are you providing details for in your claim?",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "fields": [
-        {
-          "id": "infoProject",
-          "type": "info",
-          "label": "",
-          "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
-          "infoType": "noformat"
-        },
-        {
-          "id": "projTotAgent",
-          "type": "text",
-          "label": "Number of projects",
-          "format": "number(2,0)",
-          "displayWidth": "xs",
-          "validIf": "${projTotAgent>=1 && projTotAgent<=10}",
-          "errorMessage": "You must enter a number between 1 and 10"
-        }
-      ]
-    },
-    {
-      "title": "Project $n",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "description": "Tell us about the projects you claimed for in your Corporation Tax return.",
-      "repeatsMin": "${projTotAgent}",
-      "repeatsMax": "${projTotAgent}",
-      "fields": [
-        {
-          "id": "generatedId_c2fe19e5_3f43_4c7d_b1f3_79cb898ae3fb",
-          "type": "info",
-          "label": "Maximum",
-          "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
-          "infoType": "noformat"
-        },
-        {
-          "id": "projectName1",
-          "type": "text",
-          "label": "Project name"
-        },
-        {
-          "id": "science",
-          "type": "text",
-          "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
-          "shortName": "Scientific or technical knowledge at the start",
-          "helpText": "Enter up to 3000 characters",
-          "format": "text(0, 3000)",
-          "multiline": "yes"
-        },
-        {
-          "id": "advanceScience",
-          "type": "text",
-          "label": "What advance in that knowledge did you aim to achieve?",
-          "shortName": "Advanced knowledge",
-          "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3000 characters",
-          "format": "text(0, 3000)",
-          "multiline": "yes"
-        },
-        {
-          "id": "ad",
-          "type": "info",
-          "label": "What is an advance in knowledge or capability?",
-          "infoText": "An advance in knowledge or capability in science or technology may have physical consequences or may be an increase in overall knowledge, but in either case, a competent professional working in that field would recognise it as a significant improvement.\n\nThe improvements may include:\n- creating a process, material, device, product or service that increases the knowledge or capability \n- a visible improvement to an existing process, material, device, product or service like cost savings or less waste\n- using science or technology to copy the effect of a current process, material, device, product or service in a new or improved way",
-          "infoType": "long"
-        },
-        {
-          "id": "UncertaintiesFaced",
-          "type": "text",
-          "label": "What scientific or technological uncertainties did you face?",
-          "shortName": "Uncertainties faced",
-          "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3000 characters",
-          "format": "text(0, 3000)",
-          "multiline": "yes"
-        },
-        {
-          "id": "WhatUncertainties",
-          "type": "info",
-          "label": "What types of uncertainties should I outline?  ",
-          "infoText": "Uncertainties may be when you either:\n\n- do not know if it is possible to create or improve the product or process\n- know the product or process can be created from your research but it's too costly \n\nFor example, you tried to build a medical diagnostic tool combining non-invasive testing technology, artificial intelligence (AI) and portability, but you're not sure about the method of updating the AI with the latest medical knowledge.",
-          "infoType": "long"
-        },
-        {
-          "id": "WorkUncertainties",
-          "type": "text",
-          "label": "How did your project overcome these uncertainties?",
-          "shortName": "Work to overcome uncertainties",
-          "helpText": "Outline the R&D activities you did to try to resolve the uncertainties. Enter up to 3000 characters",
-          "format": "text(0, 3000)",
-          "multiline": "true"
-        },
-        {
-          "id": "authorisedText",
-          "type": "info",
-          "label": "What types of activities should I include?",
-          "infoText": "You should tell us more about the direct R&D activities that\ntry to resolve the scientific or technological uncertainties, and some on qualifying indirect activities.\n\n\nDirect activities may include:\n\n- creating or adapting software, materials or equipment needed to resolve the uncertainty\n- planning activities such as a detailed plan of how you will carry out the project\n- designing, testing and analysis to resolve the scientific or technological uncertainty\n\nIndirect activities may include:\n\n- promoting a new or improved process, material, device, product or service\n- work to create non-scientific or non-technological features of a new or improved process, material, device, product or service\n- producing and distributing goods and services\n- general support services such as transportation, storage, cleaning, repair, maintenance and security\n\nQualifying indirect activities form part of the project, but do not directly lead to resolving the uncertainty.\n\nThey include:\n\n- creating information services for R&D support such as preparing a report of R&D findings\n- ancillary activities needed to begin R&D, for example, taking on and paying staff, leasing laboratories and maintaining research and development equipment including computers used for R&D purposes)\n- training required to support the R&D project\n- research by students and researchers carried out at universities\n- research including data collection to make new scientific or technological testing, survey, or sampling methods, where this research is not R&D in its own right\n- feasibility studies to inform the strategic direction of a specific R&D activity",
-          "infoType": "long"
-        },
-        {
-          "id": "qe1",
-          "type": "text",
-          "label": "Total qualifying project costs before any enhancements",
-          "shortName": "Total qualifying costs",
-          "format": "sterling"
-        }
-      ]
-    },
-    {
       "title": "Research and Development (R&D) tax relief",
-      "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
       "shortName": "R&D tax relief",
       "fields": [
         {
@@ -491,9 +381,9 @@
           "helpText": "This is based on the amount you entered on a previous page",
           "format": "sterling",
           "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
-          "validIf": "${qualCostsAlt <= totalQualifyingExpenditure && qualCostsAlt >= totalQualifyingExpenditure * 0.5}",
           "submitMode": "readonly",
-          "presentationHint": "totalValue"
+          "presentationHint": "totalValue",
+          "validIf": "${qualCostsAlt <= totalQualifyingExpenditure && qualCostsAlt >= totalQualifyingExpenditure * 0.5}"
         },
         {
           "id": "qualCostsAlt",
@@ -501,9 +391,9 @@
           "label": "Qualifying RDEC costs for projects you have given details for:",
           "shortName": "Qualifying costs for all projects you have given details for",
           "format": "sterling",
-          "presentationHint": "totalValue",
+          "value": "${qe1Individual.sum}",
           "submitMode": "readOnly",
-          "value": "${qe1Individual.sum}"
+          "presentationHint": "totalValue"
         },
         {
           "id": "generatedId_aceaf0f2_7597_499b_a7a6_5c415d94f312",
@@ -514,51 +404,6 @@
         },
         {
           "id": "totalQualifyingExpenditureCalc",
-          "type": "text",
-          "label": "Claimable tax relief ",
-          "helpText": "This figure should match the R&D enhanced expenditure on your Corporation Tax (CT600) return.",
-          "format": "sterling",
-          "value": "${totalQualifyingExpenditure * 1.3}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        }
-      ]
-    },
-    {
-      "title": "Research and Development (R&D) tax relief",
-      "includeIf": "${user.affinityGroup = 'agent'}",
-      "shortName": "R&D tax relief",
-      "fields": [
-        {
-          "id": "totalQualifyingExpenditureAgent",
-          "type": "text",
-          "label": "Qualifying costs for all projects",
-          "helpText": "This is based on the amount you entered on a previous page",
-          "format": "sterling",
-          "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
-          "validIf": "${qualCostsAltAgent <= totalQualifyingExpenditureAgent && qualCostsAltAgent >= totalQualifyingExpenditureAgent * 0.5}",
-          "submitMode": "readonly",
-          "presentationHint": "totalValue"
-        },
-        {
-          "id": "qualCostsAltAgent",
-          "type": "text",
-          "label": "Qualifying RDEC costs for projects you have given details for:",
-          "shortName": "Qualifying costs for all projects you have given details for",
-          "format": "sterling",
-          "presentationHint": "totalValue",
-          "submitMode": "readOnly",
-          "value": "${qe1.sum}"
-        },
-        {
-          "id": "generatedId_aceaf0f2_7597_499b_a7a6_5c415d94f312Agent",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC has taken your qualifying expenditure multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "totalQualifyingExpenditureCalcAgent",
           "type": "text",
           "label": "Claimable tax relief ",
           "helpText": "This figure should match the R&D enhanced expenditure on your Corporation Tax (CT600) return.",
@@ -680,8 +525,8 @@
       }
     ]
   },
+  "draftRetrievalMethod": "formAccessCodeForAgents",
   "GFC579Ready": "true",
   "submitErrorUrl": "http://www.yahoo.co.uk",
-  "submitSuccessUrl": "http://www.google.co.uk",
-  "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme"
+  "submitSuccessUrl": "http://www.google.co.uk"
 }
