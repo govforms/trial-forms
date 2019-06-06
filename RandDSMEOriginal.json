@@ -1,0 +1,632 @@
+{
+ "_id": "send-details-to-support-r-and-d-tax-relief-claim-for-sme-original",
+ "formName": "Send details to support an R&D tax relief claim for an SME Original",
+ "draftRetrievalMethod": "formAccessCodeForAgents",
+ "description": "",
+ "formCategory": "hmrcClaimForm",
+ "developmentPhase": "beta",
+ "emailTemplateId": "randd_confirmation_submission",
+ "authConfig": {
+  "authModule": "hmrc"
+ },
+ "dmsSubmission": {
+  "businessArea": "CCG",
+  "classificationType": "CCG-CT-RandDreports",
+  "customerId": "${utrRepComp}",
+  "dmsFormId": "R&D"
+ },
+ "sections": [
+   {
+     "title": "Contact details of authorised individual",
+     "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
+     "fields": [
+      {
+       "id": "contactDetailsInfo",
+       "type": "info",
+       "label": "",
+       "infoText": "Provide the contact details of someone who is authorised to discuss this form with HMRC. \n\nWe will use these details to contact them if we have a question about this form.",
+       "infoType": "noformat"
+      },
+      {
+       "id": "firstNameIndiviudal",
+       "type": "text",
+       "label": "Full name"
+      },
+      {
+       "id": "telephoneIndividual",
+       "type": "text",
+       "label": "Telephone number",
+       "helpText": "For UK numbers include the area code, for example 020 7946 0000",
+       "format": "telephoneNumber"
+      },
+      {
+       "id": "emailIndividual",
+       "type": "text",
+       "label": "Email address",
+       "format": "email"
+      },
+      {
+       "id": "emailPhoneIndividual",
+       "type": "choice",
+       "label": "Select how you would like to be contacted",
+       "shortName": "Contact method",
+       "errorMessage": "Select if you would like to be contacted by email or phone",
+       "choices": [
+        "Email",
+        "Phone",
+        "Both"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Contact details of authorised tax adviser",
+     "includeIf": "${user.affinityGroup = 'agent'}",
+     "fields": [
+      {
+       "id": "generatedId_db154f9e_5efd_4124_9805_3cd12cd71d71",
+       "type": "info",
+       "label": "",
+       "infoText": "Provide the contact details of the tax adviser who is authorised by the client to discuss this form with HMRC.\n\nWe will use these details to contact them if we have a question about this form.",
+       "infoType": "noformat"
+      },
+      {
+       "id": "firstNameAdvisor",
+       "type": "text",
+       "label": "Full name"
+      },
+      {
+       "id": "companyNameAdvisor",
+       "type": "text",
+       "label": "Company name"
+      },
+      {
+       "id": "positionInTheCompanyAgent",
+       "type": "text",
+       "label": "Job title"
+      },
+      {
+       "id": "telephoneAdvisor",
+       "type": "text",
+       "label": "Telephone number",
+       "helpText": "For UK numbers include the area code, for example 020 7946 0000",
+       "format": "telephoneNumber"
+      },
+      {
+       "id": "emailAdvisor",
+       "type": "text",
+       "label": "Email address",
+       "format": "email"
+      },
+      {
+       "id": "emailPhoneAdvisor",
+       "type": "choice",
+       "label": "Select how you would like to be contacted",
+       "shortName": "Contact method",
+       "errorMessage": "Select if you would like to be contacted by email or phone",
+       "choices": [
+        "Email",
+        "Phone",
+        "Both"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Company details",
+     "description": "Provide the company details to help us match against information we currently hold.",
+     "fields": [
+      {
+       "id": "companyName",
+       "type": "text",
+       "label": "Registered company name"
+      },
+      {
+       "id": "utrRepComp",
+       "type": "text",
+       "label": "Company Unique Taxpayer Reference",
+       "helpText": "This is 10 numbers, for example 1234567890. It will be on tax returns and other letters about Corporation Tax.",
+       "format": "text(10,10)"
+      }
+     ]
+    },
+    {
+     "title": "What is the start and end date for this claim?",
+     "shortName": "Claim period",
+     "description": "Your claim date should match the accounting period of your Corporation Tax return for this claim. ",
+     "fields": [
+      {
+       "id": "Inset5",
+       "type": "info",
+       "label": "",
+       "infoText": "If your claim covers more than 12 months, submit a separate claim for each accounting period.",
+       "infoType": "standard"
+      },
+      {
+       "id": "accountingPeriodStartDate",
+       "type": "date",
+       "label": "Start date",
+       "helpText": "For example, 01 01 2017",
+       "format": "before ${accountingPeriodEndDate}"
+      },
+      {
+       "id": "accountingPeriodEndDate",
+       "type": "date",
+       "label": "End date",
+       "helpText": "For example, 31 12 2017",
+       "format": "after ${accountingPeriodStartDate}"
+      }
+     ]
+    },
+    {
+     "title": "Qualifying costs for all your projects",
+     "shortName": "Qualifying costs",
+     "fields": [
+      {
+       "id": "inset6",
+       "type": "info",
+       "label": "inset6",
+       "infoText": "Complete all fields, using '0' if you have no costs. We will only consider costs for R&D activities that qualify for R&D tax relief.",
+       "infoType": "noformat"
+      },
+      {
+       "id": "EmployeeCosts",
+       "type": "text",
+       "label": "Employee costs",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "generatedId_7bbd78dc_505a_4060_b0ff_dfa18abd9f55",
+       "type": "info",
+       "label": "What employee costs qualify for relief?",
+       "infoText": "If you have employees working part-time on R&D activities, you should only include a reasonable share of their total employee costs.\n\nYou can include your employees' :\n\n-    salary before tax\nincluding cash bonuses and overtime pay \n-    reimbursed employee expenses to do with R&D activities (where employee have paid for their expenses before the company pays them back)\n-    employer's National Insurance contributions\n-    employer's pension contributions",
+       "infoType": "long"
+      },
+      {
+       "id": "generatedId_b610f01e_0ef3_4d17_929b_7b3af12b4352",
+       "type": "info",
+       "label": "",
+       "infoText": "###Costs for externally provided workers (EPWs)",
+       "infoType": "noformat"
+      },
+      {
+       "id": "generatedId_ed3e4e45_8ec7_4ee3_ae7c_01367856c8e0",
+       "type": "info",
+       "label": "Are my EPWs connected or unconnected?",
+       "infoText": "Your company and the EPWs are connected if both are controlled by the\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the EPWs or\n- the EPWs costs\n\nWhere unconnected, you may claim 65% of the costs of EPWs.",
+       "infoType": "long"
+      },
+      {
+       "id": "epwCon",
+       "type": "text",
+       "label": "100% costs for connected EPWs",
+       "helpText": "EPWs are workers from a staff agency",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "epwUnCon",
+       "type": "text",
+       "label": "65% costs for unconnected EPWs",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "generatedId_7b8b00ea_57e8_4bfe_b520_7a79b8a090ce",
+       "type": "info",
+       "label": "",
+       "infoText": "###Costs for subcontractors",
+       "infoType": "noformat"
+      },
+      {
+       "id": "generatedId_ce1ffd62_3925_439a_ad3e_2a56af7ab5d3",
+       "type": "info",
+       "label": "Are my subcontractors connected or unconnected?",
+       "infoText": "Your company and the subcontractor are connected if both are controlled by the\neither the same individual or company that has as a majority share in both.\n\nWhere connected, you may only claim relief on the lower amount of:\n- your costs of paying the subcontractor or\n- the subcontractors own costs\n\nWhere unconnected, you may claim 65% of the costs of\nsubcontractors.",
+       "infoType": "long"
+      },
+      {
+       "id": "subConCon",
+       "type": "text",
+       "label": "Costs for connected subcontractors",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "subConUncon",
+       "type": "text",
+       "label": "65% costs for unconnected subcontractors",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "software",
+       "type": "text",
+       "label": "Software costs",
+       "helpText": "Include software licence fees bought for R&D and a reasonable share of the costs for software partly used in your R&D activities",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "consumables",
+       "type": "text",
+       "label": "Consumables costs",
+       "helpText": "Include costs on materials consumed or transformed in the R&D process, for example, water, fuel, power and laboratory consumables used in trials",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      },
+      {
+       "id": "clinicalTrial",
+       "type": "text",
+       "label": "Costs for clinical trial volunteers",
+       "helpText": "For R&D projects in the pharmaceutical industry,\ninclude payments made to volunteers involved in clinical tests",
+       "format": "sterling",
+       "errorMessage": "Enter a numeric value for each field. Use ‘0’ if no expenditure is applicable."
+      }
+     ]
+    },
+  {
+
+  "title": "How many projects are you providing details for in your claim?",
+  "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
+  "fields": [
+  {
+  "id": "generatedId_44454d88_029f_4442_b4e7_8f1131c584ff",
+  "type": "info",
+  "label": "",
+  "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+  "infoType": "noformat"
+  },
+  {
+  "id": "projTot",
+  "type": "text",
+  "label": "Number of projects",
+  "format": "number(2,0)",
+  "displayWidth": "xs",
+  "validIf": "${projTot >= 1 && projTot<=10}",
+  "errorMessage": "You can only provide a maximum of 10 project details. Enter 10 or less.  "
+  }
+  ]
+ },
+    {
+     "title": "Project $n",
+     "includeIf": "${user.affinityGroup = 'individual' || user.affinityGroup = 'organisation'}",
+     "description": "Tell us about the project you want to claim for.",
+     "repeatsMin": "${projTot}",
+     "repeatsMax": "${projTot}",
+     "fields": [
+      {
+       "id": "generatedId_c2fe19e5_3f43_4c7d_b1f3_79cb898ae3fbIndividual",
+       "type": "info",
+       "label": "",
+       "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+       "infoType": "noformat"
+      },
+      {
+       "id": "projectName1Individual",
+       "type": "text",
+       "label": "Project name"
+      },
+      {
+       "id": "scienceIndividual",
+       "type": "text",
+       "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
+       "shortName": "Scientific or technical knowledge at the start",
+       "helpText": "Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "adIndividual_copy_1",
+       "type": "info",
+       "label": "What is an advance in knowledge or capability?",
+       "infoText": "An advance in knowledge or capability in science or technology may have physical consequences or may be an increase in overall knowledge, but in either case, a competent professional working in that field would recognise it as a significant improvement.\n\nThe improvements may include:\n- creating a process, material, device, product or service that increases the knowledge or capability \n- a visible improvement to an existing process, material, device, product or service like cost savings or less waste\n- using science or technology to copy the effect of a current process, material, device, product or service in a new or improved way",
+       "infoType": "long"
+      },
+      {
+       "id": "advanceScienceIndividual",
+       "type": "text",
+       "label": "What advance in that knowledge did you aim to achieve?",
+       "shortName": "Advanced knowledge",
+       "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "UncertaintiesFacedIndividual_copy_1",
+       "type": "text",
+       "label": "What scientific or technological uncertainties did you face?",
+       "shortName": "Uncertainties faced",
+       "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "WhatUncertaintiesIndividual_copy_1",
+       "type": "info",
+       "label": "What types of uncertainties should I outline?  ",
+       "infoText": "Uncertainties may be when you either:\n\n- do not know if it is possible to create or improve the product or process\n- know the product or process can be created from your research but it's too costly \n\nFor example, you tried to build a medical diagnostic tool combining non-invasive testing technology, artificial intelligence (AI) and portability, but you're not sure about the method of updating the AI with the latest medical knowledge.",
+       "infoType": "long"
+      },
+      {
+       "id": "WorkUncertaintiesInd_copy_1",
+       "type": "text",
+       "label": "How did your project overcome these uncertainties?",
+       "shortName": "Work to overcome uncertainties",
+       "helpText": "Outline the R&D activities you did to try to resolve the uncertainties. Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "generatedId_abcf6120_3314_4c37_8a92_7ec13509477f",
+       "type": "info",
+       "label": "What types of activities should I include?",
+       "infoText": "You should tell us more about the direct R&D activities that\ntry to resolve the scientific or technological uncertainties, and some on qualifying indirect activities.\n\n\nDirect activities may include:\n\n- creating or adapting software, materials or equipment needed to resolve the uncertainty\n- planning activities such as a detailed plan of how you will carry out the project\n- designing, testing and analysis to resolve the scientific or technological uncertainty\n\nIndirect activities may include:\n\n- promoting a new or improved process, material, device, product or service\n- work to create non-scientific or non-technological features of a new or improved process, material, device, product or service\n- producing and distributing goods and services\n- general support services such as transportation, storage, cleaning, repair, maintenance and security\n\nQualifying indirect activities form part of the project, but do not directly lead to resolving the uncertainty.\n\nThey include:\n\n- creating information services for R&D support such as preparing a report of R&D findings\n- ancillary activities needed to begin R&D, for example, taking on and paying staff, leasing laboratories and maintaining research and development equipment including computers used for R&D purposes)\n- training required to support the R&D project\n- research by students and researchers carried out at universities\n- research including data collection to make new scientific or technological testing, survey, or sampling methods, where this research is not R&D in its own right\n- feasibility studies to inform the strategic direction of a specific R&D activity",
+       "infoType": "long"
+      },
+      {
+       "id": "qe1Individual",
+       "type": "text",
+       "label": "Total qualifying project costs before any enhancements",
+       "shortName": "Total qualifying costs",
+       "format": "sterling"
+      }
+     ]
+    },
+  {
+
+   "title": "How many projects are you providing details for in your claim?",
+   "includeIf": "${user.affinityGroup = 'agent'}",
+   "fields": [
+    {
+     "id": "infoProject",
+     "type": "info",
+     "label": "",
+     "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+     "infoType": "noformat"
+    },
+    {
+     "id": "projTotAgent",
+     "type": "text",
+     "label": "Number of projects",
+     "format": "number(2,0)",
+     "displayWidth": "xs",
+     "validIf": "${projTotAgent>=1 && projTotAgent<=10}",
+     "errorMessage": "You must enter a number between 1 and 10"
+    }
+   ]
+  },
+  {
+     "title": "Project $n",
+     "includeIf": "${user.affinityGroup = 'agent'}",
+     "description": "Tell us about the projects you claimed for in your Corporation Tax return.",
+     "repeatsMin": "${projTotAgent}",
+     "repeatsMax": "${projTotAgent}",
+     "fields": [
+      {
+       "id": "generatedId_c2fe19e5_3f43_4c7d_b1f3_79cb898ae3fb",
+       "type": "info",
+       "label": "Maximum",
+       "infoText": "If you’ve claimed:\n- one to 3 projects, you must include all project details\n- 4 or more projects, you must include all details on at least 3 to a maximum of 10 projects which cover 50% or more of the total qualifying costs of your claim",
+       "infoType": "noformat"
+      },
+      {
+       "id": "projectName1",
+       "type": "text",
+       "label": "Project name"
+      },
+      {
+       "id": "science",
+       "type": "text",
+       "label": "What scientific or technical knowledge existed at the start of your project that you planned to improve?",
+       "shortName": "Scientific or technical knowledge at the start",
+       "helpText": "Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "advanceScience",
+       "type": "text",
+       "label": "What advance in that knowledge did you aim to achieve?",
+       "shortName": "Advanced knowledge",
+       "helpText": "List the goals of your R&D project, and explain the improvements you planned to make.\nEnter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "ad",
+       "type": "info",
+       "label": "What is an advance in knowledge or capability?",
+       "infoText": "An advance in knowledge or capability in science or technology may have physical consequences or may be an increase in overall knowledge, but in either case, a competent professional working in that field would recognise it as a significant improvement.\n\nThe improvements may include:\n- creating a process, material, device, product or service that increases the knowledge or capability \n- a visible improvement to an existing process, material, device, product or service like cost savings or less waste\n- using science or technology to copy the effect of a current process, material, device, product or service in a new or improved way",
+       "infoType": "long"
+      },
+      {
+       "id": "UncertaintiesFaced",
+       "type": "text",
+       "label": "What scientific or technological uncertainties did you face?",
+       "shortName": "Uncertainties faced",
+       "helpText": "Describe the obstacles that you found and tried to overcome to achieve the improvements. Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "yes"
+      },
+      {
+       "id": "WhatUncertainties",
+       "type": "info",
+       "label": "What types of uncertainties should I outline?  ",
+       "infoText": "Uncertainties may be when you either:\n\n- do not know if it is possible to create or improve the product or process\n- know the product or process can be created from your research but it's too costly \n\nFor example, you tried to build a medical diagnostic tool combining non-invasive testing technology, artificial intelligence (AI) and portability, but you're not sure about the method of updating the AI with the latest medical knowledge.",
+       "infoType": "long"
+      },
+      {
+       "id": "WorkUncertainties",
+       "type": "text",
+       "label": "How did your project overcome these uncertainties?",
+       "shortName": "Work to overcome uncertainties",
+       "helpText": "Outline the R&D activities you did to try to resolve the uncertainties. Enter up to 3000 characters",
+       "format": "text(0, 3000)",
+       "multiline": "true"
+      },
+      {
+       "id": "authorisedText",
+       "type": "info",
+       "label": "What types of activities should I include?",
+       "infoText": "You should tell us more about the direct R&D activities that\ntry to resolve the scientific or technological uncertainties, and some on qualifying indirect activities.\n\n\nDirect activities may include:\n\n- creating or adapting software, materials or equipment needed to resolve the uncertainty\n- planning activities such as a detailed plan of how you will carry out the project\n- designing, testing and analysis to resolve the scientific or technological uncertainty\n\nIndirect activities may include:\n\n- promoting a new or improved process, material, device, product or service\n- work to create non-scientific or non-technological features of a new or improved process, material, device, product or service\n- producing and distributing goods and services\n- general support services such as transportation, storage, cleaning, repair, maintenance and security\n\nQualifying indirect activities form part of the project, but do not directly lead to resolving the uncertainty.\n\nThey include:\n\n- creating information services for R&D support such as preparing a report of R&D findings\n- ancillary activities needed to begin R&D, for example, taking on and paying staff, leasing laboratories and maintaining research and development equipment including computers used for R&D purposes)\n- training required to support the R&D project\n- research by students and researchers carried out at universities\n- research including data collection to make new scientific or technological testing, survey, or sampling methods, where this research is not R&D in its own right\n- feasibility studies to inform the strategic direction of a specific R&D activity",
+       "infoType": "long"
+      },
+      {
+       "id": "qe1",
+       "type": "text",
+       "label": "Total qualifying project costs before any enhancements",
+       "shortName": "Total qualifying costs",
+       "format": "sterling"
+      }
+     ]
+    },
+    {
+     "title": "Research and Development (R&D) tax relief",
+     "shortName": "R&D tax relief",
+     "fields": [
+      {
+       "id": "totalQualifyingExpenditure",
+       "type": "text",
+       "label": "Qualifying costs for all projects",
+       "helpText": "This is based on the amount you entered on a previous page",
+       "format": "sterling",
+       "value": "${EmployeeCosts + software + consumables + clinicalTrial + epwCon + subConCon + epwUnCon + subConUncon}",
+       "submitMode": "readonly",
+       "presentationHint": "totalValue"
+      },
+      {
+       "id": "generatedId_aceaf0f2_7597_499b_a7a6_5c415d94f312",
+       "type": "info",
+       "label": "",
+       "infoText": "HMRC has taken your qualifying expenditure multiplied it by 1.3 to calculate the amount of tax relief you can claim if your company is in profit.",
+       "infoType": "noformat"
+      },
+      {
+       "id": "totalQualifyingExpenditureCalc",
+       "type": "text",
+       "label": "Claimable tax relief ",
+       "helpText": "This figure should match the R&D enhanced expenditure on your Corporation Tax (CT600) return.",
+       "format": "sterling",
+       "value": "${totalQualifyingExpenditure * 1.3}",
+       "submitMode": "readonly",
+       "presentationHint": "totalValue"
+      }
+     ]
+    },
+    {
+     "title": "Did your company make a trading loss for the period you are claiming for?",
+     "shortName": "Trading loss for this period",
+     "fields": [
+      {
+       "id": "profitOrLoss",
+       "type": "choice",
+       "label": "Did your company make a trading loss for the period you are claiming for?",
+       "shortName": "Tax credit claim",
+       "helpText": "If your company has incurred a loss, you can either carry the loss forward against trading profits in the future or give the loss up for a cash payment.",
+       "errorMessage": "Select yes or no if you have claimed a R&D tax credit",
+       "choices": [
+        "Yes",
+        "No"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "What is your company's unused trading loss for this period?",
+     "shortName": "Unused trading loss for this period",
+     "includeIf": "${profitOrLoss=0}",
+     "fields": [
+      {
+       "id": "TradingLoss",
+       "type": "text",
+       "label": "What is your company's unused trading loss for this period?",
+       "shortName": "Amount of trading loss",
+       "format": "sterling"
+      },
+      {
+       "id": "longInfoBox2",
+       "type": "info",
+       "label": "How do I work out my unused trading loss?",
+       "infoText": "The unused trading loss is:\n\n* the company's trading loss (where the company has spent more than it has made in an accounting period)\n\n* less any other Corporation Tax profits of the claim period \n\n* less any loss relief claimed",
+       "infoType": "long"
+      }
+     ]
+    }
+   ],
+   "declarationSection": {
+    "title": "Confirm details and send the form",
+    "fields": [
+     {
+      "id": "someoneAuthorised",
+      "type": "info",
+      "label": "someoneAuthorised",
+      "infoText": "You must enter the name of someone who is authorised to sign this declaration.",
+      "infoType": "noformat"
+     },
+     {
+      "id": "declarationNameGroup",
+      "type": "group",
+      "label": "",
+      "fields": [
+       {
+        "id": "declarationFullName",
+        "type": "text",
+        "label": "Full name",
+        "helpText": "If a tax adviser, enter the name of the adviser"
+       },
+       {
+        "id": "declarationStatus",
+        "type": "text",
+        "label": "Position in company"
+       }
+      ]
+     },
+     {
+      "id": "email",
+      "type": "text",
+      "label": "Email address",
+      "helpText": "We will send an email to this address to confirm the form has been submitted",
+      "format": "email"
+     },
+     {
+      "id": "decPageContent",
+      "type": "info",
+      "label": "declabel",
+      "infoText": "By submitting this form, you declare that the information that you have provided is true and complete.",
+      "infoType": "noformat"
+     },
+     {
+      "id": "decPageImportant",
+      "type": "info",
+      "label": "",
+      "infoText": "If you give incomplete or inaccurate information, we may charge a financial penalty or even prosecute you.",
+      "infoType": "important"
+     }
+    ]
+   },
+   "acknowledgementSection": {
+    "title": "Acknowledgement Page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+     {
+      "id": "ackpageInfo",
+      "type": "info",
+      "label": "",
+      "infoText": "We have sent you a confirmation email.\n\nThis is your last opportunity to print or save a PDF copy of your submitted form.",
+      "infoType": "noformat"
+     },
+     {
+      "id": "next",
+      "type": "info",
+      "label": "",
+      "infoText": "In most cases we aim to either pay the tax credit, or contact you about your application within 28 days.\n\nIf we do not hold accurate Bacs (Bankers Automated Clearing System) details, your payment will take longer to process.\n\nIf we think the cost details may be incorrect, we aim to open an enquiry within 60 days. HMRC will contact you regarding the enquiry.",
+      "infoType": "noformat"
+     }
+    ]
+   },
+   "GFC579Ready": "true",
+   "submitErrorUrl": "http://www.yahoo.co.uk",
+   "submitSuccessUrl": "http://www.google.co.uk"
+  }
