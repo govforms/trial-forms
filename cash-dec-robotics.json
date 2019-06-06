@@ -1,5 +1,4 @@
 {
-  "_id": "cash-dec-robotics",
   "formName": "Cash Declaration",
   "description": "",
   "developmentPhase": "beta",
@@ -232,7 +231,7 @@
         {
           "id": "startName",
           "type": "text",
-          "label": "Name of airport, port, or station",
+          "label": "Name of airport or port",
           "helpText": "For example, London Heathrow"
         }
       ]
@@ -250,7 +249,7 @@
         {
           "id": "destinationName",
           "type": "text",
-          "label": "Name of airport, port, or station",
+          "label": "Name of airport or port",
           "helpText": "For example, London Heathrow"
         }
       ]
@@ -263,9 +262,9 @@
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Will you change at another airport or port?",
-          "shortName": "Change at another airport, port or station",
+          "shortName": "Change at another airportc or port",
           "helpText": "If you change to another plane or boat on your way to the EU, select yes. For example, if you are flying into the EU from Australia and change in Singapore.",
-          "errorMessage": "Select whether you will change at another airport, port or station",
+          "errorMessage": "Select whether you will change at another airport or port",
           "choices": [
             "Yes",
             "No"
@@ -275,19 +274,19 @@
     },
     {
       "title": "How many other airports or ports will you travel via?",
-      "shortName": "How many airports, ports or stations",
+      "shortName": "How many airports or ports",
       "includeIf": "${intermediateAirport=0}",
       "fields": [
         {
           "id": "howManyIntermediateAirports",
           "type": "text",
           "label": "How many other airports or ports will you travel via?",
-          "shortName": "Number of other airports, ports or stations changing at",
+          "shortName": "Number of other airports or ports changing at",
           "helpText": "For example, if you are flying into the EU from Australia and change in Singapore, enter 1.",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
           "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
-          "errorMessage": "Select how many other airports, ports or stations you will change at"
+          "errorMessage": "Select how many other airports or ports you will change at"
         }
       ]
     },
@@ -821,7 +820,8 @@
           "choices": [
             "An investment",
             "Gambling",
-            "Paying a ransom"
+            "Paying a ransom",
+            "Other"
           ]
         }
       ]
@@ -870,5 +870,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "cash-dec-robotics"
 }
