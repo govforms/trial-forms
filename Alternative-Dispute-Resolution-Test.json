@@ -1,6 +1,6 @@
 {
   "_id": "Alternative-Dispute-Resolution-Test",
-  "formName": "Apply for Alternative Dispute Resolution",
+  "formName": "Apply for Alternative Dispute Resolution to settle a tax dispute",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
@@ -132,7 +132,7 @@
           "type": "choice",
           "label": "Are you authorised to fill in this form?",
           "shortName": "Authorised to fill in form",
-          "helpText": "You must be the individual taxpayer, their authorised helper, an authorised agent applying on behalf of a client, or an authorised employee of the organisation you are applying for.",
+          "helpText": "You must be the individual taxpayer, their authorised helper, an authorised agent applying on behalf of a client, or an authorised employee applying on behalf of your organisation.",
           "choices": [
             "Yes",
             "No"
@@ -144,7 +144,7 @@
       "title": "Can HMRC communicate with you by email while you use this service?",
       "fields": [
         {
-          "id": "emCons1",
+          "id": "emCons",
           "type": "choice",
           "label": "Can HMRC communicate with you by email while you use this service?",
           "shortName": "Confirm email consent",
@@ -155,7 +155,7 @@
             "No, I do not want to use email"
           ],
           "optionHelpText": [
-            "By selecting yes, you confirm that: \n\n\n* you understand and accept the risks of using email \n\n\n* you agree that financial information can be sent by email \n\n\n* you agree that attachments can be sent by email\n\n\nBefore you continue, select 'Why does HMRC ask me about email?' to read and understand how we use email.",
+            "By selecting yes, you confirm that: \n\n\n*you understand and accept the risks of using email \n\n\n*you agree that financial information can be sent by email \n\n\n*you agree that attachments can be sent by email\n\n\nWe will use the email you provided in this application unless you tell us otherwise.\n\nBefore you continue, select 'Why does HMRC ask me about email?' to read and understand how we use email.",
             "We will use letter or telephone if we need to contact you."
           ]
         },
@@ -218,23 +218,25 @@
     {
       "title": "Enter your address",
       "includeIf": "${useraffinityGroup=0}",
+      "description": "We may use these details to make contact during the ADR process",
       "fields": [
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "Address",
+          "label": "",
           "international": "true"
         }
       ]
     },
     {
-      "title": "Enter the taxpayer's address",
+      "title": "Enter the taxpayer's contact details",
       "includeIf": "${useraffinityGroup=3}",
+      "description": "We may use these details to make contact during the ADR process",
       "fields": [
         {
           "id": "taxpayerAddress",
           "type": "address",
-          "label": "Address",
+          "label": "",
           "international": "true"
         },
         {
@@ -248,6 +250,7 @@
     {
       "title": "Enter the individual's contact details",
       "includeIf": "${disputeIndividualBusiness=0}",
+      "description": "We may use these details to make contact during the ADR process",
       "fields": [
         {
           "id": "individualName",
@@ -258,7 +261,7 @@
         {
           "id": "hfgdRgfjfj",
           "type": "address",
-          "label": "Address",
+          "label": "",
           "international": "true"
         },
         {
@@ -272,6 +275,7 @@
     {
       "title": "Enter the business contact details",
       "includeIf": "${disputeIndividualBusiness=1 || useraffinityGroup=1}",
+      "description": "We may use these details to make contact during the ADR process",
       "fields": [
         {
           "id": "businessName",
@@ -282,7 +286,7 @@
         {
           "id": "userAddress",
           "type": "address",
-          "label": "Address",
+          "label": "",
           "international": "true",
           "postcodeLookup": "no"
         },
@@ -434,14 +438,7 @@
           "type": "text",
           "label": "Enter your own reference for this client",
           "shortName": "Your agent reference",
-          "helpText": "This should be specific to each client and cannot include the clients' name or other personal information."
-        },
-        {
-          "id": "textFieldInfoFormat6",
-          "type": "info",
-          "label": "",
-          "infoText": "HMRC will include your client's reference in the response to you.",
-          "infoType": "standard"
+          "helpText": "This should be specific to each client and cannot include the clients' name or other personal information. HMRC will include this reference in the response to you."
         }
       ]
     },
@@ -561,18 +558,21 @@
                 "id": "HMRCcaseworkername",
                 "type": "text",
                 "label": "HMRC caseworker name",
-                "format": "shortText"
+                "format": "shortText",
+                "mandatory": "false"
               },
               {
                 "id": "caseworkeroffice",
                 "type": "text",
-                "label": "Caseworker's office"
+                "label": "Caseworker's office",
+                "mandatory": "false"
               },
               {
                 "id": "Caseworkerphone",
                 "type": "text",
                 "label": "Caseworker's telephone number",
-                "format": "telephoneNumber"
+                "format": "telephoneNumber",
+                "mandatory": "false"
               }
             ],
             []
@@ -588,7 +588,7 @@
           "type": "text",
           "label": "What is your dispute about?",
           "shortName": "Dispute details",
-          "helpText": "Give details on the background to the dispute, including the period or tax year. For example: tax year 2017-2018.",
+          "helpText": "Include the period or tax year, such as 2017-2018, and any background which could help mediators understand your dispute.",
           "multiline": "true"
         }
       ]
