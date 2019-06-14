@@ -1,7 +1,18 @@
 {
+  "_id": "Alternative-Dispute-Resolution-Test",
   "formName": "Apply for Alternative Dispute Resolution to settle a tax dispute",
   "description": "",
-  "emailTemplateId": "eeitt_submission_confirmation",
+  "emailTemplateId": "adr_confirmation_submission",
+  "emailParameters": [
+    {
+      "value": "${fullNameFilling}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "anonymous"
   },
@@ -127,6 +138,15 @@
           "format": "email"
         },
         {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${form.submissionReference}",
+          "submitMode": "summaryinfoonly",
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
           "id": "authYesNo",
           "type": "choice",
           "label": "Are you authorised to fill in this form?",
@@ -162,7 +182,7 @@
           "id": "generatedId_467a16f8_05a4_4741_9a48_95d22160c597",
           "type": "info",
           "label": "Why does HMRC ask me about email?",
-          "infoText": "**HMRC asks for your consent for these reasons:**\n\n\n*confidentiality and privacy – there’s a risk that emails sent over the internet may be intercepted\n\n*confirming your identity – we only communicate with established contacts at their correct email addresses\n\n*there is no guarantee that an email received over an insecure network, like the internet, hasn’t been altered during transit\n\n*attachments could contain a virus or malicious code\n\n\n\n**How we can reduce the risks**\n\n*HMRC desensitises information, for example by only quoting part of any unique reference numbers\n\n*We can also encrypt information\n\n*If you want to encrypt information, we can discuss how you can do this while still providing the information we need\n\n\n\n**If you decide not to use email**\n\nYou may prefer that we do not respond by email, for example because other people have access to your email account. If so, we can respond by an alternative method. We‘ll agree this with you either by telephone, fax or in writing via post.\n\n\n**How we use your agreement**\n\nYour confirmation will be held on file and will apply to future email correspondence. We will review the agreement at regular intervals to ensure there are no changes.\n\n\n\n**Opting out**\n\nYou can opt out of using email at any time by contacting your mediator once you have been accepted to use the service.\n\n\n**Adding other contacts**\n\nYou can add other names and email addresses who you want us to use email with, for example, your staff or your representative. Contact your mediator once you have been accepted to use the service.\n\n\n\n[Find more information on HMRC's privacy policy](www.gov.uk/help/privacy-policy).",
+          "infoText": "**HMRC asks for your consent for these reasons:**\n\n\n- confidentiality and privacy – there’s a risk that emails sent over the internet may be intercepted\n\n- confirming your identity – we only communicate with established contacts at their correct email addresses\n\n- there is no guarantee that an email received over an insecure network, like the internet, hasn’t been altered during transit\n\n- attachments could contain a virus or malicious code\n\n\n\n**How we can reduce the risks**\n\n- HMRC desensitises information, for example by only quoting part of any unique reference numbers\n\n- We can also encrypt information\n\n- If you want to encrypt information, we can discuss how you can do this while still providing the information we need\n\n\n\n**If you decide not to use email**\n\nYou may prefer that we do not respond by email, for example because other people have access to your email account. If so, we can respond by an alternative method. We‘ll agree this with you either by telephone, fax or in writing via post.\n\n\n**How we use your agreement**\n\nYour confirmation will be held on file and will apply to future email correspondence. We will review the agreement at regular intervals to ensure there are no changes.\n\n\n\n**Opting out**\n\nYou can opt out of using email at any time by contacting your mediator once you have been accepted to use the service.\n\n\n**Adding other contacts**\n\nYou can add other names and email addresses who you want us to use email with, for example, your staff or your representative. Contact your mediator once you have been accepted to use the service.\n\n\n\n[Find more information on HMRC's privacy policy](www.gov.uk/help/privacy-policy).",
           "infoType": "long"
         }
       ]
@@ -699,6 +719,5 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "Alternative-Dispute-Resolution-Test"
+  "submitSuccessUrl": "deprecated"
 }
