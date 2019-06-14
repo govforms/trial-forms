@@ -1,10 +1,9 @@
 {
-  "_id": "Alternative-Dispute-Resolution-Test",
   "formName": "Apply for Alternative Dispute Resolution to settle a tax dispute",
   "description": "",
   "emailTemplateId": "eeitt_submission_confirmation",
   "authConfig": {
-    "authModule": "hmrc"
+    "authModule": "anonymous"
   },
   "dmsSubmission": {
     "businessArea": "For example: FinanceOpsCorpT",
@@ -147,7 +146,7 @@
           "id": "emCons",
           "type": "choice",
           "label": "Can HMRC communicate with you by email while you use this service?",
-          "shortName": "Confirm email consent",
+          "shortName": "You accept the risks of using email, and agree that attachments and financial information can be sent by email",
           "helpText": "Because email cannot be guaranteed 100% secure, you need to understand and accept the risks before sending and receiving email.",
           "errorMessage": "Select whether you want to be contacted using your email address",
           "choices": [
@@ -318,7 +317,15 @@
             "I don't have a reference"
           ],
           "revealingFields": [
-            [],
+            [
+              {
+                "id": "generatedId_8b358172_1fdb_4065_a2e3_4324e825aea1",
+                "type": "info",
+                "label": "",
+                "infoText": "This is called 'HMRC ref' or 'Your ref' on correspondence about this dispute.",
+                "infoType": "noformat"
+              }
+            ],
             [],
             [],
             [],
@@ -327,12 +334,14 @@
                 "id": "refType",
                 "type": "text",
                 "label": "Other reference type",
-                "helpText": "For example, National Insurance number"
+                "helpText": "For example, National Insurance number",
+                "mandatory": "false"
               },
               {
                 "id": "otherRef",
                 "type": "text",
-                "label": "Enter other reference"
+                "label": "Enter other reference",
+                "mandatory": "false"
               }
             ],
             []
@@ -588,7 +597,7 @@
           "type": "text",
           "label": "What is your dispute about?",
           "shortName": "Dispute details",
-          "helpText": "Include the period or tax year, such as 2017-2018, and any background which could help mediators understand your dispute.",
+          "helpText": "Include the period or tax year, such as 2017-2018, and any background which will help mediators understand your dispute.",
           "multiline": "true"
         }
       ]
@@ -690,5 +699,6 @@
   },
   "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "_id": "Alternative-Dispute-Resolution-Test"
 }
