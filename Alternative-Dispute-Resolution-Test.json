@@ -1,7 +1,6 @@
 {
   "_id": "apply-for-alternative-dispute-resolution-to-settle-tax-dispute",
   "formName": "Apply for Alternative Dispute Resolution to settle a tax dispute",
-  "draftRetrievalMethod": "formAccessCodeForAgents",
   "description": "",
   "GFC579Ready": "true",
   "emailTemplateId": "adr_confirmation_submission",
@@ -50,7 +49,7 @@
           "type": "choice",
           "label": "Have you already made your appeal?",
           "shortName": "Already made appeal",
-          "errorMessage": "Select whether you already made your appeal",
+          "errorMessage": "Select whether you have already made your appeal",
           "choices": [
             "Yes",
             "No"
@@ -60,6 +59,7 @@
     },
     {
       "title": "You can apply for Alternative Dispute Resolution",
+      "shortName": "Eligibility checker passed",
       "includeIf": "${appealMade = 0 || appealConfirmation = 1}",
       "fields": [
         {
@@ -80,7 +80,7 @@
           "type": "choice",
           "label": "Is your case currently under statutory review?",
           "shortName": "Statutory review",
-          "errorMessage": "Select whether you already accepted a statutory review",
+          "errorMessage": "Select whether you have already accepted a statutory review",
           "choices": [
             "Yes",
             "No"
@@ -155,6 +155,7 @@
           "label": "Are you authorised to fill in this form?",
           "shortName": "Authorised to fill in form",
           "helpText": "You must be the individual taxpayer, their authorised helper, an authorised agent applying on behalf of a client, or an authorised employee applying on behalf of your organisation.",
+          "errorMessage": "Select whether you are authorised to fill in this form",
           "choices": [
             "Yes",
             "No"
@@ -201,7 +202,7 @@
           "id": "whyAskInfo",
           "type": "info",
           "label": "Why does HMRC ask me about email?",
-          "infoText": "**HMRC asks for your consent for these reasons:**\n\n\n- confidentiality and privacy – there’s a risk that emails sent over the internet may be intercepted\n\n- confirming your identity – we only communicate with established contacts at their correct email addresses\n\n- there is no guarantee that an email received over an insecure network, like the internet, hasn’t been altered during transit\n\n- attachments could contain a virus or malicious code\n\n\n\n**How we can reduce the risks**\n\n- HMRC desensitises information, for example by only quoting part of any unique reference numbers\n\n- We can also encrypt information\n\n- If you want to encrypt information, we can discuss how you can do this while still providing the information we need\n\n\n\n**If you decide not to use email**\n\nYou may prefer that we do not respond by email, for example because other people have access to your email account. If so, we can respond by an alternative method. We‘ll agree this with you either by telephone, fax or in writing via post.\n\n\n**How we use your agreement**\n\nYour confirmation will be held on file and will apply to future email correspondence. We will review the agreement at regular intervals to ensure there are no changes.\n\n\n\n**Opting out**\n\nYou can opt out of using email at any time by contacting your mediator once you have been accepted to use the service.\n\n\n**Adding other contacts**\n\nYou can add other names and email addresses who you want us to use email with, for example, your staff or your representative. Contact your mediator once you have been accepted to use the service.\n\n\n\n[Find more information on HMRC's privacy policy](www.gov.uk/help/privacy-policy).",
+          "infoText": "**HMRC asks for your consent for these reasons:**\n\n\n- confidentiality and privacy – there’s a risk that emails sent over the internet may be intercepted\n\n- confirming your identity – we only communicate with established contacts at their correct email addresses\n\n- there is no guarantee that an email received over an insecure network, like the internet, hasn’t been altered during transit\n\n- attachments could contain a virus or malicious code\n\n\n\n**How we can reduce the risks**\n\n- HMRC desensitises information, for example by only quoting part of any unique reference numbers\n\n- We can also encrypt information\n\n- If you want to encrypt information, we can discuss how you can do this while still providing the information we need\n\n\n\n**If you decide not to use email**\n\nYou may prefer that we do not respond by email, for example because other people have access to your email account. If so, we can respond by an alternative method. We‘ll agree this with you either by telephone, fax or in writing via post.\n\n\n**How we use your agreement**\n\nYour confirmation will be held on file and will apply to future email correspondence. We will review the agreement at regular intervals to ensure there are no changes.\n\n\n\n**Opting out**\n\nYou can opt out of using email at any time by contacting your mediator once you have been accepted to use the service.\n\n\n**Adding other contacts**\n\nYou can add other names and email addresses for people you want us to use email with, for example, your staff or your representative. Contact your mediator once you have been accepted to use the service.\n\n\n\n[Find more information on HMRC's privacy policy](www.gov.uk/help/privacy-policy).",
           "infoType": "long"
         }
       ]
@@ -213,7 +214,8 @@
           "id": "useraffinityGroup",
           "type": "revealingChoice",
           "label": "Why are you applying to resolve a dispute with HMRC?",
-          "shortName": "Why applying",
+          "shortName": "Why you are applying",
+          "errorMessage": "Select why you are applying to resolve a dispute",
           "choices": [
             "I'm an individual, and I want to resolve personal tax issues",
             "I'm part of an organisation, and I want to resolve business tax issues",
@@ -261,7 +263,7 @@
         {
           "id": "yourAddress",
           "type": "address",
-          "label": "",
+          "label": "Your address",
           "international": "true"
         }
       ]
@@ -274,7 +276,7 @@
         {
           "id": "taxpayerAddress",
           "type": "address",
-          "label": "",
+          "label": "Taxpayer address",
           "international": "true"
         },
         {
@@ -299,7 +301,7 @@
         {
           "id": "individualAddress",
           "type": "address",
-          "label": "",
+          "label": "Individual's address",
           "international": "true"
         },
         {
@@ -324,7 +326,7 @@
         {
           "id": "userAddress",
           "type": "address",
-          "label": "",
+          "label": "Business address",
           "international": "true",
           "postcodeLookup": "no"
         },
@@ -346,7 +348,7 @@
           "label": "Select an HMRC reference you can provide for this case",
           "shortName": "HMRC reference",
           "helpText": "This helps us find your case details.",
-          "errorMessage": "Select which HMRC reference you are providing.",
+          "errorMessage": "Select which HMRC reference you are providing",
           "choices": [
             "Enquiry reference",
             "VAT reference",
@@ -396,7 +398,7 @@
           "id": "caseflowRef",
           "type": "text",
           "label": "Enter your enquiry reference",
-          "shortName": "Your reference",
+          "shortName": "Your HMRC reference",
           "helpText": "This is called 'HMRC ref' or 'Your ref' on correspondence about this dispute. It is a combination of letters and numbers, for example CFS-123456 or CFSS-1234567."
         }
       ]
@@ -566,7 +568,7 @@
           "type": "revealingChoice",
           "label": "Do you know how much tax or penalty you are disputing?",
           "shortName": "Tax or penalty value known",
-          "errorMessage": "Select whether you know the value of tax or penalty",
+          "errorMessage": "Select whether you know the value of the tax or penalty",
           "choices": [
             "Yes",
             "No"
@@ -663,7 +665,9 @@
           "id": "mouDec1",
           "type": "choice",
           "label": "",
+          "shortName": "Confirmation",
           "multivalue": "true",
+          "errorMessage": "You must select the box to confirm you agree with these principles",
           "choices": [
             "I confirm that I have read and agreed to these principles. I understand this does not guarantee my application will be accepted."
           ]
@@ -692,7 +696,9 @@
           "id": "mouDec2",
           "type": "choice",
           "label": "",
+          "shortName": "Confirmation",
           "multivalue": "true",
+          "errorMessage": "You must select the box to confirm you and your client agree with these principles",
           "choices": [
             "I confirm that I have explained these principles to my client and they have agreed to them. I understand this does not guarantee the application will be accepted."
           ]
@@ -709,7 +715,7 @@
         "type": "choice",
         "label": "",
         "multivalue": "true",
-        "errorMessage": "You must check the box before submitting your application",
+        "errorMessage": "You must select the box before submitting your application",
         "choices": [
           "I confirm that the information I have provided is true and complete."
         ]
@@ -736,6 +742,7 @@
       }
     ]
   },
+  "draftRetrievalMethod": "formAccessCodeForAgents",
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
 }
