@@ -1,0 +1,4232 @@
+{
+    "_id": "tell-us-about-your-tobacco-products-for-home-use",
+    "formName": "Tobacco products for home use",
+    "formCategory": "hmrcReturnForm",
+    "description": "Tell us about your tobacco products for home use",
+    "dmsSubmission": {
+        "dmsFormId": "tp7",
+        "customerId": "${utrRepComp}",
+        "classificationType": "BT-NRU-Gaming",
+        "businessArea": "BT"
+    },
+    "developmentPhase": "beta",
+    "authConfig": {
+        "authModule": "hmrc"
+    },
+    "emailTemplateId": "gd95_return_confirmation",
+    "submitSuccessUrl": "http://www.google.co.uk",
+    "submitErrorUrl": "http://www.yahoo.co.uk",
+    "GFC579Ready": "true",
+    "sections": [
+        {
+            "title": "Proprietor details",
+            "fields": [
+                {
+                    "id": "propFullName",
+                    "type": "text",
+                    "label": "Name of occupier of the registered premises",
+                    "shortName": "Occupier name"
+                },
+                {
+                    "id": "propAddress",
+                    "type": "address",
+                    "label": "Address of registered premises",
+                    "shortName": "address",
+                    "international": "yes"
+                },
+                {
+                    "id": "danDetail",
+                    "type": "text",
+                    "format": "positiveNumber(7,0)",
+                    "helpText": "You DAN is a maximum of 7 digits",
+                    "shortName": "DAN",
+                    "label": "Deferment account number"
+                }
+            ]
+        },
+        {
+            "title": "What time period does this return cover?",
+            "fields": [
+                {
+                    "id": "retType",
+                    "type": "choice",
+                    "label": "What time period does this return cover?",
+                    "choices": [
+                        "Daily",
+                        "Monthly"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Daily return of duty on deliveries and appropriations",
+            "includeIf": "${retType = 0}",
+            "fields": [
+                {
+                    "id": "infoDaily",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "Enter the date of the schedules you want to tell us about"
+                },
+                {
+                    "id": "dailyDate",
+                    "type": "date",
+                    "label": "",
+                    "mandatory": "false",
+                    "errorMessage": "Start date can only include numbers in this format dd mm yyyy"
+                }
+            ]
+        },
+        {
+            "title": "Monthly return of duty on deliveries and appropriations ",
+            "includeIf": "${retType = 1}",
+            "fields": [
+                {
+                    "id": "infoMonthly",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "Enter the end date of the period you want to tell us about"
+                },
+                {
+                    "id": "endDate",
+                    "type": "date",
+                    "label": "",
+                    "mandatory": "false",
+                    "errorMessage": "End date can only include numbers in this format dd mm yyyy"
+                }
+            ]
+        },
+        {
+            "title": "What is your deferment guarantee limit",
+            "fields": [
+                {
+                    "id": "infoDGL",
+                    "type": "info",
+                    "label": "What is a defement guarentee limit?",
+                    "infoType": "long",
+                    "infoText": "This is the amount you can defer, set by HMRC.\n\n Need more help text here"
+                },
+                {
+                    "id": "deflimit",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Deferment guarentee limit"
+                }
+            ]
+        },
+        {
+            "title": "How many delivery documents or schedules do you wish to tell us about?",
+            "fields": [
+                {
+                    "id": "schedNo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "important",
+                    "infoText": "You can include details of up to 20 documents or schedules on this form.\n\n If you need to tell us about more than this you will need to yadda yadda yadda etc......."
+                },
+                {
+                    "id": "numDocs",
+                    "type": "text",
+                    "format": "positiveWholeNumber",
+                    "label": "Number of delivery documents or schedules",
+                    "errorMessage": "Number must be between 1 and 20",
+                    "validIf": "${numDocs <= 20}",
+                    "displayWidth": "xs"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 1",
+            "includeIf": "${numDocs > 0}",
+            "fields": [
+                {
+                    "id": "docSchedNumb1",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup1",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber1",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand1",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz1",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage1",
+                            "label": "Number of packs per package",
+                            "type": "text",
+                            "format": "number",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant1",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight1a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight1b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight1c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight1d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice1",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue1",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant1",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant1.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight1",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight1a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight1",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight1b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight1",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight1c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight1",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight1d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue1",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue1.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 2",
+            "includeIf": "${numDocs > 1}",
+            "fields": [
+                {
+                    "id": "docSchedNumb2",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup2",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber2",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand2",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz2",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage2",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant2",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight2a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight2b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight2c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight2d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice2",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue2",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant2",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant2.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight2",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight2a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight2",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight2b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight2",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight2c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight2",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight2d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue2",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue2.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 3",
+            "includeIf": "${numDocs > 2}",
+            "fields": [
+                {
+                    "id": "docSchedNumb3",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup3",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber3",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand3",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz3",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage3",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant3",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight3a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight3b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight3c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight3d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice3",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue3",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant3",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant3.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight3",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight3a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight3",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight3b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight3",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight3c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight3",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight3d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue3",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue3.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 4",
+            "includeIf": "${numDocs > 3}",
+            "fields": [
+                {
+                    "id": "docSchedNumb4",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup4",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber4",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand4",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz4",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage4",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant4",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight4a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight4b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight4c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight4d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice4",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue4",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant4",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant4.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight4",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight4a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight4",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight4b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight4",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight4c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight4",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight4d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue4",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue4.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 5",
+            "includeIf": "${numDocs > 4}",
+            "fields": [
+                {
+                    "id": "docSchedNumb5",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup5",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber5",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand5",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz5",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage5",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant5",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight5a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight5b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight5c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight5d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice5",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue5",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant5",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant5.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight5",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight5a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight5",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight5b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight5",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight5c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight5",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight5d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue5",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue5.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 6",
+            "includeIf": "${numDocs > 5}",
+            "fields": [
+                {
+                    "id": "docSchedNumb6",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup6",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber6",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand6",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz6",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage6",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant6",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight6a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight6b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight6c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight6d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice6",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue6",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant6",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant6.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight6",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight6a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight6",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight6b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight6",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight6c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight6",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight6d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue6",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue6.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 7",
+            "includeIf": "${numDocs > 6}",
+            "fields": [
+                {
+                    "id": "docSchedNumb7",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup7",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber7",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand7",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz7",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage7",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant7",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight7a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight7b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight7c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight7d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice7",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue7",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant7",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant7.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight7",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight7a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight7",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight7b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight7",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight7c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight7",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight7d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue7",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue7.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 8",
+            "includeIf": "${numDocs > 7}",
+            "fields": [
+                {
+                    "id": "docSchedNumb8",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup8",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber8",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand8",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz8",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage8",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant8",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight8a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight8b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight8c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight8d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice8",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue8",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant8",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant8.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight8",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight8a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight8",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight8b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight8",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight8c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight8",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight8d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue8",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue8.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 9",
+            "includeIf": "${numDocs > 8}",
+            "fields": [
+                {
+                    "id": "docSchedNumb9",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup9",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber9",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand9",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz9",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage9",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant9",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight9a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight9b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight9c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight9d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice9",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue9",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant9",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant9.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight9",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight9a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight9",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight9b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight9",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight9c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight9",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight9d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue9",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue9.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 10",
+            "includeIf": "${numDocs > 9}",
+            "fields": [
+                {
+                    "id": "docSchedNumb10",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup10",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber10",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand10",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz10",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage10",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant10",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight10a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight10b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight10c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight10d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice10",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue10",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant10",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant10.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight10",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight10a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight10",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight10b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight10",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight10c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight10",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight10d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue10",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue10.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 11",
+            "includeIf": "${numDocs > 10}",
+            "fields": [
+                {
+                    "id": "docSchedNumb11",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup11",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber11",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand11",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz11",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage11",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant11",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight11a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight11b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight11c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight11d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice11",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue11",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant11",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant11.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight11",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight11a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight11",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight11b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight11",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight11c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight11",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight11d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue11",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue11.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 12",
+            "includeIf": "${numDocs > 11}",
+            "fields": [
+                {
+                    "id": "docSchedNumb12",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup12",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber12",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand12",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz12",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage12",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant12",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight12a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight12b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight12c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight12d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice12",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue12",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant12",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant12.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight12",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight12a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight12",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight12b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight12",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight12c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight12",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight12d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue12",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue12.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 13",
+            "includeIf": "${numDocs > 12}",
+            "fields": [
+                {
+                    "id": "docSchedNumb13",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup13",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber13",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand13",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz13",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage13",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant13",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight13a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight13b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight13c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight13d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice13",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue13",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant13",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant13.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight13",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight13a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight13",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight13b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight13",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight13c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight13",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight13d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue13",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue13.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 14",
+            "includeIf": "${numDocs > 13}",
+            "fields": [
+                {
+                    "id": "docSchedNumb14",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup14",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber14",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand14",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz14",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage14",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant14",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight14a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight14b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight14c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight14d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice14",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue14",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant14",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant14.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight14",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight14a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight14",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight14b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight14",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight14c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight14",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight14d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue14",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue14.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 15",
+            "includeIf": "${numDocs > 14}",
+            "fields": [
+                {
+                    "id": "docSchedNumb15",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup15",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber15",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand15",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz15",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage15",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant15",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight15a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight15b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight15c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight15d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice15",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue15",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant15",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant15.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight15",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight15a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight15",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight15b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight15",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight15c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight15",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight15d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue15",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue15.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 16",
+            "includeIf": "${numDocs > 15}",
+            "fields": [
+                {
+                    "id": "docSchedNumb16",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup16",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber16",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand16",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz16",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage16",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant16",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight16a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight16b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight16c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight16d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice16",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue16",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant16",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant16.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight16",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight16a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight16",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight16b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight16",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight16c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight16",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight16d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue16",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue16.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 17",
+            "includeIf": "${numDocs > 16}",
+            "fields": [
+                {
+                    "id": "docSchedNumb17",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup17",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber17",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand17",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz17",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage17",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant17",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight17a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight17b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight17c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight17d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice17",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue17",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant17",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant17.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight17",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight17a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight17",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight17b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight17",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight17c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight17",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight17d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue17",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue17.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 18",
+            "includeIf": "${numDocs > 17}",
+            "fields": [
+                {
+                    "id": "docSchedNumb18",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup18",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber18",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand18",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz18",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage18",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant18",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight18a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight18b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight18c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight18d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice18",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue18",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant18",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant18.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight18",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight18a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight18",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight18b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight18",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight18c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight18",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight18d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue18",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue18.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 19",
+            "includeIf": "${numDocs > 18}",
+            "fields": [
+                {
+                    "id": "docSchedNumb19",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup19",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber19",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand19",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz19",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage19",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant19",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight19a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight19b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight19c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight19d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice19",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue19",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant19",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant19.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight19",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight19a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight19",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight19b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight19",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight19c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight19",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight19d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue19",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue19.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Delivery document or schedule number 20",
+            "includeIf": "${numDocs > 19}",
+            "fields": [
+                {
+                    "id": "docSchedNumb20",
+                    "type": "text",
+                    "format": "text",
+                    "label": "Delivery document or delivery schedule number",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "deliveryGroup20",
+                    "type": "group",
+                    "label": "",
+                    "repeatsMax": 50,
+                    "repeatLabel": "Brand $n",
+                    "repeatAddAnotherText": "Add another brand",
+                    "fields": [
+                        {
+                            "id": "stockNumber20",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Stock number",
+                            "displayWidth": "s"
+                        },
+                        {
+                            "id": "brand20",
+                            "type": "text",
+                            "format": "text",
+                            "label": "Brand",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "siz20",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Size of retail pack",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "noPaxPerPackage20",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Number of packs per package",
+                            "displayWidth": "xs"
+                        },
+                        {
+                            "id": "totQuant20",
+                            "type": "text",
+                            "format": "number",
+                            "label": "Total quantity",
+                            "mandatory": "false",
+                            "helpText": "Number of cigarettes",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight20a",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Total Weight of Cigars",
+                            "mandatory": "false",
+                            "helpText": "Weight of Cigars",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight20b",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Hand rolling tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of H/R Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight20c",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of Other smoking tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of O/S Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "totWeight20d",
+                            "type": "text",
+                            "format": "number(6, 2, 'KG')",
+                            "label": "Weight of chewing tobacco",
+                            "mandatory": "false",
+                            "helpText": "Weight of chewing Tobacco",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailPrice20",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail price of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        },
+                        {
+                            "id": "retailValue20",
+                            "type": "text",
+                            "format": "sterling",
+                            "label": "Retail value of cigarettes for duty purposes",
+                            "helpText": "Only fill this in for cigarettes",
+                            "mandatory": "false",
+                            "displayWidth": "m"
+                        }
+                    ]
+                },
+                {
+                    "id": "delCigQuant20",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Total quantity of cigarettes in delivery",
+                    "value": "${totQuant20.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigarWeight20",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of Cigars in delivery",
+                    "value": "${totWeight20a.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delHRTWeight20",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of H/R tobacco in delivery",
+                    "value": "${totWeight20b.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delOSTWeight20",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of O/S tobacco in delivery",
+                    "value": "${totWeight20c.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCTWeight20",
+                    "type": "text",
+                    "format": "number(6, 2, 'KG')",
+                    "label": "Total weight of chewing tobacco in delivery",
+                    "value": "${totWeight20d.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                },
+                {
+                    "id": "delCigTotalValue20",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Total retail value of cigarettes in delivery",
+                    "value": "${retailValue20.sum}",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly"
+                }
+            ]
+        },
+        {
+            "title": "Duty calculation",
+            "fields": [
+                {
+                    "id": "calcInfo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "Throughout the next section you will need to refer to the latest duty rates for the following items\n\n * Cigarettes\n\n* Cigars\n\n * Hand-rolling tobacco\n\n * Other smoking tobacco\n\n * Chewing tobacco"
+                },
+                {
+                    "id": "ratesInfo",
+                    "type": "info",
+                    "infoType": "long",
+                    "label": "Where do I find the latest duty rates?",
+                    "infoText": "You can find [Latest tobacco duty rates](https://www.gov.uk/government/publications/rates-and-allowances-excise-duty-tobacco-duty/excise-duty-tobacco-duty-rates) here.\n\n We suggest that you boookmark this page and then open it in another window to reference whilst working on this form.\n\n You will need to press back in your browser to return to this form"
+                }
+            ]
+        },
+        {
+            "title": "Section 1: Cigarettes",
+            "fields": [
+                {
+                    "id": "cigInfo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "Tax type: 43611"
+                },
+                {
+                    "id": "cigQty",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Number of cigarettes",
+                    "helpText": "This number is calculated from the number of cigarettes you have entered on all the delivery documents and schedules",
+                    "value": "${delCigQuant1 + delCigQuant2 + delCigQuant3 + delCigQuant4 + delCigQuant5 + delCigQuant6 + delCigQuant7 + delCigQuant8 + delCigQuant9 + delCigQuant10 + delCigQuant11 + delCigQuant12 + delCigQuant13 + delCigQuant14 + delCigQuant15 + delCigQuant16 + delCigQuant17 + delCigQuant18 + delCigQuant19 + delCigQuant20}",
+                    "shortName": "Number of cigarettes",
+                    "submitMode": "readOnly",
+                    "displayWidth": "m"
+                },
+                {
+                    "id": "cigValue",
+                    "type": "text",
+                    "format": "number",
+                    "label": "Value of cigarettes",
+                    "helpText": "This number is calculated from the value of cigarettes you have entered on all the delivery documents and schedules",
+                    "value": "${delCigTotalValue1 + delCigTotalValue2 + delCigTotalValue3 + delCigTotalValue4 + delCigTotalValue5 + delCigTotalValue6 + delCigTotalValue7 + delCigTotalValue8 + delCigTotalValue9 + delCigTotalValue10 + delCigTotalValue11 + delCigTotalValue12 + delCigTotalValue13 + delCigTotalValue14 + delCigTotalValue15 + delCigTotalValue16 + delCigTotalValue17 + delCigTotalValue18 + delCigTotalValue19 + delCigTotalValue20}",
+                    "shortName": "Value of cigarettes",
+                    "submitMode": "readOnly",
+                    "displayWidth": "m"
+                }
+            ]
+        },
+        {
+            "title": "Current sterling duty rate per 1000 cigarettes",
+            "fields": [
+                {
+                    "id": "curDutyRate",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Current sterling duty rate per 1000 cigarettes",
+                    "helpText": "Enter the current sterling rate of duty including decimal points for example : 223.50 per 1000",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Current percentage duty rate",
+            "fields": [
+                {
+                    "id": "cigRoD",
+                    "type": "text",
+                    "format": "positiveNumber(2,2)",
+                    "label": "Current percentage duty rate",
+                    "helpText": "enter the current percentage rate of duty for example 16.50",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "cigRoDConv",
+                    "type": "text",
+                    "format": "positiveNumber",
+                    "label": "Current percentage duty rate conversion",
+                    "value": "${cigRoD * 0.01}",
+                    "presentationHint": "invisibleInSummary",
+                    "submitMode": "summaryinfoonly",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Amount of excise due at percentage rate",
+            "fields": [
+                {
+                    "id": "amoExDu",
+                    "type": "text",
+                    "label": "Amount of excise due at percentage rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cigValue * cigRoDConv}"
+                }
+            ]
+        },
+        {
+            "title": "Amount of excise due at Sterling rate",
+            "fields": [
+                {
+                    "id": "amoDurDu",
+                    "type": "text",
+                    "label": "Amount of excise due at Sterling rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cigQty * curDutyRate}"
+                }
+            ]
+        },
+        {
+            "title": "Excise duty payable on cigarettes",
+            "fields": [
+                {
+                    "id": "cigExDue",
+                    "type": "text",
+                    "label": "Excise duty payable on cigarettes",
+                    "helpText": "This figure is calculated by multiplying the quantity of cigarettes by the percentage rate per 1000 and then adding the sum of the retail value multiplied by the sterling rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${amoExDu + amoDurDu}"
+                }
+            ]
+        },
+        {
+            "title": "Minimum excise duty",
+            "fields": [
+                {
+                    "id": "minExciseDutyAmount",
+                    "type": "text",
+                    "label": "Enter the latest minimum excise duty per 1000 cigarettes",
+                    "format": "sterling"
+                },
+                {
+                    "id": "minExciseDuty",
+                    "type": "text",
+                    "label": "Minimum excise duty",
+                    "helptext": "This sum i scalculated by the number of 1000's of cigarettes you previously entered multiplied by the latest minimum excise duty per 1000 cigrettes",
+                    "format": "sterling",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${cigQty * minExciseDutyAmount}"
+                }
+            ]
+        },
+        {
+            "title": "Your total excise duty payable for cigarettes before surcharges or credits",
+            "includeIf": "${minExciseDuty > cigExDue}",
+            "fields": [
+                {
+                    "id": "minExHigherInfo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "You are seeing this page because the amount of duty due based on the minimum excise duty is higher than the amount due based on the sum of the percentage value of retail price plus the base value of excise due per 1000 cigarettes"
+                },
+                {
+                    "id": "minExHigherDueAmount",
+                    "type": "text",
+                    "label": "Your total excise duty payable for cigarettes",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${minExciseDuty}",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Your total excise duty payable for cigarettes before surcharges or credits",
+            "includeIf": "${minExciseDuty < cigExDue}",
+            "fields": [
+                {
+                    "id": "minExLowerInfo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "You are seeing this page because the amount of duty due based on the sum of the percentage value of retail price plus the base value of excise due per 1000 cigarettes is higher than the amount of duty due based on the minimum excise duty"
+                },
+                {
+                    "id": "minExLowerDueAmount",
+                    "type": "text",
+                    "label": "Your total excise duty payable for cigarettes",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${cigExDue}",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Surcharges",
+            "fields": [
+                {
+                    "id": "ciggySurcharges",
+                    "type": "text",
+                    "label": "Surcharges",
+                    "helpText": "Enter the amount of any surcharges you have to pay on cigarettes",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Credits allowed",
+            "fields": [
+                {
+                    "id": "ciggyCredits",
+                    "type": "text",
+                    "label": "Credits allowed",
+                    "helpText": "Enter the amount of any credits allowed for cigarettes",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Net duty due for cigarettes",
+            "includeIf": "${minExciseDuty > cigExDue}",
+            "fields": [
+                {
+                    "id": "minExDueNet",
+                    "type": "text",
+                    "label": "Your total excise duty payable for cigarettes",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${minExciseDuty + ciggySurcharges}",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Net duty due for cigarettes",
+            "includeIf": "${minExciseDuty < cigExDue}",
+            "fields": [
+                {
+                    "id": "cigExDueNet",
+                    "type": "text",
+                    "label": "Your total excise duty payable for cigarettes",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${cigExDue + ciggySurcharges}",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "VAT due for cigarettes",
+            "fields": [
+                {
+                    "id": "cigVatDue",
+                    "type": "text",
+                    "label": "VAT due for cigarettes",
+                    "presentationHint": "totalValue",
+                    "submitMode": "readOnly",
+                    "value": "${cigValue * 0.2}",
+                    "format": "sterling"
+                }
+            ]
+        },
+        {
+            "title": "Section 2: Cigars",
+            "fields": [
+                {
+                    "id": "cigarQty",
+                    "type": "text",
+                    "format": "number(10,2,'kg')",
+                    "label": "Quantity of cigars",
+                    "shortName": "615: quantity of cigars",
+                    "helpText": "Enter the quantity in kilograms to two decimal places",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "cigarRoD",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Current sterling duty rate",
+                    "helpText": "Enter the current sterling rate of duty including decimal points for example : 223.50 per kg",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Excise duty payable on cigars",
+            "fields": [
+                {
+                    "id": "cigarExDue",
+                    "type": "text",
+                    "label": "Excise duty payable on cigars",
+                    "helpText": "This figure is calculated by multiplying the quantity of cigars by the duty rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cigarQty * cigarRoD}"
+                }
+            ]
+        },
+        {
+            "title": "Section 3: Hand rolling tobacco",
+            "fields": [
+                {
+                    "id": "hRTQty",
+                    "type": "text",
+                    "format": "number(10,2,'kg')",
+                    "label": "Quantity of hand rolling tobacco",
+                    "shortName": "619: quantity of hand rolling tobacco",
+                    "helpText": "Enter the quantity in kilograms to two decimal places",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "hRTRoD",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Current sterling duty rate",
+                    "helpText": "Enter the current sterling rate of duty including decimal points for example : 223.50 per kg",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Excise duty payable on hand rolling tobacco",
+            "fields": [
+                {
+                    "id": "hRTExDue",
+                    "type": "text",
+                    "label": "Excise duty payable on hand rolling tobacco",
+                    "helpText": "This figure is calculated by multiplying the quantity of hand rolling tobacco by the duty rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${hRTQty * hRTRoD}"
+                }
+            ]
+        },
+        {
+            "title": "Section 4: Other smoking tobacco",
+            "fields": [
+                {
+                    "id": "oSTQty",
+                    "type": "text",
+                    "format": "number(10,2,'kg')",
+                    "label": "Quantity of other smoking tobacco",
+                    "shortName": "623: quantity of hand rolling tobacco",
+                    "helpText": "Enter the quantity in kilograms to two decimal places",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "oSTRoD",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Current sterling duty rate",
+                    "helpText": "Enter the current sterling rate of duty including decimal points for example : 223.50 per kg",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Excise duty payable on other smoking tobacco",
+            "fields": [
+                {
+                    "id": "oSTExDue",
+                    "type": "text",
+                    "label": "Excise duty payable on other smoking tobacco",
+                    "helpText": "This figure is calculated by multiplying the quantity of other smoking tobaccoo by the duty rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${oSTQty * oSTRoD}"
+                }
+            ]
+        },
+        {
+            "title": "Section 5: Chewing tobacco ",
+            "fields": [
+                {
+                    "id": "cTQty",
+                    "type": "text",
+                    "format": "number(10,2,'kg')",
+                    "label": "Quantity of chewing tobacco",
+                    "shortName": "627: quantity of hand rolling tobacco",
+                    "helpText": "Enter the quantity in kilograms to two decimal places",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "cTRoD",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Current sterling duty rate",
+                    "helpText": "Enter the current sterling rate of duty including decimal points for example : 223.50 per kg",
+                    "displayWidth": "s"
+                }
+            ]
+        },
+        {
+            "title": "Excise duty payable on chewing tobacco",
+            "fields": [
+                {
+                    "id": "cTExDue",
+                    "type": "text",
+                    "label": "Excise duty payable on chewing tobacco",
+                    "helpText": "This figure is calculated by multiplying the quantity of chewing tobacco by the duty rate",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cTQty * cTRoD}"
+                }
+            ]
+        },
+        {
+            "title": "Total Excise duty due for tobacco products (cigarettes at full rate)",
+            "includeIf": "${minExciseDuty < cigExDue}",
+            "fields": [
+                {
+                    "id": "totExDueFullCigs",
+                    "type": "text",
+                    "label": "Total Excise duty due for tobacco products (cigarettes at full rate)",
+                    "helpText": "This figure is calculated by the addition of the duty due from the previous 5 sections",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cTExDue + oSTExDue + hRTExDue + cigarExDue + minExLowerDueAmount}"
+                }
+            ]
+        },
+        {
+            "title": "Total Excise duty due for tobacco products (cigarettes at minimum rate)",
+            "includeIf": "${minExciseDuty > cigExDue}",
+            "fields": [
+                {
+                    "id": "totExDueMinCigs",
+                    "type": "text",
+                    "label": "Total Excise duty due for tobacco products (cigarettes at minimum rate)",
+                    "helpText": "This figure is calculated by the addition of the duty due from the previous 5 sections",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${cTExDue + oSTExDue + hRTExDue + cigarExDue + minExHigherDueAmount}"
+                }
+            ]
+        },
+        {
+            "title": "Section 6: VAT",
+            "fields": [
+                {
+                    "id": "vatInfo",
+                    "type": "info",
+                    "label": "",
+                    "infoType": "noformat",
+                    "infoText": "Value for VAT – this can vary.\n\n If, whilst in warehouse, the goods have been subject to a supply, or additional services such as storage or handling, it may affect the VAT position.\n\n  Note that the value for VAT must include Excise Duty in all cases (and customs duty if applicable)."
+                },
+                {
+                    "id": "helpInfo",
+                    "type": "info",
+                    "infoType": "long",
+                    "label": "Where can i find more information about VAT and tobacco?",
+                    "infoText": "You can find [help with understanding VAT](https://www.gov.uk/guidance/imports-and-vat-notice-702) here.\n\n You will need to press back in your browser to return to this form\n\n It is advisable to use separate forms, clearly noted, for detailing EC free circulation goods subject to acquisition VAT procedures. In these cases complete the Value/Rate boxes and enter 'ACQ VAT' in the Amount of VAT box."
+                }
+            ]
+        },
+        {
+            "title": "Do you have any EC free circulation goods subject to acquisition VAT procedures to declare?",
+            "fields": [
+                {
+                    "id": "acqVATChoi",
+                    "type": "choice",
+                    "label": "Do you have any EC free circulation goods subject to acquisition VAT procedures to declare?",
+                    "helpText": "We really need some help with this text",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Goods subject to acquisition VAT procedures",
+            "includeIf": "${acqVATChoi = 0}",
+            "fields": [
+                {
+                    "id": "gdsAqVal",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Value for VAT",
+                    "shortName": "813: Value for VAT",
+                    "helpText": "Enter the sterling value of any goods subject to acquisition VAT procedures",
+                    "displayWidth": "m"
+                },
+                {
+                    "id": "gdsAqVATRate",
+                    "type": "text",
+                    "format": "positiveNumber(2,2)",
+                    "label": "",
+                    "helpText": "Enter the VAT rate for any goods subject to acquisition VAT procedures, for example 16.50",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "gdsAqVATRateConv",
+                    "type": "text",
+                    "format": "positiveNumber",
+                    "label": "Current percentage duty rate conversion",
+                    "value": "${gdsAqVATRate * 0.01}",
+                    "presentationHint": "invisibleInSummary",
+                    "submitMode": "summaryinfoonly",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "amtAqVal",
+                    "type": "text",
+                    "label": "Amount of VAT",
+                    "helpText": "Enter ACQ VAT in this box",
+                    "displayWidth": "m"
+                }
+            ]
+        },
+        {
+            "title": "All other goods not subject to acquisition VAT procedures",
+            "includeIf": "${acqVATChoi = 0}",
+            "fields": [
+                {
+                    "id": "allOthGdsVal",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Value for VAT",
+                    "shortName": "813: Value for VAT",
+                    "helpText": "Enter the sterling value of all other goods not subject to acquisition VAT procedures",
+                    "displayWidth": "m"
+                },
+                {
+                    "id": "allOthGdsValVATRate",
+                    "type": "text",
+                    "format": "positiveNumber(2,2)",
+                    "label": "VAT rate %",
+                    "helpText": "Enter the VAT rate for all other goods not subject to acquisition VAT procedures, for example 16.50",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "allOthGdsVATRateConv",
+                    "type": "text",
+                    "format": "positiveNumber",
+                    "label": "",
+                    "value": "${allOthGdsValVATRate * 0.01}",
+                    "presentationHint": "invisibleInSummary",
+                    "submitMode": "summaryinfoonly",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "allOthGdsVATVal",
+                    "type": "text",
+                    "label": "Amount of VAT",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${allOthGdsVal * allOthGdsVATRateConv}"
+                }
+            ]
+        },
+        {
+            "title": "Total VAT payable",
+            "includeIf": "${acqVATChoi = 0}",
+            "fields": [
+                {
+                    "id": "totVATVal",
+                    "type": "text",
+                    "label": "Total VAT payable",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${allOthGdsVATVal}"
+                }
+            ]
+        },
+        {
+            "title": "All goods subject to VAT",
+            "includeIf": "${acqVATChoi = 1}",
+            "fields": [
+                {
+                    "id": "allGdsSubVatVal",
+                    "type": "text",
+                    "format": "sterling",
+                    "label": "Value for VAT",
+                    "shortName": "813: Value for VAT",
+                    "helpText": "Enter the sterling value of all goods subject to VAT",
+                    "displayWidth": "m"
+                },
+                {
+                    "id": "allGdsSubVATRate",
+                    "type": "text",
+                    "format": "positiveNumber(2,2)",
+                    "label": "VAT rate %",
+                    "helpText": "Enter the VAT rate for all goods subject to VAT, for example 16.50",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "allGdsSubVATRateConv",
+                    "type": "text",
+                    "format": "positiveNumber",
+                    "label": "",
+                    "value": "${allGdsSubVATRate * 0.01}",
+                    "presentationHint": "invisibleInSummary",
+                    "submitMode": "summaryinfoonly",
+                    "displayWidth": "s"
+                },
+                {
+                    "id": "allGdsSubVATVal",
+                    "type": "text",
+                    "label": "Amount of VAT",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${allGdsSubVatVal * allGdsSubVATRateConv}"
+                }
+            ]
+        },
+        {
+            "title": "Grand total",
+            "includeIf": "${acqVATChoi = 0 && (minExciseDuty > cigExDue)}",
+            "fields": [
+                {
+                    "id": "grTotMinCigAqYes",
+                    "type": "text",
+                    "label": "Amount of VAT",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${totExDueMinCigs + totVATVal}"
+                }
+            ]
+        },
+        {
+            "title": "Grand total due",
+            "includeIf": "${acqVATChoi = 0 && (minExciseDuty < cigExDue)}",
+            "fields": [
+                {
+                    "id": "grTotFullCigAqYes",
+                    "type": "text",
+                    "label": "Grand total due ",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${totExDueFullCigs + totVATVal}"
+                }
+            ]
+        },
+        {
+            "title": "Grand total due",
+            "includeIf": "${acqVATChoi = 1 && (minExciseDuty > cigExDue)}",
+            "fields": [
+                {
+                    "id": "grTotMinCigAqNo",
+                    "type": "text",
+                    "label": "Grand total due",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${totExDueMinCigs + allGdsSubVATVal}"
+                }
+            ]
+        },
+        {
+            "title": "Grand total due",
+            "includeIf": "${acqVATChoi = 1 && (minExciseDuty < cigExDue)}",
+            "fields": [
+                {
+                    "id": "grTotFullCigAqNo",
+                    "type": "text",
+                    "label": "Grand total due",
+                    "format": "sterling",
+                    "submitMode": "readOnly",
+                    "presentationHint": "totalValue",
+                    "value": "${totExDueFullCigs + allGdsSubVATVal}"
+                }
+            ]
+        }
+    ],
+    "declarationSection": {
+        "shortName": "Declaration",
+        "title": "Confirm details and send your return",
+        "fields": [
+            {
+                "id": "declarationNameGroup",
+                "type": "group",
+                "label": "",
+                "fields": [
+                    {
+                        "id": "declarationFullName",
+                        "type": "text",
+                        "errorMessage": "Enter your full name",
+                        "label": "Full name"
+                    },
+                    {
+                        "id": "declarationStatus",
+                        "type": "text",
+                        "label": "Job title",
+                        "errorMessage": "Enter your job title"
+                    }
+                ]
+            },
+            {
+                "id": "email",
+                "type": "text",
+                "label": "Email address",
+                "helpText": "We will send an email to this address to confirm we’ve received your return",
+                "errorMessage": "Enter your email address",
+                "mandatory": "true",
+                "format": "email"
+            },
+            {
+                "type": "info",
+                "id": "decPageContent",
+                "label": "",
+                "infoType": "noformat",
+                "infoText": "# Declaration \nBy submitting this return, you declare that the information that you have provided is true and complete."
+            }
+        ]
+    },
+    "acknowledgementSection": {
+        "title": "Acknowledgement page",
+        "fields": [
+            {
+                "id": "helpText8",
+                "label": "",
+                "type": "info",
+                "infoType": "noformat",
+                "infoText": "This is your last opportunity to print or save a copy of your submitted form as you won’t be able to retrieve it later."
+            }
+        ]
+    }
+}
