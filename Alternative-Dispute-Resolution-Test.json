@@ -26,12 +26,14 @@
   "sections": [
     {
       "title": "Did HMRC issue a decision giving you a right to appeal?",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "appealConfirmation",
           "type": "choice",
           "label": "Did HMRC issue a decision giving you a right to appeal?",
           "shortName": "Right to appeal",
+          "helpText": "This will be on the decision letter HMRC sent you.",
           "errorMessage": "Select whether HMRC issued a decision giving you a right to appeal",
           "choices": [
             "Yes",
@@ -43,6 +45,7 @@
     {
       "title": "Have you already made your appeal?",
       "includeIf": "${appealConfirmation = 0}",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "appealMade",
@@ -61,6 +64,7 @@
       "title": "You can apply for Alternative Dispute Resolution",
       "shortName": "Eligibility checker passed",
       "includeIf": "${appealMade = 0 || appealConfirmation = 1}",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "applyADRInfo",
@@ -74,12 +78,14 @@
     {
       "title": "Is your case currently under statutory review?",
       "includeIf": "${appealMade = 1}",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "statReview",
           "type": "choice",
           "label": "Is your case currently under statutory review?",
           "shortName": "Statutory review",
+          "helpText": "This process lets customers ask HMRC to take another look at their decision.",
           "errorMessage": "Select whether you have already accepted a statutory review",
           "choices": [
             "Yes",
@@ -92,6 +98,7 @@
       "title": "You cannot apply for this service yet",
       "includeIf": "${statReview = 0}",
       "continueIf": "false",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "cannotApplyStatReview",
@@ -106,6 +113,7 @@
       "title": "You need to make an appeal before using this service",
       "includeIf": "${statReview = 1}",
       "continueIf": "false",
+      "progressIndicator": "Eligibility",
       "fields": [
         {
           "id": "needAppealInfo",
@@ -118,7 +126,7 @@
     },
     {
       "title": "Enter the details of the person filling in this form ",
-      "description": "HMRC will use these details if we need to discuss this form.",
+      "description": "HMRC will use these details if we need to discuss this application.",
       "fields": [
         {
           "id": "fullNameFilling",
@@ -137,7 +145,7 @@
           "id": "email",
           "type": "text",
           "label": "Email address",
-          "helpText": "We will also use this to send you a confirmation email.",
+          "helpText": "We will also use this to send you a confirmation email for this application.",
           "format": "email"
         },
         {
@@ -178,14 +186,14 @@
       ]
     },
     {
-      "title": "Can HMRC communicate with you by email while you use this service?",
+      "title": "If you are accepted to use this service, can HMRC use your email address to communicate with you?",
       "fields": [
         {
           "id": "emCons",
           "type": "revealingChoice",
-          "label": "Can HMRC communicate with you by email while you use this service?",
+          "label": "If you are accepted to use this service, can HMRC use your email address to communicate with you?",
           "shortName": "You accept the risks of using email, and agree that attachments and financial information can be sent by email",
-          "helpText": "Because email cannot be guaranteed 100% secure, you need to understand and accept the risks before sending and receiving email.",
+          "helpText": "Because email cannot be guaranteed 100% secure, you need to understand and accept the risks before sending and receiving financial information and attachments by email.",
           "errorMessage": "Select whether you want to be contacted using your email address",
           "choices": [
             "Yes, I want to use email",
@@ -353,13 +361,13 @@
       ]
     },
     {
-      "title": "Select an HMRC reference you can provide for this case",
-      "shortName": "Select an HMRC reference to provide for this case",
+      "title": "Select an HMRC reference you can provide for this dispute",
+      "shortName": "Select an HMRC reference to provide for this dispute",
       "fields": [
         {
           "id": "hmrcRef",
           "type": "revealingChoice",
-          "label": "Select an HMRC reference you can provide for this case",
+          "label": "Select an HMRC reference you can provide for this dispute",
           "shortName": "HMRC reference",
           "helpText": "This helps us find your case details.",
           "errorMessage": "Select which HMRC reference you are providing",
