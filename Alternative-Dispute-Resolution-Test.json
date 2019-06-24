@@ -17,12 +17,6 @@
   "authConfig": {
     "authModule": "hmrc"
   },
-  "dmsSubmission": {
-    "businessArea": "ISBC",
-    "classificationType": "ISBC-ADR-Applications",
-    "customerId": "${' '}",
-    "dmsFormId": "ADR"
-  },
   "sections": [
     {
       "title": "Did HMRC issue a decision giving you a right to appeal?",
@@ -766,5 +760,17 @@
   },
   "draftRetrievalMethod": "formAccessCodeForAgents",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated"
+  "submitSuccessUrl": "deprecated",
+  "destinations": [
+    {
+      "id": "dmsSubmission",
+      "type": "hmrcDms",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "ADR",
+      "customerId": "${' '}",
+      "classificationType": "ISBC-ADR-Applications",
+      "businessArea": "ISBC"
+    }
+  ]
 }
