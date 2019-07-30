@@ -1,0 +1,345 @@
+{
+  "formName": "C118-4 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section4_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "C118-4"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number ",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Have any bankruptcy or insolvency proceedings been initiated in respect of your company's assets in the last 3 years?",
+      "shortName": "Financial solvency",
+      "fields": [
+        {
+          "id": "finSolv1",
+          "type": "choice",
+          "label": "Have any bankruptcy or insolvency proceedings been initiated in respect of your company's assets in the last 3 years?",
+          "shortName": "4.1: Bankruptcy or insolvency proceedings initiated in the last 3 years",
+          "helpText": "[Ref 4.1]",
+          "errorMessage": "4.1: Select whether any bankruptcy or insolvency proceedings have been initiated in the last 3 years",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of the bankruptcy or insolvency proceedings that were initiated in the last 3 years",
+      "shortName": "Financial solvency - Bankruptcy or insolvency proceedings initiated",
+      "includeIf": "${finSolv1 = 0}",
+      "fields": [
+        {
+          "id": "finSolv2",
+          "type": "text",
+          "label": "Provide details of the bankruptcy or insolvency proceedings that were initiated in the last 3 years",
+          "shortName": "4.1: Bankruptcy or insolvency proceedings details",
+          "helpText": "[Ref 4.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Over the last 3 years, has your business had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments?",
+      "shortName": "Financial solvency - financial standing ",
+      "fields": [
+        {
+          "id": "finSolv3",
+          "type": "choice",
+          "label": "Over the last 3 years, has your business had a consistently good financial standing within the meaning of Article 26 of the UCC IA, sufficient to meet its financial commitments?",
+          "shortName": "4.2: Consistently good financial standing over last 3 years",
+          "helpText": "[Ref 4.2]",
+          "errorMessage": "4.2: Select whether your company has had a consistently good financial standing over the last 3 years",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "optionHelpText": [
+            "If you select yes we will check that you have met the required financial standing in the accounts you provide with form C117",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide full details of your financial standing and why it has not been sufficient to meet financial commitments over the last 3 years",
+      "shortName": "Not consistently good financial standing",
+      "includeIf": "${finSolv3 = 1}",
+      "fields": [
+        {
+          "id": "finSolv4",
+          "type": "text",
+          "label": "Provide full details of your financial standing and why it has not been sufficient to meet financial commitments over the last 3 years",
+          "shortName": "4.2: Full details of your financial standing",
+          "helpText": "This means the consistently good financial standing required within the meaning of Article 26 of the UCC IA. [Ref 4.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing company?",
+      "shortName": "Established less than 3 years",
+      "fields": [
+        {
+          "id": "lessThan3Years",
+          "type": "choice",
+          "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing company?",
+          "shortName": "4.3: Business established less than 3 years due to internal reorganisation",
+          "helpText": "For example, incorporation or sale of a business unit. [Ref 4.3]",
+          "errorMessage": "4.3: Select whether the business has been established for less than 3 years due to internal reorganisation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Financial solvency - Newly established company",
+      "shortName": "Financial solvency uploads - newly established company ",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "generatedId_a4c5fe6e_52fe_4610_8ddf_0ad8b32b1263",
+          "type": "info",
+          "label": "",
+          "infoText": "Provide the following records and information about your financial status:\n\n* latest cash flow\n\n* balance sheet\n\n* profit and loss forecasts \n\nThese must be approved by the directors, partners or sole proprietor.\n\nWe accept documents in formats like PDF and JPEG (5MB maximum per file).",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd3a",
+          "type": "file",
+          "label": "Upload your latest cash flow\n\n",
+          "shortName": "4.3: Cash flow document",
+          "helpText": "[Ref 4.3]"
+        },
+        {
+          "id": "generatedId_f7b4e0ff_45b3_4b43_8412_8e5c0d418c22",
+          "type": "info",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd5c",
+          "type": "file",
+          "label": "Upload your latest balance sheet",
+          "shortName": "4.3: Balance sheet document",
+          "helpText": "[Ref 4.3]"
+        },
+        {
+          "id": "generatedId_111be541_dc0a_467f_802b_8615070eb63d",
+          "type": "info",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
+        },
+        {
+          "id": "uploadAdd5",
+          "type": "file",
+          "label": "Upload your latest profit and loss forecasts",
+          "shortName": "4.3: Profit and loss forecast document",
+          "helpText": "[Ref 4.3]"
+        },
+        {
+          "id": "generatedId_41cb7f09_0027_4a57_b326_802d8d1b2f43",
+          "type": "info",
+          "label": "",
+          "infoText": "*** ***",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "Is there anything you are aware of that could impact on your financial solvency in the foreseeable future?",
+      "shortName": "Financial solvency in foreseeable future",
+      "fields": [
+        {
+          "id": "finSolv5",
+          "type": "choice",
+          "label": "Is there anything you are aware of that could impact on your financial solvency in the foreseeable future?",
+          "shortName": "4.4: Aware of anything that could impact future financial solvency",
+          "helpText": "[Ref 4.4]",
+          "errorMessage": "4.4: Select whether there is anything you are aware of that could impact on your financial solvency in the foreseeable future",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give details of anything that you are aware of that may impact future financial solvency",
+      "shortName": "Impacted financial solvency",
+      "includeIf": "${finSolv5 = 0}",
+      "fields": [
+        {
+          "id": "finSolv6",
+          "type": "text",
+          "label": "Give details of anything that you are aware of that may impact future financial solvency",
+          "shortName": "4.4: Details of anything that may impact future financial solvency",
+          "helpText": "[Ref 4.4]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you have a Duty Deferment Account? ",
+      "shortName": "Financial solvency - Duty Deferment Account",
+      "fields": [
+        {
+          "id": "finSolv7",
+          "type": "choice",
+          "label": "Do you have a Duty Deferment Account? ",
+          "shortName": "4.5: Duty Deferment Account",
+          "helpText": "[Ref 4.5]",
+          "errorMessage": "4.5: Select whether you have a Duty Deferment Account",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter your Deferment Approval Number (DAN)",
+      "shortName": "Deferment Approval Number (DAN)",
+      "includeIf": "${finSolv7 = 0}",
+      "fields": [
+        {
+          "id": "finSolv8",
+          "type": "text",
+          "label": "Enter your Deferment Approval Number (DAN)",
+          "shortName": "4.5: DAN",
+          "helpText": "[Ref 4.5]"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-4-Apply-for-AEO-Original"
+}
