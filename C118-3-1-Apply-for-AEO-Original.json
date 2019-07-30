@@ -1,0 +1,469 @@
+{
+  "formName": "C118-3-1 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section3_part1_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "C118-3-1"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Does your logistic accounting system facilitate a full audit trail of your customs activities, tax relevant movement of goods, and accounting entries?",
+      "shortName": "Logistic accounting system",
+      "fields": [
+        {
+          "id": "aT1",
+          "type": "choice",
+          "label": "Does your logistic accounting system facilitate a full audit trail of your customs activities, tax relevant movement of goods, and accounting entries?",
+          "shortName": "3.1.1: Audit trail",
+          "helpText": "[Ref 3.1.1]",
+          "errorMessage": "3.1.1: Select whether your logistic accounting system facilitates a full audit trail ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of the audit trail of your logistic accounting system",
+      "shortName": "Description of audit trail",
+      "includeIf": "${aT1 = 0}",
+      "fields": [
+        {
+          "id": "auditTrail2",
+          "type": "text",
+          "label": "Provide details of the audit trail of your logistic accounting system",
+          "shortName": "3.1.1: Audit trail details",
+          "helpText": "[Ref 3.1.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "What computer system do you use for your business in general, and for customs matters in particular, and are those 2 systems integrated?",
+      "shortName": "Business and customs computer systems",
+      "fields": [
+        {
+          "id": "compSystemInfo",
+          "type": "text",
+          "label": "What computer system do you use for your business in general, and for customs matters in particular, and are those 2 systems integrated?",
+          "shortName": "3.2.1: Computer systems used and integration",
+          "helpText": "For example, hardware and software. [Ref 3.2.1]",
+          "multiline": "true"
+        }
+      ]
+    },
+    {
+      "title": "Provide details on the separation of functions between development, testing and operation in your logistical accounting system",
+      "shortName": "Development, testing and operation",
+      "fields": [
+        {
+          "id": "computer1",
+          "type": "text",
+          "label": "Provide details on the separation of functions between development, testing and operation in your logistical accounting system",
+          "shortName": "3.2.1a: Separation of functions",
+          "helpText": "[Ref 3.2.1a]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Provide details on the separation of functions between users in your logistical accounting system",
+      "shortName": "Accounting system functions",
+      "fields": [
+        {
+          "id": "computer2",
+          "type": "text",
+          "label": "Provide details on the separation of functions between users in your logistical accounting system",
+          "shortName": "3.2.1b: Separation of functions between users",
+          "helpText": "[Ref 3.2.1b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Provide details on access controls within your logistical accounting system",
+      "shortName": "Controls within accounting system",
+      "fields": [
+        {
+          "id": "computer3",
+          "type": "text",
+          "label": "Provide details on access controls within your logistical accounting system",
+          "shortName": "3.2.1c: Details on access controls",
+          "helpText": "List each control and who has access. [Ref 3.2.1c]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Provide details of traceability between business and declaration systems within your logistical accounting system",
+      "shortName": "Business system and declaration system",
+      "fields": [
+        {
+          "id": "computer4",
+          "type": "text",
+          "label": "Provide details of traceability between business and declaration systems within your logistical accounting system",
+          "shortName": "3.2.1d: Details of traceability between systems",
+          "helpText": "[Ref 3.2.1d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are your logistical systems capable of distinguishing between EU and non-EU goods, and indicating their location?",
+      "shortName": "EU and non-EU goods",
+      "fields": [
+        {
+          "id": "capabilities1",
+          "type": "choice",
+          "label": "Are your logistical systems capable of distinguishing between EU and non-EU goods, and indicating their location?",
+          "shortName": "3.2.2: Distinguish between goods and indicate location",
+          "helpText": "[Ref 3.2.2]",
+          "errorMessage": "3.2.2: Select whether your logistical systems can distinguish between Union and non-Union goods and indicate their location",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of your system's distinguishing capabilities",
+      "shortName": "System details",
+      "includeIf": "${capabilities1 = 0}",
+      "fields": [
+        {
+          "id": "capabilities2",
+          "type": "text",
+          "label": "Provide details of your system's distinguishing capabilities",
+          "shortName": "3.2.2: Distinguishing capabilities details",
+          "helpText": "If you do not deal with non-EU goods enter n/a. [Ref 3.2.2]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "At what location are your computer activities undertaken?",
+      "shortName": "Computer system location",
+      "fields": [
+        {
+          "id": "compSysLoc1",
+          "type": "text",
+          "label": "At what location are your computer activities undertaken?",
+          "shortName": "3.2.3a: Location of computer activities",
+          "helpText": "[Ref 3.2.3a]"
+        }
+      ]
+    },
+    {
+      "title": "Have computer applications been outsourced?",
+      "shortName": "Outsourced computer applications",
+      "fields": [
+        {
+          "id": "outSourced1",
+          "type": "choice",
+          "label": "Have computer applications been outsourced?",
+          "shortName": "3.2.3b: Computers outsourced",
+          "helpText": "[Ref 3.2.3b]",
+          "errorMessage": "3.2.3b: Select whether your computer applications have been outsourced",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of who you outsourced applications to, and how you manage access controls to these?",
+      "shortName": "Outsourcing location details",
+      "includeIf": "${outSourced1 = 0}",
+      "fields": [
+        {
+          "id": "outSourced2",
+          "type": "text",
+          "label": "Provide details of who you outsourced applications to, and how you manage access controls to these?",
+          "shortName": "3.2.3b: Outsourcing details",
+          "helpText": "Include name, address and VAT number. [Ref 3.2.3b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you have in-house guidelines for your internal control system?",
+      "shortName": "Internal control system",
+      "fields": [
+        {
+          "id": "internalControlSystem1",
+          "type": "choice",
+          "label": "Do you have in-house guidelines for your internal control system?",
+          "shortName": "3.3.1: In-house guidelines",
+          "helpText": "This applies to departments such as: accounts, buying, sales, customs, production, material, merchandise management, and logistics. [Ref 3.3.1]",
+          "errorMessage": "3.3.1: Select whether you have in-house guidelines for the internal control system",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe your in-house guidelines briefly and how they are updated",
+      "shortName": "In-house guidelines",
+      "includeIf": "${internalControlSystem1 = 0}",
+      "fields": [
+        {
+          "id": "internalControlSystem2",
+          "type": "text",
+          "label": "Describe your in-house guidelines briefly and how they are updated",
+          "shortName": "3.3.1: Details of in-house guidelines",
+          "helpText": "For example, actions like job instructions, employee training, instructions for checking faults and mechanism for proofreading. [Ref 3.3.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Internal control system audits",
+      "shortName": "Control system audits ",
+      "fields": [
+        {
+          "id": "internalControlSystem3",
+          "type": "choice",
+          "label": "Have your internal control processes been subject to any internal or external audit?",
+          "shortName": "3.3.2: Subject to internal or external audit",
+          "helpText": "[Ref 3.3.2]",
+          "errorMessage": "3.3.2: Select whether your internal control processes have been subjected to any internal or external audit",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "internalControlSystem4",
+          "type": "choice",
+          "label": "Did this include an audit of your customs routines?",
+          "shortName": "3.3.2: Customs routines audit",
+          "helpText": "[Ref 3.3.2]",
+          "errorMessage": "3.3.2: Select whether this includes audit of your customs routines",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide a copy of your most recent customs routines audit report",
+      "shortName": "Customs routine audit report",
+      "includeIf": "${internalControlSystem4 = 0}",
+      "fields": [
+        {
+          "id": "uploadAdd1",
+          "type": "file",
+          "label": "Upload a file",
+          "shortName": "3.3.2: Uploaded file",
+          "helpText": "We accept documents in formats like PDF and JPEG (5MB maximum). [Ref 3.3.2]"
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the procedures for checking your computer files",
+      "shortName": "Checking computer files",
+      "fields": [
+        {
+          "id": "internalControlSystem5",
+          "type": "text",
+          "label": "Briefly describe the procedures for checking your computer files",
+          "shortName": "3.3.3a: Procedures for checking computer files",
+          "helpText": "For example, standing data or master files. [Ref 3.3.3a]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Checking your computer files",
+      "shortName": "Checking your computer files detail",
+      "fields": [
+        {
+          "id": "internalControlSystem7",
+          "type": "text",
+          "label": "How do these procedures cover incorrect or incomplete recording of transactions in the accounting system?",
+          "shortName": "3.3.3b Procedures for checking incorrect and/or incomplete transactions",
+          "helpText": "[Ref 3.3.3b]",
+          "multiline": "yes"
+        },
+        {
+          "id": "internalControlSystem8",
+          "type": "text",
+          "label": "How do they cover the use of incorrect permanent or out-of-date data such as number of articles and tariff codes?",
+          "shortName": "3.3.3c: Procedures for checking use of incorrect permanent or out-of-date data",
+          "helpText": "[Ref 3.3.3c]",
+          "multiline": "yes"
+        },
+        {
+          "id": "internalControlSystem9",
+          "type": "text",
+          "label": "How do they cover the inadequate control of the company processes within the applicant's business?",
+          "shortName": "3.3.3d: Procedures for covering the risk of inadequate control of company processes",
+          "helpText": "[Ref 3.3.3d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the registration procedure for the flow of goods starting from their arrival, the storage up to manufacture and shipment",
+      "shortName": "Flow of goods registration",
+      "fields": [
+        {
+          "id": "flowOfGoods1",
+          "type": "text",
+          "label": "Briefly describe the registration procedure for the flow of goods starting from their arrival, the storage up to manufacture and shipment",
+          "shortName": "3.4.1: Registration procedure for flow of goods",
+          "helpText": "Include who keeps records and where they are kept. [Ref 3.4.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the procedures in place for checking stock levels",
+      "shortName": "Flow of goods stock checking",
+      "fields": [
+        {
+          "id": "flowOfGoods2",
+          "type": "text",
+          "label": "Briefly describe the procedures in place for checking stock levels",
+          "shortName": "3.4.2: Checking stock levels for flow of goods",
+          "helpText": "Include the frequency of those checks and how you handle discrepancies. For example, stocktaking and inventory. [Ref 3.4.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-3-1-Apply-for-AEO-Original"
+}
