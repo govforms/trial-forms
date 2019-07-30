@@ -1,0 +1,408 @@
+{
+  "formName": "C118-6-2 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section6_part2_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "aeoC118-6-2"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Building security - external boundary",
+      "shortName": "Building external boundary",
+      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 2)",
+      "fields": [
+        {
+          "id": "buiSec1",
+          "type": "text",
+          "label": "Give a brief description of how the external boundary of your company’s premises is secured",
+          "shortName": "6.2.1a: External boundary security",
+          "helpText": "[Ref 6.2.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec2",
+          "type": "text",
+          "label": "How is compliance with these procedures checked?",
+          "shortName": "6.2.1b: How compliance with these procedures is checked",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.1b]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec3",
+          "type": "text",
+          "label": "How, by whom and at what intervals are checks carried out on the fences and buildings?",
+          "shortName": "6.2.1c: Building and fence checks",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.1c]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec4",
+          "type": "text",
+          "label": "How are these checks and their results recorded?",
+          "shortName": "6.2.1d: How building and fence checks are recorded",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.1d]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec5",
+          "type": "text",
+          "label": "How are security incidents reported and dealt with?",
+          "shortName": "6.2.1e: How security incidents are reported and dealt with",
+          "helpText": "Enter n/a if not applicable. [6.2.1e]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Building security - access points",
+      "shortName": "Building access points",
+      "fields": [
+        {
+          "id": "buiSec6",
+          "type": "text",
+          "label": "What types of access are there to your business premises?",
+          "shortName": "6.2.2a: Types of access to business premises",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.2a]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec7",
+          "type": "text",
+          "label": "How are these managed?",
+          "shortName": "6.2.2b: How access is managed",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.2b]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec8",
+          "type": "text",
+          "label": "Are access points restricted by time or day?",
+          "shortName": "6.2.2c: Access point restrictions",
+          "helpText": "Enter n/a if not applicable. [Ref 6.2.2c]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are the premises adequately illuminated?",
+      "shortName": "Building illumination",
+      "fields": [
+        {
+          "id": "buiSec9",
+          "type": "choice",
+          "label": "Are the premises adequately illuminated?",
+          "shortName": "6.2.3: Premises adequately illuminated",
+          "helpText": "For example, continuous light, movement sensors, twilight switch. [Ref 6.2.3]",
+          "errorMessage": "6.2.3: Select whether the premises are adequately illuminated",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Enter details of premises illuminations",
+      "shortName": "Building illumination details",
+      "includeIf": "${buiSec9 = 0}",
+      "fields": [
+        {
+          "id": "buiSec10",
+          "type": "text",
+          "label": "Enter details of premises illuminations",
+          "shortName": "6.2.3: Premises illuminations",
+          "helpText": "[Ref 6.2.3]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Building security - keys",
+      "shortName": "Building keys",
+      "fields": [
+        {
+          "id": "buiSec11",
+          "type": "text",
+          "label": "How is the administration of keys handled in your company?",
+          "shortName": "6.2.4a: Key administration",
+          "helpText": "For example, location, access, logging. [Ref 6.2.4a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec12",
+          "type": "choice",
+          "label": "Does written documentation exist for this?",
+          "shortName": "6.2.4b: Written documentation for keys exists",
+          "helpText": "[Ref 6.2.4b]",
+          "errorMessage": "6.2.4b: Select whether written documentation exists",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is the parking of private vehicles permitted on any of the premises?",
+      "shortName": "Private vehicles on premises",
+      "fields": [
+        {
+          "id": "buiSec13",
+          "type": "choice",
+          "label": "Is the parking of private vehicles permitted on any of the premises?",
+          "shortName": "6.2.5a: Private vehicle parking permitted",
+          "helpText": "[Ref 6.2.5a]",
+          "errorMessage": "6.2.5a: Select whether the parking of private vehicles is permitted on the premises",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Building security - private vehicles",
+      "shortName": "Private vehicles details",
+      "includeIf": "${buiSec13 = 0}",
+      "fields": [
+        {
+          "id": "buiSec14a",
+          "type": "text",
+          "label": "Give details of who is permitted to park on these premises",
+          "shortName": "6.2.5b: Permitted parking details",
+          "helpText": "Enter their full names. [Ref 6.2.5b]",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec14b",
+          "type": "text",
+          "label": "Who gives the approval for permitted parking?",
+          "shortName": "6.2.5c: Permitted parking approver",
+          "helpText": "[Ref 6.2.5c]"
+        }
+      ]
+    },
+    {
+      "title": "Building security - vehicle checks",
+      "shortName": "Vehicle checks",
+      "fields": [
+        {
+          "id": "buiSec15",
+          "type": "choice",
+          "label": "Are the vehicles checked?",
+          "shortName": "6.2.5d: Are vehicles checked",
+          "helpText": "For example, at the entrance to the premises or at the car park entrance. [Ref 6.2.5d]",
+          "errorMessage": "6.2.5d: Select whether the vehicles are checked",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "buiSec16",
+          "type": "choice",
+          "label": "Do written regulations exist for vehicle checks?",
+          "shortName": "6.2.5e: Written regulations exist",
+          "helpText": "[Ref 6.2.5e]",
+          "errorMessage": "6.2.5e: Select whether written regulations exist",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Building security - access to premises",
+      "shortName": "Regulated access to premises",
+      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 3)",
+      "fields": [
+        {
+          "id": "buiSec17",
+          "type": "text",
+          "label": "Briefly describe how the process of access to your premises (buildings, production areas, warehouses, and so on) is regulated for staff, visitors, other persons, vehicles and goods",
+          "shortName": "6.3.1a: How process of access to premises is regulated",
+          "helpText": "[Ref 6.3.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec18",
+          "type": "text",
+          "label": "Who checks that the prescribed procedures are complied with?",
+          "shortName": "6.3.1b: Person who checks compliance with procedures",
+          "helpText": "[Ref 6.3.1b]"
+        }
+      ]
+    },
+    {
+      "title": "Building security - unauthorised access",
+      "shortName": "Unauthorised access to premises",
+      "fields": [
+        {
+          "id": "buiSec19",
+          "type": "text",
+          "label": "Describe the procedures that are to be followed if an unauthorised person or vehicle is discovered on company premises",
+          "shortName": "6.3.2a: Procedures if unauthorised person or vehicle is discovered",
+          "helpText": "[Ref 6.3.2a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "buiSec20",
+          "type": "text",
+          "label": "How are these procedures communicated to the staff?",
+          "shortName": "6.3.2b: How the procedures are communicated to the staff ",
+          "helpText": "For example, action plan, manual, working guidelines or training. [Ref 6.3.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Provide details of any other companies that are co-located on your premises",
+      "shortName": "Co-location",
+      "fields": [
+        {
+          "id": "buiSec21",
+          "type": "text",
+          "label": "Provide details of any other companies that are co-located on your premises",
+          "shortName": "6.3.4:  Co-located companies details",
+          "helpText": "Enter n/a if not applicable. [Ref 6.3.4]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-6-2-Apply-for-AEO-Original"
+}
