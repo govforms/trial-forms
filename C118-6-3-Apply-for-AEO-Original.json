@@ -1,0 +1,1028 @@
+{
+  "_id": "C118-6-3-Apply-for-AEO-Original",
+  "formName": "C118-6-3 Apply for AEO",
+  "description": "",
+  "developmentPhase": "beta",
+  "GFC579Ready": "true",
+  "emailTemplateId": "c118_section6_part3_application_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "aeoC118-3"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Is access to cargo units subject to rules or restrictions?",
+      "shortName": "Access restrictions to cargo units",
+      "fields": [
+        {
+          "id": "cargo1",
+          "type": "choice",
+          "label": "Is access to cargo units subject to rules or restrictions?",
+          "shortName": "6.4.1: Access to cargo units subject to rules or restrictions",
+          "helpText": "For example, monitoring of cargo units. For more information see AEO Guidelines Part 2 Section V, Subsection 4. [Ref 6.4.1]",
+          "errorMessage": "6.4.1: Select whether access to cargo units is subject to rules or restrictions",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How are the access restrictions for cargo units enforced?",
+      "shortName": "How access restrictions are enforced",
+      "includeIf": "${cargo1 = 0}",
+      "fields": [
+        {
+          "id": "cargo2",
+          "type": "text",
+          "label": "How are the access restrictions for cargo units enforced?",
+          "shortName": "6.4.1: Details of enforcement of access restrictions",
+          "helpText": "For example, containers, swap bodies or transport boxes. [Ref 6.4.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe what measures are in place to prevent unauthorised access to and tampering with cargo units",
+      "shortName": "Measures to prevent unauthorised cargo unit access",
+      "fields": [
+        {
+          "id": "cargo3",
+          "type": "text",
+          "label": "Briefly describe what measures are in place to prevent unauthorised access to and tampering with cargo units",
+          "shortName": "6.4.2: Details of measures to prevent unauthorised access",
+          "helpText": "For example, constant supervision, training staff and making them aware of risks, seals, or instructions on procedures to follow in case of unauthorised entry. [Ref 6.4.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you use seals to prevent unauthorised tampering with goods?",
+      "shortName": "Cargo unit seals",
+      "fields": [
+        {
+          "id": "cargo4",
+          "type": "choice",
+          "label": "Do you use seals to prevent unauthorised tampering with goods?",
+          "shortName": "6.4.3a: Seals used to prevent unauthorised tampering",
+          "helpText": "[Ref 6.4.3a]",
+          "errorMessage": "6.4.3a: Select whether you use seals to prevent unauthorised tampering with goods",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Cargo unit seal details",
+      "shortName": "Type of cargo unit seals",
+      "includeIf": "${cargo4 = 0}",
+      "fields": [
+        {
+          "id": "cargo5",
+          "type": "text",
+          "label": "What kind of seals do you use to prevent tampering?",
+          "shortName": "6.4.3b: Seals used to prevent tampering to cargo units",
+          "helpText": "[Ref 6.4.3b]"
+        },
+        {
+          "id": "cargo5a1",
+          "type": "text",
+          "label": "Which specific standards do these seals satisfy?",
+          "shortName": "6.4.3c: Seals specific standards",
+          "helpText": "For example, ISO. Enter n/a if not applicable. [Ref 6.4.3c]",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "title": "How do you make sure that goods are not tampered with if seals are not used? ",
+      "shortName": "Cargo unit seals not used",
+      "includeIf": "${cargo4 = 1}",
+      "fields": [
+        {
+          "id": "cargo5a",
+          "type": "text",
+          "label": "How do you make sure that goods are not tampered with if seals are not used? ",
+          "shortName": "6.4.3d: How you ensure goods are not tampered with",
+          "helpText": "[Ref 6.4.3d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "What control measures do you use for checking cargo units?",
+      "shortName": "Cargo unit inspection",
+      "fields": [
+        {
+          "id": "cargo6",
+          "type": "text",
+          "label": "What control measures do you use for checking cargo units?",
+          "shortName": "6.4.4: Control measures for checking cargo units",
+          "helpText": "For example, 7-point inspection process: front wall, left side, right side, floor, covering or roof, inside or outside of doors, outside or undercarriage. [Ref 6.4.4]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Cargo units maintenance",
+      "shortName": "Cargo unit maintenance",
+      "fields": [
+        {
+          "id": "cargo7",
+          "type": "text",
+          "label": "Who is the owner or operator of the cargo units?",
+          "shortName": "6.4.5a: Owner or operator of the cargo units",
+          "helpText": "For example, this could be your own business or another. [Ref 6.4.5a]"
+        },
+        {
+          "id": "cargo8",
+          "type": "text",
+          "label": "Who maintains or repairs the cargo units?",
+          "shortName": "6.4.5b: Who maintains cargo units",
+          "helpText": "For example, this could be your own business or another. [Ref 6.4.5b]"
+        },
+        {
+          "id": "cargo9",
+          "type": "choice",
+          "label": "Are there regular maintenance plans?",
+          "shortName": "6.4.5c: Regular maintenance plans in place",
+          "helpText": "[Ref 6.4.5c]",
+          "errorMessage": "6.4.5c: Select whether there are regular maintenance plans",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "cargo10",
+          "type": "choice",
+          "label": "Are external maintenance works checked?",
+          "shortName": "6.4.5d: External maintenance works checked",
+          "helpText": "[Ref 6.4.5d]",
+          "errorMessage": "6.4.5d: Select whether external maintenance works are checked",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Security and safety - transport",
+      "fields": [
+        {
+          "id": "logistics1",
+          "type": "text",
+          "label": "Which means of transport are normally used by your business?",
+          "shortName": "6.5.1a: Means of transport used",
+          "helpText": "[Ref 6.5.1a]"
+        },
+        {
+          "id": "logistics3a",
+          "type": "text",
+          "label": "If your business uses external transport providers, tell us who they are and what they do for you",
+          "shortName": "6.5.1b: Use of your own or external transport",
+          "helpText": "For example, freight forwarders or carriers. Enter n/a if you use your own transport. [Ref 6.5.1b]",
+          "format": "text"
+        },
+        {
+          "id": "logistics3b",
+          "type": "text",
+          "label": "How do you establish whether the freight forwarder or carrier meets the required security standards?",
+          "shortName": "6.5.1c: How you establish if external transporters meet required standards",
+          "helpText": "For example, by means of a security certificate, declarations or agreements. [Ref 6.5.1c]"
+        }
+      ]
+    },
+    {
+      "title": "Do you take other measures for outsourced transport activities to meet security standards?",
+      "shortName": "Outsourced transport security standards",
+      "fields": [
+        {
+          "id": "logistics4",
+          "type": "choice",
+          "label": "Do you take other measures for outsourced transport activities to meet security standards?",
+          "shortName": "6.5.1d: Take other measures for outsourced transport activities",
+          "helpText": "[Ref 6.5.1d]",
+          "errorMessage": "6.5.1d: Select whether you take other measures for outsourced transport activities to meet security standards",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe how the outsourced transport activities help meet security standards",
+      "shortName": "Details of outsourced transport security",
+      "includeIf": "${logistics4 = 0}",
+      "fields": [
+        {
+          "id": "logistics5",
+          "type": "text",
+          "label": "Describe how the outsourced transport activities help meet security standards",
+          "shortName": "6.5.1e: How outsourced transport activities help meet security standards",
+          "helpText": "[Ref 6.5.1e]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Security and safety - incoming goods",
+      "fields": [
+        {
+          "id": "logistics6",
+          "type": "text",
+          "label": "Briefly describe the procedure for ensuring the security and safety of incoming goods",
+          "shortName": "6.6.1a: Procedures for ensuring safety of incoming goods",
+          "helpText": "[Ref 6.6.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "logistics7",
+          "type": "text",
+          "label": "Briefly describe how the compliance with these procedures is checked",
+          "shortName": "6.6.1b: How compliance with procedures is checked",
+          "helpText": "[Ref 6.6.1b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Security and safety - employees",
+      "fields": [
+        {
+          "id": "logistics8",
+          "type": "choice",
+          "label": "Are your employees informed about security arrangements with suppliers?",
+          "shortName": "6.6.2a: Employees informed about supplier security arrangements",
+          "helpText": "[Ref 6.6.2a]",
+          "errorMessage": "6.6.2a: Select whether your employees are informed about security arrangements with suppliers",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "logistics9",
+          "type": "text",
+          "label": "How is compliance ensured?",
+          "shortName": "6.6.2b: Procedures for ensuring compliance",
+          "helpText": "[Ref 6.6.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are incoming goods sealed?",
+      "shortName": "Incoming goods sealed",
+      "fields": [
+        {
+          "id": "logistics10",
+          "type": "choice",
+          "label": "Are incoming goods sealed?",
+          "shortName": "6.6.3b: Incoming goods are sealed",
+          "helpText": "[Ref 6.6.3b]",
+          "errorMessage": "6.6.3b: Select whether incoming goods are sealed",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the checks on seals of incoming goods",
+      "shortName": "Incoming goods seals details",
+      "includeIf": "${logistics10 = 0}",
+      "fields": [
+        {
+          "id": "logistics11",
+          "type": "text",
+          "label": "Briefly describe the checks on seals of incoming goods",
+          "shortName": "6.6.3a: How you check the seals on incoming goods",
+          "helpText": "[Ref 6.6.3a]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Does your business deal with goods that require specific security measures?",
+      "shortName": "Goods with specific security measures",
+      "fields": [
+        {
+          "id": "logistics12",
+          "type": "choice",
+          "label": "Does your business deal with goods that require specific security measures?",
+          "shortName": "6.6.3c: Dealing with goods which require specific security measures",
+          "helpText": "For example, air cargo or air mail. [Ref 6.6.3c]",
+          "errorMessage": "6.6.3c: Select whether your business deals with goods that require specific security measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe the goods and the security measures you take",
+      "shortName": "Specific security measures details",
+      "includeIf": "${logistics12 = 0}",
+      "fields": [
+        {
+          "id": "logistics13",
+          "type": "text",
+          "label": "Describe the goods and the security measures you take",
+          "shortName": "6.6.3d: Goods and security measures description",
+          "helpText": "[Ref 6.6.3d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are the incoming goods marked?",
+      "shortName": "Incoming goods markings",
+      "fields": [
+        {
+          "id": "logistics14",
+          "type": "choice",
+          "label": "Are the incoming goods marked?",
+          "shortName": "6.6.4a: Incoming goods marked",
+          "helpText": "[Ref 6.6.4a]",
+          "errorMessage": "6.6.4a: Select whether the incoming goods are marked",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How are the goods marked?",
+      "shortName": "Incoming goods marking details",
+      "includeIf": "${logistics14 = 0}",
+      "fields": [
+        {
+          "id": "logistics15a",
+          "type": "text",
+          "label": "How are the goods marked?",
+          "shortName": "6.6.4b: Goods markings description",
+          "helpText": "[Ref 6.6.4b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Incoming goods - counting and weighing",
+      "shortName": "Counting and weighing incoming goods",
+      "fields": [
+        {
+          "id": "logistics15b",
+          "type": "text",
+          "label": "Briefly describe the process for counting and weighing incoming goods",
+          "shortName": "6.6.5: Process for counting and weighing incoming goods",
+          "helpText": "[Ref 6.6.5]",
+          "multiline": "yes"
+        },
+        {
+          "id": "logistics17",
+          "type": "text",
+          "label": "Briefly describe who checks the incoming goods and which goods are checked",
+          "shortName": "6.6.6c: Who checks incoming goods and which goods are checked",
+          "helpText": "Enter n/a if not applicable. [Ref 6.6.6c]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "logistics16",
+          "type": "text",
+          "label": "Briefly describe how and when these incoming goods are checked against the accompanying documents and entered in your records",
+          "shortName": "6.6.6ab: How incoming goods are checked against the accompanying documents",
+          "helpText": "Enter n/a if not applicable. [Ref 6.6.6ab]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Incoming goods - control mechanisms",
+      "shortName": "Control mechanisms",
+      "fields": [
+        {
+          "id": "logistics18",
+          "type": "choice",
+          "label": "Are the sections responsible for the purchase of goods, the receipt of goods and general administration clearly separated?",
+          "shortName": "6.6.7a: Sections responsible clearly separated",
+          "helpText": "[Ref 6.6.7a]",
+          "errorMessage": "6.6.7a: Select whether purchase of goods, receipts of goods and general administration sections are clearly separated",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
+        },
+        {
+          "id": "logistics19",
+          "type": "choice",
+          "label": "Do integrated internal control mechanisms exist between the sections?",
+          "shortName": "6.6.7b: Integrated internal control systems exist",
+          "helpText": "[Ref 6.6.7b]",
+          "errorMessage": "6.6.7b: Select whether integrated internal control mechanisms exist between the sections",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe how your internal control mechanisms work",
+      "shortName": "Control mechanisms details",
+      "fields": [
+        {
+          "id": "logistics20",
+          "type": "text",
+          "label": "Describe how your internal control mechanisms work",
+          "shortName": "6.6.7c: How your internal control mechanisms work",
+          "helpText": "[Ref 6.6.7c]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Where have you set aside areas for the storage of goods?",
+      "shortName": "Storage of goods - locations",
+      "fields": [
+        {
+          "id": "storage1",
+          "type": "text",
+          "label": "Where have you set aside areas for the storage of goods?",
+          "shortName": "6.7.1: Locations with set aside areas for the storage of goods",
+          "helpText": "Include location. [Ref 6.7.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Storage of goods",
+      "shortName": "Storage of goods - position allocation",
+      "fields": [
+        {
+          "id": "storage2",
+          "type": "text",
+          "label": "How do you allocate a storage position for incoming goods?",
+          "shortName": "6.7.2a: How you allocate a storage position for incoming goods",
+          "helpText": "[Ref 6.7.2a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "storage3",
+          "type": "choice",
+          "label": "Do you have outdoor storage locations?",
+          "shortName": "6.7.2b: Outdoor storage locations",
+          "helpText": "[Ref 6.7.2b]",
+          "errorMessage": "6.7.2b: Select whether you have outdoor storage locations",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the outdoor storage locations",
+      "shortName": "Outdoor goods storage details",
+      "includeIf": "${storage3 = 0}",
+      "fields": [
+        {
+          "id": "storage4",
+          "type": "text",
+          "label": "Briefly describe the outdoor storage locations",
+          "shortName": "6.7.2c: Description of outdoor storage locations",
+          "helpText": "[Ref 6.7.2c]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you have documented stocktaking and procedures for dealing with irregularities?",
+      "shortName": "Stocktaking",
+      "fields": [
+        {
+          "id": "storage5",
+          "type": "choice",
+          "label": "Do you have documented stocktaking and procedures for dealing with irregularities?",
+          "shortName": "6.7.3a: Documented stocktaking and procedures for dealing with irregularities",
+          "helpText": "[Ref 6.7.3a]",
+          "errorMessage": "6.7.3a: Select whether your have documented stocktaking and procedures for dealing with irregularities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe your arrangements for stocktaking and procedures for dealing with irregularities",
+      "shortName": "Stocktaking details",
+      "includeIf": "${storage5 = 0}",
+      "fields": [
+        {
+          "id": "storage6",
+          "type": "text",
+          "label": "Briefly describe your arrangements for stocktaking and procedures for dealing with irregularities",
+          "shortName": "6.7.3b: Arrangements for stocktaking and dealing with irregularities",
+          "helpText": "[Ref 6.7.3b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Storage of goods - different risk levels",
+      "shortName": "Goods with different risk levels",
+      "fields": [
+        {
+          "id": "storage7",
+          "type": "choice",
+          "label": "Are goods of different risk levels stored separately?",
+          "shortName": "6.7.4a: Different risk levels stored separately",
+          "helpText": "[Ref 6.7.4a]",
+          "errorMessage": "6.7.4a: Select whether goods of different risk levels are stored separately",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
+        },
+        {
+          "id": "storage8",
+          "type": "text",
+          "label": "Describe the criteria for any separate storage",
+          "shortName": "6.7.4b: Criteria for separate storage",
+          "helpText": "For example, hazardous goods, high-value goods, chemicals, weapons, air cargo or air mail. Enter n/a if not applicable. [Ref 6.7.4b]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "storage9",
+          "type": "text",
+          "label": "Describe how you make sure that these goods are immediately recorded in the logistical accounts or stock records",
+          "shortName": "6.7.4c: How goods are immediately recorded",
+          "helpText": "Enter n/a if not applicable. [Ref 6.7.4c]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Storage of goods - protection",
+      "shortName": "Protection against unauthorised access",
+      "fields": [
+        {
+          "id": "storage10",
+          "type": "text",
+          "label": "Briefly describe how goods are protected against unauthorised access to the warehousing premises",
+          "shortName": "6.7.5a: How goods are protected against unauthorised access",
+          "helpText": "Enter n/a if not applicable. [Ref 6.7.5a]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "storage11",
+          "type": "text",
+          "label": "Briefly describe how compliance with these procedures is checked",
+          "shortName": "6.7.5b: How compliance with procedures is checked",
+          "helpText": "Enter n/a if not applicable. [Ref 6.7.5b]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Is storage of goods outsourced to a third party?",
+      "shortName": "Outsourced storage",
+      "fields": [
+        {
+          "id": "storage12",
+          "type": "choice",
+          "label": "Is storage of goods outsourced to a third party?",
+          "shortName": "6.7.6: Outsourced storage of goods",
+          "helpText": "[Ref 6.7.6]",
+          "errorMessage": "6.7.6: Select whether storage is outsourced to a third party",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe briefly how and where the outsourced goods are stored and your control measures",
+      "shortName": "Outsourced storage details",
+      "includeIf": "${storage12= 0}",
+      "fields": [
+        {
+          "id": "storage13",
+          "type": "text",
+          "label": "Describe briefly how and where the outsourced goods are stored and your control measures",
+          "shortName": "6.7.6: How and where goods are stored and your control measures",
+          "helpText": "[Ref 6.7.6]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Production of goods",
+      "shortName": "Production of goods",
+      "fields": [
+        {
+          "id": "prod1",
+          "type": "text",
+          "label": "Briefly describe what locations and areas are designated for the production of goods",
+          "shortName": "6.8.1a: Locations and areas designated for the production of goods",
+          "helpText": "[Ref 6.8.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "prod2",
+          "type": "choice",
+          "label": "Is production carried out by an external partner?",
+          "shortName": "6.8.1b: Production carried out by an external partner ",
+          "helpText": "For example, job processing, drop shipment. [Ref 6.8.1b]",
+          "errorMessage": "6.8.1b: Select whether production is carried out by an external partner",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "prod3",
+          "type": "text",
+          "label": "Briefly describe how the integrity of the goods is ensured",
+          "shortName": "6.8.1c: How you ensure integrity of the goods",
+          "helpText": "For example, contractual agreements. [Ref 6.8.1c]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are there any security measures protecting goods against unauthorised access to the production zone?",
+      "shortName": "Security measures in production zone",
+      "fields": [
+        {
+          "id": "prod4",
+          "type": "choice",
+          "label": "Are there any security measures protecting goods against unauthorised access to the production zone?",
+          "shortName": "6.8.2a: Security measures against unauthorised access to production zone",
+          "helpText": "[Ref 6.8.2a]",
+          "errorMessage": "6.8.2a: Select whether there are any security measures protecting goods against unauthorised access to the production zone",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe how you protect goods against unauthorised access to the production zone",
+      "shortName": "Details of security in production zone",
+      "includeIf": "${prod4 = 0}",
+      "fields": [
+        {
+          "id": "prod5",
+          "type": "text",
+          "label": "Briefly describe how you protect goods against unauthorised access to the production zone",
+          "shortName": "6.8.2b: How you protect goods against unauthorised access to the production zone",
+          "helpText": "[Ref 6.8.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Production of goods - packing security",
+      "fields": [
+        {
+          "id": "prodn6",
+          "type": "text",
+          "label": "Briefly describe the procedures for packing products",
+          "shortName": "6.8.3: Procedures for packing products",
+          "helpText": "[Ref 6.8.3]",
+          "multiline": "yes"
+        },
+        {
+          "id": "prod7",
+          "type": "choice",
+          "label": "Do the procedures for packing products exist in written form?",
+          "shortName": "6.8.3: Procedures for packing products exist in written form",
+          "helpText": "[Ref 6.8.3]",
+          "errorMessage": "6.8.3: Select whether procedures for packing products exist in written form",
+          "choices": [
+            "Yes",
+            "no"
+          ]
+        },
+        {
+          "id": "prod8",
+          "type": "text",
+          "label": "If final packaging is outsourced to a third party, briefly describe how the integrity of the goods is guaranteed",
+          "shortName": "6.8.4: How you guarantee integrity of goods with third party packing",
+          "helpText": "Enter n/a if not outsourced. [Ref 6.8.4]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Loading of goods",
+      "shortName": "Loading of goods",
+      "fields": [
+        {
+          "id": "loading1",
+          "type": "text",
+          "label": "Briefly describe how loading of goods is managed in your business",
+          "shortName": "6.9.1a: How goods loading is managed",
+          "helpText": "For example, allocation of responsibilities, checks on goods, means of transport, recording of results or provision of information. [Ref 6.9.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "loading2",
+          "type": "choice",
+          "label": "Are there any written instructions on how the process should be organised?",
+          "shortName": "6.9.1b: Written instructions on how the process should be organised",
+          "helpText": "[Ref 6.9.1b]",
+          "errorMessage": "6.9.1b: Select whether there are any written instructions on how the process should be organised",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are outgoing goods or vehicles sealed?",
+      "shortName": "Outgoing goods or vehicles",
+      "fields": [
+        {
+          "id": "loading3",
+          "type": "choice",
+          "label": "Are outgoing goods or vehicles sealed?",
+          "shortName": "6.9.2a: Outgoing goods or vehicles sealed",
+          "helpText": "[Ref 6.9.2a]",
+          "errorMessage": "6.9.2a: Select whether outgoing goods or vehicles are sealed",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How are outgoing goods or vehicles sealed?",
+      "shortName": "Details of sealed outgoing goods or vehicles",
+      "includeIf": "${loading3 = 0}",
+      "fields": [
+        {
+          "id": "loading4",
+          "type": "text",
+          "label": "How are outgoing goods or vehicles sealed?",
+          "shortName": "6.9.2b: Details of seals",
+          "helpText": "Include who does this and what seals they use. [Ref 6.9.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are any seal numbers mentioned in the documents accompanying the goods?",
+      "shortName": "Seal numbers documented",
+      "fields": [
+        {
+          "id": "loading5",
+          "type": "choice",
+          "label": "Are any seal numbers mentioned in the documents accompanying the goods?",
+          "shortName": "6.9.2c: Are seal numbers mentioned in documents",
+          "helpText": "[Ref 6.9.2c]",
+          "errorMessage": "6.9.2c: Select whether there are any seal numbers mentioned in documents accompanying the goods",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How do you keep a record of your seal numbers?",
+      "shortName": "Record of seal numbers",
+      "includeIf": "${loading5 = 0}",
+      "fields": [
+        {
+          "id": "loading6",
+          "type": "text",
+          "label": "How do you keep a record of your seal numbers?",
+          "shortName": "6.9.2d: How you keep a record of your seals",
+          "helpText": "[Ref 6.9.2d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Loading of goods - security",
+      "fields": [
+        {
+          "id": "loading7",
+          "type": "text",
+          "label": "Briefly describe how compliance with customer security requirements for loading is guaranteed",
+          "shortName": "6.9.3: How you guarantee compliance with customer security requirements for loading",
+          "helpText": "[Ref 6.9.3]",
+          "multiline": "yes"
+        },
+        {
+          "id": "loading8",
+          "type": "text",
+          "label": "Briefly describe the arrangements that are in place which ensures that goods to be loaded and the loading process are not left unsupervised",
+          "shortName": "6.9.4: Arrangements which ensure goods to be loaded and the loading process are not left unsupervised",
+          "helpText": "[Ref 6.9.4]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are the outgoing goods checked for completeness?",
+      "shortName": "Outgoing goods completeness",
+      "fields": [
+        {
+          "id": "loading9",
+          "type": "choice",
+          "label": "Are the outgoing goods checked for completeness?",
+          "shortName": "6.9.5a: Outgoing goods checked for completeness",
+          "helpText": "For example, counting or weighing. [Ref 6.9.5a]",
+          "errorMessage": "6.9.5a: Select whether outgoing goods are checked for completeness",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe how the outgoing goods are checked for completeness, and who does this",
+      "shortName": "Loading of outgoing goods",
+      "includeIf": "${loading9 = 0}",
+      "fields": [
+        {
+          "id": "loading10",
+          "type": "text",
+          "label": "Describe how the outgoing goods are checked for completeness, and who does this",
+          "shortName": "6.9.5b: How outgoing goods are checked and who does this",
+          "helpText": "[Ref 6.9.5b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Checking departing goods",
+      "fields": [
+        {
+          "id": "loading11",
+          "type": "text",
+          "label": "Briefly describe how and when departing goods are checked, and who does this",
+          "shortName": "6.9.6abc: How departing goods are checked",
+          "helpText": "Include checks against orders, loading lists and stock records. [Ref 6.9.6abc]",
+          "multiline": "yes"
+        },
+        {
+          "id": "loading14",
+          "type": "text",
+          "label": "Briefly describe what control mechanisms you have in place for detecting irregularities in the loading of goods",
+          "shortName": "6.9.7: Control mechanisms in place for detecting irregularities",
+          "helpText": "[Ref 6.9.7]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated"
+}
