@@ -1,0 +1,656 @@
+{
+  "formName": "C118-3-2 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section3_part2_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "C118-3-2"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you have documented procedures for verifying the accuracy of customs declarations?",
+      "shortName": "Customs declarations",
+      "fields": [
+        {
+          "id": "cR1",
+          "type": "choice",
+          "label": "Do you have documented procedures for verifying the accuracy of customs declarations?",
+          "shortName": "3.5.1: Procedures for verifying accuracy of declarations",
+          "helpText": "This includes declarations submitted on your behalf, for example, by a customs agent or a freight forwarder. [Ref 3.5.1]",
+          "errorMessage": "3.5.1: Select whether you have documented procedures for verifying customs declarations, including those submitted on your behalf",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe the procedures for verifying accuracy of customs declarations",
+      "shortName": "Verifying accuracy of declarations",
+      "includeIf": "${cR1 = 0}",
+      "fields": [
+        {
+          "id": "cR2",
+          "type": "text",
+          "label": "Briefly describe the procedures for verifying accuracy of customs declarations",
+          "shortName": "3.5.1: Details of procedures for verifying accuracy",
+          "helpText": "[Ref 3.5.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you verify the accuracy of customs declarations?",
+      "shortName": "Customs routines",
+      "includeIf": "${cR1 = 1}",
+      "fields": [
+        {
+          "id": "cR3",
+          "type": "choice",
+          "label": "Do you verify the accuracy of customs declarations?",
+          "shortName": "3.5.1: Customs declarations accuracy verified",
+          "helpText": "[Ref 3.5.1]",
+          "errorMessage": "3.5.1: Select whether you verify the accuracy of customs declarations",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How do you verify the accuracy of customs declarations?",
+      "shortName": "How you verify the accuracy of customs declarations",
+      "includeIf": "${cR1 = 1 && cR3 = 0}",
+      "fields": [
+        {
+          "id": "cR4",
+          "type": "text",
+          "label": "How do you verify the accuracy of customs declarations?",
+          "shortName": "3.5.1: Describe how you verify customs declarations accuracy",
+          "helpText": "[Ref 3.5.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities?",
+      "shortName": "Customs routines notification guidelines",
+      "fields": [
+        {
+          "id": "cR5",
+          "type": "choice",
+          "label": "Does your company have instructions or guidelines on the notification of irregularities to the competent authorities?",
+          "shortName": "3.5.2a: Company has guidelines for notifying irregularities",
+          "helpText": "For example, suspicion of theft, burglary or smuggling in connection with customs-related goods. [Ref 3.5.2a]",
+          "errorMessage": "3.5.2a: Select whether your company has instructions or guidelines on the notification of irregularities to the competent authorities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are these instructions for notifying irregularities documented?",
+      "shortName": "Customs routines notification guidelines",
+      "includeIf": "${cR5 = 0}",
+      "fields": [
+        {
+          "id": "cR6",
+          "type": "choice",
+          "label": "Are these instructions for notifying irregularities documented?",
+          "shortName": "3.5.2a: Guidelines on the notification of irregularities are documented",
+          "helpText": "For example, work instructions, manuals, other guidance documents. [Ref 3.5.2a]",
+          "errorMessage": "3.5.2a: Select whether these instructions are documented",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Over the last year, have you detected any irregularities and notified them to the competent authorities?",
+      "shortName": "Customs routines irregularities detected",
+      "fields": [
+        {
+          "id": "cR7",
+          "type": "choice",
+          "label": "Over the last year, have you detected any irregularities and notified them to the competent authorities?",
+          "shortName": "3.5.2b: Irregularities have been reported",
+          "helpText": "This includes any presumed irregularities you may have detected. [Ref 3.5.2b] ",
+          "errorMessage": "3.5.2b: Select whether over the last you have detected any irregularities and notified them to the competent authorities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you trade in goods that are subject to economic trade licences?",
+      "shortName": "Goods subject to economic trade licences",
+      "fields": [
+        {
+          "id": "cR8",
+          "type": "choice",
+          "label": "Do you trade in goods that are subject to economic trade licences?",
+          "shortName": "3.5.3: Trade in goods subject to economic trade licences",
+          "helpText": "For example, textiles or agricultural goods. [Ref 3.5.3]",
+          "errorMessage": "3.5.3: Select whether you trade in goods that are subject to economic trade licenses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
+      "shortName": "Goods that are subject to economic trade licences",
+      "includeIf": "${cR8 = 0}",
+      "fields": [
+        {
+          "id": "cR9",
+          "type": "text",
+          "label": "Briefly describe your procedures for administering the licences related to the import and/or export of such goods",
+          "shortName": "3.5.3: Describe your procedures for administering the licences",
+          "helpText": "[Ref  3.5.3] ",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Prohibitions and restrictions",
+      "shortName": "Prohibitions and restrictions",
+      "fields": [
+        {
+          "id": "cR10",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to import and export licenses connected to prohibitions and restrictions?",
+          "shortName": "3.5.4a: Trade in goods subject to prohibitions and restrictions",
+          "helpText": "[Ref 3.5.4a]",
+          "errorMessage": "3.5.4a: Select whether you are dealing with goods subject to import and export licenses connected to prohibitions and restrictions",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "cR11",
+          "type": "choice",
+          "label": "Are you dealing with goods subject to other import and export licenses?",
+          "shortName": "3.5.4b: Trade in goods subject to other import and export licenses",
+          "helpText": "[Ref 3.5.4b]",
+          "errorMessage": "3.5.4b: Select whether you are dealing with goods subject to other import and export licenses",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Specify the type of goods and any procedures in place for handling those other licenses",
+      "shortName": "Goods subject to other import and export licenses",
+      "includeIf": "${cR11 = 0}",
+      "fields": [
+        {
+          "id": "cR12",
+          "type": "text",
+          "label": "Specify the type of goods and any procedures in place for handling those other licenses",
+          "shortName": "3.5.4b: Specify type of goods and procedures",
+          "helpText": "Do not include goods or procedures connected to prohibitions and restrictions. [Ref 3.5.4b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Are you dealing with goods falling under the Dual Use Regulation (Council Regulation No 428/2009/EC)?",
+      "shortName": "Dual Use Regulation",
+      "fields": [
+        {
+          "id": "cR13",
+          "type": "choice",
+          "label": "Are you dealing with goods falling under the Dual Use Regulation (Council Regulation No 428/2009/EC)?",
+          "shortName": "3.5.5: Deal with goods falling under the Dual Use Regulation",
+          "helpText": "[Ref 3.5.5]",
+          "errorMessage": "3.5.5: Select whether you are dealing with goods falling under the Dual Use Regulation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Have you implemented an Internal Compliance Programme (ICP)?",
+      "shortName": "Goods falling under the Dual Use Regulation (3.5.5)",
+      "includeIf": "${cR13 = 0}",
+      "fields": [
+        {
+          "id": "cR14",
+          "type": "choice",
+          "label": "Have you implemented an Internal Compliance Programme (ICP)?",
+          "shortName": "3.5.5: Internal Compliance Programme (ICP) implemented",
+          "helpText": "[Ref 3.5.5]",
+          "errorMessage": "3.5.5: Select whether you have implemented an Internal Compliance Programme",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How is your ICP updated?",
+      "shortName": "ICP details",
+      "includeIf": "${cR14 = 0}",
+      "fields": [
+        {
+          "id": "cR15",
+          "type": "text",
+          "label": "How is your ICP updated?",
+          "shortName": "3.5.5: How ICP is updated",
+          "helpText": "[Ref 3.5.5]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe your procedures for back-up, recovery, fallback, archiving and retrieval of your business records",
+      "shortName": "Back-up procedures",
+      "fields": [
+        {
+          "id": "backUp1",
+          "type": "text",
+          "label": "Briefly describe your procedures for back-up, recovery, fallback, archiving and retrieval of your business records",
+          "shortName": "3.6.1: Description of business records recovery procedures",
+          "helpText": "[Ref 3.6.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "How long is data saved in the production system and how long is this data archived?",
+      "shortName": "Storage time",
+      "fields": [
+        {
+          "id": "backUp2",
+          "type": "text",
+          "label": "How long is data saved in the production system and how long is this data archived?",
+          "shortName": "3.6.2: How long data saved and archived",
+          "helpText": "[Ref 3.6.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Does the business have a contingency plan for  IT system disruption or failure?",
+      "shortName": "System disruption/failure",
+      "fields": [
+        {
+          "id": "backUp3",
+          "type": "choice",
+          "label": "Does the business have a contingency plan for  IT system disruption or failure?",
+          "shortName": "3.6.3: Contingency plan",
+          "helpText": "[Ref 3.6.3]",
+          "errorMessage": "3.6.3: Select whether the company has a contingency plan for system disruption/failure",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems",
+      "shortName": "Protection of computer systems",
+      "fields": [
+        {
+          "id": "csProtect1",
+          "type": "text",
+          "label": "Briefly describe the actions you have taken in order to protect your computer system from unauthorised intrusion",
+          "shortName": "3.7.1a: Actions taken to protect computer system",
+          "helpText": "For example, firewall, antivirus programme, password protection. [Ref 3.7.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect2",
+          "type": "text",
+          "label": "Has any intrusion testing been carried out, what were the results and were any corrective measures taken?",
+          "shortName": "3.7.1b: Intrusion testing details",
+          "helpText": "Enter n/a if not applicable. [Ref 3.7.1b]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect3",
+          "type": "choice",
+          "label": "Have you experienced any IT security incidents in the last year?",
+          "shortName": "3.7.1c: IT security incidents",
+          "helpText": "[Ref 3.7.1c]",
+          "errorMessage": "3.7.1c: Select whether you have experienced any IT security incidents in the last year",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Computer system access rights",
+      "shortName": "Access rights",
+      "fields": [
+        {
+          "id": "csProtect4",
+          "type": "text",
+          "label": "Briefly describe how access rights for the computer systems are issued",
+          "shortName": "3.7.2a: How access rights are issued",
+          "helpText": "[Ref 3.7.2a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "csProtect5",
+          "type": "text",
+          "label": "Who is responsible for the running and protection of the computer system?",
+          "shortName": "3.7.2b: Person responsible",
+          "helpText": "[Ref 3.7.2b]"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Users",
+      "shortName": "IT security user details",
+      "fields": [
+        {
+          "id": "csProtect6",
+          "type": "choice",
+          "label": "Do you have guidelines or internal instructions for IT security for your personnel?",
+          "shortName": "3.7.2c: IT security guidelines",
+          "helpText": "[Ref 3.7.2c]",
+          "errorMessage": "3.7.2c: Select whether you have guidelines or internal instructions for IT security for your personnel",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "csProtect7",
+          "type": "text",
+          "label": "How do you monitor that IT security measures are followed inside your business?",
+          "shortName": "3.7.2d: How business monitors if IT security measures are followed",
+          "helpText": "Enter n/a if not applicable. [Ref 3.7.2d]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Protection of computer systems - Servers",
+      "shortName": "IT security server details",
+      "fields": [
+        {
+          "id": "csProtect8",
+          "type": "text",
+          "label": "Where is your main server located ?",
+          "shortName": "3.7.3a: Main server location",
+          "helpText": "Explain where in the building it is located. [Ref 3.7.3a]",
+          "multiline": "true"
+        },
+        {
+          "id": "csProtect9",
+          "type": "text",
+          "label": "Give details of how your main server is secured",
+          "shortName": "3.7.3b: How main server is secured",
+          "helpText": "[Ref 3.7.3b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security",
+      "shortName": "Documentation security",
+      "description": "Guidance for this section can be found at (Guidelines Annex 2, point 2.9)",
+      "fields": [
+        {
+          "id": "docSec1",
+          "type": "text",
+          "label": "Briefly describe what actions have been taken in order to protect information and documents from unauthorised access, abuse, intended destruction and loss ",
+          "shortName": "3.8.1: Actions to protect documents",
+          "helpText": "For example, constricted access rights, creation of electronic backup, clear-desk policy. [Ref 3.8.1] ",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec2",
+          "type": "choice",
+          "label": "Have there been any cases of unauthorised access to documents in the last year?",
+          "shortName": "3.8.2: Unauthorised access to documents",
+          "helpText": "[Ref 3.8.2]",
+          "errorMessage": "3.8.2: Select whether there have been any cases of unauthorised access to documents in the last year",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What measures have been taken to prevent unauthorised access to documents from happening again?",
+      "shortName": "Incident of unauthorised access occurred ",
+      "includeIf": "${docSec2 = 0}",
+      "fields": [
+        {
+          "id": "docSec3",
+          "type": "text",
+          "label": "What measures have been taken to prevent unauthorised access to documents from happening again?",
+          "shortName": "3.8.2: Measures taken to prevent re-occurrence of unauthorised access to documents",
+          "helpText": "[Ref 3.8.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - Employees",
+      "shortName": "Documentation security - Employees",
+      "fields": [
+        {
+          "id": "docSec4",
+          "type": "text",
+          "label": "Which categories of employees have access to detailed data about the flow of materials and goods?",
+          "shortName": "3.8.3a: Categories of employees with access to detailed material and goods flow data",
+          "helpText": "[Ref 3.8.3a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec5",
+          "type": "text",
+          "label": "Which categories of employees are authorised to change this data?",
+          "shortName": "3.8.3b: Categories of employees authorised to change this data",
+          "helpText": "[Ref 3.8.3b]",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec6",
+          "type": "choice",
+          "label": "Are changes to this data comprehensively documented?",
+          "shortName": "3.8.3b: Data changes comprehensively documented",
+          "helpText": "[Ref 3.8.3b]",
+          "errorMessage": "3.8.3b: Select whether changes to this data are comprehensively documented",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Documentation security - Trade partners",
+      "shortName": "Documentation security - Trade partners",
+      "fields": [
+        {
+          "id": "docSec7",
+          "type": "text",
+          "label": "Briefly describe what security and safety requirements  you need from your trade partners and other contact persons in order to avoid abuse of information",
+          "shortName": "3.8.4a: Security requirements from trade partners",
+          "helpText": "For example, endangering of the supply chain through unauthorised transfer of shipping details. [Ref 3.8.4a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "docSec8",
+          "type": "choice",
+          "label": "Are security declarations or agreements in place with your trade partners?",
+          "shortName": "3.8.4b: Security declarations or agreements in place",
+          "helpText": "[Ref 3.8.4b]",
+          "errorMessage": "3.8.4b: Select whether security declarations or agreements are in place with your trade partners",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How do you ensure the safety and security of information or goods with trade partners?",
+      "shortName": "Security declarations or agreements not in place",
+      "includeIf": "${docSec8 = 1}",
+      "fields": [
+        {
+          "id": "docSec9",
+          "type": "text",
+          "label": "How do you ensure the safety and security of information or goods with trade partners?",
+          "shortName": "3.8.4b: How safety and security of information or goods is ensured",
+          "helpText": "[Ref 3.8.4b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-3-2-Apply-for-AEO-Original"
+}
