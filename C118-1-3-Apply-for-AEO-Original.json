@@ -1,0 +1,439 @@
+{
+  "formName": "C118-1-3 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section1_part3_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "aeoC118-1-3"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Do you perform customs formalities for yourself in your own name?",
+      "shortName": "Information and statistics",
+      "fields": [
+        {
+          "id": "stats1",
+          "type": "choice",
+          "label": "Do you perform customs formalities for yourself in your own name?",
+          "shortName": "1.3.1a: Perform own custom formalities",
+          "helpText": "[Ref 1.3.1a]",
+          "errorMessage": "1.3.1a: Select whether you perform customs formalities for yourself in your own name",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is someone representing you regarding customs formalities?",
+      "shortName": "Personal representative",
+      "fields": [
+        {
+          "id": "stats2",
+          "type": "choice",
+          "label": "Is someone representing you regarding customs formalities?",
+          "shortName": "1.3.1b: Represented by someone else ",
+          "helpText": "[Ref 1.3.1b]",
+          "errorMessage": "1.3.1b: Select whether someone is representing you for customs formalities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Who is representing you, and how?",
+      "shortName": "Your representative ",
+      "includeIf": "${stats2 = 0}",
+      "fields": [
+        {
+          "id": "stats2a",
+          "type": "text",
+          "label": "Who is representing you, and how?",
+          "shortName": "1.3.1b: Person representing you",
+          "helpText": "Include their name, address, EORI number and whether they represent you directly or indirectly. [Ref. 1.3.1b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you represent other people in customs formalities?",
+      "shortName": "People you represent",
+      "fields": [
+        {
+          "id": "stats3",
+          "type": "choice",
+          "label": "Do you represent other people in customs formalities?",
+          "shortName": "1.3.1c: Represent others ",
+          "helpText": "[Ref 1.3.1c]",
+          "errorMessage": "1.3.1c: Select whether you represent other people in customs formalities",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Who do you represent?",
+      "shortName": "People represented",
+      "includeIf": "${stats3 = 0}",
+      "fields": [
+        {
+          "id": "stats3a",
+          "type": "text",
+          "label": "Who do you represent?",
+          "shortName": "1.3.1c: People you represent",
+          "helpText": "Name the most significant clients and tells us whether you represent them directly or indirectly. [Ref 1.3.1c] ",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Tariff classification of goods",
+      "shortName": "Tariff classification",
+      "fields": [
+        {
+          "id": "tariffLong1",
+          "type": "text",
+          "label": "How is the tariff classification of goods decided? ",
+          "shortName": "1.3.2a: How classification decided",
+          "helpText": "[Ref 1.3.2a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "whoTariffClass",
+          "type": "text",
+          "label": "Name of person who makes this decision ",
+          "shortName": "1.3.2a: Name of person who makes this decision "
+        }
+      ]
+    },
+    {
+      "title": "What quality assurance measures do you take to make sure that tariff classifications are correct? ",
+      "shortName": "Tariff classification quality assurance",
+      "fields": [
+        {
+          "id": "tariffLong2",
+          "type": "text",
+          "label": "What quality assurance measures do you take to make sure that tariff classifications are correct? ",
+          "shortName": "1.3.2b: Quality assurance measures ",
+          "helpText": "For example, checks, plausibility checks, internal working instructions, or regular training. [Ref 1.3.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Quality assurance notes",
+      "shortName": "Quality assurance notes",
+      "fields": [
+        {
+          "id": "qANotes2",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "shortName": "1.3.2c: Notes kept on quality assurance measures",
+          "helpText": "[Ref 1.3.2c]",
+          "errorMessage": "1.3.2c: Select whether you keep notes on these quality assurance measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "qANotes3",
+          "type": "choice",
+          "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
+          "shortName": "1.3.2d: Effectiveness monitored",
+          "helpText": "[Ref 1.3.2d]",
+          "errorMessage": "1.3.2d: Select whether you regularly monitor the effectiveness of your quality assurance measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What resources do you use for tariff classification?",
+      "shortName": "Tariff classification resources",
+      "fields": [
+        {
+          "id": "tariffLong3",
+          "type": "text",
+          "label": "What resources do you use for tariff classification?",
+          "shortName": "1.3.2e: Resources used ",
+          "helpText": "For example, database of standing data on goods. [Ref 1.3.2e]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "What quality assurance measures do you take to make sure that the customs value is correctly established?",
+      "shortName": "Customs value quality assurance",
+      "fields": [
+        {
+          "id": "customsValue2",
+          "type": "text",
+          "label": "What quality assurance measures do you take to make sure that the customs value is correctly established?",
+          "shortName": "1.3.3b: What assurance measures",
+          "helpText": "For example, checks, plausibility checks, internal working instructions, or regular training. [Ref 1.3.3b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs value quality assurance notes",
+      "shortName": "Customs value quality assurance ",
+      "fields": [
+        {
+          "id": "qANotes5",
+          "type": "choice",
+          "label": "Do you regularly monitor the effectiveness of your quality assurance measures?",
+          "shortName": "1.3.3c: Monitor effectiveness",
+          "helpText": "[Ref 1.3.3c]",
+          "errorMessage": "1.3.3c: Select whether you regularly monitor the effectiveness of your quality assurance measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "qANotes4",
+          "type": "choice",
+          "label": "Do you keep notes on these quality assurance measures?",
+          "shortName": "1.3.3d: Keep quality assurance notes",
+          "helpText": "[Ref 1.3.3d]",
+          "errorMessage": "1.3.3d: Select whether you keep notes on these quality assurance measures",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Give an overview of preferential and  non-preferential origins of imported goods",
+      "shortName": "Imported goods origins",
+      "fields": [
+        {
+          "id": "origins1",
+          "type": "text",
+          "label": "Give an overview of preferential and  non-preferential origins of imported goods",
+          "shortName": "1.3.4a: Overview of imported goods",
+          "helpText": "Enter n/a if not applicable. [Ref 1.3.4a]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "What internal actions have you implemented to verify that the country of origin of the imported goods is declared correctly?",
+      "shortName": "Imported goods origins internal actions",
+      "fields": [
+        {
+          "id": "origins2",
+          "type": "text",
+          "label": "What internal actions have you implemented to verify that the country of origin of the imported goods is declared correctly?",
+          "shortName": "1.3.4b: Actions to verify origin",
+          "helpText": "Enter n/a if not applicable. [Ref 1.3.4b]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Customs value",
+      "shortName": "Customs value",
+      "fields": [
+        {
+          "id": "customsValue1",
+          "type": "text",
+          "label": "How is the customs value established?",
+          "shortName": "1.3.3a: How customs value is established",
+          "helpText": "[Ref 1.3.3a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "whoCustoms",
+          "type": "text",
+          "label": "Who establishes the customs value?",
+          "shortName": "1.3.3a: Who establishes customs value"
+        }
+      ]
+    },
+    {
+      "title": "Describe how you issue proof of preferences and certificates of origin for exportation",
+      "shortName": "Imported goods issuing of proofs of origins",
+      "fields": [
+        {
+          "id": "origins3",
+          "type": "text",
+          "label": "Describe how you issue proof of preferences and certificates of origin for exportation",
+          "shortName": "1.3.4c: Issuing of proof",
+          "helpText": "Enter n/a if not applicable. [Ref 1.3.4c]",
+          "format": "text",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you deal in goods subject to anti-dumping duties or countervailing duties?",
+      "shortName": "Anti-dumping duties or countervailing duties",
+      "fields": [
+        {
+          "id": "origins5",
+          "type": "choice",
+          "label": "Do you deal in goods subject to anti-dumping duties or countervailing duties?",
+          "shortName": "1.3.5: Deal in goods subject to anti-dumping duties or countervailing duties",
+          "helpText": "[Ref 1.3.5]",
+          "errorMessage": "1.3.5: Select whether you deal in goods subject to anti-dumping duties or countervailing duties",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of the manufacturers or countries outside the EU whose goods are subject to anti-dumping duties or countervailing duties",
+      "shortName": "Details of anti-dumping or countervailing duties",
+      "includeIf": "${origins5 = 0}",
+      "fields": [
+        {
+          "id": "origins6",
+          "type": "text",
+          "label": "Provide details of the manufacturers or countries outside the EU whose goods are subject to anti-dumping duties or countervailing duties",
+          "shortName": "1.3.5: Details of duties",
+          "helpText": "[Ref 1.3.5]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-1-3-Apply-for-AEO-Original"
+}
