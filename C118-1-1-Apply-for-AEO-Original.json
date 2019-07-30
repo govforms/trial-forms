@@ -1,0 +1,651 @@
+{
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "formName": "C118-1-1 Apply for AEO",
+  "description": "",
+  "developmentPhase": "beta",
+  "emailTemplateId": "c118_section1_part1_application_confirmation",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "aeoC118-1-1"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Who have you involved in your application to prepare for AEO?",
+      "shortName": "Departments",
+      "fields": [
+        {
+          "id": "whoHelped",
+          "type": "text",
+          "label": "Who have you involved in your application to prepare for AEO?",
+          "shortName": "0.2: Departments involved in preparing for AEO application",
+          "helpText": "Include internal departments or management and tell us if you have involved customs, consultants or third parties. [Ref 0.2]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Is your business part of a group?",
+      "shortName": "Part of a group",
+      "fields": [
+        {
+          "id": "groupQuestion",
+          "type": "choice",
+          "label": "Is your business part of a group?",
+          "shortName": "1.1.1: Is business part of group",
+          "helpText": "[Ref 1.1.1]",
+          "errorMessage": "1.1.1: Select whether your business is part of a group",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Group information",
+      "shortName": "Group details",
+      "includeIf": "${groupQuestion = 0}",
+      "fields": [
+        {
+          "id": "groupdescription",
+          "type": "text",
+          "label": "Provide a brief description of the group",
+          "shortName": "1.1.1: Brief description of group",
+          "helpText": "[Ref 1.1.1]",
+          "multiline": "yes"
+        },
+        {
+          "id": "groupQuestion1",
+          "type": "choice",
+          "label": "Do any other entities in the group already have an AEO authorisation?",
+          "shortName": "1.1.1a: Other entities that already have AEO authorisation",
+          "helpText": "[Ref 1.1.1a]",
+          "errorMessage": "1.1.1a: Select whether any other entities in the group already have an AEO authorisation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "groupQuestion2",
+          "type": "choice",
+          "label": "Have any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority?",
+          "shortName": "1.1.1b Other entities that already applied for AEO status and are undergoing AEO audit",
+          "helpText": "[Ref 1.1.1b]",
+          "errorMessage": "1.1.1b: Select whether any other entities in the group already applied for AEO status and are currently undergoing an AEO audit by a national customs authority",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
+      "shortName": "Established less than 3 years",
+      "fields": [
+        {
+          "id": "lessThan3Years",
+          "type": "choice",
+          "label": "Has the business been established for less than 3 years due to an internal reorganisation of a previously existing business?",
+          "shortName": "1.1.1: Internal reorganisation of existing business",
+          "helpText": "For example, incorporation or sale of a business unit. [Ref 1.1.1]",
+          "errorMessage": "1.1.1: Select whether the business has been established for less than 3 years due to internal reorganisation",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Provide details of the reorganisation of your business",
+      "shortName": "Established less than 3 years",
+      "includeIf": "${lessThan3Years = 0}",
+      "fields": [
+        {
+          "id": "reorganisationDetails",
+          "type": "text",
+          "label": "Provide details of the reorganisation of your business",
+          "shortName": "1.1.1: Details of reorganisation",
+          "helpText": "[Ref 1.1.1]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "How many people involved in the ownership, direction or management of your business are UK nationals?",
+      "shortName": "Number of UK nationals involved",
+      "fields": [
+        {
+          "id": "UKNatCO1",
+          "type": "text",
+          "label": "How many people involved in the ownership, direction or management of your business are UK nationals?",
+          "shortName": "1.1.2: How many involved in ownership, direction or management of business",
+          "helpText": "[Ref 1.1.2]",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs",
+          "errorMessage": "1.1.2: Enter how many people involved in the ownership, direction or management of your business are UK nationals "
+        },
+        {
+          "id": "uKWho",
+          "type": "info",
+          "label": "Who should I include?",
+          "infoText": "Include all people in the following roles that are UK nationals:\n\n* Main Shareholder\n\n* Main Shareholder involved in the day to day running of your business\n\n* Board members or managers\n\n* Advisory board or board of directors members (as listed at Companies House)\n\n* Person in charge of your company or exercising control over your company's management?",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "UK national involved in the ownership, direction or management of your business $n",
+      "shortName": "UK national details $n",
+      "includeIf": "${UKNatCO1 >= 1}",
+      "repeatsMin": "${UKNatCO1}",
+      "repeatsMax": "${UKNatCO1}",
+      "fields": [
+        {
+          "id": "uKNatCO1a",
+          "type": "text",
+          "label": "Full name",
+          "shortName": "1.1.2bcde: Owner, main shareholder or director full name",
+          "helpText": "[Ref 1.1.2bcde]"
+        },
+        {
+          "id": "uKNatCO1b",
+          "type": "text",
+          "label": "National insurance number",
+          "shortName": "1.1.2: Owner or main shareholder national insurance number",
+          "helpText": "For example, AA124424H. [Ref 1.1.2]",
+          "format": "text(9,9)"
+        },
+        {
+          "id": "uKNatCO1c",
+          "type": "text",
+          "label": "Percentage of shares held",
+          "shortName": "1.1.1a: Percentage of shares held",
+          "helpText": "If they are not a shareholder leave blank. [Ref 1.1.2a] ",
+          "format": "positiveWholeNumber",
+          "mandatory": "false",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "roleChoiceUK",
+          "type": "choice",
+          "label": "Roles held",
+          "shortName": "1.1.2bcde: Roles held",
+          "helpText": "Tick all roles that apply to this person. [Ref 1.1.2bcde]",
+          "multivalue": "true",
+          "errorMessage": "1.1.2bcde: Select all roles that apply to this person",
+          "choices": [
+            "Main Shareholder",
+            "Main Shareholder involved in day to day running of the business",
+            "Board member or manager",
+            "Advisory board member or member of board of directors",
+            "Person in charge of company or exercising control over company management"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
+      "shortName": "Number of non-UK nationals involved",
+      "fields": [
+        {
+          "id": "nonUKNatCO1",
+          "type": "text",
+          "label": "How many non-UK nationals are involved in the ownership, direction or management of your business?",
+          "shortName": "1.1.2: How many involved in ownership, direction or management of business",
+          "helpText": "Input the number of owners or main shareholders who are not UK nationals. [Ref 1.1.2] ",
+          "format": "positiveWholeNumber",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "nonUKWhoInclude",
+          "type": "info",
+          "label": "Who should I include?",
+          "infoText": "Include all people in the following roles that are UK nationals:\n\n* Main Shareholder\n\n* Main Shareholder involved in the day to day running of your business\n\n* Board members or managers\n\n* Advisory board or board of directors members (as listed at Companies House)\n\n* Person in charge of your company or exercising control over your company's management?",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Non-UK national involved in the ownership, direction or management of your business $n",
+      "shortName": "Non-UK national details $n",
+      "includeIf": "${nonUKNatCO1 >= 1}",
+      "repeatsMin": "${nonUKNatCO1}",
+      "repeatsMax": "${nonUKNatCO1}",
+      "fields": [
+        {
+          "id": "nonUKNatCO1a",
+          "type": "text",
+          "label": "Full name",
+          "shortName": "1.1.2bcde. Full name",
+          "helpText": "[Ref 1.1.2bcde]"
+        },
+        {
+          "id": "resAddress",
+          "type": "address",
+          "label": "Residential address",
+          "shortName": "1.1.12: Residential address",
+          "helpText": "[Ref 1.1.2]",
+          "international": "true"
+        },
+        {
+          "id": "nonUKNatCO1c",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "1.1.12: Date of birth",
+          "helpText": "[Ref 1.1.2]",
+          "format": "before today +1"
+        },
+        {
+          "id": "nonUKNatCO1d",
+          "type": "text",
+          "label": "Percentage of shares held",
+          "shortName": "1.1.2a: Percentage of shares held",
+          "helpText": "If not applicable leave blank. [Ref 1.1.2a]",
+          "format": "positiveWholeNumber",
+          "mandatory": "false",
+          "displayWidth": "xs"
+        },
+        {
+          "id": "roleChoiceNonUK",
+          "type": "choice",
+          "label": "Roles held",
+          "shortName": "1.1.2bcde: Roles held",
+          "helpText": "Tick all roles that apply to this person. [Ref 1.1.2bcde] ",
+          "multivalue": "true",
+          "errorMessage": "1.1.2bcde: Select the roles that apply to this person",
+          "choices": [
+            "Main Shareholder",
+            "Main Shareholder involved in day to day running of the business",
+            "Board member or manager",
+            "Advisory board member or member of board of directors",
+            "Person in charge of company or exercising control over company management"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Is the person responsible for customs matters for your business a UK national?",
+      "shortName": "Person responsible for customs matters",
+      "fields": [
+        {
+          "id": "prcs1",
+          "type": "choice",
+          "label": "Is the person responsible for customs matters for your business a UK national?",
+          "shortName": "1.1.3: UK national",
+          "helpText": "[Ref 1.1.3]",
+          "errorMessage": "1.1.3: Select whether the person responsible for customs matters for your business is a UK national",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Person responsible for customs matters",
+      "includeIf": "${prcs1 = 0}",
+      "fields": [
+        {
+          "id": "prcs1a",
+          "type": "text",
+          "label": "Full name",
+          "shortName": "1.1.3: Full name",
+          "helpText": "[Ref 1.1.3]"
+        },
+        {
+          "id": "prcs1b",
+          "type": "text",
+          "label": "National insurance number",
+          "shortName": "1.1.3:National Insurance number",
+          "helpText": "For example, AA124424H. [Ref 1.1.3]",
+          "format": "text(9,9)"
+        }
+      ]
+    },
+    {
+      "title": "Person responsible for customs matters",
+      "shortName": "Person responsible for customs matters",
+      "includeIf": "${prcs1 = 1}",
+      "fields": [
+        {
+          "id": "prcs2a",
+          "type": "text",
+          "label": "Full name",
+          "shortName": "1.1.3: Full name",
+          "helpText": "[Ref 1.1.3]"
+        },
+        {
+          "id": "customAddress",
+          "type": "address",
+          "label": "Address",
+          "shortName": "1.1.3: Address",
+          "helpText": "[Ref 1.1.3]",
+          "international": "true"
+        },
+        {
+          "id": "prcs3c",
+          "type": "date",
+          "label": "Date of birth",
+          "shortName": "1.1.3: Date of birth",
+          "helpText": "[Ref 1.1.3]",
+          "format": "before today +1"
+        }
+      ]
+    },
+    {
+      "title": "How many locations do you have involved in customs activities for your business?",
+      "shortName": "Locations involved in customs activities",
+      "fields": [
+        {
+          "id": "coLocNum",
+          "type": "text",
+          "label": "How many locations do you have involved in customs activities for your business?",
+          "shortName": "1.1.5: How many locations",
+          "helpText": "[Ref 1.1.5]",
+          "displayWidth": "xs",
+          "errorMessage": "1.1.5: Select how many locations you have involved in customs activities",
+          "fomat": "positiveWholeNumber"
+        }
+      ]
+    },
+    {
+      "title": "Location involved in customs activities $n",
+      "shortName": "Location involved in customs activities $n",
+      "includeIf": "${coLocNum >= 1}",
+      "repeatsMin": "${coLocNum}",
+      "repeatsMax": "${coLocNum}",
+      "fields": [
+        {
+          "id": "companyLocations1a",
+          "type": "text",
+          "label": "Name of location",
+          "shortName": "1.1.5: Name of location",
+          "helpText": "[Ref 1.1.5]"
+        },
+        {
+          "id": "companyLocations1",
+          "type": "address",
+          "label": "Company location address",
+          "shortName": "1.1.5a: Company location address",
+          "helpText": "[Ref 1.1.5a]",
+          "international": "true"
+        },
+        {
+          "id": "companyLocationsPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "1.1.5: Telephone number",
+          "helpText": "[Ref 1.1.5]",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "companyLocationsEmail",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "1.1.5: Email address",
+          "helpText": "[Ref 1.1.5]",
+          "format": "email"
+        },
+        {
+          "id": "companyLocationsDescription",
+          "type": "text",
+          "label": "Provide a brief description of the business conducted here",
+          "shortName": "1.1.5a: Business conduct and employees",
+          "helpText": "Indicate approximate number of employees in each department at this location. [Ref 1.1.5a]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "How many sites do you have where third parties execute outsourced activities for your business?",
+      "shortName": "Third party locations involved",
+      "fields": [
+        {
+          "id": "tPLiCA1",
+          "type": "text",
+          "label": "How many sites do you have where third parties execute outsourced activities for your  business?",
+          "shortName": "1.1.5b: Number of third party sites",
+          "helpText": "You can enter a maximum of 20. [Ref 1.1.5b]",
+          "displayWidth": "xs",
+          "validIf": "${tPLiCA1 > 0 || tPLiCA1 <=20}",
+          "errorMessage": "1.1.5b Select how many sites you have where third parties execute outsourced activities"
+        }
+      ]
+    },
+    {
+      "title": "Third party location involved in customs activities $n ",
+      "shortName": "Third party location involved $n",
+      "repeatsMin": "${tPLiCA1}",
+      "repeatsMax": "${tPLiCA1}",
+      "fields": [
+        {
+          "id": "agentLocations1a",
+          "type": "text",
+          "label": "Name of location",
+          "shortName": "1.1.5b: Name of location",
+          "helpText": "[Ref 1.1.5b]"
+        },
+        {
+          "id": "agentLocations1",
+          "type": "address",
+          "label": "Third party location address",
+          "shortName": "1.1.5b: Third party location address",
+          "helpText": "[Ref 1.1.5b]",
+          "international": "yes"
+        },
+        {
+          "id": "agentLocationsPhone",
+          "type": "text",
+          "label": "Telephone number",
+          "shortName": "1.1.5b: Telephone number ",
+          "helpText": "[Ref 1.1.5b]",
+          "format": "telephoneNumber"
+        },
+        {
+          "id": "agentLocationsEmail",
+          "type": "text",
+          "label": "Email address",
+          "shortName": "1.1.5b: Email address",
+          "helpText": "[Ref 1.1.5b]",
+          "format": "email"
+        },
+        {
+          "id": "agentLocationsDescription",
+          "type": "text",
+          "label": "Provide a brief description of the business conducted here",
+          "shortName": "1.1.5b: Brief description of business conducted",
+          "helpText": "[Ref 1.1.5b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Do you buy from or sell to businesses with which you are associated?",
+      "shortName": "Trade with associated businesses",
+      "fields": [
+        {
+          "id": "purchases1",
+          "type": "choice",
+          "label": "Do you buy from or sell to businesses with which you are associated?",
+          "shortName": "1.1.6: Buy from or sell to businesses you are associated with",
+          "helpText": "[Ref 1.1.6]",
+          "errorMessage": "1.1.6: Select whether you buy from/sell to business with which you are associated",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Describe the internal organisational structure of your business",
+      "shortName": "Organisational structure ",
+      "fields": [
+        {
+          "id": "organisationalDescription",
+          "type": "text",
+          "label": "Describe the internal organisational structure of your business",
+          "shortName": "1.1.7: Describe internal structure of business",
+          "helpText": "Include the tasks or responsibilities of each department. [Ref 1.1.7] ",
+          "multiline": "yes",
+          "errorMessage": "1.1.7: Enter details about the internal structure of your business"
+        }
+      ]
+    },
+    {
+      "title": "Give the names of senior management of the business and briefly describe the stand in rules",
+      "shortName": "Senior management ",
+      "fields": [
+        {
+          "id": "seniorManagement",
+          "type": "text",
+          "label": "Give the names of senior management of the business and briefly describe the stand in rules",
+          "shortName": "1.1.8: Names and stand in rules",
+          "helpText": "For example, directors, heads of departments, head of accounting, head of customs department. [Ref 1.1.8]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "How many employees do you have in your business?",
+      "shortName": "Number of employees",
+      "fields": [
+        {
+          "id": "numberOfEmployees",
+          "type": "text",
+          "label": "How many employees do you have in your business?",
+          "shortName": "1.1.9: Number",
+          "helpText": "[Ref 1.1.9]",
+          "format": "number",
+          "displayWidth": "xs"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-1-1-Apply-for-AEO-Original"
+}
