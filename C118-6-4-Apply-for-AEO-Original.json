@@ -1,0 +1,473 @@
+{
+  "formName": "C118-6-4 Apply for AEO",
+  "draftRetrievalMethod": "formAccessCodeForAgents",
+  "description": "",
+  "emailTemplateId": "c118_section6_part4_application_confirmation",
+  "developmentPhase": "beta",
+  "authConfig": {
+    "authModule": "hmrc"
+  },
+  "dmsSubmission": {
+    "businessArea": "BTCTO",
+    "classificationType": "BT-CTO-AEO 2",
+    "customerId": "${eORI}",
+    "dmsFormId": "aeoC118-6-4"
+  },
+  "sections": [
+    {
+      "title": "What is your Economic Operator Registration and Identification (EORI) number?",
+      "shortName": "EORI number",
+      "fields": [
+        {
+          "id": "eORI",
+          "type": "text",
+          "label": "What is your Economic Operator Registration and Identification (EORI) number?",
+          "shortName": "EORI",
+          "helpText": "Enter your country code, for example GB, and then your up to 15 numerical digit EORI number",
+          "format": "EORI"
+        },
+        {
+          "id": "mSCountryCodes",
+          "type": "info",
+          "label": "Find my country code",
+          "infoText": "Code and Country:\n\n**GB United Kingdom**\n\nBE Belgium\n\nBG Bulgaria\n\nCZ Czechia\n\nDK Denmark\n\nDE Germany\n\nEE Estonia\n\nIE Ireland\n\nEL Greece\n\nES Spain\n\nFR France\n\nHR Croatia\n\nIT Italy\n\nCY Cyprus\n\nLV Latvia\n\nLT Lithuania\n\nLU Luxembourg\n\nHU Hungary\n\nMT Malta\n\nNL Netherlands\n\nAT Austria\n\nPL Poland\n\nPT Portugal\n\nRO Romania\n\nSL Slovenia\n\nSK Slovakia\n\nFI Finland\n\nSE Sweden",
+          "infoType": "long"
+        },
+        {
+          "id": "whyInfo",
+          "type": "info",
+          "label": "Why am I being asked for this?",
+          "infoText": "We use your EORI number to link together all forms for your application",
+          "infoType": "long"
+        }
+      ]
+    },
+    {
+      "title": "Security requirements for business partners",
+      "shortName": "Security requirements for business partners",
+      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 5)",
+      "fields": [
+        {
+          "id": "partnerSecReq1",
+          "type": "text",
+          "label": "Briefly describe how your company verifies the identity of trade partners in order to secure the supply chain",
+          "shortName": "6.10.1: How your company verifies the identity of trade partners",
+          "helpText": "For example, information search before accepting orders or placing orders. [Ref 6.10.1]",
+          "multiline": "yes"
+        },
+        {
+          "id": "partnerSecReq2",
+          "type": "text",
+          "label": "Briefly describe what measures you have taken to confirm that your business partners ensure the security of their part of the international supply chain",
+          "shortName": "6.10.2a: Measures to confirm partners ensure security of international supply chain",
+          "helpText": "For example, security declarations, contractual requirements, trade partners with own AEO status. [Ref 6.10.2a] ",
+          "multiline": "yes"
+        },
+        {
+          "id": "partnerSecReq3",
+          "type": "text",
+          "label": "Briefly describe how compliance with these procedures is checked",
+          "shortName": "6.10.2b: How compliance with procedures is checked",
+          "helpText": "[Ref 6.10.2b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Over the last year, have you detected any breaches of the security agreements you have with partners?",
+      "shortName": "Breaches of security agreement with business partners",
+      "fields": [
+        {
+          "id": "partnerSecReq4",
+          "type": "choice",
+          "label": "Over the last year, have you detected any breaches of the security agreements you have with partners?",
+          "shortName": "6.10.3a: Partner breach detected",
+          "helpText": "[Ref 6.10.3a]",
+          "errorMessage": "6.10.3a: Select whether over the last year, you have detected any breaches of the security agreements you have with partners ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe what measures you have taken since your partner's security breach was detected",
+      "shortName": "Partner security breaches detected",
+      "includeIf": "${partnerSecReq4 = 0}",
+      "fields": [
+        {
+          "id": "partnerSecReq5",
+          "type": "text",
+          "label": "Briefly describe what measures you have taken since your partner's security breach was detected",
+          "shortName": "6.10.3b: Measures taken since partner security breach",
+          "helpText": "[Ref 6.10.3b]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Employment policy and security",
+      "description": "Guidance for this section can be found at (AEO Guidelines Part 2 Section V, Subsection 6)",
+      "fields": [
+        {
+          "id": "persSec1",
+          "type": "text",
+          "label": "Briefly describe how your employment policy deals with security and safety requirements",
+          "shortName": "6.11.1a: Description of employment policy security and safety requirements",
+          "helpText": "[Ref 6.11.1a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "persSec2",
+          "type": "text",
+          "label": "Who is responsible for this area?",
+          "shortName": "6.11.1b: Person responsible for this area",
+          "helpText": "[Ref 6.11.1b]"
+        }
+      ]
+    },
+    {
+      "title": "Personnel security procedures",
+      "shortName": "Personnel security",
+      "fields": [
+        {
+          "id": "persSec3",
+          "type": "choice",
+          "label": "Are the security procedures recorded in writing?",
+          "shortName": "6.11.1c: Security procedures recorded in writing",
+          "helpText": "[Ref 6.11.1c]",
+          "errorMessage": "6.11.1c: Select whether there are security procedures recorded in writing",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "persSec4",
+          "type": "text",
+          "label": "How is compliance with these procedures checked?",
+          "shortName": "6.11.1d: How compliance is checked",
+          "helpText": "[Ref 6.11.1d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Personnel security - staffing checks",
+      "shortName": "Staffing checks",
+      "fields": [
+        {
+          "id": "persSec5",
+          "type": "text",
+          "label": "To what extent are new employees who will be working in security-sensitive fields subject to security checks?",
+          "shortName": "6.11.2a: Checks on new employees working in security-sensitive fields",
+          "helpText": "For example, police checks to confirm he or she has no criminal record. [Ref 6.11.2a]",
+          "multiline": "yes"
+        },
+        {
+          "id": "persSec6",
+          "type": "text",
+          "label": "To what extent are existing employees who are to be transferred into security-sensitive fields subject to security checks?",
+          "shortName": "6.11.2b: Checks on existing employees transferring into security-sensitive fields",
+          "helpText": "For example, police checks to confirm he or she has no criminal record. [Ref 6.11.2b]",
+          "multiline": "yes"
+        },
+        {
+          "id": "persSec7",
+          "type": "text",
+          "label": "How is it ensured that when staff leave, they no longer have any physical or electronic access to company premises or data?",
+          "shortName": "6.11.2c: How you ensure staff leavers no longer have access",
+          "helpText": "[Ref 6.11.2c]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Is security and safety training provided for employees?",
+      "shortName": "Staff security and safety training",
+      "fields": [
+        {
+          "id": "persSec8",
+          "type": "choice",
+          "label": "Is security and safety training provided for employees?",
+          "shortName": "6.11.3a: Security and safety training provided for employees",
+          "helpText": "[Ref 6.11.3a]",
+          "errorMessage": "6.11.3a: Select whether security and safety training is provided for employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Staff training",
+      "shortName": "Staff training schedules",
+      "includeIf": "${persSec8 = 0}",
+      "fields": [
+        {
+          "id": "persSec9",
+          "type": "text",
+          "label": "What is the frequency of security and safety training?",
+          "shortName": "6.11.3b: Frequency of security and safety training",
+          "helpText": "[Ref 6.11.3b]"
+        },
+        {
+          "id": "persSec11",
+          "type": "text",
+          "label": "Is this training internal or provided by an external supplier?",
+          "shortName": "6.11.3d: Internal or external training",
+          "helpText": "[Ref 6.11.3d]"
+        },
+        {
+          "id": "persSec10",
+          "type": "choice",
+          "label": "Do you have yearly refresher training?",
+          "shortName": "6.11.3c: Training refreshed yearly",
+          "helpText": "[Ref 6.11.3c]",
+          "errorMessage": "6.11.3c: Select whether you have yearly refresher training",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "persSec12",
+          "type": "choice",
+          "label": "Are there written records on this training?",
+          "shortName": "6.11.3e: Written records of training",
+          "helpText": "[Ref 6.11.3e]",
+          "errorMessage": "6.11.3e: Select whether there are written records on this training",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Temporary staffing",
+      "shortName": "Temporary staffing",
+      "fields": [
+        {
+          "id": "persSec13",
+          "type": "text",
+          "label": "Specify the areas where temporary employees are used",
+          "shortName": "6.11.4a: Areas where temporary employees are used",
+          "helpText": "Enter n/a if not applicable. [Ref 6.11.4a]",
+          "format": "text",
+          "multiline": "yes"
+        },
+        {
+          "id": "persSec14",
+          "type": "choice",
+          "label": "Are these employees checked regularly according to security standards?",
+          "shortName": "6.11.4b: Employees regularly checked",
+          "helpText": "[Ref 6.11.4b]",
+          "errorMessage": "6.11.4b: Select whether these employees are checked regularly according to security standards",
+          "choices": [
+            "Yes",
+            "No",
+            "Not applicable"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Security checks - temporary staffing",
+      "includeIf": "${persSec14 = 0}",
+      "fields": [
+        {
+          "id": "persSec15",
+          "type": "text",
+          "label": "How are temporary employees checked against security standards and by whom?",
+          "shortName": "6.11.4c: How temporary employees are checked and who does it",
+          "helpText": "[Ref 6.11.4c]",
+          "multiline": "yes"
+        },
+        {
+          "id": "persSec16",
+          "type": "choice",
+          "label": "Are there also security instructions for these employees?",
+          "shortName": "6.11.4d: Security instructions for temporary employees",
+          "helpText": "[Ref 6.11.4d]",
+          "errorMessage": "6.11.4d: Select whether there are security instructions for these employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Are there security instructions for temporary employees?",
+      "shortName": "Temporary staffing",
+      "includeIf": "${persSec14 = 1}",
+      "fields": [
+        {
+          "id": "persSec17",
+          "type": "choice",
+          "label": "Are there security instructions for temporary employees?",
+          "shortName": "6.11.4d: Security instructions for temporary employees",
+          "helpText": "[Ref 6.11.4d]",
+          "errorMessage": "6.11.4d: Select whether there are security instructions for temporary employees",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Do you use any external services under contract?",
+      "shortName": "External services",
+      "fields": [
+        {
+          "id": "exServ1",
+          "type": "choice",
+          "label": "Do you use any external services under contract?",
+          "shortName": "6.12.1a: Any external services used",
+          "helpText": "For example, transportation, security guards, cleaning, maintenance or supplies. [Ref 6.12.1a]",
+          "errorMessage": "6.12.1a: Select whether you use any external services under contract",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "External services",
+      "shortName": "External services details",
+      "includeIf": "${exServ1 = 0}",
+      "fields": [
+        {
+          "id": "exServ2",
+          "type": "text",
+          "label": "Briefly describe what services they provide",
+          "shortName": "6.12.1b: External services provided under contract",
+          "helpText": "[Ref 6.12.1b]",
+          "multiline": "yes"
+        },
+        {
+          "id": "exServ3a",
+          "type": "choice",
+          "label": "Are there written agreements with the external service providers containing security requirements?",
+          "shortName": "6.12.1c: Written agreements containing security requirements",
+          "helpText": "[Ref 6.12.1c]",
+          "errorMessage": "6.12.1c: Select whether there are any written agreements with the external service providers containing security requirements",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Briefly describe how compliance with the procedures included in these agreements is checked",
+      "shortName": "External services security compliance",
+      "includeIf": "${exServ3a = 0}",
+      "fields": [
+        {
+          "id": "exServ3b",
+          "type": "text",
+          "label": "Briefly describe how compliance with the procedures included in these agreements is checked",
+          "shortName": "6.12.1d: How you check compliance with external provider security requirements",
+          "helpText": "[Ref 6.12.1d]",
+          "multiline": "yes"
+        }
+      ]
+    },
+    {
+      "title": "Have you completed all the forms for your application?",
+      "shortName": "",
+      "description": "You need to send all relevant forms within a 24 hour period, or your application will be rejected.",
+      "fields": [
+        {
+          "id": "c118StopPage",
+          "type": "info",
+          "label": "What do I need to complete?",
+          "infoText": "If you are applying for AEO status customs simplification (AEOC) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\n\nIf you are applying for AEO status security and safety (AEOS) you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4\n\n\nIf you are applying for both you need to complete the following forms:\n\nC117\n\nC118-1-1\n\nC118-1-2\n\nC118-1-3\n\nC118-2\n\nC118-3-1\n\nC118-3-2\n\nC118-4\n\nC118-5\n\nC118-6-1\n\nC118-6-2\n\nC118-6-3\n\nC118-6-4",
+          "infoType": "long"
+        },
+        {
+          "id": "c118Info",
+          "type": "info",
+          "label": "",
+          "infoText": "### If you are not ready to send all your forms within this period, you need to save and come back later.",
+          "infoType": "standard"
+        }
+      ]
+    }
+  ],
+  "declarationSection": {
+    "title": "Declaration",
+    "shortName": "Declaration",
+    "fields": [
+      {
+        "id": "declarationNameGroup",
+        "type": "group",
+        "label": "Provide details below of who is signing the declaration",
+        "fields": [
+          {
+            "id": "declarationFullName",
+            "type": "text",
+            "label": "Full name"
+          },
+          {
+            "id": "declarationStatus",
+            "type": "text",
+            "label": "Job title",
+            "helpText": "For example, director, financial controller or secretary"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "type": "text",
+        "label": "Email address",
+        "helpText": "We will send an email to this address to confirm we’ve received this form",
+        "format": "email",
+        "mandatory": "true"
+      },
+      {
+        "id": "decText",
+        "type": "info",
+        "label": "",
+        "infoText": "By sending this form, you declare that the information you have provided is true and complete."
+      }
+    ]
+  },
+  "acknowledgementSection": {
+    "title": "Confirmation page",
+    "shortName": "Acknowledgement Page",
+    "fields": [
+      {
+        "id": "helpText8",
+        "type": "info",
+        "label": "",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.",
+        "infoType": "noformat"
+      },
+      {
+        "id": "ackpageInfo",
+        "type": "info",
+        "label": "",
+        "infoText": "You need to send us all of the relevant forms within **24 hours**.\n\nIf you do not send us these details in time, you will need to start a new application.\n\nIf you have sent us all the relevant details, we will tell you within 90 calendar days if your application has been successful.\n\nIf your application is unsuccessful we will tell you why. ",
+        "infoType": "noformat"
+      },
+      {
+        "id": "generatedId_a166b5a0_1f67_4dcc_bcd3_7a9368595b36",
+        "type": "info",
+        "label": "",
+        "infoText": "**If you need help**\n\n[Check the guidance](https://www.gov.uk/guidance/authorised-economic-operator-certification) to find out: \n- what you need to do while we process your application\n- how to make changes to your application\n- how to contact HMRC about your application",
+        "infoType": "noformat"
+      }
+    ]
+  },
+  "GFC579Ready": "true",
+  "submitErrorUrl": "deprecated",
+  "submitSuccessUrl": "deprecated",
+  "_id": "C118-6-4-Apply-for-AEO-Original"
+}
