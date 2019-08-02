@@ -1,7 +1,9 @@
 {
+  "_id": "cash-dec-robotics",
   "formName": "Cash Declaration",
   "description": "",
   "developmentPhase": "beta",
+  "GFC579Ready": "true",
   "emailTemplateId": "cash_declaration",
   "emailParameters": [
     {
@@ -18,9 +20,10 @@
   },
   "dmsSubmission": {
     "businessArea": "RIS",
-    "classificationType": "RIS-Intel-Cash Control",
+    "classificationType": "RIS-Intel-Cash Control_Robot",
     "customerId": "${passportNumber}",
-    "dmsFormId": "CCD"
+    "dmsFormId": "cash-control-declaration",
+    "includeRoboticsXml": true
   },
   "sections": [
     {
@@ -46,7 +49,8 @@
         {
           "id": "countryOfBirth",
           "type": "text",
-          "label": "Country of birth"
+          "label": "Country of birth",
+          "format": "lookup(country)"
         },
         {
           "id": "nationality",
@@ -112,7 +116,7 @@
           "type": "choice",
           "label": "Are you entering or leaving the EU?",
           "shortName": "Are you entering or leaving",
-          "errorMessage": "Select whether your are entering or leaving the EU",
+          "errorMessage": "Select whether you are entering or leaving the EU",
           "choices": [
             "Entering",
             "Leaving"
@@ -226,13 +230,15 @@
         {
           "id": "startCountry",
           "type": "text",
-          "label": "Country name"
+          "label": "Country name",
+          "format": "lookup(country)"
         },
         {
           "id": "startName",
           "type": "text",
           "label": "Name of airport or port",
-          "helpText": "For example, London Heathrow"
+          "helpText": "For example, Heathrow",
+          "format": "lookup(port)"
         }
       ]
     },
@@ -244,13 +250,15 @@
         {
           "id": "destinationCountry",
           "type": "text",
-          "label": "Country name"
+          "label": "Country name",
+          "format": "lookup(country)"
         },
         {
           "id": "destinationName",
           "type": "text",
           "label": "Name of airport or port",
-          "helpText": "For example, London Heathrow"
+          "helpText": "For example, Heathrow",
+          "format": "lookup(port)"
         }
       ]
     },
@@ -262,7 +270,7 @@
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Will you change at another airport or port?",
-          "shortName": "Change at another airportc or port",
+          "shortName": "Change at another airport or port",
           "helpText": "If you change to another plane or boat on your way to the EU, select yes. For example, if you are flying into the EU from Australia and change in Singapore.",
           "errorMessage": "Select whether you will change at another airport or port",
           "choices": [
@@ -285,8 +293,7 @@
           "helpText": "For example, if you are flying into the EU from Australia and change in Singapore, enter 1.",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
-          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
-          "errorMessage": "Select how many other airports or ports you will change at"
+          "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}"
         }
       ]
     },
@@ -300,31 +307,35 @@
         {
           "id": "intermediatePortCountryName",
           "type": "text",
-          "label": "Name of country"
+          "label": "Name of country",
+          "format": "lookup(country)"
         },
         {
           "id": "intermediatePortName",
           "type": "text",
           "label": "Name of airport or port",
-          "helpText": "For example, Singapore Changi Airport"
+          "helpText": "For example, Singapore",
+          "format": "lookup(port)"
         }
       ]
     },
     {
-      "title": "Where are you making this declaration?",
-      "shortName": "Where you are making declaration",
+      "title": "Where will you declare the cash at customs?",
+      "shortName": "Customs where you declare cash",
       "description": "This is your EU entry or exit point by air or sea. Start typing to show options.",
       "fields": [
         {
           "id": "declarationCountryName",
           "type": "text",
-          "label": "Country name"
+          "label": "Country name",
+          "format": "lookup(country)"
         },
         {
           "id": "declarationPlaceName",
           "type": "text",
           "label": "Name of airport or port",
-          "helpText": "For example, London Heathrow"
+          "helpText": "For example, London Heathrow",
+          "format": "lookup(port)"
         }
       ]
     },
@@ -361,8 +372,7 @@
           "shortName": "Currencies",
           "helpText": "Enter a number between 1 and 5.",
           "displayWidth": "xs",
-          "validIf": "${howManyCurrency>0 && howManyCurrency <=5}",
-          "errorMessage": "Select how many currencies you are carrying"
+          "validIf": "${howManyCurrency>0 && howManyCurrency <=5}"
         }
       ]
     },
@@ -377,7 +387,8 @@
           "id": "currencyType",
           "type": "text",
           "label": "Currency name",
-          "helpText": "Start typing to show options."
+          "helpText": "Start typing to show options.",
+          "format": "lookup(currency)"
         },
         {
           "id": "generatedId_28841690_118a_487f_9245_5ef61f311a8b",
@@ -398,19 +409,21 @@
           "type": "text",
           "label": "Notes and coins total value",
           "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500.",
-          "errorMessage": "Enter the notes and coins total. If you do not have any, enter 0."
+          "format": "positiveNumber"
         },
         {
           "id": "totalCheques",
           "type": "text",
           "label": "Cheques and traveller's cheques total value",
-          "errorMessage": "Enter the cheques and traveller's cheques total. If you do not have any, enter 0."
+          "helpText": "If you do not have any cheques and traveller's cheques, enter 0.",
+          "format": "positiveNumber"
         },
         {
           "id": "totalBankers",
           "type": "text",
           "label": "Bankers' drafts total value",
-          "errorMessage": "Enter the bankers' drafts total. If you do not have any, enter 0."
+          "helpText": "If you do not have any bankers' drafts cheques, enter 0.",
+          "format": "positiveNumber"
         }
       ]
     },
@@ -445,17 +458,20 @@
           "id": "totalNotesCoins2",
           "type": "text",
           "label": "Notes and coins total value",
-          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500."
+          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500.",
+          "format": "positiveNumber"
         },
         {
           "id": "totalCheques2",
           "type": "text",
-          "label": "Cheques and travellers' cheques total value"
+          "label": "Cheques and travellers' cheques total value",
+          "format": "positiveNumber"
         },
         {
           "id": "totalBankers2",
           "type": "text",
-          "label": "Bankers' drafts total value"
+          "label": "Bankers' drafts total value",
+          "format": "positiveNumber"
         }
       ]
     },
@@ -505,17 +521,12 @@
       "fields": [
         {
           "id": "cashGenerator",
-          "type": "choice",
+          "type": "text",
           "label": "Who gave you the cash?",
           "shortName": "Cash origin",
           "helpText": "If the money came from more than one source, select who gave you the largest amount.",
-          "errorMessage": "Select who gave you the cash",
-          "choices": [
-            "Family",
-            "Friend",
-            "Business",
-            "Other"
-          ]
+          "format": "lookup(originWho)",
+          "errorMessage": "Select who gave you the cash"
         }
       ]
     },
@@ -550,54 +561,37 @@
       "fields": [
         {
           "id": "moneySavings",
-          "type": "choice",
+          "type": "text",
           "label": "Where did the main part of your cash come from?",
           "shortName": "Cash is from",
-          "errorMessage": "Select where the main part of your cash came from",
-          "choices": [
-            "Savings or earnings",
-            "Selling something",
-            "Inheritance",
-            "Gambling",
-            "Loan",
-            "Other"
-          ]
+          "format": "lookup(originMainPart)"
         }
       ]
     },
     {
       "title": "What did you sell?",
-      "includeIf": "${moneySavings=1}",
+      "includeIf": "${moneySavings='Selling something'}",
       "fields": [
         {
           "id": "moneySelling",
-          "type": "choice",
+          "type": "text",
           "label": "What did you sell?",
-          "errorMessage": "Select what you sold to generate the cash",
-          "choices": [
-            "Property",
-            "Vehicle",
-            "Other sale"
-          ]
+          "shortName": "What you sold",
+          "format": "lookup(originSellingSomething)"
         }
       ]
     },
     {
       "title": "Which type of savings or earnings did the cash come from?",
       "shortName": "Which type of savings or earnings",
-      "includeIf": "${moneySavings=0}",
+      "includeIf": "${moneySavings='Savings or earnings'}",
       "fields": [
         {
           "id": "moneySavingsEarnings",
-          "type": "choice",
+          "type": "text",
           "label": "Which type of savings or earnings did the cash come from?",
           "shortName": "Savings or earnings",
-          "errorMessage": "Select what savings or earnings generated the cash",
-          "choices": [
-            "Personal cash savings",
-            "Personal savings in a bank",
-            "Personal earnings"
-          ]
+          "format": "lookup(originSavingsEarnings)"
         }
       ]
     },
@@ -612,7 +606,7 @@
           "label": "Which country was the cash generated in?",
           "shortName": "Country name",
           "helpText": "Start typing to show options.",
-          "errorMessage": "Enter where the cash was generated"
+          "format": "lookup(country)"
         }
       ]
     },
@@ -722,15 +716,10 @@
       "fields": [
         {
           "id": "cashBusinessCosts",
-          "type": "choice",
+          "type": "text",
           "label": "What business costs will the cash be used for?",
           "shortName": "Business costs",
-          "choices": [
-            "Buying a commercial vehicle or parts",
-            "Wages",
-            "Expenses",
-            "Other business costs"
-          ]
+          "format": "lookup(intentBusiness)"
         }
       ]
     },
@@ -759,36 +748,24 @@
       "fields": [
         {
           "id": "whatBuy",
-          "type": "choice",
+          "type": "text",
           "label": "What will you buy?",
-          "choices": [
-            "A big, one-off purchase",
-            "Shopping or tourism",
-            "Clothing",
-            "Other purchase"
-          ]
+          "format": "lookup(intentBuyingWhat)"
         }
       ]
     },
     {
       "title": "What big purchase will the cash be used for?",
       "shortName": "What big purchase will the cash buy",
-      "includeIf": "${whatBuy=0}",
+      "includeIf": "${whatBuy='Major purchase'}",
       "continueIf": "true",
       "fields": [
         {
           "id": "cashPurchase",
-          "type": "choice",
+          "type": "text",
           "label": "What big purchase will the cash be used for?",
           "shortName": "Big purchase",
-          "errorMessage": "Select what the cash will buy",
-          "choices": [
-            "Vehicle",
-            "Property",
-            "Antiques",
-            "Jewellery",
-            "Other"
-          ]
+          "format": "lookup(intentBigPurchase)"
         }
       ]
     },
@@ -798,14 +775,9 @@
       "fields": [
         {
           "id": "costsFees",
-          "type": "choice",
+          "type": "text",
           "label": "What costs or fees will you use the cash for?",
-          "choices": [
-            "Family costs",
-            "Medical costs",
-            "Education fees",
-            "Other"
-          ]
+          "format": "lookup(intentLivingCostsAndFees)"
         }
       ]
     },
@@ -815,14 +787,9 @@
       "fields": [
         {
           "id": "otherUse",
-          "type": "choice",
+          "type": "text",
           "label": "What is the other cash use?",
-          "choices": [
-            "An investment",
-            "Gambling",
-            "Paying a ransom",
-            "Other"
-          ]
+          "format": "lookup(intentOther)"
         }
       ]
     },
@@ -830,9 +797,27 @@
       "title": "Declaration",
       "fields": [
         {
+          "id": "Intent",
+          "type": "text",
+          "label": "Intent resolved: ",
+          "format": "lookup(intent)",
+          "value": "${otherUse else costsFees else cashPurchase else whatBuy else cashBusinessCosts}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
+          "id": "Origin",
+          "type": "text",
+          "label": "Origin resolved:",
+          "format": "lookup(origin)",
+          "value": "${moneySavingsEarnings else moneySelling else moneySavings else cashGenerator}",
+          "submitMode": "derived",
+          "presentationHint": "invisibleInSummary"
+        },
+        {
           "id": "decChoice",
           "type": "choice",
-          "label": "",
+          "label": "Declaration",
           "shortName": "Signed",
           "multivalue": "true",
           "errorMessage": "You must check the box to sign the declaration",
@@ -868,8 +853,6 @@
       }
     ]
   },
-  "GFC579Ready": "true",
   "submitErrorUrl": "deprecated",
-  "submitSuccessUrl": "deprecated",
-  "_id": "cash-dec-robotics"
+  "submitSuccessUrl": "deprecated"
 }
