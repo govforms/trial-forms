@@ -200,6 +200,7 @@
           "type": "choice",
           "label": "How are you travelling into the EU?",
           "shortName": "How you are travelling",
+          "helpText": "You can only use this form to declare cash if you are travelling by air or sea.",
           "errorMessage": "Select how you are travelling into the EU",
           "choices": [
             "Air",
@@ -210,17 +211,7 @@
             "This is via ferry ports, for example"
           ]
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Help text: this is only for air and sea etc.",
-            "colour": "#fffacd",
-            "date": 1565785367023,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "How are you travelling out of the EU?",
@@ -519,6 +510,21 @@
       ]
     },
     {
+      "title": "Which country does the cash come from?",
+      "shortName": "Which country cash comes from",
+      "description": "We ask this to help with money laundering regulations. If the cash comes from more than one source, tell us about the main share.",
+      "fields": [
+        {
+          "id": "countryGenerated",
+          "type": "text",
+          "label": "Which country was the cash generated in?",
+          "shortName": "Country name",
+          "helpText": "Start typing to show options.",
+          "format": "lookup(country)"
+        }
+      ]
+    },
+    {
       "title": "Do you own the cash?",
       "shortName": "Own the cash yourself",
       "fields": [
@@ -534,17 +540,7 @@
             "No"
           ]
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "changed 'amount' to 'share'",
-            "colour": "#fffacd",
-            "date": 1565786640522,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "Who gave you the cash?",
@@ -599,17 +595,7 @@
           "helpText": "If the cash is owned by more than one person, select where the main part of your share of the cash comes from.",
           "format": "lookup(originMainPart)"
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Added help text",
-            "colour": "#fffacd",
-            "date": 1565801577367,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "What did you sell?",
@@ -639,31 +625,6 @@
       ]
     },
     {
-      "title": "Which country does the cash come from?",
-      "shortName": "Which country cash comes from",
-      "description": "We ask this to help with money laundering regulations.",
-      "fields": [
-        {
-          "id": "countryGenerated",
-          "type": "text",
-          "label": "Which country was the cash generated in?",
-          "shortName": "Country name",
-          "helpText": "Start typing to show options.",
-          "format": "lookup(country)"
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "does this refer to the main bit? The whole lot? Move this before 'do you own the cash?'\n\nHelp text: if comes form more than one place... main part.\n\n",
-            "colour": "#fffacd",
-            "date": 1565787326500,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
       "title": "Are you intending to give the cash to someone else?",
       "shortName": "Intending to give cash to someone",
       "fields": [
@@ -672,23 +633,14 @@
           "type": "choice",
           "label": "Are you intending to give the cash to someone else?",
           "shortName": "Give cash",
+          "helpText": "Select yes if you are just handing it over, and the cash is not in exchange for goods or services.",
           "errorMessage": "Select whether you will give the cash to someone else ",
           "choices": [
             "Yes",
             "No"
           ]
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Help text: it's only if it's not in exchange/ and as a 'gift'.\n\nHelp text: select yes if you're just delivering it... \n\n",
-            "colour": "#fffacd",
-            "date": 1565787567378,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "Who will receive the cash? ",
@@ -730,17 +682,7 @@
           "label": "Address",
           "international": "true"
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "what's going to happen to these details? Will the person be contacted?",
-            "colour": "#fffacd",
-            "date": 1565787675150,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "Business receiving the cash",
@@ -912,17 +854,7 @@
         "infoText": "You now need to submit your form, which will give you a reference number to show customs officers.\n\nBy submitting below, you confirm that you are carrying 10,000 euros or more into or out of the EU.",
         "infoType": "noformat"
       }
-    ],
-    "metadata": {
-      "comments": [
-        {
-          "text": "Removed bullet and corrected UK for EU.",
-          "colour": "#fffacd",
-          "date": 1565801446981,
-          "author": "Tee-Hughes"
-        }
-      ]
-    }
+    ]
   },
   "acknowledgementSection": {
     "title": "Confirmation page",
@@ -934,17 +866,7 @@
         "label": "",
         "infoText": "You need to make a note of your submission reference. This confirms that you have made a declaration.\n\nIt also helps if you print a copy of this form now, so you can show it to customs officers if they ask."
       }
-    ],
-    "metadata": {
-      "comments": [
-        {
-          "text": "Could be worth repeating the info that the ref number will be needed for the customs officer.",
-          "colour": "#fffacd",
-          "date": 1565799378855,
-          "author": "lizzerjones"
-        }
-      ]
-    }
+    ]
   },
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
