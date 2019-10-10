@@ -116,14 +116,14 @@
     },
     {
       "title": "When are you entering the EU?",
-      "shortName": "Entering the EU",
+      "shortName": "Date entering the EU",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
           "id": "entryDate",
           "type": "date",
           "label": "When are you entering the EU?",
-          "shortName": "Date entering the EU",
+          "shortName": "Date of entry",
           "helpText": "You can only use this form for entering the EU within the next 3 days.",
           "format": "after today -1, before today +4",
           "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
@@ -132,14 +132,14 @@
     },
     {
       "title": "When are you leaving the EU?",
-      "shortName": "Leaving the EU",
+      "shortName": "Date leaving the EU",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
           "id": "leaveDate",
           "type": "date",
           "label": "When are you leaving the EU?",
-          "shortName": "Date leaving the EU",
+          "shortName": "Date of leaving",
           "helpText": "You can only use this form for leaving the EU within the next 3 days.",
           "format": "after today -1, before today +4",
           "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
@@ -148,14 +148,14 @@
     },
     {
       "title": "How are you travelling into the EU?",
-      "shortName": "Into the EU",
+      "shortName": "Travelling into the EU",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
           "id": "airSeaIfEntering",
           "type": "choice",
           "label": "How are you travelling into the EU?",
-          "shortName": "How you are travelling",
+          "shortName": "Method of travel",
           "errorMessage": "Select how you are travelling into the EU",
           "choices": [
             "Air",
@@ -170,13 +170,14 @@
     },
     {
       "title": "How are you travelling out of the EU?",
-      "shortName": "Out of the EU",
+      "shortName": "Travelling out of the EU",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
           "id": "airSeaIfExiting",
           "type": "choice",
           "label": "How are you travelling out of the EU?",
+          "shortName": "Method of travel",
           "errorMessage": "Select how you are travelling out of the EU",
           "choices": [
             "Air",
@@ -233,9 +234,9 @@
           "id": "intermediateAirport",
           "type": "choice",
           "label": "Will you change at another airport or port?",
-          "shortName": "Change at another airport, port or station",
+          "shortName": "Change at another airport or port",
           "helpText": "If you change to another plane or boat on your way to the EU, select yes. For example, if you are flying into the EU from Australia and change in Singapore.",
-          "errorMessage": "Select whether you will change at another airport, port or station",
+          "errorMessage": "Select whether you will change at another airport or port",
           "choices": [
             "Yes",
             "No"
@@ -253,7 +254,7 @@
           "type": "text",
           "label": "How many other airports or ports will you travel via?",
           "shortName": "Number of other airports or ports changing at",
-          "helpText": "For example, if you are flying into the EU from Australia and change in Singapore, enter 1",
+          "helpText": "For example, if you are flying into the EU from Australia and change in Singapore, enter 1.",
           "format": "positiveWholeNumber",
           "displayWidth": "xs",
           "validIf": "${howManyIntermediateAirports>0 && howManyIntermediateAirports<=20}",
@@ -368,23 +369,23 @@
           "type": "text",
           "label": "Notes and coins total value",
           "shortName": "Total in notes/coins",
-          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500. If you do not have any notes or coins, enter 0.",
+          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500. If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         },
         {
           "id": "totalTravellersCheque",
           "type": "text",
-          "label": "Cheques and traveller's cheques total value",
+          "label": "Cheques and travellers' cheques total value",
           "shortName": "Total in cheques",
-          "helpText": "If you do not have any cheques and traveller's cheques, enter 0.",
+          "helpText": "If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         },
         {
           "id": "totalBankersDraft",
           "type": "text",
           "label": "Bankers' drafts total value",
-          "shortName": "Total in banker's drafts",
-          "helpText": "If you do not have any bankers' drafts cheques, enter 0.",
+          "shortName": "Total in bankers' drafts",
+          "helpText": "If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         }
       ]
@@ -421,7 +422,7 @@
           "type": "text",
           "label": "Notes and coins total value",
           "shortName": "Total in notes/coins",
-          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500.",
+          "helpText": "For example, if you have have 1,000 in notes and 500 in coins, enter: 1,500.  If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         },
         {
@@ -429,13 +430,15 @@
           "type": "text",
           "label": "Cheques and travellers' cheques total value",
           "shortName": "Total in cheques",
+          "helpText": "If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         },
         {
           "id": "totalBankersMoreThanFive",
           "type": "text",
           "label": "Bankers' drafts total value",
-          "shortName": "Total banker's drafts",
+          "shortName": "Total bankers' drafts",
+          "helpText": "If you do not have any of these, enter 0.",
           "format": "positiveNumber(9, 2)"
         }
       ]
@@ -449,7 +452,7 @@
           "id": "generatedId_a4df4687_4630_4e69_8134_cb5dd4528583",
           "type": "info",
           "label": "",
-          "infoText": "Upload a document with details of each currency you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total cheques, including travellers cheques, amount in this currency\n* total bankers drafts amount in this currency",
+          "infoText": "Upload a document with details of each currency you are carrying, including:\n* name of currency\n* total notes/coins amount in this currency\n* total cheques, including travellers' cheques, amount in this currency\n* total bankers' drafts amount in this currency",
           "infoType": "noformat"
         },
         {
