@@ -99,14 +99,14 @@
     },
     {
       "title": "Are you entering or leaving the EU?",
-      "shortName": "Entering or leaving UK",
+      "shortName": "Entering or leaving EU",
       "fields": [
         {
           "id": "enterExit",
           "type": "choice",
           "label": "Are you entering or leaving the EU?",
           "shortName": "Are you entering or leaving",
-          "errorMessage": "Select whether your are entering or leaving the UK",
+          "errorMessage": "Select whether your are entering or leaving the EU",
           "choices": [
             "Entering",
             "Leaving"
@@ -116,14 +116,14 @@
     },
     {
       "title": "When are you entering the EU?",
-      "shortName": "Entering the UK",
+      "shortName": "Entering the EU",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
           "id": "entryDate",
           "type": "date",
           "label": "When are you entering the EU?",
-          "shortName": "Date entering the UK",
+          "shortName": "Date entering the EU",
           "helpText": "You can only use this form for entering the EU within the next 3 days.",
           "format": "after today -1, before today +4",
           "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
@@ -132,14 +132,14 @@
     },
     {
       "title": "When are you leaving the EU?",
-      "shortName": "Leaving the UK",
+      "shortName": "Leaving the EU",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
           "id": "leaveDate",
           "type": "date",
           "label": "When are you leaving the EU?",
-          "shortName": "Date leaving the UK",
+          "shortName": "Date leaving the EU",
           "helpText": "You can only use this form for leaving the EU within the next 3 days.",
           "format": "after today -1, before today +4",
           "errorMessage": "You cannot enter a date more than 3 days in the future, or a date in the past"
@@ -148,7 +148,7 @@
     },
     {
       "title": "How are you travelling into the EU?",
-      "shortName": "Into the UK",
+      "shortName": "Into the EU",
       "includeIf": "${enterExit=0}",
       "fields": [
         {
@@ -156,7 +156,7 @@
           "type": "choice",
           "label": "How are you travelling into the EU?",
           "shortName": "How you are travelling",
-          "errorMessage": "Select how you are travelling into the UK",
+          "errorMessage": "Select how you are travelling into the EU",
           "choices": [
             "Air",
             "Sea"
@@ -170,14 +170,14 @@
     },
     {
       "title": "How are you travelling out of the EU?",
-      "shortName": "Out of the UK",
+      "shortName": "Out of the EU",
       "includeIf": "${enterExit=1}",
       "fields": [
         {
           "id": "airSeaIfExiting",
           "type": "choice",
           "label": "How are you travelling out of the EU?",
-          "errorMessage": "Select how you are travelling out of the UK",
+          "errorMessage": "Select how you are travelling out of the EU",
           "choices": [
             "Air",
             "Sea"
