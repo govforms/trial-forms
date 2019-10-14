@@ -16,32 +16,51 @@
   },
   "sections": [
     {
+      "title": "Enter the details of the person filling in this form ",
+      "description": "HMRC will use these details if we need to discuss this form.",
+      "fields": [
+        {
+          "id": "fullNameFilling",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "telephoneNumberFilling",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code."
+        },
+        {
+          "id": "emailFilling",
+          "type": "text",
+          "label": "Email address",
+          "helpText": "We will also use this to send you a confirmation email.",
+          "format": "email"
+        }
+      ]
+    },
+    {
       "title": "Business details",
+      "description": "These must also match the details you provided for your Transitional Simplified Procedures registration.",
       "fields": [
         {
           "id": "chfEoriNo",
           "type": "text",
           "label": "EORI reference",
           "shortName": "EORI number",
-          "helpText": "This includes the country code followed by up to 15 numbers, for example GB123456789123. This should be the same EORI number you provided in your TSP registration",
+          "helpText": "This is GB followed by 12 numbers, for example GB123456789123.",
           "format": "text(9,17)"
         },
         {
           "id": "chfName",
           "type": "text",
-          "label": "Trader full name",
+          "label": "Business or trading name",
           "shortName": "Trader name",
-          "helpText": "Details should be the same as when you registered for TSP"
+          "helpText": "This must also match the name or trading name as registered with EORI."
         }
       ],
       "metadata": {
         "comments": [
-          {
-            "text": "What is Chief? \n\n\nWe need it explained to us, in terms of where it fits into the customs process.",
-            "colour": "#fffacd",
-            "date": 1570616589347,
-            "author": "Tee-Hughes"
-          },
           {
             "text": "Before this page, start with: Does your business have an EORI number? *yes *no \n[kick out on 'no']",
             "colour": "#fffacd",
@@ -64,93 +83,20 @@
       }
     },
     {
-      "title": "Business office details",
-      "shortName": "Business office details",
+      "title": "Enter your registered office address in the UK",
+      "shortName": "Registered office details",
       "fields": [
-        {
-          "id": "chfphone",
-          "type": "text",
-          "label": "Telephone number",
-          "format": "telephoneNumber"
-        },
         {
           "id": "chfAdd",
           "type": "address",
-          "label": "What is your business office address in the UK?",
-          "shortName": "Address",
-          "helpText": "Details should be the same as when you registered for TSP"
-        },
-        {
-          "id": "email1_copy_1",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
+          "label": "Enter your registered office address in the UK",
+          "shortName": "Address"
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "'Business office' is slightly strange. Shouldn't we be asking about the address as registered with EORI?",
-            "colour": "#fffacd",
-            "date": 1570615298494,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "Need a page: who is the person filling in this application -> are you authorised?\n\n\nThis will pull out the contact details from the 'registered business address'.",
-            "colour": "#fffacd",
-            "date": 1570615484691,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "Is this going to be authenticated? \n\n\nAssume not, as TSP is not authenticated.",
-            "colour": "#fffacd",
-            "date": 1570616655540,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
-      "title": "Your consent to use email",
-      "shortName": "Email consent given",
-      "fields": [
-        {
-          "id": "emailInfo2",
-          "type": "info",
-          "label": "",
-          "infoText": "Email is not 100% secure, as it is sent over the internet.\n\nThis means it is possible for an email to be intercepted and altered.\n\nBecause of this, HMRC reduces the risk to your details wherever possible, for example by only quoting part of unique reference numbers.\n\nWe also make sure we only communicate with established business contacts at their correct email addresses.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "emCons1",
-          "type": "choice",
-          "label": "Do you agree to let us contact you by email about your application?",
-          "shortName": "Confirm email consent",
-          "errorMessage": "Select whether you consent to being contacted using your email address",
-          "choices": [
-            "Yes",
-            "No"
-          ],
-          "optionHelpText": [
-            "",
-            "We will use telephone or post if we need to contact you about your application"
-          ]
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Can we avoid this page? Think it's just a 'belt and braces' thing we put in our end, with no requirement from stakeholder.",
-            "colour": "#fffacd",
-            "date": 1570615541077,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
       "title": "Enter Badge details of the 'new' DTI badge that you require HMRC to activate for the purposes of submitting your supplementary declarations",
-      "shortName": "Badge requiring activation",
+      "shortName": "Badge for activation",
       "fields": [
         {
           "id": "chfBadgeDet",
