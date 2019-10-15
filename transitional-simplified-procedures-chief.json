@@ -16,8 +16,41 @@
   },
   "sections": [
     {
+      "title": "Business details",
+      "description": "These must match the details you provided for your Transitional Simplified Procedures registration.",
+      "fields": [
+        {
+          "id": "chfEoriNo",
+          "type": "text",
+          "label": "UK EORI reference",
+          "shortName": "EORI number",
+          "helpText": "This is GB followed by 12 numbers, for example GB123456789123.",
+          "format": "text(9,17)"
+        },
+        {
+          "id": "chfName",
+          "type": "text",
+          "label": "Business or trading name",
+          "shortName": "Trader name",
+          "helpText": "This must match the name or trading name as registered with EORI."
+        }
+      ]
+    },
+    {
+      "title": "Enter the business address as registered with EORI",
+      "shortName": "Registered office details",
+      "fields": [
+        {
+          "id": "chfAdd",
+          "type": "address",
+          "label": "Enter the business address as registered with EORI",
+          "shortName": "Address"
+        }
+      ]
+    },
+    {
       "title": "Enter the details of the person filling in this form ",
-      "description": "HMRC will use these details if we need to discuss this form.",
+      "description": "HMRC will use these details if we need to discuss this form. Find more information in the HMRC privacy policy on this page.",
       "fields": [
         {
           "id": "fullNameFilling",
@@ -40,196 +73,87 @@
       ]
     },
     {
-      "title": "Business details",
-      "description": "These should also match the details you provided for your Transitional Simplified Procedures registration.",
+      "title": "How do you want to make declarations in CHIEF?",
       "fields": [
         {
-          "id": "chfEoriNo",
-          "type": "text",
-          "label": "UK EORI reference",
-          "shortName": "EORI number",
-          "helpText": "This is GB followed by 12 numbers, for example GB123456789123.",
-          "format": "text(9,17)"
-        },
-        {
-          "id": "chfName",
-          "type": "text",
-          "label": "Business or trading name",
-          "shortName": "Trader name",
-          "helpText": "This must also match the name or trading name as registered with EORI."
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Before this page, start with: Does your business have an EORI number? *yes *no \n[kick out on 'no']",
-            "colour": "#fffacd",
-            "date": 1570614955254,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "Then as per page 2 of CCG1? i.e. 'Name of biz as registered with EORI'",
-            "colour": "#fffacd",
-            "date": 1570615254696,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "Why 'trader' full name? Why not business?",
-            "colour": "#fffacd",
-            "date": 1570615276414,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
-      "title": "Enter your registered office address in the UK",
-      "shortName": "Registered office details",
-      "fields": [
-        {
-          "id": "chfAdd",
-          "type": "address",
-          "label": "Enter your registered office address in the UK",
-          "shortName": "Address"
+          "id": "chfEmailRoute",
+          "type": "choice",
+          "label": "How do you want to make declarations in CHIEF?",
+          "shortName": "Email badge required",
+          "format": "vertical",
+          "choices": [
+            "DTI badge",
+            "Email badge"
+          ],
+          "optionHelpText": [
+            "",
+            "After you complete this form, you will also need to request an entry data capture service (EDCS) role & location to be able to submit supplementary declarations. You can do this here: https://www.gov.uk/government/publications/import-and-export-trade-request-for-chief-access-via-wex-channels-pa7"
+          ]
         }
       ]
     },
     {
-      "title": "What is the DTI badge number you want to activate for submitting your declarations?",
-      "shortName": "Badge for activation",
+      "title": "Do you need a new DTI badge for your CHIEF declarations?",
+      "includeIf": "${chfEmailRoute = 0}",
       "fields": [
         {
-          "id": "chfBadgeDet",
-          "type": "text",
-          "label": "What is the DTI badge number you want to activate for submitting your declarations?",
-          "shortName": "Badge details",
-          "helpText": "This is the direct trader input (DTI) (which is 3 alpha characters) that allows you to make declarations in CHIEF and can be obtained from a community system provider (CSP) ",
-          "format": "text(1,3)",
-          "displayWidth": "xs"
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "If keeping this question, needs to be a 'what is your...?'\n\n\nBut do we need a 'Do you have a...?' first?",
-            "colour": "#fffacd",
-            "date": 1570615669137,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "So it's about activation of an existing badge?\n\n\nWhy are we talking about 'new'?",
-            "colour": "#fffacd",
-            "date": 1570616718960,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
-      "title": "Which CSP Operator issued your DTI badge?",
-      "fields": [
-        {
-          "id": "chfCSPOp",
-          "type": "text",
-          "label": "Which CSP Operator issued your DTI badge?",
-          "shortName": "CSP operator",
-          "helpText": "CHIEF connects with 5 Community System Providers (CSPs). These are independent trade systems that directly serve hundreds of carriers, transit sheds and freight forwarders. CSPs record and track the movement of goods within ports, enabling them to operate more efficiently."
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "pull some of this out as progressive info text beneath the field?",
-            "colour": "#fffacd",
-            "date": 1570614558531,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
-      "title": "Do you intend to obtain a new DTI badge?",
-      "fields": [
-        {
-          "id": "chfNewBadge",
-          "type": "choice",
-          "label": "Do you intend to obtain a new DTI badge?",
-          "shortName": "New DTI badge needed",
-          "helpText": "If you intend to obtain a new DTI badge, but have not yet done so, you will need let us know here before submitting a supplementary declaration",
-          "format": "vertical",
+          "type": "revealingChoice",
+          "id": "newDTI",
+          "label": "Do you need a new DTI badge for your CHIEF declarations?",
           "choices": [
-            "Yes",
-            "No"
+            "Yes, I need a new badge",
+            "No, I already have a badge I want to use"
+          ],
+          "revealingFields": [
+            [],
+            [
+              {
+                "type": "text",
+                "id": "dtiNumber",
+                "label": "Enter the DTI number",
+                "helpText": "This is 3 alpha characters."
+              }
+            ]
           ]
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Is this something you can do in addition to already having a DTI badge listed on previous pages?\n\n\nIf not, this needs to come first.\nAlready have badge?\n-> Using this for your application?\n--> ",
-            "colour": "#fffacd",
-            "date": 1570615792060,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
-      "title": "Do you require an email badge for CHIEF?",
+      "title": "Which Community Service Provider (CSP) issued your DTI badge?",
       "fields": [
         {
-          "id": "chfEmailRoute_copy_1",
           "type": "choice",
-          "label": "Do you require an email badge for CHIEF?",
-          "shortName": "Email badge required",
-          "helpText": "If you want to use the email route into CHIEF, you will need to request an entry data capture service (EDCS) role & location to be able to submit supplementary declarations",
-          "format": "vertical",
+          "id": "whichCsp",
+          "label": "Which Community Service Provider (CSP) issued your DTI badge?",
           "choices": [
-            "Yes",
-            "No"
+            "CSP 1",
+            "CSP 2",
+            "CSP 3",
+            "CSP 4",
+            "CSP 5"
           ]
+        },
+        {
+          "type": "info",
+          "id": "generatedId_e3669de8_594e_4fee_aa22_0a1283dbc424",
+          "label": "What is a CSP?",
+          "infoText": "CHIEF connects with 5 Community System Providers (CSPs). These are independent trade systems that directly serve hundreds of carriers, transit sheds and freight forwarders. CSPs record and track the movement of goods within ports, enabling them to operate more efficiently. that allows you to make declarations in CHIEF and can be obtained from a community system provider (CSP)",
+          "infoType": "long"
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Need to explain this more fully.\n\n\nMaybe increase help text in progressive: 'What can I do with an email badge for CHIEF?'",
-            "colour": "#fffacd",
-            "date": 1570615869206,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     },
     {
-      "title": "More information - is there anything else you want to tell us?",
+      "title": "What email address do you want to set up to submit your CHIEF declarations?",
+      "includeIf": "${chfEmailRoute = 1}",
       "fields": [
         {
-          "id": "chfMore",
           "type": "text",
-          "label": "More information - is there anything else you want to tell us?",
-          "shortName": "More information",
-          "helpText": "If you have more than one CSP and DTI badge, then you can let us know here by providing the name of CSP and DTI badge that is linked to that CSP",
-          "mandatory": "false",
-          "multiline": "true"
+          "id": "emailChief",
+          "label": "What email address do you want to set up to submit your CHIEF declarations?",
+          "helpText": "We will only use this to set up your email badge.",
+          "format": "email"
         }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Need to unpick the multiple badges thing here. \n\n\nWhat the scenarios are\n\n\nWhy you'd be applying for a new one if you already have one (if this is possible).",
-            "colour": "#fffacd",
-            "date": 1570615932305,
-            "author": "Tee-Hughes"
-          },
-          {
-            "text": "Is there any supporting information needed? \n\n\nAny uploads?",
-            "colour": "#fffacd",
-            "date": 1570616773221,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
+      ]
     }
   ],
   "declarationSection": {
@@ -237,54 +161,15 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decText",
-        "type": "info",
+        "type": "choice",
+        "id": "decConfirm",
         "label": "",
-        "infoText": "By signing below, you confirm that:\n\n* you have an EORI number\n\n* you are established in the UK\n\n* you will be importing goods from the EU into the UK\n\n* you will pay in full all duties that you are liable for on these imports, and make all appropriate customs declarations\n\n* the information in this form is true, complete and accurate",
-        "infoType": "noformat"
-      },
-      {
-        "id": "declarationNameGroup",
-        "type": "group",
-        "label": "Provide details below of who is signing the declaration",
-        "fields": [
-          {
-            "id": "declarationFullName",
-            "type": "text",
-            "label": "Full name"
-          },
-          {
-            "id": "declarationStatus",
-            "type": "text",
-            "label": "Job role",
-            "helpText": "For example, director, financial controller or secretary"
-          }
+        "multivalue": "true",
+        "choices": [
+          "I confirm that the information in this form is true, complete and accurate."
         ]
-      },
-      {
-        "id": "email",
-        "type": "text",
-        "label": "Email address",
-        "helpText": "We will only use this to send a confirmation that we have received your application",
-        "format": "email"
       }
-    ],
-    "metadata": {
-      "comments": [
-        {
-          "text": "Slim this down by removing the signee details, making it tally with 'person filling in this form' who has already given job.",
-          "colour": "#fffacd",
-          "date": 1570616356716,
-          "author": "Tee-Hughes"
-        },
-        {
-          "text": "Overall, these confirmation bullets are slightly strange. Try to lose them, unless there's some overwhelming need.",
-          "colour": "#fffacd",
-          "date": 1570616444136,
-          "author": "Tee-Hughes"
-        }
-      ]
-    }
+    ]
   },
   "acknowledgementSection": {
     "title": "Confirmation page",
