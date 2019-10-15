@@ -93,19 +93,18 @@
       ]
     },
     {
-      "title": "Do you need a new DTI badge for your CHIEF declarations?",
+      "title": "Do you already have a  DTI badge you want to activate for CHIEF?",
       "includeIf": "${chfEmailRoute = 0}",
       "fields": [
         {
           "type": "revealingChoice",
           "id": "newDTI",
-          "label": "Do you need a new DTI badge for your CHIEF declarations?",
+          "label": "Do you already have a DTI badge you want to activate for CHIEF?",
           "choices": [
-            "Yes, I need a new badge",
-            "No, I already have a badge I want to use"
+            "Yes, I already have the badge I want to activate",
+            "No, I need a new badge"
           ],
           "revealingFields": [
-            [],
             [
               {
                 "type": "text",
@@ -113,13 +112,15 @@
                 "label": "Enter the DTI number",
                 "helpText": "This is 3 alpha characters."
               }
-            ]
+            ],
+            []
           ]
         }
       ]
     },
     {
       "title": "Which Community Service Provider (CSP) issued your DTI badge?",
+      "includeIf": "${chfEmailRoute = 0}",
       "fields": [
         {
           "type": "choice",
