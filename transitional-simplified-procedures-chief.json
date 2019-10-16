@@ -1,6 +1,6 @@
 {
   "_id": "transitional-simplified-procedures-chief",
-  "formName": "TSP request for access to CHIEF",
+  "formName": "Activate a badge to make CHIEF declarations",
   "description": "",
   "developmentPhase": "beta",
   "GFC579Ready": "true",
@@ -16,37 +16,87 @@
   },
   "sections": [
     {
-      "title": "Business details",
-      "description": "These must match the details you provided for your Transitional Simplified Procedures registration.",
+      "title": "Does your business have an Economic Operators Registration and Identification (EORI) number?",
       "fields": [
         {
-          "id": "chfEoriNo",
-          "type": "text",
-          "label": "UK EORI reference",
-          "shortName": "EORI number",
-          "helpText": "This is GB followed by 12 numbers, for example GB123456789123.",
-          "format": "text(9,17)"
-        },
-        {
-          "id": "chfName",
-          "type": "text",
-          "label": "Business or trading name",
-          "shortName": "Trader name",
-          "helpText": "This must match the name or trading name as registered with EORI."
+          "id": "eoriNumber",
+          "type": "revealingChoice",
+          "label": "Does your business have an Economic Operators Registration and Identification (EORI) number?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [
+              {
+                "id": "enterEori",
+                "type": "text",
+                "label": "Enter your UK EORI number",
+                "helpText": "This is GB followed by 12 numbers. For example, 123456789012. This must match the details you provided for your Transitional Simplified Procedures (TSP) registration."
+              }
+            ],
+            []
+          ]
         }
       ]
     },
     {
-      "title": "Enter the business address as registered with EORI",
+      "title": "You cannot use this service because your business does not have a UK Economic Operators Registration and Identification (EORI) number",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_a57ee737_a65c_4030_b28b_4c8baa3f9065",
+          "type": "info",
+          "label": "",
+          "infoText": "For more information on Brexit and imports, visit: https://www.gov.uk/prepare-import-to-uk-after-brexit\n\nYou need to exit this service.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "title": "What is the name of the business?",
+      "fields": [
+        {
+          "id": "bizName",
+          "type": "text",
+          "label": "What is the name of the business?",
+          "helpText": "This must match the name or trading name you provided for your TSP registration."
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Sole trader most likely in own name not trading name.\n\n\nRemove the EORI reference in H1.",
+            "colour": "#fffacd",
+            "date": 1571231086108,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Enter the business address",
       "shortName": "Registered office details",
+      "description": "This must match the details you provided for your TSP registration.",
       "fields": [
         {
           "id": "chfAdd",
           "type": "address",
-          "label": "Enter the business address as registered with EORI",
-          "shortName": "Address"
+          "label": "Enter the business address",
+          "shortName": "Address",
+          "helpText": "This must match the details you provided for your TSP registration."
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Biz wants to remove as registered with EORI.\n\n\nTSP reference as business address.",
+            "colour": "#fffacd",
+            "date": 1571231087812,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
     },
     {
       "title": "Enter the details of the person filling in this form ",
@@ -64,10 +114,52 @@
           "helpText": "For international numbers include the country code."
         },
         {
-          "id": "emailFilling",
+          "id": "email1",
           "type": "text",
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email.",
+          "format": "email"
+        },
+        {
+          "id": "ongoingContact",
+          "type": "choice",
+          "label": "Is this also the person for ongoing contact about CHIEF?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Include wording - this will be address email we use for ongoing correspondence. Confirm activating.",
+            "colour": "#fffacd",
+            "date": 1571231089462,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Contact person's name",
+      "description": "HMRC will use these details for ongoing contact about CHIEF procedures after your activation is successful.",
+      "fields": [
+        {
+          "id": "ongoingName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "id": "ongoingNumber",
+          "type": "text",
+          "label": "Telephone number",
+          "helpText": "For international numbers include the country code."
+        },
+        {
+          "id": "ongoingEmail",
+          "type": "text",
+          "label": "Email address",
           "format": "email"
         }
       ]
@@ -82,7 +174,7 @@
           "shortName": "Email badge required",
           "format": "vertical",
           "choices": [
-            "DTI badge",
+            "Direct trader input (DTI) badge",
             "Email badge"
           ],
           "optionHelpText": [
@@ -93,68 +185,144 @@
       ]
     },
     {
-      "title": "Do you already have a  DTI badge you want to activate for CHIEF?",
+      "title": "Do you already have a DTI badge you want to activate for CHIEF?",
       "includeIf": "${chfEmailRoute = 0}",
       "fields": [
         {
-          "type": "revealingChoice",
           "id": "newDTI",
+          "type": "revealingChoice",
           "label": "Do you already have a DTI badge you want to activate for CHIEF?",
           "choices": [
-            "Yes, I already have the badge I want to activate",
-            "No, I need a new badge"
+            "Yes, I already have a badge I want to activate",
+            "No, I do not have the badge yet"
           ],
           "revealingFields": [
             [
               {
-                "type": "text",
                 "id": "dtiNumber",
+                "type": "text",
                 "label": "Enter the DTI number",
-                "helpText": "This is 3 alpha characters."
+                "helpText": "This is 3 alpha characters.",
+                "displayWidth": "xs"
               }
             ],
             []
           ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "Enter the last three characters.",
+            "colour": "#fffacd",
+            "date": 1571231093015,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
+    },
+    {
+      "title": "You cannot use this service yet because your business has not received the DTI badge it wants to activate for CHIEF",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_5ac676f1_c892_4819_899e_a91d813651e3",
+          "type": "info",
+          "label": "",
+          "infoText": "Once you have your new DTI badge, you need to activate it using this form before you make any declarations. You now need to exit this service.",
+          "infoType": "noformat"
+        }
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "You need to contact a CSP to get your badge.",
+            "colour": "#fffacd",
+            "date": 1571231095019,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
     },
     {
       "title": "Which Community Service Provider (CSP) issued your DTI badge?",
-      "includeIf": "${chfEmailRoute = 0}",
+      "includeIf": "${chfEmailRoute = 0 && newDTI = 0}",
       "fields": [
         {
-          "type": "choice",
           "id": "whichCsp",
+          "type": "choice",
           "label": "Which Community Service Provider (CSP) issued your DTI badge?",
           "choices": [
-            "CSP 1",
-            "CSP 2",
-            "CSP 3",
-            "CSP 4",
-            "CSP 5"
+            "CCS-UK",
+            "Destin8 (this is also known as FCP or MCP)",
+            "CNS",
+            "Pentant (PNT)",
+            "DHL"
           ]
         },
         {
-          "type": "info",
           "id": "generatedId_e3669de8_594e_4fee_aa22_0a1283dbc424",
+          "type": "info",
           "label": "What is a CSP?",
           "infoText": "CHIEF connects with 5 Community System Providers (CSPs). These are independent trade systems that directly serve hundreds of carriers, transit sheds and freight forwarders. CSPs record and track the movement of goods within ports, enabling them to operate more efficiently. that allows you to make declarations in CHIEF and can be obtained from a community system provider (CSP)",
           "infoType": "long"
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "change order so alphabetical\n\n\n\n\n\n\nSomeone may want to use this. Rewrite.",
+            "colour": "#fffacd",
+            "date": 1571231096930,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
     },
     {
-      "title": "What email address do you want to set up to submit your CHIEF declarations?",
+      "title": "Is this the email address you want to use for CHIEF?",
       "includeIf": "${chfEmailRoute = 1}",
       "fields": [
         {
+          "id": "derivedEmail",
           "type": "text",
-          "id": "emailChief",
-          "label": "What email address do you want to set up to submit your CHIEF declarations?",
-          "helpText": "We will only use this to set up your email badge.",
-          "format": "email"
+          "label": " ",
+          "format": "email",
+          "value": "${email1}",
+          "submitMode": "derived",
+          "presentationHint": "totalValue"
+        },
+        {
+          "id": "derivedChoice",
+          "type": "revealingChoice",
+          "label": "",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "revealingFields": [
+            [],
+            [
+              {
+                "id": "otherEmail",
+                "type": "text",
+                "label": "Enter the email you want to use",
+                "format": "email"
+              }
+            ]
+          ]
         }
-      ]
+      ],
+      "metadata": {
+        "comments": [
+          {
+            "text": "",
+            "colour": "#fffacd",
+            "date": 1571231098813,
+            "author": "Tee-Hughes"
+          }
+        ]
+      }
     }
   ],
   "declarationSection": {
@@ -162,15 +330,25 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "type": "choice",
         "id": "decConfirm",
+        "type": "choice",
         "label": "",
         "multivalue": "true",
         "choices": [
           "I confirm that the information in this form is true, complete and accurate."
         ]
       }
-    ]
+    ],
+    "metadata": {
+      "comments": [
+        {
+          "text": "",
+          "colour": "#fffacd",
+          "date": 1571231103179,
+          "author": "Tee-Hughes"
+        }
+      ]
+    }
   },
   "acknowledgementSection": {
     "title": "Confirmation page",
@@ -180,22 +358,28 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.\n\nWe have received your request to access CHIEF for Transitional Simplified Procedures.\n\nYou can expect to receive a response within XX days\n\nFor further information see the [TSP guidance page](https://www.gov.uk/guidance/register-for-simplified-import-procedures-if-the-uk-leaves-the-eu-without-a-deal). \n\n[What did you think of this service?](https://www.surveygizmo.com/s3/4830827/Feedback-Transitional-Simplified-Procedures) (takes 30 seconds)",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.\n\nWe have received your request to access CHIEF for Transitional Simplified Procedures.\n\nWe will respond within XX days\n\nFor further information see the [TSP guidance page](https://www.gov.uk/guidance/register-for-simplified-import-procedures-if-the-uk-leaves-the-eu-without-a-deal). \n\n[What did you think of this service?](https://www.surveygizmo.com/s3/4830827/Feedback-Transitional-Simplified-Procedures) (takes 30 seconds)",
         "infoType": "noformat"
       }
     ],
     "metadata": {
       "comments": [
         {
-          "text": "What is the xx days?",
+          "text": "We'll use this to send a confirmation that we've activated your badge.",
           "colour": "#fffacd",
-          "date": 1570616520325,
+          "date": 1571232493442,
           "author": "Tee-Hughes"
         },
         {
-          "text": "Are we approaching the whole form from a 'we are out of the EU now' point of view?\n\n\nBecause the guidance notes we link to here are about 'in the event of leaving EU with no deal.",
+          "text": "Remove the xx days promise.\n\n\nGive a non-concrete promise.",
           "colour": "#fffacd",
-          "date": 1570616834560,
+          "date": 1571233724484,
+          "author": "Tee-Hughes"
+        },
+        {
+          "text": "After you complete this form, you will also need to request an entry data capture service (EDCS) role & location to be able to submit supplementary declarations. You can do this here: https://www.gov.uk/government/publications/import-and-export-trade-request-for-chief-access-via-wex-channels-pa7",
+          "colour": "#fffacd",
+          "date": 1571238325496,
           "author": "Tee-Hughes"
         }
       ]
