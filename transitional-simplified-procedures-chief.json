@@ -34,7 +34,7 @@
               {
                 "id": "enterEori",
                 "type": "text",
-                "label": "Enter your UK EORI number",
+                "label": "Enter your EORI number",
                 "helpText": "This is GB followed by 12 numbers. For example, 123456789012. This must match the details you provided for your Transitional Simplified Procedures (TSP) registration.",
                 "format": "EORI"
               }
@@ -66,7 +66,7 @@
           "type": "text",
           "label": "What is the name of the business?",
           "shortName": "Business name",
-          "helpText": "This must match the name or trading name you provided for your TSP registration."
+          "helpText": "This must match the name or trading name you provided for your Transitional Simplified Procedures registration."
         }
       ]
     },
@@ -80,7 +80,7 @@
           "type": "address",
           "label": "Enter the business address",
           "shortName": "Address",
-          "helpText": "This must match the details you provided for your TSP registration."
+          "helpText": "This must match the details you provided for your Transitional Simplified Procedures registration."
         }
       ]
     },
@@ -106,50 +106,6 @@
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email.",
           "format": "email"
-        },
-        {
-          "id": "ongoingContact",
-          "type": "choice",
-          "label": "Is this also the person for ongoing contact about CHIEF?",
-          "shortName": "Contact person for CHIEF",
-          "errorMessage": "Select whether this is the ongoing contact for CHIEF",
-          "choices": [
-            "Yes",
-            "No"
-          ]
-        }
-      ],
-      "metadata": {
-        "comments": [
-          {
-            "text": "Include wording - this will be address email we use for ongoing correspondence. Confirm activating.",
-            "colour": "#fffacd",
-            "date": 1571231089462,
-            "author": "Tee-Hughes"
-          }
-        ]
-      }
-    },
-    {
-      "title": "Enter the contact name for CHIEF",
-      "description": "HMRC will use these details for ongoing contact about CHIEF procedures if your activation is successful.",
-      "fields": [
-        {
-          "id": "ongoingName",
-          "type": "text",
-          "label": "Full name"
-        },
-        {
-          "id": "ongoingNumber",
-          "type": "text",
-          "label": "Telephone number",
-          "helpText": "For international numbers include the country code."
-        },
-        {
-          "id": "ongoingEmail",
-          "type": "text",
-          "label": "Email address",
-          "format": "email"
         }
       ]
     },
@@ -162,6 +118,7 @@
           "type": "choice",
           "label": "How do you want to make declarations in CHIEF?",
           "shortName": "CHIEF access route",
+          "helpText": "If you want to use both a DTI badge and email badge for declarations, you need to use this form twice to make separate applications.",
           "format": "vertical",
           "errorMessage": "Select how you want to make declarations in CHIEF",
           "choices": [
@@ -172,18 +129,18 @@
       ]
     },
     {
-      "title": "Do you already have a DTI badge you want to activate for CHIEF?",
+      "title": "Do you already have the DTI badge you want to activate for CHIEF?",
       "shortName": "Business already has CHIEF badge",
       "includeIf": "${chfEmailRoute = 0}",
       "fields": [
         {
           "id": "newDTI",
           "type": "revealingChoice",
-          "label": "Do you already have a DTI badge you want to activate for CHIEF?",
+          "label": "Do you already have the DTI badge you want to activate for CHIEF?",
           "shortName": "CHIEF badge",
           "errorMessage": "Select whether the business already has the CHIEF badge to activate",
           "choices": [
-            "Yes, I already have a badge I want to activate",
+            "Yes, I already have the badge I want to activate",
             "No, I do not have the badge yet"
           ],
           "revealingFields": [
@@ -302,32 +259,10 @@
         "id": "helpText8",
         "type": "info",
         "label": "",
-        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.\n\nWe have received your request to access CHIEF for Transitional Simplified Procedures.\n\nWe will respond within XX days\n\nFor further information see the [TSP guidance page](https://www.gov.uk/guidance/register-for-simplified-import-procedures-if-the-uk-leaves-the-eu-without-a-deal). \n\nAfter you complete this form, you will also need to request an entry data capture service (EDCS) role & location to be able to submit supplementary declarations. You can do this here: https://www.gov.uk/government/publications/import-and-export-trade-request-for-chief-access-via-wex-channels-pa7\n\n[What did you think of this service?](https://www.surveygizmo.com/s3/4830827/Feedback-Transitional-Simplified-Procedures) (takes 30 seconds)",
+        "infoText": "This is your last opportunity to print or save a PDF copy of your submitted form.\n\nWe have received your request to access CHIEF for Transitional Simplified Procedures.\n\nWe will now look at your application and reply to the contact email you provided.\n\nFor further information see the [TSP guidance page](https://www.gov.uk/guidance/register-for-simplified-import-procedures-if-the-uk-leaves-the-eu-without-a-deal). \n\n##If you have requested an email badge\n\nTo complete your email activation and make CHIEF declarations, you also need to request an entry data capture service (EDCS) role and location. To do this, [complete this form](https://www.gov.uk/government/publications/import-and-export-trade-request-for-chief-access-via-wex-channels-pa7).\n\n[What did you think of this service?](https://www.surveygizmo.com/s3/4830827/Feedback-Transitional-Simplified-Procedures) (takes 30 seconds)",
         "infoType": "noformat"
       }
-    ],
-    "metadata": {
-      "comments": [
-        {
-          "text": "We'll use this to send a confirmation that we've activated your badge.",
-          "colour": "#fffacd",
-          "date": 1571232493442,
-          "author": "Tee-Hughes"
-        },
-        {
-          "text": "Remove the xx days promise.\n\n\nGive a non-concrete promise.",
-          "colour": "#fffacd",
-          "date": 1571233724484,
-          "author": "Tee-Hughes"
-        },
-        {
-          "text": "After you complete this form, you will also need to request an entry data capture service (EDCS) role & location to be able to submit supplementary declarations. You can do this here: https://www.gov.uk/government/publications/import-and-export-trade-request-for-chief-access-via-wex-channels-pa7",
-          "colour": "#fffacd",
-          "date": 1571238325496,
-          "author": "Tee-Hughes"
-        }
-      ]
-    }
+    ]
   },
   "submitErrorUrl": "deprecated",
   "submitSuccessUrl": "deprecated"
