@@ -174,7 +174,7 @@
           "id": "generatedId_5ac676f1_c892_4819_899e_a91d813651e3",
           "type": "info",
           "label": "",
-          "infoText": "You need to contact a Community Service Provider (CSP) who will issue you with a DTI badge. [Find a Community Service Provider](https://www.gov.uk/government/publications/chief-customs-freight-simplified-procedures-cfsp-contact-list/customs-freight-simplified-procedures-air-or-port-community-service-providers-of-direct-trader-input-dti-links-to-chief).\n \n\nOnce you have your new DTI badge, you need to activate it using this form before you make any declarations.",
+          "infoText": "You need to contact a Community Service Provider (CSP) who will issue you with a DTI badge. [Find a Community Service Provider](https://www.gov.uk/government/publications/chief-trade-and-commercial-contacts-for-community-service-providers).\n \n\nOnce you have your new DTI badge, you need to activate it using this form before you make any declarations.",
           "infoType": "noformat"
         }
       ]
@@ -213,7 +213,7 @@
         {
           "id": "derivedEmail",
           "type": "text",
-          "label": " ",
+          "label": "Your email:",
           "format": "email",
           "value": "${email1}",
           "submitMode": "derived",
@@ -241,6 +241,20 @@
           ]
         }
       ]
+    },
+    {
+      "includeIf": "${chfEmailRoute = 1}",
+      "continueIf": "true",
+      "title": "You will need to activate your email badge online before you can make declarations",
+      "fields": [
+        {
+          "id": "generatedId_44f189ec_83d4_423f_9965_464b1c39dc78",
+          "type": "info",
+          "label": "",
+          "infoText": "We will tell you how to do this once you have submitted your details.",
+          "infoType": "noformat"
+        }
+      ]
     }
   ],
   "declarationSection": {
@@ -248,13 +262,11 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "decConfirm",
-        "type": "choice",
+        "type": "info",
+        "id": "generatedId_3d82af20_f549_4592_bbb3_7bcbb4ba3047",
         "label": "",
-        "multivalue": "true",
-        "choices": [
-          "I confirm that the information in this form is true, complete and accurate."
-        ]
+        "infoText": "I confirm that the information in this form is true, complete and accurate.",
+        "infoType": "noformat"
       }
     ]
   },
