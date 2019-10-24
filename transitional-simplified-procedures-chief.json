@@ -133,7 +133,9 @@
           "id": "authorisedPerson",
           "type": "choice",
           "label": "Are you authorised to fill in this form?",
+          "shortName": "Authorised to fill in form",
           "helpText": "You must be the person who makes the customs declarations for the business.",
+          "errorMessage": "Select whether you are authorised to fill in this form",
           "choices": [
             "Yes, I make the customs declarations for the business",
             "No"
@@ -197,8 +199,8 @@
                 "label": "Enter the DTI number",
                 "shortName": "DTI number",
                 "helpText": "This is the last 3 letters of the badge.",
-                "displayWidth": "xs",
-                "format": "text(3,3)"
+                "format": "text(3,3)",
+                "displayWidth": "xs"
               }
             ],
             []
@@ -230,6 +232,7 @@
           "type": "choice",
           "label": "Which Community System Provider (CSP) issued your DTI badge?",
           "shortName": "Which CSP issued badge",
+          "errorMessage": "Select which Community System Provider issued your DTI badge",
           "choices": [
             "CCS-UK",
             "CNS (this is also known as Compass)",
@@ -248,7 +251,8 @@
       ]
     },
     {
-      "title": "Is this the email address you want to use for CHIEF?",
+      "title": "Select the email address you want to use for CHIEF",
+      "shortName": "Select the email address to use for CHIEF",
       "includeIf": "${chfEmailRoute = 1}",
       "fields": [
         {
@@ -263,7 +267,8 @@
         {
           "id": "derivedChoice",
           "type": "revealingChoice",
-          "label": "Is this the email address you want to use for CHIEF?",
+          "label": "Use this email?",
+          "shortName": "Use this email",
           "errorMessage": "Select whether this is the email address you want to use for ongoing CHIEF contact",
           "choices": [
             "Yes",
