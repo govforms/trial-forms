@@ -4,15 +4,25 @@
   "description": "",
   "developmentPhase": "beta",
   "GFC579Ready": "true",
-  "emailTemplateId": "tsp_application_confirmation",
+  "emailTemplateId": "tspCHIEF_confirmation_submission",
+  "emailParameters": [
+    {
+      "value": "${fullNameFilling}",
+      "emailTemplateVariable": "fullNameFilling"
+    },
+    {
+      "value": "${formSubmissionRefHidden}",
+      "emailTemplateVariable": "submissionReference"
+    }
+  ],
   "authConfig": {
     "authModule": "anonymous"
   },
   "dmsSubmission": {
-    "businessArea": "BTCTO",
-    "classificationType": "BT-CTO-TSP",
+    "businessArea": "OE-CDS",
+    "classificationType": "OE-CDS Ops-DTI Badge",
     "customerId": "${eoriNo}",
-    "dmsFormId": "TSP"
+    "dmsFormId": "TSPCHIEF"
   },
   "sections": [
     {
@@ -37,11 +47,21 @@
                 "label": "Enter your EORI number",
                 "shortName": "Your EORI number",
                 "helpText": "This is GB followed by 12 numbers. For example, 123456789012. This must match the details you provided for your transitional simplified procedures registration.",
-                "format": "EORI"
+                "format": "text(14,14)",
+                "toUpperCase": "true"
               }
             ],
             []
           ]
+        },
+        {
+          "id": "formSubmissionRefHidden",
+          "type": "text",
+          "label": "Report submission reference (this will only be shared with HMRC once this report is submitted)",
+          "value": "${form.submissionReference}",
+          "submitMode": "derived",
+          "mandatory": "false",
+          "presentationHint": "invisibleInSummary"
         }
       ]
     },
@@ -51,7 +71,7 @@
       "continueIf": "false",
       "fields": [
         {
-          "id": "generatedId_a57ee737_a65c_4030_b28b_4c8baa3f9065",
+          "id": "eoriExitINfo",
           "type": "info",
           "label": "",
           "infoText": "Find out how to [get an EORI number](https://www.gov.uk/eori?step-by-step-nav=db1149f5-f60a-4d02-be0c-9c9db2828665).\n\nOnce you have this, you can come back to activate your badge to make CHIEF declarations.",
@@ -103,7 +123,7 @@
           "helpText": "For international numbers include the country code."
         },
         {
-          "id": "email1",
+          "id": "email",
           "type": "text",
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email.",
@@ -127,7 +147,7 @@
       "continueIf": "false",
       "fields": [
         {
-          "id": "generatedId_92a2b116_b19a_4d46_adc1_5d173c130406",
+          "id": "nonAuthInfo",
           "type": "info",
           "label": "",
           "infoText": "You'll need to exit this service.",
@@ -177,7 +197,8 @@
                 "label": "Enter the DTI number",
                 "shortName": "DTI number",
                 "helpText": "This is the last 3 letters of the badge.",
-                "displayWidth": "xs"
+                "displayWidth": "xs",
+                "format": "text(3,3)"
               }
             ],
             []
@@ -191,7 +212,7 @@
       "continueIf": "false",
       "fields": [
         {
-          "id": "generatedId_5ac676f1_c892_4819_899e_a91d813651e3",
+          "id": "badgeExitInfo",
           "type": "info",
           "label": "",
           "infoText": "You need to contact a Community Service Provider (CSP) who will issue you with a DTI badge. [Find a Community Service Provider](https://www.gov.uk/government/publications/chief-trade-and-commercial-contacts-for-community-service-providers).\n \n\nOnce you have your new DTI badge, you need to activate it using this form before you make any declarations.",
@@ -218,7 +239,7 @@
           ]
         },
         {
-          "id": "generatedId_e3669de8_594e_4fee_aa22_0a1283dbc424",
+          "id": "cspInfo",
           "type": "info",
           "label": "What is a CSP?",
           "infoText": "CHIEF connects with 5 Community System Providers (CSPs). These are independent trade systems that serve carriers, transit sheds and freight forwarders. CSPs record and track the movement of goods within ports, to help them run more efficiently. You must get your DTI badge from a CSP.",
@@ -235,14 +256,14 @@
           "type": "text",
           "label": "Your email:",
           "format": "email",
-          "value": "${email1}",
+          "value": "${email}",
           "submitMode": "derived",
           "presentationHint": "totalValue"
         },
         {
           "id": "derivedChoice",
           "type": "revealingChoice",
-          "label": "",
+          "label": "Is this the email address you want to use for CHIEF?",
           "errorMessage": "Select whether this is the email address you want to use for ongoing CHIEF contact",
           "choices": [
             "Yes",
@@ -268,7 +289,7 @@
     "shortName": "Declaration",
     "fields": [
       {
-        "id": "generatedId_3d82af20_f549_4592_bbb3_7bcbb4ba3047",
+        "id": "decInfo",
         "type": "info",
         "label": "",
         "infoText": "I confirm that the information in this form is true, complete and accurate.",
