@@ -108,6 +108,30 @@
           "label": "Email address",
           "helpText": "We will also use this to send you a confirmation email.",
           "format": "email"
+        },
+        {
+          "id": "authorisedPerson",
+          "type": "choice",
+          "label": "Are you authorised to fill in this form?",
+          "helpText": "You must be the person who makes the customs declarations for the business.",
+          "choices": [
+            "Yes, I make the customs declarations for the business",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot use this service because you do not make the customs declarations for the business",
+      "includeIf": "${authorisedPerson = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "generatedId_92a2b116_b19a_4d46_adc1_5d173c130406",
+          "type": "info",
+          "label": "",
+          "infoText": "You'll need to exit this service.",
+          "infoType": "noformat"
         }
       ]
     },
@@ -176,20 +200,20 @@
       ]
     },
     {
-      "title": "Which Community Service Provider (CSP) issued your DTI badge?",
-      "shortName": "Community Service Provider (CSP)",
+      "title": "Which Community System Provider (CSP) issued your DTI badge?",
+      "shortName": "Community System Provider (CSP)",
       "includeIf": "${chfEmailRoute = 0 && newDTI = 0}",
       "fields": [
         {
           "id": "whichCsp",
           "type": "choice",
-          "label": "Which Community Service Provider (CSP) issued your DTI badge?",
+          "label": "Which Community System Provider (CSP) issued your DTI badge?",
           "shortName": "Which CSP issued badge",
           "choices": [
             "CCS-UK",
-            "CNS",
-            "Destin8 (this is also known as FCP or MCP)",
-            "Pentant (PNT)",
+            "CNS (this is also known as Compass)",
+            "FCP or MCP (this is also known as Destin8)",
+            "PNT (this is also known as Pentant)",
             "DHL"
           ]
         },
