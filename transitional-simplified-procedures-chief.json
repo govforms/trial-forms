@@ -26,6 +26,37 @@
   },
   "sections": [
     {
+      "title": "Is your business already registered for transitional simplified procedures?",
+      "shortName": "Registered for transitional simplified procedures",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "tspRegistered",
+          "label": "Is your business already registered for transitional simplified procedures?",
+          "shortName": "Business is registered for Transitional Simplified Procedures",
+          "errorMessage": "Select whether the business is already registered for Transitional Simplified Procedures ",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "You cannot use this service because your business is not yet registered with transitional simplified procedures",
+      "includeIf": "${tspRegistered = 1}",
+      "continueIf": "false",
+      "fields": [
+        {
+          "id": "tspExitINfo",
+          "type": "info",
+          "label": "",
+          "infoText": "Find out how to [register for transitional simplified procedures](https://www.gov.uk/guidance/making-declarations-using-transitional-simplified-procedures).\n\nOnce you have this, you can come back to activate your badge to make CHIEF declarations.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
       "title": "Does your business have an Economic Operators Registration and Identification (EORI) number?",
       "shortName": "Economic Operators Registration and Identification (EORI) number",
       "fields": [
