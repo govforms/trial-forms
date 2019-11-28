@@ -26,24 +26,25 @@
   },
   "sections": [
     {
-      "title": "Is your business already registered for transitional simplified procedures?",
+      "title": "Is your business currently registered for transitional simplified procedures?",
       "shortName": "Registered for transitional simplified procedures",
       "fields": [
         {
-          "type": "choice",
           "id": "tspRegistered",
-          "label": "Is your business already registered for transitional simplified procedures?",
+          "type": "choice",
+          "label": "Is your business currently registered for transitional simplified procedures?",
           "shortName": "Business is registered for Transitional Simplified Procedures",
           "errorMessage": "Select whether the business is already registered for Transitional Simplified Procedures ",
           "choices": [
             "Yes",
             "No"
-          ]
+          ],
+          "helpText": "Select no if you have applied for registration and been rejected, have had your registration revoked, or have asked for your registration to be cancelled."
         }
       ]
     },
     {
-      "title": "You cannot use this service because your business is not yet registered for transitional simplified procedures",
+      "title": "You cannot use this service because your business is not currently registered for transitional simplified procedures",
       "includeIf": "${tspRegistered = 1}",
       "continueIf": "false",
       "fields": [
